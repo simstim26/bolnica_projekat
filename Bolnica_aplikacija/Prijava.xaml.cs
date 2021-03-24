@@ -1,17 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Bolnica_aplikacija
 {
@@ -23,6 +14,8 @@ namespace Bolnica_aplikacija
         public Prijava()
         {
             InitializeComponent();
+            WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            
         }
 
         private void btnPrijava_Click(object sender, RoutedEventArgs e)
@@ -48,8 +41,10 @@ namespace Bolnica_aplikacija
                             if(sadrzaj[3].Equals("pacijent"))
                             {
                                 Console.WriteLine("pacijent");
+                                PacijentProzor pacijent = new PacijentProzor();
                                 this.Close();
-                               
+                                pacijent.ShowDialog();
+
                             }
                             else if(sadrzaj[3].Equals("lekar"))
                             {
