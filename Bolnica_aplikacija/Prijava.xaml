@@ -1,0 +1,27 @@
+﻿<Window x:Class="Bolnica_aplikacija.Prijava"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Bolnica_aplikacija"
+        mc:Ignorable="d"
+        Title="Prijava" Height="750" Width="430">
+
+    <Grid Height="719" VerticalAlignment="Bottom">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="289*"/>
+            <RowDefinition Height="115*"/>
+            <RowDefinition Height="115*"/>
+            <RowDefinition Height="200*"/>
+        </Grid.RowDefinitions>
+        <Label x:Name="Slika" Content="Slika" HorizontalAlignment="Left" Margin="189,128,0,0" VerticalAlignment="Top" Height="26" Width="34"/>
+        <Label x:Name="lblKorisnickoIme" Content="Korisničko ime:" HorizontalAlignment="Left" Margin="57,10,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="22"/>
+        <TextBox x:Name="txtKorisnickoIme" HorizontalAlignment="Left" Height="37" Margin="62,54,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="301" FontSize="22" TextChanged="txtKorisnickoIme_TextChanged"/>
+        <Label x:Name="lblLozinka" Content="Lozinka:" HorizontalAlignment="Left" Margin="57,10,0,0" Grid.Row="2" VerticalAlignment="Top" FontSize="22"/>
+        <PasswordBox x:Name="txtLozinka" HorizontalAlignment="Left" Margin="62,54,0,0" Grid.Row="2" VerticalAlignment="Center" Width="301" Height="37" VerticalContentAlignment="Center" PasswordChanged="txtLozinka_PasswordChanged"/>
+        <Label x:Name="lblNeispravno" Content="*" HorizontalAlignment="Left" Margin="368,54,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="22" Width="31"/>
+        <Label x:Name="lblNeispravno2" Content="*" HorizontalAlignment="Left" Margin="368,52,0,0" Grid.Row="2" VerticalAlignment="Top" FontSize="22" Width="31"/>
+        <Button x:Name="btnPrijava" Content="Prijavite se" Margin="146,89,146,68" Grid.Row="3" FontSize="22" IsEnabled="False" Click="btnPrijava_Click"/>
+        <Label x:Name="label" Content="*Pogrešan unos podataka." HorizontalAlignment="Left" Margin="62,10,0,0" Grid.Row="3" VerticalAlignment="Top" FontSize="14" FontStyle="Italic" Visibility="Hidden"/>
+    </Grid>
+</Window>

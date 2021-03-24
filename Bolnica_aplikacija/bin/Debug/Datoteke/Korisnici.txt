@@ -1,0 +1,2 @@
+﻿001|kneginja|milica|pacijent
+002|makro|marko|lekar
