@@ -63,6 +63,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LekarProzor.xaml.cs">
+      <DependentUpon>LekarProzor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Model\Bolnica.cs" />
     <Compile Include="Model\Korisnik.cs" />
     <Compile Include="Model\Korporacija.cs" />
@@ -82,11 +85,17 @@
     <Compile Include="Model\TipTermina.cs" />
     <Compile Include="Model\Upravnik.cs" />
     <Compile Include="Model\ZdravstveniKarton.cs" />
+    <Compile Include="PacijentInfo.xaml.cs">
+      <DependentUpon>PacijentInfo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PacijentProzor.xaml.cs">
       <DependentUpon>PacijentProzor.xaml</DependentUpon>
     </Compile>
     <Compile Include="Prijava.xaml.cs">
       <DependentUpon>Prijava.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PrikazPacijenata.xaml.cs">
+      <DependentUpon>PrikazPacijenata.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -114,11 +123,23 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="LekarProzor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PacijentInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PacijentProzor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Prijava.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PrikazPacijenata.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
