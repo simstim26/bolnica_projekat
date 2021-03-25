@@ -23,13 +23,14 @@ namespace Bolnica_aplikacija
         {
             InitializeComponent();
 
-            //this.Height = (System.Windows.SystemParameters.PrimaryScreenHeight * 0.75);
-            //this.Width = (System.Windows.SystemParameters.PrimaryScreenWidth * 0.75);
-
+            this.Height = (System.Windows.SystemParameters.PrimaryScreenHeight * 0.92);
+            this.Width = (System.Windows.SystemParameters.PrimaryScreenWidth * 0.75);
+            this.MinHeight = (System.Windows.SystemParameters.PrimaryScreenHeight * 0.92);
+            this.MinWidth = (System.Windows.SystemParameters.PrimaryScreenWidth * 0.75);
             WindowState = WindowState.Maximized;
-          
 
-            //CenterWindow();
+
+            CenterWindow();
             
         }
 
@@ -45,9 +46,5 @@ namespace Bolnica_aplikacija
 
         }
 
-        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
     }
 }
