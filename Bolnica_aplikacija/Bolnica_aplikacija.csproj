@@ -61,10 +61,16 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ZakaziTermin.xaml.cs">
+      <DependentUpon>ZakaziTermin.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="LekarProzor.xaml.cs">
       <DependentUpon>LekarProzor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LekarTabovi.xaml.cs">
+      <DependentUpon>LekarTabovi.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\Bolnica.cs" />
     <Compile Include="Model\Korisnik.cs" />
@@ -127,6 +133,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="LekarTabovi.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PacijentInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -140,6 +150,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PrikazPacijenata.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ZakaziTermin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

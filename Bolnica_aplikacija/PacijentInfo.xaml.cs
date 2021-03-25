@@ -20,14 +20,26 @@ namespace Bolnica_aplikacija
     /// </summary>
     public partial class PacijentInfo : UserControl
     {
+        public static TabControl tab;
         public PacijentInfo()
         {
             InitializeComponent();
+            tab = this.tabInfo;
         }
 
         private void btnNazad_Click(object sender, RoutedEventArgs e)
         {
             Content = new PrikazPacijenata();
+        }
+
+        private void btnZakazi_Click(object sender, RoutedEventArgs e)
+        {
+            LekarProzor.getX().Content = new ZakaziTermin();
+        }
+
+        public static TabControl getPregledTab()
+        {
+            return tab;
         }
     }
 }

@@ -24,13 +24,7 @@
         </StatusBar>
         <Label Content="Ime i Prezime " HorizontalAlignment="Left" Margin="10,26,0,0" VerticalAlignment="Top" Width="107" FontSize="14"/>
         <Label Content="Ocena: " HorizontalAlignment="Left" Margin="292,26,0,0" VerticalAlignment="Top"/>
-        <TabControl HorizontalAlignment="Left" Height="610" Margin="10,9.6,0,0" Grid.Row="1" VerticalAlignment="Top" Width="404">
-            <TabItem Header="Raspored">
-                <Grid Background="#FFE5E5E5"/>
-            </TabItem>
-            <TabItem Header="Rad sa pacijentima">
-                <ContentControl x:Name= "contentControl"/>
-            </TabItem>
-        </TabControl>
+        <ContentControl x:Name ="contentControl" HorizontalAlignment="Left" Margin="0,9.6,0,0" Grid.Row="1" VerticalAlignment="Top" Height="610" Width="424"/>
+
     </Grid>
 </Window>

@@ -15,15 +15,15 @@
                     </Grid.ColumnDefinitions>
                 </Grid>
             </TabItem>
-            <TabItem Header="Pregled termina">
+            <TabItem x:Name="tabPregled" Header="Pregled termina">
                 <Grid Background="#FFE5E5E5" Margin="0,-2,0.2,-62.6">
-                    <Button x:Name = "btnZakazi" Content="Zakaži termin" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="82" Background="White"/>
+                    <Button x:Name = "btnZakazi" Content="Zakaži termin" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="82" Background="White" Click="btnZakazi_Click"/>
                     <Button x:Name = "btnPromeni" Content="Promeni termin" HorizontalAlignment="Left" Margin="293,10,0,0" VerticalAlignment="Top" Width="92" Background="#FFFAFAFA"/>
                     <Button x:Name = "btnOtkazi" Content="Otkaži termin" HorizontalAlignment="Left" Margin="155,10,0,0" VerticalAlignment="Top" Width="85" Background="White"/>
                     <DataGrid HorizontalAlignment="Left" Height="434" Margin="-3,51,0,0" VerticalAlignment="Top" Width="398" Grid.ColumnSpan="2"/>
                 </Grid>
             </TabItem>
         </TabControl>
-        <Button x:Name ="btnNazad" Content="Nazad" HorizontalAlignment="Left" Height="37" Margin="10,541,0,0" VerticalAlignment="Top" Width="92" Click="btnNazad_Click"/>
+        <Button x:Name ="btnNazad" Content="Nazad" HorizontalAlignment="Left" Height="30" Margin="10,541,0,0" VerticalAlignment="Top" Width="92" Click="btnNazad_Click"/>
     </Grid>
 </UserControl>

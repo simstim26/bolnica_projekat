@@ -10,27 +10,27 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Bolnica_aplikacija
 {
     /// <summary>
-    /// Interaction logic for LekarProzor.xaml
+    /// Interaction logic for UserControl1.xaml
     /// </summary>
-    public partial class LekarProzor : Window
+    public partial class ZakaziTermin : UserControl
     {
-        private static ContentControl x;
-        public LekarProzor()
+        public ZakaziTermin()
         {
             InitializeComponent();
-            this.contentControl.Content = new LekarTabovi();
-            x = this.contentControl;
-            
         }
 
-        public static ContentControl getX()
+        private void btnPonisti_Click(object sender, RoutedEventArgs e)
         {
-            return x;
+            LekarProzor.getX().Content = new LekarTabovi();
+            LekarTabovi.getX().Content = new PacijentInfo();
+            LekarTabovi.getTab().SelectedIndex = 1;
+            PacijentInfo.getPregledTab().SelectedIndex = 1;
         }
     }
 }
