@@ -56,7 +56,9 @@ namespace Bolnica_aplikacija
                             }
                             else if(sadrzaj[3].Equals("upravnik"))
                             {
-
+                                UpravnikProzor upravnik = new UpravnikProzor();
+                                this.Close();
+                                upravnik.ShowDialog();
                             }
                             
                             break;

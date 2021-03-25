@@ -1,2 +1,3 @@
 ﻿001|kneginja|milica|pacijent
 002|makro|marko|lekar
+003|usisivac|vumvum|upravnik
