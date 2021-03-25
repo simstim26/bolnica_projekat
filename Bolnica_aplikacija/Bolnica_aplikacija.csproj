@@ -82,6 +82,9 @@
     <Compile Include="Model\TipTermina.cs" />
     <Compile Include="Model\Upravnik.cs" />
     <Compile Include="Model\ZdravstveniKarton.cs" />
+    <Compile Include="PacijentProzor.xaml.cs">
+      <DependentUpon>PacijentProzor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Prijava.xaml.cs">
       <DependentUpon>Prijava.xaml</DependentUpon>
     </Compile>
@@ -111,6 +114,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="PacijentProzor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Prijava.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
