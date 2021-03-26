@@ -40,8 +40,8 @@
         <TextBlock Margin="747,20,20,0" TextWrapping="Wrap" Text="Ime i Prezime" VerticalAlignment="Top" FontSize="30" Grid.Column="2"/>
         <Grid x:Name="gridProstorija" Background="LightGray" HorizontalAlignment="Left" Height="640" Margin="10,59,0,0" VerticalAlignment="Top" Width="949" Visibility="Hidden" Grid.Column="2" Grid.RowSpan="3">
             <DataGrid x:Name="dataGridProstorija" HorizontalAlignment="Left" Height="514" Margin="37,90,0,0" VerticalAlignment="Top" Width="868" />
-            <Button x:Name="btnDodajProstoriju" Background="White" Content="Dodaj Prostoriju" HorizontalAlignment="Left" Margin="424,34,0,0" VerticalAlignment="Top" Width="99" Height="28" Click="Button_Click_1" />
-            <Button x:Name="btnIzmeniProstoriju" Background="White" Content="Izmeni Prostoriju" HorizontalAlignment="Left" Margin="615,34,0,0" VerticalAlignment="Top" Width="99" Height="28" Click="Button_Click_2" />
+            <Button x:Name="btnDodajProstoriju" Background="White" Content="Dodaj Prostoriju" HorizontalAlignment="Left" Margin="424,34,0,0" VerticalAlignment="Top" Width="99" Height="28"  />
+            <Button x:Name="btnIzmeniProstoriju" Background="White" Content="Izmeni Prostoriju" HorizontalAlignment="Left" Margin="615,34,0,0" VerticalAlignment="Top" Width="99" Height="28"  />
             <Button x:Name="btnIzbrisiProstoriju" Background="White" Content="Izbrisi Prostoriju" HorizontalAlignment="Left" Margin="806,34,0,0" VerticalAlignment="Top" Width="99" Height="28"/>
 
         </Grid>
