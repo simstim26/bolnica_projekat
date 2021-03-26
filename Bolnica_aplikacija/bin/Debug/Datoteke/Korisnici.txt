@@ -1,3 +1,4 @@
 ﻿1|kneginja|milica|pacijent
 2|makro|marko|lekar
 3|usisivac|vumvum|upravnik
+4|imenko prezimic|ra1234|sekretar

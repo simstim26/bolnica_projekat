@@ -48,9 +48,11 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="UIAutomationProvider" />
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -61,9 +63,12 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="SekretarProzor.xaml.cs">
+      <DependentUpon>SekretarProzor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UpravnikProzor.xaml.cs">
       <DependentUpon>UpravnikProzor.xaml</DependentUpon>
-	</Compile>
+    </Compile>
     <Compile Include="ZakaziTermin.xaml.cs">
       <DependentUpon>ZakaziTermin.xaml</DependentUpon>
     </Compile>
@@ -152,6 +157,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="SekretarProzor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UpravnikProzor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -167,6 +176,21 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="question_mark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="pacijent.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="dodajPacijenta.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="IzmeniPacijenta.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="IzbrisiPacijenta.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

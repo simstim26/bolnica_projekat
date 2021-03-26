@@ -56,6 +56,9 @@ namespace Bolnica_aplikacija
                             }
                             else if(sadrzaj[3].Equals("sekretar"))
                             {
+                                SekretarProzor sekretar = new SekretarProzor();
+                                this.Close();
+                                sekretar.ShowDialog();
 
                             }
                             else if(sadrzaj[3].Equals("upravnik"))
