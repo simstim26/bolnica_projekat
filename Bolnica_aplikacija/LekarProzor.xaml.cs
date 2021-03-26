@@ -32,5 +32,6 @@ namespace Bolnica_aplikacija
         {
             return x;
         }
+
     }
 }
