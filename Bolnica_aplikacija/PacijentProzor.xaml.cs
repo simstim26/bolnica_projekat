@@ -31,7 +31,10 @@ namespace Bolnica_aplikacija
 
 
             CenterWindow();
-            
+
+            dataGridTermin.Loaded += setMinWidths;
+
+
         }
 
         private void CenterWindow()
@@ -44,6 +47,15 @@ namespace Bolnica_aplikacija
             this.Left = (screenWidth / 2) - (windowWidth / 2);
             this.Top = (screenHeight / 2) - (windowHeight / 2);
 
+        }
+
+        public void setMinWidths(object source, EventArgs e)
+        {
+            foreach(var column in dataGridTermin.Columns)
+            {
+                column.MinWidth = column.ActualWidth;
+                column.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
+            }
         }
 
     }

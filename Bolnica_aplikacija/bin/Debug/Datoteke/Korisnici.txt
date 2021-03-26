@@ -1,3 +1,3 @@
-﻿001|kneginja|milica|pacijent
-002|makro|marko|lekar
-003|usisivac|vumvum|upravnik
+﻿1|kneginja|milica|pacijent
+2|makro|marko|lekar
+3|usisivac|vumvum|upravnik

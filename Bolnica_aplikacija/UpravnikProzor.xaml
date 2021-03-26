@@ -6,7 +6,5 @@
         xmlns:local="clr-namespace:Bolnica_aplikacija"
         mc:Ignorable="d"
         Title="UpravnikProzor" Height="768" Width="1024" ResizeMode="NoResize">
-    <Grid>
-
-    </Grid>
+    <Grid/>
 </Window>
