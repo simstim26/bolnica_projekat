@@ -23,6 +23,6 @@
         <Label x:Name="label" Content="*Pogrešan unos podataka." HorizontalAlignment="Left" Margin="62,10,0,0" Grid.Row="3" VerticalAlignment="Top" FontSize="14" FontStyle="Italic" Visibility="Hidden"/>
         <Image x:Name="image" Margin="76,10,76,0" Source="logo.png" Height="270" VerticalAlignment="Top"/>
         <Label x:Name="lblDobrodoslica" Content="Dobrodošli" Margin="144,228,132,19" VerticalAlignment="Center" FontSize="24" FontWeight="Bold" FontStyle="Italic" Foreground="#FF56C709"/>
-        <Label x:Name="lblPogresno" Content="*Pogrešno uneto korisničko ime ili lozinka!" HorizontalAlignment="Left" Margin="10,38.8,0,0" Grid.Row="3" VerticalAlignment="Top" Height="31" Width="320" FontSize="16" Background="White" FontStyle="Italic" Foreground="Red" Visibility="Hidden"/>
+        <Label x:Name="lblPogresno" Content="*Pogrešno uneto korisničko ime ili lozinka!" HorizontalAlignment="Left" Margin="57,17,0,0" Grid.Row="3" VerticalAlignment="Top" Height="31" Width="320" FontSize="16" Background="White" FontStyle="Italic" Foreground="Red" Visibility="Hidden"/>
     </Grid>
 </Window>
