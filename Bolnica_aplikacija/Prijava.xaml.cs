@@ -42,7 +42,7 @@ namespace Bolnica_aplikacija
                             if (sadrzaj[3].Equals("pacijent"))
                             {
                                 Console.WriteLine("pacijent");
-                                PacijentProzor pacijent = new PacijentProzor();
+                                PacijentProzor pacijent = new PacijentProzor(sadrzaj[0]);
                                 this.Close();
                                 pacijent.ShowDialog();
 

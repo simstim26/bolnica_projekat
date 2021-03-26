@@ -61,9 +61,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="PacijentModel\PacijentTermin.cs" />
     <Compile Include="UpravnikProzor.xaml.cs">
       <DependentUpon>UpravnikProzor.xaml</DependentUpon>
-	</Compile>
+    </Compile>
     <Compile Include="ZakaziTermin.xaml.cs">
       <DependentUpon>ZakaziTermin.xaml</DependentUpon>
     </Compile>
