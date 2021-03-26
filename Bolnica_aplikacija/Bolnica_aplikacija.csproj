@@ -66,6 +66,8 @@
     <Compile Include="SekretarProzor.xaml.cs">
       <DependentUpon>SekretarProzor.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PacijentModel\PacijentTermin.cs" />
+
     <Compile Include="UpravnikProzor.xaml.cs">
       <DependentUpon>UpravnikProzor.xaml</DependentUpon>
     </Compile>
@@ -191,6 +193,7 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="IzbrisiPacijenta.png" />
+    <Resource Include="patient_room.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

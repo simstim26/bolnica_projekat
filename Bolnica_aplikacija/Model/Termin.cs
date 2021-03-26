@@ -14,7 +14,7 @@ namespace Model
         private DateTime satnica;
         private String idTermina;
       
-        public Prostorija prostorija;
+        public String idProstorije;
         public String idPacijenta;
         public String idLekara;
       

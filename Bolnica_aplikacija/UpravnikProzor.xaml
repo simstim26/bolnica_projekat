@@ -6,5 +6,83 @@
         xmlns:local="clr-namespace:Bolnica_aplikacija"
         mc:Ignorable="d"
         Title="UpravnikProzor" Height="768" Width="1024" ResizeMode="NoResize">
-    <Grid/>
+    <Window.Resources>
+        <DataTemplate x:Key="backgroundProstorija">
+            <Grid>
+                <Grid.Background>
+                    <ImageBrush ImageSource="patient_room.png"/>
+                </Grid.Background>
+            </Grid>
+        </DataTemplate>
+
+        <Style TargetType="ToggleButton" x:Key="checkedToggle">
+            <Style.Triggers>
+                <Trigger Property="IsChecked" Value="True">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+                    <Setter Property="ContentTemplate" Value="{StaticResource backgroundProstorija}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="298*"/>
+            <RowDefinition Height="377*"/>
+            <RowDefinition Height="65*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="33*"/>
+            <ColumnDefinition Width="26*"/>
+            <ColumnDefinition Width="959*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Margin="747,20,20,0" TextWrapping="Wrap" Text="Ime i Prezime" VerticalAlignment="Top" FontSize="30" Grid.Column="2"/>
+        <Grid x:Name="gridProstorija" Background="LightGray" HorizontalAlignment="Left" Height="640" Margin="10,59,0,0" VerticalAlignment="Top" Width="949" Visibility="Hidden" Grid.Column="2" Grid.RowSpan="3">
+            <DataGrid x:Name="dataGridProstorija" HorizontalAlignment="Left" Height="514" Margin="37,90,0,0" VerticalAlignment="Top" Width="868" />
+            <Button x:Name="btnDodajProstoriju" Background="White" Content="Dodaj Prostoriju" HorizontalAlignment="Left" Margin="424,34,0,0" VerticalAlignment="Top" Width="99" Height="28" Click="Button_Click_1" />
+            <Button x:Name="btnIzmeniProstoriju" Background="White" Content="Izmeni Prostoriju" HorizontalAlignment="Left" Margin="615,34,0,0" VerticalAlignment="Top" Width="99" Height="28" Click="Button_Click_2" />
+            <Button x:Name="btnIzbrisiProstoriju" Background="White" Content="Izbrisi Prostoriju" HorizontalAlignment="Left" Margin="806,34,0,0" VerticalAlignment="Top" Width="99" Height="28"/>
+
+        </Grid>
+
+        <Grid x:Name="gridDodajProstoriju" Visibility="Hidden">
+            <Rectangle Fill="LightGray" HorizontalAlignment="Left" Height="638" Stroke="Black" VerticalAlignment="Top" Width="947" Margin="70,59,-984,-399"/>
+
+        </Grid>
+
+        <Grid Background="LightGray" HorizontalAlignment="Left" Height="739" VerticalAlignment="Top" Width="78" Grid.ColumnSpan="3" Grid.RowSpan="3">
+
+            <ToggleButton x:Name = "tbProstorija"  
+              Margin = "0,173,14,467" Style="{StaticResource checkedToggle}"
+            Width = "64" Height="66" HorizontalAlignment = "Center" BorderThickness="0" Click="tbProstorija_Click" Checked="tbProstorija_Checked" Unchecked="tbProstorija_Unchecked">
+                <ToggleButton.Background>
+                    <ImageBrush ImageSource="patient_room.png"/>
+                </ToggleButton.Background>
+            </ToggleButton>
+            <ToggleButton x:Name = "tb_Copy2"   
+                Margin = "0,239,14,401"
+                Width = "64" Height="66" HorizontalAlignment = "Right" BorderThickness="0" Click="tb_Copy_Click" Unchecked="tb_Copy2_Unchecked">
+                <ToggleButton.Background>
+                    <ImageBrush ImageSource="logo.png"/>
+                </ToggleButton.Background>
+            </ToggleButton>
+            <ToggleButton x:Name = "tb_Copy1"  
+            Margin = "0,305,14,335"
+            Width = "64" Height="66" HorizontalAlignment = "Center" BorderThickness="0" Click="tb_Copy1_Click" Unchecked="tb_Copy1_Unchecked" Checked="tb_Copy1_Checked">
+                <ToggleButton.Background>
+                    <ImageBrush ImageSource="logo.png"/>
+                </ToggleButton.Background>
+            </ToggleButton>
+
+        </Grid>
+        <Rectangle x:Name="vodoravniPravougaonik" Fill="Black" Visibility="Hidden" HorizontalAlignment="Left" Height="2" Margin="19,60,0,0" Stroke="Black" VerticalAlignment="Top" Width="940" Grid.Column="2"/>
+        <Rectangle x:Name="horizontalniPravougaonik" Fill="Black" HorizontalAlignment="Left" Height="679" Margin="19,60,0,0" Stroke="Black" VerticalAlignment="Top" Width="2" Grid.Column="2" Grid.RowSpan="3"/>
+        <Rectangle Fill="Black" HorizontalAlignment="Left" Height="60" Margin="19,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="2" Grid.Column="2"/>
+        <Rectangle x:Name="donjiPravougaonik"  Fill="Black" HorizontalAlignment="Left" Height="2" Margin="20,31,-78,0" Stroke="Black" VerticalAlignment="Top" Width="1016" Grid.Column="2" Visibility="Hidden" Grid.Row="2"/>
+
+
+
+    </Grid>
+
 </Window>

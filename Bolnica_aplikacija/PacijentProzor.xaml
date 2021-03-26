@@ -15,9 +15,7 @@
             <ToolBarTray DockPanel.Dock="Top">
                 <ToolBar>
 
-                    <Button Name="btnZakazi" Content="Zakaži" FontSize="22"></Button>
-                    <Button Name="btnOtkazi" Content="Otkaži" FontSize="22"></Button>
-                    <Button Name="btnPromeniTermin" Content="Promeni termin" FontSize="22"></Button>
+                    <Button Name="btnOdjava" Content="Odjavi se" FontSize="22" Click="btnOdjava_Click"></Button>
 
                 </ToolBar>
             </ToolBarTray>
@@ -58,17 +56,33 @@
 
                 <TabControl Margin="0,10" Grid.Row="1">
                     <TabItem Header="Termini" FontSize="20">
-                        <DataGrid Height="600" Margin="5,21,5,236" VerticalAlignment="Top" Name="dataGridTermin" FontSize="24">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="Datum održavanja"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Satnica"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Prostorija"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Napomena"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Lekar"></DataGridTextColumn>
-                            </DataGrid.Columns>
+                        <Viewbox>
+                            <Grid x:Name="gridTermini">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <DataGrid Height="611" VerticalAlignment="Top" Name="dataGridTermin" FontSize="24" Grid.Row="0"  Width="1891">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Datum održavanja"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Satnica"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Prostorija"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Napomena"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Lekar"></DataGridTextColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                            <Button x:Name="btnOtkaziPregled" Content="Otkaži termin"  Width="201" Height="55" FontSize="22" Margin="1102,701,602,61" MinWidth="201" MinHeight="55"/>
+                            <Button x:Name="btnIzmeniTermin" Content="Izmeni termin"  Width="201" Height="55" FontSize="22" Margin="852,701,852,61" MinWidth="201" MinHeight="55"/>
+                            <Button x:Name="btnZakaziPregled" Content="Zakaži termin" Width="201" Height="55" FontSize="22" Margin="602,701,1102,61" MinWidth="201" MinHeight="55"/>
+                        </Grid>
+                        </Viewbox>
 
-
-                        </DataGrid>
 
                     </TabItem>
                     <TabItem Header="Zdravstveni karton" FontSize="20">
@@ -80,6 +94,7 @@
                     <TabItem Header="Grafički prikaz" FontSize="20">
                         <Label>TO DO: implementirati grafik</Label>
                     </TabItem>
+
 
                 </TabControl>
 
