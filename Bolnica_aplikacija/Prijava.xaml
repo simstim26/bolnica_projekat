@@ -19,11 +19,10 @@
         <TextBox x:Name="txtKorisnickoIme" HorizontalAlignment="Left" Height="37" Margin="62,54,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="301" FontSize="22" TextChanged="txtKorisnickoIme_TextChanged"/>
         <Label x:Name="lblLozinka" Content="Lozinka:" HorizontalAlignment="Left" Margin="57,10,0,0" Grid.Row="2" VerticalAlignment="Top" FontSize="22"/>
         <PasswordBox x:Name="txtLozinka" HorizontalAlignment="Left" Margin="62,54,0,0" Grid.Row="2" VerticalAlignment="Center" Width="301" Height="37" VerticalContentAlignment="Center" PasswordChanged="txtLozinka_PasswordChanged"/>
-        <Label x:Name="lblNeispravno" Content="*" HorizontalAlignment="Left" Margin="368,54,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="22" Width="31"/>
-        <Label x:Name="lblNeispravno2" Content="*" HorizontalAlignment="Left" Margin="368,52,0,0" Grid.Row="2" VerticalAlignment="Top" FontSize="22" Width="31"/>
         <Button x:Name="btnPrijava" Content="Prijavite se" Margin="146,0,146,68" Grid.Row="3" FontSize="22" IsEnabled="False" Click="btnPrijava_Click" Height="43" VerticalAlignment="Bottom"/>
         <Label x:Name="label" Content="*Pogrešan unos podataka." HorizontalAlignment="Left" Margin="62,10,0,0" Grid.Row="3" VerticalAlignment="Top" FontSize="14" FontStyle="Italic" Visibility="Hidden"/>
         <Image x:Name="image" Margin="76,10,76,0" Source="logo.png" Height="270" VerticalAlignment="Top"/>
         <Label x:Name="lblDobrodoslica" Content="Dobrodošli" Margin="144,228,132,19" VerticalAlignment="Center" FontSize="24" FontWeight="Bold" FontStyle="Italic" Foreground="#FF56C709"/>
+        <Label x:Name="lblPogresno" Content="*Pogrešno uneto korisničko ime ili lozinka!" HorizontalAlignment="Left" Margin="10,38.8,0,0" Grid.Row="3" VerticalAlignment="Top" Height="31" Width="320" FontSize="16" Background="White" FontStyle="Italic" Foreground="Red" Visibility="Hidden"/>
     </Grid>
 </Window>

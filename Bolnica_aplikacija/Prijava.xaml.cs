@@ -36,9 +36,10 @@ namespace Bolnica_aplikacija
                         if (korisnickoIme == sadrzaj[1] && lozinka == sadrzaj[2])
                         {
 
-                            fileStream.Close(); 
+                            fileStream.Close();
+                            lblPogresno.Visibility = Visibility.Hidden;
 
-                            if(sadrzaj[3].Equals("pacijent"))
+                            if (sadrzaj[3].Equals("pacijent"))
                             {
                                 Console.WriteLine("pacijent");
                                 PacijentProzor pacijent = new PacijentProzor();
@@ -62,6 +63,10 @@ namespace Bolnica_aplikacija
                             }
                             
                             break;
+                        }
+                        else
+                        {
+                            lblPogresno.Visibility = Visibility.Visible;
                         }
                     }
                 }
