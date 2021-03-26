@@ -5,9 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Bolnica_aplikacija"
              mc:Ignorable="d" Height="580.704" Width="398.325">
-    <Grid Background="#FFE5E5E5" Margin="0,0,0.4,-0.4">
-        <Button x:Name ="btnInfo" Content="Info" HorizontalAlignment="Left" Margin="312,10,0,0" VerticalAlignment="Top" Width="76" Visibility="Visible" Background="White" Click="btnInfo_Click" Height="22"/>
-        <DataGrid x:Name ="lstPacijenti" HorizontalAlignment="Left" Height="540" Margin="0,42,0,0" VerticalAlignment="Top" Width="398" Visibility="Visible" HeadersVisibility="All">
+    <Grid Background="#FFE5E5E5" Margin="-18,0,-12.6,-13.2">
+        <Button x:Name ="btnInfo" Content="Info" HorizontalAlignment="Left" Margin="316,7,0,0" VerticalAlignment="Top" Width="86" Visibility="Visible" Background="White" Click="btnInfo_Click" Height="27"/>
+        <DataGrid x:Name ="lstPacijenti" HorizontalAlignment="Left" Height="565" Margin="2,42,0,-13" VerticalAlignment="Top" Width="427" Visibility="Visible" HeadersVisibility="All">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="JMBG" Width="100"/>
                 <DataGridTextColumn Header="Ime"  Width="100"/>
