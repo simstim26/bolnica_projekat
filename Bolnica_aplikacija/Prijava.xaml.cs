@@ -50,6 +50,9 @@ namespace Bolnica_aplikacija
                             else if(sadrzaj[3].Equals("lekar"))
                             {
                                 Console.WriteLine("lekar");
+                                LekarProzor lekar = new LekarProzor();
+                                this.Close();
+                                lekar.ShowDialog();
                             }
                             else if(sadrzaj[3].Equals("sekretar"))
                             {

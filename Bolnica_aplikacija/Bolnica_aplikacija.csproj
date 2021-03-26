@@ -63,9 +63,17 @@
     </Compile>
     <Compile Include="UpravnikProzor.xaml.cs">
       <DependentUpon>UpravnikProzor.xaml</DependentUpon>
+    <Compile Include="ZakaziTermin.xaml.cs">
+      <DependentUpon>ZakaziTermin.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LekarProzor.xaml.cs">
+      <DependentUpon>LekarProzor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LekarTabovi.xaml.cs">
+      <DependentUpon>LekarTabovi.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Model\Bolnica.cs" />
     <Compile Include="Model\Korisnik.cs" />
     <Compile Include="Model\Korporacija.cs" />
@@ -85,11 +93,17 @@
     <Compile Include="Model\TipTermina.cs" />
     <Compile Include="Model\Upravnik.cs" />
     <Compile Include="Model\ZdravstveniKarton.cs" />
+    <Compile Include="PacijentInfo.xaml.cs">
+      <DependentUpon>PacijentInfo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PacijentProzor.xaml.cs">
       <DependentUpon>PacijentProzor.xaml</DependentUpon>
     </Compile>
     <Compile Include="Prijava.xaml.cs">
       <DependentUpon>Prijava.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PrikazPacijenata.xaml.cs">
+      <DependentUpon>PrikazPacijenata.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -117,6 +131,18 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="LekarProzor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LekarTabovi.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PacijentInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PacijentProzor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -132,6 +158,14 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="logo.png" />
+    <Page Include="PrikazPacijenata.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ZakaziTermin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
