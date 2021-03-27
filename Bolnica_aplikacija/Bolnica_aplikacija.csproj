@@ -63,11 +63,13 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="PacijentZakaziTermin.xaml.cs">
+      <DependentUpon>PacijentZakaziTermin.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SekretarProzor.xaml.cs">
       <DependentUpon>SekretarProzor.xaml</DependentUpon>
     </Compile>
     <Compile Include="PacijentModel\PacijentTermin.cs" />
-
     <Compile Include="UpravnikProzor.xaml.cs">
       <DependentUpon>UpravnikProzor.xaml</DependentUpon>
     </Compile>
@@ -154,6 +156,10 @@
     <Page Include="PacijentProzor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PacijentZakaziTermin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Prijava.xaml">
       <SubType>Designer</SubType>
