@@ -2,6 +2,7 @@
 using Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -25,6 +26,12 @@ namespace Bolnica_aplikacija
 
         private String idPacijenta;
 
+        public ObservableCollection<PacijentTermin> Termini
+        {
+            get;
+            set;
+        }
+
         public PacijentProzor(String id)
         {
             InitializeComponent();
@@ -36,6 +43,7 @@ namespace Bolnica_aplikacija
             this.MinWidth = (System.Windows.SystemParameters.PrimaryScreenWidth * 0.75);
             WindowState = WindowState.Maximized;
 
+            this.DataContext = this;
 
             CenterWindow();
 
@@ -43,8 +51,8 @@ namespace Bolnica_aplikacija
 
             //to do: implementirati metodu za citanje iz fajla
             //dataGridTermin.ItemsSource = UcitajTermine();
-            dataGridTermin.AutoGenerateColumns = false;
-
+            //dataGridTermin.AutoGenerateColumns = false;
+            UcitajTermine();
 
 
         }
@@ -72,9 +80,11 @@ namespace Bolnica_aplikacija
 
         //ZA MODIFIKOVATI JOS
 
-        public List<PacijentTermin> UcitajTermine()
+        public void UcitajTermine()
         {
-            List<PacijentTermin> listaPacijentovihTermina = new List<PacijentTermin>();
+            //List<PacijentTermin> listaPacijentovihTermina = new List<PacijentTermin>();
+
+            Termini = new ObservableCollection<PacijentTermin>();
 
             const Int32 BufferSize = 128;
             using (var fileStream = File.OpenRead("Datoteke/Termini.txt"))
@@ -114,15 +124,15 @@ namespace Bolnica_aplikacija
                             pacijentTermin.setImeLekara("TODO");
                             pacijentTermin.setNapomena(sadrzaj[4]);
 
-                            listaPacijentovihTermina.Add(pacijentTermin);
-                            Console.WriteLine(pacijentTermin.getDatum().ToString());
+                            Termini.Add(pacijentTermin);
+                            Console.WriteLine(pacijentTermin.getImeLekara().ToString());
 
                         }
                     }
                 }
             }
 
-            return listaPacijentovihTermina;
+            
 
         }
 

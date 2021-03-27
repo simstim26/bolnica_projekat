@@ -65,14 +65,15 @@
                                 <RowDefinition Height="Auto"></RowDefinition>
                                 <RowDefinition Height="*"></RowDefinition>
                             </Grid.RowDefinitions>
-                            <DataGrid Height="611" VerticalAlignment="Top" Name="dataGridTermin" FontSize="24" Grid.Row="0" >
+                            <DataGrid Height="611" VerticalAlignment="Top" Name="dataGridTermin" FontSize="24" Grid.Row="0" ItemsSource="{Binding Path=Termini}" DataContext="{Binding ElementName=dataGridTermin, Path=SelectedItem}" IsReadOnly="True">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Datum održavanja"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Datum održavanja" ></DataGridTextColumn>
                                     <DataGridTextColumn Header="Satnica"></DataGridTextColumn>
                                     <DataGridTextColumn Header="Prostorija"></DataGridTextColumn>
                                     <DataGridTextColumn Header="Napomena"></DataGridTextColumn>
                                     <DataGridTextColumn Header="Lekar"></DataGridTextColumn>
                                 </DataGrid.Columns>
+
                             </DataGrid>
 
                             <Grid x:Name="gridBtn" Grid.Row="2">
@@ -107,7 +108,9 @@
                     <TabItem Header="Grafički prikaz" FontSize="20">
                         <Label>TO DO: implementirati grafik</Label>
                     </TabItem>
-
+                    <TabItem Header="Obaveštenja" FontSize="20">
+                        <Label>TO DO: implementirati spisak obavestenja i kreiranje personalnih obavestenja</Label>
+                    </TabItem>
 
                 </TabControl>
 
