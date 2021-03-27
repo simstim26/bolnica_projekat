@@ -149,12 +149,5 @@ namespace Bolnica_aplikacija
             zakaziTermin.Owner = Application.Current.MainWindow;
             zakaziTermin.ShowDialog();
         }
-
-        private void btnZakaziPregled_Click_1(object sender, RoutedEventArgs e)
-        {
-            PacijentZakaziTermin zakazivanjeTermina = new PacijentZakaziTermin();
-            zakazivanjeTermina.Owner = Application.Current.MainWindow;
-            zakazivanjeTermina.ShowDialog();
-        }
     }
 }
