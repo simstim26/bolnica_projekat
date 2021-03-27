@@ -11,7 +11,7 @@ namespace Model
    {
       private String id;
       private int brojSlobodnihDana;
-      private double prosecnaOcena;
+      public double prosecnaOcena { get; set; }
       private String idBolnice;
       
       public void NapraviTermin(Termin termin)

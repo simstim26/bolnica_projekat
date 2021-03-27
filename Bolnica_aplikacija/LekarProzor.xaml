@@ -22,8 +22,8 @@
                 <Label Content="ImeBolnice" Grid.Column="1" HorizontalAlignment="Center" Margin="23,-8,25,0" VerticalAlignment="Top" Width="92" FontSize="16" Height="29" HorizontalContentAlignment="Center"/>
             </Grid>
         </StatusBar>
-        <Label Content="Ime i Prezime " HorizontalAlignment="Left" Margin="245,6,0,0" VerticalAlignment="Top" Width="107" FontSize="14"/>
-        <Label Content="Ocena: " HorizontalAlignment="Left" Margin="245,35,0,0" VerticalAlignment="Top"/>
+        <Label x:Name ="lblImePrezime" Content="Ime i Prezime " HorizontalAlignment="Left" Margin="245,6,0,0" VerticalAlignment="Top" Width="169" FontSize="14"/>
+        <Label x:Name="lblprosecnaOcena" Content="Ocena: " HorizontalAlignment="Left" Margin="245,35,0,0" VerticalAlignment="Top" Width="169"/>
         <ContentControl x:Name ="contentControl" HorizontalAlignment="Left" Margin="0,9.6,0,0" Grid.Row="1" VerticalAlignment="Top" Height="610" Width="424"/>
         <Menu HorizontalAlignment="Left" Height="32" VerticalAlignment="Top" Width="62">
             <MenuItem Header="Meni" Height="32" Width="62" FontSize="20" BorderBrush="Black" Foreground="Black" Background="#FFDFDFDF">

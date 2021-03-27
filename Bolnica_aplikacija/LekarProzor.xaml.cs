@@ -20,11 +20,13 @@ namespace Bolnica_aplikacija
     public partial class LekarProzor : Window
     {
         private static ContentControl x;
-        public LekarProzor()
+        public LekarProzor(Model.Lekar lekar)
         {
             InitializeComponent();
             this.contentControl.Content = new LekarTabovi();
             x = this.contentControl;
+            lblImePrezime.Content = lekar.ime + " " + lekar.prezime;
+            lblprosecnaOcena.Content += " " + lekar.prosecnaOcena;
             
         }
 

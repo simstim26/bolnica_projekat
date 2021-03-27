@@ -49,7 +49,7 @@ namespace Bolnica_aplikacija
                             }
                             else if(sadrzaj[3].Equals("lekar"))
                             {
-                                LekarProzor lekar = new LekarProzor();
+                                LekarProzor lekar = new LekarProzor((Model.Lekar)Model.Korisnik.Prijava(sadrzaj[0], "Lekari"));
                                 this.Close();
                                 lekar.ShowDialog();
                             }

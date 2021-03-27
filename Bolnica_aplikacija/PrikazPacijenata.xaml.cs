@@ -60,7 +60,8 @@ namespace Bolnica_aplikacija
         {
             if(lstPacijenti.SelectedIndex != -1)
             {
-                pacijent = Pacijenti.ElementAt(lstPacijenti.SelectedIndex);
+                pacijent = (Model.Pacijent)lstPacijenti.SelectedItem;
+
                 this.Content = new PacijentInfo();
             }
 
