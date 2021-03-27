@@ -9,6 +9,7 @@ namespace Bolnica_aplikacija
     /// <summary>
     /// Interaction logic for Prijava.xaml
     /// </summary>
+    
     public partial class Prijava : Window
     {
         public Prijava()
