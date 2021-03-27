@@ -46,8 +46,17 @@ namespace Model
                                     korisnik.jmbg = sadrzaj[1];
                                     korisnik.ime = sadrzaj[2];
                                     korisnik.prezime = sadrzaj[3];
-                                    korisnik.prosecnaOcena = Convert.ToDouble(sadrzaj[9]);
-                                    return korisnik;                                    
+                                    korisnik.datumRodjenja = Convert.ToDateTime(sadrzaj[4]);
+                                    korisnik.email = sadrzaj[5];
+                                    korisnik.brojTelefona = sadrzaj[6];
+                                    korisnik.brojSlobodnihDana = Convert.ToInt32(sadrzaj[7]);
+                                    korisnik.prosecnaOcena = Convert.ToDouble(sadrzaj[8]);
+                                    korisnik.idBolnice = sadrzaj[9];
+                                    return korisnik;
+                                case "Sekretari":
+                                    break;
+                                case "Upravnici":
+                                    break;
                             }
                         }
 

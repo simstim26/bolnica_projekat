@@ -9,12 +9,12 @@ namespace Model
 {
    public class Lekar : Korisnik
    {
-      private String id;
-      private int brojSlobodnihDana;
+      public String id { get; set; }
+      public int brojSlobodnihDana { get; set; }
       public double prosecnaOcena { get; set; }
-      private String idBolnice;
-      
-      public void NapraviTermin(Termin termin)
+      public String idBolnice { get; set; }
+
+        public void NapraviTermin(Termin termin)
       {
          throw new NotImplementedException();
       }
