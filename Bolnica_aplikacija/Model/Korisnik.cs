@@ -9,15 +9,15 @@ namespace Model
 {
    public abstract class Korisnik
    {
-      protected String korisnickoIme;
-      protected String lozinka;
-      protected String ime;
-      protected String prezime;
-      protected DateTime datumRodjenja;
-      protected String email;
-      protected String brojTelefona;
-      protected String jmbg;
-      
+      public String korisnickoIme { get; set; }
+      public String lozinka { get; set; }
+      public String ime { get; set; }
+      public String prezime { get; set; }
+      public DateTime datumRodjenja { get; set; }
+      public String email { get; set; }
+      public String brojTelefona { get; set; }
+      public String jmbg { get; set; }
+
       public void Prijava(String korisnickoIme, String lozinka)
       {
          throw new NotImplementedException();

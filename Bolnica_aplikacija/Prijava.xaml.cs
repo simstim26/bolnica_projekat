@@ -42,7 +42,6 @@ namespace Bolnica_aplikacija
 
                             if (sadrzaj[3].Equals("pacijent"))
                             {
-                                Console.WriteLine("pacijent");
                                 PacijentProzor pacijent = new PacijentProzor(sadrzaj[0]);
                                 this.Close();
                                 pacijent.ShowDialog();
@@ -50,7 +49,6 @@ namespace Bolnica_aplikacija
                             }
                             else if(sadrzaj[3].Equals("lekar"))
                             {
-                                Console.WriteLine("lekar");
                                 LekarProzor lekar = new LekarProzor();
                                 this.Close();
                                 lekar.ShowDialog();

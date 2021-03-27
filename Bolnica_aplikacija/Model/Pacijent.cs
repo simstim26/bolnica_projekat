@@ -9,11 +9,25 @@ namespace Model
 {
    public class Pacijent : Korisnik
    {
-      private String id;
+      public String id { get; set;}
       private String idBolnice;
       private bool jeGost;
       private String adresa;
+      public Termin[] termin;
       
+        public Pacijent (String jmbg, String ime, String prezime)
+        {
+            this.jmbg = jmbg;
+            this.ime = ime;
+            this.prezime = prezime;
+        }
+        public Pacijent() { }
+
+        public String[] toString()
+        {
+            String[] stringovi = { jmbg, ime, prezime };
+            return stringovi;
+        }
       public void NapraviTermin(Termin termin)
       {
          throw new NotImplementedException();
@@ -136,7 +150,6 @@ namespace Model
          if (notifikacija != null)
             notifikacija.Clear();
       }
-      public Termin[] termin;
    
    }
 }

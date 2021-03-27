@@ -12,8 +12,8 @@ namespace Model
         private TipTermina tip;
         private DateTime datum;
         private DateTime satnica;
+        private bool jeZavrsen;
         private String idTermina;
-      
         public String idProstorije;
         public String idPacijenta;
         public String idLekara;
@@ -38,6 +38,10 @@ namespace Model
             return idTermina;
         }
 
+        public bool getJeZavrsen()
+        {
+            return jeZavrsen;
+        }
         public void setTipTermina(TipTermina tip)
         {
             this.tip = tip;
@@ -56,6 +60,11 @@ namespace Model
         public void setIdTermina(String idTermina)
         {
             this.idTermina = idTermina;
+        }
+
+        public void setJeZavrsen(bool jeZavrsen)
+        {
+            this.jeZavrsen = jeZavrsen;
         }
 
         //public Pacijent pacijent;
