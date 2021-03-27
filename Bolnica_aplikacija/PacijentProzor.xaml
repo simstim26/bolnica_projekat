@@ -63,7 +63,7 @@
                                 <RowDefinition Height="Auto"></RowDefinition>
                                 <RowDefinition Height="*"></RowDefinition>
                             </Grid.RowDefinitions>
-                            <DataGrid Height="700" VerticalAlignment="Top" Name="dataGridTermin" FontSize="24" Grid.Row="0" ItemsSource="{Binding Path=Termini}" DataContext="{Binding ElementName=dataGridTermin, Path=SelectedItem}" IsReadOnly="True">
+                            <DataGrid Height="467" VerticalAlignment="Top" Name="dataGridTermin" FontSize="24" Grid.Row="0" ItemsSource="{Binding Path=Termini}" DataContext="{Binding ElementName=dataGridTermin, Path=SelectedItem}" IsReadOnly="True">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="Datum održavanja" ></DataGridTextColumn>
                                     <DataGridTextColumn Header="Satnica"></DataGridTextColumn>
