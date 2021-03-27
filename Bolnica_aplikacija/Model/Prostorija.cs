@@ -9,12 +9,13 @@ namespace Model
 {
    public class Prostorija
    {
-      private String id;
-      private String idBolnice;
-      private TipProstorije tipProstorije;
-      private String broj;
-      private int sprat;
-      private bool dostupnost;
+      public String id { get; set; }
+      public String idBolnice;
+      public TipProstorije tipProstorije { get; set; }
+      public String broj { get; set; }
+      public int sprat { get; set; }
+      public bool dostupnost { get; set; }
+      public bool logickiObrisana;
       
       public System.Collections.ArrayList stavka;
       
@@ -79,5 +80,22 @@ namespace Model
       }
       public Termin[] termin;
    
+
+      public static TipProstorije ConvertTip(String s)
+      {
+        if(s == "BOLNICKA_SOBA")
+            {
+                return TipProstorije.BOLNICKA_SOBA;
+            }
+        else if(s == "OPERACIONA_SALA")
+            {
+                return TipProstorije.OPERACIONA_SALA;
+            }
+        else if(s == "SOBA_ZA_PREGLED")
+            {
+                return TipProstorije.SOBA_ZA_PREGLED;
+            }
+            return TipProstorije.GRESKA;
+      }
    }
 }

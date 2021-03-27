@@ -11,6 +11,7 @@ namespace Model
    {
       BOLNICKA_SOBA,
       OPERACIONA_SALA,
-      SOBA_ZA_PREGLED
+      SOBA_ZA_PREGLED,
+      GRESKA
    }
 }

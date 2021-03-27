@@ -38,17 +38,38 @@
             <ColumnDefinition Width="26*"/>
             <ColumnDefinition Width="959*"/>
         </Grid.ColumnDefinitions>
-        <TextBlock Margin="747,20,20,0" TextWrapping="Wrap" Text="Ime i Prezime" VerticalAlignment="Top" FontSize="30" Grid.Column="2"/>
+        <TextBlock Margin="613,22,154,0" TextWrapping="Wrap" Text="Ime i Prezime" VerticalAlignment="Top" FontSize="30" Grid.Column="2"/>
         <Grid x:Name="gridProstorija" Background="LightGray" HorizontalAlignment="Left" Height="640" Margin="10,59,0,0" VerticalAlignment="Top" Width="949" Visibility="Hidden" Grid.Column="2" Grid.RowSpan="3">
-            <DataGrid x:Name="dataGridProstorija" HorizontalAlignment="Left" Height="514" Margin="37,90,0,0" VerticalAlignment="Top" Width="868" />
-            <Button x:Name="btnDodajProstoriju" Background="White" Content="Dodaj Prostoriju" HorizontalAlignment="Left" Margin="424,34,0,0" VerticalAlignment="Top" Width="99" Height="28"  />
-            <Button x:Name="btnIzmeniProstoriju" Background="White" Content="Izmeni Prostoriju" HorizontalAlignment="Left" Margin="615,34,0,0" VerticalAlignment="Top" Width="99" Height="28"  />
+            <DataGrid x:Name="dataGridProstorija" CanUserAddRows="false" IsReadOnly ="True" HorizontalAlignment="Left" Height="514" Margin="37,90,0,0" VerticalAlignment="Top" Width="868" HeadersVisibility="All" AutoGenerateColumns="False" SelectionMode="Single" CanUserResizeRows="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn x:Name="kolonaId" Binding ="{Binding id}" IsReadOnly="True" Header="id" Width="143" CanUserResize="False"/>
+                    <DataGridTextColumn x:Name="kolonaTip" Binding ="{Binding tipProstorije}" IsReadOnly="True" Header="tip"  Width="143" CanUserResize="False"/>
+                    <DataGridTextColumn x:Name="Broj" Binding="{Binding broj}" IsReadOnly="True" Header="broj" Width="143" CanUserResize="False"/>
+                    <DataGridTextColumn x:Name="Sprat" Binding="{Binding sprat}" IsReadOnly="True" Header="sprat" Width="143" CanUserResize="False"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button x:Name="btnDodajProstoriju" Background="White" Content="Dodaj Prostoriju" HorizontalAlignment="Left" Margin="424,34,0,0" VerticalAlignment="Top" Width="99" Height="28" Click="btnDodajProstoriju_Click"  />
+            <Button x:Name="btnIzmeniProstoriju" Background="White" Content="Izmeni Prostoriju" HorizontalAlignment="Left" Margin="615,34,0,0" VerticalAlignment="Top" Width="99" Height="28"  IsEnabled="True" Click="btnIzmeniProstoriju_Click"/>
             <Button x:Name="btnIzbrisiProstoriju" Background="White" Content="Izbrisi Prostoriju" HorizontalAlignment="Left" Margin="806,34,0,0" VerticalAlignment="Top" Width="99" Height="28"/>
 
         </Grid>
 
         <Grid x:Name="gridDodajProstoriju" Visibility="Hidden">
             <Rectangle Fill="LightGray" HorizontalAlignment="Left" Height="638" Stroke="Black" VerticalAlignment="Top" Width="947" Margin="70,59,-984,-399"/>
+            <Button x:Name="btnPotvrdi" Content="Potvrdi" HorizontalAlignment="Left" Margin="243,515,-285,-245" VerticalAlignment="Top" Width="75" Height="28"/>
+            <Button x:Name="btnOtkazi" Content="Otkazi" HorizontalAlignment="Left" Margin="731,515,-773,-245" VerticalAlignment="Top" Width="75" Height="28"  Click="btnOtkazi_Click"/>
+
+        </Grid>
+
+        <Grid x:Name="gridIzmeniProstoriju" Visibility="Hidden">
+            <Rectangle Fill="LightGray" HorizontalAlignment="Left" Height="638" Stroke="Black" VerticalAlignment="Top" Width="947" Margin="70,59,-984,-399"/>
+            <TextBlock x:Name="lblId" HorizontalAlignment="Left" Margin="146,135,-567,0" TextWrapping="Wrap" Text="id prostorije: " VerticalAlignment="Top" Height="54" Width="454" FontSize="30"/>
+            <TextBlock x:Name="lblBrojProstorije" HorizontalAlignment="Left" Margin="146,194,-567,0" TextWrapping="Wrap" Text="broj prostorije: " VerticalAlignment="Top" Height="54" Width="454" FontSize="30"/>
+            <TextBlock x:Name="lblSprat" HorizontalAlignment="Left" Margin="146,253,-585,-9" TextWrapping="Wrap" Text="sprat: " VerticalAlignment="Top" Height="54" Width="472" FontSize="30"/>
+            <TextBlock x:Name="lblDostupnost" HorizontalAlignment="Left" Margin="146,312,-585,-68" TextWrapping="Wrap" Text="dostupnost: " VerticalAlignment="Top" Height="54" Width="472" FontSize="30"/>
+
+            <Button x:Name="btnPotvrdiIzmenu" Content="Potvrdi" HorizontalAlignment="Left" Margin="243,515,-285,-245" VerticalAlignment="Top" Width="75" Height="28"/>
+            <Button x:Name="btnOtkaziIzmenu" Content="Otkazi" HorizontalAlignment="Left" Margin="731,515,-773,-245" VerticalAlignment="Top" Width="75" Height="28"  Click="btnOtkaziIzmeni_Click"/>
 
         </Grid>
 
@@ -81,6 +102,7 @@
         <Rectangle x:Name="horizontalniPravougaonik" Fill="Black" HorizontalAlignment="Left" Height="679" Margin="19,60,0,0" Stroke="Black" VerticalAlignment="Top" Width="2" Grid.Column="2" Grid.RowSpan="3"/>
         <Rectangle Fill="Black" HorizontalAlignment="Left" Height="60" Margin="19,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="2" Grid.Column="2"/>
         <Rectangle x:Name="donjiPravougaonik"  Fill="Black" HorizontalAlignment="Left" Height="2" Margin="20,31,-78,0" Stroke="Black" VerticalAlignment="Top" Width="1016" Grid.Column="2" Visibility="Hidden" Grid.Row="2"/>
+        <Button x:Name="btnOdjava" Content="Odjavite se" Grid.Column="2" HorizontalAlignment="Left" Margin="854,35,0,0" VerticalAlignment="Top" Width="74" Click="btnOdjava_Click" />
 
 
 
