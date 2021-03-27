@@ -48,6 +48,7 @@ namespace Bolnica_aplikacija
             CenterWindow();
 
             dataGridTermin.Loaded += SetMinWidths;
+            dataGridTermin.Height = System.Windows.SystemParameters.PrimaryScreenHeight - 300;
 
             //to do: implementirati metodu za citanje iz fajla
             //dataGridTermin.ItemsSource = UcitajTermine();
@@ -143,11 +144,17 @@ namespace Bolnica_aplikacija
             prijava.ShowDialog();
         }
 
-        private void btnZakaziPregled_Click(object sender, RoutedEventArgs e)
+        private void btnZakaziPregled_Click_1(object sender, RoutedEventArgs e)
         {
             PacijentZakaziTermin zakaziTermin = new PacijentZakaziTermin();
             zakaziTermin.Owner = Application.Current.MainWindow;
             zakaziTermin.ShowDialog();
+        }
+
+        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            double newHeight = e.NewSize.Height;
+            dataGridTermin.Height = newHeight - 300;
         }
     }
 }

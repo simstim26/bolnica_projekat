@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="PacijentProzor" 
         Height="{Binding Source={x:Static SystemParameters.PrimaryScreenHeight}}"
-        Width="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}}"
+        Width="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}}" SizeChanged="Window_SizeChanged"
   >
     <Grid>
         <DockPanel>
@@ -63,7 +63,7 @@
                                 <RowDefinition Height="Auto"></RowDefinition>
                                 <RowDefinition Height="*"></RowDefinition>
                             </Grid.RowDefinitions>
-                            <DataGrid Height="467" VerticalAlignment="Top" Name="dataGridTermin" FontSize="24" Grid.Row="0" ItemsSource="{Binding Path=Termini}" DataContext="{Binding ElementName=dataGridTermin, Path=SelectedItem}" IsReadOnly="True">
+                            <DataGrid VerticalAlignment="Top" Name="dataGridTermin" FontSize="24" Grid.Row="0" ItemsSource="{Binding Path=Termini}" DataContext="{Binding ElementName=dataGridTermin, Path=SelectedItem}" IsReadOnly="True">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="Datum održavanja" ></DataGridTextColumn>
                                     <DataGridTextColumn Header="Satnica"></DataGridTextColumn>
@@ -93,7 +93,7 @@
                                     
                                     <Button x:Name="btnOtkaziPregled" Content="Otkaži termin"  Width="201" Height="55" FontSize="22"  MinWidth="201" MinHeight="55" Grid.Row="0"  Grid.Column="5"/>
                                     <Button x:Name="btnIzmeniTermin" Content="Izmeni termin"  Width="201" Height="55" FontSize="22" MinWidth="201" MinHeight="55" Grid.Row="0" Grid.Column="3"/>
-                                    <Button x:Name="btnZakaziPregled" Content="Zakaži termin" Width="201" Height="55" FontSize="22" MinWidth="201" MinHeight="55" Grid.Row="0" Grid.Column="1"/>
+                                    <Button x:Name="btnZakaziPregled" Content="Zakaži termin" Width="201" Height="55" FontSize="22" MinWidth="201" MinHeight="55" Grid.Row="0" Grid.Column="1" Click="btnZakaziPregled_Click_1"/>
 
                             </Grid>
                             
