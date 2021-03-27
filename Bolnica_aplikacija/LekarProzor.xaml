@@ -27,7 +27,7 @@
         <ContentControl x:Name ="contentControl" HorizontalAlignment="Left" Margin="0,9.6,0,0" Grid.Row="1" VerticalAlignment="Top" Height="610" Width="424"/>
         <Menu HorizontalAlignment="Left" Height="32" VerticalAlignment="Top" Width="62">
             <MenuItem Header="Meni" Height="32" Width="62" FontSize="20" BorderBrush="Black" Foreground="Black" Background="#FFDFDFDF">
-                <MenuItem x:Name="meniOdjava" Header="Odjava" Height="29" Margin="0,0,-31.6,0"/>
+                <MenuItem x:Name="meniOdjava" Header="Odjava" Height="29" Margin="0,0,-31.6,0" Click="meniOdjava_Click"/>
             </MenuItem>
         </Menu>
 

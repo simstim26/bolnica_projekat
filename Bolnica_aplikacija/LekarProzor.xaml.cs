@@ -32,5 +32,12 @@ namespace Bolnica_aplikacija
         {
             return x;
         }
+
+        private void meniOdjava_Click(object sender, RoutedEventArgs e)
+        {
+            Prijava prijava = new Prijava();
+            this.Close();
+            prijava.ShowDialog();
+        }
     }
 }
