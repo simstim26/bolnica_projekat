@@ -9,63 +9,14 @@ namespace Model
 {
    public class Termin
    {
-        private TipTermina tip;
-        private DateTime datum;
-        private DateTime satnica;
-        private bool jeZavrsen;
-        private String idTermina;
-        public String idProstorije;
-        public String idPacijenta;
-        public String idLekara;
-      
-        public TipTermina getTip()
-        {
-            return tip;
-        }
-
-        public DateTime getDatum()
-        {
-            return datum;
-        }
-
-        public DateTime getSatnica()
-        {
-            return satnica;
-        }
-
-        public String getIdTermina()
-        {
-            return idTermina;
-        }
-
-        public bool getJeZavrsen()
-        {
-            return jeZavrsen;
-        }
-        public void setTipTermina(TipTermina tip)
-        {
-            this.tip = tip;
-        }
-
-        public void setDatum(DateTime datum)
-        {
-            this.datum = datum;
-        }
-
-        public void setSatnica(DateTime satnica)
-        {
-            this.satnica = satnica;
-        }
-
-        public void setIdTermina(String idTermina)
-        {
-            this.idTermina = idTermina;
-        }
-
-        public void setJeZavrsen(bool jeZavrsen)
-        {
-            this.jeZavrsen = jeZavrsen;
-        }
+        public TipTermina tip { get; set; }
+        public DateTime datum { get; set; }
+        public DateTime satnica { get; set; }
+        public bool jeZavrsen { get; set; }
+        public String idTermina { get; set; }
+        public String idProstorije { get; set; }
+        public String idPacijenta { get; set; }
+        public String idLekara { get; set; }
 
         //public Pacijent pacijent;
       //public Lekar[] lekar;

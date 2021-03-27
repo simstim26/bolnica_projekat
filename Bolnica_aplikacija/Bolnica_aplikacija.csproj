@@ -91,6 +91,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Model\Baza.cs" />
+    <Compile Include="Model\eksperiment.cs" />
     <Compile Include="PacijentZakaziTermin.xaml.cs">
       <DependentUpon>PacijentZakaziTermin.xaml</DependentUpon>
     </Compile>

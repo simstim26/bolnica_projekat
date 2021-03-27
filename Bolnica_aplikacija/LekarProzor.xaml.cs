@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.IO;
+using Model;
 
 namespace Bolnica_aplikacija
 {
@@ -23,9 +24,9 @@ namespace Bolnica_aplikacija
     public partial class LekarProzor : Window
     {
         private static ContentControl x;
-        private Model.Lekar lekar;
+        private Lekar lekar;
 
-        public LekarProzor(Model.Lekar lekar)
+        public LekarProzor(Lekar lekar)
         {
             InitializeComponent();
             this.contentControl.Content = new LekarTabovi();
@@ -33,7 +34,6 @@ namespace Bolnica_aplikacija
             lblImePrezime.Content = lekar.ime + " " + lekar.prezime;
             lblprosecnaOcena.Content += " " + lekar.prosecnaOcena;
             this.lekar = lekar;
-            Console.WriteLine(lekar.id);
         }
 
         public static ContentControl getX()
@@ -44,8 +44,8 @@ namespace Bolnica_aplikacija
         private void meniOdjava_Click(object sender, RoutedEventArgs e)
         {
             Prijava prijava = new Prijava();
-            string jsonString = JsonSerializer.Serialize(lekar);
-            File.WriteAllText("Datoteke/proba.txt", jsonString);
+            /*string jsonString = JsonSerializer.Serialize(lekar);
+            File.WriteAllText("Datoteke/proba.txt", jsonString);*/
             this.Close();
             prijava.ShowDialog();
         }

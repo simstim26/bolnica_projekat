@@ -20,52 +20,20 @@ namespace Model
       public String brojTelefona { get; set; }
       public String jmbg { get; set; }
 
-        public static Korisnik Prijava(String id, String putanja)
+        public static String[] Prijava(String korisnickoIme, String lozinka)
         {
-            const Int32 BufferSize = 128;
-            using (var fileStream = File.OpenRead("Datoteke/" + putanja + ".txt"))
+            String[] retVal = { "",""};
+            foreach (Bolnica_aplikacija.Model.eksperiment e in Bolnica_aplikacija.Model.Baza.Korisnici)
             {
-                using (var streamReader = new StreamReader(fileStream, Encoding.UTF8, true, BufferSize))
+                if(e.korisnickoIme.Equals(korisnickoIme) && e.lozinka.Equals(lozinka))
                 {
-                    String linija;
-                    while ((linija = streamReader.ReadLine()) != null)
-                    {
-                        string[] sadrzaj = linija.Split('|');
-                        if(sadrzaj[0] != id)
-                        {
-                            continue;
-                        }
-                        else
-                        {
-                            switch (putanja)
-                            {
-                                case "Pacijenti":
-                                    break;
-                                case "Lekari":
-                                    Lekar korisnik = new Lekar();
-                                    korisnik.id = sadrzaj[0];
-                                    korisnik.jmbg = sadrzaj[1];
-                                    korisnik.ime = sadrzaj[2];
-                                    korisnik.prezime = sadrzaj[3];
-                                    korisnik.datumRodjenja = Convert.ToDateTime(sadrzaj[4]);
-                                    korisnik.email = sadrzaj[5];
-                                    korisnik.brojTelefona = sadrzaj[6];
-                                    korisnik.brojSlobodnihDana = Convert.ToInt32(sadrzaj[7]);
-                                    korisnik.prosecnaOcena = Convert.ToDouble(sadrzaj[8]);
-                                    korisnik.idBolnice = sadrzaj[9];
-                                    return korisnik;
-                                case "Sekretari":
-                                    break;
-                                case "Upravnici":
-                                    break;
-                            }
-                        }
-
-                    }
+                    retVal[0] = e.tip;
+                    retVal[1] = e.id;
                 }
             }
 
-            return null;
+            return retVal;
+
         }
    }
 }
