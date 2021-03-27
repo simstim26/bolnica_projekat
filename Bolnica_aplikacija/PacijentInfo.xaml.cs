@@ -25,6 +25,7 @@ namespace Bolnica_aplikacija
         {
             InitializeComponent();
             tab = this.tabInfo;
+            lblIme.Content += PrikazPacijenata.GetPacijent().ime;
         }
 
         private void btnNazad_Click(object sender, RoutedEventArgs e)

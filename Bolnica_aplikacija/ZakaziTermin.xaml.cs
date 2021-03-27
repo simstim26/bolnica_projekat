@@ -20,6 +20,7 @@ namespace Bolnica_aplikacija
     /// </summary>
     public partial class ZakaziTermin : UserControl
     {
+
         public ZakaziTermin()
         {
             InitializeComponent();

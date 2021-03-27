@@ -1,1 +1,2 @@
 1|1234567891012|Milica|Pavlovic|10.10.1000|neka adresa 10, neki grad|email@email.com|123/123-123|false|1
+2|1231237891012|Maksimilijan|Maksimilijanovic|10.10.1001|neka adresa 11, neki grad|email1@email.com|123/123-456|false|1

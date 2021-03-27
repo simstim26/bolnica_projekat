@@ -7,11 +7,11 @@
              mc:Ignorable="d" Height="580.704" Width="398.325">
     <Grid Background="#FFE5E5E5" Margin="-18,0,-12.6,-13.2">
         <Button x:Name ="btnInfo" Content="Info" HorizontalAlignment="Left" Margin="316,7,0,0" VerticalAlignment="Top" Width="86" Visibility="Visible" Background="White" Click="btnInfo_Click" Height="27"/>
-        <DataGrid x:Name ="lstPacijenti" ItemsSource="{Binding Path = Pacijenti}" HorizontalAlignment="Left" Height="565" Margin="2,42,0,-13" VerticalAlignment="Top" Width="427" Visibility="Visible" HeadersVisibility="All" AutoGenerateColumns="False">
+        <DataGrid x:Name ="lstPacijenti" IsReadOnly ="True" SelectionMode="Single" HorizontalAlignment="Left" Height="565" Margin="2,42,0,-13" VerticalAlignment="Top" Width="427" Visibility="Visible" HeadersVisibility="All" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn x:Name="kolonaJmbg" Binding="{Binding jmbg}" Header="JMBG" Width="100" />
-                <DataGridTextColumn x:Name="kolonaIme" Binding ="{Binding ime}" Header="Ime"  Width="100"/>
-                <DataGridTextColumn x:Name="kolonaPrezime" Binding="{Binding prezime}" Header="Prezime" Width="100"/>
+                <DataGridTextColumn x:Name="kolonaJmbg" Binding="{Binding jmbg}" IsReadOnly="True" Header="JMBG" Width="143" CanUserResize="False"/>
+                <DataGridTextColumn x:Name="kolonaIme" Binding ="{Binding ime}" IsReadOnly="True" Header="Ime"  Width="143" CanUserResize="False"/>
+                <DataGridTextColumn x:Name="kolonaPrezime" Binding="{Binding prezime}" IsReadOnly="True" Header="Prezime" Width="143" CanUserResize="False"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

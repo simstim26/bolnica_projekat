@@ -21,6 +21,7 @@ namespace Bolnica_aplikacija
     /// </summary>
     public partial class PrikazPacijenata : UserControl
     {
+        private static Model.Pacijent pacijent;
         public System.Collections.ObjectModel.ObservableCollection<Model.Pacijent> Pacijenti
         {
             get;
@@ -31,9 +32,9 @@ namespace Bolnica_aplikacija
             InitializeComponent();
 
             const Int32 BufferSize = 128;
-            Model.Pacijent pacijent = new Model.Pacijent();
             this.DataContext = this;
             Pacijenti = new System.Collections.ObjectModel.ObservableCollection<Model.Pacijent>();
+
             using (var fileStream = File.OpenRead("Datoteke/Pacijenti.txt"))
             {
                 using (var streamReader = new StreamReader(fileStream, Encoding.UTF8, true, BufferSize))
@@ -42,22 +43,33 @@ namespace Bolnica_aplikacija
                     while ((linija = streamReader.ReadLine()) != null)
                     {
                         string[] sadrzaj = linija.Split('|');
-
+                        Model.Pacijent pacijent = new Model.Pacijent();
                         pacijent.jmbg = sadrzaj[1];
                         pacijent.ime = sadrzaj[2];
                         pacijent.prezime = sadrzaj[3];
                         Pacijenti.Add(pacijent);
 
                     }
+
+                    lstPacijenti.ItemsSource = Pacijenti;
                 }
             }
         }
 
         private void btnInfo_Click(object sender, RoutedEventArgs e)
         {
-            this.Content = new PacijentInfo();
+            if(lstPacijenti.SelectedIndex != -1)
+            {
+                pacijent = Pacijenti.ElementAt(lstPacijenti.SelectedIndex);
+                this.Content = new PacijentInfo();
+            }
+
         }
 
+        public static Model.Pacijent GetPacijent()
+        {
+            return pacijent;
+        }
 
     }
 }

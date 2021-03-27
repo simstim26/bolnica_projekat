@@ -13,6 +13,7 @@
                         <ColumnDefinition Width="25*"/>
                         <ColumnDefinition Width="54*"/>
                     </Grid.ColumnDefinitions>
+                    <Label x:Name="lblIme" Content="Ime: " HorizontalAlignment="Left" Height="25" Margin="12,26,0,0" VerticalAlignment="Top" Width="278"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="tabPregled" Header="Pregled termina">
