@@ -43,6 +43,7 @@ namespace Model
                                     break;
                                 case "Lekari":
                                     Lekar korisnik = new Lekar();
+                                    korisnik.id = sadrzaj[0];
                                     korisnik.jmbg = sadrzaj[1];
                                     korisnik.ime = sadrzaj[2];
                                     korisnik.prezime = sadrzaj[3];

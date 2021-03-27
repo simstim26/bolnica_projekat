@@ -1,0 +1,1 @@
+{"id":"1","brojSlobodnihDana":25,"prosecnaOcena":1,"idBolnice":"1","korisnickoIme":null,"lozinka":null,"ime":"Marko","prezime":"Markovic","datumRodjenja":"1000-10-10T00:00:00","email":"asfd@sdfz.as","brojTelefona":"123/123-123","jmbg":"1234567891012"}
