@@ -16,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Model;
+using Bolnica_aplikacija.PacijentModel;
 
 namespace Bolnica_aplikacija
 {
@@ -52,11 +53,11 @@ namespace Bolnica_aplikacija
         {
             if (dataGridTerminiPacijenta.SelectedIndex != -1)
             {
-                Termin izabraniTermin = (Termin)dataGridTerminiPacijenta.SelectedItem;
+                PacijentTermin izabraniTermin = (PacijentTermin)dataGridTerminiPacijenta.SelectedItem;
                 var sviTermini = JsonSerializer.Deserialize<List<Termin>>(File.ReadAllText("Datoteke/probaTermini.txt"));
                 foreach (Termin termin in sviTermini)
                 {
-                    if (izabraniTermin.idTermina.Equals(termin.idTermina))
+                    if (izabraniTermin.id.Equals(termin.idTermina))
                     {
                         termin.idPacijenta = "";
                     }
@@ -70,12 +71,39 @@ namespace Bolnica_aplikacija
         private void ucitajPodatke()
         {
             var sviTermini = JsonSerializer.Deserialize<List<Termin>>(File.ReadAllText("Datoteke/probaTermini.txt"));
-            List<Termin> terminiPacijenta = new List<Termin>();
+            List<PacijentTermin> terminiPacijenta = new List<PacijentTermin>();
             foreach (Termin termin in sviTermini)
             {
                 if (termin.idPacijenta.Equals(PrikazPacijenata.GetPacijent().id))
                 {
-                    terminiPacijenta.Add(termin);
+                    PacijentTermin pacijentTermin = new PacijentTermin();
+                    pacijentTermin.id = termin.idTermina;
+                    pacijentTermin.napomena = termin.getTipString();
+                    String[] datumBezVremena = termin.datum.Date.ToString().Split(' ');
+                    pacijentTermin.datum = datumBezVremena[0];
+                    String[] satnicaString = termin.satnica.ToString().Split(' ');
+                    String[] sat = satnicaString[1].Split(':');
+                    pacijentTermin.satnica = sat[0] + ':' + sat[1];
+
+                    foreach (Lekar lekar in JsonSerializer.Deserialize<List<Lekar>>(File.ReadAllText("Datoteke/probaLekari.txt")))
+                    {
+                        if (lekar.id.Equals(termin.idLekara))
+                        {
+                            pacijentTermin.imeLekara = lekar.ime + " " + lekar.prezime;
+                            break;
+                        }
+                    }
+
+                    foreach(Prostorija prostorija in JsonSerializer.Deserialize<List<Prostorija>>(File.ReadAllText("Datoteke/probaProstorije.txt")))
+                    {
+                        if (termin.idProstorije.Equals(prostorija.id))
+                        {
+                            pacijentTermin.lokacija = prostorija.sprat + " " + prostorija.broj;
+                            break;
+                        }
+                    }
+
+                    terminiPacijenta.Add(pacijentTermin);
                 }
             }
             dataGridTerminiPacijenta.ItemsSource = terminiPacijenta;

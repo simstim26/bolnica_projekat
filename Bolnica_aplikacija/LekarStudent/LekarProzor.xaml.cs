@@ -24,16 +24,16 @@ namespace Bolnica_aplikacija
     public partial class LekarProzor : Window
     {
         private static ContentControl x;
-        private Lekar lekar;
+        private static Lekar lekar;
 
-        public LekarProzor(Lekar lekar)
+        public LekarProzor(Lekar l)
         {
             InitializeComponent();
             this.contentControl.Content = new LekarTabovi();
             x = this.contentControl;
-            lblImePrezime.Content = lekar.ime + " " + lekar.prezime;
-            lblprosecnaOcena.Content += " " + lekar.prosecnaOcena;
-            this.lekar = lekar;
+            lblImePrezime.Content = l.ime + " " + l.prezime;
+            lblprosecnaOcena.Content += " " + l.prosecnaOcena;
+            lekar = l;
         }
 
         public static ContentControl getX()
@@ -41,6 +41,10 @@ namespace Bolnica_aplikacija
             return x;
         }
 
+        public static Lekar getLekar()
+        {
+            return lekar;
+        }
         private void meniOdjava_Click(object sender, RoutedEventArgs e)
         {
             Prijava prijava = new Prijava();
