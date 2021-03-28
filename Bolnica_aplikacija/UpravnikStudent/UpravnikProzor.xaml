@@ -38,7 +38,7 @@
             <ColumnDefinition Width="26*"/>
             <ColumnDefinition Width="959*"/>
         </Grid.ColumnDefinitions>
-        <TextBlock Margin="613,22,154,0" TextWrapping="Wrap" Text="Ime i Prezime" VerticalAlignment="Top" FontSize="30" Grid.Column="2"/>
+        <TextBlock x:Name="lblIme" Margin="0,22,124,0" TextWrapping="Wrap" Text="Ime i Prezime" VerticalAlignment="Top" FontSize="30" Grid.Column="2" HorizontalAlignment="Right"/>
         <Grid x:Name="gridProstorija" Background="LightGray" HorizontalAlignment="Left" Height="640" Margin="10,59,0,0" VerticalAlignment="Top" Width="949" Visibility="Hidden" Grid.Column="2" Grid.RowSpan="3">
             <DataGrid x:Name="dataGridProstorija" CanUserAddRows="false" IsReadOnly ="True" HorizontalAlignment="Left" Height="514" Margin="37,90,0,0" VerticalAlignment="Top" Width="868" HeadersVisibility="All" AutoGenerateColumns="False" SelectionMode="Single" CanUserResizeRows="False">
                 <DataGrid.Columns>
@@ -56,21 +56,45 @@
 
         <Grid x:Name="gridDodajProstoriju" Visibility="Hidden">
             <Rectangle Fill="LightGray" HorizontalAlignment="Left" Height="638" Stroke="Black" VerticalAlignment="Top" Width="947" Margin="70,59,-984,-399"/>
-            <Button x:Name="btnPotvrdi" Content="Potvrdi" HorizontalAlignment="Left" Margin="243,515,-285,-245" VerticalAlignment="Top" Width="75" Height="28"/>
+            <Button x:Name="btnPotvrdi" Content="Potvrdi" HorizontalAlignment="Left" Margin="243,515,-285,-245" VerticalAlignment="Top" Width="75" Height="28" Click="btnPotvrdi_Click"/>
             <Button x:Name="btnOtkazi" Content="Otkazi" HorizontalAlignment="Left" Margin="731,515,-773,-245" VerticalAlignment="Top" Width="75" Height="28"  Click="btnOtkazi_Click"/>
-
+            <TextBlock x:Name="lblTipProstorije" HorizontalAlignment="Left" Margin="136,152,-233,0" TextWrapping="Wrap" Text="Izaberite tip prostorije: " VerticalAlignment="Top" Height="16" Width="130"/>
+            <TextBlock x:Name="lblBrojSobe" HorizontalAlignment="Left" Margin="136,195,-233,0" TextWrapping="Wrap" Text="Unesite broj prostorije: " VerticalAlignment="Top" Height="16" Width="130"/>
+            <TextBlock x:Name="lblSprat" HorizontalAlignment="Left" Margin="136,238,-233,0" TextWrapping="Wrap" Text="Sprat: " VerticalAlignment="Top" Height="16" Width="130"/>
+            <ComboBox x:Name="cbTipProstorije" HorizontalAlignment="Left" Margin="290,152,-377,0" VerticalAlignment="Top" Width="120">
+                <ComboBoxItem Content="Bolnicka soba"/>
+                <ComboBoxItem Content="Operaciona sala"/>
+                <ComboBoxItem Content="Soba za pregled"/>
+            </ComboBox>
+            <TextBox x:Name="unosBrojaProstorije" HorizontalAlignment="Left" Height="23" Margin="290,195,-377,0" TextWrapping="Wrap" Width="120" VerticalAlignment="Top"/>
+            <TextBox x:Name="unosSprata" HorizontalAlignment="Left" Height="23" Margin="290,238,-377,0" TextWrapping="Wrap" Width="120" VerticalAlignment="Top"/>
+            <TextBlock x:Name="lblBrojPostojiDodaj" Foreground="Red" Visibility="Hidden" HorizontalAlignment="Left" Margin="290,217,-569,0" TextWrapping="Wrap" Text="*prostorija sa ovim brojem vec postoji" VerticalAlignment="Top" Width="312" FontStyle="Italic"/>
+            <TextBlock x:Name="lblNijePopunjenoDodaj" Foreground="Red" Visibility="Hidden" HorizontalAlignment="Left" Margin="136,285,-415,-3" TextWrapping="Wrap" Text="*sva polja moraju biti popunjena!" VerticalAlignment="Top" Width="312" FontStyle="Italic"/>
         </Grid>
 
         <Grid x:Name="gridIzmeniProstoriju" Visibility="Hidden">
             <Rectangle Fill="LightGray" HorizontalAlignment="Left" Height="638" Stroke="Black" VerticalAlignment="Top" Width="947" Margin="70,59,-984,-399"/>
             <TextBlock x:Name="lblId" HorizontalAlignment="Left" Margin="146,135,-567,0" TextWrapping="Wrap" Text="id prostorije: " VerticalAlignment="Top" Height="54" Width="454" FontSize="30"/>
-            <TextBlock x:Name="lblBrojProstorije" HorizontalAlignment="Left" Margin="146,194,-567,0" TextWrapping="Wrap" Text="broj prostorije: " VerticalAlignment="Top" Height="54" Width="454" FontSize="30"/>
-            <TextBlock x:Name="lblSprat" HorizontalAlignment="Left" Margin="146,253,-585,-9" TextWrapping="Wrap" Text="sprat: " VerticalAlignment="Top" Height="54" Width="472" FontSize="30"/>
-            <TextBlock x:Name="lblDostupnost" HorizontalAlignment="Left" Margin="146,312,-585,-68" TextWrapping="Wrap" Text="dostupnost: " VerticalAlignment="Top" Height="54" Width="472" FontSize="30"/>
+            <TextBlock x:Name="lblBrojProstorije" HorizontalAlignment="Left" Margin="146,194,-331,0" TextWrapping="Wrap" Text="broj prostorije: " VerticalAlignment="Top" Height="54" Width="218" FontSize="30"/>
+            <TextBlock x:Name="lblSpratSobe" HorizontalAlignment="Left" Margin="146,253,-285,-9" TextWrapping="Wrap" Text="sprat: " VerticalAlignment="Top" Height="54" Width="172" FontSize="30"/>
+            <TextBlock x:Name="lblDostupnost" HorizontalAlignment="Left" Margin="146,312,-313,-68" TextWrapping="Wrap" Text="dostupnost: " VerticalAlignment="Top" Height="54" Width="200" FontSize="30"/>
 
-            <Button x:Name="btnPotvrdiIzmenu" Content="Potvrdi" HorizontalAlignment="Left" Margin="243,515,-285,-245" VerticalAlignment="Top" Width="75" Height="28"/>
+            <Button x:Name="btnPotvrdiIzmenu" Content="Potvrdi" HorizontalAlignment="Left" Margin="243,515,-285,-245" VerticalAlignment="Top" Width="75" Height="28" Click="btnPotvrdiIzmenu_Click"/>
             <Button x:Name="btnOtkaziIzmenu" Content="Otkazi" HorizontalAlignment="Left" Margin="731,515,-773,-245" VerticalAlignment="Top" Width="75" Height="28"  Click="btnOtkaziIzmeni_Click"/>
-
+            <TextBox x:Name="txtBrojProstorije" HorizontalAlignment="Center" Height="35" Margin="424,194,-547,0" TextWrapping="Wrap" Width="156" VerticalAlignment="Top"/>
+            <TextBox x:Name="txtSpratProstorije" HorizontalAlignment="Center" Height="36" Margin="424,253,-547,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="156"/>
+            <ComboBox x:Name="cbDostupnostProstorije" HorizontalAlignment="Left" Margin="424,324,-547,-54" VerticalAlignment="Top" Width="156" Height="28">
+                <ComboBoxItem Content="Slobodna"/>
+                <ComboBoxItem Content="Zauzeta"/>
+            </ComboBox>
+            <TextBlock x:Name="lblTipProstorijeIzmena" HorizontalAlignment="Left" Margin="146,371,-313,-127" TextWrapping="Wrap" Text="tip prostorije: " VerticalAlignment="Top" Height="54" Width="200" FontSize="30"/>
+            <ComboBox x:Name="cbTipProstorijeIzmena" HorizontalAlignment="Left" Margin="424,382,-547,-112" VerticalAlignment="Top" Width="156" Height="28">
+                <ComboBoxItem Content="Bolnicka soba"/>
+                <ComboBoxItem Content="Operaciona sala"/>
+                <ComboBoxItem Content="Soba za odmor"/>
+            </ComboBox>
+            <TextBlock x:Name="lblBrojPostoji" Foreground="Red" Visibility="Hidden" HorizontalAlignment="Left" Margin="424,229,-703,0" TextWrapping="Wrap" Text="*prostorija sa ovim brojem vec postoji" VerticalAlignment="Top" Width="312" FontStyle="Italic"/>
+            <TextBlock x:Name="lblNijePopunjenoIzmeni" Foreground="Red" Visibility="Hidden" HorizontalAlignment="Left" Margin="146,430,-425,-148" TextWrapping="Wrap" Text="*sva polja moraju biti popunjena!" VerticalAlignment="Top" Width="312" FontStyle="Italic"/>
         </Grid>
 
         <Grid Background="LightGray" HorizontalAlignment="Left" Height="739" VerticalAlignment="Top" Width="78" Grid.ColumnSpan="3" Grid.RowSpan="3">

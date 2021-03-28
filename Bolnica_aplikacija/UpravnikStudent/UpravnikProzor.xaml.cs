@@ -23,57 +23,42 @@ namespace Bolnica_aplikacija
     public partial class UpravnikProzor : Window
     {
         private static Prostorija prostorija;
-        String lblId1;
-        String lblBrojProstorije1;
-        String lblSprat1;
-        String lblDostupnost1;
-        List<Prostorija> prostorijeNeobrisane = new List<Prostorija>();
-        public UpravnikProzor()
+        private String lblId1;
+        private String lblBrojProstorije1;
+        private String lblSprat1;
+        private String lblDostupnost1;
+        private List<Prostorija> prostorijeNeobrisane = new List<Prostorija>();
+        private List<Prostorija> prostorije = new List<Prostorija>();
+        private Upravnik upravnik;
+        public UpravnikProzor(String upravnikId)
         {
             InitializeComponent();
 
+            var upravnici = JsonSerializer.Deserialize<List<Upravnik>>(File.ReadAllText("Datoteke/probaUpravnici.txt"));
+            foreach(Upravnik u in upravnici)
+            {
+                if (u.id == upravnikId)
+                {
+                    lblIme.Text = u.ime + " " + u.prezime;
+                    upravnik = u;
+                }
+            }
+
+             
+
             const Int32 BufferSize = 128;
             this.DataContext = this;
-            var prostorije = JsonSerializer.Deserialize<List<Prostorija>>(File.ReadAllText("Datoteke/probaProstorije.txt"));
-           // List<Prostorija> prostorijeNeobrisane = new List<Prostorija>();
+            prostorije = JsonSerializer.Deserialize<List<Prostorija>>(File.ReadAllText("Datoteke/probaProstorije.txt"));
+
             foreach(Prostorija p in prostorije)
             {
-                if(p.dostupnost == false)
+                if(p.logickiObrisana == false)
                 {
                     prostorijeNeobrisane.Add(p);
                 }
             }
             dataGridProstorija.ItemsSource = prostorijeNeobrisane;
-            Console.WriteLine(prostorijeNeobrisane.Count);
 
-            /*Prostorije = new System.Collections.ObjectModel.ObservableCollection<Prostorija>();
-
-            using (var fileStream = File.OpenRead("Datoteke/Prostorije.txt"))
-            {
-                using (var streamReader = new StreamReader(fileStream, Encoding.UTF8, true, BufferSize))
-                {
-                    String linija;
-                    while ((linija = streamReader.ReadLine()) != null)
-                    {
-                        string[] sadrzaj = linija.Split('|');
-                        Prostorija prostorija = new Prostorija();
-                        prostorija.id = sadrzaj[0];
-                        prostorija.tipProstorije = Prostorija.ConvertTip(sadrzaj[2]);
-                        //Console.WriteLine(Prostorija.ConvertTip(sadrzaj[2]));
-                        prostorija.broj = sadrzaj[3];
-                        prostorija.sprat = Int32.Parse(sadrzaj[4]);
-                        prostorija.dostupnost = Boolean.Parse(sadrzaj[5]);
-                        prostorija.logickiObrisana = Boolean.Parse(sadrzaj[6]);
-                        if(prostorija.logickiObrisana == false)
-                        {
-                            Prostorije.Add(prostorija);
-                        }
-
-                    }
-
-                    dataGridProstorija.ItemsSource = Prostorije;
-                }
-            }*/
         }
 
         
@@ -111,7 +96,6 @@ namespace Bolnica_aplikacija
             
 
             donjiPravougaonik.Visibility = Visibility.Visible;
-           // skrozDolePravougaonik.Visibility = Visibility.Hidden;
         }
 
         private void tbProstorija_Unchecked(object sender, RoutedEventArgs e)
@@ -161,7 +145,10 @@ namespace Bolnica_aplikacija
         {
             gridProstorija.Visibility = Visibility.Hidden;
             gridDodajProstoriju.Visibility = Visibility.Visible;
-            Console.WriteLine(dataGridProstorija.SelectedIndex);
+            unosBrojaProstorije.Clear();
+            unosSprata.Clear();
+            cbTipProstorije.SelectedIndex = -1;
+            lblBrojPostojiDodaj.Visibility = Visibility.Hidden;
         }
 
         private void btnOtkazi_Click(object sender, RoutedEventArgs e)
@@ -174,19 +161,99 @@ namespace Bolnica_aplikacija
         {
             if (dataGridProstorija.SelectedIndex != -1)
             {
+                lblBrojPostoji.Visibility = Visibility.Hidden;
                 prostorija = (Prostorija)dataGridProstorija.SelectedItem;
 
-                gridIzmeniProstoriju.Visibility = Visibility.Visible;
                 lblId1 = lblId.Text;
-                lblBrojProstorije1 = lblBrojProstorije.Text;
-                lblSprat1 = lblSprat.Text;
-                lblDostupnost1 = lblDostupnost.Text;
+                gridIzmeniProstoriju.Visibility = Visibility.Visible;
+                
 
                 lblId.Text += prostorija.id;
-                lblBrojProstorije.Text += prostorija.broj;
-                lblSprat.Text += prostorija.sprat;
-                lblDostupnost.Text += prostorija.dostupnost;
+                txtBrojProstorije.Text = prostorija.broj;
+                txtSpratProstorije.Text = prostorija.sprat.ToString();
+
+                //Prikaz combo boxa za dostupnost--------------------
+                if(prostorija.dostupnost == true)
+                {
+                    cbDostupnostProstorije.SelectedIndex = 0;
+                }
+                else if(prostorija.dostupnost == false)
+                {
+                    cbDostupnostProstorije.SelectedIndex = 1;
+                }
+
+
+                //Prikaz combo boxa za tip prostorije----------------
+                if (prostorija.tipProstorije == TipProstorije.BOLNICKA_SOBA)
+                {
+                    cbTipProstorijeIzmena.SelectedIndex = 0;
+                }
+                else if (prostorija.tipProstorije == TipProstorije.OPERACIONA_SALA)
+                {
+                    cbTipProstorijeIzmena.SelectedIndex = 1;
+                }
+                else if (prostorija.tipProstorije == TipProstorije.SOBA_ZA_PREGLED)
+                {
+                    cbTipProstorijeIzmena.SelectedIndex = 2;
+                }
             }
+        }
+
+        private void btnPotvrdiIzmenu_Click(object sender, RoutedEventArgs e)
+        {
+
+            bool pronadjenBroj = false;
+
+            //provera da li broj prostorije vec postoji
+            foreach(Prostorija p in prostorije)
+            {
+                if (p.broj == txtBrojProstorije.Text && p.broj != prostorija.broj)
+                {
+                    pronadjenBroj = true;
+                    break;
+                }
+            }
+
+            if (pronadjenBroj)
+            {
+                lblBrojPostoji.Visibility = Visibility.Visible;
+            }
+            else if(String.IsNullOrEmpty(txtBrojProstorije.Text) || String.IsNullOrEmpty(txtSpratProstorije.Text) || cbTipProstorijeIzmena.SelectedIndex == -1 || cbDostupnostProstorije.SelectedIndex   == -1)
+            {
+                lblNijePopunjenoIzmeni.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                prostorija.broj = txtBrojProstorije.Text;
+                prostorija.sprat = Int32.Parse(txtSpratProstorije.Text);
+
+                if (cbTipProstorijeIzmena.SelectedIndex == 0)
+                {
+                    prostorija.tipProstorije = TipProstorije.BOLNICKA_SOBA;
+                }
+                else if (cbTipProstorijeIzmena.SelectedIndex == 1)
+                {
+                    prostorija.tipProstorije = TipProstorije.OPERACIONA_SALA;
+                }
+                else if (cbTipProstorijeIzmena.SelectedIndex == 2)
+                {
+                    prostorija.tipProstorije = TipProstorije.SOBA_ZA_PREGLED;
+                }
+
+                if (cbDostupnostProstorije.SelectedIndex == 0)
+                {
+                    prostorija.dostupnost = true;
+                }
+                else if (cbDostupnostProstorije.SelectedIndex == 1)
+                {
+                    prostorija.dostupnost = false;
+                }
+
+                gridIzmeniProstoriju.Visibility = Visibility.Hidden;
+                gridProstorija.Visibility = Visibility.Visible;
+                dataGridProstorija.Items.Refresh();
+            }
+
         }
 
         private void btnOtkaziIzmeni_Click(object sender, RoutedEventArgs e)
@@ -194,9 +261,6 @@ namespace Bolnica_aplikacija
             gridIzmeniProstoriju.Visibility = Visibility.Hidden;
             gridProstorija.Visibility = Visibility.Visible;
             lblId.Text = lblId1;
-            lblBrojProstorije.Text = lblBrojProstorije1;
-            lblSprat.Text = lblSprat1;
-            lblDostupnost.Text = lblDostupnost1;
         }
 
         private void btnIzbrisiProstoriju_Click(object sender, RoutedEventArgs e)
@@ -205,23 +269,65 @@ namespace Bolnica_aplikacija
             {
                 Console.WriteLine(prostorijeNeobrisane.Count);
                 prostorija = (Prostorija)dataGridProstorija.SelectedItem;
-                prostorija.dostupnost = true;
+                prostorija.logickiObrisana = true;
                 prostorijeNeobrisane.Remove(prostorija);
                 Console.WriteLine(prostorijeNeobrisane.Count());
                 dataGridProstorija.Items.Refresh();
-
-
-                // gridIzmeniProstoriju.Visibility = Visibility.Visible;
-                /* lblId1 = lblId.Text;
-                 lblBrojProstorije1 = lblBrojProstorije.Text;
-                 lblSprat1 = lblSprat.Text;
-                 lblDostupnost1 = lblDostupnost.Text;
-
-                 lblId.Text += prostorija.id;
-                 lblBrojProstorije.Text += prostorija.broj;
-                 lblSprat.Text += prostorija.sprat;
-                 lblDostupnost.Text += prostorija.dostupnost;*/
             }
         }
+
+        private void btnPotvrdi_Click(object sender, RoutedEventArgs e)
+        {
+            bool pronadjenBroj = false;
+
+            //provera da li broj prostorije vec postoji
+            foreach (Prostorija p in prostorije)
+            {
+                if (p.broj == unosBrojaProstorije.Text)
+                {
+                    pronadjenBroj = true;
+                    break;
+                }
+            }
+
+            if (pronadjenBroj)
+            {
+                lblBrojPostojiDodaj.Visibility = Visibility.Visible;
+            }
+            else if (String.IsNullOrEmpty(unosBrojaProstorije.Text) || String.IsNullOrEmpty(unosSprata.Text) || cbTipProstorije.SelectedIndex == -1)
+            {
+                lblNijePopunjenoDodaj.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                Prostorija prostorija = new Prostorija();
+                prostorija.id = (prostorije.Count + 1).ToString();
+                prostorija.broj = unosBrojaProstorije.Text;
+                prostorija.sprat = Int32.Parse(unosSprata.Text);
+                prostorija.logickiObrisana = false;
+                prostorija.dostupnost = true;
+                prostorija.idBolnice = upravnik.id;
+                if (cbTipProstorije.SelectedIndex == 0)
+                {
+                    prostorija.tipProstorije = TipProstorije.BOLNICKA_SOBA;
+                }
+                else if (cbTipProstorije.SelectedIndex == 1)
+                {
+                    prostorija.tipProstorije = TipProstorije.OPERACIONA_SALA;
+                }
+                else if (cbTipProstorije.SelectedIndex == 2)
+                {
+                    prostorija.tipProstorije = TipProstorije.SOBA_ZA_PREGLED;
+                }
+
+                prostorije.Add(prostorija);
+                prostorijeNeobrisane.Add(prostorija);
+                gridDodajProstoriju.Visibility = Visibility.Hidden;
+                gridProstorija.Visibility = Visibility.Visible;
+                dataGridProstorija.Items.Refresh();
+            }
+        }
+
+        
     }
 }

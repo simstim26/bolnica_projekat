@@ -79,7 +79,7 @@ namespace Bolnica_aplikacija
                     {
                         if (upravnik.id.Equals(pronadjen[1]))
                         {
-                            UpravnikProzor upravnikProzor = new UpravnikProzor();
+                            UpravnikProzor upravnikProzor = new UpravnikProzor(upravnik.id);
                             this.Close();
                             upravnikProzor.ShowDialog();
                         }
