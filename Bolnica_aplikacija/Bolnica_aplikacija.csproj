@@ -232,5 +232,8 @@
     <Resource Include="IzbrisiPacijenta.png" />
     <Resource Include="patient_room.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="PacijentInfo.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Bolnica_aplikacija"
         mc:Ignorable="d"
-        Title="Sekretar" Height="768" Width="1366" Visibility="Visible"
+        Title="Sekretar" Height="768" Width="1366" Visibility="Visible" ResizeMode="CanMinimize"
         >
     <Grid x:Name="Grid" HorizontalAlignment="Left" Height="748" Margin="-4,-17,0,0" VerticalAlignment="Top" Width="1356">
-        <Grid x:Name="PocetniEkranGrid" Margin="270,150">
+        <Grid x:Name="PocetniEkranGrid" Margin="270,150" d:IsHidden="True">
             <Button x:Name="pacijentiButton" Content="PACIJENTI" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Height="200" FontSize="36" FontWeight="Bold" Click="pacijenti_Click" >
                 <Button.Effect>
                     <DropShadowEffect BlurRadius="10" Direction="314"/>
@@ -72,8 +72,9 @@
                     <ImageBrush ImageSource="question_mark.png" Stretch="Uniform"/>
                 </Button.Background>
             </Button>
+            <Button x:Name="odjavaButton" Content="ODJAVI SE" HorizontalAlignment="Left" Margin="903,-107,-228,0" VerticalAlignment="Top" Width="141" Height="55" RenderTransformOrigin="0.624,0" FontSize="22" FontWeight="Bold" Click="odjavaButton_Click"/>
         </Grid>
-        <Grid x:Name="PacijentGrid" HorizontalAlignment="Left" Height="730" Margin="0,18,0,0" VerticalAlignment="Top" Width="1346" Visibility="Hidden">
+        <Grid x:Name="PacijentGrid" HorizontalAlignment="Left" Height="730" Margin="0,18,0,0" VerticalAlignment="Top" Width="1346">
             <Grid.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF83C8F7" Offset="0"/>
@@ -109,16 +110,36 @@
                     </LinearGradientBrush>
                 </GridSplitter.Background>
             </GridSplitter>
-            <Label x:Name="povratakGlavniProzorLabela" Content="&lt;-- Glavni Prozor" HorizontalAlignment="Left" Height="46" Margin="50,10,0,0" VerticalAlignment="Top" Width="200" FontSize="20" FontFamily="Consolas" FontWeight="Bold" HorizontalContentAlignment="Center" Background="{x:Null}" MouseDoubleClick="povratakGlavniProzorLabela_MouseDoubleClick">
-                <Label.Effect>
-                    <DropShadowEffect BlurRadius="21" Opacity="0.365" Color="#FFFFF0DE"/>
-                </Label.Effect>
-            </Label>
-            <Button x:Name="helpPacijentiButton" Content="                     " HorizontalAlignment="Left" Height="80" Margin="110,620,0,0" VerticalAlignment="Top" Width="80" RenderTransformOrigin="0.325,0.75" BorderThickness="0" ToolTip="Dodaj pacijenta">
+            <Button x:Name="infoPacijentiButton" Content="                     " HorizontalAlignment="Left" Height="80" Margin="110,620,0,0" VerticalAlignment="Top" Width="80" RenderTransformOrigin="0.325,0.75" BorderThickness="0" ToolTip="Dodaj pacijenta" Click="helpPacijentiButton_Click">
                 <Button.Background>
-                    <ImageBrush ImageSource="question_mark.png" Stretch="Uniform"/>
+                    <ImageBrush ImageSource="PacijentInfo.png" Stretch="Uniform"/>
+                </Button.Background>
+
+            </Button>
+            <Button Content="POVRATAK" HorizontalAlignment="Left" Height="25" Margin="110,17,0,0" VerticalAlignment="Top" Width="80" Click="Button_Click" BorderThickness="0">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFEA8A48" Offset="0"/>
+                        <GradientStop Color="#FFEEB38A" Offset="1"/>
+                    </LinearGradientBrush>
                 </Button.Background>
             </Button>
+            <DataGrid x:Name="TabelaPacijenti" HorizontalAlignment="Left" Height="293" Margin="324,0,-18,437" VerticalAlignment="Bottom" Width="1040" FontSize="24" HeadersVisibility="All" AutoGenerateColumns="False" CanUserAddRows="false">
+                <DataGrid.Columns>
+                    <DataGridTextColumn x:Name="kolonaJMBG" Binding="{Binding jmbg}" IsReadOnly="True" Header="JMBG" Width="347" CanUserResize="False" Foreground="Black" FontSize="24"/>
+                    <DataGridTextColumn x:Name="kolonaIme" Binding="{Binding ime}" IsReadOnly="True" Header="IME" Width="347" CanUserResize="False" Foreground="Black" FontSize="24" />
+                    <DataGridTextColumn x:Name="kolonaPrezime" Binding="{Binding prezime}" IsReadOnly="True" Header="PREZIME" Width="347" CanUserResize="False" Foreground="Black" FontSize="24"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Grid x:Name="PacijentInfoGrid" HorizontalAlignment="Left" Height="437" Margin="324,293,0,0" VerticalAlignment="Top" Width="1022">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="25*"/>
+                    <ColumnDefinition Width="54*"/>
+                </Grid.ColumnDefinitions>
+                <Label x:Name="labelaJMBG" Content="JMBG:" HorizontalAlignment="Left" Height="46" Margin="30,30,0,0" VerticalAlignment="Top" Width="801" FontSize="24" Grid.ColumnSpan="2"/>
+                <Label x:Name="labelaIme" Content="IME" HorizontalAlignment="Left" Height="46" Margin="30,100,0,0" VerticalAlignment="Top" Width="801" FontSize="24" Grid.ColumnSpan="2"/>
+                <Label x:Name="labelaPrezime" Content="PREZIME:" HorizontalAlignment="Left" Height="46" Margin="30,170,0,0" VerticalAlignment="Top" Width="801" FontSize="24" Grid.ColumnSpan="2"/>
+            </Grid>
         </Grid>
     </Grid>
 

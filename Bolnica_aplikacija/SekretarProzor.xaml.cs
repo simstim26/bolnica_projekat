@@ -1,7 +1,10 @@
-﻿using System;
+﻿using Model;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -18,11 +21,17 @@ namespace Bolnica_aplikacija
     /// Interaction logic for SekretarProzor.xaml
     /// </summary>
     public partial class SekretarProzor : Window
+
     {
+        private static Pacijent pacijent;
+
         public SekretarProzor()
         {
             InitializeComponent();
+            CenterWindow();
 
+            this.PacijentGrid.Visibility = Visibility.Hidden;
+       
         }
 
         private void pacijenti_Click(object sender, RoutedEventArgs e)
@@ -30,14 +39,60 @@ namespace Bolnica_aplikacija
             
             this.PocetniEkranGrid.Visibility = Visibility.Hidden;
             this.PacijentGrid.Visibility = Visibility.Visible;
+            
+            //TODO: Razdvojiti komponente (Prikaz pacijenata zasebna)
+            var pacijenti = JsonSerializer.Deserialize<List<Pacijent>>(File.ReadAllText("Datoteke/probaPacijenti.txt"));
+            TabelaPacijenti.ItemsSource = pacijenti;
+
 
         }
 
-        private void povratakGlavniProzorLabela_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            this.PacijentGrid.Visibility = Visibility.Hidden;
             this.PocetniEkranGrid.Visibility = Visibility.Visible;
-            
+            this.PacijentGrid.Visibility = Visibility.Hidden;
+         
+        }
+
+        private void CenterWindow()
+        {
+
+            double screenWidth = System.Windows.SystemParameters.PrimaryScreenWidth;
+            double screenHeight = System.Windows.SystemParameters.PrimaryScreenHeight;
+            double windowWidth = this.Width;
+            double windowHeight = this.Height;
+            this.Left = (screenWidth / 2) - (windowWidth / 2);
+            this.Top = (screenHeight / 2) - (windowHeight / 2);
+
+        }
+
+        private void odjavaButton_Click(object sender, RoutedEventArgs e)
+        {
+            Prijava prijava = new Prijava();
+            this.Close();
+            prijava.ShowDialog();
+        }
+
+        private void helpPacijentiButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (TabelaPacijenti.SelectedIndex != -1)
+            {
+                pacijent = (Pacijent)TabelaPacijenti.SelectedItem;
+
+                this.PacijentInfoGrid.Visibility = Visibility.Visible;
+                
+                labelaJMBG.Content += pacijent.jmbg;
+                labelaIme.Content += pacijent.ime;
+                labelaPrezime.Content += pacijent.prezime;
+            }
+
+        }
+
+        public static Pacijent GetPacijent()
+        {
+            return pacijent;
         }
     }
+
+
 }
