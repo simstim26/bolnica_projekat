@@ -23,11 +23,11 @@
                     <Button x:Name = "btnOtkazi" Content="Otkaži termin" HorizontalAlignment="Left" Margin="155,10,0,0" VerticalAlignment="Top" Width="85" Background="White" Height="29" Click="btnOtkazi_Click"/>
                     <DataGrid x:Name ="dataGridTerminiPacijenta" IsReadOnly ="True" SelectionMode="Single" Height="434" Margin="0,51,0,0" VerticalAlignment="Top" AutoGenerateColumns="False">
                         <DataGrid.Columns>
-                            <DataGridTextColumn x:Name ="kolonaDatumOdrzavanja" Binding="{Binding datum}" Header="Datum održavanja"></DataGridTextColumn>
-                            <DataGridTextColumn x:Name="kolonaSatnica" Binding="{Binding satnica}" Header="Satnica"></DataGridTextColumn>
-                            <DataGridTextColumn x:Name="kolonaProstorija" Binding="{Binding idProstorije}" Header="Prostorija"></DataGridTextColumn>
-                            <DataGridTextColumn x:Name="kolonaLekar" Binding="{Binding idLekara}" Header="Lekar" Width="90"></DataGridTextColumn>
-                            <DataGridTextColumn x:Name="kolonaTip" Binding="{Binding tip}" Header="Tip" Width="95"></DataGridTextColumn>
+                            <DataGridTextColumn x:Name ="kolonaDatumOdrzavanja" IsReadOnly="True" CanUserResize="False" Binding="{Binding datum}" Header="Datum održavanja"></DataGridTextColumn>
+                            <DataGridTextColumn x:Name="kolonaSatnica" IsReadOnly="True" CanUserResize="False" Binding="{Binding satnica}" Header="Satnica"></DataGridTextColumn>
+                            <DataGridTextColumn x:Name="kolonaProstorija" IsReadOnly="True" CanUserResize="False" Binding="{Binding lokacija}" Header="Prostorija"></DataGridTextColumn>
+                            <DataGridTextColumn x:Name="kolonaLekar" IsReadOnly="True" CanUserResize="False" Binding="{Binding imeLekara}" Header="Lekar" Width="105"></DataGridTextColumn>
+                            <DataGridTextColumn x:Name="kolonaTip" IsReadOnly="True" CanUserResize="False" Binding="{Binding napomena}" Header="Tip" Width="75"></DataGridTextColumn>
 
                         </DataGrid.Columns>
                     </DataGrid>

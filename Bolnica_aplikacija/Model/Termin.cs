@@ -18,6 +18,14 @@ namespace Model
         public String idPacijenta { get; set; }
         public String idLekara { get; set; }
 
-   
+        public String getTipString()
+        {
+            if (tip == TipTermina.PREGLED)
+            {
+                return "Pregled";
+            }
+            else
+                return "Operacija";
+        }
    }
 }
