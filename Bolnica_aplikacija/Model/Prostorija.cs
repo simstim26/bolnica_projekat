@@ -10,12 +10,12 @@ namespace Model
    public class Prostorija
    {
       public String id { get; set; }
-      public String idBolnice;
+      public String idBolnice { get; set; }
       public TipProstorije tipProstorije { get; set; }
       public String broj { get; set; }
       public int sprat { get; set; }
       public bool dostupnost { get; set; }
-      public bool logickiObrisana;
+      public bool logickiObrisana { get; set; }
       
       public System.Collections.ArrayList stavka;
       

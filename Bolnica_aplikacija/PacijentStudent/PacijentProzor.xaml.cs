@@ -58,17 +58,42 @@ namespace Bolnica_aplikacija
 
         public void ucitajPodatke()
         {
+
             var sviTermini = JsonSerializer.Deserialize<List<Termin>>(File.ReadAllText("Datoteke/probaTermini.txt"));
+            var sveProstorije = JsonSerializer.Deserialize<List<Prostorija>>(File.ReadAllText("Datoteke/probaProstorije.txt"));
+            
             List<Termin> terminiPacijenta = new List<Termin>();
+            List<PacijentTermin> terminiPacijentaIspravni = new List<PacijentTermin>();
+
             foreach(Termin termin in sviTermini)
             {
+                PacijentTermin pacijentTermin = new PacijentTermin();
+                foreach(Prostorija prostorija in sveProstorije)
+                {
+                    if (prostorija.id.Equals(termin.idProstorije))
+                        pacijentTermin.brojProstorije = prostorija.broj;
+
+                }
+
                 if (termin.idPacijenta.Equals(this.idPacijenta))
                 {
-                    terminiPacijenta.Add(termin);
+                    //terminiPacijenta.Add(termin);
+                    pacijentTermin.datum = termin.datum;
+                    switch(termin.tip)
+                    {
+                        case TipTermina.OPERACIJA: pacijentTermin.napomena = "Operacija"; break;
+                        case TipTermina.PREGLED: pacijentTermin.napomena = "Pregled"; break;
+                        default: break;
+                    }
+                    pacijentTermin.satnica = termin.satnica;
+                    pacijentTermin.imeLekara = "TO DO";
+
+                    terminiPacijentaIspravni.Add(pacijentTermin);
+
                 }
             }
 
-            dataGridTermin.ItemsSource = terminiPacijenta;
+            dataGridTermin.ItemsSource = terminiPacijentaIspravni;
         }
 
         private void CenterWindow()

@@ -10,7 +10,7 @@ namespace Bolnica_aplikacija.PacijentModel
     {
         public DateTime datum { get; set; }
         public DateTime satnica { get; set; }
-        public String nazivProstorije { get; set; }
+        public String brojProstorije { get; set; }
         public String napomena { get; set; }
         public String imeLekara { get; set; }
 
