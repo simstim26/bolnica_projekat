@@ -77,12 +77,20 @@ namespace Bolnica_aplikacija
         {
             if (TabelaPacijenti.SelectedIndex != -1)
             {
-                textJMBG.Text = "";
-                textIme.Text = "";
-                textPrezime.Text = "";
-                textAdresa.Text = "";
-                textEmail.Text = "";
-                textTelefon.Text = "";
+                textJMBG.IsEnabled = false;
+                textIme.IsEnabled = false;
+                textPrezime.IsEnabled = false;
+                textIme.IsEnabled = false;
+                textAdresa.IsEnabled = false;
+                textEmail.IsEnabled = false;
+                textTelefon.IsEnabled = false;
+
+                textJMBG.Clear();
+                textIme.Clear();
+                textPrezime.Clear();
+                textAdresa.Clear();
+                textEmail.Clear();
+                textTelefon.Clear();
 
                 pacijent = (Pacijent)TabelaPacijenti.SelectedItem;
 
@@ -135,6 +143,30 @@ namespace Bolnica_aplikacija
                 }
             }
             TabelaPacijenti.ItemsSource = pacijenti;
+        }
+
+        private void dodajPacijentaButton_Click(object sender, RoutedEventArgs e)
+        {
+
+            textJMBG.Clear();
+            textIme.Clear();
+            textPrezime.Clear();
+            textAdresa.Clear();
+            textEmail.Clear();
+            textTelefon.Clear();
+
+            textJMBG.IsEnabled = true;
+            textIme.IsEnabled = true;
+            textPrezime.IsEnabled = true;
+            textIme.IsEnabled = true;
+            textAdresa.IsEnabled = true;
+            textEmail.IsEnabled = true;
+            textTelefon.IsEnabled = true;
+        }
+
+        private void textKorisnickoIme_Copy_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 
