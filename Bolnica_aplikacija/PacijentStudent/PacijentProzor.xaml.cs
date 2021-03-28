@@ -63,7 +63,8 @@ namespace Bolnica_aplikacija.PacijentStudent
 
             var sviTermini = JsonSerializer.Deserialize<List<Termin>>(File.ReadAllText("Datoteke/probaTermini.txt"));
             var sveProstorije = JsonSerializer.Deserialize<List<Prostorija>>(File.ReadAllText("Datoteke/probaProstorije.txt"));
-            
+            var sviLekari = JsonSerializer.Deserialize<List<Lekar>>(File.ReadAllText("Datoteke/probaLekari.txt"));
+
             List<Termin> terminiPacijenta = new List<Termin>();
             List<PacijentTermin> terminiPacijentaIspravni = new List<PacijentTermin>();
 
@@ -75,6 +76,14 @@ namespace Bolnica_aplikacija.PacijentStudent
                     if (prostorija.id.Equals(termin.idProstorije))
                         pacijentTermin.lokacija = "Sprat " + prostorija.sprat + ", broj " + prostorija.broj;
 
+                }
+
+                foreach(Lekar lekar in sviLekari)
+                {
+                    if(lekar.id.Equals(termin.idLekara))
+                    {
+                        pacijentTermin.imeLekara = lekar.ime + " " + lekar.prezime;
+                    }
                 }
 
                 if (termin.idPacijenta.Equals(this.idPacijenta))
@@ -91,7 +100,6 @@ namespace Bolnica_aplikacija.PacijentStudent
                     String[] satnicaString = termin.satnica.ToString().Split(' ');
                     String[] sat = satnicaString[1].Split(':');
                     pacijentTermin.satnica = sat[0]+':'+sat[1];
-                    pacijentTermin.imeLekara = "TO DO";
                     pacijentTermin.id = termin.idTermina;
 
                     terminiPacijentaIspravni.Add(pacijentTermin);
