@@ -24,13 +24,17 @@ namespace Bolnica_aplikacija.PacijentStudent
     public partial class PacijentZakaziTermin : Window
     {
         private string idPacijenta;
+        private DataGrid dataGrid;
 
-        public PacijentZakaziTermin(string idPacijenta)
+        public PacijentZakaziTermin(DataGrid dataGrid, string idPacijenta)
         {
             InitializeComponent();
             this.idPacijenta = idPacijenta;
+            this.dataGrid = dataGrid;
             dataGridSlobodniTermini.Loaded += SetMinSirina;
 
+            Pacijent.ProcitajTermin(dataGridSlobodniTermini, this.idPacijenta);
+            ucitajPodatke();
         }
 
         public void SetMinSirina(object source, EventArgs e)
@@ -67,12 +71,15 @@ namespace Bolnica_aplikacija.PacijentStudent
                 foreach (Lekar lekar in sviLekari)
                 {
                     if (lekar.id.Equals(termin.idLekara))
-                    {
-                        pacijentTermin.imeLekara = lekar.ime + " " + lekar.prezime;
-                    }
+                        if (lekar.idSpecijalizacije.Equals("0"))
+                        {
+                            pacijentTermin.imeLekara = lekar.ime + " " + lekar.prezime;
+                        }
+                        else
+                            pacijentTermin.imeLekara = "";
                 }
 
-                if (termin.idPacijenta.Equals(this.idPacijenta))
+                if (termin.idPacijenta.Equals("") && !pacijentTermin.imeLekara.Equals(""))
                 {
                     //terminiPacijenta.Add(termin);
                     String[] datumBezVremena = termin.datum.Date.ToString().Split(' ');
@@ -96,5 +103,17 @@ namespace Bolnica_aplikacija.PacijentStudent
             dataGridSlobodniTermini.ItemsSource = terminiPacijentaIspravni;
         }
 
+        private void btnPotvrdi_Click(object sender, RoutedEventArgs e)
+        {
+
+
+            if(dataGridSlobodniTermini.SelectedIndex != -1)
+            {
+
+                Pacijent.NapraviTermin(dataGridSlobodniTermini, this.dataGrid, this.idPacijenta);
+                this.Close();
+
+            }
+        }
     }
 }

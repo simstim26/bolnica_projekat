@@ -63,7 +63,8 @@
                                 <RowDefinition Height="Auto"></RowDefinition>
                                 <RowDefinition Height="*"></RowDefinition>
                             </Grid.RowDefinitions>
-                            <DataGrid VerticalAlignment="Top" Name="dataGridTermin" FontSize="24" Grid.Row="0" IsReadOnly="True" SelectionMode="Single" AutoGenerateColumns="False">
+                            <DataGrid VerticalAlignment="Top" Name="dataGridTermin" FontSize="24" Grid.Row="0" IsReadOnly="True" SelectionMode="Single" AutoGenerateColumns="False"
+                                      >
                                 <DataGrid.Columns>
                                     <DataGridTextColumn x:Name="kolonaDatumOdrzavanja" Header="Datum održavanja" Binding="{Binding datum}"></DataGridTextColumn>
                                     <DataGridTextColumn Header="Satnica" x:Name="kolonaSatnica" Binding="{Binding satnica}"></DataGridTextColumn>
