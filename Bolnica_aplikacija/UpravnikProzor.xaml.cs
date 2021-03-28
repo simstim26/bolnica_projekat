@@ -26,7 +26,7 @@ namespace Bolnica_aplikacija
         String lblBrojProstorije1;
         String lblSprat1;
         String lblDostupnost1;
-        public System.Collections.ObjectModel.ObservableCollection<Model.Prostorija> Prostorije
+        public System.Collections.ObjectModel.ObservableCollection<Prostorija> Prostorije
         {
             get;
             set;
@@ -38,7 +38,7 @@ namespace Bolnica_aplikacija
 
             const Int32 BufferSize = 128;
             this.DataContext = this;
-            Prostorije = new System.Collections.ObjectModel.ObservableCollection<Model.Prostorija>();
+            Prostorije = new System.Collections.ObjectModel.ObservableCollection<Prostorija>();
 
             using (var fileStream = File.OpenRead("Datoteke/Prostorije.txt"))
             {
@@ -48,7 +48,7 @@ namespace Bolnica_aplikacija
                     while ((linija = streamReader.ReadLine()) != null)
                     {
                         string[] sadrzaj = linija.Split('|');
-                        Model.Prostorija prostorija = new Model.Prostorija();
+                        Prostorija prostorija = new Prostorija();
                         prostorija.id = sadrzaj[0];
                         prostorija.tipProstorije = Prostorija.ConvertTip(sadrzaj[2]);
                         //Console.WriteLine(Prostorija.ConvertTip(sadrzaj[2]));
