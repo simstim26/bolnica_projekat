@@ -3,7 +3,12 @@
 // Created: Monday, March 22, 2021 7:07:23 PM
 // Purpose: Definition of Class Pacijent
 
+using Bolnica_aplikacija.PacijentModel;
 using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Text.Json;
+using System.Windows.Controls;
 
 namespace Model
 {
@@ -28,25 +33,112 @@ namespace Model
             String[] stringovi = { jmbg, ime, prezime };
             return stringovi;
         }
-      public void NapraviTermin(Termin termin)
+      public static void NapraviTermin(DataGrid dataGridSlobodniTermini, DataGrid dataGrid, String idPacijenta)
       {
-         throw new NotImplementedException();
-      }
+            //throw new NotImplementedException();
+
+            
+            
+            var sviTermini = JsonSerializer.Deserialize<List<Termin>>(File.ReadAllText("Datoteke/probaTermini.txt"));
+            PacijentTermin pacijentTermin = (PacijentTermin)dataGridSlobodniTermini.SelectedItem;
+
+            foreach (Termin termin in sviTermini)
+            {
+                if (pacijentTermin.id.Equals(termin.idTermina))
+                {
+                    termin.idPacijenta = idPacijenta;
+                    termin.tip = TipTermina.PREGLED;
+                    string jsonString = JsonSerializer.Serialize(sviTermini);
+                    File.WriteAllText("Datoteke/probaTermini.txt", jsonString);
+                    break;
+                }
+            }
+
+            ProcitajTermin(dataGrid, idPacijenta);
+        }
       
-      public void ProcitajTermin(Termin termin)
+      public static void ProcitajTermin(DataGrid dataGrid, string idPacijenta)
       {
-         throw new NotImplementedException();
-      }
+            var sviTermini = JsonSerializer.Deserialize<List<Termin>>(File.ReadAllText("Datoteke/probaTermini.txt"));
+            var sveProstorije = JsonSerializer.Deserialize<List<Prostorija>>(File.ReadAllText("Datoteke/probaProstorije.txt"));
+            var sviLekari = JsonSerializer.Deserialize<List<Lekar>>(File.ReadAllText("Datoteke/probaLekari.txt"));
+
+            List<Termin> terminiPacijenta = new List<Termin>();
+            List<PacijentTermin> terminiPacijentaIspravni = new List<PacijentTermin>();
+
+            foreach (Termin termin in sviTermini)
+            {
+                PacijentTermin pacijentTermin = new PacijentTermin();
+                foreach (Prostorija prostorija in sveProstorije)
+                {
+                    if (prostorija.id.Equals(termin.idProstorije))
+                        pacijentTermin.lokacija = "Sprat " + prostorija.sprat + ", broj " + prostorija.broj;
+
+                }
+
+                foreach (Lekar lekar in sviLekari)
+                {
+                    if (lekar.id.Equals(termin.idLekara))
+                    {
+                        pacijentTermin.imeLekara = lekar.ime + " " + lekar.prezime;
+                    }
+                }
+
+                if (termin.idPacijenta.Equals(idPacijenta))
+                {
+                    //terminiPacijenta.Add(termin);
+                    String[] datumBezVremena = termin.datum.Date.ToString().Split(' ');
+                    pacijentTermin.datum = datumBezVremena[0];
+                    switch (termin.tip)
+                    {
+                        case TipTermina.OPERACIJA: pacijentTermin.napomena = "Operacija"; break;
+                        case TipTermina.PREGLED: pacijentTermin.napomena = "Pregled"; break;
+                        default: break;
+                    }
+                    String[] satnicaString = termin.satnica.ToString().Split(' ');
+                    String[] sat = satnicaString[1].Split(':');
+                    pacijentTermin.satnica = sat[0] + ':' + sat[1];
+                    pacijentTermin.id = termin.idTermina;
+
+                    terminiPacijentaIspravni.Add(pacijentTermin);
+
+                }
+            }
+
+            dataGrid.ItemsSource = terminiPacijentaIspravni;
+
+
+        }
       
       public void AzurirajTermin(Termin termin)
       {
          throw new NotImplementedException();
       }
       
-      public void ObrisiTermin(String idTermina)
+      public static void ObrisiTermin(DataGrid dataGrid, string idPacijenta)
       {
-         throw new NotImplementedException();
-      }
+            //throw new NotImplementedException();
+
+            if (dataGrid.SelectedIndex != -1)
+            {
+                PacijentTermin izabraniTermin = (PacijentTermin)dataGrid.SelectedItem;
+                var sviTermini = JsonSerializer.Deserialize<List<Termin>>(File.ReadAllText("Datoteke/probaTermini.txt"));
+                foreach (Termin termin in sviTermini)
+                {
+                    if (izabraniTermin.id.Equals(termin.idTermina))
+                    {
+                        termin.idPacijenta = "";
+                    }
+                }
+
+                string jsonString = JsonSerializer.Serialize(sviTermini);
+                File.WriteAllText("Datoteke/probaTermini.txt", jsonString);
+
+            }
+
+            ProcitajTermin(dataGrid, idPacijenta);
+
+        }
       
       public void NapraviNotifikaciju()
       {

@@ -27,12 +27,6 @@ namespace Bolnica_aplikacija.PacijentStudent
 
         private String idPacijenta;
 
-        public ObservableCollection<PacijentTermin> Termini
-        {
-            get;
-            set;
-        }
-
         public PacijentProzor(String id)
         {
             InitializeComponent();
@@ -52,62 +46,8 @@ namespace Bolnica_aplikacija.PacijentStudent
             dataGridTermin.Loaded += SetMinWidths;
             dataGridTermin.Height = System.Windows.SystemParameters.PrimaryScreenHeight - 300;
 
-            ucitajPodatke();
+            Pacijent.ProcitajTermin(dataGridTermin, this.idPacijenta);
 
-        }
-
-        public void ucitajPodatke()
-        {
-            //NAPOMENA: DOGOVORITI SE SA TIMOM OKO PISANJA ID PROSTORIJE ITD...
-
-
-            var sviTermini = JsonSerializer.Deserialize<List<Termin>>(File.ReadAllText("Datoteke/probaTermini.txt"));
-            var sveProstorije = JsonSerializer.Deserialize<List<Prostorija>>(File.ReadAllText("Datoteke/probaProstorije.txt"));
-            var sviLekari = JsonSerializer.Deserialize<List<Lekar>>(File.ReadAllText("Datoteke/probaLekari.txt"));
-
-            List<Termin> terminiPacijenta = new List<Termin>();
-            List<PacijentTermin> terminiPacijentaIspravni = new List<PacijentTermin>();
-
-            foreach(Termin termin in sviTermini)
-            {
-                PacijentTermin pacijentTermin = new PacijentTermin();
-                foreach(Prostorija prostorija in sveProstorije)
-                {
-                    if (prostorija.id.Equals(termin.idProstorije))
-                        pacijentTermin.lokacija = "Sprat " + prostorija.sprat + ", broj " + prostorija.broj;
-
-                }
-
-                foreach(Lekar lekar in sviLekari)
-                {
-                    if(lekar.id.Equals(termin.idLekara))
-                    {
-                        pacijentTermin.imeLekara = lekar.ime + " " + lekar.prezime;
-                    }
-                }
-
-                if (termin.idPacijenta.Equals(this.idPacijenta))
-                {
-                    //terminiPacijenta.Add(termin);
-                    String[] datumBezVremena = termin.datum.Date.ToString().Split(' ');
-                    pacijentTermin.datum = datumBezVremena[0];
-                    switch(termin.tip)
-                    {
-                        case TipTermina.OPERACIJA: pacijentTermin.napomena = "Operacija"; break;
-                        case TipTermina.PREGLED: pacijentTermin.napomena = "Pregled"; break;
-                        default: break;
-                    }
-                    String[] satnicaString = termin.satnica.ToString().Split(' ');
-                    String[] sat = satnicaString[1].Split(':');
-                    pacijentTermin.satnica = sat[0]+':'+sat[1];
-                    pacijentTermin.id = termin.idTermina;
-
-                    terminiPacijentaIspravni.Add(pacijentTermin);
-
-                }
-            }
-
-            dataGridTermin.ItemsSource = terminiPacijentaIspravni;
         }
 
         private void CenterWindow()
@@ -140,9 +80,8 @@ namespace Bolnica_aplikacija.PacijentStudent
 
         private void btnZakaziPregled_Click_1(object sender, RoutedEventArgs e)
         {
-            PacijentZakaziTermin zakaziTermin = new PacijentZakaziTermin();
+            PacijentZakaziTermin zakaziTermin = new PacijentZakaziTermin(dataGridTermin, this.idPacijenta);
             zakaziTermin.Owner = this;
-            //zakaziTermin.Owner = Application.Current.MainWindow;
             zakaziTermin.ShowDialog();
         }
 
@@ -154,38 +93,7 @@ namespace Bolnica_aplikacija.PacijentStudent
 
         private void btnOtkaziPregled_Click(object sender, RoutedEventArgs e)
         {
-            if(dataGridTermin.SelectedIndex != -1)
-            {
-                /*  Termin izabraniTermin = (Termin)dataGridTermin.SelectedItem;
-                  var sviTermini = JsonSerializer.Deserialize<List<Termin>>(File.ReadAllText("Datoteke/probaTermini.txt"));
-                  foreach(Termin termin in sviTermini)
-                  {
-                      if(izabraniTermin.idTermina.Equals(termin.idTermina))
-                      {
-                          termin.idPacijenta = "";
-                      }
-                  }
-
-                  string jsonString = JsonSerializer.Serialize(sviTermini);
-                  File.WriteAllText("Datoteke/probaTermini.txt", jsonString);
-                */
-
-                PacijentTermin izabraniTermin = (PacijentTermin)dataGridTermin.SelectedItem;
-                var sviTermini = JsonSerializer.Deserialize<List<Termin>>(File.ReadAllText("Datoteke/probaTermini.txt"));
-                foreach(Termin termin in sviTermini)
-                {
-                    if(izabraniTermin.id.Equals(termin.idTermina))
-                    {
-                        termin.idPacijenta = "";
-                    }
-                }
-
-                string jsonString = JsonSerializer.Serialize(sviTermini);
-                File.WriteAllText("Datoteke/probaTermini.txt", jsonString);
-
-            }
-              
-            ucitajPodatke();
+            Pacijent.ObrisiTermin(dataGridTermin, this.idPacijenta);
         }
     }
 }

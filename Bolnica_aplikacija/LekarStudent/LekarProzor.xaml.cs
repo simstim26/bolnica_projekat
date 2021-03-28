@@ -48,8 +48,6 @@ namespace Bolnica_aplikacija
         private void meniOdjava_Click(object sender, RoutedEventArgs e)
         {
             Prijava prijava = new Prijava();
-            /*string jsonString = JsonSerializer.Serialize(lekar);
-            File.WriteAllText("Datoteke/proba.txt", jsonString);*/
             this.Close();
             prijava.ShowDialog();
         }
