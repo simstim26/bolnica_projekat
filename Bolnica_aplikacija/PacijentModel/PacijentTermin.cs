@@ -8,9 +8,10 @@ namespace Bolnica_aplikacija.PacijentModel
 {
     public class PacijentTermin
     {
-        public DateTime datum { get; set; }
-        public DateTime satnica { get; set; }
-        public String brojProstorije { get; set; }
+        public string id { get; set; }
+        public string datum { get; set; }
+        public string satnica { get; set; }
+        public String lokacija { get; set; }
         public String napomena { get; set; }
         public String imeLekara { get; set; }
 

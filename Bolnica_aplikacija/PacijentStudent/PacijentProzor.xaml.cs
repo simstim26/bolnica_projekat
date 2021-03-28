@@ -58,6 +58,8 @@ namespace Bolnica_aplikacija
 
         public void ucitajPodatke()
         {
+            //NAPOMENA: DOGOVORITI SE SA TIMOM OKO PISANJA ID PROSTORIJE ITD...
+
 
             var sviTermini = JsonSerializer.Deserialize<List<Termin>>(File.ReadAllText("Datoteke/probaTermini.txt"));
             var sveProstorije = JsonSerializer.Deserialize<List<Prostorija>>(File.ReadAllText("Datoteke/probaProstorije.txt"));
@@ -71,22 +73,26 @@ namespace Bolnica_aplikacija
                 foreach(Prostorija prostorija in sveProstorije)
                 {
                     if (prostorija.id.Equals(termin.idProstorije))
-                        pacijentTermin.brojProstorije = prostorija.broj;
+                        pacijentTermin.lokacija = "Sprat " + prostorija.sprat + ", broj " + prostorija.broj;
 
                 }
 
                 if (termin.idPacijenta.Equals(this.idPacijenta))
                 {
                     //terminiPacijenta.Add(termin);
-                    pacijentTermin.datum = termin.datum;
+                    String[] datumBezVremena = termin.datum.Date.ToString().Split(' ');
+                    pacijentTermin.datum = datumBezVremena[0];
                     switch(termin.tip)
                     {
                         case TipTermina.OPERACIJA: pacijentTermin.napomena = "Operacija"; break;
                         case TipTermina.PREGLED: pacijentTermin.napomena = "Pregled"; break;
                         default: break;
                     }
-                    pacijentTermin.satnica = termin.satnica;
+                    String[] satnicaString = termin.satnica.ToString().Split(' ');
+                    String[] sat = satnicaString[1].Split(':');
+                    pacijentTermin.satnica = sat[0]+':'+sat[1];
                     pacijentTermin.imeLekara = "TO DO";
+                    pacijentTermin.id = termin.idTermina;
 
                     terminiPacijentaIspravni.Add(pacijentTermin);
 
@@ -141,11 +147,25 @@ namespace Bolnica_aplikacija
         {
             if(dataGridTermin.SelectedIndex != -1)
             {
-                Termin izabraniTermin = (Termin)dataGridTermin.SelectedItem;
+                /*  Termin izabraniTermin = (Termin)dataGridTermin.SelectedItem;
+                  var sviTermini = JsonSerializer.Deserialize<List<Termin>>(File.ReadAllText("Datoteke/probaTermini.txt"));
+                  foreach(Termin termin in sviTermini)
+                  {
+                      if(izabraniTermin.idTermina.Equals(termin.idTermina))
+                      {
+                          termin.idPacijenta = "";
+                      }
+                  }
+
+                  string jsonString = JsonSerializer.Serialize(sviTermini);
+                  File.WriteAllText("Datoteke/probaTermini.txt", jsonString);
+                */
+
+                PacijentTermin izabraniTermin = (PacijentTermin)dataGridTermin.SelectedItem;
                 var sviTermini = JsonSerializer.Deserialize<List<Termin>>(File.ReadAllText("Datoteke/probaTermini.txt"));
                 foreach(Termin termin in sviTermini)
                 {
-                    if(izabraniTermin.idTermina.Equals(termin.idTermina))
+                    if(izabraniTermin.id.Equals(termin.idTermina))
                     {
                         termin.idPacijenta = "";
                     }
@@ -153,8 +173,9 @@ namespace Bolnica_aplikacija
 
                 string jsonString = JsonSerializer.Serialize(sviTermini);
                 File.WriteAllText("Datoteke/probaTermini.txt", jsonString);
-            }
 
+            }
+              
             ucitajPodatke();
         }
     }

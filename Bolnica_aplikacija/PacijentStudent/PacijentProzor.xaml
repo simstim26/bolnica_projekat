@@ -67,7 +67,7 @@
                                 <DataGrid.Columns>
                                     <DataGridTextColumn x:Name="kolonaDatumOdrzavanja" Header="Datum održavanja" Binding="{Binding datum}"></DataGridTextColumn>
                                     <DataGridTextColumn Header="Satnica" x:Name="kolonaSatnica" Binding="{Binding satnica}"></DataGridTextColumn>
-                                    <DataGridTextColumn Header="Broj prostorije" x:Name="kolonaProstorija" Binding="{Binding brojProstorije}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Lokacija" x:Name="kolonaProstorija" Binding="{Binding lokacija}"></DataGridTextColumn>
                                     <DataGridTextColumn Header="Napomena" x:Name="kolonaNapomena" Binding="{Binding napomena}"></DataGridTextColumn>
                                     <DataGridTextColumn Header="Lekar" x:Name="kolonaLekar" Binding="{Binding imeLekara}"></DataGridTextColumn>
                                 </DataGrid.Columns>
