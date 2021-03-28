@@ -9,10 +9,10 @@ namespace Model
 {
    public class Sekretar : Korisnik
    {
-      private String id;
-      private String idBolnice;
-      
-      public void NapraviPacijenta(Pacijent pacijent)
+      public String id { get; set; }
+      public String idBolnice { get; set; }
+
+        public void NapraviPacijenta(Pacijent pacijent)
       {
          throw new NotImplementedException();
       }

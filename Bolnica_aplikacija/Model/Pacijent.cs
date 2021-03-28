@@ -10,9 +10,9 @@ namespace Model
    public class Pacijent : Korisnik
    {
       public String id { get; set;}
-      private String idBolnice;
-      private bool jeGost;
-      private String adresa;
+      public String idBolnice { get; set; }
+      public bool jeGost { get; set; }
+      public String adresa { get; set; }
       public Termin[] termin;
       
         public Pacijent (String jmbg, String ime, String prezime)

@@ -11,6 +11,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.IO;
+using Model;
 
 namespace Bolnica_aplikacija
 {
@@ -20,14 +24,16 @@ namespace Bolnica_aplikacija
     public partial class LekarProzor : Window
     {
         private static ContentControl x;
-        public LekarProzor(Model.Lekar lekar)
+        private Lekar lekar;
+
+        public LekarProzor(Lekar lekar)
         {
             InitializeComponent();
             this.contentControl.Content = new LekarTabovi();
             x = this.contentControl;
             lblImePrezime.Content = lekar.ime + " " + lekar.prezime;
             lblprosecnaOcena.Content += " " + lekar.prosecnaOcena;
-            
+            this.lekar = lekar;
         }
 
         public static ContentControl getX()
@@ -38,6 +44,8 @@ namespace Bolnica_aplikacija
         private void meniOdjava_Click(object sender, RoutedEventArgs e)
         {
             Prijava prijava = new Prijava();
+            /*string jsonString = JsonSerializer.Serialize(lekar);
+            File.WriteAllText("Datoteke/proba.txt", jsonString);*/
             this.Close();
             prijava.ShowDialog();
         }

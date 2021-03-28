@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -13,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Model;
 
 namespace Bolnica_aplikacija
 {
@@ -21,53 +23,26 @@ namespace Bolnica_aplikacija
     /// </summary>
     public partial class PrikazPacijenata : UserControl
     {
-        private static Model.Pacijent pacijent;
-        public System.Collections.ObjectModel.ObservableCollection<Model.Pacijent> Pacijenti
-        {
-            get;
-            set;
-        }
+        private static Pacijent pacijent;
         public PrikazPacijenata()
         {
             InitializeComponent();
-
-            const Int32 BufferSize = 128;
-            this.DataContext = this;
-            Pacijenti = new System.Collections.ObjectModel.ObservableCollection<Model.Pacijent>();
-
-            using (var fileStream = File.OpenRead("Datoteke/Pacijenti.txt"))
-            {
-                using (var streamReader = new StreamReader(fileStream, Encoding.UTF8, true, BufferSize))
-                {
-                    String linija;
-                    while ((linija = streamReader.ReadLine()) != null)
-                    {
-                        string[] sadrzaj = linija.Split('|');
-                        Model.Pacijent pacijent = new Model.Pacijent();
-                        pacijent.jmbg = sadrzaj[1];
-                        pacijent.ime = sadrzaj[2];
-                        pacijent.prezime = sadrzaj[3];
-                        Pacijenti.Add(pacijent);
-
-                    }
-
-                    lstPacijenti.ItemsSource = Pacijenti;
-                }
-            }
+            var pacijenti = JsonSerializer.Deserialize<List<Pacijent>>(File.ReadAllText("Datoteke/probaPacijenti.txt"));
+            lstPacijenti.ItemsSource = pacijenti;
         }
 
         private void btnInfo_Click(object sender, RoutedEventArgs e)
         {
             if(lstPacijenti.SelectedIndex != -1)
             {
-                pacijent = (Model.Pacijent)lstPacijenti.SelectedItem;
+                pacijent = (Pacijent)lstPacijenti.SelectedItem;
 
                 this.Content = new PacijentInfo();
             }
 
         }
 
-        public static Model.Pacijent GetPacijent()
+        public static Pacijent GetPacijent()
         {
             return pacijent;
         }

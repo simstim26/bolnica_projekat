@@ -103,17 +103,17 @@ namespace Bolnica_aplikacija
                             Termin termin = new Termin();
                             if(String.Equals(sadrzaj[4],"Operacija"))
                             {
-                                termin.setTipTermina(TipTermina.OPERACIJA);
+                                termin.tip = TipTermina.OPERACIJA;
                             }
                             else
                             {
-                                termin.setTipTermina(TipTermina.PREGLED);
+                                termin.tip = TipTermina.PREGLED;
                             }
 
                             DateTime datum = DateTime.ParseExact(sadrzaj[1], "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture);
-                            termin.setDatum(datum);
+                            termin.datum = datum;
                             DateTime satnica = DateTime.ParseExact(sadrzaj[2], "HH:mm", System.Globalization.CultureInfo.InvariantCulture);
-                            termin.setSatnica(satnica);
+                            termin.satnica = satnica;
 
                             termin.idProstorije = sadrzaj[3];
                             termin.idLekara = sadrzaj[6];

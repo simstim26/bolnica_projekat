@@ -3,9 +3,12 @@
 // Created: Monday, March 22, 2021 7:07:21 PM
 // Purpose: Definition of Class Korisnik
 
+using Bolnica_aplikacija.Model;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Text.Json;
 
 namespace Model
 {
@@ -20,51 +23,20 @@ namespace Model
       public String brojTelefona { get; set; }
       public String jmbg { get; set; }
 
-        public static Korisnik Prijava(String id, String putanja)
+        public static String[] Prijava(String korisnickoIme, String lozinka)
         {
-            const Int32 BufferSize = 128;
-            using (var fileStream = File.OpenRead("Datoteke/" + putanja + ".txt"))
+            String[] retVal = { "",""};
+            foreach (PomocnaKlasaKorisnici e in JsonSerializer.Deserialize<List<PomocnaKlasaKorisnici>>(File.ReadAllText("Datoteke/probaKorisnici.txt")))
             {
-                using (var streamReader = new StreamReader(fileStream, Encoding.UTF8, true, BufferSize))
+                if(e.korisnickoIme.Equals(korisnickoIme) && e.lozinka.Equals(lozinka))
                 {
-                    String linija;
-                    while ((linija = streamReader.ReadLine()) != null)
-                    {
-                        string[] sadrzaj = linija.Split('|');
-                        if(sadrzaj[0] != id)
-                        {
-                            continue;
-                        }
-                        else
-                        {
-                            switch (putanja)
-                            {
-                                case "Pacijenti":
-                                    break;
-                                case "Lekari":
-                                    Lekar korisnik = new Lekar();
-                                    korisnik.jmbg = sadrzaj[1];
-                                    korisnik.ime = sadrzaj[2];
-                                    korisnik.prezime = sadrzaj[3];
-                                    korisnik.datumRodjenja = Convert.ToDateTime(sadrzaj[4]);
-                                    korisnik.email = sadrzaj[5];
-                                    korisnik.brojTelefona = sadrzaj[6];
-                                    korisnik.brojSlobodnihDana = Convert.ToInt32(sadrzaj[7]);
-                                    korisnik.prosecnaOcena = Convert.ToDouble(sadrzaj[8]);
-                                    korisnik.idBolnice = sadrzaj[9];
-                                    return korisnik;
-                                case "Sekretari":
-                                    break;
-                                case "Upravnici":
-                                    break;
-                            }
-                        }
-
-                    }
+                    retVal[0] = e.tip;
+                    retVal[1] = e.id;
                 }
             }
 
-            return null;
+            return retVal;
+
         }
    }
 }
