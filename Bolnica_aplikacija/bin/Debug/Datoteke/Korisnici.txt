@@ -2,4 +2,4 @@
 1|makro|marko|lekar
 2|milena|milenovic|lekar
 3|usisivac|vumvum|upravnik
-4|imenko prezimic|ra1234|sekretar
+4|jednarec|hehe|sekretar

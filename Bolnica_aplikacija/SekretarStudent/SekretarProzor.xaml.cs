@@ -77,13 +77,23 @@ namespace Bolnica_aplikacija
         {
             if (TabelaPacijenti.SelectedIndex != -1)
             {
+                textJMBG.Text = "";
+                textIme.Text = "";
+                textPrezime.Text = "";
+                textAdresa.Text = "";
+                textEmail.Text = "";
+                textTelefon.Text = "";
+
                 pacijent = (Pacijent)TabelaPacijenti.SelectedItem;
 
                 this.PacijentInfoGrid.Visibility = Visibility.Visible;
-                
-                labelaJMBG.Content += pacijent.jmbg;
-                labelaIme.Content += pacijent.ime;
-                labelaPrezime.Content += pacijent.prezime;
+
+                textJMBG.Text = pacijent.jmbg;
+                textIme.Text = pacijent.ime;
+                textPrezime.Text = pacijent.prezime;
+                textAdresa.Text = pacijent.adresa;
+                textEmail.Text = pacijent.email;
+                textTelefon.Text = pacijent.brojTelefona;
             }
 
         }
@@ -91,6 +101,40 @@ namespace Bolnica_aplikacija
         public static Pacijent GetPacijent()
         {
             return pacijent;
+        }
+
+      /*  private void obrisiPacijentaButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (TabelaPacijenti.SelectedIndex != -1)
+            {
+                Pacijent izabraniPacijent = (Pacijent)TabelaPacijenti.SelectedItem;
+                var sviPacijenti = JsonSerializer.Deserialize<List<Pacijent>>(File.ReadAllText("Datoteke/probaPacijenti.txt"));
+                foreach (Pacijent pacijent in sviPacijenti)
+                {
+                    if (izabraniPacijent.id.Equals(pacijent.id))
+                    {
+                        sviPacijenti.Remove(pacijent);
+                    }
+                }
+                string jsonString = JsonSerializer.Serialize(sviPacijenti);
+                File.WriteAllText("Datoteke/probaPacijenti.txt", jsonString);
+            }
+            ucitajPodatke();
+        }
+      */
+
+        private void ucitajPodatke()
+        {
+            var sviPacijenti = JsonSerializer.Deserialize<List<Pacijent>>(File.ReadAllText("Datoteke/probaPacijenti.txt"));
+            List<Pacijent> pacijenti = new List<Pacijent>();
+            foreach (Pacijent pacijent in sviPacijenti)
+            {
+                if (pacijent.id.Equals(GetPacijent().id))
+                {
+                    pacijenti.Add(pacijent);
+                }
+            }
+            TabelaPacijenti.ItemsSource = pacijenti;
         }
     }
 
