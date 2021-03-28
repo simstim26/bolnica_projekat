@@ -92,26 +92,26 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Model\Baza.cs" />
-    <Compile Include="Model\PomocnaKlasaKorisnici.cs" />
+    <Compile Include="PomocneKlase\PomocnaKlasaKorisnici.cs" />
     <Compile Include="PacijentStudent\PacijentZakaziTermin.xaml.cs">
       <DependentUpon>PacijentZakaziTermin.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SekretarProzor.xaml.cs">
+    <Compile Include="SekretarStudent\SekretarProzor.xaml.cs">
       <DependentUpon>SekretarProzor.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PacijentModel\PacijentTermin.cs" />
-    <Compile Include="UpravnikProzor.xaml.cs">
+    <Compile Include="PomocneKlase\PacijentTermin.cs" />
+    <Compile Include="UpravnikStudent\UpravnikProzor.xaml.cs">
       <DependentUpon>UpravnikProzor.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ZakaziTermin.xaml.cs">
+    <Compile Include="LekarStudent\ZakaziTermin.xaml.cs">
       <DependentUpon>ZakaziTermin.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LekarProzor.xaml.cs">
+    <Compile Include="LekarStudent\LekarProzor.xaml.cs">
       <DependentUpon>LekarProzor.xaml</DependentUpon>
     </Compile>
-    <Compile Include="LekarTabovi.xaml.cs">
+    <Compile Include="LekarStudent\LekarTabovi.xaml.cs">
       <DependentUpon>LekarTabovi.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\Bolnica.cs" />
@@ -133,7 +133,7 @@
     <Compile Include="Model\TipTermina.cs" />
     <Compile Include="Model\Upravnik.cs" />
     <Compile Include="Model\ZdravstveniKarton.cs" />
-    <Compile Include="PacijentInfo.xaml.cs">
+    <Compile Include="LekarStudent\PacijentInfo.xaml.cs">
       <DependentUpon>PacijentInfo.xaml</DependentUpon>
     </Compile>
     <Compile Include="PacijentStudent\PacijentProzor.xaml.cs">
@@ -142,7 +142,7 @@
     <Compile Include="Prijava.xaml.cs">
       <DependentUpon>Prijava.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PrikazPacijenata.xaml.cs">
+    <Compile Include="LekarStudent\PrikazPacijenata.xaml.cs">
       <DependentUpon>PrikazPacijenata.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -172,15 +172,15 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="LekarProzor.xaml">
+    <Page Include="LekarStudent\LekarProzor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="LekarTabovi.xaml">
+    <Page Include="LekarStudent\LekarTabovi.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PacijentInfo.xaml">
+    <Page Include="LekarStudent\PacijentInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -196,44 +196,51 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SekretarProzor.xaml">
+    <Page Include="SekretarStudent\SekretarProzor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UpravnikProzor.xaml">
+    <Page Include="UpravnikStudent\UpravnikProzor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="LekarStudent\PrikazPacijenata.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LekarStudent\ZakaziTermin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="logo.png" />
-    <Page Include="PrikazPacijenata.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ZakaziTermin.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="question_mark.png" />
+    <Resource Include="UpravnikStudent\patient_room.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="pacijent.png" />
+    <Resource Include="UpravnikStudent\logo.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="dodajPacijenta.png" />
+    <Resource Include="SekretarStudent\pacijent.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="IzmeniPacijenta.png" />
+    <Resource Include="SekretarStudent\dodajPacijenta.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="IzbrisiPacijenta.png" />
-    <Resource Include="patient_room.png" />
+    <Resource Include="SekretarStudent\IzmeniPacijenta.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="PacijentInfo.png" />
+    <Resource Include="SekretarStudent\IzbrisiPacijenta.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SekretarStudent\PacijentInfo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SekretarStudent\question_mark.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

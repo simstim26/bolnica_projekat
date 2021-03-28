@@ -86,7 +86,7 @@
                 Margin = "0,239,14,401"
                 Width = "64" Height="66" HorizontalAlignment = "Right" BorderThickness="0" Click="tb_Copy_Click" Unchecked="tb_Copy2_Unchecked">
                 <ToggleButton.Background>
-                    <ImageBrush ImageSource="logo.png"/>
+                    <ImageBrush ImageSource="logo.png" />
                 </ToggleButton.Background>
             </ToggleButton>
             <ToggleButton x:Name = "tb_Copy1"  

@@ -8,7 +8,7 @@
         Title="Sekretar" Height="768" Width="1366" Visibility="Visible" ResizeMode="CanMinimize"
         >
     <Grid x:Name="Grid" HorizontalAlignment="Left" Height="748" Margin="-4,-17,0,0" VerticalAlignment="Top" Width="1356">
-        <Grid x:Name="PocetniEkranGrid" Margin="270,150" d:IsHidden="True">
+        <Grid x:Name="PocetniEkranGrid" Margin="270,150">
             <Button x:Name="pacijentiButton" Content="PACIJENTI" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Height="200" FontSize="36" FontWeight="Bold" Click="pacijenti_Click" >
                 <Button.Effect>
                     <DropShadowEffect BlurRadius="10" Direction="314"/>
@@ -69,19 +69,19 @@
                     <DropShadowEffect BlurRadius="22"/>
                 </Button.Effect>
                 <Button.Background>
-                    <ImageBrush ImageSource="question_mark.png" Stretch="Uniform"/>
+                    <ImageBrush Stretch="Uniform" ImageSource="question_mark.png"/>
                 </Button.Background>
             </Button>
             <Button x:Name="odjavaButton" Content="ODJAVI SE" HorizontalAlignment="Left" Margin="903,-107,-228,0" VerticalAlignment="Top" Width="141" Height="55" RenderTransformOrigin="0.624,0" FontSize="22" FontWeight="Bold" Click="odjavaButton_Click"/>
         </Grid>
-        <Grid x:Name="PacijentGrid" HorizontalAlignment="Left" Height="730" Margin="0,18,0,0" VerticalAlignment="Top" Width="1346">
+        <Grid x:Name="PacijentGrid" HorizontalAlignment="Left" Height="730" Margin="0,18,0,0" VerticalAlignment="Top" Width="1346" d:IsHidden="True">
             <Grid.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF83C8F7" Offset="0"/>
                     <GradientStop Color="#FFCBDBE6" Offset="1"/>
                 </LinearGradientBrush>
             </Grid.Background>
-            <Image x:Name="pacijentIcon" HorizontalAlignment="Left" Height="200" Margin="50,93,0,0" VerticalAlignment="Top" Width="200" Source="pacijent.png"/>
+            <Image x:Name="pacijentIcon" HorizontalAlignment="Left" Height="200" Margin="50,93,0,0" VerticalAlignment="Top" Width="200" Source="pacijent.png" />
             <Label Content="PACIJENT" HorizontalAlignment="Left" Height="46" Margin="50,42,0,0" VerticalAlignment="Top" Width="200" FontSize="36" FontFamily="Consolas" FontWeight="Bold" Background="{x:Null}" HorizontalContentAlignment="Center">
                 <Label.Effect>
                     <DropShadowEffect BlurRadius="21" Opacity="0.365" Color="#FFFFF0DE"/>
@@ -89,17 +89,17 @@
             </Label>
             <Button x:Name="dodajPacijentaButton" Content="                     " HorizontalAlignment="Left" Height="80" Margin="110,320,0,0" VerticalAlignment="Top" Width="80" RenderTransformOrigin="0.325,0.75" BorderThickness="0" ToolTip="Dodaj pacijenta">
                 <Button.Background>
-                    <ImageBrush ImageSource="dodajPacijenta.png" Stretch="Uniform"/>
+                    <ImageBrush  Stretch="Uniform" ImageSource="dodajPacijenta.png"/>
                 </Button.Background>
             </Button>
             <Button x:Name="izmeniPacijentaButton" Content="                     " HorizontalAlignment="Left" Height="80" Margin="110,420,0,0" VerticalAlignment="Top" Width="80" RenderTransformOrigin="0.325,0.75" BorderThickness="0" ToolTip="Dodaj pacijenta">
                 <Button.Background>
-                    <ImageBrush ImageSource="IzmeniPacijenta.png" Stretch="Uniform"/>
+                    <ImageBrush  Stretch="Uniform" ImageSource="IzmeniPacijenta.png"/>
                 </Button.Background>
             </Button>
             <Button x:Name="obrisiPacijentaButton" Content="                     " HorizontalAlignment="Left" Height="80" Margin="110,520,0,0" VerticalAlignment="Top" Width="80" RenderTransformOrigin="0.325,0.75" BorderThickness="0" ToolTip="Dodaj pacijenta">
                 <Button.Background>
-                    <ImageBrush ImageSource="IzbrisiPacijenta.png" Stretch="Uniform"/>
+                    <ImageBrush  Stretch="Uniform" ImageSource="IzbrisiPacijenta.png"/>
                 </Button.Background>
             </Button>
             <GridSplitter HorizontalAlignment="Left" Height="730" Margin="324,0,-18,0" VerticalAlignment="Top" Width="1040">
@@ -112,7 +112,7 @@
             </GridSplitter>
             <Button x:Name="infoPacijentiButton" Content="                     " HorizontalAlignment="Left" Height="80" Margin="110,620,0,0" VerticalAlignment="Top" Width="80" RenderTransformOrigin="0.325,0.75" BorderThickness="0" ToolTip="Dodaj pacijenta" Click="helpPacijentiButton_Click">
                 <Button.Background>
-                    <ImageBrush ImageSource="PacijentInfo.png" Stretch="Uniform"/>
+                    <ImageBrush  Stretch="Uniform" ImageSource="PacijentInfo.png"/>
                 </Button.Background>
 
             </Button>
