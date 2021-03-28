@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace Bolnica_aplikacija.PacijentStudent
 {
     /// <summary>
-    /// Interaction logic for PacijentZakaziTermin.xaml
+    /// Interaction logic for Window1.xaml
     /// </summary>
-    public partial class PacijentZakaziTermin : Window
+    public partial class Window1 : Window
     {
-        public PacijentZakaziTermin()
+        public Window1()
         {
             InitializeComponent();
         }

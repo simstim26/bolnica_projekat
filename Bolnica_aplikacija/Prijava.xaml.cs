@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using Bolnica_aplikacija.Model;
 using Model;
+using Bolnica_aplikacija.PacijentStudent;
 
 namespace Bolnica_aplikacija
 {

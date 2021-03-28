@@ -17,7 +17,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Bolnica_aplikacija
+namespace Bolnica_aplikacija.PacijentStudent
 {
     /// <summary>
     /// Interaction logic for PacijentProzor.xaml
@@ -133,7 +133,8 @@ namespace Bolnica_aplikacija
         private void btnZakaziPregled_Click_1(object sender, RoutedEventArgs e)
         {
             PacijentZakaziTermin zakaziTermin = new PacijentZakaziTermin();
-            zakaziTermin.Owner = Application.Current.MainWindow;
+            zakaziTermin.Owner = this;
+            //zakaziTermin.Owner = Application.Current.MainWindow;
             zakaziTermin.ShowDialog();
         }
 
