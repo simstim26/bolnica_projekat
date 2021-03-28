@@ -41,7 +41,7 @@ namespace Bolnica_aplikacija
 
         private void btnZakazi_Click(object sender, RoutedEventArgs e)
         {
-            LekarProzor.getX().Content = new ZakaziTermin();
+            LekarProzor.getX().Content = new ZakaziTermin(0, null);
         }
 
         public static TabControl getPregledTab()
@@ -107,6 +107,14 @@ namespace Bolnica_aplikacija
                 }
             }
             dataGridTerminiPacijenta.ItemsSource = terminiPacijenta;
+        }
+
+        private void btnPromeni_Click(object sender, RoutedEventArgs e)
+        {
+            if(dataGridTerminiPacijenta.SelectedIndex != -1)
+            {
+                LekarProzor.getX().Content = new ZakaziTermin(1, (PacijentTermin)dataGridTerminiPacijenta.SelectedItem);
+            }
         }
     }
 }

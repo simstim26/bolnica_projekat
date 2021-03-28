@@ -19,7 +19,7 @@
             <TabItem x:Name="tabPregled" Header="Pregled termina">
                 <Grid Background="#FFE5E5E5" Margin="-2,-2,-1.8,-62.6">
                     <Button x:Name = "btnZakazi" Content="Zakaži termin" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="86" Background="White" Click="btnZakazi_Click" Height="29"/>
-                    <Button x:Name = "btnPromeni" Content="Promeni termin" HorizontalAlignment="Left" Margin="289,10,0,0" VerticalAlignment="Top" Width="96" Background="#FFFAFAFA" Height="29"/>
+                    <Button x:Name = "btnPromeni" Content="Promeni termin" HorizontalAlignment="Left" Margin="289,10,0,0" VerticalAlignment="Top" Width="96" Background="#FFFAFAFA" Height="29" Click="btnPromeni_Click"/>
                     <Button x:Name = "btnOtkazi" Content="Otkaži termin" HorizontalAlignment="Left" Margin="155,10,0,0" VerticalAlignment="Top" Width="85" Background="White" Height="29" Click="btnOtkazi_Click"/>
                     <DataGrid x:Name ="dataGridTerminiPacijenta" IsReadOnly ="True" SelectionMode="Single" Height="434" Margin="0,51,0,0" VerticalAlignment="Top" AutoGenerateColumns="False">
                         <DataGrid.Columns>
