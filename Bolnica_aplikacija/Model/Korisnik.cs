@@ -26,7 +26,7 @@ namespace Model
         public static String[] Prijava(String korisnickoIme, String lozinka)
         {
             String[] retVal = { "",""};
-            foreach (eksperiment e in JsonSerializer.Deserialize<List<eksperiment>>(File.ReadAllText("Datoteke/probaKorisnici.txt")))
+            foreach (PomocnaKlasaKorisnici e in JsonSerializer.Deserialize<List<PomocnaKlasaKorisnici>>(File.ReadAllText("Datoteke/probaKorisnici.txt")))
             {
                 if(e.korisnickoIme.Equals(korisnickoIme) && e.lozinka.Equals(lozinka))
                 {

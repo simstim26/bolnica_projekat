@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Bolnica_aplikacija.Model
 {
-    public class eksperiment
+    public class PomocnaKlasaKorisnici
     {
         public String id { get; set; }
         public String korisnickoIme { get; set; }

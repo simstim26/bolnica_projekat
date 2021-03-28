@@ -15,6 +15,6 @@ namespace Bolnica_aplikacija.Model
         public static List<Upravnik> Upravnici { get; set; }
 
         public static List<Termin> Termini { get; set; }
-        public static List<eksperiment> Korisnici { get; set; }
+        public static List<PomocnaKlasaKorisnici> Korisnici { get; set; }
     }
 }

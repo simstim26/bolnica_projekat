@@ -27,7 +27,7 @@ namespace Bolnica_aplikacija
             Baza.Upravnici = JsonSerializer.Deserialize<List<Upravnik>>(File.ReadAllText("Datoteke/probaUpravnici.txt"));
             Baza.Sekretari = JsonSerializer.Deserialize<List<Sekretar>>(File.ReadAllText("Datoteke/probaSekretari.txt"));
             Baza.Termini = JsonSerializer.Deserialize<List<Termin>>(File.ReadAllText("Datoteke/probaTermini.txt"));
-            Baza.Korisnici = JsonSerializer.Deserialize<List<eksperiment>>(File.ReadAllText("Datoteke/probaKorisnici.txt"));
+            Baza.Korisnici = JsonSerializer.Deserialize<List<PomocnaKlasaKorisnici>>(File.ReadAllText("Datoteke/probaKorisnici.txt"));
 
 
         }
