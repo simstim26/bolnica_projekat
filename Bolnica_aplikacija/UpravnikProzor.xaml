@@ -50,7 +50,7 @@
             </DataGrid>
             <Button x:Name="btnDodajProstoriju" Background="White" Content="Dodaj Prostoriju" HorizontalAlignment="Left" Margin="424,34,0,0" VerticalAlignment="Top" Width="99" Height="28" Click="btnDodajProstoriju_Click"  />
             <Button x:Name="btnIzmeniProstoriju" Background="White" Content="Izmeni Prostoriju" HorizontalAlignment="Left" Margin="615,34,0,0" VerticalAlignment="Top" Width="99" Height="28"  IsEnabled="True" Click="btnIzmeniProstoriju_Click"/>
-            <Button x:Name="btnIzbrisiProstoriju" Background="White" Content="Izbrisi Prostoriju" HorizontalAlignment="Left" Margin="806,34,0,0" VerticalAlignment="Top" Width="99" Height="28"/>
+            <Button x:Name="btnIzbrisiProstoriju" Background="White" Content="Izbrisi Prostoriju" HorizontalAlignment="Left" Margin="806,34,0,0" VerticalAlignment="Top" Width="99" Height="28" Click="btnIzbrisiProstoriju_Click"/>
 
         </Grid>
 

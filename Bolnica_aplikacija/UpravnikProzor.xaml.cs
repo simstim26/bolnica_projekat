@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -26,19 +27,26 @@ namespace Bolnica_aplikacija
         String lblBrojProstorije1;
         String lblSprat1;
         String lblDostupnost1;
-        public System.Collections.ObjectModel.ObservableCollection<Prostorija> Prostorije
-        {
-            get;
-            set;
-        }
-
+        List<Prostorija> prostorijeNeobrisane = new List<Prostorija>();
         public UpravnikProzor()
         {
             InitializeComponent();
 
             const Int32 BufferSize = 128;
             this.DataContext = this;
-            Prostorije = new System.Collections.ObjectModel.ObservableCollection<Prostorija>();
+            var prostorije = JsonSerializer.Deserialize<List<Prostorija>>(File.ReadAllText("Datoteke/probaProstorije.txt"));
+           // List<Prostorija> prostorijeNeobrisane = new List<Prostorija>();
+            foreach(Prostorija p in prostorije)
+            {
+                if(p.dostupnost == false)
+                {
+                    prostorijeNeobrisane.Add(p);
+                }
+            }
+            dataGridProstorija.ItemsSource = prostorijeNeobrisane;
+            Console.WriteLine(prostorijeNeobrisane.Count);
+
+            /*Prostorije = new System.Collections.ObjectModel.ObservableCollection<Prostorija>();
 
             using (var fileStream = File.OpenRead("Datoteke/Prostorije.txt"))
             {
@@ -65,7 +73,7 @@ namespace Bolnica_aplikacija
 
                     dataGridProstorija.ItemsSource = Prostorije;
                 }
-            }
+            }*/
         }
 
         
@@ -189,6 +197,31 @@ namespace Bolnica_aplikacija
             lblBrojProstorije.Text = lblBrojProstorije1;
             lblSprat.Text = lblSprat1;
             lblDostupnost.Text = lblDostupnost1;
+        }
+
+        private void btnIzbrisiProstoriju_Click(object sender, RoutedEventArgs e)
+        {
+            if (dataGridProstorija.SelectedIndex != -1)
+            {
+                Console.WriteLine(prostorijeNeobrisane.Count);
+                prostorija = (Prostorija)dataGridProstorija.SelectedItem;
+                prostorija.dostupnost = true;
+                prostorijeNeobrisane.Remove(prostorija);
+                Console.WriteLine(prostorijeNeobrisane.Count());
+                dataGridProstorija.Items.Refresh();
+
+
+                // gridIzmeniProstoriju.Visibility = Visibility.Visible;
+                /* lblId1 = lblId.Text;
+                 lblBrojProstorije1 = lblBrojProstorije.Text;
+                 lblSprat1 = lblSprat.Text;
+                 lblDostupnost1 = lblDostupnost.Text;
+
+                 lblId.Text += prostorija.id;
+                 lblBrojProstorije.Text += prostorija.broj;
+                 lblSprat.Text += prostorija.sprat;
+                 lblDostupnost.Text += prostorija.dostupnost;*/
+            }
         }
     }
 }
