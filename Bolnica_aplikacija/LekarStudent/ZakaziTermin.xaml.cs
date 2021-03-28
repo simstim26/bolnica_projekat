@@ -42,7 +42,7 @@ namespace Bolnica_aplikacija
         private void ucitajPodatke()
         {
             var sviTermini = JsonSerializer.Deserialize<List<Termin>>(File.ReadAllText("Datoteke/probaTermini.txt"));
-            List<PacijentTermin> temp = new List<PacijentTermin>();
+            List<PacijentTermin> terminiPacijenta = new List<PacijentTermin>();
             foreach (Termin termin in sviTermini)
             {
                 if (termin.idPacijenta.Equals(""))
@@ -73,23 +73,17 @@ namespace Bolnica_aplikacija
                             break;
                         }
                     }
-
-                    temp.Add(pacijentTermin);
-                }
-            }
-
-            List<PacijentTermin> terminiPacijenta = new List<PacijentTermin>();
-
-            if (LekarProzor.getLekar().specijalizacija == null)
-            {
-                foreach(PacijentTermin pacijentTermin in temp)
-                {
-                    if(!pacijentTermin.napomena.ToLower().Equals("operacija"))
+                    if (!LekarProzor.getLekar().idSpecijalizacije.Equals("0") && pacijentTermin.napomena.Equals("Operacija"))
+                    {
+                        terminiPacijenta.Add(pacijentTermin);
+                    }
+                    else if(pacijentTermin.napomena.Equals("Pregled"))
                     {
                         terminiPacijenta.Add(pacijentTermin);
                     }
                 }
             }
+
             dataGridZakazivanjeTermina.ItemsSource = terminiPacijenta;
         }
 

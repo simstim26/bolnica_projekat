@@ -1,8 +1,3 @@
-// File:    Lekar.cs
-// Author:  User
-// Created: Monday, March 22, 2021 7:07:21 PM
-// Purpose: Definition of Class Lekar
-
 using System;
 
 namespace Model
@@ -13,8 +8,8 @@ namespace Model
       public int brojSlobodnihDana { get; set; }
       public double prosecnaOcena { get; set; }
       public String idBolnice { get; set; }
-
-        public void NapraviTermin(Termin termin)
+      public String idSpecijalizacije { get; set; }
+      public void NapraviTermin(Termin termin)
       {
          throw new NotImplementedException();
       }
@@ -84,7 +79,6 @@ namespace Model
          throw new NotImplementedException();
       }
       
-      public Specijalizacija specijalizacija;
       public Termin[] termin;
    
    }
