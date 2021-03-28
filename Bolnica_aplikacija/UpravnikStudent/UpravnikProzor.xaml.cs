@@ -136,9 +136,12 @@ namespace Bolnica_aplikacija
 
         private void btnOdjava_Click(object sender, RoutedEventArgs e)
         {
+            string jsonString = JsonSerializer.Serialize(prostorije);
+            File.WriteAllText("Datoteke/probaProstorije.txt", jsonString);
             Prijava prijava = new Prijava();
             this.Close();
             prijava.ShowDialog();
+           
         }
 
         private void btnDodajProstoriju_Click(object sender, RoutedEventArgs e)
