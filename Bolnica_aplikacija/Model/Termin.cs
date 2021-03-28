@@ -18,8 +18,6 @@ namespace Model
         public String idPacijenta { get; set; }
         public String idLekara { get; set; }
 
-        //public Pacijent pacijent;
-      //public Lekar[] lekar;
    
    }
 }

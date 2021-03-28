@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -37,6 +38,7 @@ namespace Bolnica_aplikacija
             InitializeComponent();
             this.idPacijenta = id;
 
+
             this.Height = (System.Windows.SystemParameters.PrimaryScreenHeight * 0.92);
             this.Width = (System.Windows.SystemParameters.PrimaryScreenWidth * 0.75);
             this.MinHeight = (System.Windows.SystemParameters.PrimaryScreenHeight * 0.92);
@@ -50,12 +52,23 @@ namespace Bolnica_aplikacija
             dataGridTermin.Loaded += SetMinWidths;
             dataGridTermin.Height = System.Windows.SystemParameters.PrimaryScreenHeight - 300;
 
-            //to do: implementirati metodu za citanje iz fajla
-            //dataGridTermin.ItemsSource = UcitajTermine();
-            //dataGridTermin.AutoGenerateColumns = false;
-            UcitajTermine();
+            ucitajPodatke();
 
+        }
 
+        public void ucitajPodatke()
+        {
+            var sviTermini = JsonSerializer.Deserialize<List<Termin>>(File.ReadAllText("Datoteke/probaTermini.txt"));
+            List<Termin> terminiPacijenta = new List<Termin>();
+            foreach(Termin termin in sviTermini)
+            {
+                if (termin.idPacijenta.Equals(this.idPacijenta))
+                {
+                    terminiPacijenta.Add(termin);
+                }
+            }
+
+            dataGridTermin.ItemsSource = terminiPacijenta;
         }
 
         private void CenterWindow()
@@ -72,69 +85,11 @@ namespace Bolnica_aplikacija
 
         public void SetMinWidths(object source, EventArgs e)
         {
-            foreach(var column in dataGridTermin.Columns)
+            foreach (var column in dataGridTermin.Columns)
             {
                 column.MinWidth = column.ActualWidth;
                 column.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
             }
-        }
-
-        //ZA MODIFIKOVATI JOS
-
-        public void UcitajTermine()
-        {
-            //List<PacijentTermin> listaPacijentovihTermina = new List<PacijentTermin>();
-
-            Termini = new ObservableCollection<PacijentTermin>();
-
-            const Int32 BufferSize = 128;
-            using (var fileStream = File.OpenRead("Datoteke/Termini.txt"))
-            {
-                using (var streamReader = new StreamReader(fileStream, Encoding.UTF8, true, BufferSize))
-                {
-                    String linija;
-                    while ((linija = streamReader.ReadLine()) != null)
-                    {
-                        string[] sadrzaj = linija.Split('|');
-
-                        if (String.Equals(this.idPacijenta, sadrzaj[5]))
-                        {
-
-                            Termin termin = new Termin();
-                            if(String.Equals(sadrzaj[4],"Operacija"))
-                            {
-                                termin.tip = TipTermina.OPERACIJA;
-                            }
-                            else
-                            {
-                                termin.tip = TipTermina.PREGLED;
-                            }
-
-                            DateTime datum = DateTime.ParseExact(sadrzaj[1], "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture);
-                            termin.datum = datum;
-                            DateTime satnica = DateTime.ParseExact(sadrzaj[2], "HH:mm", System.Globalization.CultureInfo.InvariantCulture);
-                            termin.satnica = satnica;
-
-                            termin.idProstorije = sadrzaj[3];
-                            termin.idLekara = sadrzaj[6];
-
-                            PacijentTermin pacijentTermin = new PacijentTermin();
-                            pacijentTermin.setDatum(datum);
-                            pacijentTermin.setSatnica(satnica);
-                            pacijentTermin.setNazivProstorije("TODO");
-                            pacijentTermin.setImeLekara("TODO");
-                            pacijentTermin.setNapomena(sadrzaj[4]);
-
-                            Termini.Add(pacijentTermin);
-                            Console.WriteLine(pacijentTermin.getImeLekara().ToString());
-
-                        }
-                    }
-                }
-            }
-
-            
-
         }
 
         private void btnOdjava_Click(object sender, RoutedEventArgs e)
@@ -155,6 +110,27 @@ namespace Bolnica_aplikacija
         {
             double newHeight = e.NewSize.Height;
             dataGridTermin.Height = newHeight - 300;
+        }
+
+        private void btnOtkaziPregled_Click(object sender, RoutedEventArgs e)
+        {
+            if(dataGridTermin.SelectedIndex != -1)
+            {
+                Termin izabraniTermin = (Termin)dataGridTermin.SelectedItem;
+                var sviTermini = JsonSerializer.Deserialize<List<Termin>>(File.ReadAllText("Datoteke/probaTermini.txt"));
+                foreach(Termin termin in sviTermini)
+                {
+                    if(izabraniTermin.idTermina.Equals(termin.idTermina))
+                    {
+                        termin.idPacijenta = "";
+                    }
+                }
+
+                string jsonString = JsonSerializer.Serialize(sviTermini);
+                File.WriteAllText("Datoteke/probaTermini.txt", jsonString);
+            }
+
+            ucitajPodatke();
         }
     }
 }

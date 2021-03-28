@@ -63,13 +63,13 @@
                                 <RowDefinition Height="Auto"></RowDefinition>
                                 <RowDefinition Height="*"></RowDefinition>
                             </Grid.RowDefinitions>
-                            <DataGrid VerticalAlignment="Top" Name="dataGridTermin" FontSize="24" Grid.Row="0" ItemsSource="{Binding Path=Termini}" DataContext="{Binding ElementName=dataGridTermin, Path=SelectedItem}" IsReadOnly="True">
+                            <DataGrid VerticalAlignment="Top" Name="dataGridTermin" FontSize="24" Grid.Row="0" IsReadOnly="True" SelectionMode="Single" AutoGenerateColumns="False">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Datum održavanja" ></DataGridTextColumn>
-                                    <DataGridTextColumn Header="Satnica"></DataGridTextColumn>
-                                    <DataGridTextColumn Header="Prostorija"></DataGridTextColumn>
-                                    <DataGridTextColumn Header="Napomena"></DataGridTextColumn>
-                                    <DataGridTextColumn Header="Lekar"></DataGridTextColumn>
+                                    <DataGridTextColumn x:Name="kolonaDatumOdrzavanja" Header="Datum održavanja" Binding="{Binding datum}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Satnica" x:Name="kolonaSatnica" Binding="{Binding satnica}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Prostorija" x:Name="kolonaProstorija" Binding="{Binding idProstorije}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Napomena" x:Name="kolonaNapomena" Binding="{Binding tip}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Lekar" x:Name="kolonaLekar" Binding="{Binding idLekara}"></DataGridTextColumn>
                                 </DataGrid.Columns>
 
                             </DataGrid>
@@ -91,7 +91,7 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                     
-                                    <Button x:Name="btnOtkaziPregled" Content="Otkaži termin"  Width="201" Height="55" FontSize="22"  MinWidth="201" MinHeight="55" Grid.Row="0"  Grid.Column="5"/>
+                                    <Button x:Name="btnOtkaziPregled" Content="Otkaži termin"  Width="201" Height="55" FontSize="22"  MinWidth="201" MinHeight="55" Grid.Row="0"  Grid.Column="5" Click="btnOtkaziPregled_Click"/>
                                     <Button x:Name="btnIzmeniTermin" Content="Izmeni termin"  Width="201" Height="55" FontSize="22" MinWidth="201" MinHeight="55" Grid.Row="0" Grid.Column="3"/>
                                     <Button x:Name="btnZakaziPregled" Content="Zakaži termin" Width="201" Height="55" FontSize="22" MinWidth="201" MinHeight="55" Grid.Row="0" Grid.Column="1" Click="btnZakaziPregled_Click_1"/>
 
