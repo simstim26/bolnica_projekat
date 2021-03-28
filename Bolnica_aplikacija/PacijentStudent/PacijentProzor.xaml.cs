@@ -140,7 +140,7 @@ namespace Bolnica_aplikacija.PacijentStudent
 
         private void btnZakaziPregled_Click_1(object sender, RoutedEventArgs e)
         {
-            PacijentZakaziTermin zakaziTermin = new PacijentZakaziTermin();
+            PacijentZakaziTermin zakaziTermin = new PacijentZakaziTermin(this.idPacijenta);
             zakaziTermin.Owner = this;
             //zakaziTermin.Owner = Application.Current.MainWindow;
             zakaziTermin.ShowDialog();

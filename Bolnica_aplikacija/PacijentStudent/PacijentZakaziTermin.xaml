@@ -20,7 +20,18 @@
         <RadioButton x:Name="rbtnTermin" Content="Datum i satnica" Margin="10,93,0,0" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold" Height="31" Width="194"/>
         <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="36" Margin="10,129,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="270"/>
         <Button x:Name="btnPretrazi" Content="Pretraži" HorizontalAlignment="Left" Margin="304,129,0,0" Grid.Row="1" VerticalAlignment="Top" Width="134"/>
-        <DataGrid x:Name="dataGridSlobodniTermini" HorizontalAlignment="Left" Height="339" Margin="10,57,0,0" Grid.Row="2" VerticalAlignment="Top" Width="774"/>
+        <DataGrid x:Name="dataGridSlobodniTermini" Height="339" Margin="10,57,10,0" Grid.Row="2" VerticalAlignment="Top"
+                  AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="kolonaDatumOdrzavanja" Header="Datum održavanja" Binding="{Binding datum}"/>
+                <DataGridTextColumn Header="Satnica" x:Name="kolonaSatnica" Binding="{Binding satnica}"/>
+                <DataGridTextColumn Header="Lokacija" x:Name="kolonaProstorija" Binding="{Binding lokacija}"/>
+                <DataGridTextColumn Header="Lekar" x:Name="kolonaLekar" Binding="{Binding imeLekara}"/>
+            </DataGrid.Columns>
+
+        </DataGrid>
+
         <Button x:Name="btnPotvrdi" Content="Potvrdi" Margin="294,431,294,0" Grid.Row="2" VerticalAlignment="Top" Height="37"/>
         <Button x:Name="btnOtkazi" Content="Otkaži" Margin="294,481,294,0" Grid.Row="2" VerticalAlignment="Top" Height="37" IsCancel="True"/>
 
