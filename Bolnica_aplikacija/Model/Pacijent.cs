@@ -110,10 +110,48 @@ namespace Model
 
         }
       
-      public void AzurirajTermin(Termin termin)
+      public static void AzurirajTermin(DataGrid dataGridSlobodniTermini, DataGrid dataGrid, string idPacijenta)
       {
-         throw new NotImplementedException();
-      }
+
+            //throw new NotImplementedException();
+
+            //za azuriranje trebam>>> prikazani svi slobodni termini ok
+            //treba izbrisati id pacijenta sa izabranog termina u dataGrid 
+            //treba ubaciti id pacijenta na izabrani termin u dataGridSlobodniTermini
+            //azurirati prikaz dataGrid-a
+            //
+            //
+            //
+            PacijentTermin izabraniTermin = (PacijentTermin)dataGrid.SelectedItem;
+            var sviTermini = JsonSerializer.Deserialize<List<Termin>>(File.ReadAllText("Datoteke/probaTermini.txt"));
+            foreach (Termin termin in sviTermini)
+            {
+                if (izabraniTermin.id.Equals(termin.idTermina))
+                {
+                    termin.idPacijenta = "";
+                }
+            }
+
+            string jsonString = JsonSerializer.Serialize(sviTermini);
+            File.WriteAllText("Datoteke/probaTermini.txt", jsonString);
+
+            PacijentTermin pacijentTermin = (PacijentTermin)dataGridSlobodniTermini.SelectedItem;
+
+            foreach (Termin termin in sviTermini)
+            {
+                if (pacijentTermin.id.Equals(termin.idTermina))
+                {
+                    termin.idPacijenta = idPacijenta;
+                    string jsonString2 = JsonSerializer.Serialize(sviTermini);
+                    File.WriteAllText("Datoteke/probaTermini.txt", jsonString2);
+                    break;
+                }
+            }
+
+            ProcitajTermin(dataGrid, idPacijenta);
+
+
+        }
       
       public static void ObrisiTermin(DataGrid dataGrid, string idPacijenta)
       {
