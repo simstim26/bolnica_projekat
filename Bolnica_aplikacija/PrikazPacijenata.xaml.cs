@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,11 +24,11 @@ namespace Bolnica_aplikacija
     public partial class PrikazPacijenata : UserControl
     {
         private static Pacijent pacijent;
- 
         public PrikazPacijenata()
         {
             InitializeComponent();
-            lstPacijenti.ItemsSource = Bolnica_aplikacija.Model.Baza.Pacijenti;
+            var pacijenti = JsonSerializer.Deserialize<List<Pacijent>>(File.ReadAllText("Datoteke/probaPacijenti.txt"));
+            lstPacijenti.ItemsSource = pacijenti;
         }
 
         private void btnInfo_Click(object sender, RoutedEventArgs e)

@@ -3,9 +3,12 @@
 // Created: Monday, March 22, 2021 7:07:21 PM
 // Purpose: Definition of Class Korisnik
 
+using Bolnica_aplikacija.Model;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Text.Json;
 
 namespace Model
 {
@@ -23,7 +26,7 @@ namespace Model
         public static String[] Prijava(String korisnickoIme, String lozinka)
         {
             String[] retVal = { "",""};
-            foreach (Bolnica_aplikacija.Model.eksperiment e in Bolnica_aplikacija.Model.Baza.Korisnici)
+            foreach (eksperiment e in JsonSerializer.Deserialize<List<eksperiment>>(File.ReadAllText("Datoteke/probaKorisnici.txt")))
             {
                 if(e.korisnickoIme.Equals(korisnickoIme) && e.lozinka.Equals(lozinka))
                 {

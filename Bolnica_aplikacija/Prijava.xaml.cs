@@ -22,7 +22,7 @@ namespace Bolnica_aplikacija
             InitializeComponent();
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
 
-            Baza.Lekari = JsonSerializer.Deserialize<List<Lekar>>(File.ReadAllText("Datoteke/probaLekari.txt"));
+           // Baza.Lekari = JsonSerializer.Deserialize<List<Lekar>>(File.ReadAllText("Datoteke/probaLekari.txt"));
             Baza.Pacijenti = JsonSerializer.Deserialize<List<Pacijent>>(File.ReadAllText("Datoteke/probaPacijenti.txt"));
             Baza.Upravnici = JsonSerializer.Deserialize<List<Upravnik>>(File.ReadAllText("Datoteke/probaUpravnici.txt"));
             Baza.Sekretari = JsonSerializer.Deserialize<List<Sekretar>>(File.ReadAllText("Datoteke/probaSekretari.txt"));
@@ -52,7 +52,7 @@ namespace Bolnica_aplikacija
                     }
                      break;
                  case "lekar":
-                     foreach(Lekar lekar in Baza.Lekari)
+                     foreach(Lekar lekar in JsonSerializer.Deserialize<List<Lekar>>(File.ReadAllText("Datoteke/probaLekari.txt")))
                      {
                          if(lekar.id.Equals(pronadjen[1]))
                          {
