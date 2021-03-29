@@ -1,0 +1,1 @@
+[{"idSpecijalizacije":"0","nazivSpecijalizacije":"Op\u0161ta praksa"},{"idSpecijalizacije":"1","nazivSpecijalizacije":"Kardiohirurg"}]

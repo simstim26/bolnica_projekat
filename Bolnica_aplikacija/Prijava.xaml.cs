@@ -39,7 +39,7 @@ namespace Bolnica_aplikacija
             string lozinka = txtLozinka.Password.ToString();
             String[] pronadjen = Korisnik.Prijava(korisnickoIme, lozinka);
 
-             switch (pronadjen[0])
+            switch (pronadjen[0])
              {
                  case "pacijent":
                     foreach(Pacijent pacijent in Baza.Pacijenti)

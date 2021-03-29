@@ -9,8 +9,8 @@ namespace Model
 {
    public class Specijalizacija
    {
-      private String idSpecijalizacije;
-      private String nazivSpecijalizacije;
+      public String idSpecijalizacije { get; set; }
+      public String nazivSpecijalizacije { get; set; }
    
    }
 }

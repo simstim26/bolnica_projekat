@@ -83,6 +83,15 @@ namespace Bolnica_aplikacija
                             if (lekar.id.Equals(termin.idLekara))
                             {
                                 pacijentTermin.imeLekara = lekar.ime + " " + lekar.prezime;
+
+                                foreach(Specijalizacija spec in JsonSerializer.Deserialize<List<Specijalizacija>>(File.ReadAllText("Datoteke/Specijalizacije.txt")))
+                                {
+                                    if (lekar.idSpecijalizacije.Equals(spec.idSpecijalizacije))
+                                    {
+                                        pacijentTermin.nazivSpecijalizacije = spec.nazivSpecijalizacije;
+                                        break;
+                                    }
+                                }
                                 break;
                             }
                         }

@@ -15,5 +15,7 @@ namespace Bolnica_aplikacija.PacijentModel
         public String napomena { get; set; }
         public String imeLekara { get; set; }
 
+        public String nazivSpecijalizacije { get; set; }
+
     }
 }
