@@ -136,26 +136,32 @@
                     <ColumnDefinition Width="131*"/>
                     <ColumnDefinition Width="891*"/>
                 </Grid.ColumnDefinitions>
-                <Label x:Name="labelaJMBG" Content="JMBG:" HorizontalAlignment="Left" Height="46" Margin="30,30,0,0" VerticalAlignment="Top" Width="91" FontSize="20"/>
-                <Label x:Name="labelaIme" Content="IME" HorizontalAlignment="Left" Height="46" Margin="30,85,0,0" VerticalAlignment="Top" Width="91" FontSize="20"/>
-                <Label x:Name="labelaPrezime" Content="PREZIME:" HorizontalAlignment="Left" Height="46" Margin="30,140,0,0" VerticalAlignment="Top" Width="101" FontSize="20"/>
-                <Label x:Name="labelaAdresa" Content="ADRESA:" HorizontalAlignment="Left" Height="46" Margin="30,194,0,0" VerticalAlignment="Top" Width="91" FontSize="20"/>
-                <Label x:Name="labelaEmail" Content="E-MAIL:" HorizontalAlignment="Left" Height="46" Margin="30,250,0,0" VerticalAlignment="Top" Width="91" FontSize="20"/>
-                <Label x:Name="labelaTelefon" Content="TELEFON:" HorizontalAlignment="Left" Height="46" Margin="30,306,0,0" VerticalAlignment="Top" Width="91" FontSize="20"/>
-                <TextBox x:Name="textJMBG" HorizontalAlignment="Left" Height="41" Margin="11,35,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="284" Grid.Column="1" Background="#FFB2D4EC" FontSize="18" IsEnabled="False"/>
-                <TextBox x:Name="textIme" HorizontalAlignment="Left" Height="41" Margin="11,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="284" Grid.Column="1" Background="#FFB2D4EC" FontSize="18" IsEnabled="False"/>
-                <TextBox x:Name="textPrezime" HorizontalAlignment="Left" Height="41" Margin="11,140,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="284" Grid.Column="1" Background="#FFB2D4EC" FontSize="18" IsEnabled="False"/>
-                <TextBox x:Name="textAdresa" HorizontalAlignment="Left" Height="41" Margin="11,199,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="284" Grid.Column="1" Background="#FFB2D4EC" FontSize="18" IsEnabled="False"/>
-                <TextBox x:Name="textEmail" HorizontalAlignment="Left" Height="41" Margin="11,255,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="284" Grid.Column="1" Background="#FFB2D4EC" FontSize="18" IsEnabled="False"/>
-                <TextBox x:Name="textTelefon" HorizontalAlignment="Left" Height="41" Margin="11,306,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="284" Grid.Column="1" Background="#FFB2D4EC" FontSize="18" IsEnabled="False"/>
-                <Button Content="POTVRDI" Grid.Column="1" HorizontalAlignment="Left" Margin="11,377,0,0" VerticalAlignment="Top" Width="98" Height="33"/>
-                <Button Content="ODUSTANI" Grid.Column="1" HorizontalAlignment="Left" Margin="197,377,0,0" VerticalAlignment="Top" Width="98" Height="33"/>
-                <Label x:Name="labelaIdBolnice" Content="ID BOLNICE:" HorizontalAlignment="Left" Height="46" Margin="335,35,0,0" VerticalAlignment="Top" Width="172" FontSize="20" Grid.Column="1"/>
-                <TextBox x:Name="textIdBolnice" HorizontalAlignment="Left" Height="41" Margin="512,35,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="64" Grid.Column="1" Background="#FFB2D4EC" FontSize="18" IsEnabled="False" RenderTransformOrigin="0.156,0.634"/>
-                <Label x:Name="labelaKorisnickoIme" Content="KORISNIČKO IME:" HorizontalAlignment="Left" Height="46" Margin="335,90,0,0" VerticalAlignment="Top" Width="172" FontSize="20" Grid.Column="1"/>
-                <TextBox x:Name="textKorisnickoIme" HorizontalAlignment="Left" Height="41" Margin="512,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="284" Grid.Column="1" Background="#FFB2D4EC" FontSize="18" IsEnabled="False"/>
-                <Label x:Name="labelaLozinka" Content="LOZINKA:" HorizontalAlignment="Left" Height="46" Margin="335,141,0,0" VerticalAlignment="Top" Width="172" FontSize="20" Grid.Column="1"/>
-                <PasswordBox Grid.Column="1" HorizontalAlignment="Left" Margin="512,141,0,0" VerticalAlignment="Top" Width="284" Height="40"/>
+                <Grid x:Name="LabelePolja" Margin="30,30,0,85">
+                    <Label x:Name="labelaJMBG" Content="JMBG:" HorizontalAlignment="Left" Height="46" VerticalAlignment="Top" Width="91" FontSize="20"/>
+                    <Label x:Name="labelaIme" Content="IME" HorizontalAlignment="Left" Height="46" Margin="0,55,0,0" VerticalAlignment="Top" Width="91" FontSize="20"/>
+                    <Label x:Name="labelaPrezime" Content="PREZIME:" HorizontalAlignment="Left" Height="46" Margin="0,110,0,0" VerticalAlignment="Top" Width="101" FontSize="20"/>
+                    <Label x:Name="labelaAdresa" Content="ADRESA:" HorizontalAlignment="Left" Height="46" Margin="0,164,0,0" VerticalAlignment="Top" Width="91" FontSize="20"/>
+                    <Label x:Name="labelaEmail" Content="E-MAIL:" HorizontalAlignment="Left" Height="46" Margin="0,220,0,0" VerticalAlignment="Top" Width="91" FontSize="20"/>
+                    <Label x:Name="labelaTelefon" Content="TELEFON:" HorizontalAlignment="Left" Height="46" Margin="0,276,0,0" VerticalAlignment="Top" Width="91" FontSize="20"/>
+                </Grid>
+                <Grid x:Name="TextFieldPolja" Grid.Column="1" Margin="11,35,596,90">
+                    <TextBox x:Name="textJMBG" HorizontalAlignment="Left" Height="41" TextWrapping="Wrap" VerticalAlignment="Top" Width="284" Background="#FFB2D4EC" FontSize="18" IsEnabled="False"/>
+                    <TextBox x:Name="textIme" HorizontalAlignment="Left" Height="41" Margin="0,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="284" Background="#FFB2D4EC" FontSize="18" IsEnabled="False"/>
+                    <TextBox x:Name="textPrezime" HorizontalAlignment="Left" Height="41" Margin="0,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="284" Background="#FFB2D4EC" FontSize="18" IsEnabled="False"/>
+                    <TextBox x:Name="textAdresa" HorizontalAlignment="Left" Height="41" Margin="0,164,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="284" Background="#FFB2D4EC" FontSize="18" IsEnabled="False"/>
+                    <TextBox x:Name="textEmail" HorizontalAlignment="Left" Height="41" Margin="0,220,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="284" Background="#FFB2D4EC" FontSize="18" IsEnabled="False"/>
+                    <TextBox x:Name="textTelefon" HorizontalAlignment="Left" Height="41" Margin="0,271,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="284" Background="#FFB2D4EC" FontSize="18" IsEnabled="False"/>
+                </Grid>
+                <Button x:Name="buttonDodajPacijenta" Content="POTVRDI" Grid.Column="1" HorizontalAlignment="Left" Margin="11,377,0,0" VerticalAlignment="Top" Width="98" Height="33" Visibility="Hidden"/>
+                <Button x:Name="buttonOdustaniDodavanje" Content="ODUSTANI" Grid.Column="1" HorizontalAlignment="Left" Margin="197,377,0,0" VerticalAlignment="Top" Width="98" Height="33" Click="buttonOdustani_Click" Visibility="Hidden"/>
+                <Grid x:Name="DodatnaPoljaGrid" Grid.Column="1" Margin="335,35,95,250" Visibility="Hidden">
+                    <Label x:Name="labelaIdBolnice" Content="ID BOLNICE:" HorizontalAlignment="Left" Height="46" VerticalAlignment="Top" Width="172" FontSize="20"/>
+                    <TextBox x:Name="textIdBolnice" HorizontalAlignment="Left" Height="41" Margin="177,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="64" Background="#FFB2D4EC" FontSize="18" IsEnabled="False" RenderTransformOrigin="0.156,0.634"/>
+                    <Label x:Name="labelaKorisnickoIme" Content="KORISNIČKO IME:" HorizontalAlignment="Left" Height="46" Margin="0,55,0,0" VerticalAlignment="Top" Width="172" FontSize="20"/>
+                    <TextBox x:Name="textKorisnickoIme" HorizontalAlignment="Left" Height="41" Margin="177,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="284" Background="#FFB2D4EC" FontSize="18" IsEnabled="False"/>
+                    <Label x:Name="labelaLozinka" Content="LOZINKA:" HorizontalAlignment="Left" Height="46" Margin="0,106,0,0" VerticalAlignment="Top" Width="172" FontSize="20"/>
+                    <PasswordBox x:Name="lozinka" HorizontalAlignment="Left" Margin="177,106,0,0" VerticalAlignment="Top" Width="284" Height="40" Background="#FFCADCEA"/>
+                </Grid>
             </Grid>
         </Grid>
     </Grid>

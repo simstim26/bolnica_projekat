@@ -77,20 +77,7 @@ namespace Bolnica_aplikacija
         {
             if (TabelaPacijenti.SelectedIndex != -1)
             {
-                textJMBG.IsEnabled = false;
-                textIme.IsEnabled = false;
-                textPrezime.IsEnabled = false;
-                textIme.IsEnabled = false;
-                textAdresa.IsEnabled = false;
-                textEmail.IsEnabled = false;
-                textTelefon.IsEnabled = false;
-
-                textJMBG.Clear();
-                textIme.Clear();
-                textPrezime.Clear();
-                textAdresa.Clear();
-                textEmail.Clear();
-                textTelefon.Clear();
+                prikaziPolja(false);
 
                 pacijent = (Pacijent)TabelaPacijenti.SelectedItem;
 
@@ -111,7 +98,8 @@ namespace Bolnica_aplikacija
             return pacijent;
         }
 
-      /*  private void obrisiPacijentaButton_Click(object sender, RoutedEventArgs e)
+      /* EXCEPTION
+       * private void obrisiPacijentaButton_Click(object sender, RoutedEventArgs e)
         {
             if (TabelaPacijenti.SelectedIndex != -1)
             {
@@ -148,6 +136,23 @@ namespace Bolnica_aplikacija
         private void dodajPacijentaButton_Click(object sender, RoutedEventArgs e)
         {
 
+            prikaziPolja(true);
+            
+            buttonOdustaniDodavanje.Visibility = Visibility.Visible;
+            buttonDodajPacijenta.Visibility = Visibility.Visible;
+
+            //Prikaz dodatnih komponenti za krekiranje pacijenta
+            DodatnaPoljaGrid.Visibility = Visibility.Visible;
+
+        }
+
+        private void textKorisnickoIme_Copy_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+        private void prikaziPolja(bool sakrij)
+        {
+
             textJMBG.Clear();
             textIme.Clear();
             textPrezime.Clear();
@@ -155,20 +160,26 @@ namespace Bolnica_aplikacija
             textEmail.Clear();
             textTelefon.Clear();
 
-            textJMBG.IsEnabled = true;
-            textIme.IsEnabled = true;
-            textPrezime.IsEnabled = true;
-            textIme.IsEnabled = true;
-            textAdresa.IsEnabled = true;
-            textEmail.IsEnabled = true;
-            textTelefon.IsEnabled = true;
+            textJMBG.IsEnabled = sakrij;
+            textIme.IsEnabled = sakrij;
+            textPrezime.IsEnabled = sakrij;
+            textAdresa.IsEnabled = sakrij;
+            textEmail.IsEnabled = sakrij;
+            textTelefon.IsEnabled = sakrij;
+
+            
+
         }
 
-        private void textKorisnickoIme_Copy_TextChanged(object sender, TextChangedEventArgs e)
+        private void buttonOdustani_Click(object sender, RoutedEventArgs e)
         {
+            prikaziPolja(false);
+            buttonDodajPacijenta.Visibility = Visibility.Hidden;
+            buttonOdustaniDodavanje.Visibility = Visibility.Hidden;
 
+            //Skrivanje dodatnih polja za kreiranje pacijenta
+            DodatnaPoljaGrid.Visibility = Visibility.Hidden;
         }
     }
-
-
 }
+
