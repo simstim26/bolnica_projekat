@@ -93,16 +93,43 @@ namespace Bolnica_aplikacija.PacijentStudent
 
         private void btnOtkaziPregled_Click(object sender, RoutedEventArgs e)
         {
-            PotvrdaProzor pprozor = new PotvrdaProzor();
-            pprozor.Owner = this;
-            pprozor.ShowDialog();
 
-            if (pprozor.GetPovratnaVrednost() == 1)
-                if (dataGridTermin.SelectedIndex != -1)
+            //TO DO: implementirati proveru 24h
+            if (dataGridTermin.SelectedIndex != -1)
+            {
+                PacijentTermin izabraniTermin = (PacijentTermin)dataGridTermin.SelectedItem;
+
+                String izabraniDatum = izabraniTermin.datum;
+
+                DateTime izabraniDatumDate = Convert.ToDateTime(izabraniDatum);
+
+                DateTime danasnjiDatum = DateTime.Today.AddDays(1);
+
+                int rezultat = DateTime.Compare(izabraniDatumDate, danasnjiDatum);
+
+                if(rezultat < 0)
                 {
-                    Pacijent.ObrisiTermin(dataGridTermin, this.idPacijenta);
+                    MessageBox.Show("Nije moguće izvršiti otkazivanje termina 24h pred termin.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
-            
+                else if(rezultat == 0)
+                {
+                    MessageBox.Show("Nije moguće izvršiti otkazivanje termina 24h pred termin.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+                else
+                {
+
+                    PotvrdaProzor pprozor = new PotvrdaProzor();
+                    pprozor.Owner = this;
+                    pprozor.ShowDialog();
+
+                    if (pprozor.GetPovratnaVrednost() == 1)
+                        if (dataGridTermin.SelectedIndex != -1)
+                        {
+                            Pacijent.ObrisiTermin(dataGridTermin, this.idPacijenta);
+                        }
+
+                }
+            }
         }
 
         private void btnIzmeniTermin_Click(object sender, RoutedEventArgs e)
@@ -110,10 +137,31 @@ namespace Bolnica_aplikacija.PacijentStudent
             if(dataGridTermin.SelectedIndex != -1)
             {
                 //TO DO: izmena termina
-                IzmenaTerminaPacijent izmenaTermina = new IzmenaTerminaPacijent(dataGridTermin, this.idPacijenta);
-                izmenaTermina.Owner = this;
-                izmenaTermina.ShowDialog();
 
+                PacijentTermin izabraniTermin = (PacijentTermin)dataGridTermin.SelectedItem;
+
+                String izabraniDatum = izabraniTermin.datum;
+
+                DateTime izabraniDatumDate = Convert.ToDateTime(izabraniDatum);
+
+                DateTime danasnjiDatum = DateTime.Today.AddDays(1);
+
+                int rezultat = DateTime.Compare(izabraniDatumDate, danasnjiDatum);
+
+                if (rezultat < 0)
+                {
+                    MessageBox.Show("Nije moguće izvršiti izmenu termina 24h pred termin.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+                else if (rezultat == 0)
+                {
+                    MessageBox.Show("Nije moguće izvršiti izmenu termina 24h pred termin.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+                else
+                {
+                    IzmenaTerminaPacijent izmenaTermina = new IzmenaTerminaPacijent(dataGridTermin, this.idPacijenta);
+                    izmenaTermina.Owner = this;
+                    izmenaTermina.ShowDialog();
+                }
             }
         }
     }
