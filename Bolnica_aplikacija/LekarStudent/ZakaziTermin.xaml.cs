@@ -50,39 +50,45 @@ namespace Bolnica_aplikacija
             {
                 if (termin.idPacijenta.Equals(""))
                 {
-                    PacijentTermin pacijentTermin = new PacijentTermin();
-                    pacijentTermin.id = termin.idTermina;
-                    pacijentTermin.napomena = termin.getTipString();
-                    String[] datumBezVremena = termin.datum.Date.ToString().Split(' ');
-                    pacijentTermin.datum = datumBezVremena[0];
-                    String[] satnicaString = termin.satnica.ToString().Split(' ');
-                    String[] sat = satnicaString[1].Split(':');
-                    pacijentTermin.satnica = sat[0] + ':' + sat[1];
+                    DateTime trenutanDatum = DateTime.Now.AddDays(1);
 
-                    foreach (Lekar lekar in JsonSerializer.Deserialize<List<Lekar>>(File.ReadAllText("Datoteke/probaLekari.txt")))
+                    int rezultat = DateTime.Compare(termin.datum, trenutanDatum);
+                    if (rezultat == 1)
                     {
-                        if (lekar.id.Equals(termin.idLekara))
-                        {
-                            pacijentTermin.imeLekara = lekar.ime + " " + lekar.prezime;
-                            break;
-                        }
-                    }
+                        PacijentTermin pacijentTermin = new PacijentTermin();
+                        pacijentTermin.id = termin.idTermina;
+                        pacijentTermin.napomena = termin.getTipString();
+                        String[] datumBezVremena = termin.datum.Date.ToString().Split(' ');
+                        pacijentTermin.datum = datumBezVremena[0];
+                        String[] satnicaString = termin.satnica.ToString().Split(' ');
+                        String[] sat = satnicaString[1].Split(':');
+                        pacijentTermin.satnica = sat[0] + ':' + sat[1];
 
-                    foreach (Prostorija prostorija in JsonSerializer.Deserialize<List<Prostorija>>(File.ReadAllText("Datoteke/probaProstorije.txt")))
-                    {
-                        if (termin.idProstorije.Equals(prostorija.id))
+                        foreach (Lekar lekar in JsonSerializer.Deserialize<List<Lekar>>(File.ReadAllText("Datoteke/probaLekari.txt")))
                         {
-                            pacijentTermin.lokacija = prostorija.sprat + " " + prostorija.broj;
-                            break;
+                            if (lekar.id.Equals(termin.idLekara))
+                            {
+                                pacijentTermin.imeLekara = lekar.ime + " " + lekar.prezime;
+                                break;
+                            }
                         }
-                    }
-                    if (!LekarProzor.getLekar().idSpecijalizacije.Equals("0") && pacijentTermin.napomena.Equals("Operacija"))
-                    {
-                        terminiPacijenta.Add(pacijentTermin);
-                    }
-                    else if(pacijentTermin.napomena.Equals("Pregled"))
-                    {
-                        terminiPacijenta.Add(pacijentTermin);
+
+                        foreach (Prostorija prostorija in JsonSerializer.Deserialize<List<Prostorija>>(File.ReadAllText("Datoteke/probaProstorije.txt")))
+                        {
+                            if (termin.idProstorije.Equals(prostorija.id))
+                            {
+                                pacijentTermin.lokacija = prostorija.sprat + " " + prostorija.broj;
+                                break;
+                            }
+                        }
+                        if (!LekarProzor.getLekar().idSpecijalizacije.Equals("0") && pacijentTermin.napomena.Equals("Operacija"))
+                        {
+                            terminiPacijenta.Add(pacijentTermin);
+                        }
+                        else if (pacijentTermin.napomena.Equals("Pregled"))
+                        {
+                            terminiPacijenta.Add(pacijentTermin);
+                        }
                     }
                 }
             }
@@ -95,36 +101,16 @@ namespace Bolnica_aplikacija
             if(dataGridZakazivanjeTermina.SelectedIndex != -1)
             {
                 var sviTermini = JsonSerializer.Deserialize<List<Termin>>(File.ReadAllText("Datoteke/probaTermini.txt"));
-                PacijentTermin pacijentTermin = (PacijentTermin)dataGridZakazivanjeTermina.SelectedItem;
+                PacijentTermin pacijentTermin = (PacijentTermin)dataGridZakazivanjeTermina.SelectedItem; //novi termin
 
                 if (tipAkcije == 0)
                 {
-                    foreach (Termin termin in sviTermini)
-                    {
-                        if (pacijentTermin.id.Equals(termin.idTermina))
-                        {
-                            termin.idPacijenta = PrikazPacijenata.GetPacijent().id;
-                            break;
-                        }
-                    }
+                    LekarProzor.getLekar().NapraviTermin(pacijentTermin.id);
                 }
                 else
                 {
-                    foreach(Termin termin in sviTermini)
-                    {
-                        if (izabraniTermin.id.Equals(termin.idTermina)) //otkazivanje starog termina
-                        {
-                            termin.idPacijenta = "";
-                        }
-
-                        if(pacijentTermin.id.Equals(termin.idTermina))
-                        {
-                            termin.idPacijenta = PrikazPacijenata.GetPacijent().id;
-                        }
-                    }
+                    LekarProzor.getLekar().AzurirajTermin(izabraniTermin.id, pacijentTermin.id);
                 }
-                string jsonString = JsonSerializer.Serialize(sviTermini);
-                File.WriteAllText("Datoteke/probaTermini.txt", jsonString);
             }
 
             LekarProzor.getX().Content = new LekarTabovi();
