@@ -117,7 +117,7 @@ namespace Bolnica_aplikacija.PacijentStudent
                         terminiPacijentaIspravni.Add(pacijentTermin);
                     }
 
-                    //terminiPacijenta.Add(termin);
+                    
                     
 
                 }
@@ -129,16 +129,24 @@ namespace Bolnica_aplikacija.PacijentStudent
 
         private void btnPotvrdi_Click(object sender, RoutedEventArgs e)
         {
-            PotvrdaProzor pprozor = new PotvrdaProzor();
-            pprozor.Owner = this;
-            pprozor.ShowDialog();
+            if(dataGridSlobodniTermini.SelectedIndex != -1)
+            {
+                PotvrdaProzor pprozor = new PotvrdaProzor();
+                pprozor.Owner = this;
+                pprozor.ShowDialog();
 
-            if (pprozor.GetPovratnaVrednost() == 1)
-                if (dataGridSlobodniTermini.SelectedIndex != -1)
-                {
-                    Pacijent.AzurirajTermin(dataGridSlobodniTermini, this.dataGrid, this.idPacijenta);
-                    this.Close();
-                }
+                if (pprozor.GetPovratnaVrednost() == 1)
+                    if (dataGridSlobodniTermini.SelectedIndex != -1)
+                    {
+                        Pacijent.AzurirajTermin(dataGridSlobodniTermini, this.dataGrid, this.idPacijenta);
+                        this.Close();
+                    }
+            }
+            else
+            {
+                MessageBox.Show("Molimo izaberite novi termin.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            
         }
     }
 }

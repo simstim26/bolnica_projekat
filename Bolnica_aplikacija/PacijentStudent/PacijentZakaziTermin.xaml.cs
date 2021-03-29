@@ -33,7 +33,6 @@ namespace Bolnica_aplikacija.PacijentStudent
             this.dataGrid = dataGrid;
             dataGridSlobodniTermini.Loaded += SetMinSirina;
 
-            //Pacijent.ProcitajTermin(dataGridSlobodniTermini, this.idPacijenta);
             ucitajPodatke();
         }
 
@@ -48,9 +47,7 @@ namespace Bolnica_aplikacija.PacijentStudent
 
         public void ucitajPodatke()
         {
-            //ISPRAVITI DA UCITA NORMALNO
-            //TO DO: dodati try catch
-
+           
             List<Termin> sviTermini;
             List<Prostorija> sveProstorije;
             List<Lekar> sviLekari;
@@ -96,8 +93,7 @@ namespace Bolnica_aplikacija.PacijentStudent
 
                 if (termin.idPacijenta.Equals("") && !pacijentTermin.imeLekara.Equals(""))
                 {
-                    //terminiPacijenta.Add(termin);
-
+                   
                     DateTime trenutanDatum = DateTime.Now.AddDays(1);
 
                     int rezultat = DateTime.Compare(termin.datum, trenutanDatum);
@@ -130,22 +126,27 @@ namespace Bolnica_aplikacija.PacijentStudent
 
         private void btnPotvrdi_Click(object sender, RoutedEventArgs e)
         {
-            PotvrdaProzor pprozor = new PotvrdaProzor();
-            pprozor.Owner = this;
-            pprozor.ShowDialog();
+            if (dataGridSlobodniTermini.SelectedIndex != -1)
+            {
+                PotvrdaProzor pprozor = new PotvrdaProzor();
+                pprozor.Owner = this;
+                pprozor.ShowDialog();
 
-            if (pprozor.GetPovratnaVrednost() == 1)
-            { 
-                if (dataGridSlobodniTermini.SelectedIndex != -1)
+                if (pprozor.GetPovratnaVrednost() == 1)
                 {
+                    if (dataGridSlobodniTermini.SelectedIndex != -1)
+                    {
 
-                    Pacijent.NapraviTermin(dataGridSlobodniTermini, this.dataGrid, this.idPacijenta);
-                    this.Close();
+                        Pacijent.NapraviTermin(dataGridSlobodniTermini, this.dataGrid, this.idPacijenta);
+                        this.Close();
 
+                    }
                 }
             }
-            
-
+            else
+            {
+                MessageBox.Show("Molimo izaberite novi termin.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
     }
 }
