@@ -25,6 +25,8 @@ namespace Bolnica_aplikacija
     {
         private static Pacijent pacijent;
         private List<Pacijent> sviPacijenti = new List<Pacijent>();
+        private bool flagIzmeni;
+        private String idPacijenta;
 
         public SekretarProzor()
         {
@@ -40,10 +42,10 @@ namespace Bolnica_aplikacija
             
             this.PocetniEkranGrid.Visibility = Visibility.Hidden;
             this.PacijentGrid.Visibility = Visibility.Visible;
-            
+
             //TODO: Razdvojiti komponente (Prikaz pacijenata zasebna)
-            var pacijenti = JsonSerializer.Deserialize<List<Pacijent>>(File.ReadAllText("Datoteke/probaPacijenti.txt"));
-            TabelaPacijenti.ItemsSource = pacijenti;
+            sviPacijenti = JsonSerializer.Deserialize<List<Pacijent>>(File.ReadAllText("Datoteke/probaPacijenti.txt"));
+            TabelaPacijenti.ItemsSource = sviPacijenti;
 
 
         }
@@ -52,7 +54,12 @@ namespace Bolnica_aplikacija
         {
             this.PocetniEkranGrid.Visibility = Visibility.Visible;
             this.PacijentGrid.Visibility = Visibility.Hidden;
-         
+
+            omoguciKoriscenjaPolja(false);
+            ocistiPolja();
+            buttonPotvrdiDodavanje.Visibility = Visibility.Hidden;
+            buttonOdustaniDodavanje.Visibility = Visibility.Hidden;
+
         }
 
         private void CenterWindow()
@@ -74,25 +81,23 @@ namespace Bolnica_aplikacija
             prijava.ShowDialog();
         }
 
-        private void helpPacijentiButton_Click(object sender, RoutedEventArgs e)
+        private void infoPacijentiButton_Click(object sender, RoutedEventArgs e)
         {
             if (TabelaPacijenti.SelectedIndex != -1)
             {
                 omoguciKoriscenjaPolja(false);
-
+                ocistiPolja();
                 pacijent = (Pacijent)TabelaPacijenti.SelectedItem;
 
                 this.PacijentInfoGrid.Visibility = Visibility.Visible;
-              
-
+            
                 textJMBG.Text = pacijent.jmbg;
                 textIme.Text = pacijent.ime;
                 textPrezime.Text = pacijent.prezime;
                 textAdresa.Text = pacijent.adresa;
                 textEmail.Text = pacijent.email;
                 textTelefon.Text = pacijent.brojTelefona;
-                textIdBolnice.Text = pacijent.idBolnice;
-                
+                textDatumRodj.Text = pacijent.datumRodjenja.ToString();
                 //Nece da ucita
                 textKorisnickoIme.Text = pacijent.korisnickoIme;
                 lozinka.Password = pacijent.lozinka;
@@ -105,137 +110,209 @@ namespace Bolnica_aplikacija
             return pacijent;
         }
 
-      /* EXCEPTION
-       * private void obrisiPacijentaButton_Click(object sender, RoutedEventArgs e)
+
+        private void obrisiPacijentaButton_Click(object sender, RoutedEventArgs e)
         {
             if (TabelaPacijenti.SelectedIndex != -1)
             {
                 Pacijent izabraniPacijent = (Pacijent)TabelaPacijenti.SelectedItem;
-                var sviPacijenti = JsonSerializer.Deserialize<List<Pacijent>>(File.ReadAllText("Datoteke/probaPacijenti.txt"));
-                foreach (Pacijent pacijent in sviPacijenti)
-                {
-                    if (izabraniPacijent.id.Equals(pacijent.id))
-                    {
-                        sviPacijenti.Remove(pacijent);
-                    }
-                }
-                string jsonString = JsonSerializer.Serialize(sviPacijenti);
-                File.WriteAllText("Datoteke/probaPacijenti.txt", jsonString);
-            }
-            ucitajPodatke();
-        }
-      */
+                String idZaBrisanje = izabraniPacijent.id;
+                Sekretar.ObrisiPacijenta(idZaBrisanje, sviPacijenti);
 
-        private void ucitajPodatke()
-        {
-            sviPacijenti = JsonSerializer.Deserialize<List<Pacijent>>(File.ReadAllText("Datoteke/probaPacijenti.txt"));
-            List<Pacijent> pacijenti = new List<Pacijent>();
-            foreach (Pacijent pacijent in sviPacijenti)
-            {
-                if (pacijent.id.Equals(GetPacijent().id))
-                {
-                    pacijenti.Add(pacijent);
-                }
             }
-            TabelaPacijenti.ItemsSource = pacijenti;
+
+            sviPacijenti = JsonSerializer.Deserialize<List<Pacijent>>(File.ReadAllText("Datoteke/probaPacijenti.txt"));
+            Sekretar.ProcitajPacijenta(TabelaPacijenti);
         }
+
+      
 
         private void dodajPacijentaButton_Click(object sender, RoutedEventArgs e)
         {
+            //Radi se o dodavanju
+            flagIzmeni = false;
 
             omoguciKoriscenjaPolja(true);
-            
+            ocistiPolja();
+
             buttonOdustaniDodavanje.Visibility = Visibility.Visible;
-            buttonDodajPacijenta.Visibility = Visibility.Visible;
+            buttonPotvrdiDodavanje.Visibility = Visibility.Visible;
+            buttonPotvrdiDodavanje.IsEnabled = false;
 
 
         }
 
-        private void textKorisnickoIme_Copy_TextChanged(object sender, TextChangedEventArgs e)
+        private void omoguciKoriscenjaPolja(bool flag)
         {
 
+            textJMBG.IsEnabled = flag;
+            textIme.IsEnabled = flag;
+            textPrezime.IsEnabled = flag;
+            textAdresa.IsEnabled = flag;
+            textDatumRodj.IsEnabled = flag;
+            textEmail.IsEnabled = flag;
+            textTelefon.IsEnabled = flag;
+            textTelefon.IsEnabled = flag;
+            textKorisnickoIme.IsEnabled = flag;
+            lozinka.IsEnabled = flag;
         }
-        private void omoguciKoriscenjaPolja(bool enabled)
+
+        private void ocistiPolja()
         {
 
             textJMBG.Clear();
             textIme.Clear();
             textPrezime.Clear();
             textAdresa.Clear();
+            textDatumRodj.Clear();
             textEmail.Clear();
             textTelefon.Clear();
-            textIdBolnice.Clear();
             textKorisnickoIme.Clear();
             lozinka.Clear();
-
-            textJMBG.IsEnabled = enabled;
-            textIme.IsEnabled = enabled;
-            textPrezime.IsEnabled = enabled;
-            textAdresa.IsEnabled = enabled;
-            textEmail.IsEnabled = enabled;
-            textTelefon.IsEnabled = enabled;
-            textIdBolnice.IsEnabled = enabled;
-            textTelefon.IsEnabled = enabled;
-            textKorisnickoIme.IsEnabled = enabled;
-            lozinka.IsEnabled = enabled;
         }
 
         private void buttonOdustani_Click(object sender, RoutedEventArgs e)
         {
+          
             omoguciKoriscenjaPolja(false);
-            buttonDodajPacijenta.Visibility = Visibility.Hidden;
+            ocistiPolja();
+            buttonPotvrdiDodavanje.Visibility = Visibility.Hidden;
             buttonOdustaniDodavanje.Visibility = Visibility.Hidden;
-      
+           
         }
 
-        private void buttonDodajPacijenta_Click(object sender, RoutedEventArgs e)
+        private void buttonPotvrdiDodavanje_Click(object sender, RoutedEventArgs e)
         {
-            Pacijent pacijent = new Pacijent();
             
-            var sviPacijenti = JsonSerializer.Deserialize<List<Pacijent>>(File.ReadAllText("Datoteke/probaPacijenti.txt"));
-            List<Pacijent> pacijenti = new List<Pacijent>();
+            bool pacGost = false;
+            String pacKorisnickoIme = textKorisnickoIme.Text;
+            String pacLozinka = lozinka.Password.ToString();
+            String pacIdBolnice = "1";
+            String pacJmbg = textJMBG.Text;
+            String pacIme = textIme.Text;
+            String pacPrezime = textPrezime.Text;
+            DateTime pacDatumRodjenja = Convert.ToDateTime(textDatumRodj.Text);
+            String pacAdresa = textAdresa.Text;
+            String pacEmail = textEmail.Text;
+            String pacTelefon = textTelefon.Text;
 
-           /* bool gostujuci = false;
-            String id = (sviPacijenti.Count() + 1).ToString();
-            String korisnickoIme = textKorisnickoIme.Text;
-            String loz = lozinka.ToString();
-            String ime = textIme.Text;
-            String prezime = textPrezime.Text;
-            String adresa = textAdresa.Text;
-            String eemail = textEmail.Text;
-            String brojTelefona = textTelefon.Text;
+            if (!flagIzmeni)
+            {
 
-            sviPacijenti.Add(pacijent);
-            TabelaPacijenti.Items.Refresh();
-           */
+                if (!pacGost)
+                {
+                    String pacId = (sviPacijenti.Count() + 1).ToString();
+                    Sekretar.NapraviPacijenta(pacId, pacIdBolnice, pacGost, pacKorisnickoIme, pacLozinka, pacJmbg, pacIme, pacPrezime, pacDatumRodjenja, pacAdresa, pacEmail, pacTelefon, TabelaPacijenti, sviPacijenti);
+                }
+                else
+                {
+                    String pacId = (sviPacijenti.Count() + 1).ToString();
+                    Sekretar.NapraviPacijenta(pacId, pacIdBolnice, pacGost, pacKorisnickoIme, pacLozinka, pacJmbg, pacIme, pacPrezime, pacDatumRodjenja, "", "", pacTelefon, TabelaPacijenti, sviPacijenti);
+                }         
+
+            }
+            else
+            {
+              
+                Sekretar.AzurirajPacijenta(idPacijenta, pacIdBolnice, pacGost, pacKorisnickoIme, pacLozinka, pacJmbg, pacIme, pacPrezime, pacDatumRodjenja, pacAdresa, pacEmail, pacTelefon, TabelaPacijenti, sviPacijenti);
+            }
+
+            omoguciKoriscenjaPolja(false);
+            ocistiPolja();
+
+            buttonOdustaniDodavanje.Visibility = Visibility.Hidden;
+            buttonPotvrdiDodavanje.Visibility = Visibility.Hidden;
+
         }
 
         private void izmeniPacijentaButton_Click(object sender, RoutedEventArgs e)
-        {
+        {   
+ 
+            if (TabelaPacijenti.SelectedIndex != -1)
+            {
+                //IZMENA
+                flagIzmeni = true;
 
-            pacijent = (Pacijent)TabelaPacijenti.SelectedItem;
-            buttonOdustaniDodavanje.Visibility = Visibility.Visible;
-            buttonDodajPacijenta.Visibility = Visibility.Visible;
+                pacijent = (Pacijent)TabelaPacijenti.SelectedItem;
+                
+                buttonOdustaniDodavanje.Visibility = Visibility.Visible;
+                buttonPotvrdiDodavanje.Visibility = Visibility.Visible;
+                
+                ocistiPolja();
+                omoguciKoriscenjaPolja(true);
 
-            this.PacijentInfoGrid.Visibility = Visibility.Visible;
-
-            omoguciKoriscenjaPolja(true);
-
-            textJMBG.Text = pacijent.jmbg;
-            textIme.Text = pacijent.ime;
-            textPrezime.Text = pacijent.prezime;
-            textAdresa.Text = pacijent.adresa;
-            textEmail.Text = pacijent.email;
-            textTelefon.Text = pacijent.brojTelefona;
-            textKorisnickoIme.Text = pacijent.korisnickoIme;
-            lozinka.Password = pacijent.lozinka;
-            textIdBolnice.Text = pacijent.idBolnice;
-            //fali datum rodjenja
-
-            
-  
-
+                idPacijenta = pacijent.id;
+                textKorisnickoIme.Text = pacijent.korisnickoIme;
+                lozinka.Password = pacijent.lozinka;
+                textJMBG.Text = pacijent.jmbg;
+                textIme.Text = pacijent.ime;
+                textPrezime.Text = pacijent.prezime;
+                textAdresa.Text = pacijent.adresa;
+                textDatumRodj.Text = pacijent.datumRodjenja.ToString();
+                textEmail.Text = pacijent.email;
+                textTelefon.Text = pacijent.brojTelefona;
+            }
+         
         }
+
+        private void proveraPopunjenosti()
+        {
+            this.buttonPotvrdiDodavanje.IsEnabled = !string.IsNullOrWhiteSpace(this.textIme.Text) &&
+                                                    !string.IsNullOrWhiteSpace(this.textPrezime.Text) &&
+                                                    !string.IsNullOrWhiteSpace(this.textJMBG.Text) &&
+                                                    !string.IsNullOrWhiteSpace(this.textDatumRodj.Text) &&
+                                                    !string.IsNullOrWhiteSpace(this.textAdresa.Text) &&
+                                                    !string.IsNullOrWhiteSpace(this.textEmail.Text) &&
+                                                    !string.IsNullOrWhiteSpace(this.textTelefon.Text) &&
+                                                    !string.IsNullOrWhiteSpace(this.textKorisnickoIme.Text) &&
+                                                    !string.IsNullOrWhiteSpace(this.lozinka.Password.ToString());
+        }
+        private void textJMBG_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            proveraPopunjenosti();
+        }
+
+        private void textIme_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            proveraPopunjenosti();
+        }
+
+        private void textPrezime_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            proveraPopunjenosti();
+        }
+
+        private void textDatumRodj_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            proveraPopunjenosti();
+        }
+
+        private void textAdresa_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            proveraPopunjenosti();
+        }
+
+        private void textEmail_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            proveraPopunjenosti();
+        }
+
+        private void textTelefon_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            proveraPopunjenosti();
+        }
+
+        private void textKorisnickoIme_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            proveraPopunjenosti();
+        }
+
+        private void lozinka_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            proveraPopunjenosti();
+        }
+
+       
     }
 }
 
