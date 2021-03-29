@@ -72,7 +72,8 @@ namespace Bolnica_aplikacija
                         pacijentTermin.id = termin.idTermina;
                         pacijentTermin.napomena = termin.getTipString();
                         String[] datumBezVremena = termin.datum.Date.ToString().Split(' ');
-                        pacijentTermin.datum = datumBezVremena[0];
+                        String[] danMesecGodina = datumBezVremena[0].Split('/');
+                        pacijentTermin.datum = danMesecGodina[1] + "." + danMesecGodina[0] + "." + danMesecGodina[2] + ".";
                         String[] satnicaString = termin.satnica.ToString().Split(' ');
                         String[] sat = satnicaString[1].Split(':');
                         pacijentTermin.satnica = sat[0] + ':' + sat[1];
