@@ -112,7 +112,7 @@
             </GridSplitter>
             <Button x:Name="infoPacijentiButton" Content="                     " HorizontalAlignment="Left" Height="80" Margin="110,620,0,0" VerticalAlignment="Top" Width="80" RenderTransformOrigin="0.325,0.75" BorderThickness="0" ToolTip="Informacije o pacijentu" Click="infoPacijentiButton_Click">
                 <Button.Background>
-                    <ImageBrush  Stretch="Uniform" ImageSource="PacijentInfo.png"/>
+                    <ImageBrush ImageSource="PacijentInfo.png" Stretch="Uniform"/>
                 </Button.Background>
 
             </Button>
@@ -156,11 +156,11 @@
                 </Grid>
                 <Button x:Name="buttonPotvrdiDodavanje" Content="POTVRDI" Grid.Column="1" HorizontalAlignment="Left" Margin="97,352,0,0" VerticalAlignment="Top" Width="98" Height="33" Click="buttonPotvrdiDodavanje_Click" Visibility="Hidden"/>
                 <Button x:Name="buttonOdustaniDodavanje" Content="ODUSTANI" Grid.Column="1" HorizontalAlignment="Left" Margin="257,352,0,0" VerticalAlignment="Top" Width="98" Height="33" Click="buttonOdustani_Click" Visibility="Hidden"/>
-                <Grid x:Name="DodatnaPoljaGrid" Grid.Column="1" Margin="335,-32,95,317">
-                    <Label x:Name="labelaKorisnickoIme" Content="KORISNIČKO IME:" HorizontalAlignment="Left" Height="46" Margin="58,5,0,0" VerticalAlignment="Top" Width="172" FontSize="20"/>
-                    <TextBox x:Name="textKorisnickoIme" HorizontalAlignment="Left" Height="41" Margin="235,5,-33,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="259" Background="#FFB2D4EC" FontSize="18" IsEnabled="False" TextChanged="textKorisnickoIme_TextChanged"/>
-                    <Label x:Name="labelaLozinka" Content="LOZINKA:" HorizontalAlignment="Left" Height="46" Margin="58,56,0,0" VerticalAlignment="Top" Width="172" FontSize="20"/>
-                    <PasswordBox x:Name="lozinka" HorizontalAlignment="Left" Margin="235,60,-33,0" VerticalAlignment="Top" Width="259" Height="40" Background="#FFCADCEA" PasswordChanged="lozinka_PasswordChanged"/>
+                <Grid x:Name="DodatnaPoljaGrid" Grid.Column="1" Margin="363,-37,96,322">
+                    <Label x:Name="labelaKorisnickoIme" Content="KORISNIČKO IME:" HorizontalAlignment="Left" Height="46" Margin="58,5,0,0" VerticalAlignment="Top" Width="166" FontSize="20"/>
+                    <TextBox x:Name="textKorisnickoIme" HorizontalAlignment="Left" Height="41" Margin="237,10,-64,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="259" Background="#FFB2D4EC" FontSize="18" IsEnabled="False" TextChanged="textKorisnickoIme_TextChanged"/>
+                    <Label x:Name="labelaLozinka" Content="LOZINKA:" HorizontalAlignment="Left" Height="46" Margin="58,56,0,0" VerticalAlignment="Top" Width="166" FontSize="20"/>
+                    <PasswordBox x:Name="lozinka" HorizontalAlignment="Left" Margin="237,62,-64,0" VerticalAlignment="Top" Width="259" Height="40" Background="#FFCADCEA" PasswordChanged="lozinka_PasswordChanged"/>
                 </Grid>
             </Grid>
         </Grid>

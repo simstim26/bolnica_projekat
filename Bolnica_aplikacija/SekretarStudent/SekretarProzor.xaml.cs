@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -27,6 +28,7 @@ namespace Bolnica_aplikacija
         private List<Pacijent> sviPacijenti = new List<Pacijent>();
         private bool flagIzmeni;
         private String idPacijenta;
+        private bool ispravnostPolja;
 
         public SekretarProzor()
         {
@@ -196,32 +198,41 @@ namespace Bolnica_aplikacija
             String pacEmail = textEmail.Text;
             String pacTelefon = textTelefon.Text;
 
-            if (!flagIzmeni)
+            if (proveriIspravnostPolja(pacKorisnickoIme,pacLozinka, pacJmbg, pacIme, pacPrezime, pacDatumRodjenja, pacAdresa, pacEmail, pacTelefon))
             {
 
-                if (!pacGost)
+                if (!flagIzmeni)
                 {
-                    String pacId = (sviPacijenti.Count() + 1).ToString();
-                    Sekretar.NapraviPacijenta(pacId, pacIdBolnice, pacGost, pacKorisnickoIme, pacLozinka, pacJmbg, pacIme, pacPrezime, pacDatumRodjenja, pacAdresa, pacEmail, pacTelefon, TabelaPacijenti, sviPacijenti);
+
+                    if (!pacGost)
+                    {
+                        String pacId = (sviPacijenti.Count() + 1).ToString();
+                        Sekretar.NapraviPacijenta(pacId, pacIdBolnice, pacGost, pacKorisnickoIme, pacLozinka, pacJmbg, pacIme, pacPrezime, pacDatumRodjenja, pacAdresa, pacEmail, pacTelefon, TabelaPacijenti, sviPacijenti);
+                    }
+                    else
+                    {
+                        String pacId = (sviPacijenti.Count() + 1).ToString();
+                        Sekretar.NapraviPacijenta(pacId, pacIdBolnice, pacGost, pacKorisnickoIme, pacLozinka, pacJmbg, pacIme, pacPrezime, pacDatumRodjenja, "", "", pacTelefon, TabelaPacijenti, sviPacijenti);
+                    }
+
                 }
                 else
                 {
-                    String pacId = (sviPacijenti.Count() + 1).ToString();
-                    Sekretar.NapraviPacijenta(pacId, pacIdBolnice, pacGost, pacKorisnickoIme, pacLozinka, pacJmbg, pacIme, pacPrezime, pacDatumRodjenja, "", "", pacTelefon, TabelaPacijenti, sviPacijenti);
-                }         
+                    
+                    Sekretar.AzurirajPacijenta(idPacijenta, pacIdBolnice, pacGost, pacKorisnickoIme, pacLozinka, pacJmbg, pacIme, pacPrezime, pacDatumRodjenja, pacAdresa, pacEmail, pacTelefon, TabelaPacijenti, sviPacijenti);
+                }
+
+                omoguciKoriscenjaPolja(false);
+                ocistiPolja();
+
+                buttonOdustaniDodavanje.Visibility = Visibility.Hidden;
+                buttonPotvrdiDodavanje.Visibility = Visibility.Hidden;
 
             }
             else
             {
-              
-                Sekretar.AzurirajPacijenta(idPacijenta, pacIdBolnice, pacGost, pacKorisnickoIme, pacLozinka, pacJmbg, pacIme, pacPrezime, pacDatumRodjenja, pacAdresa, pacEmail, pacTelefon, TabelaPacijenti, sviPacijenti);
+                return;
             }
-
-            omoguciKoriscenjaPolja(false);
-            ocistiPolja();
-
-            buttonOdustaniDodavanje.Visibility = Visibility.Hidden;
-            buttonPotvrdiDodavanje.Visibility = Visibility.Hidden;
 
         }
 
@@ -312,6 +323,86 @@ namespace Bolnica_aplikacija
             proveraPopunjenosti();
         }
 
+        private bool proveriIspravnostPolja(String korisnickoIme, String loznika, String jmbg, String ime, String prezime, DateTime datumRodj, string adresa, string email, string telefon)
+        {
+            
+            //PROVERA JMBG
+            if ((!Regex.IsMatch(jmbg, @"[0-9]{13}$")) || (jmbg.Length != 13))
+            {
+                textJMBG.Clear();
+                return false;
+            }
+
+            if (!flagIzmeni) // Ako kreiramo pacijenta i vec postoji JMBG
+            {
+              
+                foreach (Pacijent pac in sviPacijenti)
+                {
+                    if (pac.jmbg.Equals(jmbg))
+                    {
+                        textJMBG.Clear();
+                        return false;
+                    }
+                }
+            }
+
+            //Provera imena
+            foreach (char c in ime)
+            {
+                if (!Char.IsLetter(c))
+                {
+                    textIme.Clear();
+                    return false;
+                }
+                    
+            }
+
+            //Provera prezimena
+            foreach (char c in prezime)
+            {
+                if (!Char.IsLetter(c))
+                {
+                    textPrezime.Clear();
+                    return false;
+                }
+
+            }
+
+            //Provera E-mail adrese
+            if (!Regex.IsMatch(email, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$"))
+            {
+                textEmail.Clear();
+                return false;
+            }
+
+            //Provera broja telefona
+            foreach (char c in telefon)
+            {
+                if (Char.IsLetter(c))
+                {
+                    textTelefon.Clear();
+                    return false;
+                }
+
+            }
+
+           /* if (flagIzmeni) // Ako kreiramo pacijenta i vec postoji korisnicko ime
+            {
+
+                foreach (Pacijent pac in sviPacijenti)
+                {
+                    if (pac.korisnickoIme.Equals(korisnickoIme))
+                    {
+                        textKorisnickoIme.Clear();
+                        return false;
+                    }
+                }
+            }
+           */
+
+            return true;
+
+        }
        
     }
 }
