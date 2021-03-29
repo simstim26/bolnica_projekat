@@ -31,23 +31,44 @@ namespace Bolnica_aplikacija.PacijentStudent
         {
             InitializeComponent();
             this.idPacijenta = id;
+            this.DataContext = this;
 
+            SetScreenSize();
+            CenterWindow();
+            SetDataGridBounds();
+            SetLabelPacijentContent();
 
+            Pacijent.ProcitajTermin(dataGridTermin, this.idPacijenta);
+
+        }
+
+        private void SetLabelPacijentContent()
+        {
+            var sviPacijenti = JsonSerializer.Deserialize<List<Pacijent>>(File.ReadAllText("Datoteke/probaPacijenti.txt"));
+
+            foreach (Pacijent pacijent in sviPacijenti)
+            {
+                if (pacijent.id.Equals(this.idPacijenta))
+                {
+                    lblPacijent.Content = lblPacijent.Content + " " + pacijent.ime + " " + pacijent.prezime;
+                    break;
+                }
+            }
+        }
+
+        private void SetScreenSize()
+        {
             this.Height = (System.Windows.SystemParameters.PrimaryScreenHeight * 0.92);
             this.Width = (System.Windows.SystemParameters.PrimaryScreenWidth * 0.75);
             this.MinHeight = (System.Windows.SystemParameters.PrimaryScreenHeight * 0.92);
             this.MinWidth = (System.Windows.SystemParameters.PrimaryScreenWidth * 0.75);
             WindowState = WindowState.Maximized;
+        }
 
-            this.DataContext = this;
-
-            CenterWindow();
-
+        private void SetDataGridBounds()
+        {
             dataGridTermin.Loaded += SetMinWidths;
             dataGridTermin.Height = System.Windows.SystemParameters.PrimaryScreenHeight - 300;
-
-            Pacijent.ProcitajTermin(dataGridTermin, this.idPacijenta);
-
         }
 
         private void CenterWindow()
@@ -93,8 +114,6 @@ namespace Bolnica_aplikacija.PacijentStudent
 
         private void btnOtkaziPregled_Click(object sender, RoutedEventArgs e)
         {
-
-            //TO DO: implementirati proveru 24h
             if (dataGridTermin.SelectedIndex != -1)
             {
                 PacijentTermin izabraniTermin = (PacijentTermin)dataGridTermin.SelectedItem;
@@ -136,13 +155,16 @@ namespace Bolnica_aplikacija.PacijentStudent
 
                 }
             }
+            else
+            {
+                MessageBox.Show("Molimo odaberite termin koji želite da otkažete.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
         private void btnIzmeniTermin_Click(object sender, RoutedEventArgs e)
         {
             if(dataGridTermin.SelectedIndex != -1)
             {
-                //TO DO: izmena termina
 
                 PacijentTermin izabraniTermin = (PacijentTermin)dataGridTermin.SelectedItem;
 
@@ -176,6 +198,10 @@ namespace Bolnica_aplikacija.PacijentStudent
                         MessageBox.Show("Za izmenu termina operacije je potrebno da se konsultujete sa Vašim lekarom.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
                     }
                 }
+            }
+            else
+            {
+                MessageBox.Show("Molimo odaberite termin koji želite da izmenite.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
     }

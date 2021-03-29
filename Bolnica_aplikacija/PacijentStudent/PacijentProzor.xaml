@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Bolnica_aplikacija"
         mc:Ignorable="d"
-        Title="PacijentProzor" 
+        Title="Pacijent" 
         Height="{Binding Source={x:Static SystemParameters.PrimaryScreenHeight}}"
         Width="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}}" SizeChanged="Window_SizeChanged"
   >
@@ -13,9 +13,22 @@
         <DockPanel>
 
             <ToolBarTray DockPanel.Dock="Top">
-                <ToolBar>
+                <ToolBar VerticalAlignment="Top" MinWidth="{Binding RelativeSource={RelativeSource AncestorType={x:Type ToolBarTray}}, Path=ActualWidth}">
 
-                    <Button Name="btnOdjava" Content="Odjavi se" FontSize="22" Click="btnOdjava_Click"></Button>
+                    <ToolBar.Resources>
+                        <Style TargetType="{x:Type ToolBarPanel}">
+                            <Setter Property="Orientation" Value="Vertical"/>
+                        </Style>
+                    </ToolBar.Resources>
+                    
+                    <DockPanel>
+
+                        <ToolBarPanel Orientation="Horizontal"></ToolBarPanel>
+                        
+                        <Button Name="btnOdjava" Content="Odjava" FontSize="24" Click="btnOdjava_Click" DockPanel.Dock="Right" HorizontalAlignment="Right" Width="100" Height="40"/>
+
+                    </DockPanel>
+                    
 
                 </ToolBar>
             </ToolBarTray>
@@ -51,7 +64,7 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <Label x:Name="lblPacijent" Content="Pacijent:" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="22"  Grid.Row="0"/>
+                <Label x:Name="lblPacijent" Content="Pacijent:" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="22"  Grid.Row="0" FontWeight="Bold"/>
 
                 <TabControl Grid.Row="1">
                     <TabItem Header="Termini" FontSize="20">

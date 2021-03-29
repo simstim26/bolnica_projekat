@@ -34,7 +34,6 @@ namespace Bolnica_aplikacija.PacijentStudent
             this.dataGrid = dataGrid;
             dataGridSlobodniTermini.Loaded += SetMinSirina;
 
-            //Pacijent.ProcitajTermin(dataGridSlobodniTermini, this.idPacijenta);
             ucitajSlobodneTermine();
 
         }
@@ -50,9 +49,24 @@ namespace Bolnica_aplikacija.PacijentStudent
 
         public void ucitajSlobodneTermine()
         {
-            var sviTermini = JsonSerializer.Deserialize<List<Termin>>(File.ReadAllText("Datoteke/probaTermini.txt"));
-            var sveProstorije = JsonSerializer.Deserialize<List<Prostorija>>(File.ReadAllText("Datoteke/probaProstorije.txt"));
-            var sviLekari = JsonSerializer.Deserialize<List<Lekar>>(File.ReadAllText("Datoteke/probaLekari.txt"));
+            List<Termin> sviTermini;
+            List<Prostorija> sveProstorije;
+            List<Lekar> sviLekari;
+
+            try
+            {
+                sviTermini = JsonSerializer.Deserialize<List<Termin>>(File.ReadAllText("Datoteke/probaTermini.txt"));
+                sveProstorije = JsonSerializer.Deserialize<List<Prostorija>>(File.ReadAllText("Datoteke/probaProstorije.txt"));
+                sviLekari = JsonSerializer.Deserialize<List<Lekar>>(File.ReadAllText("Datoteke/probaLekari.txt"));
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+                sviTermini = new List<Termin>();
+                sveProstorije = new List<Prostorija>();
+                sviLekari = new List<Lekar>();
+            }
+            
 
             List<Termin> terminiPacijenta = new List<Termin>();
             List<PacijentTermin> terminiPacijentaIspravni = new List<PacijentTermin>();

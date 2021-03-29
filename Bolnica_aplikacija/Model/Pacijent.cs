@@ -37,9 +37,17 @@ namespace Model
       {
             //throw new NotImplementedException();
 
+            List<Termin> sviTermini;
+            try
+            {
+                sviTermini = JsonSerializer.Deserialize<List<Termin>>(File.ReadAllText("Datoteke/probaTermini.txt"));
+            }
+            catch(Exception e)
+            {
+                sviTermini = new List<Termin>();
+                Console.WriteLine(e.Message);
+            }
             
-            
-            var sviTermini = JsonSerializer.Deserialize<List<Termin>>(File.ReadAllText("Datoteke/probaTermini.txt"));
             PacijentTermin pacijentTermin = (PacijentTermin)dataGridSlobodniTermini.SelectedItem;
 
             foreach (Termin termin in sviTermini)
@@ -59,50 +67,81 @@ namespace Model
       
       public static void ProcitajTermin(DataGrid dataGrid, string idPacijenta)
       {
-            var sviTermini = JsonSerializer.Deserialize<List<Termin>>(File.ReadAllText("Datoteke/probaTermini.txt"));
-            var sveProstorije = JsonSerializer.Deserialize<List<Prostorija>>(File.ReadAllText("Datoteke/probaProstorije.txt"));
-            var sviLekari = JsonSerializer.Deserialize<List<Lekar>>(File.ReadAllText("Datoteke/probaLekari.txt"));
+
+            List<Termin> sviTermini;
+            List<Prostorija> sveProstorije;
+            List<Lekar> sviLekari;
+
+            try
+            {
+
+                sviTermini = JsonSerializer.Deserialize<List<Termin>>(File.ReadAllText("Datoteke/probaTermini.txt"));
+                sveProstorije = JsonSerializer.Deserialize<List<Prostorija>>(File.ReadAllText("Datoteke/probaProstorije.txt"));
+                sviLekari = JsonSerializer.Deserialize<List<Lekar>>(File.ReadAllText("Datoteke/probaLekari.txt"));
+
+            }
+            catch(Exception e)
+            {
+                sviTermini = new List<Termin>();
+                sveProstorije = new List<Prostorija>();
+                sviLekari = new List<Lekar>();
+
+                Console.WriteLine(e.Message);
+            }
+            
 
             List<Termin> terminiPacijenta = new List<Termin>();
             List<PacijentTermin> terminiPacijentaIspravni = new List<PacijentTermin>();
 
             foreach (Termin termin in sviTermini)
             {
-                PacijentTermin pacijentTermin = new PacijentTermin();
-                foreach (Prostorija prostorija in sveProstorije)
+                DateTime terminDatum = termin.datum;
+                DateTime danasnjiDatum = DateTime.Today;
+
+                int rezultat = DateTime.Compare(terminDatum, danasnjiDatum);
+
+                if(rezultat < 0)
                 {
-                    if (prostorija.id.Equals(termin.idProstorije))
-                        pacijentTermin.lokacija = "Sprat " + prostorija.sprat + ", broj " + prostorija.broj;
 
                 }
-
-                foreach (Lekar lekar in sviLekari)
+                else
                 {
-                    if (lekar.id.Equals(termin.idLekara))
+                    PacijentTermin pacijentTermin = new PacijentTermin();
+                    foreach (Prostorija prostorija in sveProstorije)
                     {
-                        pacijentTermin.imeLekara = lekar.ime + " " + lekar.prezime;
-                    }
-                }
+                        if (prostorija.id.Equals(termin.idProstorije))
+                            pacijentTermin.lokacija = "Sprat " + prostorija.sprat + ", broj " + prostorija.broj;
 
-                if (termin.idPacijenta.Equals(idPacijenta))
-                {
-                    //terminiPacijenta.Add(termin);
-                    String[] datumBezVremena = termin.datum.Date.ToString().Split(' ');
-                    pacijentTermin.datum = datumBezVremena[0];
-                    switch (termin.tip)
+                    }
+
+                    foreach (Lekar lekar in sviLekari)
                     {
-                        case TipTermina.OPERACIJA: pacijentTermin.napomena = "Operacija"; break;
-                        case TipTermina.PREGLED: pacijentTermin.napomena = "Pregled"; break;
-                        default: break;
+                        if (lekar.id.Equals(termin.idLekara))
+                        {
+                            pacijentTermin.imeLekara = lekar.ime + " " + lekar.prezime;
+                        }
                     }
-                    String[] satnicaString = termin.satnica.ToString().Split(' ');
-                    String[] sat = satnicaString[1].Split(':');
-                    pacijentTermin.satnica = sat[0] + ':' + sat[1];
-                    pacijentTermin.id = termin.idTermina;
 
-                    terminiPacijentaIspravni.Add(pacijentTermin);
+                    if (termin.idPacijenta.Equals(idPacijenta))
+                    {
+                        //terminiPacijenta.Add(termin);
+                        String[] datumBezVremena = termin.datum.Date.ToString().Split(' ');
+                        pacijentTermin.datum = datumBezVremena[0];
+                        switch (termin.tip)
+                        {
+                            case TipTermina.OPERACIJA: pacijentTermin.napomena = "Operacija"; break;
+                            case TipTermina.PREGLED: pacijentTermin.napomena = "Pregled"; break;
+                            default: break;
+                        }
+                        String[] satnicaString = termin.satnica.ToString().Split(' ');
+                        String[] sat = satnicaString[1].Split(':');
+                        pacijentTermin.satnica = sat[0] + ':' + sat[1];
+                        pacijentTermin.id = termin.idTermina;
 
-                }
+                        terminiPacijentaIspravni.Add(pacijentTermin);
+
+                    }
+                } 
             }
 
             dataGrid.ItemsSource = terminiPacijentaIspravni;
@@ -113,17 +152,20 @@ namespace Model
       public static void AzurirajTermin(DataGrid dataGridSlobodniTermini, DataGrid dataGrid, string idPacijenta)
       {
 
-            //throw new NotImplementedException();
+            List<Termin> sviTermini;
 
-            //za azuriranje trebam>>> prikazani svi slobodni termini ok
-            //treba izbrisati id pacijenta sa izabranog termina u dataGrid 
-            //treba ubaciti id pacijenta na izabrani termin u dataGridSlobodniTermini
-            //azurirati prikaz dataGrid-a
-            //
-            //
-            //
+            try
+            {
+                sviTermini = JsonSerializer.Deserialize<List<Termin>>(File.ReadAllText("Datoteke/probaTermini.txt"));
+            }
+            catch(Exception e)
+            {
+                sviTermini = new List<Termin>();
+                Console.WriteLine(e.Message);
+            }
+
             PacijentTermin izabraniTermin = (PacijentTermin)dataGrid.SelectedItem;
-            var sviTermini = JsonSerializer.Deserialize<List<Termin>>(File.ReadAllText("Datoteke/probaTermini.txt"));
+           
             foreach (Termin termin in sviTermini)
             {
                 if (izabraniTermin.id.Equals(termin.idTermina))
@@ -132,9 +174,16 @@ namespace Model
                 }
             }
 
-            string jsonString = JsonSerializer.Serialize(sviTermini);
-            File.WriteAllText("Datoteke/probaTermini.txt", jsonString);
-
+            try
+            {
+                string jsonString = JsonSerializer.Serialize(sviTermini);
+                File.WriteAllText("Datoteke/probaTermini.txt", jsonString);
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            
             PacijentTermin pacijentTermin = (PacijentTermin)dataGridSlobodniTermini.SelectedItem;
 
             foreach (Termin termin in sviTermini)
@@ -142,8 +191,17 @@ namespace Model
                 if (pacijentTermin.id.Equals(termin.idTermina))
                 {
                     termin.idPacijenta = idPacijenta;
-                    string jsonString2 = JsonSerializer.Serialize(sviTermini);
-                    File.WriteAllText("Datoteke/probaTermini.txt", jsonString2);
+
+                    try
+                    {
+                        string jsonString2 = JsonSerializer.Serialize(sviTermini);
+                        File.WriteAllText("Datoteke/probaTermini.txt", jsonString2);
+                    }
+                    catch(Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+                    
                     break;
                 }
             }
@@ -159,8 +217,19 @@ namespace Model
 
             if (dataGrid.SelectedIndex != -1)
             {
+                List<Termin> sviTermini;
                 PacijentTermin izabraniTermin = (PacijentTermin)dataGrid.SelectedItem;
-                var sviTermini = JsonSerializer.Deserialize<List<Termin>>(File.ReadAllText("Datoteke/probaTermini.txt"));
+
+                try
+                {
+                    sviTermini = JsonSerializer.Deserialize<List<Termin>>(File.ReadAllText("Datoteke/probaTermini.txt"));
+                }
+                catch(Exception e)
+                {
+                    sviTermini = new List<Termin>();
+                    Console.WriteLine(e.Message);
+                }
+                
                 foreach (Termin termin in sviTermini)
                 {
                     if (izabraniTermin.id.Equals(termin.idTermina))
@@ -169,8 +238,15 @@ namespace Model
                     }
                 }
 
-                string jsonString = JsonSerializer.Serialize(sviTermini);
-                File.WriteAllText("Datoteke/probaTermini.txt", jsonString);
+                try
+                {
+                    string jsonString = JsonSerializer.Serialize(sviTermini);
+                    File.WriteAllText("Datoteke/probaTermini.txt", jsonString);
+                }
+                catch(Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
 
             }
 

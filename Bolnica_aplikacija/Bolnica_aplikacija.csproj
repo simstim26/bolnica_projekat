@@ -105,6 +105,7 @@
     <Compile Include="PacijentStudent\PacijentZakaziTermin.xaml.cs">
       <DependentUpon>PacijentZakaziTermin.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PomocneKlase\PomocnaKlasaTermini.cs" />
     <Compile Include="SekretarStudent\SekretarProzor.xaml.cs">
       <DependentUpon>SekretarProzor.xaml</DependentUpon>
     </Compile>
