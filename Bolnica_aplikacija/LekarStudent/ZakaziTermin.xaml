@@ -8,8 +8,8 @@
              d:DesignHeight="750" d:DesignWidth="430">
     <Grid>
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="600" Margin="0,10,0,0" Stroke="Black" VerticalAlignment="Top" Width="430"/>
-        <Button x:Name="btnPotvrdi" Content="Potvrdi" HorizontalAlignment="Left" Height="40" Margin="10,547,0,0" VerticalAlignment="Top" Width="145" Click="btnPotvrdi_Click"/>
-        <Button x:Name="btnPonisti" Content="Poništi" HorizontalAlignment="Left" Height="40" Margin="259,547,0,0" VerticalAlignment="Top" Width="145" Click="btnPonisti_Click"/>
+        <Button x:Name="btnPotvrdi" Content="Potvrdi" HorizontalAlignment="Left" Height="40" Margin="10,547,0,0" VerticalAlignment="Top" Width="145" Click="btnPotvrdi_Click" Background="White" BorderBrush="Black"/>
+        <Button x:Name="btnPonisti" Content="Poništi" HorizontalAlignment="Left" Height="40" Margin="259,547,0,0" VerticalAlignment="Top" Width="145" Click="btnPonisti_Click" Background="White" BorderBrush="Black"/>
         <DataGrid x:Name="dataGridZakazivanjeTermina" IsReadOnly ="True" SelectionMode="Single" HorizontalAlignment="Left" Height="455" Margin="0,69,0,0" VerticalAlignment="Top" Width="430" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name ="kolonaDatumOdrzavanja" IsReadOnly="True" CanUserResize="False" Binding="{Binding datum}" Header="Datum održavanja"></DataGridTextColumn>
@@ -20,6 +20,7 @@
 
             </DataGrid.Columns>
         </DataGrid>
-        <Label Content="Izaberite termin: " HorizontalAlignment="Left" Height="38" Margin="12,26,0,0" VerticalAlignment="Top" Width="143" FontSize="16"/>
+        <Label x:Name="lblIzaberi" Content="Izaberite termin: " HorizontalAlignment="Left" Height="38" Margin="12,26,0,0" VerticalAlignment="Top" Width="273" FontSize="16"/>
+        <Button x:Name="btnOdabirProstorije" Content="Odabir prostorije" HorizontalAlignment="Left" Height="42" Margin="302,18,0,0" VerticalAlignment="Top" Width="110" BorderBrush="Black" Background="White" Click="btnOdabirProstorije_Click"/>
     </Grid>
 </UserControl>

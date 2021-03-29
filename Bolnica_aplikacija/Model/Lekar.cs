@@ -29,7 +29,7 @@ namespace Model
 
             string jsonString = JsonSerializer.Serialize(sviTermini);
             File.WriteAllText("Datoteke/probaTermini.txt", jsonString);
-        }
+      }
 
         public List<PacijentTermin> ProcitajTermin() //read termina odredjenog pacijenta
         {
@@ -141,6 +141,50 @@ namespace Model
          throw new NotImplementedException();
       }
       
+      public List<Prostorija> PrikazProstorija(Termin termin)
+      {
+          var sveProstorije = JsonSerializer.Deserialize<List<Prostorija>>(File.ReadAllText("Datoteke/probaProstorije.txt"));
+          List<Prostorija> prostorijeZaPrikaz = new List<Prostorija>();
+          foreach(Prostorija prostorija in sveProstorije)
+          {
+                if (!prostorija.logickiObrisana && prostorija.dostupnost)
+                {
+                    if (idSpecijalizacije != "0" && prostorija.tipProstorije != TipProstorije.BOLNICKA_SOBA && prostorija.tipProstorije != TipProstorije.GRESKA)
+                    {
+                        if (termin.tip == TipTermina.OPERACIJA && prostorija.tipProstorije == TipProstorije.OPERACIONA_SALA)
+                        {
+                            prostorijeZaPrikaz.Add(prostorija);
+                        }
+                        else if (termin.tip == TipTermina.PREGLED && prostorija.tipProstorije == TipProstorije.SOBA_ZA_PREGLED)
+                        {
+                            prostorijeZaPrikaz.Add(prostorija);
+                        }
+                    }
+                    else if (idSpecijalizacije == "0" && prostorija.tipProstorije == TipProstorije.SOBA_ZA_PREGLED)
+                    {
+                        prostorijeZaPrikaz.Add(prostorija);
+                    }
+                }
+          }
+
+          return prostorijeZaPrikaz;
+      }
+      public void AzurirajProstorijuTermina(String idTermina, String idProstorije)
+      {
+            var sviTermini = JsonSerializer.Deserialize<List<Termin>>(File.ReadAllText("Datoteke/probaTermini.txt"));
+            
+            foreach(Termin termin in sviTermini)
+            {
+                if (termin.idTermina.Equals(idTermina))
+                {
+                    termin.idProstorije = idProstorije;
+                    break;
+                }
+            }
+
+            string jsonString = JsonSerializer.Serialize(sviTermini);
+            File.WriteAllText("Datoteke/probaTermini.txt", jsonString);  
+      }
       public void PrikazStavki()
       {
          throw new NotImplementedException();

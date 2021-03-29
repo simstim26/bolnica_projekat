@@ -27,5 +27,6 @@ namespace Model
             else
                 return "Operacija";
         }
-   }
+
+    }
 }

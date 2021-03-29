@@ -91,6 +91,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="LekarStudent\PrikazProstorija.xaml.cs">
+      <DependentUpon>PrikazProstorija.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Model\Baza.cs" />
     <Compile Include="PacijentStudent\IzmenaTerminaPacijent.xaml.cs">
       <DependentUpon>IzmenaTerminaPacijent.xaml</DependentUpon>
@@ -187,6 +190,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="LekarStudent\PacijentInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LekarStudent\PrikazProstorija.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

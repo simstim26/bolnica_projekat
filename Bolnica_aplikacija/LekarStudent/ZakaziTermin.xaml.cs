@@ -1,4 +1,5 @@
-﻿using Bolnica_aplikacija.PacijentModel;
+﻿using Bolnica_aplikacija.LekarStudent;
+using Bolnica_aplikacija.PacijentModel;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -24,16 +25,28 @@ namespace Bolnica_aplikacija
     /// </summary>
     public partial class ZakaziTermin : UserControl
     {
-        private int tipAkcije; //0-zakazivanje; 1-promena (zahteva zakazivanje i otkazivanje)
-        private PacijentTermin izabraniTermin;
-        public ZakaziTermin(int tipAkcije, PacijentTermin izabraniTermin)
+        private static int tipAkcije; //0-zakazivanje; 1-promena (zahteva zakazivanje i otkazivanje)
+        private static PacijentTermin izabraniTermin;
+        public ZakaziTermin(int tip, PacijentTermin izabrani)
         {
             InitializeComponent();
-            this.tipAkcije = tipAkcije;
-            this.izabraniTermin = izabraniTermin;
+            tipAkcije = tip;
+            izabraniTermin = izabrani;
+            if(tipAkcije == 1)
+            {
+                lblIzaberi.Content = "Izaberite novi termin: ";
+                btnOdabirProstorije.Content = "Promena prostorije";
+            }
             ucitajPodatke();
         }
-
+        public static int getTipAkcije()
+        {
+            return tipAkcije;
+        }
+        public static PacijentTermin getIzabraniTermin()
+        {
+            return izabraniTermin;
+        }
         private void btnPonisti_Click(object sender, RoutedEventArgs e)
         {
             LekarProzor.getX().Content = new LekarTabovi();
@@ -111,12 +124,69 @@ namespace Bolnica_aplikacija
                 {
                     LekarProzor.getLekar().AzurirajTermin(izabraniTermin.id, pacijentTermin.id);
                 }
+
+                LekarProzor.getX().Content = new LekarTabovi();
+                LekarTabovi.getX().Content = new PacijentInfo();
+                LekarTabovi.getTab().SelectedIndex = 1;
+                PacijentInfo.getPregledTab().SelectedIndex = 1;
+            }
+            else
+            {
+                MessageBox.Show("Potrebno je izabrati termin.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+
             }
 
-            LekarProzor.getX().Content = new LekarTabovi();
-            LekarTabovi.getX().Content = new PacijentInfo();
-            LekarTabovi.getTab().SelectedIndex = 1;
-            PacijentInfo.getPregledTab().SelectedIndex = 1;
+        }
+
+        private void btnOdabirProstorije_Click(object sender, RoutedEventArgs e)
+        {
+            if (dataGridZakazivanjeTermina.SelectedIndex != -1)
+            {
+                PacijentTermin termin = (PacijentTermin)dataGridZakazivanjeTermina.SelectedItem;
+                var sviTermini = JsonSerializer.Deserialize<List<Termin>>(File.ReadAllText("Datoteke/probaTermini.txt"));
+                Termin pronadjenTermin = new Termin();
+                foreach(Termin temp in sviTermini)
+                {
+                    if (temp.idTermina.Equals(termin.id))
+                    {
+                        pronadjenTermin.datum = temp.datum;
+                        pronadjenTermin.idLekara = temp.idLekara;
+                        pronadjenTermin.idPacijenta = temp.idPacijenta;
+                        pronadjenTermin.idProstorije = temp.idProstorije;
+                        pronadjenTermin.idTermina = temp.idTermina;
+                        pronadjenTermin.jeZavrsen = temp.jeZavrsen;
+                        pronadjenTermin.tip = temp.tip;
+                        pronadjenTermin.satnica = temp.satnica;
+                        break;
+                    }
+                }
+                Content = new PrikazProstorija(pronadjenTermin);
+            }
+            else if (dataGridZakazivanjeTermina.SelectedIndex == -1 && tipAkcije == 1)
+            {
+                var sviTermini = JsonSerializer.Deserialize<List<Termin>>(File.ReadAllText("Datoteke/probaTermini.txt"));
+                Termin pronadjenTermin = new Termin();
+                foreach (Termin temp in sviTermini)
+                {
+                    if (temp.idTermina.Equals(izabraniTermin.id))
+                    {
+                        pronadjenTermin.datum = temp.datum;
+                        pronadjenTermin.idLekara = temp.idLekara;
+                        pronadjenTermin.idPacijenta = temp.idPacijenta;
+                        pronadjenTermin.idProstorije = temp.idProstorije;
+                        pronadjenTermin.idTermina = temp.idTermina;
+                        pronadjenTermin.jeZavrsen = temp.jeZavrsen;
+                        pronadjenTermin.tip = temp.tip;
+                        pronadjenTermin.satnica = temp.satnica;
+                        break;
+                    }
+                }
+                Content = new PrikazProstorija(pronadjenTermin);   
+            }
+            else
+            {
+                MessageBox.Show("Potrebno je izabrati termin.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
     }
 }
