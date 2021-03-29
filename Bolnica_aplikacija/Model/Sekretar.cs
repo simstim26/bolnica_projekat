@@ -4,6 +4,10 @@
 // Purpose: Definition of Class Sekretar
 
 using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Text.Json;
+using System.Windows.Controls;
 
 namespace Model
 {
@@ -12,25 +16,93 @@ namespace Model
       public String id { get; set; }
       public String idBolnice { get; set; }
 
-        public void NapraviPacijenta(Pacijent pacijent)
+        // IZMENA: Pacijent pacijent izmenjem u stringove podataka koji se upisuju, static
+        public static void NapraviPacijenta(String id, String idBolnice, bool gost, String korisnickoIme, String loznika, String jmbg, String ime, String prezime, DateTime datumRodj, string adresa, string email, string telefon, DataGrid tabelaPacijenti, List<Pacijent> pacijenti)
       {
-         throw new NotImplementedException();
+        
+            Pacijent pacijent = new Pacijent();
+            List<Pacijent> sviPacijenti = pacijenti;
+
+            pacijent.id = id;
+            pacijent.idBolnice = idBolnice;
+            pacijent.jeGost = gost;
+            pacijent.korisnickoIme = korisnickoIme;
+            pacijent.lozinka = loznika;
+            pacijent.jmbg = jmbg;
+            pacijent.ime = ime;
+            pacijent.prezime = prezime;
+            pacijent.datumRodjenja = datumRodj;
+            pacijent.adresa = adresa;
+            pacijent.email = email;
+            pacijent.brojTelefona = telefon;
+
+            sviPacijenti.Add(pacijent);
+      
+          
+            string jsonString = JsonSerializer.Serialize(sviPacijenti);
+            File.WriteAllText("Datoteke/probaPacijenti.txt", jsonString);
+
+            ProcitajPacijenta(tabelaPacijenti);
+            //throw new NotImplementedException();
+        }
+      
+      
+        //Izbrisan Pacijent pacijent
+        public static void ProcitajPacijenta(DataGrid tabelaPacijenti)
+      {
+            List<Pacijent> sviPacijenti = JsonSerializer.Deserialize<List<Pacijent>>(File.ReadAllText("Datoteke/probaPacijenti.txt"));
+            tabelaPacijenti.ItemsSource = sviPacijenti;
+            tabelaPacijenti.Items.Refresh();
+            //throw new NotImplementedException();
+        }
+      
+      public static void AzurirajPacijenta(String id, String idBolnice, bool gost, String korisnickoIme, String loznika, String jmbg, String ime, String prezime, DateTime datumRodj, string adresa, string email, string telefon, DataGrid tabelaPacijenti, List<Pacijent> pacijenti)
+      {
+            foreach(Pacijent izmeniP in pacijenti)
+            {
+                if (izmeniP.id.Equals(id))
+                {
+                    Console.WriteLine("Nadjen!");
+                    izmeniP.id = id;
+                    izmeniP.idBolnice = idBolnice;
+                    izmeniP.jeGost = gost;
+                    izmeniP.korisnickoIme = korisnickoIme;
+                    izmeniP.lozinka = loznika;
+                    izmeniP.jmbg = jmbg;
+                    izmeniP.ime = ime;
+                    izmeniP.prezime = prezime;
+                    izmeniP.datumRodjenja = datumRodj;
+                    izmeniP.adresa = adresa;
+                    izmeniP.email = email;
+                    izmeniP.brojTelefona = telefon;
+                }
+            }
+
+            string jsonString = JsonSerializer.Serialize(pacijenti);
+            File.WriteAllText("Datoteke/probaPacijenti.txt", jsonString);
+
+            ProcitajPacijenta(tabelaPacijenti);
+
+            // throw new NotImplementedException();
       }
       
-      public void ProcitajPacijenta(Pacijent pacijent)
+      public static void ObrisiPacijenta(String idPacijenta, List<Pacijent> pacijenti)
       {
-         throw new NotImplementedException();
-      }
-      
-      public void AzurirajPacijenta(Pacijent pacijent)
-      {
-         throw new NotImplementedException();
-      }
-      
-      public void ObrisiPacijenta(String idPacijenta)
-      {
-         throw new NotImplementedException();
-      }
+            
+            List<Pacijent> pacijentiZaUpis = new List<Pacijent>();
+            foreach(Pacijent p in pacijenti)
+            {
+
+                if (!p.id.Equals(idPacijenta))
+                {
+                    pacijentiZaUpis.Add(p);
+                    
+                }
+            }
+
+            string jsonString = JsonSerializer.Serialize(pacijentiZaUpis);
+            File.WriteAllText("Datoteke/probaPacijenti.txt", jsonString);
+        }
       
       public void NapraviTermin(Termin termin)
       {

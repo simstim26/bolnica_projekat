@@ -92,17 +92,17 @@
                     <ImageBrush  Stretch="Uniform" ImageSource="dodajPacijenta.png"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="izmeniPacijentaButton" Content="                     " HorizontalAlignment="Left" Height="80" Margin="110,420,0,0" VerticalAlignment="Top" Width="80" RenderTransformOrigin="0.325,0.75" BorderThickness="0" ToolTip="Dodaj pacijenta" Click="izmeniPacijentaButton_Click">
+            <Button x:Name="izmeniPacijentaButton" Content="                     " HorizontalAlignment="Left" Height="80" Margin="110,420,0,0" VerticalAlignment="Top" Width="80" RenderTransformOrigin="0.325,0.75" BorderThickness="0" ToolTip="Izmeni pacijenta" Click="izmeniPacijentaButton_Click">
                 <Button.Background>
                     <ImageBrush  Stretch="Uniform" ImageSource="IzmeniPacijenta.png"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="obrisiPacijentaButton" Content="                     " HorizontalAlignment="Left" Height="80" Margin="110,520,0,0" VerticalAlignment="Top" Width="80" RenderTransformOrigin="0.325,0.75" BorderThickness="0" ToolTip="Dodaj pacijenta" >
+            <Button x:Name="obrisiPacijentaButton" Content=" " HorizontalAlignment="Left" Height="80" Margin="110,520,0,0" VerticalAlignment="Top" Width="80" RenderTransformOrigin="0.325,0.75" BorderThickness="0" ToolTip="Ukloni pacijenta" Click="obrisiPacijentaButton_Click" >
                 <Button.Background>
                     <ImageBrush  Stretch="Uniform" ImageSource="IzbrisiPacijenta.png"/>
                 </Button.Background>
             </Button>
-            <GridSplitter HorizontalAlignment="Left" Height="730" Margin="324,0,-18,0" VerticalAlignment="Top" Width="1040">
+            <GridSplitter HorizontalAlignment="Left" Height="730" Margin="326,0,-20,0" VerticalAlignment="Top" Width="1040">
                 <GridSplitter.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                         <GradientStop Color="#FFCFC9C9" Offset="0"/>
@@ -110,7 +110,7 @@
                     </LinearGradientBrush>
                 </GridSplitter.Background>
             </GridSplitter>
-            <Button x:Name="infoPacijentiButton" Content="                     " HorizontalAlignment="Left" Height="80" Margin="110,620,0,0" VerticalAlignment="Top" Width="80" RenderTransformOrigin="0.325,0.75" BorderThickness="0" ToolTip="Dodaj pacijenta" Click="helpPacijentiButton_Click">
+            <Button x:Name="infoPacijentiButton" Content="                     " HorizontalAlignment="Left" Height="80" Margin="110,620,0,0" VerticalAlignment="Top" Width="80" RenderTransformOrigin="0.325,0.75" BorderThickness="0" ToolTip="Informacije o pacijentu" Click="infoPacijentiButton_Click">
                 <Button.Background>
                     <ImageBrush  Stretch="Uniform" ImageSource="PacijentInfo.png"/>
                 </Button.Background>
@@ -124,7 +124,7 @@
                     </LinearGradientBrush>
                 </Button.Background>
             </Button>
-            <DataGrid x:Name="TabelaPacijenti" HorizontalAlignment="Left" Height="293" Margin="324,0,-18,437" VerticalAlignment="Bottom" Width="1040" FontSize="24" HeadersVisibility="All" AutoGenerateColumns="False" CanUserAddRows="false">
+            <DataGrid x:Name="TabelaPacijenti" HorizontalAlignment="Left" Height="242" Margin="324,0,-18,488" VerticalAlignment="Bottom" Width="1040" FontSize="24" HeadersVisibility="All" AutoGenerateColumns="False" CanUserAddRows="false">
                 <DataGrid.Columns>
                     <DataGridTextColumn x:Name="kolonaJMBG" Binding="{Binding jmbg}" IsReadOnly="True" Header="JMBG" Width="347" CanUserResize="False" Foreground="Black" FontSize="24"/>
                     <DataGridTextColumn x:Name="kolonaIme" Binding="{Binding ime}" IsReadOnly="True" Header="IME" Width="347" CanUserResize="False" Foreground="Black" FontSize="24" />
@@ -136,31 +136,31 @@
                     <ColumnDefinition Width="131*"/>
                     <ColumnDefinition Width="891*"/>
                 </Grid.ColumnDefinitions>
-                <Grid x:Name="LabelePolja" Margin="30,30,0,85">
-                    <Label x:Name="labelaJMBG" Content="JMBG:" HorizontalAlignment="Left" Height="46" VerticalAlignment="Top" Width="91" FontSize="20"/>
+                <Grid x:Name="LabelePolja" Margin="30,-37,0,152">
+                    <Label x:Name="labelaJMBG" Content="JMBG:" HorizontalAlignment="Left" Height="36" VerticalAlignment="Top" Width="91" FontSize="20" Margin="0,10,0,0"/>
                     <Label x:Name="labelaIme" Content="IME" HorizontalAlignment="Left" Height="46" Margin="0,55,0,0" VerticalAlignment="Top" Width="91" FontSize="20"/>
                     <Label x:Name="labelaPrezime" Content="PREZIME:" HorizontalAlignment="Left" Height="46" Margin="0,110,0,0" VerticalAlignment="Top" Width="101" FontSize="20"/>
-                    <Label x:Name="labelaAdresa" Content="ADRESA:" HorizontalAlignment="Left" Height="46" Margin="0,164,0,0" VerticalAlignment="Top" Width="91" FontSize="20"/>
-                    <Label x:Name="labelaEmail" Content="E-MAIL:" HorizontalAlignment="Left" Height="46" Margin="0,220,0,0" VerticalAlignment="Top" Width="91" FontSize="20"/>
-                    <Label x:Name="labelaTelefon" Content="TELEFON:" HorizontalAlignment="Left" Height="46" Margin="0,276,0,0" VerticalAlignment="Top" Width="91" FontSize="20"/>
+                    <Label x:Name="labelaAdresa" Content="ADRESA:" HorizontalAlignment="Left" Height="46" Margin="0,212,0,0" VerticalAlignment="Top" Width="91" FontSize="20"/>
+                    <Label x:Name="labelaEmail" Content="E-MAIL:" HorizontalAlignment="Left" Height="46" Margin="0,268,0,0" VerticalAlignment="Top" Width="91" FontSize="20"/>
+                    <Label x:Name="labelaTelefon" Content="TELEFON:" HorizontalAlignment="Left" Height="46" Margin="0,324,0,-48" VerticalAlignment="Top" Width="91" FontSize="20"/>
+                    <Label x:Name="labelaDatumRodj" Content="DATUM ROĐENJA:" HorizontalAlignment="Left" Height="46" Margin="0,163,-73,0" VerticalAlignment="Top" Width="174" FontSize="20"/>
                 </Grid>
-                <Grid x:Name="TextFieldPolja" Grid.Column="1" Margin="11,35,596,90">
-                    <TextBox x:Name="textJMBG" HorizontalAlignment="Left" Height="41" TextWrapping="Wrap" VerticalAlignment="Top" Width="284" Background="#FFB2D4EC" FontSize="18" IsEnabled="False"/>
-                    <TextBox x:Name="textIme" HorizontalAlignment="Left" Height="41" Margin="0,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="284" Background="#FFB2D4EC" FontSize="18" IsEnabled="False"/>
-                    <TextBox x:Name="textPrezime" HorizontalAlignment="Left" Height="41" Margin="0,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="284" Background="#FFB2D4EC" FontSize="18" IsEnabled="False"/>
-                    <TextBox x:Name="textAdresa" HorizontalAlignment="Left" Height="41" Margin="0,164,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="284" Background="#FFB2D4EC" FontSize="18" IsEnabled="False"/>
-                    <TextBox x:Name="textEmail" HorizontalAlignment="Left" Height="41" Margin="0,220,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="284" Background="#FFB2D4EC" FontSize="18" IsEnabled="False"/>
-                    <TextBox x:Name="textTelefon" HorizontalAlignment="Left" Height="41" Margin="0,271,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="284" Background="#FFB2D4EC" FontSize="18" IsEnabled="False"/>
+                <Grid x:Name="TextFieldPolja" Grid.Column="1" Margin="11,-32,596,157">
+                    <TextBox x:Name="textJMBG" HorizontalAlignment="Left" Height="41" TextWrapping="Wrap" VerticalAlignment="Top" Width="260" Background="#FFB2D4EC" FontSize="18" IsEnabled="False" Margin="82,0,-58,0" TextChanged="textJMBG_TextChanged"/>
+                    <TextBox x:Name="textIme" HorizontalAlignment="Left" Height="41" Margin="82,55,-58,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="260" Background="#FFB2D4EC" FontSize="18" IsEnabled="False" TextChanged="textIme_TextChanged"/>
+                    <TextBox x:Name="textPrezime" HorizontalAlignment="Left" Height="41" Margin="82,105,-58,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="260" Background="#FFB2D4EC" FontSize="18" IsEnabled="False" TextChanged="textPrezime_TextChanged"/>
+                    <TextBox x:Name="textAdresa" HorizontalAlignment="Left" Height="41" Margin="82,212,-58,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="260" Background="#FFB2D4EC" FontSize="18" IsEnabled="False" TextChanged="textAdresa_TextChanged"/>
+                    <TextBox x:Name="textEmail" HorizontalAlignment="Left" Height="41" Margin="82,268,-58,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="260" Background="#FFB2D4EC" FontSize="18" IsEnabled="False" TextChanged="textEmail_TextChanged"/>
+                    <TextBox x:Name="textTelefon" HorizontalAlignment="Left" Height="41" Margin="82,319,-58,-48" TextWrapping="Wrap" VerticalAlignment="Top" Width="260" Background="#FFB2D4EC" FontSize="18" IsEnabled="False" TextChanged="textTelefon_TextChanged"/>
+                    <TextBox x:Name="textDatumRodj" HorizontalAlignment="Left" Height="41" Margin="82,158,-58,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="260" Background="#FFB2D4EC" FontSize="18" IsEnabled="False" TextChanged="textDatumRodj_TextChanged"/>
                 </Grid>
-                <Button x:Name="buttonDodajPacijenta" Content="POTVRDI" Grid.Column="1" HorizontalAlignment="Left" Margin="11,377,0,0" VerticalAlignment="Top" Width="98" Height="33" Visibility="Hidden" Click="buttonDodajPacijenta_Click"/>
-                <Button x:Name="buttonOdustaniDodavanje" Content="ODUSTANI" Grid.Column="1" HorizontalAlignment="Left" Margin="197,377,0,0" VerticalAlignment="Top" Width="98" Height="33" Click="buttonOdustani_Click" Visibility="Hidden"/>
-                <Grid x:Name="DodatnaPoljaGrid" Grid.Column="1" Margin="335,35,95,250">
-                    <Label x:Name="labelaIdBolnice" Content="ID BOLNICE:" HorizontalAlignment="Left" Height="46" VerticalAlignment="Top" Width="172" FontSize="20"/>
-                    <TextBox x:Name="textIdBolnice" HorizontalAlignment="Left" Height="41" Margin="177,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="64" Background="#FFB2D4EC" FontSize="18" RenderTransformOrigin="0.156,0.634" IsEnabled="False"/>
-                    <Label x:Name="labelaKorisnickoIme" Content="KORISNIČKO IME:" HorizontalAlignment="Left" Height="46" Margin="0,55,0,0" VerticalAlignment="Top" Width="172" FontSize="20"/>
-                    <TextBox x:Name="textKorisnickoIme" HorizontalAlignment="Left" Height="41" Margin="177,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="284" Background="#FFB2D4EC" FontSize="18" IsEnabled="False"/>
-                    <Label x:Name="labelaLozinka" Content="LOZINKA:" HorizontalAlignment="Left" Height="46" Margin="0,106,0,0" VerticalAlignment="Top" Width="172" FontSize="20"/>
-                    <PasswordBox x:Name="lozinka" HorizontalAlignment="Left" Margin="177,106,0,0" VerticalAlignment="Top" Width="284" Height="40" Background="#FFCADCEA"/>
+                <Button x:Name="buttonPotvrdiDodavanje" Content="POTVRDI" Grid.Column="1" HorizontalAlignment="Left" Margin="97,352,0,0" VerticalAlignment="Top" Width="98" Height="33" Click="buttonPotvrdiDodavanje_Click" Visibility="Hidden"/>
+                <Button x:Name="buttonOdustaniDodavanje" Content="ODUSTANI" Grid.Column="1" HorizontalAlignment="Left" Margin="257,352,0,0" VerticalAlignment="Top" Width="98" Height="33" Click="buttonOdustani_Click" Visibility="Hidden"/>
+                <Grid x:Name="DodatnaPoljaGrid" Grid.Column="1" Margin="335,-32,95,317">
+                    <Label x:Name="labelaKorisnickoIme" Content="KORISNIČKO IME:" HorizontalAlignment="Left" Height="46" Margin="58,5,0,0" VerticalAlignment="Top" Width="172" FontSize="20"/>
+                    <TextBox x:Name="textKorisnickoIme" HorizontalAlignment="Left" Height="41" Margin="235,5,-33,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="259" Background="#FFB2D4EC" FontSize="18" IsEnabled="False" TextChanged="textKorisnickoIme_TextChanged"/>
+                    <Label x:Name="labelaLozinka" Content="LOZINKA:" HorizontalAlignment="Left" Height="46" Margin="58,56,0,0" VerticalAlignment="Top" Width="172" FontSize="20"/>
+                    <PasswordBox x:Name="lozinka" HorizontalAlignment="Left" Margin="235,60,-33,0" VerticalAlignment="Top" Width="259" Height="40" Background="#FFCADCEA" PasswordChanged="lozinka_PasswordChanged"/>
                 </Grid>
             </Grid>
         </Grid>
