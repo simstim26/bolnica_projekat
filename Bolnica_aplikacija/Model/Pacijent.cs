@@ -1,4 +1,4 @@
-// File:    Pacijent.cs
+﻿// File:    Pacijent.cs
 // Author:  User
 // Created: Monday, March 22, 2021 7:07:23 PM
 // Purpose: Definition of Class Pacijent
@@ -157,8 +157,8 @@ namespace Model
       {
             //throw new NotImplementedException();
 
-            
-            
+            if (dataGrid.SelectedIndex != -1)
+            {
                 PacijentTermin izabraniTermin = (PacijentTermin)dataGrid.SelectedItem;
                 var sviTermini = JsonSerializer.Deserialize<List<Termin>>(File.ReadAllText("Datoteke/probaTermini.txt"));
                 foreach (Termin termin in sviTermini)
@@ -172,7 +172,7 @@ namespace Model
                 string jsonString = JsonSerializer.Serialize(sviTermini);
                 File.WriteAllText("Datoteke/probaTermini.txt", jsonString);
 
-            
+            }
 
             ProcitajTermin(dataGrid, idPacijenta);
 

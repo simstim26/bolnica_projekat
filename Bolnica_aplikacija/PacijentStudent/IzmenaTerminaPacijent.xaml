@@ -20,7 +20,7 @@
         <CheckBox x:Name="checkBoxLekar" Content="Isti lekar" Margin="10,57,0,0" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold" Height="31" Width="270"/>
         <CheckBox x:Name="checkBoxTermin" Content="Isti datum i satnica" Margin="10,93,0,0" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold" Height="31" Width="270"/>
 
-        <DataGrid x:Name="dataGridSlobodniTermini" Height="339" Margin="10,57,10,0" Grid.Row="2" VerticalAlignment="Top"
+        <DataGrid x:Name="dataGridSlobodniTermini" Height="339" Margin="10,75,10,0" Grid.Row="2" VerticalAlignment="Top"
                   AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single">
 
             <DataGrid.Columns>
@@ -32,8 +32,8 @@
 
         </DataGrid>
 
-        <Button x:Name="btnPotvrdi" Content="Potvrdi" Margin="294,431,294,0" Grid.Row="2" VerticalAlignment="Top" Height="37" Click="btnPotvrdi_Click" />
-        <Button x:Name="btnOtkazi" Content="Otkaži" Margin="294,481,294,0" Grid.Row="2" VerticalAlignment="Top" Height="37" IsCancel="True"/>
+        <Button x:Name="btnPotvrdi" Content="Potvrdi" Margin="294,449,294,0" Grid.Row="2" VerticalAlignment="Top" Height="37" Click="btnPotvrdi_Click" />
+        <Button x:Name="btnOtkazi" Content="Otkaži" Margin="294,499,294,0" Grid.Row="2" VerticalAlignment="Top" Height="37" IsCancel="True"/>
 
     </Grid>
 </Window>

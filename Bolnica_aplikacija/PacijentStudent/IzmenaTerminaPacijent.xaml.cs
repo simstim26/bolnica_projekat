@@ -80,21 +80,31 @@ namespace Bolnica_aplikacija.PacijentStudent
 
                 if (termin.idPacijenta.Equals("") && !pacijentTermin.imeLekara.Equals(""))
                 {
-                    //terminiPacijenta.Add(termin);
-                    String[] datumBezVremena = termin.datum.Date.ToString().Split(' ');
-                    pacijentTermin.datum = datumBezVremena[0];
-                    switch (termin.tip)
-                    {
-                        case TipTermina.OPERACIJA: pacijentTermin.napomena = "Operacija"; break;
-                        case TipTermina.PREGLED: pacijentTermin.napomena = "Pregled"; break;
-                        default: break;
-                    }
-                    String[] satnicaString = termin.satnica.ToString().Split(' ');
-                    String[] sat = satnicaString[1].Split(':');
-                    pacijentTermin.satnica = sat[0] + ':' + sat[1];
-                    pacijentTermin.id = termin.idTermina;
 
-                    terminiPacijentaIspravni.Add(pacijentTermin);
+                    DateTime trenutanDatum = DateTime.Now.AddDays(1);
+
+                    int rezultat = DateTime.Compare(termin.datum, trenutanDatum);
+
+                    if(rezultat == 1)
+                    {
+                        String[] datumBezVremena = termin.datum.Date.ToString().Split(' ');
+                        pacijentTermin.datum = datumBezVremena[0];
+                        switch (termin.tip)
+                        {
+                            case TipTermina.OPERACIJA: pacijentTermin.napomena = "Operacija"; break;
+                            case TipTermina.PREGLED: pacijentTermin.napomena = "Pregled"; break;
+                            default: break;
+                        }
+                        String[] satnicaString = termin.satnica.ToString().Split(' ');
+                        String[] sat = satnicaString[1].Split(':');
+                        pacijentTermin.satnica = sat[0] + ':' + sat[1];
+                        pacijentTermin.id = termin.idTermina;
+
+                        terminiPacijentaIspravni.Add(pacijentTermin);
+                    }
+
+                    //terminiPacijenta.Add(termin);
+                    
 
                 }
             }

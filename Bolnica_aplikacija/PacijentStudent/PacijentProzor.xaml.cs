@@ -117,16 +117,22 @@ namespace Bolnica_aplikacija.PacijentStudent
                 }
                 else
                 {
+                    if(izabraniTermin.napomena.Equals("Pregled"))
+                    {
+                        PotvrdaProzor pprozor = new PotvrdaProzor();
+                        pprozor.Owner = this;
+                        pprozor.ShowDialog();
 
-                    PotvrdaProzor pprozor = new PotvrdaProzor();
-                    pprozor.Owner = this;
-                    pprozor.ShowDialog();
-
-                    if (pprozor.GetPovratnaVrednost() == 1)
-                        if (dataGridTermin.SelectedIndex != -1)
-                        {
-                            Pacijent.ObrisiTermin(dataGridTermin, this.idPacijenta);
-                        }
+                        if (pprozor.GetPovratnaVrednost() == 1)
+                            if (dataGridTermin.SelectedIndex != -1)
+                            {
+                                Pacijent.ObrisiTermin(dataGridTermin, this.idPacijenta);
+                            }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Potrebno je da se konsultujete sa Vašim lekarom kako biste otkazali termin operacije.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
 
                 }
             }
@@ -158,9 +164,17 @@ namespace Bolnica_aplikacija.PacijentStudent
                 }
                 else
                 {
-                    IzmenaTerminaPacijent izmenaTermina = new IzmenaTerminaPacijent(dataGridTermin, this.idPacijenta);
-                    izmenaTermina.Owner = this;
-                    izmenaTermina.ShowDialog();
+
+                    if (izabraniTermin.napomena.Equals("Pregled"))
+                    {
+                        IzmenaTerminaPacijent izmenaTermina = new IzmenaTerminaPacijent(dataGridTermin, this.idPacijenta);
+                        izmenaTermina.Owner = this;
+                        izmenaTermina.ShowDialog();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Za izmenu termina operacije je potrebno da se konsultujete sa Vašim lekarom.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
                 }
             }
         }
