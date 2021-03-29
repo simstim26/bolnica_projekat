@@ -92,6 +92,12 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Model\Baza.cs" />
+    <Compile Include="PacijentStudent\IzmenaTerminaPacijent.xaml.cs">
+      <DependentUpon>IzmenaTerminaPacijent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PacijentStudent\PotvrdaProzor.xaml.cs">
+      <DependentUpon>PotvrdaProzor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PomocneKlase\PomocnaKlasaKorisnici.cs" />
     <Compile Include="PacijentStudent\PacijentZakaziTermin.xaml.cs">
       <DependentUpon>PacijentZakaziTermin.xaml</DependentUpon>
@@ -184,6 +190,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="PacijentStudent\IzmenaTerminaPacijent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PacijentStudent\PacijentProzor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -191,6 +201,10 @@
     <Page Include="PacijentStudent\PacijentZakaziTermin.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PacijentStudent\PotvrdaProzor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Prijava.xaml">
       <SubType>Designer</SubType>

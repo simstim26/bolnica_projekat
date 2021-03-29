@@ -93,7 +93,28 @@ namespace Bolnica_aplikacija.PacijentStudent
 
         private void btnOtkaziPregled_Click(object sender, RoutedEventArgs e)
         {
-            Pacijent.ObrisiTermin(dataGridTermin, this.idPacijenta);
+            PotvrdaProzor pprozor = new PotvrdaProzor();
+            pprozor.Owner = this;
+            pprozor.ShowDialog();
+
+            if (pprozor.GetPovratnaVrednost() == 1)
+                if (dataGridTermin.SelectedIndex != -1)
+                {
+                    Pacijent.ObrisiTermin(dataGridTermin, this.idPacijenta);
+                }
+            
+        }
+
+        private void btnIzmeniTermin_Click(object sender, RoutedEventArgs e)
+        {
+            if(dataGridTermin.SelectedIndex != -1)
+            {
+                //TO DO: izmena termina
+                IzmenaTerminaPacijent izmenaTermina = new IzmenaTerminaPacijent(dataGridTermin, this.idPacijenta);
+                izmenaTermina.Owner = this;
+                izmenaTermina.ShowDialog();
+
+            }
         }
     }
 }

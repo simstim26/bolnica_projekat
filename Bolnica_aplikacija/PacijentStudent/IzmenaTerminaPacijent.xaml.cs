@@ -19,38 +19,37 @@ using System.Windows.Shapes;
 namespace Bolnica_aplikacija.PacijentStudent
 {
     /// <summary>
-    /// Interaction logic for PacijentZakaziTermin.xaml
+    /// Interaction logic for IzmenaTerminaPacijent.xaml
     /// </summary>
-    public partial class PacijentZakaziTermin : Window
+    public partial class IzmenaTerminaPacijent : Window
     {
         private string idPacijenta;
         private DataGrid dataGrid;
 
-        public PacijentZakaziTermin(DataGrid dataGrid, string idPacijenta)
+        public IzmenaTerminaPacijent(DataGrid dataGrid, string idPacijenta)
         {
             InitializeComponent();
+
             this.idPacijenta = idPacijenta;
             this.dataGrid = dataGrid;
             dataGridSlobodniTermini.Loaded += SetMinSirina;
 
             //Pacijent.ProcitajTermin(dataGridSlobodniTermini, this.idPacijenta);
-            ucitajPodatke();
+            ucitajSlobodneTermine();
+
         }
 
         public void SetMinSirina(object source, EventArgs e)
         {
-            foreach(var column in dataGridSlobodniTermini.Columns)
+            foreach (var column in dataGridSlobodniTermini.Columns)
             {
                 column.MinWidth = column.ActualWidth;
                 column.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
             }
         }
 
-        public void ucitajPodatke()
+        public void ucitajSlobodneTermine()
         {
-            //ISPRAVITI DA UCITA NORMALNO
-
-
             var sviTermini = JsonSerializer.Deserialize<List<Termin>>(File.ReadAllText("Datoteke/probaTermini.txt"));
             var sveProstorije = JsonSerializer.Deserialize<List<Prostorija>>(File.ReadAllText("Datoteke/probaProstorije.txt"));
             var sviLekari = JsonSerializer.Deserialize<List<Lekar>>(File.ReadAllText("Datoteke/probaLekari.txt"));
@@ -101,6 +100,7 @@ namespace Bolnica_aplikacija.PacijentStudent
             }
 
             dataGridSlobodniTermini.ItemsSource = terminiPacijentaIspravni;
+
         }
 
         private void btnPotvrdi_Click(object sender, RoutedEventArgs e)
@@ -110,17 +110,11 @@ namespace Bolnica_aplikacija.PacijentStudent
             pprozor.ShowDialog();
 
             if (pprozor.GetPovratnaVrednost() == 1)
-            { 
                 if (dataGridSlobodniTermini.SelectedIndex != -1)
                 {
-
-                    Pacijent.NapraviTermin(dataGridSlobodniTermini, this.dataGrid, this.idPacijenta);
+                    Pacijent.AzurirajTermin(dataGridSlobodniTermini, this.dataGrid, this.idPacijenta);
                     this.Close();
-
                 }
-            }
-            
-
         }
     }
 }
