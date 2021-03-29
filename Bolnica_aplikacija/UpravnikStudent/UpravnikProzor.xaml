@@ -70,6 +70,7 @@
             <TextBox x:Name="unosSprata" HorizontalAlignment="Left" Height="23" Margin="290,238,-377,0" TextWrapping="Wrap" Width="120" VerticalAlignment="Top"/>
             <TextBlock x:Name="lblBrojPostojiDodaj" Foreground="Red" Visibility="Hidden" HorizontalAlignment="Left" Margin="290,217,-569,0" TextWrapping="Wrap" Text="*prostorija sa ovim brojem vec postoji" VerticalAlignment="Top" Width="312" FontStyle="Italic"/>
             <TextBlock x:Name="lblNijePopunjenoDodaj" Foreground="Red" Visibility="Hidden" HorizontalAlignment="Left" Margin="136,285,-415,-3" TextWrapping="Wrap" Text="*sva polja moraju biti popunjena!" VerticalAlignment="Top" Width="312" FontStyle="Italic"/>
+            <TextBlock x:Name="lblNijePopunjenoIspravnoDodaj" Foreground="Red" Visibility="Hidden" HorizontalAlignment="Left" Margin="136,285,-415,-3" TextWrapping="Wrap" Text="*sva polja moraju biti ispravno popunjena!" VerticalAlignment="Top" Width="312" FontStyle="Italic"/>
         </Grid>
 
         <Grid x:Name="gridIzmeniProstoriju" Visibility="Hidden">
@@ -95,6 +96,7 @@
             </ComboBox>
             <TextBlock x:Name="lblBrojPostoji" Foreground="Red" Visibility="Hidden" HorizontalAlignment="Left" Margin="424,229,-703,0" TextWrapping="Wrap" Text="*prostorija sa ovim brojem vec postoji" VerticalAlignment="Top" Width="312" FontStyle="Italic"/>
             <TextBlock x:Name="lblNijePopunjenoIzmeni" Foreground="Red" Visibility="Hidden" HorizontalAlignment="Left" Margin="146,430,-425,-148" TextWrapping="Wrap" Text="*sva polja moraju biti popunjena!" VerticalAlignment="Top" Width="312" FontStyle="Italic"/>
+            <TextBlock x:Name="lblNijePopunjenoIspravnoIzmeni" Foreground="Red" Visibility="Hidden" HorizontalAlignment="Left" Margin="146,430,-425,-148" TextWrapping="Wrap" Text="*sva polja moraju biti popunjena!" VerticalAlignment="Top" Width="312" FontStyle="Italic"/>
         </Grid>
 
         <Grid Background="LightGray" HorizontalAlignment="Left" Height="739" VerticalAlignment="Top" Width="78" Grid.ColumnSpan="3" Grid.RowSpan="3">
