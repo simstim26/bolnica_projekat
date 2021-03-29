@@ -54,16 +54,7 @@ namespace Bolnica_aplikacija
             if (dataGridTerminiPacijenta.SelectedIndex != -1)
             {
                 PacijentTermin izabraniTermin = (PacijentTermin)dataGridTerminiPacijenta.SelectedItem;
-                var sviTermini = JsonSerializer.Deserialize<List<Termin>>(File.ReadAllText("Datoteke/probaTermini.txt"));
-                foreach (Termin termin in sviTermini)
-                {
-                    if (izabraniTermin.id.Equals(termin.idTermina))
-                    {
-                        termin.idPacijenta = "";
-                    }
-                }
-                string jsonString = JsonSerializer.Serialize(sviTermini);
-                File.WriteAllText("Datoteke/probaTermini.txt", jsonString);
+                LekarProzor.getLekar().ObrisiTermin(izabraniTermin.id);
             }
             ucitajPodatke();
         }

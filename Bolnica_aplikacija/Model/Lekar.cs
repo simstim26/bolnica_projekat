@@ -1,4 +1,7 @@
 using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Text.Json;
 
 namespace Model
 {
@@ -26,8 +29,17 @@ namespace Model
       
       public void ObrisiTermin(String idTermina)
       {
-         throw new NotImplementedException();
-      }
+            var sviTermini = JsonSerializer.Deserialize<List<Termin>>(File.ReadAllText("Datoteke/probaTermini.txt"));
+            foreach (Termin termin in sviTermini)
+            {
+                if (idTermina.Equals(termin.idTermina))
+                {
+                    termin.idPacijenta = "";
+                }
+            }
+            string jsonString = JsonSerializer.Serialize(sviTermini);
+            File.WriteAllText("Datoteke/probaTermini.txt", jsonString);
+        }
       
       public void PrikazRasporeda()
       {
