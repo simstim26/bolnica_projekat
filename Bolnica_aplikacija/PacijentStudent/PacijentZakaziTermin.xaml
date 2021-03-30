@@ -5,19 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Bolnica_aplikacija"
         mc:Ignorable="d"
-        Title="Zakazivanje termina" Height="800.5" Width="800" WindowStartupLocation="CenterOwner" FontSize="24" ResizeMode="NoResize" Topmost="True">
+        Title="Zakazivanje termina" Height="766.5" Width="800" WindowStartupLocation="CenterOwner" FontSize="24" ResizeMode="NoResize" Topmost="True">
     <Grid>
 
 
         <Label x:Name="label" Content="Zakazivanje termina" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontStyle="Italic" FontWeight="Bold" Height="60" Width="365" FontSize="36"/>
-        <Label x:Name="lblPretraga" Content="Odaberite prioritet pretrage (za sada nije implementirano)" HorizontalAlignment="Left" Margin="10,95,0,0" VerticalAlignment="Top" FontStyle="Italic" FontSize="24" Height="42" Width="620"/>
-        <Label x:Name="lblTermini" Content="Slobodni termini:" HorizontalAlignment="Left" Margin="13,253,0,0" Width="191" Height="47" VerticalAlignment="Top"/>
-        <RadioButton x:Name="rbtnLekar" Content="Lekar" Margin="10,142,0,0"  VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold" Height="30" Width="80"/>
-        <RadioButton x:Name="rbtnTermin" Content="Datum i satnica" Margin="10,177,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold" Height="30" Width="194"/>
-        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="36" Margin="10,212,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="270"/>
-        <Button x:Name="btnPretrazi" Content="Pretraži" HorizontalAlignment="Left" Margin="293,212,0,0" VerticalAlignment="Top" Width="134" Height="36"/>
+        <Label x:Name="lblPretraga" Content="Odaberite prioritet pretrage (za sada nije implementirano)" HorizontalAlignment="Left" Margin="10,85,0,0" VerticalAlignment="Top" FontStyle="Italic" FontSize="24" Height="42" Width="620"/>
+        <Label x:Name="lblTermini" Content="Slobodni termini:" HorizontalAlignment="Left" Margin="13,243,0,0" Width="191" Height="47" VerticalAlignment="Top"/>
+        <RadioButton x:Name="rbtnLekar" Content="Lekar" Margin="10,132,0,0"  VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold" Height="30" Width="80"/>
+        <RadioButton x:Name="rbtnTermin" Content="Datum i satnica" Margin="10,167,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold" Height="30" Width="194"/>
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="36" Margin="10,202,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="270"/>
+        <Button x:Name="btnPretrazi" Content="Pretraži" HorizontalAlignment="Left" Margin="293,202,0,0" VerticalAlignment="Top" Width="134" Height="36"/>
 
-        <DataGrid x:Name="dataGridSlobodniTermini" Height="338" Margin="10,301,10,0"  VerticalAlignment="Top"
+        <DataGrid x:Name="dataGridSlobodniTermini" Height="338" Margin="10,290,10,0"  VerticalAlignment="Top"
                   AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single">
 
             <DataGrid.Columns>
@@ -29,8 +29,8 @@
 
         </DataGrid>
 
-        <Button x:Name="btnPotvrdi" Content="Potvrdi" Margin="293,659,295,0"  VerticalAlignment="Top" Height="36" Click="btnPotvrdi_Click"/>
-        <Button x:Name="btnOtkazi" Content="Otkaži" Margin="293,705,295,0" VerticalAlignment="Top" Height="38" IsCancel="True"/>
+        <Button x:Name="btnPotvrdi" Content="Potvrdi" Margin="293,642,295,0"  VerticalAlignment="Top" Height="36" Click="btnPotvrdi_Click"/>
+        <Button x:Name="btnOtkazi" Content="Otkaži" Margin="293,683,295,0" VerticalAlignment="Top" Height="38" IsCancel="True"/>
 
     </Grid>
 </Window>
