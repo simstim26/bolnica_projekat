@@ -46,9 +46,21 @@ namespace Bolnica_aplikacija
             this.PacijentGrid.Visibility = Visibility.Visible;
 
             //TODO: Razdvojiti komponente (Prikaz pacijenata zasebna)
-            sviPacijenti = JsonSerializer.Deserialize<List<Pacijent>>(File.ReadAllText("Datoteke/probaPacijenti.txt"));
-            TabelaPacijenti.ItemsSource = sviPacijenti;
+            
+            List<Pacijent> ucitaniPacijenti = JsonSerializer.Deserialize<List<Pacijent>>(File.ReadAllText("Datoteke/probaPacijenti.txt"));
+            List<Pacijent> neobrisaniPacijenti = new List<Pacijent>();
+           
+            foreach (Pacijent p in ucitaniPacijenti)
+            {
+                if (!p.jeLogickiObrisan)
+                {
+                    neobrisaniPacijenti.Add(p);
+                }
+            }
 
+            sviPacijenti = neobrisaniPacijenti;
+            TabelaPacijenti.ItemsSource = sviPacijenti;
+            TabelaPacijenti.Items.Refresh();
 
         }
 

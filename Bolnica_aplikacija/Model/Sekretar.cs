@@ -50,8 +50,18 @@ namespace Model
         //Izbrisan Pacijent pacijent
         public static void ProcitajPacijenta(DataGrid tabelaPacijenti)
       {
-            List<Pacijent> sviPacijenti = JsonSerializer.Deserialize<List<Pacijent>>(File.ReadAllText("Datoteke/probaPacijenti.txt"));
-            tabelaPacijenti.ItemsSource = sviPacijenti;
+            List<Pacijent> ucitaniPacijenti = JsonSerializer.Deserialize<List<Pacijent>>(File.ReadAllText("Datoteke/probaPacijenti.txt"));
+            List<Pacijent> neobrisaniPacijenti = new List<Pacijent>();
+           
+            foreach (Pacijent p in ucitaniPacijenti)
+            {
+                if (!p.jeLogickiObrisan)
+                {
+                    neobrisaniPacijenti.Add(p);
+                }
+            }
+
+            tabelaPacijenti.ItemsSource = neobrisaniPacijenti;
             tabelaPacijenti.Items.Refresh();
             //throw new NotImplementedException();
         }
@@ -88,20 +98,22 @@ namespace Model
       
       public static void ObrisiPacijenta(String idPacijenta, List<Pacijent> pacijenti)
       {
-            
-            List<Pacijent> pacijentiZaUpis = new List<Pacijent>();
-            foreach(Pacijent p in pacijenti)
+
+            //Pronadji pacijenta za brisanje i postavi mu jeLogickiObrisan na true
+            foreach (Pacijent p in pacijenti)
             {
 
-                if (!p.id.Equals(idPacijenta))
+                if (p.id.Equals(idPacijenta))
                 {
-                    pacijentiZaUpis.Add(p);
-                    
+                    p.jeLogickiObrisan = true;
+
                 }
             }
 
-            string jsonString = JsonSerializer.Serialize(pacijentiZaUpis);
+            string jsonString = JsonSerializer.Serialize(pacijenti);
             File.WriteAllText("Datoteke/probaPacijenti.txt", jsonString);
+
+
         }
       
       public void NapraviTermin(Termin termin)
