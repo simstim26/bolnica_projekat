@@ -72,9 +72,8 @@ namespace Bolnica_aplikacija
                     String[] datumBezVremena = termin.datum.Date.ToString().Split(' ');
                     String[] danMesecGodina = datumBezVremena[0].Split('/');
                     pacijentTermin.datum = danMesecGodina[1] + "." + danMesecGodina[0] + "." + danMesecGodina[2] + ".";
-                    String[] satnicaString = termin.satnica.ToString().Split(' ');
-                    String[] sat = satnicaString[1].Split(':');
-                    pacijentTermin.satnica = sat[0] + ':' + sat[1];
+                    String satnica = termin.satnica.ToString("HH:mm");
+                    pacijentTermin.satnica = satnica;
 
                     foreach (Lekar lekar in JsonSerializer.Deserialize<List<Lekar>>(File.ReadAllText("Datoteke/probaLekari.txt")))
                     {
@@ -115,7 +114,7 @@ namespace Bolnica_aplikacija
                     }
                     else if (pacijentTermin.napomena.Equals("Pregled"))
                     {
-                        if (tipAkcije == 0 && rezultat >= 0)
+                        if (tipAkcije == 0 && rezultat >= 0) //PROVERITI U OBA SLUCAJA DA LI JE OKEJ ZAKAZATI TERMIN KOJI JE TAJ DAN
                         {
                             terminiPacijenta.Add(pacijentTermin);
                         }

@@ -109,9 +109,8 @@ namespace Bolnica_aplikacija.PacijentStudent
                             case TipTermina.PREGLED: pacijentTermin.napomena = "Pregled"; break;
                             default: break;
                         }
-                        String[] satnicaString = termin.satnica.ToString().Split(' ');
-                        String[] sat = satnicaString[1].Split(':');
-                        pacijentTermin.satnica = sat[0] + ':' + sat[1];
+                        String satnica = termin.satnica.ToString("HH:mm");
+                        pacijentTermin.satnica = satnica;
                         pacijentTermin.id = termin.idTermina;
 
                         terminiPacijentaIspravni.Add(pacijentTermin);

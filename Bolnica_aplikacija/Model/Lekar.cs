@@ -45,9 +45,8 @@ namespace Model
                     String[] datumBezVremena = termin.datum.Date.ToString().Split(' ');
                     String[] danMesecGodina = datumBezVremena[0].Split('/');
                     pacijentTermin.datum = danMesecGodina[1] + "." + danMesecGodina[0] + "." + danMesecGodina[2] + ".";
-                    String[] satnicaString = termin.satnica.ToString().Split(' ');
-                    String[] sat = satnicaString[1].Split(':');
-                    pacijentTermin.satnica = sat[0] + ':' + sat[1];
+                    String satnica = termin.satnica.ToString("HH:mm");
+                    pacijentTermin.satnica = satnica;
 
                     foreach (Lekar lekar in JsonSerializer.Deserialize<List<Lekar>>(File.ReadAllText("Datoteke/probaLekari.txt")))
                     {
@@ -141,7 +140,6 @@ namespace Model
       {
          throw new NotImplementedException();
       }
-      
       public List<Prostorija> PrikazProstorija(Termin termin)
       {
           var sveProstorije = JsonSerializer.Deserialize<List<Prostorija>>(File.ReadAllText("Datoteke/probaProstorije.txt"));
@@ -168,57 +166,51 @@ namespace Model
                 }
           }
 
-          //prostorijeZaPrikaz = ProveriProstorijeZaPrikaz(termin, prostorijeZaPrikaz);
-
-          return prostorijeZaPrikaz;
-      }
-
-     /* private List<Prostorija> ProveriProstorijeZaPrikaz(Termin termin, List<Prostorija> prostorijeZaPrikaz)
-      {
-      NOVA IDEJA: PROLAZIMO KROZ SVE TERMINE, GLEDAMO TERMINE KOJI SU ISTOG DANA, AKO IMAJU ISTU PROSTORIJU, PROVERITI SATNICU, AKO JE SATNICA JEDNAKA
-             NE UBACIVATI U LISTU, U SUPROTNOM UBACITI
-           
-            
-      -------- OVO ISPOD NE RADI ------ PROBLEM -> PROVERAVA SVAKI TERMIN I SVAKU PROSTORIJU I DODAJE AKO NIJE ISTOG DANA/SATNICE BEZ OBZIRA DA 
-      LI NEKI DRUGI TERMIN BAS U TOM TRENUTKU IMA TU PROSTORIJU
-            List<Prostorija> povratnaVrednost = new List<Prostorija>();
-            var sviTermini = JsonSerializer.Deserialize<List<Termin>>(File.ReadAllText("Datoteke/probaTermini.txt"));
-            foreach(Prostorija prostorija in prostorijeZaPrikaz)
-            {
-                foreach(Termin temp in sviTermini)
+          List<String> nePrikazati = ProveriProstorijeZaPrikaz(termin, prostorijeZaPrikaz);
+          List<Prostorija> povratnaVrednost = new List<Prostorija>();
+          bool zastavica;
+          foreach(Prostorija prostorija in prostorijeZaPrikaz)
+          {
+                zastavica = false;
+                foreach(String idProstorije in nePrikazati)
                 {
-                    if(temp.idProstorije.Equals(prostorija.id))
+                    if(idProstorije.Equals(prostorija.id))
                     {
-                        DateTime datumIzabranogTermina = termin.datum;
-                        DateTime datumTermina = temp.datum;
-
-                        int rezultat = DateTime.Compare(datumIzabranogTermina, datumTermina);
-                        if(rezultat == 0)
-                        {
-                            DateTime vremeIzabranogTermina = termin.satnica;
-                            DateTime satnicaTermina = temp.satnica;
-                            int rezultatSatnice = TimeSpan.Compare(vremeIzabranogTermina.TimeOfDay, satnicaTermina.TimeOfDay);
-                            if(rezultatSatnice == 0)
-                            {
-                                if (!povratnaVrednost.Contains(prostorija))
-                                {
-                                    povratnaVrednost.Add(prostorija);
-                                }
-                            }
-
-                        }
-                        else
-                        {
-                            if (!povratnaVrednost.Contains(prostorija))
-                            {
-                                povratnaVrednost.Add(prostorija);
-                            }
-                        }
+                        zastavica = true;
+                        break;
                     }
                 }
+
+                if (!zastavica)
+                {
+                    povratnaVrednost.Add(prostorija);
+                }
+
+          }
+
+          return povratnaVrednost;
+      }
+      
+      private List<String> ProveriProstorijeZaPrikaz(Termin termin, List<Prostorija> prostorijeZaPrikaz)
+        {
+            List<String> povratnaVrednost = new List<String>();
+            var sviTermini = JsonSerializer.Deserialize<List<Termin>>(File.ReadAllText("Datoteke/probaTermini.txt"));
+
+            povratnaVrednost.Add(termin.idProstorije);
+            foreach (Termin temp in sviTermini)
+            {
+                if (DateTime.Compare(termin.datum, temp.datum) == 0)
+                {
+                    if (TimeSpan.Compare(termin.satnica.TimeOfDay, temp.satnica.TimeOfDay) == 0)
+                    {
+                        povratnaVrednost.Add(temp.idProstorije);
+                    }
+                    
+                }
+        
             }
             return povratnaVrednost;
-      }*/
+        }
       public void AzurirajProstorijuTermina(String idTermina, String idProstorije)
       {
             var sviTermini = JsonSerializer.Deserialize<List<Termin>>(File.ReadAllText("Datoteke/probaTermini.txt"));
