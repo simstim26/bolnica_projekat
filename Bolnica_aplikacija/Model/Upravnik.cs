@@ -185,12 +185,27 @@ namespace Model
                 }
                 Console.WriteLine(m);
 
+                foreach(Prostorija p in prostorije)
+                {
+                    if(p.id == prostorijaZaIzmenu.id)
+                    {
+                        p.id = prostorijaZaIzmenu.id;
+                        p.idBolnice = prostorijaZaIzmenu.idBolnice;
+                        p.logickiObrisana = prostorijaZaIzmenu.logickiObrisana;
+                        p.sprat = prostorijaZaIzmenu.sprat;
+                        p.tipProstorije = prostorijaZaIzmenu.tipProstorije;
+                        p.broj = prostorijaZaIzmenu.broj;
+                        p.dostupnost = prostorijaZaIzmenu.dostupnost;
+                        p.Stavka = prostorijaZaIzmenu.Stavka;
+                    }
+                }
+
                 string jsonString = JsonSerializer.Serialize(prostorije);
                 File.WriteAllText("Datoteke/probaProstorije.txt", jsonString);
 
                 upravnikProzor.gridIzmeniProstoriju.Visibility = Visibility.Hidden;
                 upravnikProzor.gridProstorija.Visibility = Visibility.Visible;
-                upravnikProzor.dataGridProstorija.Items.Refresh();
+                upravnikProzor.dataGridProstorija.ItemsSource = ProcitajProstoriju();
             }
         }
       
