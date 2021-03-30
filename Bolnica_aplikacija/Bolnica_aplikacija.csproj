@@ -94,7 +94,6 @@
     <Compile Include="LekarStudent\PrikazProstorija.xaml.cs">
       <DependentUpon>PrikazProstorija.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Model\Baza.cs" />
     <Compile Include="PacijentStudent\IzmenaTerminaPacijent.xaml.cs">
       <DependentUpon>IzmenaTerminaPacijent.xaml</DependentUpon>
     </Compile>

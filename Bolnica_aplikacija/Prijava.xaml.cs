@@ -23,14 +23,6 @@ namespace Bolnica_aplikacija
             InitializeComponent();
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
 
-           // Baza.Lekari = JsonSerializer.Deserialize<List<Lekar>>(File.ReadAllText("Datoteke/probaLekari.txt"));
-            Baza.Pacijenti = JsonSerializer.Deserialize<List<Pacijent>>(File.ReadAllText("Datoteke/probaPacijenti.txt"));
-            Baza.Upravnici = JsonSerializer.Deserialize<List<Upravnik>>(File.ReadAllText("Datoteke/probaUpravnici.txt"));
-            Baza.Sekretari = JsonSerializer.Deserialize<List<Sekretar>>(File.ReadAllText("Datoteke/probaSekretari.txt"));
-            Baza.Termini = JsonSerializer.Deserialize<List<Termin>>(File.ReadAllText("Datoteke/probaTermini.txt"));
-            Baza.Korisnici = JsonSerializer.Deserialize<List<PomocnaKlasaKorisnici>>(File.ReadAllText("Datoteke/probaKorisnici.txt"));
-
-
         }
 
         private void btnPrijava_Click(object sender, RoutedEventArgs e)
@@ -43,9 +35,9 @@ namespace Bolnica_aplikacija
             switch (pronadjen[0])
              {
                  case "pacijent":
-                    foreach(Pacijent pacijent in Baza.Pacijenti)
+                    foreach(Pacijent pacijent in JsonSerializer.Deserialize<List<Pacijent>>(File.ReadAllText("Datoteke/probaPacijenti.txt")))
                     {
-                        if (pacijent.id.Equals(pronadjen[1]))
+                        if (pacijent.id.Equals(pronadjen[1]) && !pacijent.jeLogickiObrisan)
                         {
                             PacijentProzor pacijentProzor = new PacijentProzor(pacijent.id);
                             this.Close();
@@ -65,7 +57,7 @@ namespace Bolnica_aplikacija
                      }
                      break;
                  case "sekretar":
-                    foreach(Sekretar sekretar in Baza.Sekretari)
+                    foreach(Sekretar sekretar in JsonSerializer.Deserialize<List<Sekretar>>(File.ReadAllText("Datoteke/probaSekretari.txt")))
                     {
                         if (sekretar.id.Equals(pronadjen[1]))
                         {
