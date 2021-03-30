@@ -111,7 +111,7 @@ namespace Model
          throw new NotImplementedException();
       }
       
-      public void UpdateRasporeda()
+      public void AzurirajRaspored()
       {
          throw new NotImplementedException();
       }
