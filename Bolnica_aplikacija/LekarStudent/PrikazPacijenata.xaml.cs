@@ -28,7 +28,15 @@ namespace Bolnica_aplikacija
         {
             InitializeComponent();
             var pacijenti = JsonSerializer.Deserialize<List<Pacijent>>(File.ReadAllText("Datoteke/probaPacijenti.txt"));
-            lstPacijenti.ItemsSource = pacijenti;
+            List<Pacijent> pacijentiZaPrikaz = new List<Pacijent>();
+            foreach(Pacijent pacijent in pacijenti)
+            {
+                if (!pacijent.jeLogickiObrisan)
+                {
+                    pacijentiZaPrikaz.Add(pacijent);
+                }
+            }
+            lstPacijenti.ItemsSource = pacijentiZaPrikaz;
         }
 
         private void btnInfo_Click(object sender, RoutedEventArgs e)
