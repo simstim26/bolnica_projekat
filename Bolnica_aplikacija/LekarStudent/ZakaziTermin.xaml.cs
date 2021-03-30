@@ -103,7 +103,7 @@ namespace Bolnica_aplikacija
                     }
                     if (!LekarProzor.getLekar().idSpecijalizacije.Equals("0") && pacijentTermin.napomena.Equals("Operacija"))
                     {
-                        if (tipAkcije == 0 && rezultat >= 0) //Potrebno odraditi proveru za satnicu
+                        if (tipAkcije == 0 && rezultat >= 0)
                         {
                             terminiPacijenta.Add(pacijentTermin);
                         }
@@ -114,7 +114,7 @@ namespace Bolnica_aplikacija
                     }
                     else if (pacijentTermin.napomena.Equals("Pregled"))
                     {
-                        if (tipAkcije == 0 && rezultat >= 0) //PROVERITI U OBA SLUCAJA DA LI JE OKEJ ZAKAZATI TERMIN KOJI JE TAJ DAN
+                        if (tipAkcije == 0 && rezultat >= 0) 
                         {
                             terminiPacijenta.Add(pacijentTermin);
                         }

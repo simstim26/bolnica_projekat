@@ -117,7 +117,23 @@ namespace Model
             Regex r = new Regex(pat);
             Match m = r.Match(upravnikProzor.txtBrojProstorije.Text.Replace(" ", ""));
             Match m1 = r.Match(upravnikProzor.txtSpratProstorije.Text.Replace(" ", ""));
+            Prostorija prostorijaZaIzmenu = new Prostorija();
+            foreach(Prostorija p in prostorije)
+            {
+                if (p.id.Equals(prostorija.id))
+                {
+                    prostorijaZaIzmenu.id = p.id;
+                    prostorijaZaIzmenu.idBolnice = p.idBolnice;
+                    prostorijaZaIzmenu.logickiObrisana = p.logickiObrisana;
+                    prostorijaZaIzmenu.sprat = p.sprat;
+                    prostorijaZaIzmenu.tipProstorije = p.tipProstorije;
+                    prostorijaZaIzmenu.broj = p.broj;
+                    prostorijaZaIzmenu.dostupnost = p.dostupnost;
+                    prostorijaZaIzmenu.Stavka = p.Stavka;
 
+                    break;
+                }
+            }
 
             //provera da li broj prostorije vec postoji
             foreach (Prostorija p in prostorije)
@@ -143,29 +159,29 @@ namespace Model
             }
             else
             {
-                prostorija.broj = upravnikProzor.txtBrojProstorije.Text.Replace(" ", "");
-                prostorija.sprat = Int32.Parse(upravnikProzor.txtSpratProstorije.Text.Replace(" ", ""));
+                prostorijaZaIzmenu.broj = upravnikProzor.txtBrojProstorije.Text.Replace(" ", "");
+                prostorijaZaIzmenu.sprat = Int32.Parse(upravnikProzor.txtSpratProstorije.Text.Replace(" ", ""));
 
                 if (upravnikProzor.cbTipProstorijeIzmena.SelectedIndex == 0)
                 {
-                    prostorija.tipProstorije = TipProstorije.BOLNICKA_SOBA;
+                    prostorijaZaIzmenu.tipProstorije = TipProstorije.BOLNICKA_SOBA;
                 }
                 else if (upravnikProzor.cbTipProstorijeIzmena.SelectedIndex == 1)
                 {
-                    prostorija.tipProstorije = TipProstorije.OPERACIONA_SALA;
+                    prostorijaZaIzmenu.tipProstorije = TipProstorije.OPERACIONA_SALA;
                 }
                 else if (upravnikProzor.cbTipProstorijeIzmena.SelectedIndex == 2)
                 {
-                    prostorija.tipProstorije = TipProstorije.SOBA_ZA_PREGLED;
+                    prostorijaZaIzmenu.tipProstorije = TipProstorije.SOBA_ZA_PREGLED;
                 }
 
                 if (upravnikProzor.cbDostupnostProstorije.SelectedIndex == 0)
                 {
-                    prostorija.dostupnost = true;
+                    prostorijaZaIzmenu.dostupnost = true;
                 }
                 else if (upravnikProzor.cbDostupnostProstorije.SelectedIndex == 1)
                 {
-                    prostorija.dostupnost = false;
+                    prostorijaZaIzmenu.dostupnost = false;
                 }
                 Console.WriteLine(m);
 
