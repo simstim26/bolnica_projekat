@@ -24,11 +24,17 @@ namespace Model
             Bolnica_aplikacija.UpravnikProzor upravnikProzor = Bolnica_aplikacija.UpravnikProzor.getInstance();
 
             bool pronadjenBroj = false;
+            bool istiBroj = false;
 
             String pat = @"^[0-9]+$";
             Regex r = new Regex(pat);
             Match m = r.Match(upravnikProzor.unosBrojaProstorije.Text.Replace(" ", ""));
             Match m1 = r.Match(upravnikProzor.unosSprata.Text.Replace(" ", ""));
+
+            if (prostorija.broj == upravnikProzor.txtBrojProstorije.Text && prostorija.sprat.ToString() == upravnikProzor.txtSpratProstorije.Text)
+            {
+                istiBroj = true;
+            }
 
             //provera da li broj prostorije vec postoji
             foreach (Prostorija p in prostorije)
@@ -40,7 +46,7 @@ namespace Model
                 }
             }
 
-            if (pronadjenBroj)
+            if (pronadjenBroj && !istiBroj)
             {
                 upravnikProzor.lblBrojPostojiDodaj.Visibility = Visibility.Visible;
             }
@@ -112,6 +118,7 @@ namespace Model
 
             var prostorije = JsonSerializer.Deserialize<List<Prostorija>>(File.ReadAllText("Datoteke/probaProstorije.txt"));
             bool pronadjenBroj = false;
+            bool istiBroj = false;
 
             String pat = @"^[0-9]+$";
             Regex r = new Regex(pat);
@@ -134,18 +141,29 @@ namespace Model
                     break;
                 }
             }
+            
+            if(prostorijaZaIzmenu.broj == upravnikProzor.txtBrojProstorije.Text && prostorijaZaIzmenu.sprat.ToString() == upravnikProzor.txtSpratProstorije.Text)
+            {
+                istiBroj = true;
+            }
 
             //provera da li broj prostorije vec postoji
             foreach (Prostorija p in prostorije)
             {
-                if (p.broj == upravnikProzor.txtBrojProstorije.Text && p.broj != prostorija.broj)
+                if (p.broj == upravnikProzor.txtBrojProstorije.Text)// && p.broj != prostorija.broj)
                 {
-                    pronadjenBroj = true;
-                    break;
+                    if (p.sprat.ToString() == upravnikProzor.txtSpratProstorije.Text)
+                    {
+                        pronadjenBroj = true;
+                        break;
+                    }
+
                 }
+                
             }
 
-            if (pronadjenBroj)
+
+            if (pronadjenBroj && !istiBroj)
             {
                 upravnikProzor.lblBrojPostoji.Visibility = Visibility.Visible;
             }

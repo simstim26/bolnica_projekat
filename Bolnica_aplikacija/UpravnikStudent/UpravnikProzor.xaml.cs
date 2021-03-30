@@ -204,6 +204,7 @@ namespace Bolnica_aplikacija
         {
 
             upravnik.AzurirajProstoriju(prostorija);
+            lblId.Text = lblId1;
 
         }
 
