@@ -163,6 +163,7 @@
                     <PasswordBox x:Name="lozinka" HorizontalAlignment="Left" Margin="237,62,-64,0" VerticalAlignment="Top" Width="259" Height="40" Background="#FFCADCEA" PasswordChanged="lozinka_PasswordChanged"/>
                 </Grid>
             </Grid>
+            <CheckBox x:Name="checkboxGostujuciNalog" Content="  GOSTUJUĆI NALOG" HorizontalAlignment="Left" Height="29" Margin="882,371,0,0" VerticalAlignment="Top" Width="260" FontSize="20" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" IsEnabled="False"/>
         </Grid>
     </Grid>
 

@@ -20,7 +20,7 @@ namespace Model
         // IZMENA: Pacijent pacijent izmenjem u stringove podataka koji se upisuju, static
         public static void NapraviPacijenta(String id, String idBolnice, bool gost, String korisnickoIme, String lozinka, String jmbg, String ime, String prezime, DateTime datumRodj, string adresa, string email, string telefon, DataGrid tabelaPacijenti, List<Pacijent> pacijenti)
       {
-        
+            Console.WriteLine("USAO U DODAVANJE");
             Pacijent pacijent = new Pacijent();
             List<Pacijent> sviPacijenti = pacijenti;
 
@@ -52,7 +52,7 @@ namespace Model
 
             korisnici.Add(korisnik);
             string jsonString2 = JsonSerializer.Serialize(korisnici);
-            File.WriteAllText("Datoteke/probaKorisnici.txt", jsonString);
+            File.WriteAllText("Datoteke/probaKorisnici.txt", jsonString2);
 
             ProcitajPacijenta(tabelaPacijenti);
             //throw new NotImplementedException();
