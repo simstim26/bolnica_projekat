@@ -46,9 +46,21 @@ namespace Bolnica_aplikacija
             this.PacijentGrid.Visibility = Visibility.Visible;
 
             //TODO: Razdvojiti komponente (Prikaz pacijenata zasebna)
-            sviPacijenti = JsonSerializer.Deserialize<List<Pacijent>>(File.ReadAllText("Datoteke/probaPacijenti.txt"));
-            TabelaPacijenti.ItemsSource = sviPacijenti;
+            
+            List<Pacijent> ucitaniPacijenti = JsonSerializer.Deserialize<List<Pacijent>>(File.ReadAllText("Datoteke/probaPacijenti.txt"));
+            List<Pacijent> neobrisaniPacijenti = new List<Pacijent>();
+           
+            foreach (Pacijent p in ucitaniPacijenti)
+            {
+                if (!p.jeLogickiObrisan)
+                {
+                    neobrisaniPacijenti.Add(p);
+                }
+            }
 
+            sviPacijenti = neobrisaniPacijenti;
+            TabelaPacijenti.ItemsSource = sviPacijenti;
+            TabelaPacijenti.Items.Refresh();
 
         }
 
@@ -92,7 +104,9 @@ namespace Bolnica_aplikacija
                 pacijent = (Pacijent)TabelaPacijenti.SelectedItem;
 
                 this.PacijentInfoGrid.Visibility = Visibility.Visible;
-            
+                buttonOdustaniDodavanje.Visibility = Visibility.Hidden;
+                buttonPotvrdiDodavanje.Visibility = Visibility.Hidden;
+
                 textJMBG.Text = pacijent.jmbg;
                 textIme.Text = pacijent.ime;
                 textPrezime.Text = pacijent.prezime;
@@ -367,6 +381,9 @@ namespace Bolnica_aplikacija
                 }
 
             }
+
+            //Provera datuma rodjenja
+
 
             //Provera E-mail adrese
             if (!Regex.IsMatch(email, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$"))
