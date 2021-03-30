@@ -141,7 +141,6 @@ namespace Model
       {
          throw new NotImplementedException();
       }
-      
       public List<Prostorija> PrikazProstorija(Termin termin)
       {
           var sveProstorije = JsonSerializer.Deserialize<List<Prostorija>>(File.ReadAllText("Datoteke/probaProstorije.txt"));
@@ -213,52 +212,6 @@ namespace Model
             }
             return povratnaVrednost;
         }
-     /* private List<Prostorija> ProveriProstorijeZaPrikaz(Termin termin, List<Prostorija> prostorijeZaPrikaz)
-      {
-      NOVA IDEJA: PROLAZIMO KROZ SVE TERMINE, GLEDAMO TERMINE KOJI SU ISTOG DANA, AKO IMAJU ISTU PROSTORIJU, PROVERITI SATNICU, AKO JE SATNICA JEDNAKA
-             NE UBACIVATI U LISTU, U SUPROTNOM UBACITI
-           
-            
-      -------- OVO ISPOD NE RADI ------ PROBLEM -> PROVERAVA SVAKI TERMIN I SVAKU PROSTORIJU I DODAJE AKO NIJE ISTOG DANA/SATNICE BEZ OBZIRA DA 
-      LI NEKI DRUGI TERMIN BAS U TOM TRENUTKU IMA TU PROSTORIJU
-            List<Prostorija> povratnaVrednost = new List<Prostorija>();
-            var sviTermini = JsonSerializer.Deserialize<List<Termin>>(File.ReadAllText("Datoteke/probaTermini.txt"));
-            foreach(Prostorija prostorija in prostorijeZaPrikaz)
-            {
-                foreach(Termin temp in sviTermini)
-                {
-                    if(temp.idProstorije.Equals(prostorija.id))
-                    {
-                        DateTime datumIzabranogTermina = termin.datum;
-                        DateTime datumTermina = temp.datum;
-
-                        int rezultat = DateTime.Compare(datumIzabranogTermina, datumTermina);
-                        if(rezultat == 0)
-                        {
-                            DateTime vremeIzabranogTermina = termin.satnica;
-                            DateTime satnicaTermina = temp.satnica;
-                            int rezultatSatnice = TimeSpan.Compare(vremeIzabranogTermina.TimeOfDay, satnicaTermina.TimeOfDay);
-                            if(rezultatSatnice == 0)
-                            {
-                                if (!povratnaVrednost.Contains(prostorija))
-                                {
-                                    povratnaVrednost.Add(prostorija);
-                                }
-                            }
-
-                        }
-                        else
-                        {
-                            if (!povratnaVrednost.Contains(prostorija))
-                            {
-                                povratnaVrednost.Add(prostorija);
-                            }
-                        }
-                    }
-                }
-            }
-            return povratnaVrednost;
-      }*/
       public void AzurirajProstorijuTermina(String idTermina, String idProstorije)
       {
             var sviTermini = JsonSerializer.Deserialize<List<Termin>>(File.ReadAllText("Datoteke/probaTermini.txt"));
