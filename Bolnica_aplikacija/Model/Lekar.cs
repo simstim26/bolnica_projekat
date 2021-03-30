@@ -168,11 +168,51 @@ namespace Model
                 }
           }
 
-          //prostorijeZaPrikaz = ProveriProstorijeZaPrikaz(termin, prostorijeZaPrikaz);
+          List<String> nePrikazati = ProveriProstorijeZaPrikaz(termin, prostorijeZaPrikaz);
+          List<Prostorija> povratnaVrednost = new List<Prostorija>();
+          bool zastavica;
+          foreach(Prostorija prostorija in prostorijeZaPrikaz)
+          {
+                zastavica = false;
+                foreach(String idProstorije in nePrikazati)
+                {
+                    if(idProstorije.Equals(prostorija.id))
+                    {
+                        zastavica = true;
+                        break;
+                    }
+                }
 
-          return prostorijeZaPrikaz;
+                if (!zastavica)
+                {
+                    povratnaVrednost.Add(prostorija);
+                }
+
+          }
+
+          return povratnaVrednost;
       }
+      
+      private List<String> ProveriProstorijeZaPrikaz(Termin termin, List<Prostorija> prostorijeZaPrikaz)
+        {
+            List<String> povratnaVrednost = new List<String>();
+            var sviTermini = JsonSerializer.Deserialize<List<Termin>>(File.ReadAllText("Datoteke/probaTermini.txt"));
 
+            povratnaVrednost.Add(termin.idProstorije);
+            foreach (Termin temp in sviTermini)
+            {
+                if (DateTime.Compare(termin.datum, temp.datum) == 0)
+                {
+                    if (TimeSpan.Compare(termin.satnica.TimeOfDay, temp.satnica.TimeOfDay) == 0)
+                    {
+                        povratnaVrednost.Add(temp.idProstorije);
+                    }
+                    
+                }
+        
+            }
+            return povratnaVrednost;
+        }
      /* private List<Prostorija> ProveriProstorijeZaPrikaz(Termin termin, List<Prostorija> prostorijeZaPrikaz)
       {
       NOVA IDEJA: PROLAZIMO KROZ SVE TERMINE, GLEDAMO TERMINE KOJI SU ISTOG DANA, AKO IMAJU ISTU PROSTORIJU, PROVERITI SATNICU, AKO JE SATNICA JEDNAKA

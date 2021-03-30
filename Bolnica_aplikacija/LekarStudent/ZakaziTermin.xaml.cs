@@ -115,7 +115,7 @@ namespace Bolnica_aplikacija
                     }
                     else if (pacijentTermin.napomena.Equals("Pregled"))
                     {
-                        if (tipAkcije == 0 && rezultat >= 0)
+                        if (tipAkcije == 0 && rezultat >= 0) //PROVERITI U OBA SLUCAJA DA LI JE OKEJ ZAKAZATI TERMIN KOJI JE TAJ DAN
                         {
                             terminiPacijenta.Add(pacijentTermin);
                         }
