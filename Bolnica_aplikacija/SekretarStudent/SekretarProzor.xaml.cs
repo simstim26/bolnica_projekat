@@ -92,7 +92,9 @@ namespace Bolnica_aplikacija
                 pacijent = (Pacijent)TabelaPacijenti.SelectedItem;
 
                 this.PacijentInfoGrid.Visibility = Visibility.Visible;
-            
+                buttonOdustaniDodavanje.Visibility = Visibility.Hidden;
+                buttonPotvrdiDodavanje.Visibility = Visibility.Hidden;
+
                 textJMBG.Text = pacijent.jmbg;
                 textIme.Text = pacijent.ime;
                 textPrezime.Text = pacijent.prezime;
@@ -367,6 +369,9 @@ namespace Bolnica_aplikacija
                 }
 
             }
+
+            //Provera datuma rodjenja
+
 
             //Provera E-mail adrese
             if (!Regex.IsMatch(email, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$"))
