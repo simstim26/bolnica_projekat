@@ -3,6 +3,7 @@
 // Created: Monday, March 22, 2021 7:07:22 PM
 // Purpose: Definition of Class Sekretar
 
+using Bolnica_aplikacija.Model;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -17,7 +18,7 @@ namespace Model
       public String idBolnice { get; set; }
 
         // IZMENA: Pacijent pacijent izmenjem u stringove podataka koji se upisuju, static
-        public static void NapraviPacijenta(String id, String idBolnice, bool gost, String korisnickoIme, String loznika, String jmbg, String ime, String prezime, DateTime datumRodj, string adresa, string email, string telefon, DataGrid tabelaPacijenti, List<Pacijent> pacijenti)
+        public static void NapraviPacijenta(String id, String idBolnice, bool gost, String korisnickoIme, String lozinka, String jmbg, String ime, String prezime, DateTime datumRodj, string adresa, string email, string telefon, DataGrid tabelaPacijenti, List<Pacijent> pacijenti)
       {
         
             Pacijent pacijent = new Pacijent();
@@ -27,7 +28,7 @@ namespace Model
             pacijent.idBolnice = idBolnice;
             pacijent.jeGost = gost;
             pacijent.korisnickoIme = korisnickoIme;
-            pacijent.lozinka = loznika;
+            pacijent.lozinka = lozinka;
             pacijent.jmbg = jmbg;
             pacijent.ime = ime;
             pacijent.prezime = prezime;
@@ -41,6 +42,17 @@ namespace Model
           
             string jsonString = JsonSerializer.Serialize(sviPacijenti);
             File.WriteAllText("Datoteke/probaPacijenti.txt", jsonString);
+
+            List<PomocnaKlasaKorisnici> korisnici = JsonSerializer.Deserialize<List<PomocnaKlasaKorisnici>>(File.ReadAllText("Datoteke/probaKorisnici.txt"));
+            PomocnaKlasaKorisnici korisnik = new PomocnaKlasaKorisnici();
+            korisnik.id = id;
+            korisnik.korisnickoIme = korisnickoIme;
+            korisnik.lozinka = lozinka;
+            korisnik.tip = "pacijent";
+
+            korisnici.Add(korisnik);
+            string jsonString2 = JsonSerializer.Serialize(korisnici);
+            File.WriteAllText("Datoteke/probaKorisnici.txt", jsonString);
 
             ProcitajPacijenta(tabelaPacijenti);
             //throw new NotImplementedException();

@@ -38,6 +38,7 @@ namespace Bolnica_aplikacija
             string korisnickoIme = txtKorisnickoIme.Text;
             string lozinka = txtLozinka.Password.ToString();
             String[] pronadjen = Korisnik.Prijava(korisnickoIme, lozinka);
+            
 
             switch (pronadjen[0])
              {
