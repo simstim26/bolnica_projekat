@@ -1,6 +1,7 @@
 ﻿using Model;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -38,7 +39,29 @@ namespace Bolnica_aplikacija
             this.PacijentGrid.Visibility = Visibility.Hidden;
        
         }
+        private void CenterWindow()
+        {
 
+            double screenWidth = System.Windows.SystemParameters.PrimaryScreenWidth;
+            double screenHeight = System.Windows.SystemParameters.PrimaryScreenHeight;
+            double windowWidth = this.Width;
+            double windowHeight = this.Height;
+            this.Left = (screenWidth / 2) - (windowWidth / 2);
+            this.Top = (screenHeight / 2) - (windowHeight / 2);
+
+        }
+
+        private void odjavaButton_Click(object sender, RoutedEventArgs e)
+        {
+            Prijava prijava = new Prijava();
+            this.Close();
+            prijava.ShowDialog();
+        }
+
+        public static Pacijent GetPacijent()
+        {
+            return pacijent;
+        }
         private void pacijenti_Click(object sender, RoutedEventArgs e)
         {
             
@@ -65,6 +88,7 @@ namespace Bolnica_aplikacija
 
         }
 
+        //Povratak
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             this.PocetniEkranGrid.Visibility = Visibility.Visible;
@@ -77,23 +101,81 @@ namespace Bolnica_aplikacija
 
         }
 
-        private void CenterWindow()
+        private void dodajPacijentaButton_Click(object sender, RoutedEventArgs e)
         {
+            //Radi se o dodavanju
+            flagIzmeni = false;
 
-            double screenWidth = System.Windows.SystemParameters.PrimaryScreenWidth;
-            double screenHeight = System.Windows.SystemParameters.PrimaryScreenHeight;
-            double windowWidth = this.Width;
-            double windowHeight = this.Height;
-            this.Left = (screenWidth / 2) - (windowWidth / 2);
-            this.Top = (screenHeight / 2) - (windowHeight / 2);
+            omoguciKoriscenjaPolja(true);
+            ocistiPolja();
+
+            buttonOdustaniDodavanje.Visibility = Visibility.Visible;
+            buttonPotvrdiDodavanje.Visibility = Visibility.Visible;
+            buttonPotvrdiDodavanje.IsEnabled = false;
+
 
         }
 
-        private void odjavaButton_Click(object sender, RoutedEventArgs e)
+        private void izmeniPacijentaButton_Click(object sender, RoutedEventArgs e)
         {
-            Prijava prijava = new Prijava();
-            this.Close();
-            prijava.ShowDialog();
+
+            if (TabelaPacijenti.SelectedIndex != -1)
+            {
+                //IZMENA
+                flagIzmeni = true;
+
+                pacijent = (Pacijent)TabelaPacijenti.SelectedItem;
+
+                buttonOdustaniDodavanje.Visibility = Visibility.Visible;
+                buttonPotvrdiDodavanje.Visibility = Visibility.Visible;
+
+                ocistiPolja();
+                omoguciKoriscenjaPolja(true);
+                textKorisnickoIme.IsEnabled = false;
+                lozinka.IsEnabled = false;
+
+                this.idPacijenta = pacijent.id;
+                textKorisnickoIme.Text = pacijent.korisnickoIme;
+                lozinka.Password = pacijent.lozinka;
+                textJMBG.Text = pacijent.jmbg;
+                textIme.Text = pacijent.ime;
+                textPrezime.Text = pacijent.prezime;
+                textAdresa.Text = pacijent.adresa;
+                textDatumRodj.Text = pacijent.datumRodjenja.ToString();
+                textEmail.Text = pacijent.email;
+                textTelefon.Text = pacijent.brojTelefona;
+
+                if (pacijent.jeGost)
+                {
+                    checkboxGostujuciNalog.IsChecked = true;
+                    textAdresa.Clear();
+                    textAdresa.IsEnabled = false;
+                    textEmail.Clear();
+                    textEmail.IsEnabled = false;
+                    checkboxGostujuciNalog.IsEnabled = true;
+
+                }
+                else
+                {
+                    checkboxGostujuciNalog.IsChecked = false;
+                    checkboxGostujuciNalog.IsEnabled = false;
+                }
+            }
+
+        }
+
+        private void obrisiPacijentaButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (TabelaPacijenti.SelectedIndex != -1)
+            {
+                Pacijent izabraniPacijent = (Pacijent)TabelaPacijenti.SelectedItem;
+                String idZaBrisanje = izabraniPacijent.id;
+                Sekretar.ObrisiPacijenta(idZaBrisanje, sviPacijenti);
+
+            }
+
+            sviPacijenti = JsonSerializer.Deserialize<List<Pacijent>>(File.ReadAllText("Datoteke/probaPacijenti.txt"));
+            Sekretar.ProcitajPacijente(TabelaPacijenti);
         }
 
         private void infoPacijentiButton_Click(object sender, RoutedEventArgs e)
@@ -114,7 +196,10 @@ namespace Bolnica_aplikacija
                 textAdresa.Text = pacijent.adresa;
                 textEmail.Text = pacijent.email;
                 textTelefon.Text = pacijent.brojTelefona;
-                textDatumRodj.Text = pacijent.datumRodjenja.ToString();
+
+                String datum = pacijent.datumRodjenja.ToString("dd/MM/yyyy");
+                textDatumRodj.Text = datum;
+                
                 textKorisnickoIme.Text = pacijent.korisnickoIme;
                 lozinka.Password = pacijent.lozinka;
 
@@ -132,40 +217,84 @@ namespace Bolnica_aplikacija
 
         }
 
-        public static Pacijent GetPacijent()
+      
+        private void buttonPotvrdiDodavanje_Click(object sender, RoutedEventArgs e)
         {
-            return pacijent;
-        }
+            bool pacGost;
+            String pacKorisnickoIme = textKorisnickoIme.Text;
+            String pacLozinka = lozinka.Password.ToString();
+            String pacIdBolnice = "1";
+            String pacJmbg = textJMBG.Text;
+            String pacIme = textIme.Text;
+            String pacPrezime = textPrezime.Text;
+            DateTime pacDatumRodjenja = Convert.ToDateTime(textDatumRodj.Text);        
+            String pacAdresa = textAdresa.Text;
+            String pacEmail = textEmail.Text;
+            String pacTelefon = textTelefon.Text;
 
-
-        private void obrisiPacijentaButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (TabelaPacijenti.SelectedIndex != -1)
+            if ((bool)checkboxGostujuciNalog.IsChecked)
             {
-                Pacijent izabraniPacijent = (Pacijent)TabelaPacijenti.SelectedItem;
-                String idZaBrisanje = izabraniPacijent.id;
-                Sekretar.ObrisiPacijenta(idZaBrisanje, sviPacijenti);
-
+                pacGost = true;
+            }
+            else
+            {
+                pacGost = false;
             }
 
-            sviPacijenti = JsonSerializer.Deserialize<List<Pacijent>>(File.ReadAllText("Datoteke/probaPacijenti.txt"));
-            Sekretar.ProcitajPacijenta(TabelaPacijenti);
+            Console.WriteLine(idPacijenta);
+            if (proveriIspravnostPolja(idPacijenta, pacGost, pacKorisnickoIme, pacLozinka, pacJmbg, pacIme, pacPrezime, pacDatumRodjenja, pacAdresa, pacEmail, pacTelefon))
+            {
+
+                if (!flagIzmeni)
+                {
+
+                    Console.WriteLine(pacGost);
+                    if (!pacGost)
+                    {
+
+                        String pacId = (sviPacijenti.Count() + 1).ToString();
+                        Sekretar.NapraviPacijenta(pacId, pacIdBolnice, pacGost, pacKorisnickoIme, pacLozinka, pacJmbg, pacIme, pacPrezime, pacDatumRodjenja, pacAdresa, pacEmail, pacTelefon, TabelaPacijenti, sviPacijenti);
+                    }
+                    else
+                    {
+                        String pacId = (sviPacijenti.Count() + 1).ToString();
+                        Sekretar.NapraviPacijenta(pacId, pacIdBolnice, pacGost, pacKorisnickoIme, pacLozinka, pacJmbg, pacIme, pacPrezime, pacDatumRodjenja, "", "", pacTelefon, TabelaPacijenti, sviPacijenti);
+                    }
+
+                }
+                else
+                {
+
+                    Sekretar.AzurirajPacijenta(idPacijenta, pacIdBolnice, pacGost, pacKorisnickoIme, pacLozinka, pacJmbg, pacIme, pacPrezime, pacDatumRodjenja, pacAdresa, pacEmail, pacTelefon, TabelaPacijenti, sviPacijenti);
+                }
+
+                omoguciKoriscenjaPolja(false);
+                ocistiPolja();
+                textAdresa.IsEnabled = false;
+                textEmail.IsEnabled = false;
+
+                buttonOdustaniDodavanje.Visibility = Visibility.Hidden;
+                buttonPotvrdiDodavanje.Visibility = Visibility.Hidden;
+
+            }
+            else
+            {
+                return;
+            }
+
         }
 
-      
-
-        private void dodajPacijentaButton_Click(object sender, RoutedEventArgs e)
+        private void buttonOdustani_Click(object sender, RoutedEventArgs e)
         {
-            //Radi se o dodavanju
-            flagIzmeni = false;
 
-            omoguciKoriscenjaPolja(true);
+            omoguciKoriscenjaPolja(false);
             ocistiPolja();
 
-            buttonOdustaniDodavanje.Visibility = Visibility.Visible;
-            buttonPotvrdiDodavanje.Visibility = Visibility.Visible;
-            buttonPotvrdiDodavanje.IsEnabled = false;
+            textAdresa.IsEnabled = false;
+            textEmail.IsEnabled = false;
 
+            buttonPotvrdiDodavanje.Visibility = Visibility.Hidden;
+            buttonOdustaniDodavanje.Visibility = Visibility.Hidden;
 
         }
 
@@ -199,134 +328,9 @@ namespace Bolnica_aplikacija
             lozinka.Clear();
             checkboxGostujuciNalog.IsChecked = false;
         }
+  
 
-        private void buttonOdustani_Click(object sender, RoutedEventArgs e)
-        {
-          
-            omoguciKoriscenjaPolja(false);
-            ocistiPolja();
-            
-            textAdresa.IsEnabled = false;
-            textEmail.IsEnabled = false;
-            
-            buttonPotvrdiDodavanje.Visibility = Visibility.Hidden;
-            buttonOdustaniDodavanje.Visibility = Visibility.Hidden;
-           
-        }
-
-        private void buttonPotvrdiDodavanje_Click(object sender, RoutedEventArgs e)
-        {
-            Console.WriteLine("KLIK RADI");
-            bool pacGost;
-            String pacKorisnickoIme = textKorisnickoIme.Text;
-            String pacLozinka = lozinka.Password.ToString();
-            String pacIdBolnice = "1";
-            String pacJmbg = textJMBG.Text;
-            String pacIme = textIme.Text;
-            String pacPrezime = textPrezime.Text;
-            DateTime pacDatumRodjenja = Convert.ToDateTime(textDatumRodj.Text);
-            String pacAdresa = textAdresa.Text;
-            String pacEmail = textEmail.Text;
-            String pacTelefon = textTelefon.Text;
-
-            if ((bool)checkboxGostujuciNalog.IsChecked)
-            {
-                pacGost = true;
-            }
-            else
-            {
-                pacGost = false;
-            }
-
-            
-            if (proveriIspravnostPolja(pacGost,pacKorisnickoIme, pacLozinka, pacJmbg, pacIme, pacPrezime, pacDatumRodjenja, pacAdresa, pacEmail, pacTelefon))
-            {
-                
-                if (!flagIzmeni)
-                {
-                    Console.WriteLine("Kreiram");
-                    Console.WriteLine(pacGost);
-                    if (!pacGost)
-                    {
-                        Console.WriteLine("Ne Unosim gosta");
-                        String pacId = (sviPacijenti.Count() + 1).ToString();
-                        Sekretar.NapraviPacijenta(pacId, pacIdBolnice, pacGost, pacKorisnickoIme, pacLozinka, pacJmbg, pacIme, pacPrezime, pacDatumRodjenja, pacAdresa, pacEmail, pacTelefon, TabelaPacijenti, sviPacijenti);
-                    }
-                    else
-                    {
-                        Console.WriteLine("Unosim gosta");
-                        String pacId = (sviPacijenti.Count() + 1).ToString();
-                        Sekretar.NapraviPacijenta(pacId, pacIdBolnice, pacGost, pacKorisnickoIme, pacLozinka, pacJmbg, pacIme, pacPrezime, pacDatumRodjenja, "", "", pacTelefon, TabelaPacijenti, sviPacijenti);
-                    }
-
-                }
-                else
-                {
-                    
-                    Sekretar.AzurirajPacijenta(idPacijenta, pacIdBolnice, pacGost, pacKorisnickoIme, pacLozinka, pacJmbg, pacIme, pacPrezime, pacDatumRodjenja, pacAdresa, pacEmail, pacTelefon, TabelaPacijenti, sviPacijenti);
-                }
-
-                omoguciKoriscenjaPolja(false);
-                ocistiPolja();
-
-                buttonOdustaniDodavanje.Visibility = Visibility.Hidden;
-                buttonPotvrdiDodavanje.Visibility = Visibility.Hidden;
-
-            }
-            else
-            {
-                Console.WriteLine("OVDE JE PROBLEM");
-                return;
-            }
-
-        }
-
-        private void izmeniPacijentaButton_Click(object sender, RoutedEventArgs e)
-        {   
- 
-            if (TabelaPacijenti.SelectedIndex != -1)
-            {
-                //IZMENA
-                flagIzmeni = true;
-
-                pacijent = (Pacijent)TabelaPacijenti.SelectedItem;
-                
-                buttonOdustaniDodavanje.Visibility = Visibility.Visible;
-                buttonPotvrdiDodavanje.Visibility = Visibility.Visible;
-                
-                ocistiPolja();
-                omoguciKoriscenjaPolja(true);
-
-                idPacijenta = pacijent.id;
-                textKorisnickoIme.Text = pacijent.korisnickoIme;
-                lozinka.Password = pacijent.lozinka;
-                textJMBG.Text = pacijent.jmbg;
-                textIme.Text = pacijent.ime;
-                textPrezime.Text = pacijent.prezime;
-                textAdresa.Text = pacijent.adresa;
-                textDatumRodj.Text = pacijent.datumRodjenja.ToString();
-                textEmail.Text = pacijent.email;
-                textTelefon.Text = pacijent.brojTelefona;
-
-                if (pacijent.jeGost)
-                {
-                    checkboxGostujuciNalog.IsChecked = true;
-                    textAdresa.Clear();
-                    textAdresa.IsEnabled = false;
-                    textEmail.Clear();
-                    textEmail.IsEnabled = false;
-                    checkboxGostujuciNalog.IsEnabled = true;
-
-                }
-                else
-                {
-                    checkboxGostujuciNalog.IsChecked = false;
-                    checkboxGostujuciNalog.IsEnabled = false;
-                }
-            }
-         
-        }
-
+     
         private void proveraPopunjenosti()
         {
             if (!flagIzmeni)
@@ -360,7 +364,7 @@ namespace Bolnica_aplikacija
             {
                 if (!(bool)checkboxGostujuciNalog.IsChecked)
                 {
-                    Console.WriteLine("NIJE CEKIRAN");
+                    
                     this.buttonPotvrdiDodavanje.IsEnabled = !string.IsNullOrWhiteSpace(this.textIme.Text) &&
                                                             !string.IsNullOrWhiteSpace(this.textPrezime.Text) &&
                                                             !string.IsNullOrWhiteSpace(this.textJMBG.Text) &&
@@ -374,7 +378,7 @@ namespace Bolnica_aplikacija
                 }
                 else
                 {
-                    Console.WriteLine("CEKIRAN");
+                    
                     this.buttonPotvrdiDodavanje.IsEnabled = !string.IsNullOrWhiteSpace(this.textIme.Text) &&
                                                             !string.IsNullOrWhiteSpace(this.textPrezime.Text) &&
                                                             !string.IsNullOrWhiteSpace(this.textJMBG.Text) &&
@@ -433,7 +437,7 @@ namespace Bolnica_aplikacija
             proveraPopunjenosti();
         }
 
-        private bool proveriIspravnostPolja(bool gost, String korisnickoIme, String loznika, String jmbg, String ime, String prezime, DateTime datumRodj, string adresa, string email, string telefon)
+        private bool proveriIspravnostPolja(String id, bool gost, String korisnickoIme, String loznika, String jmbg, String ime, String prezime, DateTime datumRodj, string adresa, string email, string telefon)
         {
             
             //PROVERA JMBG
@@ -443,14 +447,35 @@ namespace Bolnica_aplikacija
                 return false;
             }
 
-            if (!flagIzmeni) // Ako kreiramo pacijenta i vec postoji JMBG
+                     
+            foreach (Pacijent pac in sviPacijenti)
             {
-              
-                foreach (Pacijent pac in sviPacijenti)
+                
+                if (pac.id.Equals(id))
+                {
+                    
+                }
+                else
                 {
                     if (pac.jmbg.Equals(jmbg))
                     {
                         textJMBG.Clear();
+                        return false;
+                    }
+
+                }
+                    
+            }
+
+            
+            if (!flagIzmeni) // Ako kreiramo pacijenta i vec postoji Korisnicko ime
+            {
+
+                foreach (Pacijent pac in sviPacijenti)
+                {
+                    if (pac.korisnickoIme.Equals(korisnickoIme))
+                    {
+                        textKorisnickoIme.Clear();
                         return false;
                     }
                 }
@@ -477,9 +502,13 @@ namespace Bolnica_aplikacija
                 }
 
             }
-
+            
             //Provera datuma rodjenja
-
+            if (!Regex.IsMatch(datumRodj.ToString(), @"[0-9]{2}[/][0-9]{2}[/][0-9]{4}"))
+            {
+                //textDatumRodj.Clear();
+            }
+           
             if (!gost)
             {
                 //Provera E-mail adrese
@@ -503,7 +532,7 @@ namespace Bolnica_aplikacija
 
             }
 
-           /*if (flagIzmeni) // Ako kreiramo pacijenta i vec postoji korisnicko ime
+           if (!flagIzmeni) // Ako kreiramo pacijenta i vec postoji korisnicko ime
             {
 
                 foreach (Pacijent pac in sviPacijenti)
@@ -515,9 +544,8 @@ namespace Bolnica_aplikacija
                     }
                 }
             }
-           */
            
-
+           
             return true;
 
         }
@@ -536,6 +564,7 @@ namespace Bolnica_aplikacija
             
             textAdresa.IsEnabled = true;        
             textEmail.IsEnabled = true;
+            proveraPopunjenosti();
         }
     }
 }

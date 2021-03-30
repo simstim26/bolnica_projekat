@@ -20,7 +20,7 @@ namespace Model
         // IZMENA: Pacijent pacijent izmenjem u stringove podataka koji se upisuju, static
         public static void NapraviPacijenta(String id, String idBolnice, bool gost, String korisnickoIme, String lozinka, String jmbg, String ime, String prezime, DateTime datumRodj, string adresa, string email, string telefon, DataGrid tabelaPacijenti, List<Pacijent> pacijenti)
       {
-            Console.WriteLine("USAO U DODAVANJE");
+            
             Pacijent pacijent = new Pacijent();
             List<Pacijent> sviPacijenti = pacijenti;
 
@@ -43,6 +43,7 @@ namespace Model
             string jsonString = JsonSerializer.Serialize(sviPacijenti);
             File.WriteAllText("Datoteke/probaPacijenti.txt", jsonString);
 
+            //Unos pacijenta u korisnike
             List<PomocnaKlasaKorisnici> korisnici = JsonSerializer.Deserialize<List<PomocnaKlasaKorisnici>>(File.ReadAllText("Datoteke/probaKorisnici.txt"));
             PomocnaKlasaKorisnici korisnik = new PomocnaKlasaKorisnici();
             korisnik.id = id;
@@ -54,13 +55,13 @@ namespace Model
             string jsonString2 = JsonSerializer.Serialize(korisnici);
             File.WriteAllText("Datoteke/probaKorisnici.txt", jsonString2);
 
-            ProcitajPacijenta(tabelaPacijenti);
+            ProcitajPacijente(tabelaPacijenti);
             //throw new NotImplementedException();
         }
       
       
         //Izbrisan Pacijent pacijent
-        public static void ProcitajPacijenta(DataGrid tabelaPacijenti)
+        public static void ProcitajPacijente(DataGrid tabelaPacijenti)
       {
             List<Pacijent> ucitaniPacijenti = JsonSerializer.Deserialize<List<Pacijent>>(File.ReadAllText("Datoteke/probaPacijenti.txt"));
             List<Pacijent> neobrisaniPacijenti = new List<Pacijent>();
@@ -78,18 +79,18 @@ namespace Model
             //throw new NotImplementedException();
         }
       
-      public static void AzurirajPacijenta(String id, String idBolnice, bool gost, String korisnickoIme, String loznika, String jmbg, String ime, String prezime, DateTime datumRodj, string adresa, string email, string telefon, DataGrid tabelaPacijenti, List<Pacijent> pacijenti)
+      public static void AzurirajPacijenta(String id, String idBolnice, bool gost, String korisnickoIme, String lozinka, String jmbg, String ime, String prezime, DateTime datumRodj, string adresa, string email, string telefon, DataGrid tabelaPacijenti, List<Pacijent> pacijenti)
       {
             foreach(Pacijent izmeniP in pacijenti)
             {
                 if (izmeniP.id.Equals(id))
                 {
-                    Console.WriteLine("Nadjen!");
+                    
                     izmeniP.id = id;
                     izmeniP.idBolnice = idBolnice;
                     izmeniP.jeGost = gost;
                     izmeniP.korisnickoIme = korisnickoIme;
-                    izmeniP.lozinka = loznika;
+                    izmeniP.lozinka = lozinka;
                     izmeniP.jmbg = jmbg;
                     izmeniP.ime = ime;
                     izmeniP.prezime = prezime;
@@ -102,8 +103,8 @@ namespace Model
 
             string jsonString = JsonSerializer.Serialize(pacijenti);
             File.WriteAllText("Datoteke/probaPacijenti.txt", jsonString);
-
-            ProcitajPacijenta(tabelaPacijenti);
+       
+            ProcitajPacijente(tabelaPacijenti);
 
             // throw new NotImplementedException();
       }
