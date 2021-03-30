@@ -45,9 +45,8 @@ namespace Model
                     String[] datumBezVremena = termin.datum.Date.ToString().Split(' ');
                     String[] danMesecGodina = datumBezVremena[0].Split('/');
                     pacijentTermin.datum = danMesecGodina[1] + "." + danMesecGodina[0] + "." + danMesecGodina[2] + ".";
-                    String[] satnicaString = termin.satnica.ToString().Split(' ');
-                    String[] sat = satnicaString[1].Split(':');
-                    pacijentTermin.satnica = sat[0] + ':' + sat[1];
+                    String satnica = termin.satnica.ToString("HH:mm");
+                    pacijentTermin.satnica = satnica;
 
                     foreach (Lekar lekar in JsonSerializer.Deserialize<List<Lekar>>(File.ReadAllText("Datoteke/probaLekari.txt")))
                     {
