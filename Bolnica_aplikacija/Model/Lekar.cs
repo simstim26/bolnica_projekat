@@ -42,9 +42,7 @@ namespace Model
                     PacijentTermin pacijentTermin = new PacijentTermin();
                     pacijentTermin.id = termin.idTermina;
                     pacijentTermin.napomena = termin.getTipString();
-                    String[] datumBezVremena = termin.datum.Date.ToString().Split(' ');
-                    String[] danMesecGodina = datumBezVremena[0].Split('/');
-                    pacijentTermin.datum = danMesecGodina[1] + "." + danMesecGodina[0] + "." + danMesecGodina[2] + ".";
+                    pacijentTermin.datum = termin.datum.Date.ToString("dd.MM.yyyy.");
                     String satnica = termin.satnica.ToString("HH:mm");
                     pacijentTermin.satnica = satnica;
 
