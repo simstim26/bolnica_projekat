@@ -21,9 +21,20 @@ namespace Bolnica_aplikacija.Kontroler
             korisnikServis.nadjiLekara(idLekara);
         }
 
+        public static void NadjiPacijenta(String idPacijenta)
+        {
+            korisnikServis.NadjiPacijenta(idPacijenta);
+        }
+
         public static Lekar getLekar()
         {
             return korisnikServis.getLekar();
         }
+
+        public static Pacijent GetPacijent()
+        {
+            return korisnikServis.GetPacijent();
+        }
+
     }
 }

@@ -1,4 +1,5 @@
-﻿using Bolnica_aplikacija.PacijentModel;
+﻿using Bolnica_aplikacija.Kontroler;
+using Bolnica_aplikacija.PacijentModel;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -27,10 +28,10 @@ namespace Bolnica_aplikacija.PacijentStudent
 
         private String idPacijenta;
 
-        public PacijentProzor(String id)
+        public PacijentProzor()
         {
             InitializeComponent();
-            this.idPacijenta = id;
+            this.idPacijenta = KorisnikKontroler.GetPacijent().id;
             this.DataContext = this;
 
             SetScreenSize();
@@ -38,22 +39,26 @@ namespace Bolnica_aplikacija.PacijentStudent
             SetDataGridBounds();
             SetLabelPacijentContent();
 
-            Pacijent.ProcitajTermin(dataGridTermin, this.idPacijenta);
+            PopuniTermine();
 
+            //Pacijent.ProcitajTermin(dataGridTermin, this.idPacijenta);
+            
+
+
+        }
+
+        private void PopuniTermine()
+        {
+            //dataGridTermin.ItemsSource = PacijentKontroler.prikazTermina();
         }
 
         private void SetLabelPacijentContent()
         {
-            var sviPacijenti = JsonSerializer.Deserialize<List<Pacijent>>(File.ReadAllText("Datoteke/probaPacijenti.txt"));
 
-            foreach (Pacijent pacijent in sviPacijenti)
-            {
-                if (pacijent.id.Equals(this.idPacijenta))
-                {
-                    lblPacijent.Content = lblPacijent.Content + " " + pacijent.ime + " " + pacijent.prezime;
-                    break;
-                }
-            }
+            lblPacijent.Content = lblPacijent.Content + " " +
+                KorisnikKontroler.GetPacijent().ime + " " +
+                KorisnikKontroler.GetPacijent().prezime;
+             
         }
 
         private void SetScreenSize()
@@ -111,6 +116,8 @@ namespace Bolnica_aplikacija.PacijentStudent
             double newHeight = e.NewSize.Height;
             dataGridTermin.Height = newHeight - 300;
         }
+
+        //ove dve metode revizirati (ove sto su ispod)
 
         private void btnOtkaziPregled_Click(object sender, RoutedEventArgs e)
         {

@@ -34,16 +34,14 @@ namespace Bolnica_aplikacija
             switch (ulogovaniKorisnik[0])
             {
                  case "pacijent":
-                    /*foreach(Pacijent pacijent in JsonSerializer.Deserialize<List<Pacijent>>(File.ReadAllText("Datoteke/probaPacijenti.txt")))
-                    {
-                        if (pacijent.id.Equals(pronadjen[1]) && !pacijent.jeLogickiObrisan)
-                        {
-                            PacijentProzor pacijentProzor = new PacijentProzor(pacijent.id);
-                            this.Close();
-                            pacijentProzor.ShowDialog();
-                        }
-                    }*/
-                     break;
+                    
+                    KorisnikKontroler.NadjiPacijenta(ulogovaniKorisnik[1]); //cuvanje ulogovanog korisnika
+                    PacijentProzor pacijentProzor = new PacijentProzor();
+                    this.Close();
+                    pacijentProzor.ShowDialog();
+                    break;
+                    
+                     
                  case "lekar":
                     KorisnikKontroler.nadjiLekara(ulogovaniKorisnik[1]); //cuvanje ulogovanog korisnika
                     LekarProzor lekarProzor = new LekarProzor();

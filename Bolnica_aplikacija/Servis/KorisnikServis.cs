@@ -13,9 +13,13 @@ namespace Bolnica_aplikacija.Servis
     {
         /*---Za cuvanje ulogovanog korisnika---*/
         private Lekar lekar;
+        private Pacijent pacijent;
         /*------------------------------------*/
+
         private KorisnikRepozitorijum korisnikRepozitorijum = new KorisnikRepozitorijum();
         private LekarRepozitorijum lekarRepozitorijum = new LekarRepozitorijum();
+        private PacijentRepozitorijum pacijentRepozitorijum = new PacijentRepozitorijum();
+
         public String[] prijava(String korisnickoIme, String lozinka)
         {
             String[] povratnaVrednost = { "", "" };
@@ -30,6 +34,23 @@ namespace Bolnica_aplikacija.Servis
             }
 
             return povratnaVrednost;
+        }
+
+        public void NadjiPacijenta(String idPacijenta)
+        {
+            foreach(Pacijent pacijent in pacijentRepozitorijum.ucitajSve())
+            {
+                if(pacijent.id.Equals(idPacijenta))
+                {
+                    this.pacijent = pacijent;
+                    break;
+                }
+            }
+        }
+
+        public Pacijent GetPacijent()
+        {
+            return pacijent;
         }
 
         public void nadjiLekara(String idLekara) //da li ide u repozitorijum nova metoda nadjiPoId?
