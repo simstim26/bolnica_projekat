@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Bolnica_aplikacija.Kontroler;
 using Model;
 
 namespace Bolnica_aplikacija
@@ -27,16 +28,8 @@ namespace Bolnica_aplikacija
         public PrikazPacijenata()
         {
             InitializeComponent();
-            var pacijenti = JsonSerializer.Deserialize<List<Pacijent>>(File.ReadAllText("Datoteke/probaPacijenti.txt"));
-            List<Pacijent> pacijentiZaPrikaz = new List<Pacijent>();
-            foreach(Pacijent pacijent in pacijenti)
-            {
-                if (!pacijent.jeLogickiObrisan)
-                {
-                    pacijentiZaPrikaz.Add(pacijent);
-                }
-            }
-            lstPacijenti.ItemsSource = pacijentiZaPrikaz;
+
+            lstPacijenti.ItemsSource = PacijentKontroler.prikazPacijenata();
         }
 
         private void btnInfo_Click(object sender, RoutedEventArgs e)

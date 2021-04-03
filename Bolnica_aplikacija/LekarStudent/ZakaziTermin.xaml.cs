@@ -1,4 +1,5 @@
-﻿using Bolnica_aplikacija.LekarStudent;
+﻿using Bolnica_aplikacija.Kontroler;
+using Bolnica_aplikacija.LekarStudent;
 using Bolnica_aplikacija.PacijentModel;
 using Model;
 using System;
@@ -99,7 +100,7 @@ namespace Bolnica_aplikacija
                             break;
                         }
                     }
-                    if (!LekarProzor.getLekar().idSpecijalizacije.Equals("0") && pacijentTermin.napomena.Equals("Operacija"))
+                    if (!KorisnikKontroler.getLekar().idSpecijalizacije.Equals("0") && pacijentTermin.napomena.Equals("Operacija"))
                     {
                         if (tipAkcije == 0 && rezultat >= 0)
                         {
@@ -136,11 +137,11 @@ namespace Bolnica_aplikacija
 
                 if (tipAkcije == 0)
                 {
-                    LekarProzor.getLekar().NapraviTermin(pacijentTermin.id);
+                    KorisnikKontroler.getLekar().NapraviTermin(pacijentTermin.id);
                 }
                 else
                 {
-                    LekarProzor.getLekar().AzurirajTermin(izabraniTermin.id, pacijentTermin.id);
+                    KorisnikKontroler.getLekar().AzurirajTermin(izabraniTermin.id, pacijentTermin.id);
                 }
 
                 LekarProzor.getX().Content = new LekarTabovi();
@@ -179,7 +180,7 @@ namespace Bolnica_aplikacija
                     }
                 }
 
-                if (pronadjenTermin.idLekara.Equals(LekarProzor.getLekar().id))
+                if (pronadjenTermin.idLekara.Equals(KorisnikKontroler.getLekar().id))
                 {
                     Content = new PrikazProstorija(pronadjenTermin);
                 }
@@ -208,7 +209,7 @@ namespace Bolnica_aplikacija
                         break;
                     }
                 }
-                if (pronadjenTermin.idLekara.Equals(LekarProzor.getLekar().id))
+                if (pronadjenTermin.idLekara.Equals(KorisnikKontroler.getLekar().id))
                 {
                     Content = new PrikazProstorija(pronadjenTermin);
                 }

@@ -15,6 +15,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.IO;
 using Model;
+using Bolnica_aplikacija.Kontroler;
 
 namespace Bolnica_aplikacija
 {
@@ -24,16 +25,14 @@ namespace Bolnica_aplikacija
     public partial class LekarProzor : Window
     {
         private static ContentControl x;
-        private static Lekar lekar;
 
-        public LekarProzor(Lekar l)
+        public LekarProzor()
         {
             InitializeComponent();
             this.contentControl.Content = new LekarTabovi();
             x = this.contentControl;
-            lblImePrezime.Content = l.ime + " " + l.prezime;
-            lblprosecnaOcena.Content += " " + l.prosecnaOcena;
-            lekar = l;
+            lblImePrezime.Content = KorisnikKontroler.getLekar().ime + " " + KorisnikKontroler.getLekar().prezime;
+            lblprosecnaOcena.Content += " " + KorisnikKontroler.getLekar().prosecnaOcena;
         }
 
         public static ContentControl getX()
@@ -41,10 +40,6 @@ namespace Bolnica_aplikacija
             return x;
         }
 
-        public static Lekar getLekar()
-        {
-            return lekar;
-        }
         private void meniOdjava_Click(object sender, RoutedEventArgs e)
         {
             Prijava prijava = new Prijava();

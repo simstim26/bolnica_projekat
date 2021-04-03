@@ -1,4 +1,5 @@
-﻿using Bolnica_aplikacija.PacijentModel;
+﻿using Bolnica_aplikacija.Kontroler;
+using Bolnica_aplikacija.PacijentModel;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -35,7 +36,7 @@ namespace Bolnica_aplikacija.LekarStudent
         private void ucitajPodatke()
         {
 
-            dataProstorije.ItemsSource = LekarProzor.getLekar().PrikazProstorija(termin);
+            dataProstorije.ItemsSource = KorisnikKontroler.getLekar().PrikazProstorija(termin);
         }
 
         private void btnPonisti_Click(object sender, RoutedEventArgs e)
@@ -47,14 +48,14 @@ namespace Bolnica_aplikacija.LekarStudent
         {
             if(dataProstorije.SelectedIndex != -1 && ZakaziTermin.getTipAkcije() == 0)
             {
-                Prostorija prostorija = (Prostorija)dataProstorije.SelectedItem;             
-                LekarProzor.getLekar().AzurirajProstorijuTermina(termin.idTermina, prostorija.id);
+                Prostorija prostorija = (Prostorija)dataProstorije.SelectedItem;
+                KorisnikKontroler.getLekar().AzurirajProstorijuTermina(termin.idTermina, prostorija.id);
                 Content = new ZakaziTermin(ZakaziTermin.getTipAkcije(), ZakaziTermin.getIzabraniTermin());
             }
             else if(dataProstorije.SelectedIndex != -1 && ZakaziTermin.getTipAkcije() == 1)
             {
                 Prostorija prostorija = (Prostorija)dataProstorije.SelectedItem;
-                LekarProzor.getLekar().AzurirajProstorijuTermina(ZakaziTermin.getIzabraniTermin().id, prostorija.id);
+                KorisnikKontroler.getLekar().AzurirajProstorijuTermina(ZakaziTermin.getIzabraniTermin().id, prostorija.id);
                 LekarProzor.getX().Content = new LekarTabovi();
                 LekarTabovi.getX().Content = new PacijentInfo();
                 LekarTabovi.getTab().SelectedIndex = 1;

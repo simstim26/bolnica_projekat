@@ -26,8 +26,11 @@ namespace Model
                     break;
                 }
             }
-
-            string jsonString = JsonSerializer.Serialize(sviTermini);
+            var options = new JsonSerializerOptions
+            {
+                WriteIndented = true,
+            };
+            string jsonString = JsonSerializer.Serialize(sviTermini, options);
             File.WriteAllText("Datoteke/probaTermini.txt", jsonString);
       }
 

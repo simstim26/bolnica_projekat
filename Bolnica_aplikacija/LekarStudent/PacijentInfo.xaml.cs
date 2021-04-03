@@ -17,6 +17,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Model;
 using Bolnica_aplikacija.PacijentModel;
+using Bolnica_aplikacija.Kontroler;
 
 namespace Bolnica_aplikacija
 {
@@ -66,7 +67,7 @@ namespace Bolnica_aplikacija
                         }
                         else
                         {
-                            LekarProzor.getLekar().ObrisiTermin(izabraniTermin.id);
+                            KorisnikKontroler.getLekar().ObrisiTermin(izabraniTermin.id);
                         }
                         break;
                     }
@@ -83,7 +84,7 @@ namespace Bolnica_aplikacija
 
         private void ucitajPodatke()
         {
-            dataGridTerminiPacijenta.ItemsSource = LekarProzor.getLekar().ProcitajTermin();
+              dataGridTerminiPacijenta.ItemsSource =KorisnikKontroler.getLekar().ProcitajTermin();
         }
 
         private void btnPromeni_Click(object sender, RoutedEventArgs e)

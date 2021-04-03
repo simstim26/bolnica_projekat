@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using Bolnica_aplikacija.Model;
 using Model;
 using Bolnica_aplikacija.PacijentStudent;
+using Bolnica_aplikacija.Kontroler;
 
 namespace Bolnica_aplikacija
 {
@@ -29,13 +30,11 @@ namespace Bolnica_aplikacija
         {
             string korisnickoIme = txtKorisnickoIme.Text;
             string lozinka = txtLozinka.Password.ToString();
-            String[] pronadjen = Korisnik.Prijava(korisnickoIme, lozinka);
-            
-
-            switch (pronadjen[0])
-             {
+            String[] ulogovaniKorisnik = KorisnikKontroler.prijava(korisnickoIme, lozinka); // [0] - tip; // [1] - id
+            switch (ulogovaniKorisnik[0])
+            {
                  case "pacijent":
-                    foreach(Pacijent pacijent in JsonSerializer.Deserialize<List<Pacijent>>(File.ReadAllText("Datoteke/probaPacijenti.txt")))
+                    /*foreach(Pacijent pacijent in JsonSerializer.Deserialize<List<Pacijent>>(File.ReadAllText("Datoteke/probaPacijenti.txt")))
                     {
                         if (pacijent.id.Equals(pronadjen[1]) && !pacijent.jeLogickiObrisan)
                         {
@@ -43,21 +42,16 @@ namespace Bolnica_aplikacija
                             this.Close();
                             pacijentProzor.ShowDialog();
                         }
-                    }
+                    }*/
                      break;
                  case "lekar":
-                     foreach(Lekar lekar in JsonSerializer.Deserialize<List<Lekar>>(File.ReadAllText("Datoteke/probaLekari.txt")))
-                     {
-                         if(lekar.id.Equals(pronadjen[1]))
-                         {
-                             LekarProzor lekarProzor = new LekarProzor(lekar);
-                             this.Close();
-                             lekarProzor.ShowDialog();
-                         }
-                     }
+                    KorisnikKontroler.nadjiLekara(ulogovaniKorisnik[1]); //cuvanje ulogovanog korisnika
+                    LekarProzor lekarProzor = new LekarProzor();
+                    this.Close();
+                    lekarProzor.ShowDialog();
                      break;
                  case "sekretar":
-                    foreach(Sekretar sekretar in JsonSerializer.Deserialize<List<Sekretar>>(File.ReadAllText("Datoteke/probaSekretari.txt")))
+                    /*foreach(Sekretar sekretar in JsonSerializer.Deserialize<List<Sekretar>>(File.ReadAllText("Datoteke/probaSekretari.txt")))
                     {
                         if (sekretar.id.Equals(pronadjen[1]))
                         {
@@ -65,10 +59,10 @@ namespace Bolnica_aplikacija
                             this.Close();
                             sekretarProzor.ShowDialog();
                         }
-                    }
+                    }*/
                      break;
                  case "upravnik":
-                    foreach (Upravnik upravnik in JsonSerializer.Deserialize<List<Upravnik>>(File.ReadAllText("Datoteke/probaUpravnici.txt")))
+                    /*foreach (Upravnik upravnik in JsonSerializer.Deserialize<List<Upravnik>>(File.ReadAllText("Datoteke/probaUpravnici.txt")))
                     {
                         if (upravnik.id.Equals(pronadjen[1]))
                         {
@@ -77,7 +71,7 @@ namespace Bolnica_aplikacija
                             this.Close();
                             upravnikProzor.ShowDialog();
                         }
-                    }
+                    }*/
                     break;
                 default:
                      lblPogresno.Visibility = Visibility.Visible;
