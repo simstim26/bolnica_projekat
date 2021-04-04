@@ -121,47 +121,29 @@ namespace Bolnica_aplikacija.PacijentStudent
             {
                 PacijentTermin izabraniTermin = (PacijentTermin)dataGridTermin.SelectedItem;
 
-                String izabraniDatum = izabraniTermin.datum;
-
-                DateTime izabraniDatumDate = Convert.ToDateTime(izabraniDatum);
-
-                DateTime danasnjiDatum = DateTime.Today.AddDays(1);
-
-                int rezultat = DateTime.Compare(izabraniDatumDate, danasnjiDatum);
-
-                if(rezultat < 0)
+                if(izabraniTermin.napomena.Equals("Pregled"))
                 {
-                    MessageBox.Show("Nije moguće izvršiti otkazivanje termina 24h pred termin.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
-                }
-                else if(rezultat == 0)
-                {
-                    MessageBox.Show("Nije moguće izvršiti otkazivanje termina 24h pred termin.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
-                }
-                else
-                {
-                    if(izabraniTermin.napomena.Equals("Pregled"))
+                    if(TerminKontroler.proveriDatumTermina(izabraniTermin.id) <= 0)
                     {
-                        PotvrdaProzor pprozor = new PotvrdaProzor();
-                        pprozor.Owner = this;
-                        pprozor.ShowDialog();
-
-                        if (pprozor.GetPovratnaVrednost() == 1)
-                            if (dataGridTermin.SelectedIndex != -1)
-                            {
-                                Pacijent.ObrisiTermin(dataGridTermin, this.idPacijenta);
-                            }
+                        MessageBox.Show("Nije moguće izvršiti otkazivanje termina 24h pred termin.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
                     }
                     else
                     {
-                        MessageBox.Show("Potrebno je da se konsultujete sa Vašim lekarom kako biste otkazali termin operacije.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        PacijentKontroler.otkaziTerminPacijenta(izabraniTermin.id);
                     }
-
+                }
+                else
+                {
+                    MessageBox.Show("Potrebno je da se konsultujete sa Vašim lekarom kako biste otkazali termin operacije.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
             else
             {
                 MessageBox.Show("Molimo odaberite termin koji želite da otkažete.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
+
+            PopuniTermine();
+
         }
 
         private void btnIzmeniTermin_Click(object sender, RoutedEventArgs e)
@@ -171,36 +153,26 @@ namespace Bolnica_aplikacija.PacijentStudent
 
                 PacijentTermin izabraniTermin = (PacijentTermin)dataGridTermin.SelectedItem;
 
-                String izabraniDatum = izabraniTermin.datum;
-
-                DateTime izabraniDatumDate = Convert.ToDateTime(izabraniDatum);
-
-                DateTime danasnjiDatum = DateTime.Today.AddDays(1);
-
-                int rezultat = DateTime.Compare(izabraniDatumDate, danasnjiDatum);
-
-                if (rezultat < 0)
+                if(izabraniTermin.napomena.Equals("Pregled"))
                 {
-                    MessageBox.Show("Nije moguće izvršiti izmenu termina 24h pred termin.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
-                }
-                else if (rezultat == 0)
-                {
-                    MessageBox.Show("Nije moguće izvršiti izmenu termina 24h pred termin.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
-                }
-                else
-                {
-
-                    if (izabraniTermin.napomena.Equals("Pregled"))
+                    if(TerminKontroler.proveriDatumTermina(izabraniTermin.datum) <= 0)
                     {
+                        MessageBox.Show("Nije moguće izvršiti promenu termina 24h pred termin.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                    else
+                    {
+                        TerminKontroler.sacuvajTermin(izabraniTermin.id);
                         IzmenaTerminaPacijent izmenaTermina = new IzmenaTerminaPacijent(dataGridTermin, this.idPacijenta);
                         izmenaTermina.Owner = this;
                         izmenaTermina.ShowDialog();
                     }
-                    else
-                    {
-                        MessageBox.Show("Za izmenu termina operacije je potrebno da se konsultujete sa Vašim lekarom.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    }
                 }
+                else
+                {
+                    MessageBox.Show("Za izmenu termina operacije je potrebno da se konsultujete sa Vašim lekarom.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+
+                }
+
             }
             else
             {

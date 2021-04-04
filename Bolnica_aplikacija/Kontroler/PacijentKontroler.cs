@@ -49,5 +49,13 @@ namespace Bolnica_aplikacija.Kontroler
         {
             return pacijentServis.getPacijent();
         }
+
+
+        //da li mi treba ovo??
+        public static void otkaziZakazanTermin(String idTermina)
+        {
+            pacijentServis.otkaziTerminPacijenta(idTermina);
+        }
+
     }
 }
