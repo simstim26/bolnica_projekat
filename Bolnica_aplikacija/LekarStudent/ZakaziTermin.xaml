@@ -23,5 +23,6 @@
         </DataGrid>
         <Label x:Name="lblIzaberi" Content="Izaberite termin: " HorizontalAlignment="Left" Height="38" Margin="12,26,0,0" VerticalAlignment="Top" Width="273" FontSize="16"/>
         <Button x:Name="btnOdabirProstorije" Content="Odabir prostorije" HorizontalAlignment="Left" Height="42" Margin="302,18,0,0" VerticalAlignment="Top" Width="110" BorderBrush="Black" Background="White" Click="btnOdabirProstorije_Click"/>
+        <Button x:Name="btnZakaziOperaciju" Content="Zakazi operaciju" HorizontalAlignment="Left" Height="42" Margin="302,18,0,0" VerticalAlignment="Top" Width="110" BorderBrush="Black" Background="White"/>
     </Grid>
 </UserControl>

@@ -28,7 +28,7 @@ namespace Bolnica_aplikacija
         {
             InitializeComponent();
             tab = this.tabInfo;
-            lblIme.Content += PrikazPacijenata.GetPacijent().ime;
+            lblIme.Content += PacijentKontroler.getPacijent().ime;
             ucitajPodatke();
         }
 
@@ -39,7 +39,7 @@ namespace Bolnica_aplikacija
 
         private void btnZakazi_Click(object sender, RoutedEventArgs e)
         {
-            LekarProzor.getX().Content = new ZakaziTermin(0, null);
+            LekarProzor.getX().Content = new ZakaziTermin(0);
         }
 
         public static TabControl getPregledTab()
@@ -52,25 +52,20 @@ namespace Bolnica_aplikacija
             if (dataGridTerminiPacijenta.SelectedIndex != -1)
             {
                 PacijentTermin izabraniTermin = (PacijentTermin)dataGridTerminiPacijenta.SelectedItem;
-                var sviTermini = JsonSerializer.Deserialize<List<Termin>>(File.ReadAllText("Datoteke/probaTermini.txt"));
-
-                foreach (Termin termin in sviTermini)
+                if (TerminKontroler.proveriTipTermina(KorisnikKontroler.getLekar(), izabraniTermin.id))
                 {
-                    if (izabraniTermin.id.Equals(termin.idTermina))
+                    if (TerminKontroler.proveriDatumTermina(izabraniTermin.id) <= 0)
                     {
-                        DateTime trenutanDatum = DateTime.Now.AddDays(1);
-                        int rezultat = DateTime.Compare(termin.datum, trenutanDatum);
-
-                        if (rezultat <= 0)
-                        {
-                            MessageBox.Show("Nije moguće izvršiti otkazivanje termina 24h pred termin.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
-                        }
-                        else
-                        {
-                            KorisnikKontroler.getLekar().ObrisiTermin(izabraniTermin.id);
-                        }
-                        break;
+                        MessageBox.Show("Nije moguće izvršiti otkazivanje termina 24h pred termin.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
                     }
+                    else
+                    {
+                        PacijentKontroler.otkaziTerminPacijenta(izabraniTermin.id);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Ne mozete otkazati operaciju!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
             else
@@ -84,7 +79,7 @@ namespace Bolnica_aplikacija
 
         private void ucitajPodatke()
         {
-              dataGridTerminiPacijenta.ItemsSource =KorisnikKontroler.getLekar().ProcitajTermin();
+              dataGridTerminiPacijenta.ItemsSource = PacijentKontroler.prikazSvihTerminaPacijenta();
         }
 
         private void btnPromeni_Click(object sender, RoutedEventArgs e)
@@ -92,27 +87,25 @@ namespace Bolnica_aplikacija
             if(dataGridTerminiPacijenta.SelectedIndex != -1)
             {
                 PacijentTermin izabraniTermin = (PacijentTermin)dataGridTerminiPacijenta.SelectedItem;
-                var sviTermini = JsonSerializer.Deserialize<List<Termin>>(File.ReadAllText("Datoteke/probaTermini.txt"));
 
-                foreach (Termin termin in sviTermini)
+                if (TerminKontroler.proveriTipTermina(KorisnikKontroler.getLekar(), izabraniTermin.id))
                 {
-                    if (izabraniTermin.id.Equals(termin.idTermina))
+                    if (TerminKontroler.proveriDatumTermina(izabraniTermin.id) <= 0)
                     {
-                        DateTime trenutanDatum = DateTime.Now.AddDays(1);
-                        int rezultat = DateTime.Compare(termin.datum, trenutanDatum);
+                        MessageBox.Show("Nije moguće izvršiti promenu termina 24h pred termin.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                    else
+                    {
+                        TerminKontroler.sacuvajTermin(izabraniTermin.id);
+                        LekarProzor.getX().Content = new ZakaziTermin(1);
 
-                        if(rezultat <= 0)
-                        {
-                            MessageBox.Show("Nije moguće izvršiti promenu termina 24h pred termin.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
-                        }
-                        else
-                        {
-                            LekarProzor.getX().Content = new ZakaziTermin(1, izabraniTermin);
-
-                        }
-                        break;
                     }
                 }
+                else 
+                {
+                    MessageBox.Show("Nije moguće promeniti operaciju!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+                            
             }
             else
             {

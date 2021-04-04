@@ -92,7 +92,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Kontroler\KorisnikKontroler.cs" />
+    <Compile Include="Kontroler\LekarKontroler.cs" />
     <Compile Include="Kontroler\PacijentKontroler.cs" />
+    <Compile Include="Kontroler\TerminKontroler.cs" />
     <Compile Include="Repozitorijum\KorisnikRepozitorijum.cs" />
     <Compile Include="LekarStudent\PrikazProstorija.xaml.cs">
       <DependentUpon>PrikazProstorija.xaml</DependentUpon>
@@ -111,13 +113,16 @@
     <Compile Include="Repozitorijum\LekarRepozitorijum.cs" />
     <Compile Include="Repozitorijum\PacijentRepozitorijum.cs" />
     <Compile Include="Repozitorijum\ProstorijaRepozitorijum.cs" />
+    <Compile Include="Repozitorijum\SpecijalizacijaRepozitorijum.cs" />
     <Compile Include="Repozitorijum\TerminRepozitorijum.cs" />
     <Compile Include="SekretarStudent\SekretarProzor.xaml.cs">
       <DependentUpon>SekretarProzor.xaml</DependentUpon>
     </Compile>
     <Compile Include="PomocneKlase\PacijentTermin.cs" />
     <Compile Include="Servis\KorisnikServis.cs" />
+    <Compile Include="Servis\LekarServis.cs" />
     <Compile Include="Servis\PacijentServis.cs" />
+    <Compile Include="Servis\TerminServis.cs" />
     <Compile Include="UpravnikStudent\UpravnikProzor.xaml.cs">
       <DependentUpon>UpravnikProzor.xaml</DependentUpon>
     </Compile>

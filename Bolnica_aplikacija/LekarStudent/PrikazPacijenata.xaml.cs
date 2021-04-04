@@ -37,7 +37,7 @@ namespace Bolnica_aplikacija
             if(lstPacijenti.SelectedIndex != -1)
             {
                 pacijent = (Pacijent)lstPacijenti.SelectedItem;
-
+                PacijentKontroler.nadjiPacijenta(((Pacijent)lstPacijenti.SelectedItem).id);
                 this.Content = new PacijentInfo();
             }
 

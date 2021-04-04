@@ -16,7 +16,7 @@ namespace Bolnica_aplikacija.Repozitorijum
             List<Prostorija> sveProstorije;
             try
             {
-                sveProstorije = JsonSerializer.Deserialize<List<Prostorija>>(File.ReadAllText("Datoteke/Prostorija.txt"));
+                sveProstorije = JsonSerializer.Deserialize<List<Prostorija>>(File.ReadAllText("Datoteke/Prostorije.txt"));
             }
             catch (Exception e)
             {

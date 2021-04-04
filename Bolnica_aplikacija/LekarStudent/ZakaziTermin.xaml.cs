@@ -27,27 +27,38 @@ namespace Bolnica_aplikacija
     public partial class ZakaziTermin : UserControl
     {
         private static int tipAkcije; //0-zakazivanje; 1-promena (zahteva zakazivanje i otkazivanje)
-        private static PacijentTermin izabraniTermin;
-        public ZakaziTermin(int tip, PacijentTermin izabrani)
+        public ZakaziTermin(int tip)
         {
             InitializeComponent();
             tipAkcije = tip;
-            izabraniTermin = izabrani;
-            if(tipAkcije == 1)
+
+            if (tipAkcije == 1)
             {
                 lblIzaberi.Content = "Izaberite novi termin: ";
                 btnOdabirProstorije.Content = "Promena prostorije";
+                btnOdabirProstorije.Visibility = Visibility.Visible;
+                btnZakaziOperaciju.Visibility = Visibility.Hidden;
             }
-            ucitajPodatke();
+            else
+            {
+                btnOdabirProstorije.Visibility = Visibility.Hidden;
+                if (KorisnikKontroler.getLekar().idSpecijalizacije != "0")
+                {
+                    btnZakaziOperaciju.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    btnZakaziOperaciju.Visibility = Visibility.Hidden;
+                }
+                dataGridZakazivanjeTermina.ItemsSource = LekarKontroler.prikaziSlobodneTermineZaLekara(KorisnikKontroler.getLekar(), tipAkcije);
+            }
         }
+
         public static int getTipAkcije()
         {
             return tipAkcije;
         }
-        public static PacijentTermin getIzabraniTermin()
-        {
-            return izabraniTermin;
-        }
+
         private void btnPonisti_Click(object sender, RoutedEventArgs e)
         {
             LekarProzor.getX().Content = new LekarTabovi();
@@ -56,92 +67,19 @@ namespace Bolnica_aplikacija
             PacijentInfo.getPregledTab().SelectedIndex = 1;
         }
 
-        private void ucitajPodatke()
-        {
-            var sviTermini = JsonSerializer.Deserialize<List<Termin>>(File.ReadAllText("Datoteke/probaTermini.txt"));
-            List<PacijentTermin> terminiPacijenta = new List<PacijentTermin>();
-            foreach (Termin termin in sviTermini)
-            {
-                if (termin.idPacijenta.Equals(""))
-                {
-                    DateTime trenutanDatum = DateTime.Now.AddDays(1);
-
-                    int rezultat = DateTime.Compare(termin.datum, trenutanDatum);
-                    PacijentTermin pacijentTermin = new PacijentTermin();
-                    pacijentTermin.id = termin.idTermina;
-                    pacijentTermin.napomena = termin.getTipString();
-                    pacijentTermin.datum = termin.datum.Date.ToString("dd.MM.yyyy.");
-                    String satnica = termin.satnica.ToString("HH:mm");
-                    pacijentTermin.satnica = satnica;
-
-                    foreach (Lekar lekar in JsonSerializer.Deserialize<List<Lekar>>(File.ReadAllText("Datoteke/probaLekari.txt")))
-                    {
-                        if (lekar.id.Equals(termin.idLekara))
-                        {
-                            pacijentTermin.imeLekara = lekar.ime + " " + lekar.prezime;
-
-                            foreach (Specijalizacija spec in JsonSerializer.Deserialize<List<Specijalizacija>>(File.ReadAllText("Datoteke/Specijalizacije.txt")))
-                            {
-                                if (lekar.idSpecijalizacije.Equals(spec.idSpecijalizacije))
-                                {
-                                    pacijentTermin.nazivSpecijalizacije = spec.nazivSpecijalizacije;
-                                    break;
-                                }
-                            }
-                            break;
-                        }
-                    }
-
-                    foreach (Prostorija prostorija in JsonSerializer.Deserialize<List<Prostorija>>(File.ReadAllText("Datoteke/probaProstorije.txt")))
-                    {
-                        if (termin.idProstorije.Equals(prostorija.id))
-                        {
-                            pacijentTermin.lokacija = prostorija.sprat + " " + prostorija.broj;
-                            break;
-                        }
-                    }
-                    if (!KorisnikKontroler.getLekar().idSpecijalizacije.Equals("0") && pacijentTermin.napomena.Equals("Operacija"))
-                    {
-                        if (tipAkcije == 0 && rezultat >= 0)
-                        {
-                            terminiPacijenta.Add(pacijentTermin);
-                        }
-                        else if (tipAkcije == 1 && rezultat > 0)
-                        {
-                            terminiPacijenta.Add(pacijentTermin);
-                        }
-                    }
-                    else if (pacijentTermin.napomena.Equals("Pregled"))
-                    {
-                        if (tipAkcije == 0 && rezultat >= 0) 
-                        {
-                            terminiPacijenta.Add(pacijentTermin);
-                        }
-                        else if (tipAkcije == 1 && rezultat > 0)
-                        {
-                            terminiPacijenta.Add(pacijentTermin);
-                        }
-                    }
-                }
-            }
-
-            dataGridZakazivanjeTermina.ItemsSource = terminiPacijenta;
-        }
-
         private void btnPotvrdi_Click(object sender, RoutedEventArgs e)
         {
             if(dataGridZakazivanjeTermina.SelectedIndex != -1)
             {
-                var sviTermini = JsonSerializer.Deserialize<List<Termin>>(File.ReadAllText("Datoteke/probaTermini.txt"));
                 PacijentTermin pacijentTermin = (PacijentTermin)dataGridZakazivanjeTermina.SelectedItem; //novi termin
 
                 if (tipAkcije == 0)
                 {
-                    KorisnikKontroler.getLekar().NapraviTermin(pacijentTermin.id);
+                    PacijentKontroler.zakaziTerminPacijentu(pacijentTermin.id);
                 }
                 else
                 {
-                    KorisnikKontroler.getLekar().AzurirajTermin(izabraniTermin.id, pacijentTermin.id);
+                    PacijentKontroler.azurirajTerminPacijentu(TerminKontroler.getTermin().idTermina, pacijentTermin.id);
                 }
 
                 LekarProzor.getX().Content = new LekarTabovi();
@@ -162,7 +100,7 @@ namespace Bolnica_aplikacija
             if (dataGridZakazivanjeTermina.SelectedIndex != -1)
             {
                 PacijentTermin termin = (PacijentTermin)dataGridZakazivanjeTermina.SelectedItem;
-                var sviTermini = JsonSerializer.Deserialize<List<Termin>>(File.ReadAllText("Datoteke/probaTermini.txt"));
+                var sviTermini = JsonSerializer.Deserialize<List<Termin>>(File.ReadAllText("Datoteke/Termini.txt"));
                 Termin pronadjenTermin = new Termin();
                 foreach (Termin temp in sviTermini)
                 {
@@ -192,11 +130,11 @@ namespace Bolnica_aplikacija
             }
             else if (dataGridZakazivanjeTermina.SelectedIndex == -1 && tipAkcije == 1)
             {
-                var sviTermini = JsonSerializer.Deserialize<List<Termin>>(File.ReadAllText("Datoteke/probaTermini.txt"));
+                var sviTermini = JsonSerializer.Deserialize<List<Termin>>(File.ReadAllText("Datoteke/Termini.txt"));
                 Termin pronadjenTermin = new Termin();
                 foreach (Termin temp in sviTermini)
                 {
-                    if (temp.idTermina.Equals(izabraniTermin.id))
+                    if (temp.idTermina.Equals(TerminKontroler.getTermin().idTermina))
                     {
                         pronadjenTermin.datum = temp.datum;
                         pronadjenTermin.idLekara = temp.idLekara;

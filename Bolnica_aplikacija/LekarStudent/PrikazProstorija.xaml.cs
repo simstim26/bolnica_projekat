@@ -41,7 +41,7 @@ namespace Bolnica_aplikacija.LekarStudent
 
         private void btnPonisti_Click(object sender, RoutedEventArgs e)
         {
-            Content = new ZakaziTermin(ZakaziTermin.getTipAkcije(), ZakaziTermin.getIzabraniTermin()); 
+            Content = new ZakaziTermin(ZakaziTermin.getTipAkcije()); 
         }
 
         private void btnPotvrdi_Click(object sender, RoutedEventArgs e)
@@ -50,12 +50,12 @@ namespace Bolnica_aplikacija.LekarStudent
             {
                 Prostorija prostorija = (Prostorija)dataProstorije.SelectedItem;
                 KorisnikKontroler.getLekar().AzurirajProstorijuTermina(termin.idTermina, prostorija.id);
-                Content = new ZakaziTermin(ZakaziTermin.getTipAkcije(), ZakaziTermin.getIzabraniTermin());
+                Content = new ZakaziTermin(ZakaziTermin.getTipAkcije());
             }
             else if(dataProstorije.SelectedIndex != -1 && ZakaziTermin.getTipAkcije() == 1)
             {
                 Prostorija prostorija = (Prostorija)dataProstorije.SelectedItem;
-                KorisnikKontroler.getLekar().AzurirajProstorijuTermina(ZakaziTermin.getIzabraniTermin().id, prostorija.id);
+                KorisnikKontroler.getLekar().AzurirajProstorijuTermina(TerminKontroler.getTermin().idTermina, prostorija.id);
                 LekarProzor.getX().Content = new LekarTabovi();
                 LekarTabovi.getX().Content = new PacijentInfo();
                 LekarTabovi.getTab().SelectedIndex = 1;

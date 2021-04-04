@@ -16,7 +16,7 @@ namespace Model
       public String idSpecijalizacije { get; set; }
       public void NapraviTermin(String idTermina)
       {
-            var sviTermini = JsonSerializer.Deserialize<List<Termin>>(File.ReadAllText("Datoteke/probaTermini.txt"));
+            var sviTermini = JsonSerializer.Deserialize<List<Termin>>(File.ReadAllText("Datoteke/Termini.txt"));
 
             foreach (Termin termin in sviTermini)
             {
@@ -31,12 +31,12 @@ namespace Model
                 WriteIndented = true,
             };
             string jsonString = JsonSerializer.Serialize(sviTermini, options);
-            File.WriteAllText("Datoteke/probaTermini.txt", jsonString);
+            File.WriteAllText("Datoteke/Termini.txt", jsonString);
       }
 
         public List<PacijentTermin> ProcitajTermin() //read termina odredjenog pacijenta
         {
-            var sviTermini = JsonSerializer.Deserialize<List<Termin>>(File.ReadAllText("Datoteke/probaTermini.txt"));
+            var sviTermini = JsonSerializer.Deserialize<List<Termin>>(File.ReadAllText("Datoteke/Termini.txt"));
             List<PacijentTermin> terminiPacijenta = new List<PacijentTermin>();
             foreach (Termin termin in sviTermini)
             {
@@ -49,7 +49,7 @@ namespace Model
                     String satnica = termin.satnica.ToString("HH:mm");
                     pacijentTermin.satnica = satnica;
 
-                    foreach (Lekar lekar in JsonSerializer.Deserialize<List<Lekar>>(File.ReadAllText("Datoteke/probaLekari.txt")))
+                    foreach (Lekar lekar in JsonSerializer.Deserialize<List<Lekar>>(File.ReadAllText("Datoteke/Lekari.txt")))
                     {
                         if (lekar.id.Equals(termin.idLekara))
                         {
@@ -58,7 +58,7 @@ namespace Model
                         }
                     }
 
-                    foreach (Prostorija prostorija in JsonSerializer.Deserialize<List<Prostorija>>(File.ReadAllText("Datoteke/probaProstorije.txt")))
+                    foreach (Prostorija prostorija in JsonSerializer.Deserialize<List<Prostorija>>(File.ReadAllText("Datoteke/Prostorije.txt")))
                     {
                         if (termin.idProstorije.Equals(prostorija.id))
                         {
@@ -76,7 +76,7 @@ namespace Model
       
       public void AzurirajTermin(String idStarogTermina, String idNovogTermina)
       {
-            var sviTermini = JsonSerializer.Deserialize<List<Termin>>(File.ReadAllText("Datoteke/probaTermini.txt"));
+            var sviTermini = JsonSerializer.Deserialize<List<Termin>>(File.ReadAllText("Datoteke/Termini.txt"));
             foreach (Termin termin in sviTermini)
             {
                 if (idStarogTermina.Equals(termin.idTermina)) //otkazivanje starog termina
@@ -90,12 +90,12 @@ namespace Model
                 }
             }
         string jsonString = JsonSerializer.Serialize(sviTermini);
-        File.WriteAllText("Datoteke/probaTermini.txt", jsonString);
+        File.WriteAllText("Datoteke/Termini.txt", jsonString);
       }
       
       public void ObrisiTermin(String idTermina)
       {
-            var sviTermini = JsonSerializer.Deserialize<List<Termin>>(File.ReadAllText("Datoteke/probaTermini.txt"));
+            var sviTermini = JsonSerializer.Deserialize<List<Termin>>(File.ReadAllText("Datoteke/Termini.txt"));
             foreach (Termin termin in sviTermini)
             {
                 if (idTermina.Equals(termin.idTermina))
@@ -104,7 +104,7 @@ namespace Model
                 }
             }
             string jsonString = JsonSerializer.Serialize(sviTermini);
-            File.WriteAllText("Datoteke/probaTermini.txt", jsonString);
+            File.WriteAllText("Datoteke/Termini.txt", jsonString);
         }
       
       public void PrikazRasporeda()
@@ -143,7 +143,7 @@ namespace Model
       }
       public List<Prostorija> PrikazProstorija(Termin termin)
       {
-          var sveProstorije = JsonSerializer.Deserialize<List<Prostorija>>(File.ReadAllText("Datoteke/probaProstorije.txt"));
+          var sveProstorije = JsonSerializer.Deserialize<List<Prostorija>>(File.ReadAllText("Datoteke/Prostorije.txt"));
           List<Prostorija> prostorijeZaPrikaz = new List<Prostorija>();
           foreach(Prostorija prostorija in sveProstorije)
           {
@@ -195,7 +195,7 @@ namespace Model
       private List<String> ProveriProstorijeZaPrikaz(Termin termin, List<Prostorija> prostorijeZaPrikaz)
         {
             List<String> povratnaVrednost = new List<String>();
-            var sviTermini = JsonSerializer.Deserialize<List<Termin>>(File.ReadAllText("Datoteke/probaTermini.txt"));
+            var sviTermini = JsonSerializer.Deserialize<List<Termin>>(File.ReadAllText("Datoteke/Termini.txt"));
 
             povratnaVrednost.Add(termin.idProstorije);
             foreach (Termin temp in sviTermini)
@@ -214,7 +214,7 @@ namespace Model
         }
       public void AzurirajProstorijuTermina(String idTermina, String idProstorije)
       {
-            var sviTermini = JsonSerializer.Deserialize<List<Termin>>(File.ReadAllText("Datoteke/probaTermini.txt"));
+            var sviTermini = JsonSerializer.Deserialize<List<Termin>>(File.ReadAllText("Datoteke/Termini.txt"));
             
             foreach(Termin termin in sviTermini)
             {
@@ -226,7 +226,7 @@ namespace Model
             }
 
             string jsonString = JsonSerializer.Serialize(sviTermini);
-            File.WriteAllText("Datoteke/probaTermini.txt", jsonString);  
+            File.WriteAllText("Datoteke/Termini.txt", jsonString);  
       }
       public void PrikazStavki()
       {
