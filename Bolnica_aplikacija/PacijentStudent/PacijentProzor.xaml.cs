@@ -40,16 +40,12 @@ namespace Bolnica_aplikacija.PacijentStudent
             SetLabelPacijentContent();
 
             PopuniTermine();
-
-            //Pacijent.ProcitajTermin(dataGridTermin, this.idPacijenta);
-            
-
-
         }
 
         private void PopuniTermine()
         {
-            //dataGridTermin.ItemsSource = PacijentKontroler.prikazTermina();
+            PacijentKontroler.nadjiPacijenta(this.idPacijenta);
+            dataGridTermin.ItemsSource = PacijentKontroler.prikazPacijentovihTermina();
         }
 
         private void SetLabelPacijentContent()

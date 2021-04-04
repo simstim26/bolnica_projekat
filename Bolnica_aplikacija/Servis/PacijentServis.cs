@@ -50,6 +50,56 @@ namespace Bolnica_aplikacija.Servis
             }
 
         }
+
+        public List<PacijentTermin> prikazPacijentovihTermina()
+        {
+            List<PacijentTermin> terminiPacijenta = new List<PacijentTermin>();
+            foreach(Termin termin in terminRepozitorijum.ucitajSve())
+            {
+                if(termin.idPacijenta.Equals(pacijent.id))
+                {
+                    DateTime terminDatum = termin.datum;
+                    DateTime danasnjiDatum = DateTime.Today;
+
+                    int rezultat = DateTime.Compare(terminDatum, danasnjiDatum);
+
+                    if (rezultat > 0)
+                    {
+                        PacijentTermin pacijentTermin = new PacijentTermin();
+                        foreach (Prostorija prostorija in prostorijaRepozitorijum.ucitajSve())
+                        {
+                            if (prostorija.id.Equals(termin.idProstorije))
+                            {
+                                pacijentTermin.lokacija = "Sprat " + prostorija.sprat + ", sala broj " + prostorija.broj;
+                            }
+                        }
+
+                        foreach (Lekar lekar in lekarRepozitorijum.ucitajSve())
+                        {
+                            if (lekar.id.Equals(termin.idLekara))
+                            {
+                                pacijentTermin.imeLekara = lekar.ime + " " + lekar.prezime;
+                            }
+                        }
+
+                        pacijentTermin.datum = termin.datum.Date.ToString("dd/MM/yyyy");
+                        switch(termin.tip)
+                        {
+                            case TipTermina.OPERACIJA:  pacijentTermin.napomena = "Operacija"; break;
+                            case TipTermina.PREGLED:    pacijentTermin.napomena = "Pregled"; break;
+                            default:                    break;
+                        }
+                        pacijentTermin.satnica = termin.satnica.ToString("HH:mm");
+                        pacijentTermin.id = termin.idTermina;
+
+                        terminiPacijenta.Add(pacijentTermin);
+                    }
+                }
+            }
+
+            return terminiPacijenta;
+        }
+
         public List<PacijentTermin> prikazSvihTerminaPacijenta()
         {
             List<PacijentTermin> terminiPacijenta = new List<PacijentTermin>();
