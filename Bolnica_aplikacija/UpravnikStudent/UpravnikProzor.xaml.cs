@@ -50,21 +50,7 @@ namespace Bolnica_aplikacija
         {
             InitializeComponent();
             lblIme.Text = KorisnikKontroler.GetUpravnik().ime + " " + KorisnikKontroler.GetUpravnik().prezime;
-            dataGridProstorija.ItemsSource = ProstorijaRepozitorijum.getInstance().ucitajSve();
-           // dataGridProstorija.ItemsSource = ProstorijaRepozitorijum.ucitajSve();
-        }
-
-
-        public Upravnik getUpravnik()
-        {
-            return upravnik;
-        }
-
-        public void setUpravnik(Upravnik u)
-        {
-            //upravnik = u;
-            //lblIme.Text = upravnik.ime + " " + upravnik.prezime;
-            //dataGridProstorija.ItemsSource = upravnik.ProcitajProstoriju();
+            dataGridProstorija.ItemsSource = ProstorijaKontroler.ucitajSve();
         }
 
         private void tbProstorija_Click(object sender, RoutedEventArgs e)
@@ -138,9 +124,9 @@ namespace Bolnica_aplikacija
 
         private void btnOdjava_Click(object sender, RoutedEventArgs e)
         {
-            var prostorije = JsonSerializer.Deserialize<List<Prostorija>>(File.ReadAllText("Datoteke/probaProstorije.txt"));
-            string jsonString = JsonSerializer.Serialize(prostorije);
-            File.WriteAllText("Datoteke/probaProstorije.txt", jsonString);
+            var prostorije = JsonSerializer.Deserialize<List<Prostorija>>(File.ReadAllText("Datoteke/Prostorije.txt"));
+            ProstorijaKontroler.upisi(prostorije);
+
             Prijava prijava = new Prijava();
             this.Close();
             instance = null;
@@ -236,8 +222,8 @@ namespace Bolnica_aplikacija
         private void btnPotvrdi_Click(object sender, RoutedEventArgs e)
         {
             Prostorija prostorija = new Prostorija();
-            upravnik.NapraviProstoriju(prostorija);
-            dataGridProstorija.ItemsSource = upravnik.ProcitajProstoriju();
+            ProstorijaKontroler.NapraviProstoriju(prostorija);
+            dataGridProstorija.ItemsSource = ProstorijaKontroler.ucitajSve();
 
 
         }

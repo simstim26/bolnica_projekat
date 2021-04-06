@@ -12,17 +12,6 @@ namespace Bolnica_aplikacija.Repozitorijum
     class ProstorijaRepozitorijum
     {
 
-        private static ProstorijaRepozitorijum instance = null;
-
-        public static ProstorijaRepozitorijum getInstance()
-        {
-            if (instance == null)
-            {
-                instance = new ProstorijaRepozitorijum();
-            }
-
-            return instance;
-        }
         public List<Prostorija> ucitajSve()
         {
             List<Prostorija> sveProstorije;
