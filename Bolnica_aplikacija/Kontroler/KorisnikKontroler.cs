@@ -26,6 +26,11 @@ namespace Bolnica_aplikacija.Kontroler
             korisnikServis.NadjiPacijenta(idPacijenta);
         }
 
+        public static void NadjiUpravnika(String idUpravnika)
+        {
+            korisnikServis.NadjiUpravnika(idUpravnika);
+        }
+
         public static Lekar getLekar()
         {
             return korisnikServis.getLekar();
@@ -34,6 +39,11 @@ namespace Bolnica_aplikacija.Kontroler
         public static Pacijent GetPacijent()
         {
             return korisnikServis.GetPacijent();
+        }
+
+        public static Upravnik GetUpravnik()
+        {
+            return korisnikServis.GetUpravnik();
         }
 
     }

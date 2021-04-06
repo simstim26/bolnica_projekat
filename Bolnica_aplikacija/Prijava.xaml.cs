@@ -60,16 +60,10 @@ namespace Bolnica_aplikacija
                     }*/
                      break;
                  case "upravnik":
-                    /*foreach (Upravnik upravnik in JsonSerializer.Deserialize<List<Upravnik>>(File.ReadAllText("Datoteke/probaUpravnici.txt")))
-                    {
-                        if (upravnik.id.Equals(pronadjen[1]))
-                        {
-                            UpravnikProzor upravnikProzor = UpravnikProzor.getInstance();
-                            upravnikProzor.setUpravnik(upravnik);
-                            this.Close();
-                            upravnikProzor.ShowDialog();
-                        }
-                    }*/
+                    KorisnikKontroler.NadjiUpravnika(ulogovaniKorisnik[1]);
+                    UpravnikProzor upravnikProzor = UpravnikProzor.getInstance();
+                    this.Close();
+                    upravnikProzor.ShowDialog();
                     break;
                 default:
                      lblPogresno.Visibility = Visibility.Visible;

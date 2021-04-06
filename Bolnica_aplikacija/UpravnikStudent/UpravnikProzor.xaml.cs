@@ -13,6 +13,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Bolnica_aplikacija.Kontroler;
+using Bolnica_aplikacija.Repozitorijum;
+using Bolnica_aplikacija.Servis;
 using Model;
 
 namespace Bolnica_aplikacija
@@ -45,7 +48,10 @@ namespace Bolnica_aplikacija
 
         private UpravnikProzor()
         {
-            InitializeComponent();   
+            InitializeComponent();
+            lblIme.Text = KorisnikKontroler.GetUpravnik().ime + " " + KorisnikKontroler.GetUpravnik().prezime;
+            dataGridProstorija.ItemsSource = ProstorijaRepozitorijum.getInstance().ucitajSve();
+           // dataGridProstorija.ItemsSource = ProstorijaRepozitorijum.ucitajSve();
         }
 
 
@@ -56,9 +62,9 @@ namespace Bolnica_aplikacija
 
         public void setUpravnik(Upravnik u)
         {
-            upravnik = u;
-            lblIme.Text = upravnik.ime + " " + upravnik.prezime;
-            dataGridProstorija.ItemsSource = upravnik.ProcitajProstoriju();
+            //upravnik = u;
+            //lblIme.Text = upravnik.ime + " " + upravnik.prezime;
+            //dataGridProstorija.ItemsSource = upravnik.ProcitajProstoriju();
         }
 
         private void tbProstorija_Click(object sender, RoutedEventArgs e)

@@ -115,6 +115,7 @@
     <Compile Include="Repozitorijum\ProstorijaRepozitorijum.cs" />
     <Compile Include="Repozitorijum\SpecijalizacijaRepozitorijum.cs" />
     <Compile Include="Repozitorijum\TerminRepozitorijum.cs" />
+    <Compile Include="Repozitorijum\UpravnikRepozitorijum.cs" />
     <Compile Include="SekretarStudent\SekretarProzor.xaml.cs">
       <DependentUpon>SekretarProzor.xaml</DependentUpon>
     </Compile>
@@ -123,6 +124,7 @@
     <Compile Include="Servis\LekarServis.cs" />
     <Compile Include="Servis\PacijentServis.cs" />
     <Compile Include="Servis\TerminServis.cs" />
+    <Compile Include="Servis\UpravnikServis.cs" />
     <Compile Include="UpravnikStudent\UpravnikProzor.xaml.cs">
       <DependentUpon>UpravnikProzor.xaml</DependentUpon>
     </Compile>
