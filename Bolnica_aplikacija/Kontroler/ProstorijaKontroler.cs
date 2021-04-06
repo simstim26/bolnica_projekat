@@ -17,6 +17,11 @@ namespace Bolnica_aplikacija.Kontroler
             return prostorijaServis.ucitajSve();
         }
 
+        public static List<Prostorija> ucitajNeobrisane()
+        {
+            return prostorijaServis.ucitajNeobrisane();
+        }
+
         public static void upisi(List<Prostorija> sveProstorije)
         {
             prostorijaServis.upisi(sveProstorije);
@@ -25,6 +30,16 @@ namespace Bolnica_aplikacija.Kontroler
         public static void NapraviProstoriju(Prostorija prostorija)
         {
             prostorijaServis.NapraviProstoriju(prostorija);
+        }
+
+        public static void AzurirajProstoriju(Prostorija prostorija)
+        {
+            prostorijaServis.AzurirajProstoriju(prostorija);
+        }
+
+        public static void ObrisiProstoriju(String idProstorija)
+        {
+            prostorijaServis.ObrisiProstoriju(idProstorija);
         }
     }
 }

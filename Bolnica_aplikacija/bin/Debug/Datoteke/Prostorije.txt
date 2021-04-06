@@ -10,16 +10,6 @@
     "Stavka": []
   },
   {
-    "id": "2",
-    "idBolnice": "1",
-    "tipProstorije": 1,
-    "broj": "220",
-    "sprat": 2,
-    "dostupnost": true,
-    "logickiObrisana": true,
-    "Stavka": []
-  },
-  {
     "id": "3",
     "idBolnice": "1",
     "tipProstorije": 0,
@@ -27,56 +17,6 @@
     "sprat": 10,
     "dostupnost": false,
     "logickiObrisana": false,
-    "Stavka": []
-  },
-  {
-    "id": "4",
-    "idBolnice": "1",
-    "tipProstorije": 0,
-    "broj": "201",
-    "sprat": 2,
-    "dostupnost": false,
-    "logickiObrisana": true,
-    "Stavka": []
-  },
-  {
-    "id": "5",
-    "idBolnice": "1",
-    "tipProstorije": 0,
-    "broj": "110",
-    "sprat": 10,
-    "dostupnost": false,
-    "logickiObrisana": true,
-    "Stavka": []
-  },
-  {
-    "id": "6",
-    "idBolnice": "1",
-    "tipProstorije": 0,
-    "broj": "203",
-    "sprat": 2,
-    "dostupnost": false,
-    "logickiObrisana": true,
-    "Stavka": []
-  },
-  {
-    "id": "7",
-    "idBolnice": "3",
-    "tipProstorije": 0,
-    "broj": "11111",
-    "sprat": 10,
-    "dostupnost": false,
-    "logickiObrisana": true,
-    "Stavka": []
-  },
-  {
-    "id": "8",
-    "idBolnice": "3",
-    "tipProstorije": 1,
-    "broj": "800",
-    "sprat": 8,
-    "dostupnost": true,
-    "logickiObrisana": true,
     "Stavka": []
   },
   {
@@ -97,26 +37,6 @@
     "sprat": 1,
     "dostupnost": true,
     "logickiObrisana": false,
-    "Stavka": []
-  },
-  {
-    "id": "11",
-    "idBolnice": null,
-    "tipProstorije": 2,
-    "broj": "2e2e",
-    "sprat": 2,
-    "dostupnost": true,
-    "logickiObrisana": true,
-    "Stavka": []
-  },
-  {
-    "id": "12",
-    "idBolnice": null,
-    "tipProstorije": 2,
-    "broj": "2121",
-    "sprat": 21,
-    "dostupnost": true,
-    "logickiObrisana": true,
     "Stavka": []
   },
   {
@@ -196,7 +116,7 @@
     "broj": "1233",
     "sprat": 12333,
     "dostupnost": true,
-    "logickiObrisana": false,
+    "logickiObrisana": true,
     "Stavka": []
   }
 ]

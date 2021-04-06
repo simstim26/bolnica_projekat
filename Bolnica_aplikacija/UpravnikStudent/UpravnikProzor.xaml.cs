@@ -50,7 +50,7 @@ namespace Bolnica_aplikacija
         {
             InitializeComponent();
             lblIme.Text = KorisnikKontroler.GetUpravnik().ime + " " + KorisnikKontroler.GetUpravnik().prezime;
-            dataGridProstorija.ItemsSource = ProstorijaKontroler.ucitajSve();
+            dataGridProstorija.ItemsSource = ProstorijaKontroler.ucitajNeobrisane();
         }
 
         private void tbProstorija_Click(object sender, RoutedEventArgs e)
@@ -195,9 +195,8 @@ namespace Bolnica_aplikacija
         private void btnPotvrdiIzmenu_Click(object sender, RoutedEventArgs e)
         {
 
-            upravnik.AzurirajProstoriju(prostorija);
+            ProstorijaKontroler.AzurirajProstoriju(prostorija);
             lblId.Text = lblId1;
-
         }
 
         private void btnOtkaziIzmeni_Click(object sender, RoutedEventArgs e)
@@ -211,10 +210,10 @@ namespace Bolnica_aplikacija
         {
             if (dataGridProstorija.SelectedIndex != -1)
             {
-                Console.WriteLine(prostorijeNeobrisane.Count);
+                //Console.WriteLine(prostorijeNeobrisane.Count);
                 prostorija = (Prostorija)dataGridProstorija.SelectedItem;
-                upravnik.ObrisiProstoriju(prostorija.id);
-                dataGridProstorija.ItemsSource = upravnik.ProcitajProstoriju();
+                ProstorijaKontroler.ObrisiProstoriju(prostorija.id);
+                dataGridProstorija.ItemsSource = ProstorijaKontroler.ucitajNeobrisane();
 
             }
         }
@@ -223,7 +222,7 @@ namespace Bolnica_aplikacija
         {
             Prostorija prostorija = new Prostorija();
             ProstorijaKontroler.NapraviProstoriju(prostorija);
-            dataGridProstorija.ItemsSource = ProstorijaKontroler.ucitajSve();
+            dataGridProstorija.ItemsSource = ProstorijaKontroler.ucitajNeobrisane();
 
 
         }

@@ -27,6 +27,22 @@ namespace Bolnica_aplikacija.Repozitorijum
             return sveProstorije;
         }
 
+        public List<Prostorija> ucitajNeobrisane()
+        {
+            List<Prostorija> sveProstorije = ucitajSve();
+            List<Prostorija> neobrisaneProstorije = new List<Prostorija>();
+
+            foreach (Prostorija p in sveProstorije)
+            {
+                if (p.logickiObrisana == false)
+                {
+                    neobrisaneProstorije.Add(p);
+                }
+            }
+
+            return neobrisaneProstorije;
+        }
+
         public void dodajProstoriju(Prostorija prostorija) //da li ide u servis???
         {
             var sveProstorije = ucitajSve();
