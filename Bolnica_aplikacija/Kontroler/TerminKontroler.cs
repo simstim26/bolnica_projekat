@@ -12,6 +12,10 @@ namespace Bolnica_aplikacija.Kontroler
     {
         private static TerminServis terminServis = new TerminServis();
 
+        public static List<Prostorija> nadjiSlobodneProstorijeZaTermin(Lekar lekar, Termin termin)
+        {
+            return terminServis.nadjiSlobodneProstorijeZaTermin(lekar, termin);
+        }
         public static int proveriDatumTermina(String idTermina)
         {
             Termin termin = terminServis.nadjiTerminPoId(idTermina);
@@ -19,6 +23,10 @@ namespace Bolnica_aplikacija.Kontroler
             return DateTime.Compare(termin.datum, trenutanDatum);
         }
 
+        public static void promeniProstorijuTermina(String idTermina, String idProstorije)
+        {
+            terminServis.promeniProstorijuTermina(idTermina,idProstorije);
+        }
         public static bool proveriTipTermina(Lekar ulogovaniLekar, String idTermina)
         {
             return terminServis.proveriTipTermina(ulogovaniLekar, idTermina);

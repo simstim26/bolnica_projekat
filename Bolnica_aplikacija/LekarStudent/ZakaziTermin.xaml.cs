@@ -97,69 +97,13 @@ namespace Bolnica_aplikacija
 
         private void btnOdabirProstorije_Click(object sender, RoutedEventArgs e)
         {
-            if (dataGridZakazivanjeTermina.SelectedIndex != -1)
+            if (TerminKontroler.getTermin().idLekara.Equals(KorisnikKontroler.getLekar().id))
             {
-                PacijentTermin termin = (PacijentTermin)dataGridZakazivanjeTermina.SelectedItem;
-                var sviTermini = JsonSerializer.Deserialize<List<Termin>>(File.ReadAllText("Datoteke/Termini.txt"));
-                Termin pronadjenTermin = new Termin();
-                foreach (Termin temp in sviTermini)
-                {
-                    if (temp.idTermina.Equals(termin.id))
-                    {
-                        pronadjenTermin.datum = temp.datum;
-                        pronadjenTermin.idLekara = temp.idLekara;
-                        pronadjenTermin.idPacijenta = temp.idPacijenta;
-                        pronadjenTermin.idProstorije = temp.idProstorije;
-                        pronadjenTermin.idTermina = temp.idTermina;
-                        pronadjenTermin.jeZavrsen = temp.jeZavrsen;
-                        pronadjenTermin.tip = temp.tip;
-                        pronadjenTermin.satnica = temp.satnica;
-                        break;
-                    }
-                }
-
-                if (pronadjenTermin.idLekara.Equals(KorisnikKontroler.getLekar().id))
-                {
-                    Content = new PrikazProstorija(pronadjenTermin);
-                }
-                else
-                {
-                    MessageBox.Show("Ne može se promeniti lokacija termina drugog lekara.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
-
-                }
-            }
-            else if (dataGridZakazivanjeTermina.SelectedIndex == -1 && tipAkcije == 1)
-            {
-                var sviTermini = JsonSerializer.Deserialize<List<Termin>>(File.ReadAllText("Datoteke/Termini.txt"));
-                Termin pronadjenTermin = new Termin();
-                foreach (Termin temp in sviTermini)
-                {
-                    if (temp.idTermina.Equals(TerminKontroler.getTermin().idTermina))
-                    {
-                        pronadjenTermin.datum = temp.datum;
-                        pronadjenTermin.idLekara = temp.idLekara;
-                        pronadjenTermin.idPacijenta = temp.idPacijenta;
-                        pronadjenTermin.idProstorije = temp.idProstorije;
-                        pronadjenTermin.idTermina = temp.idTermina;
-                        pronadjenTermin.jeZavrsen = temp.jeZavrsen;
-                        pronadjenTermin.tip = temp.tip;
-                        pronadjenTermin.satnica = temp.satnica;
-                        break;
-                    }
-                }
-                if (pronadjenTermin.idLekara.Equals(KorisnikKontroler.getLekar().id))
-                {
-                    Content = new PrikazProstorija(pronadjenTermin);
-                }
-                else
-                {
-                    MessageBox.Show("Ne može se promeniti lokacija termina drugog lekara.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
-
-                }
+                Content = new PrikazProstorija();
             }
             else
             {
-                MessageBox.Show("Potrebno je izabrati termin.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Ne može se promeniti lokacija termina drugog lekara.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
     }

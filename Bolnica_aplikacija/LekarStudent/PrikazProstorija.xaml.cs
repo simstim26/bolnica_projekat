@@ -25,18 +25,16 @@ namespace Bolnica_aplikacija.LekarStudent
     /// </summary>
     public partial class PrikazProstorija : UserControl
     {
-        private Termin termin;
-        public PrikazProstorija(Termin termin)
+        public PrikazProstorija()
         {
             InitializeComponent();
-            this.termin = termin;
             ucitajPodatke();
         }
 
         private void ucitajPodatke()
         {
 
-            dataProstorije.ItemsSource = KorisnikKontroler.getLekar().PrikazProstorija(termin);
+            dataProstorije.ItemsSource = TerminKontroler.nadjiSlobodneProstorijeZaTermin(KorisnikKontroler.getLekar(), TerminKontroler.getTermin());
         }
 
         private void btnPonisti_Click(object sender, RoutedEventArgs e)
@@ -46,16 +44,10 @@ namespace Bolnica_aplikacija.LekarStudent
 
         private void btnPotvrdi_Click(object sender, RoutedEventArgs e)
         {
-            if(dataProstorije.SelectedIndex != -1 && ZakaziTermin.getTipAkcije() == 0)
+            if(dataProstorije.SelectedIndex != -1)
             {
                 Prostorija prostorija = (Prostorija)dataProstorije.SelectedItem;
-                KorisnikKontroler.getLekar().AzurirajProstorijuTermina(termin.idTermina, prostorija.id);
-                Content = new ZakaziTermin(ZakaziTermin.getTipAkcije());
-            }
-            else if(dataProstorije.SelectedIndex != -1 && ZakaziTermin.getTipAkcije() == 1)
-            {
-                Prostorija prostorija = (Prostorija)dataProstorije.SelectedItem;
-                KorisnikKontroler.getLekar().AzurirajProstorijuTermina(TerminKontroler.getTermin().idTermina, prostorija.id);
+                TerminKontroler.promeniProstorijuTermina(TerminKontroler.getTermin().idTermina, prostorija.id);
                 LekarProzor.getX().Content = new LekarTabovi();
                 LekarTabovi.getX().Content = new PacijentInfo();
                 LekarTabovi.getTab().SelectedIndex = 1;
