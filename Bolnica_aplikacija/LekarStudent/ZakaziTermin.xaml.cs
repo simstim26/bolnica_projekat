@@ -50,8 +50,9 @@ namespace Bolnica_aplikacija
                 {
                     btnZakaziOperaciju.Visibility = Visibility.Hidden;
                 }
-                dataGridZakazivanjeTermina.ItemsSource = LekarKontroler.prikaziSlobodneTermineZaLekara(KorisnikKontroler.getLekar(), tipAkcije);
             }
+            dataGridZakazivanjeTermina.ItemsSource = LekarKontroler.prikaziSlobodneTermineZaLekara(KorisnikKontroler.getLekar(), tipAkcije);
+
         }
 
         public static int getTipAkcije()
