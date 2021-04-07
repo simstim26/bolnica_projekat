@@ -24,7 +24,6 @@ namespace Bolnica_aplikacija
     /// </summary>
     public partial class PrikazPacijenata : UserControl
     {
-        private static Pacijent pacijent;
         public PrikazPacijenata()
         {
             InitializeComponent();
@@ -36,16 +35,10 @@ namespace Bolnica_aplikacija
         {
             if(lstPacijenti.SelectedIndex != -1)
             {
-                pacijent = (Pacijent)lstPacijenti.SelectedItem;
                 PacijentKontroler.nadjiPacijenta(((Pacijent)lstPacijenti.SelectedItem).id);
                 this.Content = new PacijentInfo();
             }
 
-        }
-
-        public static Pacijent GetPacijent()
-        {
-            return pacijent;
         }
 
     }

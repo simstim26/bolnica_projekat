@@ -34,7 +34,7 @@ namespace Bolnica_aplikacija.Servis
 
         public void azurirajTerminPacijentu(String idStarogTermina, String idNovogTermina)
         {
-            foreach (Termin termin in terminRepozitorijum.ucitajSve())
+           /* foreach (Termin termin in terminRepozitorijum.ucitajSve())
             {
                 if (idStarogTermina.Equals(termin.idTermina)) //otkazivanje starog termina
                 {
@@ -47,7 +47,7 @@ namespace Bolnica_aplikacija.Servis
                     termin.idPacijenta = PrikazPacijenata.GetPacijent().id;
                     terminRepozitorijum.azurirajTermin(termin); 
                 }
-            }
+            }*/
 
         }
 
