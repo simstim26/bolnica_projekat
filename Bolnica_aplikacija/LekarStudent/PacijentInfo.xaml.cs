@@ -28,7 +28,9 @@ namespace Bolnica_aplikacija
         {
             InitializeComponent();
             tab = this.tabInfo;
-            lblIme.Content += PacijentKontroler.getPacijent().ime;
+            lblJmbg.Content = PacijentKontroler.getPacijent().jmbg;
+            lblImePrezime.Content = PacijentKontroler.getPacijent().ime + " " + PacijentKontroler.getPacijent().prezime;
+            lblDatumRodjenja.Content = PacijentKontroler.getPacijent().datumRodjenja.ToString("dd.MM.yyyy.");
             ucitajPodatke();
         }
 
@@ -113,5 +115,6 @@ namespace Bolnica_aplikacija
 
             }
         }
+
     }
 }

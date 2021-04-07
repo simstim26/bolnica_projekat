@@ -10,11 +10,16 @@
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="600" Margin="0,10,0,0" Stroke="Black" VerticalAlignment="Top" Width="430"/>
         <Button x:Name="btnPotvrdi" Content="Potvrdi" HorizontalAlignment="Left" Height="40" Margin="10,547,0,0" VerticalAlignment="Top" Width="145" Background="White" BorderBrush="Black" Click="btnPotvrdi_Click"/>
         <Button x:Name="btnPonisti" Content="Poništi" HorizontalAlignment="Left" Height="40" Margin="259,547,0,0" VerticalAlignment="Top" Width="145" Background="White" BorderBrush="Black" Click="btnPonisti_Click"/>
-        <DataGrid x:Name="dataProstorije" IsReadOnly ="True" SelectionMode="Single" HorizontalAlignment="Left" Height="455" Margin="0,69,0,0" VerticalAlignment="Top" Width="430" AutoGenerateColumns="False">
+        <DataGrid x:Name="dataProstorije" AlternationCount="2" RowHeight="33" IsReadOnly ="True" SelectionMode="Single" HorizontalAlignment="Left" Height="455" Margin="0,69,0,0" VerticalAlignment="Top" Width="430" AutoGenerateColumns="False">
+            <DataGrid.Style>
+                <Style TargetType="DataGrid">
+                    <Setter Property="AlternatingRowBackground" Value="#FFBFBFBF"/>
+                </Style>
+            </DataGrid.Style>
             <DataGrid.Columns>
-                <DataGridTextColumn x:Name ="kolonaTip" IsReadOnly="True" CanUserResize="False" Binding="{Binding tipProstorije}" Header="Tip prostorije"></DataGridTextColumn>
-                <DataGridTextColumn x:Name="kolonaBroj" IsReadOnly="True" CanUserResize="False" Binding="{Binding broj}" Width="56" Header="Broj"></DataGridTextColumn>
-                <DataGridTextColumn x:Name="kolonaSprat" IsReadOnly="True" CanUserResize="False" Binding="{Binding sprat}" Header="Sprat" Width="80"></DataGridTextColumn>
+                <DataGridTextColumn x:Name ="kolonaTip" IsReadOnly="True" CanUserResize="False" Binding="{Binding tipProstorije}" Width="143" Header="Tip prostorije"></DataGridTextColumn>
+                <DataGridTextColumn x:Name="kolonaBroj" IsReadOnly="True" CanUserResize="False" Binding="{Binding broj}" Width="143" Header="Broj"></DataGridTextColumn>
+                <DataGridTextColumn x:Name="kolonaSprat" IsReadOnly="True" CanUserResize="False" Binding="{Binding sprat}" Header="Sprat" Width="143"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="btnInventarProstorije" Content="Prikaz inventara" HorizontalAlignment="Left" Height="42" Margin="302,18,0,0" VerticalAlignment="Top" Width="110" BorderBrush="Black" Background="White"/>

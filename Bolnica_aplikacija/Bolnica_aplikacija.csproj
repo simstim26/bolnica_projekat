@@ -281,5 +281,8 @@
   <ItemGroup>
     <Resource Include="SekretarStudent\question_mark.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="LekarStudent\search.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

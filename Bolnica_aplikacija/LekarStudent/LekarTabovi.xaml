@@ -7,13 +7,72 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <TabControl x:Name="lekarTab" HorizontalAlignment="Left" Height="600" Margin="0,10,0,-160.4" VerticalAlignment="Top" Width="425">
-            <TabItem x:Name="tabRaspored" Header="Raspored" Height="40" Width="210">
-                <Grid Background="#FFE5E5E5" Margin="-3,-3,-1.8,-3"/>
+        <TabControl x:Name="lekarTab" HorizontalAlignment="Left" Height="600" Margin="0,10,0,-160.4" VerticalAlignment="Top" Width="425" Background="White">
+            <TabControl.Resources>
+                <Style TargetType="TabItem">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="TabItem">
+                                <Grid Name="Panel">
+                                    <ContentPresenter x:Name="ContentSite"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        ContentSource="Header"
+                                        Margin="10,2"/>
+                                </Grid>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter TargetName="Panel" Property="Background" Value="White" />
+                                        <Setter Property="Foreground" Value="Black"/>
+                                        <Setter Property="HeaderTemplate">
+                                            <Setter.Value>
+                                                <DataTemplate>
+                                                    <TextBlock FontWeight="Bold" Text="{Binding}"/>
+                                                </DataTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Trigger>
+                                    <Trigger Property="IsSelected" Value="False">
+                                        <Setter TargetName="Panel" Property="Background" Value="Gainsboro" />
+                                        <Setter Property="Foreground" Value="Black"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </TabControl.Resources>
+            <TabItem x:Name="tabRaspored" Header="Raspored" Height="40" Width="210" BorderBrush="Black">
+                <Grid>
+                    <DataGrid Margin="0,119,0.2,-0.2" AlternationCount="2" RowHeight="33">
+                        <DataGrid.Style>
+                            <Style TargetType="DataGrid">
+                                <Setter Property="AlternatingRowBackground" Value="#FFBFBFBF"/>
+                            </Style>
+                        </DataGrid.Style>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn x:Name="kolonaDatum" IsReadOnly="True" CanUserResize="False" Header="Datum" Width="112"></DataGridTextColumn>
+                            <DataGridTextColumn x:Name="kolonaSatnica" IsReadOnly="True" CanUserResize="False" Header="Satnica" Width="112"></DataGridTextColumn>
+                            <DataGridTextColumn x:Name="kolonaProstorija" IsReadOnly="True" CanUserResize="False" Header="Prostorija" Width="112"></DataGridTextColumn>
+                            <DataGridTextColumn x:Name="kolonaTip" IsReadOnly="True" CanUserResize="False" Header="Tip" Width="112"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button Content="Otkaži" HorizontalAlignment="Left" Margin="29,70,0,0" VerticalAlignment="Top" Width="78" Height="34" FontWeight="Bold"/>
+                    <Button Content="Promeni" HorizontalAlignment="Left" Margin="165,70,0,0" VerticalAlignment="Top" Width="78" Height="34" FontWeight="Bold"/>
+                    <Button Content="Info" HorizontalAlignment="Left" Margin="307,70,0,0" VerticalAlignment="Top" Width="78" Height="34" FontWeight="Bold"/>
+                    <TextBox Margin="29,15,176.2,504.8" Text="Pretraga..." Foreground="Gray"></TextBox>
+                    <Button Content="" HorizontalAlignment="Left" Margin="246,15,0,0" VerticalAlignment="Top" Width="40" Height="33">
+                        <Button.Background>
+                            <ImageBrush Stretch="Uniform" ImageSource="search.png"/>
+                        </Button.Background>
+                    </Button>
+                </Grid>
             </TabItem>
             <TabItem x:Name="tabRad" Header="Rad sa pacijentima" Width="211">
                 <ContentControl x:Name= "contentControl" Margin="-3,-2,-1.8,-2"/>
             </TabItem>
         </TabControl>
+        <Rectangle Fill="Black" HorizontalAlignment="Left" Height="1" Margin="0,11,0,0" Stroke="Black" VerticalAlignment="Top" Width="425" Grid.ColumnSpan="3"/>
+
     </Grid>
 </UserControl>
