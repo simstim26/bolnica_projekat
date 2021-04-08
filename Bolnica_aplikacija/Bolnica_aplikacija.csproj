@@ -284,5 +284,8 @@
   <ItemGroup>
     <Resource Include="LekarStudent\search.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="LekarStudent\backwardArrow.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
