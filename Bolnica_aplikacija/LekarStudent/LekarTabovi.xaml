@@ -44,28 +44,32 @@
             </TabControl.Resources>
             <TabItem x:Name="tabRaspored" Header="Raspored" Height="40" Width="210" BorderBrush="Black">
                 <Grid>
-                    <DataGrid Margin="0,119,0.2,-0.2" AlternationCount="2" RowHeight="33">
+                    <DataGrid x:Name ="dataRaspored" AutoGenerateColumns="False" Margin="0,119,0.2,-0.2" AlternationCount="2" IsReadOnly="True" RowHeight="33">
                         <DataGrid.Style>
                             <Style TargetType="DataGrid">
                                 <Setter Property="AlternatingRowBackground" Value="#FFBFBFBF"/>
                             </Style>
                         </DataGrid.Style>
                         <DataGrid.Columns>
-                            <DataGridTextColumn x:Name="kolonaDatum" IsReadOnly="True" CanUserResize="False" Header="Datum" Width="112"></DataGridTextColumn>
-                            <DataGridTextColumn x:Name="kolonaSatnica" IsReadOnly="True" CanUserResize="False" Header="Satnica" Width="112"></DataGridTextColumn>
-                            <DataGridTextColumn x:Name="kolonaProstorija" IsReadOnly="True" CanUserResize="False" Header="Prostorija" Width="112"></DataGridTextColumn>
-                            <DataGridTextColumn x:Name="kolonaTip" IsReadOnly="True" CanUserResize="False" Header="Tip" Width="112"></DataGridTextColumn>
+                            <DataGridTextColumn x:Name="kolonaDatum" Binding="{Binding datum}" IsReadOnly="True" CanUserResize="False" Header="Datum" Width="112"></DataGridTextColumn>
+                            <DataGridTextColumn x:Name="kolonaSatnica" Binding="{Binding satnica}" IsReadOnly="True" CanUserResize="False" Header="Satnica" Width="112"></DataGridTextColumn>
+                            <DataGridTextColumn x:Name="kolonaProstorija" IsReadOnly="True" Binding="{Binding lokacija}" CanUserResize="False" Header="Prostorija" Width="112"></DataGridTextColumn>
+                            <DataGridTextColumn x:Name="kolonaTip" IsReadOnly="True" Binding="{Binding napomena}" CanUserResize="False" Header="Tip" Width="73"></DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Button Content="Otkaži" HorizontalAlignment="Left" Margin="29,70,0,0" VerticalAlignment="Top" Width="78" Height="34" FontWeight="Bold"/>
+                    <Button x:Name="btnOtkazi" Content="Otkaži" HorizontalAlignment="Left" Margin="29,70,0,0" VerticalAlignment="Top" Width="78" Height="34" FontWeight="Bold" Click="btnOtkazi_Click"/>
                     <Button Content="Promeni" HorizontalAlignment="Left" Margin="165,70,0,0" VerticalAlignment="Top" Width="78" Height="34" FontWeight="Bold"/>
                     <Button Content="Info" HorizontalAlignment="Left" Margin="307,70,0,0" VerticalAlignment="Top" Width="78" Height="34" FontWeight="Bold"/>
-                    <TextBox Margin="29,15,176.2,504.8" Text="Pretraga..." Foreground="Gray"></TextBox>
-                    <Button Content="" HorizontalAlignment="Left" Margin="246,15,0,0" VerticalAlignment="Top" Width="40" Height="33">
+                    <Button Content="" HorizontalAlignment="Left" Margin="340,15,0,0" VerticalAlignment="Top" Width="40" Height="33" Click="Button_Click">
                         <Button.Background>
                             <ImageBrush Stretch="Uniform" ImageSource="search.png"/>
                         </Button.Background>
                     </Button>
+                    <DatePicker x:Name="prvi" HorizontalAlignment="Left" Margin="61,15,0,0" VerticalAlignment="Top" Height="33"/>
+                    <DatePicker x:Name="drugi" HorizontalAlignment="Left" Margin="212,15,0,0" VerticalAlignment="Top" Height="33" Width="101"/>
+                    <Label Content="Od:" HorizontalAlignment="Left" Margin="16,15,0,0" VerticalAlignment="Top" FontSize="14" Height="33" Width="34"/>
+                    <Label Content="Do:" HorizontalAlignment="Left" Margin="173,15,0,0" VerticalAlignment="Top" FontSize="14" Height="33" Width="34"/>
+                    <Label x:Name="lblGreska"  Content="*Pogrešan unos  datuma!" Foreground="Red" Visibility="Hidden" HorizontalAlignment="Left" Margin="61,44,0,0" VerticalAlignment="Top" Width="252" FontWeight="Bold" FontStyle="Italic"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="tabRad" Header="Rad sa pacijentima" Width="211">

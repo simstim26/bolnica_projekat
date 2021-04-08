@@ -24,6 +24,7 @@ namespace Bolnica_aplikacija
     public partial class PacijentInfo : UserControl
     {
         public static TabControl tab;
+        private static DataGrid dataTermini;
         public PacijentInfo()
         {
             InitializeComponent();
@@ -31,7 +32,13 @@ namespace Bolnica_aplikacija
             lblJmbg.Content = PacijentKontroler.getPacijent().jmbg;
             lblImePrezime.Content = PacijentKontroler.getPacijent().ime + " " + PacijentKontroler.getPacijent().prezime;
             lblDatumRodjenja.Content = PacijentKontroler.getPacijent().datumRodjenja.ToString("dd.MM.yyyy.");
+            dataTermini = this.dataGridTerminiPacijenta;
             ucitajPodatke();
+        }
+
+        public static DataGrid getDataTermini()
+        {
+            return dataTermini;
         }
 
         private void btnNazad_Click(object sender, RoutedEventArgs e)
@@ -63,6 +70,7 @@ namespace Bolnica_aplikacija
                     else
                     {
                         PacijentKontroler.otkaziTerminPacijenta(izabraniTermin.id);
+                        LekarTabovi.getRaspored().ItemsSource = LekarKontroler.prikaziZauzeteTermineZaLekara(KorisnikKontroler.getLekar());
                     }
                 }
                 else

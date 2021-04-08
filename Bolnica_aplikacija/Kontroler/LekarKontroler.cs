@@ -17,5 +17,15 @@ namespace Bolnica_aplikacija.Kontroler
         {
             return lekarServis.prikaziSlobodneTermineZaLekara(ulogovaniLekar, tipAkcije);
         }
+
+        public static List<PacijentTermin> prikaziZauzeteTermineZaLekara(Lekar ulogovaniLekar)
+        {
+            return lekarServis.prikaziZauzeteTermineZaLekara(ulogovaniLekar);
+        }
+        public static List<PacijentTermin> pretraziZauzeteTermineZaLekara(Lekar lekar, DateTime prvi, DateTime drugi)
+        {
+            return lekarServis.pretraziZauzeteTermineZaLekara(lekar, prvi, drugi);
+        }
+
     }
 }

@@ -87,5 +87,71 @@ namespace Bolnica_aplikacija.Servis
             return slobodniTermini;
         }
 
+
+        public List<PacijentTermin> prikaziZauzeteTermineZaLekara(Lekar lekar)
+        {
+            List<PacijentTermin> terminiZaPrikaz = new List<PacijentTermin>();
+            DateTime danasnjiDatum = DateTime.Now;
+            DateTime danasnji = danasnjiDatum.Date.Add(new TimeSpan(0, 0, 0));
+            foreach (Termin termin in terminRepozitorijum.ucitajSve())
+            {
+                if (termin.idLekara.Equals(lekar.id) && !termin.idPacijenta.Equals(""))
+                {
+                    if (DateTime.Compare(termin.datum, danasnji) >= 1)
+                    {
+                        PacijentTermin pacijentTermin = new PacijentTermin();
+                        pacijentTermin.id = termin.idTermina;
+                        pacijentTermin.imeLekara = lekar.ime + " " + lekar.prezime;
+                        pacijentTermin.napomena = termin.getTipString();
+                        pacijentTermin.datum = termin.datum.ToString("dd.MM.yyyy.");
+                        pacijentTermin.satnica = termin.satnica.ToString("HH:mm");
+
+                        foreach (Prostorija prostorija in prostorijaRepozitorijum.ucitajSve())
+                        {
+                            if (termin.idProstorije.Equals(prostorija.id))
+                            {
+                                pacijentTermin.lokacija = prostorija.sprat + " " + prostorija.broj;
+                                break;
+                            }
+                        }
+
+                        terminiZaPrikaz.Add(pacijentTermin);
+                    }
+                }
+            }
+            return terminiZaPrikaz;
+        }
+
+        public List<PacijentTermin> pretraziZauzeteTermineZaLekara(Lekar lekar, DateTime prvi, DateTime drugi)
+        {
+            List<PacijentTermin> terminiZaPrikaz = new List<PacijentTermin>();
+            foreach (Termin termin in terminRepozitorijum.ucitajSve())
+            {
+                if (termin.idLekara.Equals(lekar.id) && !termin.idPacijenta.Equals(""))
+                {
+                    int rez1 = DateTime.Compare(termin.datum, prvi);
+                    int rez2 = DateTime.Compare(termin.datum, drugi);
+                    if (rez1 >= 0 && rez2 <= 0)
+                    {
+                        PacijentTermin pacijentTermin = new PacijentTermin();
+                        pacijentTermin.datum = termin.datum.ToString("dd.MM.yyyy.");
+                        pacijentTermin.satnica = termin.satnica.ToString("HH:mm");
+                        pacijentTermin.id = termin.idTermina;
+                        pacijentTermin.napomena = termin.getTipString(); 
+                        foreach (Prostorija prostorija in prostorijaRepozitorijum.ucitajSve())
+                        {
+                            if (termin.idProstorije.Equals(prostorija.id))
+                            {
+                                pacijentTermin.lokacija = prostorija.sprat + " " + prostorija.broj;
+                                break;
+                            }
+                        }
+
+                        terminiZaPrikaz.Add(pacijentTermin);
+                    }
+                }
+            }
+                return terminiZaPrikaz;
+        }
     }
 }
