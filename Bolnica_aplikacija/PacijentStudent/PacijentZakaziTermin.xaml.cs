@@ -1,4 +1,5 @@
-﻿using Bolnica_aplikacija.PacijentModel;
+﻿using Bolnica_aplikacija.Kontroler;
+using Bolnica_aplikacija.PacijentModel;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -23,13 +24,12 @@ namespace Bolnica_aplikacija.PacijentStudent
     /// </summary>
     public partial class PacijentZakaziTermin : Window
     {
-        private string idPacijenta;
-        private DataGrid dataGrid;
+       private DataGrid dataGrid;
 
-        public PacijentZakaziTermin(DataGrid dataGrid, string idPacijenta)
+        public PacijentZakaziTermin(DataGrid dataGrid)
         {
             InitializeComponent();
-            this.idPacijenta = idPacijenta;
+            
             this.dataGrid = dataGrid;
             dataGridSlobodniTermini.Loaded += SetMinSirina;
 
@@ -47,78 +47,7 @@ namespace Bolnica_aplikacija.PacijentStudent
 
         public void ucitajPodatke()
         {
-           
-            List<Termin> sviTermini;
-            List<Prostorija> sveProstorije;
-            List<Lekar> sviLekari;
-
-            try
-            {
-                sviTermini = JsonSerializer.Deserialize<List<Termin>>(File.ReadAllText("Datoteke/probaTermini.txt"));
-                sveProstorije = JsonSerializer.Deserialize<List<Prostorija>>(File.ReadAllText("Datoteke/probaProstorije.txt"));
-                sviLekari = JsonSerializer.Deserialize<List<Lekar>>(File.ReadAllText("Datoteke/probaLekari.txt"));
-            }
-            catch(Exception e)
-            {
-                Console.WriteLine(e.Message);
-                sviTermini = new List<Termin>();
-                sveProstorije = new List<Prostorija>();
-                sviLekari = new List<Lekar>();
-            }
-            
-
-            List<Termin> terminiPacijenta = new List<Termin>();
-            List<PacijentTermin> terminiPacijentaIspravni = new List<PacijentTermin>();
-
-            foreach (Termin termin in sviTermini)
-            {
-                PacijentTermin pacijentTermin = new PacijentTermin();
-                foreach (Prostorija prostorija in sveProstorije)
-                {
-                    if (prostorija.id.Equals(termin.idProstorije))
-                        pacijentTermin.lokacija = "Sprat " + prostorija.sprat + ", broj " + prostorija.broj;
-
-                }
-
-                foreach (Lekar lekar in sviLekari)
-                {
-                    if (lekar.id.Equals(termin.idLekara))
-                        if (lekar.idSpecijalizacije.Equals("0"))
-                        {
-                            pacijentTermin.imeLekara = lekar.ime + " " + lekar.prezime;
-                        }
-                        else
-                            pacijentTermin.imeLekara = "";
-                }
-
-                if (termin.idPacijenta.Equals("") && !pacijentTermin.imeLekara.Equals(""))
-                {
-                   
-                    DateTime trenutanDatum = DateTime.Now.AddDays(1);
-
-                    int rezultat = DateTime.Compare(termin.datum, trenutanDatum);
-
-                    if (rezultat == 1)
-                    {
-                        String[] datumBezVremena = termin.datum.Date.ToString().Split(' ');
-                        pacijentTermin.datum = datumBezVremena[0];
-                        switch (termin.tip)
-                        {
-                            case TipTermina.OPERACIJA: pacijentTermin.napomena = "Operacija"; break;
-                            case TipTermina.PREGLED: pacijentTermin.napomena = "Pregled"; break;
-                            default: break;
-                        }
-                        String satnica = termin.satnica.ToString("HH:mm");
-                        pacijentTermin.satnica = satnica;
-                        pacijentTermin.id = termin.idTermina;
-
-                        terminiPacijentaIspravni.Add(pacijentTermin);
-
-                    }
-                }
-            }
-
-            dataGridSlobodniTermini.ItemsSource = terminiPacijentaIspravni;
+            dataGridSlobodniTermini.ItemsSource = PacijentKontroler.ucitajSlobodneTermine();
         }
 
         private void btnPotvrdi_Click(object sender, RoutedEventArgs e)
@@ -133,8 +62,10 @@ namespace Bolnica_aplikacija.PacijentStudent
                 {
                     if (dataGridSlobodniTermini.SelectedIndex != -1)
                     {
-
-                        Pacijent.NapraviTermin(dataGridSlobodniTermini, this.dataGrid, this.idPacijenta);
+                        PacijentTermin selektovanTermin = (PacijentTermin)dataGridSlobodniTermini.SelectedItem;
+                        String idSelektovanog = selektovanTermin.id;
+                        PacijentKontroler.zakaziTerminPacijentu(idSelektovanog);
+                        dataGrid.ItemsSource = PacijentKontroler.prikazPacijentovihTermina();
                         this.Close();
 
                     }
