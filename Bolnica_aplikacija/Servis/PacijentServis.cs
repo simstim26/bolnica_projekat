@@ -15,6 +15,7 @@ namespace Bolnica_aplikacija.Servis
         private TerminRepozitorijum terminRepozitorijum = new TerminRepozitorijum(); //koristi se za azuriranje/prikaz termina odredjenog pacijenta
         private LekarRepozitorijum lekarRepozitorijum = new LekarRepozitorijum(); //za prikaz imena/prezimena lekara za termin odredjenog pacijenta
         private ProstorijaRepozitorijum prostorijaRepozitorijum = new ProstorijaRepozitorijum();
+        private SpecijalizacijaRepozitorijum specijalizacijaRepozitorijum = new SpecijalizacijaRepozitorijum();
         private Pacijent pacijent; //lekar -> cuva se izabrani pacijent
         public List<Pacijent> prikazPacijenata() //prikaz pacijenata kod lekara
         {
@@ -71,6 +72,7 @@ namespace Bolnica_aplikacija.Servis
                             if (prostorija.id.Equals(termin.idProstorije))
                             {
                                 pacijentTermin.lokacija = "Sprat " + prostorija.sprat + ", sala broj " + prostorija.broj;
+                                break;
                             }
                         }
 
@@ -79,6 +81,8 @@ namespace Bolnica_aplikacija.Servis
                             if (lekar.id.Equals(termin.idLekara))
                             {
                                 pacijentTermin.imeLekara = lekar.ime + " " + lekar.prezime;
+                                pacijentTermin.idSpecijalizacije = lekar.idSpecijalizacije;
+                                break;
                             }
                         }
 
@@ -91,6 +95,8 @@ namespace Bolnica_aplikacija.Servis
                         }
                         pacijentTermin.satnica = termin.satnica.ToString("HH:mm");
                         pacijentTermin.id = termin.idTermina;
+
+                        
 
                         terminiPacijenta.Add(pacijentTermin);
                     }
