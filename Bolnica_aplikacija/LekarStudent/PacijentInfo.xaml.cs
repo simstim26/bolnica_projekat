@@ -25,17 +25,27 @@ namespace Bolnica_aplikacija
     {
         public static TabControl tab;
         private static DataGrid dataTermini;
+        public static bool aktivanPacijentInfo { get; set; }
         public PacijentInfo()
         {
             InitializeComponent();
+            LekarProzor.getNazad().Visibility = Visibility.Visible;
+            aktivanPacijentInfo = true;
             tab = this.tabInfo;
             lblJmbg.Content = PacijentKontroler.getPacijent().jmbg;
             lblImePrezime.Content = PacijentKontroler.getPacijent().ime + " " + PacijentKontroler.getPacijent().prezime;
             lblDatumRodjenja.Content = PacijentKontroler.getPacijent().datumRodjenja.ToString("dd.MM.yyyy.");
+            lblAdresa.Content = PacijentKontroler.getPacijent().adresa;
+            lblKontakt.Content = PacijentKontroler.getPacijent().brojTelefona;
+           
             dataTermini = this.dataGridTerminiPacijenta;
             ucitajPodatke();
         }
 
+        public static TabControl getTab()
+        {
+            return tab;
+        }
         public static DataGrid getDataTermini()
         {
             return dataTermini;
@@ -43,7 +53,8 @@ namespace Bolnica_aplikacija
 
         private void btnNazad_Click(object sender, RoutedEventArgs e)
         {
-            Content = new PrikazPacijenata();
+            LekarProzor.getX().Content = new LekarTabovi();
+          //  LekarTabovi.getTab().SelectedIndex = 1;
         }
 
         private void btnZakazi_Click(object sender, RoutedEventArgs e)
@@ -124,5 +135,21 @@ namespace Bolnica_aplikacija
             }
         }
 
+        private void tabInfo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(this.tabInfo.SelectedIndex == 0)
+            {
+                LekarProzor.getPretraga().Visibility = Visibility.Hidden;
+            }
+            else if(this.tabInfo.SelectedIndex == 1)
+            {
+                LekarProzor.getPretraga().Visibility = Visibility.Visible;
+
+            }
+            else
+            {
+                LekarProzor.getPretraga().Visibility = Visibility.Visible;
+            }
+        }
     }
 }

@@ -4,32 +4,43 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Bolnica_aplikacija"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="Lekar" MaxHeight="750" MaxWidth="430" Height="750" Width="430"
         WindowStartupLocation="CenterScreen">
-    <Grid>
+    <Grid Background="White">
         <Grid.RowDefinitions>
-            <RowDefinition Height="7*"/>
-            <RowDefinition Height="65*"/>
+            <RowDefinition Height="23*" />
+            <RowDefinition Height="337*"/>
         </Grid.RowDefinitions>
-        <StatusBar HorizontalAlignment="Left" Height="31" Margin="0,619.6,0,-0.2" Grid.Row="1" VerticalAlignment="Top" Width="424">
-            <Grid Height="31" Width="424">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="34*"/>
-                    <ColumnDefinition Width="35*"/>
-                    <ColumnDefinition Width="37*"/>
-                </Grid.ColumnDefinitions>
-                <Label Content="ImeBolnice" Grid.Column="1" HorizontalAlignment="Center" Margin="23,-8,25,0" VerticalAlignment="Top" Width="92" FontSize="16" Height="29" HorizontalContentAlignment="Center"/>
-            </Grid>
-        </StatusBar>
-        <Label x:Name ="lblImePrezime" Content="Ime i Prezime " HorizontalAlignment="Left" Margin="245,6,0,0" VerticalAlignment="Top" Width="169" FontSize="14"/>
-        <Label x:Name="lblprosecnaOcena" Content="Ocena: " HorizontalAlignment="Left" Margin="245,35,0,0" VerticalAlignment="Top" Width="169"/>
-        <ContentControl x:Name ="contentControl" HorizontalAlignment="Left" Margin="0,9.6,0,0" Grid.Row="1" VerticalAlignment="Top" Height="610" Width="424" Background="Black"/>
-        <Menu HorizontalAlignment="Left" Height="32" VerticalAlignment="Top" Width="62">
-            <MenuItem Header="Meni" Height="32" Width="62" FontSize="20" BorderBrush="Black" Foreground="Black" Background="#FFDFDFDF">
-                <MenuItem x:Name="meniOdjava" Header="Odjava" Height="29" Margin="0,0,-31.6,0" Click="meniOdjava_Click"/>
-            </MenuItem>
-        </Menu>
+        <Rectangle Fill="#93c47d" HorizontalAlignment="Left" Height="46" Stroke="#93c47d" VerticalAlignment="Top" Width="424"/>
+
+        <materialDesign:PopupBox HorizontalAlignment="Right" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False" Margin="10">
+            <StackPanel Width="150">
+                <Button Content="Moj nalog"/>
+                <Button Content="Pomoc"/>
+                <Button Content="Odjava" Click="meniOdjava_Click"/>
+            </StackPanel>
+        </materialDesign:PopupBox>
+        <ContentControl x:Name ="contentControl" HorizontalAlignment="Left" Margin="0,46,0,-0.2" VerticalAlignment="Top" Height="675" Width="424" Background="White" Grid.RowSpan="2"/>
+        <Label x:Name="lblGlavna"  Content="Zdravo korporacija" HorizontalAlignment="Left" Margin="58,9,0,0" VerticalAlignment="Top" Width="278" FontSize="18"/>
+        <Button x:Name="btnNazad"  HorizontalAlignment="Left" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Black" Margin="6,3,0,0" VerticalAlignment="Top" Width="47" Height="38" Visibility="Hidden" Click="btnNazad_Click">
+            <materialDesign:PackIcon Kind="Reply" Height="26" Width="26" RenderTransformOrigin="0.5,0.5">
+            </materialDesign:PackIcon>
+        </Button>
+        <Button x:Name="btnPretraga" HorizontalAlignment="Left" Margin="349,3,0,0" VerticalAlignment="Top"  Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"  Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Black" Click="btnPretraga_Click" Height="38" Width="37">
+            <materialDesign:PackIcon Kind="Search" Height="23" Width="23" RenderTransformOrigin="0.5,0.5">
+                <materialDesign:PackIcon.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="90.407"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </materialDesign:PackIcon.RenderTransform>
+
+            </materialDesign:PackIcon>
+        </Button>
 
     </Grid>
 </Window>

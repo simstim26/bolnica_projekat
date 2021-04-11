@@ -15,7 +15,7 @@
     "satnica": "2021-03-28T14:00:00",
     "jeZavrsen": false,
     "idTermina": "2",
-    "idProstorije": "10",
+    "idProstorije": "15",
     "idPacijenta": "1",
     "idLekara": "1"
   },
@@ -25,8 +25,8 @@
     "satnica": "2021-03-28T12:00:00",
     "jeZavrsen": false,
     "idTermina": "3",
-    "idProstorije": "9",
-    "idPacijenta": "1",
+    "idProstorije": "16",
+    "idPacijenta": "2",
     "idLekara": "1"
   },
   {

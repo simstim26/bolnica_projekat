@@ -27,14 +27,18 @@ namespace Bolnica_aplikacija
     public partial class ZakaziTermin : UserControl
     {
         private static int tipAkcije; //0-zakazivanje; 1-promena (zahteva zakazivanje i otkazivanje)
+        public static bool aktivan { get; set; }
         public ZakaziTermin(int tip)
         {
             InitializeComponent();
             tipAkcije = tip;
+            PacijentInfo.aktivanPacijentInfo = false;
+            PrikazProstorija.aktivan = false;
+            aktivan = true;
 
             if (tipAkcije == 1)
             {
-                lblIzaberi.Content = "Izaberite novi termin: ";
+               // lblIzaberi.Content = "Izaberite novi termin: ";
                 btnOdabirProstorije.Content = "Promena prostorije";
                 btnOdabirProstorije.Visibility = Visibility.Visible;
                 btnZakaziOperaciju.Visibility = Visibility.Hidden;
@@ -62,10 +66,8 @@ namespace Bolnica_aplikacija
 
         private void btnPonisti_Click(object sender, RoutedEventArgs e)
         {
-            LekarProzor.getX().Content = new LekarTabovi();
-            LekarTabovi.getX().Content = new PacijentInfo();
-            LekarTabovi.getTab().SelectedIndex = 1;
-            PacijentInfo.getPregledTab().SelectedIndex = 1;
+            LekarProzor.getX().Content = new PacijentInfo();
+            PacijentInfo.getPregledTab().SelectedIndex = 2;
         }
 
         private void btnPotvrdi_Click(object sender, RoutedEventArgs e)
@@ -83,10 +85,8 @@ namespace Bolnica_aplikacija
                     PacijentKontroler.azurirajTerminPacijentu(TerminKontroler.getTermin().idTermina, pacijentTermin.id);
                 }
 
-                LekarProzor.getX().Content = new LekarTabovi();
-                LekarTabovi.getX().Content = new PacijentInfo();
-                LekarTabovi.getTab().SelectedIndex = 1;
-                PacijentInfo.getPregledTab().SelectedIndex = 1;
+                LekarProzor.getX().Content = new PacijentInfo();
+                PacijentInfo.getPregledTab().SelectedIndex = 2;
             }
             else
             {

@@ -28,16 +28,30 @@ namespace Bolnica_aplikacija
         private static TabControl tab;
         //private static TabItem tabRad;
         private static DataGrid raspored;
+        private static Grid gridRasporedPretraga;
+        private static Grid gridPrikaz;
         public LekarTabovi()
         {
             InitializeComponent();
-            this.contentControl.Content = new PrikazPacijenata();
-            x = this.contentControl;
+           // this.contentControl.Content = new PrikazPacijenata();
+           // x = this.contentControl;
             raspored = this.dataRaspored;
             tab = this.lekarTab;
+            gridRasporedPretraga = this.gridPretragaRaspored;
+            lstPacijenti.ItemsSource = PacijentKontroler.prikazPacijenata();
+            gridPrikaz = this.gridPrikazPacijenata;
             ucitajSve();
+
         }
 
+        public static Grid getRasporedPretraga()
+        {
+            return gridRasporedPretraga;
+        }
+        public static Grid getPacijentiPretraga()
+        {
+            return gridPrikaz;
+        }
         public static DataGrid getRaspored()
         {
             return raspored;
@@ -101,6 +115,15 @@ namespace Bolnica_aplikacija
             else
             {
                 MessageBox.Show("Potrebno je izabrati termin!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+        private void btnInfoPrikaz_Click(object sender, RoutedEventArgs e)
+        {
+            if (lstPacijenti.SelectedIndex != -1)
+            {
+                PacijentKontroler.nadjiPacijenta(((Pacijent)lstPacijenti.SelectedItem).id);
+                this.Content = new PacijentInfo();
             }
         }
     }
