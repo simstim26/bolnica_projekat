@@ -50,11 +50,9 @@ namespace Bolnica_aplikacija.Kontroler
             return pacijentServis.getPacijent();
         }
 
-
-        //da li mi treba ovo??
-        public static void otkaziZakazanTermin(String idTermina)
+        public static List<PacijentTermin> ucitajSlobodneTermine()
         {
-            pacijentServis.otkaziTerminPacijenta(idTermina);
+            return pacijentServis.ucitajSlobodneTermine();
         }
 
     }
