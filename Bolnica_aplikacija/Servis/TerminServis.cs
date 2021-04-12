@@ -1,4 +1,5 @@
-﻿using Bolnica_aplikacija.Repozitorijum;
+﻿using Bolnica_aplikacija.Kontroler;
+using Bolnica_aplikacija.Repozitorijum;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,19 @@ namespace Bolnica_aplikacija.Servis
             }
 
             return povratnaVrednost;
+        }
+
+        public void nadjiPacijentaZaTermin(String idTermina)
+        {
+            foreach(Termin termin in terminRepozitorijum.ucitajSve())
+            {
+                if (idTermina.Equals(termin.idTermina))
+                {
+                    PacijentKontroler.nadjiPacijenta(termin.idPacijenta);
+                   
+                    break;
+                }
+            }
         }
 
         public void promeniProstorijuTermina(String idTermina, String idProstorije)

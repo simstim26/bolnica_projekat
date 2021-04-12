@@ -86,7 +86,7 @@
                     <Button x:Name="btnPromeni" HorizontalAlignment="Left" Margin="318,70,0,0" VerticalAlignment="Top" Width="78" Height="34" FontWeight="Bold">
                         <materialDesign:PackIcon Kind="Repeat" Height="27" Width="43"></materialDesign:PackIcon>
                     </Button>
-                    <Button x:Name="btnInfo" HorizontalAlignment="Left" Margin="20,70,0,0" VerticalAlignment="Top" Width="78" Height="34" FontWeight="Bold">
+                    <Button x:Name="btnInfo" HorizontalAlignment="Left" Margin="20,70,0,0" VerticalAlignment="Top" Width="78" Height="34" FontWeight="Bold" Click="btnInfo_Click">
                         <materialDesign:PackIcon Kind="InfoCircle" Height="27" Width="43"></materialDesign:PackIcon>
                     </Button>
 

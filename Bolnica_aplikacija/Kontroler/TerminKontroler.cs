@@ -11,6 +11,10 @@ namespace Bolnica_aplikacija.Kontroler
     class TerminKontroler
     {
         private static TerminServis terminServis = new TerminServis();
+        public static void nadjiPacijentaZaTermin(String idTermina)
+        {
+            terminServis.nadjiPacijentaZaTermin(idTermina);
+        }
 
         public static List<Prostorija> nadjiSlobodneProstorijeZaTermin(Lekar lekar, Termin termin)
         {

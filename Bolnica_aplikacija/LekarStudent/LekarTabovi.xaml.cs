@@ -126,5 +126,14 @@ namespace Bolnica_aplikacija
                 this.Content = new PacijentInfo();
             }
         }
+
+        private void btnInfo_Click(object sender, RoutedEventArgs e)
+        {
+            if(dataRaspored.SelectedIndex != -1)
+            {
+                TerminKontroler.nadjiPacijentaZaTermin(((PacijentTermin)dataRaspored.SelectedItem).id);
+                this.Content = new PacijentInfo();
+            }
+        }
     }
 }

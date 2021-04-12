@@ -177,9 +177,6 @@
     <Compile Include="Prijava.xaml.cs">
       <DependentUpon>Prijava.xaml</DependentUpon>
     </Compile>
-    <Compile Include="LekarStudent\PrikazPacijenata.xaml.cs">
-      <DependentUpon>PrikazPacijenata.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -253,10 +250,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="LekarStudent\PrikazPacijenata.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="LekarStudent\ZakaziTermin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
