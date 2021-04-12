@@ -52,7 +52,7 @@
                     </Setter>
                 </Style>
             </TabControl.Resources>
-            <TabItem x:Name="tabRaspored" Height="40" Width="210" BorderBrush="Black" Margin="0,0,-0.4,0">
+            <TabItem x:Name="tabRaspored" Height="45" Width="210" BorderBrush="Black" Margin="0,0,-0.4,0">
                 <TabItem.HeaderTemplate>
                     <DataTemplate>
                         <TextBlock Grid.ColumnSpan="2" Margin="-12,-5,-11,-3.8">
