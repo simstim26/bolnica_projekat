@@ -102,7 +102,7 @@ namespace Bolnica_aplikacija.PacijentStudent
 
         private void btnZakaziPregled_Click_1(object sender, RoutedEventArgs e)
         {
-            PacijentZakaziTermin zakaziTermin = new PacijentZakaziTermin(dataGridTermin, this.idPacijenta);
+            PacijentZakaziTermin zakaziTermin = new PacijentZakaziTermin(dataGridTermin);
             zakaziTermin.Owner = this;
             zakaziTermin.ShowDialog();
         }
@@ -129,7 +129,14 @@ namespace Bolnica_aplikacija.PacijentStudent
                     }
                     else
                     {
-                        PacijentKontroler.otkaziTerminPacijenta(izabraniTermin.id);
+                        if(izabraniTermin.idSpecijalizacije.Equals("0"))
+                        {
+                            PacijentKontroler.otkaziTerminPacijenta(izabraniTermin.id);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Potrebno je da se konsultujete sa Vašim specijalistom kako biste otkazali ovaj termin pregleda.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        }
                     }
                 }
                 else
@@ -152,19 +159,26 @@ namespace Bolnica_aplikacija.PacijentStudent
             {
 
                 PacijentTermin izabraniTermin = (PacijentTermin)dataGridTermin.SelectedItem;
-
+                
                 if(izabraniTermin.napomena.Equals("Pregled"))
                 {
-                    if(TerminKontroler.proveriDatumTermina(izabraniTermin.datum) <= 0)
+                    if(TerminKontroler.proveriDatumTermina(izabraniTermin.id) <= 0)
                     {
                         MessageBox.Show("Nije moguće izvršiti promenu termina 24h pred termin.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
                     }
                     else
                     {
-                        TerminKontroler.sacuvajTermin(izabraniTermin.id);
-                        IzmenaTerminaPacijent izmenaTermina = new IzmenaTerminaPacijent(dataGridTermin, this.idPacijenta);
-                        izmenaTermina.Owner = this;
-                        izmenaTermina.ShowDialog();
+                        if(izabraniTermin.idSpecijalizacije.Equals("0"))
+                        {
+                            TerminKontroler.sacuvajTermin(izabraniTermin.id);
+                            IzmenaTerminaPacijent izmenaTermina = new IzmenaTerminaPacijent(dataGridTermin, this.idPacijenta);
+                            izmenaTermina.Owner = this;
+                            izmenaTermina.ShowDialog();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Potrebno je da se konsultujete sa Vašim specijalistom oko izmene termina pregleda.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        }
                     }
                 }
                 else
