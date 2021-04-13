@@ -40,5 +40,11 @@
     "korisnickoIme": "fugza",
     "lozinka": "fugza",
     "tip": "pacijent"
+  },
+  {
+    "id": "4",
+    "korisnickoIme": "Guest",
+    "lozinka": "guest",
+    "tip": "pacijent"
   }
 ]

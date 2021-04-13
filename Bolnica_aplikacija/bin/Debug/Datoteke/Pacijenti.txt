@@ -46,5 +46,21 @@
     "email": "gaspsinspanish@telenovela.com",
     "brojTelefona": "123456",
     "jmbg": "0434567898123"
+  },
+  {
+    "id": "4",
+    "idBolnice": "1",
+    "jeGost": true,
+    "adresa": "",
+    "jeLogickiObrisan": false,
+    "Notifikacija": [],
+    "korisnickoIme": "Guest",
+    "lozinka": "guest",
+    "ime": "Gost",
+    "prezime": "Gostojic",
+    "datumRodjenja": "1979-01-01T00:00:00",
+    "email": "",
+    "brojTelefona": "\u002B381649877788",
+    "jmbg": "1234567654564"
   }
 ]
