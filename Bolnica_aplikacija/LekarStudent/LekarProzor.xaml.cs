@@ -108,5 +108,10 @@ namespace Bolnica_aplikacija
                 }
             }
         }
+
+        private void Window_Activated(object sender, EventArgs e)
+        {
+
+        }
     }
 }
