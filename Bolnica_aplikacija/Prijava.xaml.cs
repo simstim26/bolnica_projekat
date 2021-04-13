@@ -36,7 +36,8 @@ namespace Bolnica_aplikacija
                  case "pacijent":
                     
                     KorisnikKontroler.NadjiPacijenta(ulogovaniKorisnik[1]); //cuvanje ulogovanog korisnika
-                    PacijentProzor pacijentProzor = new PacijentProzor();
+                    //PacijentProzor pacijentProzor = new PacijentProzor();
+                    ProzorPacijent pacijentProzor = new ProzorPacijent();
                     this.Close();
                     pacijentProzor.ShowDialog();
                     break;
