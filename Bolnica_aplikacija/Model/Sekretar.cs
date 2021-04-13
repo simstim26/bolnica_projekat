@@ -21,7 +21,7 @@ namespace Model
         public static void NapraviPacijenta(String id, String idBolnice, bool gost, String korisnickoIme, String lozinka, String jmbg, String ime, String prezime, DateTime datumRodj, string adresa, string email, string telefon, DataGrid tabelaPacijenti, List<Pacijent> pacijenti)
       {
             
-            Pacijent pacijent = new Pacijent();
+           /* Pacijent pacijent = new Pacijent();
             List<Pacijent> sviPacijenti = pacijenti;
 
             pacijent.id = id;
@@ -57,13 +57,14 @@ namespace Model
 
             ProcitajPacijente(tabelaPacijenti);
             //throw new NotImplementedException();
+           */
         }
       
       
         //Izbrisan Pacijent pacijent
         public static void ProcitajPacijente(DataGrid tabelaPacijenti)
       {
-            List<Pacijent> ucitaniPacijenti = JsonSerializer.Deserialize<List<Pacijent>>(File.ReadAllText("Datoteke/probaPacijenti.txt"));
+           /* List<Pacijent> ucitaniPacijenti = JsonSerializer.Deserialize<List<Pacijent>>(File.ReadAllText("Datoteke/probaPacijenti.txt"));
             List<Pacijent> neobrisaniPacijenti = new List<Pacijent>();
            
             foreach (Pacijent p in ucitaniPacijenti)
@@ -77,11 +78,12 @@ namespace Model
             tabelaPacijenti.ItemsSource = neobrisaniPacijenti;
             tabelaPacijenti.Items.Refresh();
             //throw new NotImplementedException();
+           */
         }
       
       public static void AzurirajPacijenta(String id, String idBolnice, bool gost, String korisnickoIme, String lozinka, String jmbg, String ime, String prezime, DateTime datumRodj, string adresa, string email, string telefon, DataGrid tabelaPacijenti, List<Pacijent> pacijenti)
       {
-            foreach(Pacijent izmeniP in pacijenti)
+           /* foreach(Pacijent izmeniP in pacijenti)
             {
                 if (izmeniP.id.Equals(id))
                 {
@@ -107,12 +109,13 @@ namespace Model
             ProcitajPacijente(tabelaPacijenti);
 
             // throw new NotImplementedException();
+           */
       }
       
       public static void ObrisiPacijenta(String idPacijenta, List<Pacijent> pacijenti)
       {
 
-            //Pronadji pacijenta za brisanje i postavi mu jeLogickiObrisan na true
+          /*  //Pronadji pacijenta za brisanje i postavi mu jeLogickiObrisan na true
             foreach (Pacijent p in pacijenti)
             {
 
@@ -125,7 +128,7 @@ namespace Model
 
             string jsonString = JsonSerializer.Serialize(pacijenti);
             File.WriteAllText("Datoteke/probaPacijenti.txt", jsonString);
-
+          */
 
         }
       

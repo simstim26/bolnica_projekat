@@ -30,21 +30,5 @@
     "email": "iodum99@yahoo.com",
     "brojTelefona": "\u002B381649563126",
     "jmbg": "0504999800007"
-  },
-  {
-    "id": "3",
-    "idBolnice": "1",
-    "jeGost": false,
-    "adresa": "Meksiko",
-    "jeLogickiObrisan": false,
-    "Notifikacija": [],
-    "korisnickoIme": "fugza",
-    "lozinka": "fugza",
-    "ime": "Soraja",
-    "prezime": "Montenegro",
-    "datumRodjenja": "1967-04-04T00:00:00",
-    "email": "gaspsinspanish@telenovela.com",
-    "brojTelefona": "123456",
-    "jmbg": "0434567898123"
   }
 ]
