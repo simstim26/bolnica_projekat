@@ -15,7 +15,7 @@
         <Label x:Name="lblJmbg" HorizontalAlignment="Left" Margin="228,52,0,0" VerticalAlignment="Top" Width="161" Height="24"/>
         <Label Content="Ime i prezime:" HorizontalAlignment="Left" Margin="128,81,0,0" VerticalAlignment="Top"/>
         <Label x:Name="lblImePrezime" HorizontalAlignment="Left" Margin="228,81,0,0" VerticalAlignment="Top" Width="161" Height="24"/>
-        <Button x:Name="btnUput" Content="Uput" HorizontalAlignment="Left" Margin="58,204,0,0" VerticalAlignment="Top" Width="85" Height="39"/>
+        <Button x:Name="btnUput" Content="Uput" HorizontalAlignment="Left" Margin="58,204,0,0" VerticalAlignment="Top" Width="85" Height="39" Click="btnUput_Click"/>
         <Button x:Name="btnRecept" Content="Recept" HorizontalAlignment="Left" Margin="275,204,0,0" VerticalAlignment="Top" Width="85" Height="39"/>
         <Image HorizontalAlignment="Left" Height="54" Margin="58,121,0,0" VerticalAlignment="Top" Width="50" Source="doc.png"/>
         <Label x:Name="lblLekar" HorizontalAlignment="Left" Margin="128,137,0,0" VerticalAlignment="Top" Width="222" Height="30"/>
@@ -26,6 +26,21 @@
         </Button>
         <Button Content="Button" HorizontalAlignment="Left" Margin="313,602,0,0" VerticalAlignment="Top" Width="76" Height="39"/>
         <Button Content="Zabeleži potrošene stavke" HorizontalAlignment="Left" Margin="98,515,0,0" VerticalAlignment="Top" Width="225" Height="59"/>
+        <Grid x:Name="gridUput" Background="White" Visibility="Hidden">
+            <Label Content="Upućuje:" HorizontalAlignment="Left" Margin="50,56,0,0" VerticalAlignment="Top" Height="26" Width="74"/>
+            <Label x:Name="lblUpucuje" HorizontalAlignment="Left" Margin="148,56,0,0" VerticalAlignment="Top" Height="26" Width="155"/>
+            <Label Content="Kod:" HorizontalAlignment="Left" Margin="50,97,0,0" VerticalAlignment="Top" Height="27" Width="74"/>
+            <TextBox HorizontalAlignment="Left" Height="23" Margin="148,97,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155"/>
+            <Button x:Name="btnIzaberiLekara" HorizontalAlignment="Left" Margin="332,87,0,0" VerticalAlignment="Top" Width="45" Height="33">
+                <materialDesign:PackIcon Kind="Plus" Width="22" Height="22" HorizontalAlignment="Center"></materialDesign:PackIcon>
+            </Button>
+            <Label Content="Upućuje se na pregled radi:" HorizontalAlignment="Left" Margin="24,204,0,0" VerticalAlignment="Top"/>
+            <TextBox HorizontalAlignment="Left" Height="256" Margin="10,233,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="410"/>
+            <Button Content="Button" HorizontalAlignment="Left" Margin="34,558,0,0" VerticalAlignment="Top" Width="90" Height="38"/>
+            <Button Content="Button" HorizontalAlignment="Left" Margin="297,558,0,0" VerticalAlignment="Top" Width="90" Height="38"/>
+
+        </Grid>
 
     </Grid>
+
 </UserControl>

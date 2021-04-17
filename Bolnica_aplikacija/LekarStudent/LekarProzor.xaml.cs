@@ -90,8 +90,17 @@ namespace Bolnica_aplikacija
             }
             else if (Izvestaj.aktivan)
             {
-                LekarProzor.getX().Content = new PacijentInfo();
-                Izvestaj.aktivan = false;
+                if (Izvestaj.getGridUput().Visibility == Visibility.Visible)
+                {
+                    lblGlavna.Content = "Pisanje izveštaja";
+                    Izvestaj.getGridUput().Visibility = Visibility.Hidden;
+
+                }
+                else
+                {
+                    LekarProzor.getX().Content = new PacijentInfo();
+                    Izvestaj.aktivan = false;
+                }
             }
             else if (IstorijaBolesti.aktivan)
             {

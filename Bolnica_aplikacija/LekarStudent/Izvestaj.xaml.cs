@@ -22,6 +22,7 @@ namespace Bolnica_aplikacija.LekarStudent
     public partial class Izvestaj : UserControl
     {
         public static bool aktivan { get; set; }
+        private static Grid uput;
         public Izvestaj()
         {
             InitializeComponent();
@@ -31,11 +32,22 @@ namespace Bolnica_aplikacija.LekarStudent
             aktivan = true;
             lblJmbg.Content = PacijentKontroler.getPacijent().jmbg;
             lblImePrezime.Content = PacijentKontroler.getPacijent().ime + " " + PacijentKontroler.getPacijent().prezime;
-
+            uput = this.gridUput;
             lblLekar.Content = KorisnikKontroler.getLekar().ime + " " + KorisnikKontroler.getLekar().prezime + ", " 
                 + SpecijalizacijaKontroler.nadjiSpecijalizacijuPoId(KorisnikKontroler.getLekar().idSpecijalizacije);
 
         }
 
+        public static Grid getGridUput()
+        {
+            return uput;
+        }
+
+        private void btnUput_Click(object sender, RoutedEventArgs e)
+        {
+            this.gridUput.Visibility = Visibility.Visible;
+            LekarProzor.getGlavnaLabela().Content = "Izdavanje uputa";
+
+        }
     }
 }
