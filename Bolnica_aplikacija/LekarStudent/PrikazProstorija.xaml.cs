@@ -31,6 +31,7 @@ namespace Bolnica_aplikacija.LekarStudent
             InitializeComponent();
             aktivan = true;
             ZakaziTermin.aktivan = false;
+            LekarProzor.getGlavnaLabela().Content = "Promena prostorije";
             ucitajPodatke();
         }
 

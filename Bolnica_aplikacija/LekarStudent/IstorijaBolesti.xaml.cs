@@ -24,6 +24,7 @@ namespace Bolnica_aplikacija.LekarStudent
         public IstorijaBolesti()
         {
             InitializeComponent();
+            LekarProzor.getGlavnaLabela().Content = "Istorija bolesti";
             aktivan = true;
             PacijentInfo.aktivanPacijentInfo = false;
         }

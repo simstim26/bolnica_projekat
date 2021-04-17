@@ -16,15 +16,15 @@ using System.Windows.Shapes;
 namespace Bolnica_aplikacija.LekarStudent
 {
     /// <summary>
-    /// Interaction logic for IzmenaBolesti.xaml
+    /// Interaction logic for Alergije.xaml
     /// </summary>
-    public partial class IzmenaBolesti : UserControl
+    public partial class Alergije : UserControl
     {
         public static bool aktivan;
-        public IzmenaBolesti()
+        public Alergije()
         {
             InitializeComponent();
-            LekarProzor.getGlavnaLabela().Content = "Ažuriranje bolesti";
+            LekarProzor.getGlavnaLabela().Content = "Alergije";
             aktivan = true;
         }
     }

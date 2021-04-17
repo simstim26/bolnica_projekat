@@ -25,6 +25,7 @@ namespace Bolnica_aplikacija.LekarStudent
         public Izvestaj()
         {
             InitializeComponent();
+            LekarProzor.getGlavnaLabela().Content = "Pisanje izveštaja";
             PacijentInfo.aktivanPacijentInfo = false;
             LekarProzor.getPretraga().Visibility = Visibility.Hidden;
             aktivan = true;

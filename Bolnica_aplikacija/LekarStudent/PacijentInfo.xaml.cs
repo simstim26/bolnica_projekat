@@ -31,6 +31,7 @@ namespace Bolnica_aplikacija
         {
             InitializeComponent();
             LekarProzor.getNazad().Visibility = Visibility.Visible;
+            LekarProzor.getGlavnaLabela().Content = "Rad sa pacijentima";
             aktivanPacijentInfo = true;
             tab = this.tabInfo;
             lblJmbg.Content = PacijentKontroler.getPacijent().jmbg;

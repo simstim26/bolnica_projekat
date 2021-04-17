@@ -106,6 +106,9 @@
     <Compile Include="Kontroler\SekretarKontroler.cs" />
     <Compile Include="Kontroler\SpecijalizacijaKontroler.cs" />
     <Compile Include="Kontroler\TerminKontroler.cs" />
+    <Compile Include="LekarStudent\Alergije.xaml.cs">
+      <DependentUpon>Alergije.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LekarStudent\IstorijaBolesti.xaml.cs">
       <DependentUpon>IstorijaBolesti.xaml</DependentUpon>
     </Compile>
@@ -219,6 +222,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="LekarStudent\Alergije.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="LekarStudent\IstorijaBolesti.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -42,10 +42,12 @@ namespace Bolnica_aplikacija
                 btnOdabirProstorije.Content = "Promena prostorije";
                 btnOdabirProstorije.Visibility = Visibility.Visible;
                 btnZakaziOperaciju.Visibility = Visibility.Hidden;
+                LekarProzor.getGlavnaLabela().Content = "Promena termina";
             }
             else
             {
                 btnOdabirProstorije.Visibility = Visibility.Hidden;
+                LekarProzor.getGlavnaLabela().Content = "Zakazivanje termina";
                 if (KorisnikKontroler.getLekar().idSpecijalizacije != "0")
                 {
                     btnZakaziOperaciju.Visibility = Visibility.Visible;

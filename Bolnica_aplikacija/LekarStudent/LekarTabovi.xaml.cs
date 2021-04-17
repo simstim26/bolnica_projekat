@@ -33,8 +33,8 @@ namespace Bolnica_aplikacija
         public LekarTabovi()
         {
             InitializeComponent();
-           // this.contentControl.Content = new PrikazPacijenata();
-           // x = this.contentControl;
+            // this.contentControl.Content = new PrikazPacijenata();
+            // x = this.contentControl;
             raspored = this.dataRaspored;
             tab = this.lekarTab;
             gridRasporedPretraga = this.gridPretragaRaspored;

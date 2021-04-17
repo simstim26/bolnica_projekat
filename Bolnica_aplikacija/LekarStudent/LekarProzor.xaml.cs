@@ -28,16 +28,23 @@ namespace Bolnica_aplikacija
         private static ContentControl x;
         private static Button nazad;
         private static Button pretraga;
+        private static Label glavnaLabela;
         public LekarProzor()
         {
             InitializeComponent();
             this.contentControl.Content = new LekarTabovi();
             x = this.contentControl;
+            lblGlavna.Content = "Zdravo korporacija";
+            glavnaLabela = this.lblGlavna;
             nazad = this.btnNazad;
             pretraga = this.btnPretraga;
             btnNazad.Visibility = Visibility.Hidden;
         }
 
+        public static Label getGlavnaLabela()
+        {
+            return glavnaLabela;
+        }
         public static Button getPretraga()
         {
             return pretraga;
@@ -62,6 +69,7 @@ namespace Bolnica_aplikacija
         {
             if (PacijentInfo.aktivanPacijentInfo)
             {
+                lblGlavna.Content = "Zdravo korporacija";
                 LekarProzor.getX().Content = new LekarTabovi();
                 LekarTabovi.getTab().SelectedIndex = 1;
                 btnPretraga.Visibility = Visibility.Visible;
@@ -94,6 +102,12 @@ namespace Bolnica_aplikacija
             {
                 LekarProzor.getX().Content = new IstorijaBolesti();
                 IzmenaBolesti.aktivan = false;
+            }
+            else if (Alergije.aktivan)
+            {
+                LekarProzor.getX().Content = new PacijentInfo();
+                Alergije.aktivan = false;
+
             }
         }
 
