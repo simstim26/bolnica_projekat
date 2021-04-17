@@ -163,5 +163,10 @@ namespace Bolnica_aplikacija
         {
             Content = new IstorijaBolesti();
         }
+
+        private void btnTerapije_Click(object sender, RoutedEventArgs e)
+        {
+            Content = new UvidUTerapije();
+        }
     }
 }

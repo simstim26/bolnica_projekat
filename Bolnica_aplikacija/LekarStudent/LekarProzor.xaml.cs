@@ -109,6 +109,11 @@ namespace Bolnica_aplikacija
                 Alergije.aktivan = false;
 
             }
+            else if (UvidUTerapije.aktivan)
+            {
+                LekarProzor.getX().Content = new PacijentInfo();
+                UvidUTerapije.aktivan = false;
+            }
         }
 
         private void btnPretraga_Click(object sender, RoutedEventArgs e)
