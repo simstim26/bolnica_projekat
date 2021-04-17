@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="Bolnica_aplikacija.LekarStudent.Izvestaj"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Bolnica_aplikacija.LekarStudent"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="750" d:DesignWidth="430">
+    <Grid Background="White" Height="670">
+        <Image HorizontalAlignment="Left" Height="28" Margin="68,41,0,0" VerticalAlignment="Top" Width="33" Source="patient-icon-3.jpg">
+
+        </Image>
+        <Label Content="JMBG:" HorizontalAlignment="Left" Margin="128,52,0,0" VerticalAlignment="Top" Width="42"/>
+        <Label x:Name="lblJmbg" HorizontalAlignment="Left" Margin="228,52,0,0" VerticalAlignment="Top" Width="161" Height="24"/>
+        <Label Content="Ime i prezime:" HorizontalAlignment="Left" Margin="128,81,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblImePrezime" HorizontalAlignment="Left" Margin="228,81,0,0" VerticalAlignment="Top" Width="161" Height="24"/>
+        <Button x:Name="btnUput" Content="Uput" HorizontalAlignment="Left" Margin="58,204,0,0" VerticalAlignment="Top" Width="85" Height="39"/>
+        <Button x:Name="btnRecept" Content="Recept" HorizontalAlignment="Left" Margin="275,204,0,0" VerticalAlignment="Top" Width="85" Height="39"/>
+        <Image HorizontalAlignment="Left" Height="54" Margin="58,121,0,0" VerticalAlignment="Top" Width="50" Source="doc.png"/>
+        <Label x:Name="lblLekar" HorizontalAlignment="Left" Margin="128,137,0,0" VerticalAlignment="Top" Width="222" Height="30"/>
+        <Label Content="Izveštaj:" HorizontalAlignment="Left" Margin="35,282,0,0" VerticalAlignment="Top" Height="23" Width="66"/>
+        <TextBox HorizontalAlignment="Left" Height="184" Margin="22,305,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="389" BorderBrush="#FF010104"/>
+        <Button  HorizontalAlignment="Left" Margin="35,602,0,0" VerticalAlignment="Top" Width="75" Height="39">
+            <materialDesign:PackIcon Kind="CheckCircle" Height="21" Width="22"></materialDesign:PackIcon>
+        </Button>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="313,602,0,0" VerticalAlignment="Top" Width="76" Height="39"/>
+        <Button Content="Zabeleži potrošene stavke" HorizontalAlignment="Left" Margin="98,515,0,0" VerticalAlignment="Top" Width="225" Height="59"/>
+
+    </Grid>
+</UserControl>

@@ -35,6 +35,7 @@ namespace Bolnica_aplikacija
             x = this.contentControl;
             nazad = this.btnNazad;
             pretraga = this.btnPretraga;
+            btnNazad.Visibility = Visibility.Hidden;
         }
 
         public static Button getPretraga()
@@ -78,6 +79,11 @@ namespace Bolnica_aplikacija
             {
                 LekarProzor.getX().Content = new ZakaziTermin(ZakaziTermin.getTipAkcije());
                 PrikazProstorija.aktivan = false;
+            }
+            else if (Izvestaj.aktivan)
+            {
+                LekarProzor.getX().Content = new PacijentInfo();
+                Izvestaj.aktivan = false;
             }
         }
 

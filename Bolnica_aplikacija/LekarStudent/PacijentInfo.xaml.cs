@@ -18,6 +18,7 @@ using System.Windows.Shapes;
 using Model;
 using Bolnica_aplikacija.PacijentModel;
 using Bolnica_aplikacija.Kontroler;
+using Bolnica_aplikacija.LekarStudent;
 
 namespace Bolnica_aplikacija
 {
@@ -150,6 +151,11 @@ namespace Bolnica_aplikacija
             {
                 LekarProzor.getPretraga().Visibility = Visibility.Visible;
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Content = new Izvestaj();
         }
     }
 }

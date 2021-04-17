@@ -104,7 +104,11 @@
     <Compile Include="Kontroler\PacijentKontroler.cs" />
     <Compile Include="Kontroler\ProstorijaKontroler.cs" />
     <Compile Include="Kontroler\SekretarKontroler.cs" />
+    <Compile Include="Kontroler\SpecijalizacijaKontroler.cs" />
     <Compile Include="Kontroler\TerminKontroler.cs" />
+    <Compile Include="LekarStudent\Izvestaj.xaml.cs">
+      <DependentUpon>Izvestaj.xaml</DependentUpon>
+    </Compile>
     <Compile Include="pacijentRepozitorijum\List.cs" />
     <Compile Include="Repozitorijum\KorisnikRepozitorijum.cs" />
     <Compile Include="LekarStudent\PrikazProstorija.xaml.cs">
@@ -137,6 +141,7 @@
     <Compile Include="Servis\PacijentServis.cs" />
     <Compile Include="Servis\ProstorijaServis.cs" />
     <Compile Include="Servis\SekretarServis.cs" />
+    <Compile Include="Servis\SpecijalizacijaServis.cs" />
     <Compile Include="Servis\TerminServis.cs" />
     <Compile Include="Servis\UpravnikServis.cs" />
     <Compile Include="UpravnikStudent\UpravnikProzor.xaml.cs">
@@ -208,6 +213,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="LekarStudent\Izvestaj.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="LekarStudent\LekarProzor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -291,6 +300,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="LekarStudent\backwardArrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="LekarStudent\patient-icon-3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="LekarStudent\doc.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets" Condition="Exists('packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets')" />
