@@ -106,6 +106,12 @@
     <Compile Include="Kontroler\SekretarKontroler.cs" />
     <Compile Include="Kontroler\SpecijalizacijaKontroler.cs" />
     <Compile Include="Kontroler\TerminKontroler.cs" />
+    <Compile Include="LekarStudent\IstorijaBolesti.xaml.cs">
+      <DependentUpon>IstorijaBolesti.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LekarStudent\IzmenaBolesti.xaml.cs">
+      <DependentUpon>IzmenaBolesti.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LekarStudent\Izvestaj.xaml.cs">
       <DependentUpon>Izvestaj.xaml</DependentUpon>
     </Compile>
@@ -213,6 +219,14 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="LekarStudent\IstorijaBolesti.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LekarStudent\IzmenaBolesti.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="LekarStudent\Izvestaj.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

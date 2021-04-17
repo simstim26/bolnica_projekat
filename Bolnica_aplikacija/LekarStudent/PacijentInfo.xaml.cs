@@ -153,9 +153,14 @@ namespace Bolnica_aplikacija
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void btnIzvestaj_Click(object sender, RoutedEventArgs e)
         {
             Content = new Izvestaj();
+        }
+
+        private void btnBolesti_Click(object sender, RoutedEventArgs e)
+        {
+            Content = new IstorijaBolesti();
         }
     }
 }

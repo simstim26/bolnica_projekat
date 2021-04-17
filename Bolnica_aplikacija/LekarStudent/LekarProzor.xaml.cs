@@ -85,6 +85,16 @@ namespace Bolnica_aplikacija
                 LekarProzor.getX().Content = new PacijentInfo();
                 Izvestaj.aktivan = false;
             }
+            else if (IstorijaBolesti.aktivan)
+            {
+                LekarProzor.getX().Content = new PacijentInfo();
+                IstorijaBolesti.aktivan = false;
+            }
+            else if (IzmenaBolesti.aktivan)
+            {
+                LekarProzor.getX().Content = new IstorijaBolesti();
+                IzmenaBolesti.aktivan = false;
+            }
         }
 
         private void btnPretraga_Click(object sender, RoutedEventArgs e)
