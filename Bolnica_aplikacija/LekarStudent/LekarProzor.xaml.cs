@@ -96,6 +96,22 @@ namespace Bolnica_aplikacija
                     Izvestaj.getGridUput().Visibility = Visibility.Hidden;
 
                 }
+                else if(Izvestaj.getGridRecept().Visibility == Visibility.Visible)
+                {
+                    lblGlavna.Content = "Pisanje izveštaja";
+                    Izvestaj.getGridRecept().Visibility = Visibility.Hidden;
+                }
+                else if(Izvestaj.getGridAzuriranje().Visibility == Visibility.Visible)
+                {
+                    lblGlavna.Content = "Pisanje izveštaja";
+                    Izvestaj.getGridAzuriranje().Visibility = Visibility.Hidden;
+                }
+                else if(Izvestaj.getGridOdabirLeka().Visibility == Visibility.Visible)
+                {
+                    lblGlavna.Content = "Izdavanje recepta";
+                    Izvestaj.getGridOdabirLeka().Visibility = Visibility.Hidden;
+                    Izvestaj.getGridRecept().Visibility = Visibility.Visible;
+                }
                 else
                 {
                     LekarProzor.getX().Content = new PacijentInfo();
