@@ -47,6 +47,10 @@ namespace Bolnica_aplikacija.Repozitorijum
                     termin.jeZavrsen = terminZaAzuriranje.jeZavrsen;
                     termin.datum = terminZaAzuriranje.datum;
                     termin.satnica = terminZaAzuriranje.satnica;
+                    termin.izvestaj = terminZaAzuriranje.izvestaj;
+                    termin.idBolesti = terminZaAzuriranje.idBolesti;
+                    termin.idTerapije = terminZaAzuriranje.idTerapije;
+                    
                     break;
                 }
             }

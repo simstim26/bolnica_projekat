@@ -91,5 +91,13 @@ namespace Bolnica_aplikacija.LekarStudent
             this.gridOdabirLeka.Visibility = Visibility.Visible;
             LekarProzor.getGlavnaLabela().Content = "Odabir leka";
         }
+
+        private void btnPotvrdaIzvestaj_Click(object sender, RoutedEventArgs e)
+        {
+            String nazivBolesti = this.txtDijagnozaIzvestaj.Text;
+            String izvestajSaTermina = this.txtIzvestaj.Text;
+
+            TerminKontroler.dodavanjeIzvestajaZaTermin(nazivBolesti, izvestajSaTermina);
+        }
     }
 }

@@ -123,6 +123,7 @@
     </Compile>
     <Compile Include="Model\Bolest.cs" />
     <Compile Include="pacijentRepozitorijum\List.cs" />
+    <Compile Include="Repozitorijum\BolestRepozitorijum.cs" />
     <Compile Include="Repozitorijum\KorisnikRepozitorijum.cs" />
     <Compile Include="LekarStudent\PrikazProstorija.xaml.cs">
       <DependentUpon>PrikazProstorija.xaml</DependentUpon>
@@ -143,12 +144,14 @@
     <Compile Include="Repozitorijum\ProstorijaRepozitorijum.cs" />
     <Compile Include="Repozitorijum\SekretarRepozitorijum.cs" />
     <Compile Include="Repozitorijum\SpecijalizacijaRepozitorijum.cs" />
+    <Compile Include="Repozitorijum\TerapijaRepozitorijum.cs" />
     <Compile Include="Repozitorijum\TerminRepozitorijum.cs" />
     <Compile Include="Repozitorijum\UpravnikRepozitorijum.cs" />
     <Compile Include="SekretarStudent\SekretarProzor.xaml.cs">
       <DependentUpon>SekretarProzor.xaml</DependentUpon>
     </Compile>
     <Compile Include="PomocneKlase\PacijentTermin.cs" />
+    <Compile Include="Servis\BolestServis.cs" />
     <Compile Include="Servis\KorisnikServis.cs" />
     <Compile Include="Servis\LekarServis.cs" />
     <Compile Include="Servis\PacijentServis.cs" />

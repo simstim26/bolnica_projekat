@@ -1,7 +1,7 @@
 [
   {
     "tip": 1,
-    "datum": "2021-03-29T00:00:00",
+    "datum": "2021-04-19T00:00:00",
     "satnica": "2021-03-28T12:00:00",
     "jeZavrsen": false,
     "idTermina": "1",
@@ -9,8 +9,8 @@
     "idPacijenta": "1",
     "idLekara": "1",
     "idTerapije": null,
-    "idBolesti": null,
-    "izvestaj": null
+    "idBolesti": "1",
+    "izvestaj": "neki izvestaj sa operacije, ne znam ni ja sta kucam, ali ovo je samo test nemojte mi zameriti :)"
   },
   {
     "tip": 1,
@@ -19,7 +19,7 @@
     "jeZavrsen": false,
     "idTermina": "2",
     "idProstorije": "15",
-    "idPacijenta": "",
+    "idPacijenta": "1",
     "idLekara": "1",
     "idTerapije": null,
     "idBolesti": null,
