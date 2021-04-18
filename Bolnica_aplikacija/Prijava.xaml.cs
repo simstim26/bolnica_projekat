@@ -50,15 +50,12 @@ namespace Bolnica_aplikacija
                     lekarProzor.ShowDialog();
                      break;
                  case "sekretar":
-                    foreach(Sekretar sekretar in JsonSerializer.Deserialize<List<Sekretar>>(File.ReadAllText("Datoteke/Sekretari.txt")))
-                    {
-                        if (sekretar.id.Equals(ulogovaniKorisnik[1]))
-                        {
-                            SekretarProzor sekretarProzor = new SekretarProzor();
-                            this.Close();
-                            sekretarProzor.ShowDialog();
-                        }
-                    }
+
+                    KorisnikKontroler.nadjiSekretara(ulogovaniKorisnik[1]);
+                    SekretarProzor sekretarProzor = new SekretarProzor();
+                    this.Close();
+                    sekretarProzor.ShowDialog();  
+
                      break;
                  case "upravnik":
                     KorisnikKontroler.NadjiUpravnika(ulogovaniKorisnik[1]);

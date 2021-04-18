@@ -1,1 +1,66 @@
-[{"id":"1","idBolnice":"1","jeGost":false,"adresa":"neka adresa 10, neki grad","jeLogickiObrisan":false,"Notifikacija":[],"korisnickoIme":"kneginja","lozinka":"milica","ime":"Milica","prezime":"Pavlovi\u0107","datumRodjenja":"1000-10-10T00:00:00","email":"email@email.com","brojTelefona":"123/123-123","jmbg":"1234567891012"},{"id":"2","idBolnice":"1","jeGost":false,"adresa":"neka adresa 11, neki grad","jeLogickiObrisan":false,"Notifikacija":[],"korisnickoIme":"maksi","lozinka":"lozinka2","ime":"Maksimilijan","prezime":"Maksimilijanovic","datumRodjenja":"1001-10-10T00:00:00","email":"email1@email.com","brojTelefona":"123/123-456","jmbg":"1231237891012"},{"id":"3","idBolnice":"1","jeGost":false,"adresa":"adresa 3, grad 3","jeLogickiObrisan":false,"Notifikacija":[],"korisnickoIme":"neko","lozinka":"lozinkica","ime":"Imenko","prezime":"Prezimic","datumRodjenja":"1972-05-29T00:00:00","email":"email@example.com","brojTelefona":"0641234567","jmbg":"1234567891234"},{"id":"4","idBolnice":"1","jeGost":false,"adresa":"Uzicka 37, Backa Palanka","jeLogickiObrisan":false,"Notifikacija":[],"korisnickoIme":"iodum99","lozinka":"lozinka","ime":"Dejan","prezime":"Bjeli\u0107","datumRodjenja":"1999-04-05T00:00:00","email":"dejan.bjelic@uns.ac.rs","brojTelefona":"\u002B381649563126","jmbg":"0504999800007"},{"id":"5","idBolnice":"1","jeGost":false,"adresa":"adresa","jeLogickiObrisan":false,"Notifikacija":[],"korisnickoIme":"simke","lozinka":"lozinkica","ime":"Simo","prezime":"Simi\u0107","datumRodjenja":"1990-11-11T00:00:00","email":"email@yahoo.com","brojTelefona":"\u002B381649987656","jmbg":"1111990689123"},{"id":"6","idBolnice":"1","jeGost":false,"adresa":"adresa","jeLogickiObrisan":false,"Notifikacija":[],"korisnickoIme":"test","lozinka":"testloz","ime":"Test","prezime":"Testic","datumRodjenja":"1960-05-05T00:00:00","email":"mejl@yahoo.com","brojTelefona":"021345678","jmbg":"1234567899342"},{"id":"7","idBolnice":"1","jeGost":false,"adresa":"Meksiko","jeLogickiObrisan":false,"Notifikacija":[],"korisnickoIme":"fugza","lozinka":"hehe","ime":"Soraja","prezime":"Montenegro","datumRodjenja":"1968-05-05T00:00:00","email":"gaspsinspanish@telenovela.com","brojTelefona":"012312321","jmbg":"1234567890432"},{"id":"8","idBolnice":"1","jeGost":false,"adresa":"adresa","jeLogickiObrisan":false,"Notifikacija":[],"korisnickoIme":"user","lozinka":"user","ime":"asdasd","prezime":"asdasd","datumRodjenja":"1996-01-01T00:00:00","email":"mejl@mejl.com","brojTelefona":"123213","jmbg":"1234567654323"},{"id":"9","idBolnice":"1","jeGost":true,"adresa":"","jeLogickiObrisan":false,"Notifikacija":[],"korisnickoIme":"guest","lozinka":"guest","ime":"Gost","prezime":"Gostojic","datumRodjenja":"1998-01-01T00:00:00","email":"","brojTelefona":"021345675","jmbg":"1234567898765"},{"id":"10","idBolnice":"1","jeGost":true,"adresa":"","jeLogickiObrisan":false,"Notifikacija":[],"korisnickoIme":"laza","lozinka":"laza","ime":"Lazar","prezime":"Lazarevic","datumRodjenja":"1996-01-01T00:00:00","email":"","brojTelefona":"0213121","jmbg":"1234543456543"},{"id":"11","idBolnice":"1","jeGost":true,"adresa":"","jeLogickiObrisan":false,"Notifikacija":[],"korisnickoIme":"markic","lozinka":"markic","ime":"Marko","prezime":"Markovic","datumRodjenja":"1996-02-01T00:00:00","email":"","brojTelefona":"0648765942","jmbg":"1234567765412"},{"id":"12","idBolnice":"1","jeGost":true,"adresa":"","jeLogickiObrisan":false,"Notifikacija":[],"korisnickoIme":"guest2","lozinka":"guest","ime":"Imence","prezime":"Prezimence","datumRodjenja":"1999-05-04T00:00:00","email":"","brojTelefona":"12342121","jmbg":"1234565431232"},{"id":"13","idBolnice":"1","jeGost":false,"adresa":"sd 3, fa","jeLogickiObrisan":true,"Notifikacija":[],"korisnickoIme":"sdafdfa","lozinka":"a","ime":"dfasdfa","prezime":"sdfasdfa","datumRodjenja":"1222-12-12T00:00:00","email":"fa@af.com","brojTelefona":"123123123","jmbg":"4444444444444"}]
+[
+  {
+    "id": "1",
+    "idBolnice": "1",
+    "jeGost": false,
+    "adresa": "neka adresa 10, neki grad",
+    "jeLogickiObrisan": false,
+    "Notifikacija": [],
+    "korisnickoIme": "kneginja",
+    "lozinka": "milica",
+    "ime": "Milica",
+    "prezime": "Pavlovi\u0107",
+    "datumRodjenja": "1000-10-10T00:00:00",
+    "email": "email@email.com",
+    "brojTelefona": "123/123-123",
+    "jmbg": "1234567891012"
+  },
+  {
+    "id": "2",
+    "idBolnice": "1",
+    "jeGost": false,
+    "adresa": "\u0106irpanova 21, Novi Sad",
+    "jeLogickiObrisan": false,
+    "Notifikacija": [],
+    "korisnickoIme": "iodum99",
+    "lozinka": "iodum",
+    "ime": "Dejan",
+    "prezime": "Bjelic",
+    "datumRodjenja": "1999-04-05T00:00:00",
+    "email": "iodum99@yahoo.com",
+    "brojTelefona": "\u002B381649563126",
+    "jmbg": "0504999800007"
+  },
+  {
+    "id": "3",
+    "idBolnice": "1",
+    "jeGost": false,
+    "adresa": "Meksiko",
+    "jeLogickiObrisan": false,
+    "Notifikacija": [],
+    "korisnickoIme": "fugza",
+    "lozinka": "fugza",
+    "ime": "Soraja",
+    "prezime": "Montenegro",
+    "datumRodjenja": "1967-04-04T00:00:00",
+    "email": "gaspsinspanish@telenovela.com",
+    "brojTelefona": "123456",
+    "jmbg": "0434567898123"
+  },
+  {
+    "id": "4",
+    "idBolnice": "1",
+    "jeGost": true,
+    "adresa": "",
+    "jeLogickiObrisan": false,
+    "Notifikacija": [],
+    "korisnickoIme": "Guest",
+    "lozinka": "guest",
+    "ime": "Gost",
+    "prezime": "Gostojic",
+    "datumRodjenja": "1979-01-01T00:00:00",
+    "email": "",
+    "brojTelefona": "\u002B381649877788",
+    "jmbg": "1234567654564"
+  }
+]

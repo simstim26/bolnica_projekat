@@ -1,4 +1,5 @@
-﻿using Model;
+﻿using Bolnica_aplikacija.Kontroler;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -68,23 +69,7 @@ namespace Bolnica_aplikacija
             this.PocetniEkranGrid.Visibility = Visibility.Hidden;
             this.PacijentGrid.Visibility = Visibility.Visible;
 
-
-            //TODO: Razdvojiti komponente (Prikaz pacijenata zasebna)
-            
-            List<Pacijent> ucitaniPacijenti = JsonSerializer.Deserialize<List<Pacijent>>(File.ReadAllText("Datoteke/probaPacijenti.txt"));
-            List<Pacijent> neobrisaniPacijenti = new List<Pacijent>();
-           
-            foreach (Pacijent p in ucitaniPacijenti)
-            {
-                if (!p.jeLogickiObrisan)
-                {
-                    neobrisaniPacijenti.Add(p);
-                }
-            }
-
-            sviPacijenti = neobrisaniPacijenti;
-            TabelaPacijenti.ItemsSource = sviPacijenti;
-            TabelaPacijenti.Items.Refresh();
+            ucitajPodatkeUTabelu();
 
         }
 
@@ -170,12 +155,11 @@ namespace Bolnica_aplikacija
             {
                 Pacijent izabraniPacijent = (Pacijent)TabelaPacijenti.SelectedItem;
                 String idZaBrisanje = izabraniPacijent.id;
-                Sekretar.ObrisiPacijenta(idZaBrisanje, sviPacijenti);
+                SekretarKontroler.ObrisiPacijenta(idZaBrisanje);
 
             }
 
-            sviPacijenti = JsonSerializer.Deserialize<List<Pacijent>>(File.ReadAllText("Datoteke/probaPacijenti.txt"));
-            Sekretar.ProcitajPacijente(TabelaPacijenti);
+            ucitajPodatkeUTabelu();
         }
 
         private void infoPacijentiButton_Click(object sender, RoutedEventArgs e)
@@ -241,7 +225,7 @@ namespace Bolnica_aplikacija
                 pacGost = false;
             }
 
-            Console.WriteLine(idPacijenta);
+            
             if (proveriIspravnostPolja(idPacijenta, pacGost, pacKorisnickoIme, pacLozinka, pacJmbg, pacIme, pacPrezime, pacDatumRodjenja, pacAdresa, pacEmail, pacTelefon))
             {
 
@@ -251,21 +235,23 @@ namespace Bolnica_aplikacija
                     Console.WriteLine(pacGost);
                     if (!pacGost)
                     {
-
-                        String pacId = (sviPacijenti.Count() + 1).ToString();
-                        Sekretar.NapraviPacijenta(pacId, pacIdBolnice, pacGost, pacKorisnickoIme, pacLozinka, pacJmbg, pacIme, pacPrezime, pacDatumRodjenja, pacAdresa, pacEmail, pacTelefon, TabelaPacijenti, sviPacijenti);
+                     
+                        SekretarKontroler.NapraviPacijenta(pacIdBolnice, pacGost, pacKorisnickoIme, pacLozinka, pacJmbg, pacIme, pacPrezime, pacDatumRodjenja, pacAdresa, pacEmail, pacTelefon);
+                        ucitajPodatkeUTabelu();
                     }
                     else
                     {
-                        String pacId = (sviPacijenti.Count() + 1).ToString();
-                        Sekretar.NapraviPacijenta(pacId, pacIdBolnice, pacGost, pacKorisnickoIme, pacLozinka, pacJmbg, pacIme, pacPrezime, pacDatumRodjenja, "", "", pacTelefon, TabelaPacijenti, sviPacijenti);
+                        
+                       SekretarKontroler.NapraviPacijenta(pacIdBolnice, pacGost, pacKorisnickoIme, pacLozinka, pacJmbg, pacIme, pacPrezime, pacDatumRodjenja, "", "", pacTelefon);
+                       ucitajPodatkeUTabelu();
                     }
 
                 }
                 else
                 {
 
-                    Sekretar.AzurirajPacijenta(idPacijenta, pacIdBolnice, pacGost, pacKorisnickoIme, pacLozinka, pacJmbg, pacIme, pacPrezime, pacDatumRodjenja, pacAdresa, pacEmail, pacTelefon, TabelaPacijenti, sviPacijenti);
+                    SekretarKontroler.AzurirajPacijenta(idPacijenta, pacIdBolnice, pacGost, pacKorisnickoIme, pacLozinka, pacJmbg, pacIme, pacPrezime, pacDatumRodjenja, pacAdresa, pacEmail, pacTelefon);
+                    ucitajPodatkeUTabelu();
                 }
 
                 omoguciKoriscenjaPolja(false);
@@ -298,6 +284,13 @@ namespace Bolnica_aplikacija
 
         }
 
+        private void ucitajPodatkeUTabelu()
+        {
+            sviPacijenti = SekretarKontroler.ProcitajPacijente();
+            TabelaPacijenti.ItemsSource = sviPacijenti;
+            TabelaPacijenti.Items.Refresh();
+        }
+       
         private void omoguciKoriscenjaPolja(bool flag)
         {
 

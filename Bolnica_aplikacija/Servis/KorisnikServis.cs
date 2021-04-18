@@ -15,12 +15,14 @@ namespace Bolnica_aplikacija.Servis
         private Lekar lekar;
         private Pacijent pacijent;
         private Upravnik upravnik;
+        private Sekretar sekretar;
         /*-------------------------------------*/
 
         private KorisnikRepozitorijum korisnikRepozitorijum = new KorisnikRepozitorijum();
         private LekarRepozitorijum lekarRepozitorijum = new LekarRepozitorijum();
         private PacijentRepozitorijum pacijentRepozitorijum = new PacijentRepozitorijum();
         private UpravnikRepozitorijum upravnikRepozitorijum = new UpravnikRepozitorijum();
+        private SekretarRepozitorijum sekretarRepozitorijum = new SekretarRepozitorijum();
 
         public String[] prijava(String korisnickoIme, String lozinka)
         {
@@ -62,6 +64,18 @@ namespace Bolnica_aplikacija.Servis
             }
         }
 
+        public void nadjiSekretara(String idSekretara)
+        {
+            foreach (Sekretar sekretar in sekretarRepozitorijum.ucitajSve())
+            {
+                if (sekretar.id == idSekretara)
+                {
+                    this.sekretar = sekretar;
+                    break;
+                }
+            }
+        }
+
         public Pacijent GetPacijent()
         {
             return pacijent;
@@ -86,6 +100,11 @@ namespace Bolnica_aplikacija.Servis
         public Upravnik GetUpravnik()
         {
             return upravnik;
+        }
+
+        public Sekretar getSekretar()
+        {
+            return sekretar;
         }
 
     }
