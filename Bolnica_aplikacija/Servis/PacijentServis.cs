@@ -520,7 +520,7 @@ namespace Bolnica_aplikacija.Servis
                 catch(Exception e)
                 {
                     Console.WriteLine(e);
-                    MessageBox.Show("Molimo unesite validan izraz za datum (npr DD/MM/YYYY).", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("Molimo unesite validan izraz za datum (npr. DD/MM/YYYY).", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
 
