@@ -273,7 +273,9 @@ namespace Bolnica_aplikacija.Servis
                         int rezultatGornji = DateTime.Compare(terminDatum, gornjaGranicaDatuma);
                         int rezultatDodatni = DateTime.Compare(danasnjiDatum.AddDays(1), terminDatum);
 
-
+                        //rezultat je za poredjenje danasnjeg datuma i terminovog datuma, 
+                        //rezultatGornji proverava da li je datum unutar ogranicenja od 3 dana za pomeranje
+                        //rezultatDodatni proverava da li je termin dan posle danasnjeg jer ukoliko jeste ne bi trebalo da sme da se pomeri na taj datum
 
                         if (rezultat > 0 && rezultatGornji < 0 && rezultatDodatni < 0)
                         {
