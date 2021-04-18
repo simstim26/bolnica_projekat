@@ -76,5 +76,35 @@ namespace Bolnica_aplikacija.PacijentStudent
                 MessageBox.Show("Molimo izaberite novi termin.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
+
+        private void btnPretrazi_Click(object sender, RoutedEventArgs e)
+        {
+            int indikator = -1;
+            if(rbtnLekar.IsChecked == true)
+            {
+                indikator = 0;
+            }
+            if(rbtnTermin.IsChecked == true)
+            {
+                indikator = 1;
+            }
+            
+            if(indikator != -1)
+            {
+                String kriterijum = txtPretraga.Text;
+
+                dataGridSlobodniTermini.ItemsSource = PacijentKontroler.filtrirajTermine(indikator, kriterijum);
+
+                if (txtPretraga.Text == "")
+                {
+                    ucitajPodatke();
+                }
+            }
+            else
+            {
+                indikator = -1;
+                MessageBox.Show("Molimo izaberite prioritet pretrage.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
     }
 }

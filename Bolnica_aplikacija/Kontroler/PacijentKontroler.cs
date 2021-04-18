@@ -55,5 +55,10 @@ namespace Bolnica_aplikacija.Kontroler
             return pacijentServis.ucitajSlobodneTermine(indikator);
         }
 
+        public static List<PacijentTermin> filtrirajTermine(int indikator, String kriterijum)
+        {
+            return pacijentServis.filtrirajTermine(indikator, kriterijum);
+        }
+
     }
 }
