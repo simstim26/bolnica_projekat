@@ -18,6 +18,7 @@ namespace Model
         public String idPacijenta { get; set; }
         public String idLekara { get; set; }
         public String idTerapije { get; set; }
+        public String idBolesti { get; set; }
         public String izvestaj { get; set; }
 
         public String getTipString()

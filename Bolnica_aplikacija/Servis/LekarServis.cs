@@ -37,7 +37,7 @@ namespace Bolnica_aplikacija.Servis
                     {
                         if (lekar.id.Equals(termin.idLekara))
                         {
-                            pacijentTermin.imeLekara = lekar.ime + " " + lekar.prezime;
+                            pacijentTermin.imeLekara = lekar.prezime;
 
                             foreach (Specijalizacija spec in specijalizacijaRepozitorijum.ucitajSve())
                             {

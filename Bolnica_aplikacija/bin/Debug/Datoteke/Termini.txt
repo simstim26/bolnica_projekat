@@ -7,7 +7,10 @@
     "idTermina": "1",
     "idProstorije": "10",
     "idPacijenta": "1",
-    "idLekara": "1"
+    "idLekara": "1",
+    "idTerapije": null,
+    "idBolesti": null,
+    "izvestaj": null
   },
   {
     "tip": 1,
@@ -16,8 +19,11 @@
     "jeZavrsen": false,
     "idTermina": "2",
     "idProstorije": "15",
-    "idPacijenta": "1",
-    "idLekara": "1"
+    "idPacijenta": "",
+    "idLekara": "1",
+    "idTerapije": null,
+    "idBolesti": null,
+    "izvestaj": null
   },
   {
     "tip": 0,
@@ -26,8 +32,11 @@
     "jeZavrsen": false,
     "idTermina": "3",
     "idProstorije": "16",
-    "idPacijenta": "2",
-    "idLekara": "1"
+    "idPacijenta": "1",
+    "idLekara": "1",
+    "idTerapije": null,
+    "idBolesti": null,
+    "izvestaj": null
   },
   {
     "tip": 0,
@@ -37,7 +46,10 @@
     "idTermina": "4",
     "idProstorije": "9",
     "idPacijenta": "",
-    "idLekara": "2"
+    "idLekara": "2",
+    "idTerapije": null,
+    "idBolesti": null,
+    "izvestaj": null
   },
   {
     "tip": 0,
@@ -47,7 +59,10 @@
     "idTermina": "5",
     "idProstorije": "9",
     "idPacijenta": "2",
-    "idLekara": "2"
+    "idLekara": "2",
+    "idTerapije": null,
+    "idBolesti": null,
+    "izvestaj": null
   },
   {
     "tip": 0,
@@ -57,6 +72,9 @@
     "idTermina": "6",
     "idProstorije": "13",
     "idPacijenta": "1",
-    "idLekara": "2"
+    "idLekara": "2",
+    "idTerapije": null,
+    "idBolesti": null,
+    "izvestaj": null
   }
 ]

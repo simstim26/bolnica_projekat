@@ -110,7 +110,7 @@ namespace Bolnica_aplikacija
                     this.drugi.SelectedDate = null;
                     ucitajSve();
                 }
-                PacijentInfo.getDataTermini().ItemsSource = PacijentKontroler.prikazSvihTerminaPacijenta();
+                //PacijentInfo.getDataTermini().ItemsSource = PacijentKontroler.prikazSvihTerminaPacijenta();
             }
             else
             {

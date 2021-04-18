@@ -10,6 +10,9 @@ namespace Bolnica_aplikacija.Model
     {
         public String id { get; set; }
         public String naziv { get; set; }
+        public String idTerapije { get; set; }
+        public String idPacijenta { get; set; }
+
 
     }
 }
