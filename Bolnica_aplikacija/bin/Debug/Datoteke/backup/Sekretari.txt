@@ -1,1 +1,0 @@
-[{"id":"4","idBolnice":"1","korisnickoIme":null,"lozinka":null,"ime":"Vasa","prezime":"Jakovljevic","datumRodjenja":"1111-11-11T00:00:00","email":"sdfa@fa.fa","brojTelefona":"123/133-111","jmbg":"1234567891011"}]
