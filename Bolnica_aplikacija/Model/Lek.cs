@@ -9,12 +9,12 @@ namespace Model
 {
    public class Lek
    {
-      private String id;
-      private String naziv;
-      private TipLeka tip;
-      private int kolicina;
-      private String proizvodjac;
-      private NacinUpotrebe nacinUpotrebe;
-   
-   }
+      public String id { get; set; }
+      public String naziv { get; set; }
+      public TipLeka tip { get; set; }
+      public int kolicina { get; set; }
+      public String proizvodjac { get; set; }
+      public NacinUpotrebe nacinUpotrebe { get; set; }
+
+    }
 }
