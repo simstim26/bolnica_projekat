@@ -1,0 +1,50 @@
+[
+  {
+    "id": "1",
+    "korisnickoIme": "kneginja",
+    "lozinka": "milica",
+    "tip": "pacijent"
+  },
+  {
+    "id": "1",
+    "korisnickoIme": "makro",
+    "lozinka": "marko",
+    "tip": "lekar"
+  },
+  {
+    "id": "2",
+    "korisnickoIme": "milena",
+    "lozinka": "milenovic",
+    "tip": "lekar"
+  },
+  {
+    "id": "3",
+    "korisnickoIme": "usisivac",
+    "lozinka": "vumvum",
+    "tip": "upravnik"
+  },
+  {
+    "id": "4",
+    "korisnickoIme": "imenko",
+    "lozinka": "prezimic",
+    "tip": "sekretar"
+  },
+  {
+    "id": "2",
+    "korisnickoIme": "iodum99",
+    "lozinka": "iodum",
+    "tip": "pacijent"
+  },
+  {
+    "id": "3",
+    "korisnickoIme": "fugza",
+    "lozinka": "fugza",
+    "tip": "pacijent"
+  },
+  {
+    "id": "4",
+    "korisnickoIme": "Guest",
+    "lozinka": "guest",
+    "tip": "pacijent"
+  }
+]

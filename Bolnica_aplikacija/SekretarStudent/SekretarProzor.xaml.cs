@@ -1,4 +1,6 @@
 ﻿using Bolnica_aplikacija.Kontroler;
+using Bolnica_aplikacija.PacijentModel;
+using Bolnica_aplikacija.PacijentStudent;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -38,6 +40,7 @@ namespace Bolnica_aplikacija
             CenterWindow();
 
             this.PacijentGrid.Visibility = Visibility.Hidden;
+            this.TerminiGrid.Visibility = Visibility.Hidden;
        
         }
         private void CenterWindow()
@@ -69,7 +72,7 @@ namespace Bolnica_aplikacija
             this.PocetniEkranGrid.Visibility = Visibility.Hidden;
             this.PacijentGrid.Visibility = Visibility.Visible;
 
-            ucitajPodatkeUTabelu();
+            ucitajPacijenteTabela();
 
         }
 
@@ -78,6 +81,7 @@ namespace Bolnica_aplikacija
         {
             this.PocetniEkranGrid.Visibility = Visibility.Visible;
             this.PacijentGrid.Visibility = Visibility.Hidden;
+            this.TerminiGrid.Visibility = Visibility.Hidden;
 
             omoguciKoriscenjaPolja(false);
             ocistiPolja();
@@ -159,7 +163,7 @@ namespace Bolnica_aplikacija
 
             }
 
-            ucitajPodatkeUTabelu();
+            ucitajPacijenteTabela();
         }
 
         private void infoPacijentiButton_Click(object sender, RoutedEventArgs e)
@@ -237,13 +241,13 @@ namespace Bolnica_aplikacija
                     {
                      
                         SekretarKontroler.NapraviPacijenta(pacIdBolnice, pacGost, pacKorisnickoIme, pacLozinka, pacJmbg, pacIme, pacPrezime, pacDatumRodjenja, pacAdresa, pacEmail, pacTelefon);
-                        ucitajPodatkeUTabelu();
+                        ucitajPacijenteTabela();
                     }
                     else
                     {
                         
                        SekretarKontroler.NapraviPacijenta(pacIdBolnice, pacGost, pacKorisnickoIme, pacLozinka, pacJmbg, pacIme, pacPrezime, pacDatumRodjenja, "", "", pacTelefon);
-                       ucitajPodatkeUTabelu();
+                       ucitajPacijenteTabela();
                     }
 
                 }
@@ -251,7 +255,7 @@ namespace Bolnica_aplikacija
                 {
 
                     SekretarKontroler.AzurirajPacijenta(idPacijenta, pacIdBolnice, pacGost, pacKorisnickoIme, pacLozinka, pacJmbg, pacIme, pacPrezime, pacDatumRodjenja, pacAdresa, pacEmail, pacTelefon);
-                    ucitajPodatkeUTabelu();
+                    ucitajPacijenteTabela();
                 }
 
                 omoguciKoriscenjaPolja(false);
@@ -284,13 +288,15 @@ namespace Bolnica_aplikacija
 
         }
 
-        private void ucitajPodatkeUTabelu()
+        private void ucitajPacijenteTabela()
         {
             sviPacijenti = SekretarKontroler.ProcitajPacijente();
             TabelaPacijenti.ItemsSource = sviPacijenti;
             TabelaPacijenti.Items.Refresh();
         }
-       
+
+    
+
         private void omoguciKoriscenjaPolja(bool flag)
         {
 
@@ -558,6 +564,156 @@ namespace Bolnica_aplikacija
             textAdresa.IsEnabled = true;        
             textEmail.IsEnabled = true;
             proveraPopunjenosti();
+        }
+
+        // TERMINI
+        private void ucitajTerminePacijenta()
+        {
+
+            pacijent = (Pacijent)TabelaPacijentiTermini.SelectedItem;
+            idPacijenta = pacijent.id;
+            PacijentKontroler.nadjiPacijenta(pacijent.id);
+            TabelaTerminiPacijenta.ItemsSource = PacijentKontroler.prikazPacijentovihTermina();
+        }
+
+        private void terminiButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.PocetniEkranGrid.Visibility = Visibility.Hidden;
+            this.PacijentGrid.Visibility = Visibility.Hidden;
+            this.TerminiGrid.Visibility = Visibility.Visible;
+
+            sviPacijenti = SekretarKontroler.ProcitajPacijente();
+            TabelaPacijentiTermini.ItemsSource = sviPacijenti;
+            TabelaPacijentiTermini.Items.Refresh();
+        }
+
+        private void TabelaPacijenti1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (TabelaPacijentiTermini.SelectedIndex != -1)
+            {
+                ucitajTerminePacijenta();
+                TabelaSlobodnihTermina.Visibility = Visibility.Hidden;
+                slobodniTerminiLabel.Visibility = Visibility.Hidden;
+            }
+            
+        }
+
+        private void zakaziTerminButton_Click(object sender, RoutedEventArgs e)
+        {
+            TabelaSlobodnihTermina.Visibility = Visibility.Visible;
+            slobodniTerminiLabel.Visibility = Visibility.Visible;
+            TabelaSlobodnihTermina.ItemsSource = PacijentKontroler.ucitajSlobodneTermine();
+            TabelaSlobodnihTermina.Items.Refresh();
+        }
+
+        private void OtkaziTerminButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (TabelaTerminiPacijenta.SelectedIndex != -1)
+            {
+                PacijentTermin izabraniTermin = (PacijentTermin)TabelaTerminiPacijenta.SelectedItem;
+
+                if (izabraniTermin.napomena.Equals("Pregled"))
+                {
+                    if (TerminKontroler.proveriDatumTermina(izabraniTermin.id) <= 0)
+                    {
+                        MessageBox.Show("Nije moguće izvršiti otkazivanje termina 24h pred termin.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                    else
+                    {
+                        if (izabraniTermin.idSpecijalizacije.Equals("0"))
+                        {
+                            PacijentKontroler.otkaziTerminPacijenta(izabraniTermin.id);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Potrebno je da se konsultujete sa Vašim specijalistom kako biste otkazali ovaj termin pregleda.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Potrebno je da se konsultujete sa Vašim lekarom kako biste otkazali termin operacije.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Molimo odaberite termin koji želite da otkažete.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+
+            ucitajTerminePacijenta();
+            TabelaSlobodnihTermina.ItemsSource = PacijentKontroler.ucitajSlobodneTermine();
+            TabelaSlobodnihTermina.Items.Refresh();
+        }
+
+        private void IzmeniTerminButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (TabelaTerminiPacijenta.SelectedIndex != -1)
+            {
+
+                PacijentTermin izabraniTermin = (PacijentTermin)TabelaTerminiPacijenta.SelectedItem;
+
+                if (izabraniTermin.napomena.Equals("Pregled"))
+                {
+                    if (TerminKontroler.proveriDatumTermina(izabraniTermin.id) <= 0)
+                    {
+                        MessageBox.Show("Nije moguće izvršiti promenu termina 24h pred termin.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                    else
+                    {
+                        if (izabraniTermin.idSpecijalizacije.Equals("0"))
+                        {
+                            TerminKontroler.sacuvajTermin(izabraniTermin.id);
+                            IzmenaTerminaPacijent izmenaTermina = new IzmenaTerminaPacijent(TabelaTerminiPacijenta, idPacijenta);
+                            izmenaTermina.Owner = this;
+                            izmenaTermina.ShowDialog();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Potrebno je da se konsultujete sa Vašim specijalistom oko izmene termina pregleda.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Za izmenu termina operacije je potrebno da se konsultujete sa Vašim lekarom.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Molimo odaberite termin koji želite da izmenite.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+        private void potvrdiZakazivanjeTerminaButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (TabelaSlobodnihTermina.SelectedIndex != -1)
+            {
+                PotvrdaProzor pprozor = new PotvrdaProzor();
+                pprozor.Owner = this;
+                pprozor.ShowDialog();
+
+                if (pprozor.GetPovratnaVrednost() == 1)
+                {
+                    if (TabelaSlobodnihTermina.SelectedIndex != -1)
+                    {
+                        PacijentTermin selektovanTermin = (PacijentTermin)TabelaSlobodnihTermina.SelectedItem;
+                        PacijentKontroler.nadjiPacijenta(idPacijenta);
+                        String idSelektovanog = selektovanTermin.id;
+                        PacijentKontroler.zakaziTerminPacijentu(idSelektovanog);
+                        ucitajTerminePacijenta();
+                        TabelaPacijentiTermini.Items.Refresh();
+                        TabelaSlobodnihTermina.ItemsSource = PacijentKontroler.ucitajSlobodneTermine();
+                        TabelaSlobodnihTermina.Items.Refresh();
+                        
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Molimo izaberite novi termin.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
     }
 }
