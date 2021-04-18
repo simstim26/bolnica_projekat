@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Bolnica_aplikacija"
         mc:Ignorable="d"
-        Title="Prijava" Height="750" Width="430">
+        Title="Prijava" Height="750" Width="430" MaxWidth="430" MaxHeight="750" ResizeMode="NoResize">
 
     <Grid Height="719" VerticalAlignment="Bottom">
         <Grid.RowDefinitions>
@@ -15,10 +15,10 @@
             <RowDefinition Height="200*"/>
         </Grid.RowDefinitions>
         <Label x:Name="lblKorisnickoIme" Content="Korisničko ime:" HorizontalAlignment="Left" Margin="57,10,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="22"/>
-        <TextBox x:Name="txtKorisnickoIme"   HorizontalAlignment="Left" Height="37" Margin="62,54,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="301" FontSize="22" TextChanged="txtKorisnickoIme_TextChanged" BorderBrush="#89050505"/>
+        <TextBox x:Name="txtKorisnickoIme"   HorizontalAlignment="Left" Height="40" Margin="62,54,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="301" FontSize="22" TextChanged="txtKorisnickoIme_TextChanged" BorderBrush="#89050505"/>
         <Label x:Name="lblLozinka" Content="Lozinka:" HorizontalAlignment="Left" Margin="57,10,0,0" Grid.Row="2" VerticalAlignment="Top" FontSize="22"/>
-        <PasswordBox x:Name="txtLozinka" HorizontalAlignment="Left" Margin="62,54,0,0" Grid.Row="2" VerticalAlignment="Center" Width="301" Height="37" VerticalContentAlignment="Center" PasswordChanged="txtLozinka_PasswordChanged"/>
-        <Button x:Name="btnPrijava" Content="Prijavite se" Margin="144,0,134,69.2" Grid.Row="3" FontSize="22" IsEnabled="False" Click="btnPrijava_Click" Height="43" VerticalAlignment="Bottom"/>
+        <PasswordBox x:Name="txtLozinka" HorizontalAlignment="Left" Margin="62,54,0,0" Grid.Row="2" VerticalAlignment="Center" Width="301" Height="40" VerticalContentAlignment="Center" PasswordChanged="txtLozinka_PasswordChanged"/>
+        <Button x:Name="btnPrijava" Content="Prijavite se" Margin="132,0,132,71" Grid.Row="3" FontSize="22" IsEnabled="False" Click="btnPrijava_Click" Height="43" VerticalAlignment="Bottom"/>
         <Label x:Name="label" Content="*Pogrešan unos podataka." HorizontalAlignment="Left" Margin="62,10,0,0" Grid.Row="3" VerticalAlignment="Top" FontSize="14" FontStyle="Italic" Visibility="Hidden"/>
         <Image x:Name="image" Margin="76,10,76,0" Source="logo.png" Height="270" VerticalAlignment="Top"/>
         <Label x:Name="lblDobrodoslica" Content="Dobrodošli" Margin="144,228,132,19" VerticalAlignment="Center" FontSize="24" FontWeight="Bold" FontStyle="Italic" Foreground="#FF56C709"/>
