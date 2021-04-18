@@ -98,6 +98,15 @@ namespace Bolnica_aplikacija.LekarStudent
             String izvestajSaTermina = this.txtIzvestaj.Text;
 
             TerminKontroler.dodavanjeIzvestajaZaTermin(nazivBolesti, izvestajSaTermina);
+            aktivan = false;
+            LekarProzor.getX().Content = new PacijentInfo();
+
+        }
+
+        private void btnPonistiIzvestaj_Click(object sender, RoutedEventArgs e)
+        {
+            aktivan = false;
+            LekarProzor.getX().Content = new PacijentInfo();
         }
     }
 }

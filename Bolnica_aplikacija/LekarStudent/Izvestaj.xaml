@@ -27,7 +27,7 @@
         <Button x:Name="btnPotvrdaIzvestaj" HorizontalAlignment="Left" Margin="35,602,0,0" VerticalAlignment="Top" Width="75" Height="39" Click="btnPotvrdaIzvestaj_Click">
             <materialDesign:PackIcon Kind="CheckCircle" Height="21" Width="22"></materialDesign:PackIcon>
         </Button>
-        <Button x:Name="btnPonistiIzvestaj" Content="Button" HorizontalAlignment="Left" Margin="313,602,0,0" VerticalAlignment="Top" Width="76" Height="39"/>
+        <Button x:Name="btnPonistiIzvestaj" Content="Button" HorizontalAlignment="Left" Margin="313,602,0,0" VerticalAlignment="Top" Width="76" Height="39" Click="btnPonistiIzvestaj_Click"/>
         <Button Content="Zabeleži potrošene stavke" HorizontalAlignment="Left" Margin="98,515,0,0" VerticalAlignment="Top" Width="225" Height="59" Click="Button_Click"/>
         <Grid x:Name="gridUput" Background="White" Visibility="Hidden">
             <Label Content="Upućuje:" HorizontalAlignment="Left" Margin="50,56,0,0" VerticalAlignment="Top" Height="26" Width="74"/>

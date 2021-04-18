@@ -34,6 +34,7 @@ namespace Bolnica_aplikacija.Servis
         {
             BolestServis bolestServis = new BolestServis();
             termin.izvestaj = izvestajSaTermina;
+            termin.jeZavrsen = true;
             termin.idBolesti = bolestServis.napraviBolest(nazivBolesti, termin.idPacijenta, termin.idTerapije);
             terminRepozitorijum.azurirajTermin(termin);
         }
