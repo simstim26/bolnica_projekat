@@ -119,7 +119,7 @@
             </ToggleButton>
 
             <Grid x:Name="gridInventar" Visibility="Hidden" Background="LightGray" HorizontalAlignment="Left" Height="640" Margin="64,59,-935,0" VerticalAlignment="Top" Width="949">
-                <DataGrid x:Name="dataGridInventar" CanUserAddRows="false" IsReadOnly ="True" HorizontalAlignment="Left" Height="466" Margin="37,138,0,0" VerticalAlignment="Top" Width="868" HeadersVisibility="All" AutoGenerateColumns="False" SelectionMode="Single" CanUserResizeRows="False">
+                <DataGrid x:Name="dataGridInventar" CanUserAddRows="false" IsReadOnly ="True" HorizontalAlignment="Left" Height="466" Margin="37,138,0,0" VerticalAlignment="Top" Width="607" HeadersVisibility="All" AutoGenerateColumns="False" SelectionMode="Single" CanUserResizeRows="False">
                     <DataGrid.Columns>
                         <DataGridTextColumn x:Name="stavkaId" Binding ="{Binding id}" IsReadOnly="True" Header="id (privremeno)" Width="143" CanUserResize="False"/>
                         <DataGridTextColumn x:Name="stavkaNaziv" Binding ="{Binding naziv}" IsReadOnly="True" Header="naziv"  Width="143" CanUserResize="False"/>
@@ -128,27 +128,13 @@
                     </DataGrid.Columns>
                 </DataGrid>
                 <!--<Button x:Name="btnDodajStavku" Content="Dodaj stavku" HorizontalAlignment="Left" Margin="318,37,0,0" VerticalAlignment="Top" Width="110" Click="btnDodajStavku_Click"/>!-->
-                <Button x:Name="btnIzmeniStavku" Content="Izmeni stavku" HorizontalAlignment="Left" Margin="500,49,0,0" VerticalAlignment="Top" Width="144" Click="btnIzmeniStavku_Click"/>
+                <Button x:Name="btnIzmeniStavku" Content="Izmeni stavku" HorizontalAlignment="Left" Margin="706,248,0,0" VerticalAlignment="Top" Width="164" Click="btnIzmeniStavku_Click"/>
 
-                <Button x:Name="btnDodajStavku" Margin="329,49,536,559" BorderThickness="0" Click="btnDodajStavku_Click" >
-                    <Button.Background>
-                        <ImageBrush/>
-                    </Button.Background>
-                    <Button.Template>
-                        <ControlTemplate TargetType="Button">
-                            <Grid>
-                                <Ellipse Stroke="Black"
-                         StrokeThickness="3">
-                                    <Ellipse.Fill>
-                                        <ImageBrush ImageSource="images.png"/>
+                <Button x:Name="btnDodajStavku" Content="Dodaj stavku" Margin="706,141,79,467" BorderThickness="0" Click="btnDodajStavku_Click" />
 
-                                    </Ellipse.Fill>
-                                </Ellipse>
-                            </Grid>
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
-                <Button x:Name="btnObrisiStavku" Content="Izbriši Stavku" HorizontalAlignment="Left" Margin="731,49,0,0" VerticalAlignment="Top" Width="139" Click="btnObrisiStavku_Click"/>
+
+                <Button x:Name="btnObrisiStavku" Content="Izbriši Stavku" HorizontalAlignment="Left" Margin="706,354,0,0" VerticalAlignment="Top" Width="164" Click="btnObrisiStavku_Click"/>
+                <Button x:Name="btnPremestiUProstoriju" Content="Premesti u prostoriju" HorizontalAlignment="Left" Margin="706,462,0,0" VerticalAlignment="Top" Width="164" Click="btnPremestiUProstoriju_Click"/>
 
             </Grid>
 
@@ -156,17 +142,32 @@
                 <Rectangle Fill="LightGray" HorizontalAlignment="Left" Height="638" Stroke="Black" VerticalAlignment="Top" Width="947" Margin="70,59,-984,-399"/>
                 <Button x:Name="btnPotvrdiStavku" Content="Potvrdi" HorizontalAlignment="Left" Margin="243,515,-285,-245" VerticalAlignment="Top" Width="75" Height="28" Click="btnPotvrdiStavku_Click"/>
                 <Button x:Name="btnOtkaziStavku" Content="Otkazi" HorizontalAlignment="Left" Margin="731,515,-773,-245" VerticalAlignment="Top" Width="75" Height="28"  Click="btnOtkazi_Click"/>
-                <TextBlock x:Name="textNazivStavke" FontSize="24" HorizontalAlignment="Left" Margin="140,188,-220,0" TextWrapping="Wrap" Text="Naziv opreme" VerticalAlignment="Top" Width="158"/>
-                <TextBox x:Name="textBoxKolicina" HorizontalAlignment="Left" Height="30" Margin="352,265,-423,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="149"/>
-                <TextBox x:Name="textBoxNaziv" HorizontalAlignment="Left" Height="30" Margin="352,190,-424,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150"/>
-                <TextBlock x:Name="textKolicinaStavke" FontSize="24" HorizontalAlignment="Left" Margin="140,263,-204,0" TextWrapping="Wrap" Text="Količina" VerticalAlignment="Top" Width="142"/>
-                <TextBlock x:Name="textProizvodjacStavke" FontSize="24" HorizontalAlignment="Left" Margin="140,336,-204,0" TextWrapping="Wrap" Text="Proizvođač" VerticalAlignment="Top" Width="142"/>
-                <TextBox x:Name="textBoxProizvodjac" HorizontalAlignment="Left" Height="30" Margin="352,338,-423,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="149"/>
-                <TextBlock x:Name="textTipStavke" FontSize="24" HorizontalAlignment="Left" Margin="140,401,-204,0" TextWrapping="Wrap" Text="Tip opreme" VerticalAlignment="Top" Width="142"/>
-                <ComboBox x:Name="comboBoxTipOpreme" HorizontalAlignment="Left" Margin="357,405,-423,0" VerticalAlignment="Top" Width="144" Height="28">
+                <TextBlock x:Name="textNazivStavke" FontSize="24" HorizontalAlignment="Left" Margin="138,152,-218,0" TextWrapping="Wrap" Text="Naziv opreme" VerticalAlignment="Top" Width="158"/>
+                <TextBox x:Name="textBoxKolicina" HorizontalAlignment="Left" Height="30" Margin="350,223,-422,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150"/>
+                <TextBox x:Name="textBoxNaziv" HorizontalAlignment="Left" Height="30" Margin="350,148,-422,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150"/>
+                <TextBlock x:Name="textKolicinaStavke" FontSize="24" HorizontalAlignment="Left" Margin="138,221,-202,0" TextWrapping="Wrap" Text="Količina" VerticalAlignment="Top" Width="142"/>
+                <TextBlock x:Name="textProizvodjacStavke" FontSize="24" HorizontalAlignment="Left" Margin="138,294,-202,0" TextWrapping="Wrap" Text="Proizvođač" VerticalAlignment="Top" Width="142"/>
+                <TextBox x:Name="textBoxProizvodjac" HorizontalAlignment="Left" Height="30" Margin="350,296,-422,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150"/>
+                <TextBlock x:Name="textTipStavke" FontSize="24" HorizontalAlignment="Left" Margin="138,359,-202,0" TextWrapping="Wrap" Text="Tip opreme" VerticalAlignment="Top" Width="142"/>
+                <ComboBox x:Name="comboBoxTipOpreme" HorizontalAlignment="Left" Margin="356,363,-422,0" VerticalAlignment="Top" Width="144" Height="28">
                     <ComboBoxItem Content="Statička"/>
                     <ComboBoxItem Content="Dinamička"/>
                 </ComboBox>
+                <CheckBox x:Name="checkBoxPotrosna" FontSize="24" Content="Potrošna roba" HorizontalAlignment="Left" Margin="140,440,-232,0" VerticalAlignment="Top" />
+            </Grid>
+
+            <Grid x:Name="gridPremestiUProstoriju" Visibility="Hidden">
+                <Rectangle Fill="LightGray" HorizontalAlignment="Left" Height="638" Stroke="Black" VerticalAlignment="Top" Width="947" Margin="70,59,-984,-399"/>
+                <TextBlock x:Name="textBlock" FontSize="24" HorizontalAlignment="Left" Margin="140,155,-388,0" TextWrapping="Wrap" Text="Premesti stavku u prostoriju:" VerticalAlignment="Top" Width="326"/>
+                <TextBlock x:Name="textBlock1" FontSize="20" HorizontalAlignment="Left" Margin="140,250,-333,0" TextWrapping="Wrap" Text="Stavka koja se premešta:" VerticalAlignment="Top" Width="271"/>
+                <TextBlock x:Name="textBlock1_Copy" FontSize="20" HorizontalAlignment="Left" Margin="140,318,-333,0" TextWrapping="Wrap" Text="Količina:" VerticalAlignment="Top" Width="271"/>
+                <TextBlock x:Name="textBlock1_Copy1" FontSize="20" HorizontalAlignment="Left" Margin="140,394,-333,0" TextWrapping="Wrap" Text="Premesti u sobu:" VerticalAlignment="Top" Width="271"/>
+                <Button x:Name="btnPremesti" Content="Premesti" HorizontalAlignment="Left" Margin="152,586,-220,0" VerticalAlignment="Top" Width="146" Click="btnPremesti_Click"/>
+                <Button x:Name="btnOtkaziPremestanje" Content="Otkaži" HorizontalAlignment="Left" Margin="471,583,-537,0" VerticalAlignment="Top" Width="144" Click="btnOtkaziPremestanje_Click"/>
+                <TextBox x:Name="textBoxStavkaZaPremestanje" HorizontalAlignment="Left" Height="24" Margin="409,251,-502,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="171"/>
+                <TextBox x:Name="textBoxKolicinaZaPremestanje" HorizontalAlignment="Left" Height="24" Margin="409,323,-503,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="172"/>
+                <ComboBox x:Name="comboBoxProstorijeZaPremestanje" SelectedValuePath="Key" DisplayMemberPath="Value" HorizontalAlignment="Left" Margin="416,396,-502,0" VerticalAlignment="Top" Width="164"/>
+
             </Grid>
 
             <Grid x:Name="gridIzmeniStavku" Visibility="Hidden">
@@ -184,6 +185,7 @@
                 <TextBox x:Name="txtBoxNazivStavke" HorizontalAlignment="Left" Height="24" Margin="404,146,-500,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="174"/>
                 <TextBox x:Name="txtBoxKolicinaStavke" HorizontalAlignment="Left" Height="22" Margin="411,230,-507,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="174"/>
                 <TextBox x:Name="txtBoxProizvodjacStavke" HorizontalAlignment="Left" Height="22" Margin="412,316,-508,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="174"/>
+                <CheckBox x:Name="checkBoxPotrosnaIzmeni" FontSize="24" Content="Potrošna roba" HorizontalAlignment="Left" Margin="125,492,-217,0" VerticalAlignment="Top"/>
 
             </Grid>
 

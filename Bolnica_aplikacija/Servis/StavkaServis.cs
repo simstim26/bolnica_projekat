@@ -41,14 +41,23 @@ namespace Bolnica_aplikacija.Servis
             stavka.proizvodjac = upravnikProzor.textBoxProizvodjac.Text;
             stavka.jeLogickiObrisana = false;
             stavka.idProstorije = null;
-            
-            if(upravnikProzor.comboBoxTipOpreme.SelectedIndex == 1)
+
+            if (upravnikProzor.comboBoxTipOpreme.SelectedIndex == 1)
             {
                 stavka.jeStaticka = true;
             }
-            else if(upravnikProzor.comboBoxTipOpreme.SelectedIndex == 2)
+            else if (upravnikProzor.comboBoxTipOpreme.SelectedIndex == 2)
             {
                 stavka.jeStaticka = false;
+            }
+
+            if (upravnikProzor.checkBoxPotrosna.IsChecked == true)
+            {
+                stavka.jePotrosnaRoba = true;
+            }
+            else if (upravnikProzor.checkBoxPotrosna.IsChecked == false)
+            {
+                stavka.jePotrosnaRoba = false;
             }
 
             sveStavke.Add(stavka);
@@ -58,7 +67,7 @@ namespace Bolnica_aplikacija.Servis
         public void IzbrisiStavku(Stavka stavkaZaBrisanje)
         {
             var stavke = stavkaRepozitorijum.UcitajNeobrisaneStavke();
-            foreach(Stavka stavka in stavke)
+            foreach (Stavka stavka in stavke)
             {
                 if (stavka.id == stavkaZaBrisanje.id)
                 {
@@ -76,9 +85,9 @@ namespace Bolnica_aplikacija.Servis
             var stavke = stavkaRepozitorijum.UcitajSve();
             var stavkaKopija = new Stavka();
 
-            foreach(Stavka stavka in stavke)
+            foreach (Stavka stavka in stavke)
             {
-                if(stavka.id == stavkaZaIzmenu.id)
+                if (stavka.id == stavkaZaIzmenu.id)
                 {
                     stavkaKopija = stavka;
                 }
@@ -88,7 +97,7 @@ namespace Bolnica_aplikacija.Servis
             stavkaKopija.proizvodjac = upravnikProzor.txtBoxProizvodjacStavke.Text;
             stavkaKopija.kolicina = Int32.Parse(upravnikProzor.txtBoxKolicinaStavke.Text);
 
-            if(upravnikProzor.cbTipStavke.SelectedIndex == 0)
+            if (upravnikProzor.cbTipStavke.SelectedIndex == 0)
             {
                 stavkaKopija.jeStaticka = true;
             }
@@ -97,9 +106,19 @@ namespace Bolnica_aplikacija.Servis
                 stavkaKopija.jeStaticka = false;
             }
 
-            foreach(Stavka stavka in stavke)
+
+            if (upravnikProzor.checkBoxPotrosnaIzmeni.IsChecked == true)
             {
-                if(stavkaKopija.id == stavka.id)
+                stavkaKopija.jePotrosnaRoba = true;
+            }
+            else if (upravnikProzor.checkBoxPotrosnaIzmeni.IsChecked == false)
+            {
+                stavkaKopija.jePotrosnaRoba = false;
+            }
+
+            foreach (Stavka stavka in stavke)
+            {
+                if (stavkaKopija.id == stavka.id)
                 {
                     stavka.kolicina = stavkaKopija.kolicina;
                     stavka.naziv = stavkaKopija.naziv;
@@ -109,6 +128,21 @@ namespace Bolnica_aplikacija.Servis
             }
 
             stavkaRepozitorijum.Upisi(stavke);
+        }
+
+        public Stavka pronadjiStavkuPoId(String id)
+        {
+            var stavke = stavkaRepozitorijum.UcitajSve();
+            var stavka = new Stavka();
+            foreach (Stavka s in stavke)
+            {
+                if (s.id == id)
+                {
+                    stavka = s;
+                }
+            }
+
+            return stavka;
         }
 
     }

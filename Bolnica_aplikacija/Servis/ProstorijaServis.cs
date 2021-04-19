@@ -14,8 +14,9 @@ namespace Bolnica_aplikacija.Servis
 {
     class ProstorijaServis
     {
-     
+
         ProstorijaRepozitorijum prostorijaRepozitorijum = new ProstorijaRepozitorijum();
+        //StavkaServis stavkaServis = new StavkaServis();
 
         public List<Prostorija> ucitajSve()
         {
@@ -148,10 +149,10 @@ namespace Bolnica_aplikacija.Servis
 
         }
 
-            public void NapraviProstoriju(Prostorija prostorija)
+        public void NapraviProstoriju(Prostorija prostorija)
         {
             var prostorije = ProstorijaKontroler.ucitajSve(); //.GetInstance().ucitajSve();
-           // Prostorija prostorija = new Prostorija();
+                                                              // Prostorija prostorija = new Prostorija();
 
             Bolnica_aplikacija.UpravnikProzor upravnikProzor = Bolnica_aplikacija.UpravnikProzor.getInstance();
 
@@ -202,7 +203,7 @@ namespace Bolnica_aplikacija.Servis
             }
             else
             {
-               
+                Console.WriteLine(prostorije.Count);
                 prostorija.id = (prostorije.Count + 1).ToString();
                 prostorija.broj = upravnikProzor.unosBrojaProstorije.Text;
                 prostorija.sprat = Int32.Parse(upravnikProzor.unosSprata.Text);
@@ -247,6 +248,95 @@ namespace Bolnica_aplikacija.Servis
             prostorija.logickiObrisana = true;
             prostorijaRepozitorijum.upisi(prostorije);
 
+        }
+
+        public void dodajStavku(String prostorijaId, String stavkaId)
+        {
+            var prostorija = nadjiProstorijuPoId(prostorijaId);
+            Console.WriteLine(prostorija.broj);
+            var prostorije = prostorijaRepozitorijum.ucitajSve();
+            Bolnica_aplikacija.UpravnikProzor upravnikProzor = Bolnica_aplikacija.UpravnikProzor.getInstance();
+
+          
+            if(prostorija.Stavka.Count == 0)
+            {
+                var prvaStavka = StavkaKontroler.pronadjiStavkuPoId(stavkaId);
+                prvaStavka.kolicina = Int32.Parse(upravnikProzor.textBoxKolicinaZaPremestanje.Text);
+                prostorija.Stavka.Add(prvaStavka);
+                foreach (Prostorija p in prostorije)
+                {
+                    if (p.id == prostorija.id)
+                    {
+                        p.Stavka = prostorija.Stavka;
+                    }
+                }
+                prostorijaRepozitorijum.upisi(prostorije);
+            }
+            else
+            {
+                foreach (Stavka stavka in prostorija.Stavka)
+                {
+                    if (stavka.id == stavkaId)
+                    {
+                        stavka.kolicina += Int32.Parse(upravnikProzor.textBoxKolicinaZaPremestanje.Text);
+
+                        foreach (Prostorija p in prostorije)
+                        {
+                            if (p.id == prostorijaId)
+                            {
+                                p.Stavka = prostorija.Stavka;
+                            }
+                        }
+
+                        prostorijaRepozitorijum.upisi(prostorije);
+                        return;
+
+                    }
+                }
+
+
+
+                var novaStavka = StavkaKontroler.pronadjiStavkuPoId(stavkaId);
+                novaStavka.kolicina = Int32.Parse(upravnikProzor.textBoxKolicinaZaPremestanje.Text);
+                prostorija.Stavka.Add(novaStavka);
+
+                foreach (Prostorija prost in prostorije)
+                {
+                    if (prost.id == prostorijaId)
+                    {
+                        prost.Stavka = prostorija.Stavka;
+                    }
+                }
+
+                prostorijaRepozitorijum.upisi(prostorije);
+            }
+
+        }
+
+        public Prostorija nadjiProstorijuPoId(String id)
+        {
+            var prostorije = prostorijaRepozitorijum.ucitajSve();
+            var prostorija = new Prostorija();
+
+            foreach(Prostorija p in prostorije)
+            {
+                if(p.id.Equals(id))
+                {
+                    prostorija.id = p.id;
+                    prostorija.idBolnice = p.idBolnice;
+                    prostorija.logickiObrisana = p.logickiObrisana;
+                    prostorija.sprat = p.sprat;
+                    prostorija.tipProstorije = p.tipProstorije;
+                    prostorija.broj = p.broj;
+                    prostorija.dostupnost = p.dostupnost;
+                    prostorija.Stavka = p.Stavka;
+
+                }
+            }
+
+            Console.WriteLine("ID OD FUNKCIJE KOJI VRACA: " + prostorija.id);
+
+            return prostorija;
         }
     }
 

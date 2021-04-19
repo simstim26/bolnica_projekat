@@ -7,26 +7,40 @@
     "idProstorije": "1",
     "idBolnice": "1",
     "jeStaticka": true,
-    "jeLogickiObrisana": false
+    "jeLogickiObrisana": false,
+    "jePotrosnaRoba": false
   },
   {
     "id": "2",
-    "naziv": "aaaaa",
-    "kolicina": 10,
-    "proizvodjac": "aaa",
-    "idProstorije": null,
-    "idBolnice": "1",
-    "jeStaticka": false,
-    "jeLogickiObrisana": true
-  },
-  {
-    "id": "3",
     "naziv": "Krevet",
     "kolicina": 50,
     "proizvodjac": "KrevetKrevet",
     "idProstorije": null,
     "idBolnice": "1",
     "jeStaticka": true,
-    "jeLogickiObrisana": false
+    "jeLogickiObrisana": false,
+    "jePotrosnaRoba": false
+  },
+  {
+    "id": "3",
+    "naziv": "Spric",
+    "kolicina": 123,
+    "proizvodjac": "Spricolino",
+    "idProstorije": null,
+    "idBolnice": "1",
+    "jeStaticka": true,
+    "jeLogickiObrisana": false,
+    "jePotrosnaRoba": false
+  },
+  {
+    "id": "4",
+    "naziv": "hanzaplast",
+    "kolicina": 1290,
+    "proizvodjac": "hanZa",
+    "idProstorije": null,
+    "idBolnice": "1",
+    "jeStaticka": true,
+    "jeLogickiObrisana": false,
+    "jePotrosnaRoba": true
   }
 ]

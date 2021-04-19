@@ -126,9 +126,6 @@ namespace Bolnica_aplikacija
 
         private void btnOdjava_Click(object sender, RoutedEventArgs e)
         {
-            var prostorije = JsonSerializer.Deserialize<List<Prostorija>>(File.ReadAllText("Datoteke/Prostorije.txt"));
-            ProstorijaKontroler.upisi(prostorije);
-
             Prijava prijava = new Prijava();
             this.Close();
             instance = null;
@@ -263,6 +260,15 @@ namespace Bolnica_aplikacija
                 txtBoxNazivStavke.Text = stavka.naziv;
                 txtBoxProizvodjacStavke.Text = stavka.proizvodjac;
                 
+                if(stavka.jePotrosnaRoba == true)
+                {
+                    checkBoxPotrosnaIzmeni.IsChecked = true;
+                }
+                else if(stavka.jePotrosnaRoba == false)
+                {
+                    checkBoxPotrosnaIzmeni.IsChecked = false;
+                }
+                
                 if(stavka.jeStaticka == true)
                 {
                     cbTipStavke.SelectedIndex = 0;
@@ -313,6 +319,46 @@ namespace Bolnica_aplikacija
                 dataGridInventar.ItemsSource = StavkaKontroler.UcitajNeobrisaneStavke();
 
             }
+        }
+
+        private void btnPremestiUProstoriju_Click(object sender, RoutedEventArgs e)
+        {
+            if (dataGridInventar.SelectedIndex != -1)
+            {
+                var stavka = (Stavka)dataGridInventar.SelectedItem;
+                gridPremestiUProstoriju.Visibility = Visibility.Visible;
+
+                textBoxStavkaZaPremestanje.Text = stavka.naziv;
+
+                Dictionary<string, string> prostorije = new Dictionary<string, string>();
+                var neobrisaneProstorije = ProstorijaKontroler.ucitajNeobrisane();
+                foreach (Prostorija p in neobrisaneProstorije)
+                {
+                    prostorije.Add(p.id, p.broj + " " + p.sprat);
+                }
+
+                comboBoxProstorijeZaPremestanje.ItemsSource = prostorije;
+            }
+        }
+
+        private void btnPremesti_Click(object sender, RoutedEventArgs e)
+        {
+            gridPremestiUProstoriju.Visibility = Visibility.Hidden;
+           
+            var prostorijaId = (KeyValuePair<string, string>)comboBoxProstorijeZaPremestanje.SelectedItem;
+            
+
+            var stavka = (Stavka)dataGridInventar.SelectedItem;
+            ProstorijaKontroler.dodajStavku(prostorijaId.Key, stavka.id);
+            dataGridInventar.ItemsSource = StavkaKontroler.UcitajNeobrisaneStavke();
+            gridInventar.Visibility = Visibility.Visible;
+
+        }
+
+        private void btnOtkaziPremestanje_Click(object sender, RoutedEventArgs e)
+        {
+            gridPremestiUProstoriju.Visibility = Visibility.Hidden;
+            gridInventar.Visibility = Visibility.Visible;
         }
     }
 }

@@ -40,5 +40,10 @@ namespace Bolnica_aplikacija.Kontroler
         {
             stavkaServis.IzmeniStavku(stavka);
         }
+
+        public static Stavka pronadjiStavkuPoId(String id)
+        {
+            return stavkaServis.pronadjiStavkuPoId(id);
+        }
     }
 }

@@ -4,6 +4,7 @@
 // Purpose: Definition of Class Prostorija
 
 using System;
+using System.Collections.Generic;
 
 namespace Model
 {
@@ -18,12 +19,14 @@ namespace Model
       public bool logickiObrisana { get; set; }
       
       public System.Collections.ArrayList stavka;
+
+      public List<Stavka> Stavka { get; set; }
       
       /// <summary>
       /// Property for collection of Stavka
       /// </summary>
       /// <pdGenerated>Default opposite class collection property</pdGenerated>
-      public System.Collections.ArrayList Stavka
+     /* public System.Collections.ArrayList Stavka
       {
          get
          {
@@ -76,8 +79,8 @@ namespace Model
       public void RemoveAllStavka()
       {
          if (stavka != null)
-            stavka.Clear();
-      }
+            stavka.Clear();*/
+      //}
       public Termin[] termin;
    
 

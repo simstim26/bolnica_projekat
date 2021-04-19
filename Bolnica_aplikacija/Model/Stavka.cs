@@ -17,6 +17,7 @@ namespace Model
         public String idBolnice { get; set; }
         public bool jeStaticka { get; set; }
         public bool jeLogickiObrisana { get; set; }
+        public bool jePotrosnaRoba { get; set; }
 
     }
 }
