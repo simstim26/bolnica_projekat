@@ -72,7 +72,7 @@
     "idTermina": "6",
     "idProstorije": "13",
     "idPacijenta": "1",
-    "idLekara": "2"
+    "idLekara": "2",
     "idTerapije": null,
     "idBolesti": null,
     "izvestaj": null
@@ -85,7 +85,7 @@
     "idTermina": "7",
     "idProstorije": "13",
     "idPacijenta": "",
-    "idLekara": "2"
+    "idLekara": "2",
     "idTerapije": null,
     "idBolesti": null,
     "izvestaj": null
