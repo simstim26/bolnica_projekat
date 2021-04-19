@@ -207,6 +207,8 @@ namespace Bolnica_aplikacija.PacijentStudent
         void timer_Tick(Object sender, EventArgs e)
         {
             
+
+
         }
 
     }

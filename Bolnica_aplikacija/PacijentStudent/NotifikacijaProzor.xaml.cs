@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bolnica_aplikacija.Kontroler;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,25 @@ namespace Bolnica_aplikacija.PacijentStudent
     /// </summary>
     public partial class NotifikacijaProzor : Window
     {
-        public NotifikacijaProzor()
+        private String idNotifikacije;
+
+        public NotifikacijaProzor(String idNotifikacije)
         {
             InitializeComponent();
+
+            this.idNotifikacije = idNotifikacije;
+
+            popuniNotifikaciju();
+
         }
+
+        void popuniNotifikaciju()
+        {
+            lblNazivObavestenja.Content = NotifikacijaKontroler.getNotifikacija(idNotifikacije).nazivNotifikacije;
+            lblVremeObavestenja.Content = NotifikacijaKontroler.getNotifikacija(idNotifikacije).vremeNotifikovanja.ToString("HH:mm");
+            txtPoruka.Text = NotifikacijaKontroler.getNotifikacija(idNotifikacije).porukaNotifikacije;
+        }
+
+
     }
 }
