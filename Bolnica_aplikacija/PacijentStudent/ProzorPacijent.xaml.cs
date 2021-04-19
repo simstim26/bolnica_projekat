@@ -199,14 +199,14 @@ namespace Bolnica_aplikacija.PacijentStudent
         private void setujTajmer()
         {
             tajmer = new DispatcherTimer();
-            tajmer.Interval = TimeSpan.FromSeconds(1);
+            tajmer.Interval = TimeSpan.FromMinutes(1);
             tajmer.Tick += timer_Tick;
             tajmer.Start();
         }
 
         void timer_Tick(Object sender, EventArgs e)
         {
-            Console.WriteLine(DateTime.Now.ToString("HH:mm:ss"));
+            
         }
 
     }
