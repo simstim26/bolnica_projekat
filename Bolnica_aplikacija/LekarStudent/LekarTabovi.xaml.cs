@@ -110,7 +110,7 @@ namespace Bolnica_aplikacija
                     this.drugi.SelectedDate = null;
                     ucitajSve();
                 }
-                PacijentInfo.getDataTermini().ItemsSource = PacijentKontroler.prikazSvihTerminaPacijenta();
+                //PacijentInfo.getDataTermini().ItemsSource = PacijentKontroler.prikazSvihTerminaPacijenta();
             }
             else
             {
@@ -132,6 +132,7 @@ namespace Bolnica_aplikacija
             if(dataRaspored.SelectedIndex != -1)
             {
                 TerminKontroler.nadjiPacijentaZaTermin(((PacijentTermin)dataRaspored.SelectedItem).id);
+                TerminKontroler.sacuvajTermin(((PacijentTermin)dataRaspored.SelectedItem).id);
                 this.Content = new PacijentInfo();
             }
         }

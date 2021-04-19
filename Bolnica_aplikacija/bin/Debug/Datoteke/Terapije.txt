@@ -1,0 +1,32 @@
+[
+  {
+    "id": "1",
+    "idLeka": "1",
+    "idPacijenta": "1",
+    "idBolesti": "1",
+    "idTermina": "8",
+    "datumPocetka": "2021-04-19T00:00:00",
+    "trajanje": 7,
+    "nacinUpotrebe": "Rektalno, aospidfpaoisdfpaoisdfpaoisdnfpaionsdpofiansdfa"
+  },
+  {
+    "id": "2",
+    "idLeka": "1",
+    "idPacijenta": "1",
+    "idBolesti": "2",
+    "idTermina": "1",
+    "datumPocetka": "2021-04-19T00:00:00",
+    "trajanje": 122,
+    "nacinUpotrebe": "Rektalno, fasdfa"
+  },
+  {
+    "id": "3",
+    "idLeka": "1",
+    "idPacijenta": "1",
+    "idBolesti": "3",
+    "idTermina": "7",
+    "datumPocetka": "2021-04-19T00:00:00",
+    "trajanje": 2000,
+    "nacinUpotrebe": "Rektalno, asdfa"
+  }
+]

@@ -83,7 +83,7 @@ namespace Bolnica_aplikacija
                     else
                     {
                         PacijentKontroler.otkaziTerminPacijenta(izabraniTermin.id);
-                        LekarTabovi.getRaspored().ItemsSource = LekarKontroler.prikaziZauzeteTermineZaLekara(KorisnikKontroler.getLekar());
+                        //LekarTabovi.getRaspored().ItemsSource = LekarKontroler.prikaziZauzeteTermineZaLekara(KorisnikKontroler.getLekar());
                     }
                 }
                 else

@@ -9,11 +9,14 @@ namespace Model
 {
    public class Terapija
    {
-      private int id;
-      private Lek lek;
-      private DateTime datumPocetka;
-      private int trajanje;
-      private String doza;
-   
-   }
+      public String id { get; set; }
+      public String idLeka { get; set; }
+      public String idPacijenta { get; set; }
+      public String idBolesti { get; set; }
+      public String idTermina { get; set; }
+      public DateTime datumPocetka { get; set; }
+      public int trajanje { get; set; }
+      public String nacinUpotrebe { get; set; }
+
+    }
 }

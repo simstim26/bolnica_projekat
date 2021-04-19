@@ -14,7 +14,7 @@
         </Button>
         <Button x:Name="btnPonisti" Content="NADJI IKONICU" HorizontalAlignment="Left" Height="40" Margin="249,598,0,0" VerticalAlignment="Top" Width="145" Click="btnPonisti_Click" BorderBrush="Black">
         </Button>
-        <DataGrid x:Name="dataGridZakazivanjeTermina" IsReadOnly="True" AutoGenerateColumns="False" GridLinesVisibility="All" Background="White" AlternatingRowBackground="#FF9900" AlternationCount="2" SelectionMode="Single" HorizontalAlignment="Left" Height="455" Margin="0,114,0,0" VerticalAlignment="Top" Width="430">
+        <DataGrid x:Name="dataGridZakazivanjeTermina" IsReadOnly="True" AutoGenerateColumns="False" GridLinesVisibility="All" Background="White" AlternatingRowBackground="#FF9900" AlternationCount="2" SelectionMode="Single" HorizontalAlignment="Left" Height="455" Margin="-23,123,0,0" VerticalAlignment="Top" Width="453">
             <DataGrid.Style>
                 <Style TargetType="DataGrid">
                     <Setter Property="AlternatingRowBackground" Value="#FFBFBFBF"/>
