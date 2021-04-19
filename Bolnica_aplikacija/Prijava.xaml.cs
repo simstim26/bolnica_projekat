@@ -36,7 +36,8 @@ namespace Bolnica_aplikacija
                  case "pacijent":
                     
                     KorisnikKontroler.NadjiPacijenta(ulogovaniKorisnik[1]); //cuvanje ulogovanog korisnika
-                    PacijentProzor pacijentProzor = new PacijentProzor();
+                    //PacijentProzor pacijentProzor = new PacijentProzor();
+                    ProzorPacijent pacijentProzor = new ProzorPacijent();
                     this.Close();
                     pacijentProzor.ShowDialog();
                     break;
@@ -49,10 +50,12 @@ namespace Bolnica_aplikacija
                     lekarProzor.ShowDialog();
                      break;
                  case "sekretar":
+
                     KorisnikKontroler.nadjiSekretara(ulogovaniKorisnik[1]);
                     SekretarProzor sekretarProzor = new SekretarProzor();
                     this.Close();
                     sekretarProzor.ShowDialog();  
+
                      break;
                  case "upravnik":
                     KorisnikKontroler.NadjiUpravnika(ulogovaniKorisnik[1]);

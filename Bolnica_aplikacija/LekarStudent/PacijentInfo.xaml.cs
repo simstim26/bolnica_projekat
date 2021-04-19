@@ -18,23 +18,45 @@ using System.Windows.Shapes;
 using Model;
 using Bolnica_aplikacija.PacijentModel;
 using Bolnica_aplikacija.Kontroler;
+using Bolnica_aplikacija.LekarStudent;
 
 namespace Bolnica_aplikacija
 {
     public partial class PacijentInfo : UserControl
     {
         public static TabControl tab;
+        private static DataGrid dataTermini;
+        public static bool aktivanPacijentInfo { get; set; }
         public PacijentInfo()
         {
             InitializeComponent();
+            LekarProzor.getNazad().Visibility = Visibility.Visible;
+            LekarProzor.getGlavnaLabela().Content = "Rad sa pacijentima";
+            aktivanPacijentInfo = true;
             tab = this.tabInfo;
-            lblIme.Content += PacijentKontroler.getPacijent().ime;
+            lblJmbg.Content = PacijentKontroler.getPacijent().jmbg;
+            lblImePrezime.Content = PacijentKontroler.getPacijent().ime + " " + PacijentKontroler.getPacijent().prezime;
+            lblDatumRodjenja.Content = PacijentKontroler.getPacijent().datumRodjenja.ToString("dd.MM.yyyy.");
+            lblAdresa.Content = PacijentKontroler.getPacijent().adresa;
+            lblKontakt.Content = PacijentKontroler.getPacijent().brojTelefona;
+           
+            dataTermini = this.dataGridTerminiPacijenta;
             ucitajPodatke();
+        }
+
+        public static TabControl getTab()
+        {
+            return tab;
+        }
+        public static DataGrid getDataTermini()
+        {
+            return dataTermini;
         }
 
         private void btnNazad_Click(object sender, RoutedEventArgs e)
         {
-            Content = new PrikazPacijenata();
+            LekarProzor.getX().Content = new LekarTabovi();
+          //  LekarTabovi.getTab().SelectedIndex = 1;
         }
 
         private void btnZakazi_Click(object sender, RoutedEventArgs e)
@@ -61,6 +83,7 @@ namespace Bolnica_aplikacija
                     else
                     {
                         PacijentKontroler.otkaziTerminPacijenta(izabraniTermin.id);
+                        LekarTabovi.getRaspored().ItemsSource = LekarKontroler.prikaziZauzeteTermineZaLekara(KorisnikKontroler.getLekar());
                     }
                 }
                 else
@@ -112,6 +135,38 @@ namespace Bolnica_aplikacija
                 MessageBox.Show("Potrebno je izabrati termin.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
 
             }
+        }
+
+        private void tabInfo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(this.tabInfo.SelectedIndex == 0)
+            {
+                LekarProzor.getPretraga().Visibility = Visibility.Hidden;
+            }
+            else if(this.tabInfo.SelectedIndex == 1)
+            {
+                LekarProzor.getPretraga().Visibility = Visibility.Visible;
+
+            }
+            else
+            {
+                LekarProzor.getPretraga().Visibility = Visibility.Visible;
+            }
+        }
+
+        private void btnIzvestaj_Click(object sender, RoutedEventArgs e)
+        {
+            Content = new Izvestaj();
+        }
+
+        private void btnBolesti_Click(object sender, RoutedEventArgs e)
+        {
+            Content = new IstorijaBolesti();
+        }
+
+        private void btnTerapije_Click(object sender, RoutedEventArgs e)
+        {
+            Content = new UvidUTerapije();
         }
     }
 }

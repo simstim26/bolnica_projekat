@@ -25,9 +25,13 @@ namespace Bolnica_aplikacija.LekarStudent
     /// </summary>
     public partial class PrikazProstorija : UserControl
     {
+        public static bool aktivan;
         public PrikazProstorija()
         {
             InitializeComponent();
+            aktivan = true;
+            ZakaziTermin.aktivan = false;
+            LekarProzor.getGlavnaLabela().Content = "Promena prostorije";
             ucitajPodatke();
         }
 
@@ -48,10 +52,8 @@ namespace Bolnica_aplikacija.LekarStudent
             {
                 Prostorija prostorija = (Prostorija)dataProstorije.SelectedItem;
                 TerminKontroler.promeniProstorijuTermina(TerminKontroler.getTermin().idTermina, prostorija.id);
-                LekarProzor.getX().Content = new LekarTabovi();
-                LekarTabovi.getX().Content = new PacijentInfo();
-                LekarTabovi.getTab().SelectedIndex = 1;
-                PacijentInfo.getPregledTab().SelectedIndex = 1;
+                LekarProzor.getX().Content = new PacijentInfo();
+                PacijentInfo.getPregledTab().SelectedIndex = 2;
             }
             else
             {

@@ -4,16 +4,123 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Bolnica_aplikacija"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" Height="659.6" Width="430">
+    <UserControl.Resources>
+        <Style x:Key="MyButtonContentStyle" TargetType="TextBlock">
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="White" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    
     <Grid>
-        <TabControl x:Name="lekarTab" HorizontalAlignment="Left" Height="600" Margin="0,10,0,-160.4" VerticalAlignment="Top" Width="425">
-            <TabItem x:Name="tabRaspored" Header="Raspored" Height="40" Width="210">
-                <Grid Background="#FFE5E5E5" Margin="-3,-3,-1.8,-3"/>
+        <TabControl x:Name="lekarTab" TabStripPlacement="Bottom" HorizontalAlignment="Stretch" Height="681" Margin="0,-19,0,-2.8" VerticalAlignment="Top" Background="White">
+            <TabControl.Resources>
+                <Style TargetType="TabItem">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="TabItem">
+                                <Grid Name="Panel">
+                                    <ContentPresenter x:Name="ContentSite"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        ContentSource="Header"
+                                        Margin="10,2"/>
+                                </Grid>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter TargetName="Panel" Property="Background" Value="White" />
+                                        <Setter Property="Foreground" Value="Black"/>
+                                        <Setter Property="HeaderTemplate">
+                                            <Setter.Value>
+                                                <DataTemplate>
+                                                    <TextBlock FontWeight="Bold" Text="{Binding}"/>
+                                                </DataTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Trigger>
+                                    <Trigger Property="IsSelected" Value="False">
+                                        <Setter TargetName="Panel" Property="Background" Value="#FF7C7C7C" />
+                                        <Setter Property="Foreground" Value="Black"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </TabControl.Resources>
+            <TabItem x:Name="tabRaspored" Height="45" Width="210" BorderBrush="Black" Margin="0,0,-0.4,0">
+                <TabItem.HeaderTemplate>
+                    <DataTemplate>
+                        <TextBlock Grid.ColumnSpan="2" Margin="-12,-5,-11,-3.8">
+                                  <materialDesign:PackIcon Kind="Calendar"></materialDesign:PackIcon>
+                        </TextBlock>
+                    </DataTemplate>
+                </TabItem.HeaderTemplate>
+                <Grid>
+                    <Grid x:Name="gridPretragaRaspored" Margin="-6,0,0.2,580.6" Background="#93c47d" Visibility="Hidden">
+                        <DatePicker x:Name="prvi" HorizontalAlignment="Left" Background="#b6d7a8"  Margin="27,15,0,0" VerticalAlignment="Top" Height="33" Width="75"/>
+                        <DatePicker x:Name="drugi" HorizontalAlignment="Left" Margin="166,15,0,0" VerticalAlignment="Top" Height="33" Width="75"/>
+                        <Label Content="-" HorizontalAlignment="Left" Margin="127,15,0,0" VerticalAlignment="Top" FontSize="14" Height="33" Width="34"/>
+                        <Label x:Name="lblGreska"  Content="*Pogrešan unos  datuma!" Foreground="Red" Visibility="Hidden" HorizontalAlignment="Left" Margin="61,44,0,0" VerticalAlignment="Top" Width="252" FontWeight="Bold" FontStyle="Italic"/>
+                        <Button HorizontalAlignment="Left" Margin="279,15,0,0" VerticalAlignment="Top" Width="34" Height="33" Style="{StaticResource MaterialDesignFloatingActionAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Black" Click="Button_Click">
+                            <materialDesign:PackIcon Kind="Play" Height="26" Width="26" RenderTransformOrigin="0.5,0.5">
+
+                            </materialDesign:PackIcon>
+                        </Button>
+                    </Grid>
+                    <DataGrid x:Name ="dataRaspored" GridLinesVisibility="All" Background="White" SelectionMode="Single" AlternatingRowBackground="#FF9900" AutoGenerateColumns="False" Margin="0,119,0.2,-0.2" AlternationCount="2" IsReadOnly="True" RowHeight="35">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn x:Name="kolonaDatum" Binding="{Binding datum}" IsReadOnly="True" CanUserResize="False" Header="Datum" Width="112"></DataGridTextColumn>
+                            <DataGridTextColumn x:Name="kolonaSatnica" Binding="{Binding satnica}" IsReadOnly="True" CanUserResize="False" Header="Satnica" Width="112"></DataGridTextColumn>
+                            <DataGridTextColumn x:Name="kolonaProstorija" IsReadOnly="True" Binding="{Binding lokacija}" CanUserResize="False" Header="Prostorija" Width="90"></DataGridTextColumn>
+                            <DataGridTextColumn x:Name="kolonaTip" IsReadOnly="True" Binding="{Binding napomena}" CanUserResize="False" Header="Tip" Width="90"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button x:Name="btnOtkazi" HorizontalAlignment="Left" Margin="167,70,0,0" VerticalAlignment="Top" Width="78" Height="34" Foreground="White" FontWeight="Bold" Click="btnOtkazi_Click">
+                        <materialDesign:PackIcon Kind="TrashCan" Height="27" Width="43"></materialDesign:PackIcon>
+                    </Button>
+                    <Button x:Name="btnPromeni" HorizontalAlignment="Left" Margin="318,70,0,0" VerticalAlignment="Top" Width="78" Height="34" FontWeight="Bold">
+                        <materialDesign:PackIcon Kind="Repeat" Height="27" Width="43"></materialDesign:PackIcon>
+                    </Button>
+                    <Button x:Name="btnInfo" HorizontalAlignment="Left" Margin="20,70,0,0" VerticalAlignment="Top" Width="78" Height="34" FontWeight="Bold" Click="btnInfo_Click">
+                        <materialDesign:PackIcon Kind="InfoCircle" Height="27" Width="43"></materialDesign:PackIcon>
+                    </Button>
+
+                </Grid>
             </TabItem>
-            <TabItem x:Name="tabRad" Header="Rad sa pacijentima" Width="211">
-                <ContentControl x:Name= "contentControl" Margin="-3,-2,-1.8,-2"/>
+            <TabItem x:Name="tabRad" Width="211">
+                <TabItem.HeaderTemplate>
+                    <DataTemplate>
+                        <TextBlock Grid.ColumnSpan="2" Margin="-12,-5,-11,-3.8">
+                                  <materialDesign:PackIcon Kind="Bed"></materialDesign:PackIcon>
+                        </TextBlock>
+                    </DataTemplate>
+                </TabItem.HeaderTemplate>
+                <Grid Background="White" Margin="-18,-2,-12.8,-1.4">
+                    <Grid x:Name="gridPrikazPacijenata" Margin="10,-13,10,576" Background="#93c47d" Visibility="Hidden">
+                        <TextBox  Margin="70,41,191.6,-29.2" VerticalAlignment="Top" Height="22" />
+                        <Button HorizontalAlignment="Left" Margin="256,30,0,-29.2" VerticalAlignment="Top" Width="34" Height="33" Style="{StaticResource MaterialDesignFloatingActionAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Black" Click="Button_Click">
+                            <materialDesign:PackIcon Kind="Play" Height="26" Width="26" RenderTransformOrigin="0.5,0.5">
+                            </materialDesign:PackIcon>
+                        </Button>
+                    </Grid>
+                    <Button x:Name ="btnInfoPrikaz" HorizontalAlignment="Left" Margin="341,80,0,0" VerticalAlignment="Top" Width="78" Height="34" FontWeight="Bold" Click="btnInfoPrikaz_Click">
+                        <materialDesign:PackIcon Kind="InfoCircle" Height="27" Width="43"></materialDesign:PackIcon>
+                    </Button>
+                    <DataGrid x:Name ="lstPacijenti" GridLinesVisibility="All" Background="White" SelectionMode="Single" AlternatingRowBackground="#FF9900" AutoGenerateColumns="False" Margin="10,119,10,10" AlternationCount="2" IsReadOnly="True" RowHeight="35">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn x:Name="kolonaJmbg" Binding="{Binding jmbg}" IsReadOnly="True" Header="JMBG" Width="140" CanUserResize="False"/>
+                            <DataGridTextColumn x:Name="kolonaIme" Binding ="{Binding ime}" IsReadOnly="True" Header="Ime"  Width="140" CanUserResize="False"/>
+                            <DataGridTextColumn x:Name="kolonaPrezime" Binding="{Binding prezime}" IsReadOnly="True" Header="Prezime" Width="138" CanUserResize="False"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
             </TabItem>
         </TabControl>
+
     </Grid>
 </UserControl>
