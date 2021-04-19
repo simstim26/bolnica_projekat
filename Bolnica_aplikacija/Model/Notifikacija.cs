@@ -9,9 +9,13 @@ namespace Model
 {
    public class Notifikacija
    {
-      private int id;
-      private String tekst;
-      private DateTime vreme;
-   
+        private String id;
+        private String nazivNotifikacije;
+        private DateTime vremeNotifikovanja;
+        private String porukaNotifikacije;
+
+
+
+
    }
 }
