@@ -50,9 +50,9 @@ namespace Bolnica_aplikacija.Kontroler
             return pacijentServis.getPacijent();
         }
 
-        public static List<PacijentTermin> ucitajSlobodneTermine()
+        public static List<PacijentTermin> ucitajSlobodneTermine(bool jeSekretar)
         {
-            return pacijentServis.ucitajSlobodneTermine();
+            return pacijentServis.ucitajSlobodneTermine(jeSekretar);
         }
 
     }

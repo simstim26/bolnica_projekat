@@ -47,7 +47,7 @@ namespace Bolnica_aplikacija.PacijentStudent
 
         public void ucitajPodatke()
         {
-            dataGridSlobodniTermini.ItemsSource = PacijentKontroler.ucitajSlobodneTermine();
+            dataGridSlobodniTermini.ItemsSource = PacijentKontroler.ucitajSlobodneTermine(false);
         }
 
         private void btnPotvrdi_Click(object sender, RoutedEventArgs e)

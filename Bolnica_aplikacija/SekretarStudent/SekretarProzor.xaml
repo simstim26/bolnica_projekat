@@ -8,7 +8,7 @@
         Title="Sekretar" Height="768" Width="1366" Visibility="Visible" ResizeMode="CanMinimize"
         >
     <Grid x:Name="Grid" HorizontalAlignment="Left" Height="748" Margin="-4,-17,0,0" VerticalAlignment="Top" Width="1356">
-        <Grid x:Name="PocetniEkranGrid" Margin="270,150">
+        <Grid x:Name="PocetniEkranGrid" Margin="270,150" d:IsHidden="True">
             <Button x:Name="pacijentiButton" Content="PACIJENTI" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Height="200" FontSize="36" FontWeight="Bold" Click="pacijenti_Click" >
                 <Button.Effect>
                     <DropShadowEffect BlurRadius="10" Direction="314"/>
@@ -74,7 +74,7 @@
             </Button>
             <Button x:Name="odjavaButton" Content="ODJAVI SE" HorizontalAlignment="Left" Margin="903,-107,-228,0" VerticalAlignment="Top" Width="141" Height="55" RenderTransformOrigin="0.624,0" FontSize="22" FontWeight="Bold" Click="odjavaButton_Click"/>
         </Grid>
-        <Grid x:Name="PacijentGrid" HorizontalAlignment="Left" Height="730" Margin="0,18,0,0" VerticalAlignment="Top" Width="1346">
+        <Grid x:Name="PacijentGrid" HorizontalAlignment="Left" Height="730" Margin="0,18,0,0" VerticalAlignment="Top" Width="1346" d:IsHidden="True">
             <Grid.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF83C8F7" Offset="0"/>
@@ -116,7 +116,7 @@
                 </Button.Background>
 
             </Button>
-            <Button Content="POVRATAK" HorizontalAlignment="Left" Height="25" Margin="110,17,0,0" VerticalAlignment="Top" Width="80" Click="Button_Click" BorderThickness="0">
+            <Button Content="POVRATAK" HorizontalAlignment="Left" Height="25" Margin="110,17,0,0" VerticalAlignment="Top" Width="80" Click="ButtonPovratak_Click" BorderThickness="0">
                 <Button.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                         <GradientStop Color="#FFEA8A48" Offset="0"/>
@@ -202,7 +202,7 @@
                     </LinearGradientBrush>
                 </GridSplitter.Background>
             </GridSplitter>
-            <Button Content="POVRATAK" HorizontalAlignment="Left" Height="25" Margin="110,17,0,0" VerticalAlignment="Top" Width="80" Click="Button_Click" BorderThickness="0" Background="{x:Null}"/>
+            <Button Content="POVRATAK" HorizontalAlignment="Left" Height="25" Margin="110,17,0,0" VerticalAlignment="Top" Width="80" Click="ButtonPovratak_Click" BorderThickness="0" Background="{x:Null}"/>
             <DataGrid x:Name="TabelaPacijentiTermini" HorizontalAlignment="Left" Height="200" Margin="346,0,0,513" VerticalAlignment="Bottom" Width="996" FontSize="24" HeadersVisibility="All" AutoGenerateColumns="False" CanUserAddRows="false" SelectionChanged="TabelaPacijenti1_SelectionChanged" Background="#FFDDD3F0">
                 <DataGrid.Columns>
                     <DataGridTextColumn x:Name="kolonaJMBG1" Binding="{Binding jmbg}" IsReadOnly="True" Header="JMBG" Width="347" CanUserResize="False" Foreground="Black" FontSize="24"/>
@@ -227,7 +227,7 @@
                    Color="#FF9D6EEE"/>
                 </DataGrid.Resources>
             </DataGrid>
-            <DataGrid x:Name="TabelaSlobodnihTermina" HorizontalAlignment="left" Height="195" Margin="346,0,0,46" VerticalAlignment="Bottom" Width="996" FontSize="24" HeadersVisibility="All" AutoGenerateColumns="False" CanUserAddRows="false" Background="#FFDDD3F0">
+            <DataGrid x:Name="TabelaSlobodnihTermina" HorizontalAlignment="left" Height="195" Margin="346,0,0,46" VerticalAlignment="Bottom" Width="996" FontSize="24" HeadersVisibility="All" AutoGenerateColumns="False" CanUserAddRows="false" Background="#FFDDD3F0" Visibility="Hidden" SelectionChanged="TabelaSlobodnihTermina_SelectionChanged">
                 <DataGrid.Resources>
                     <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" 
                         Color="#FF9D6EEE"/>
@@ -240,8 +240,38 @@
                     <DataGridTextColumn x:Name="kolonaLekar1" Binding="{Binding imeLekara}" IsReadOnly="True" Header="Lekar" Width="195" CanUserResize="False" Foreground="Black" FontSize="24"/>
                 </DataGrid.Columns>
             </DataGrid>
-            <Label x:Name="slobodniTerminiLabel" Content="SLOBODNI TERMINI:" HorizontalAlignment="Left" Margin="346,449,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold" IsEnabled="False" Height="31" Width="212"/>
-            <Button x:Name="potvrdiZakazivanjeTerminaButton" Content="POTVRDI" HorizontalAlignment="Left" Margin="346,700,0,0" VerticalAlignment="Top" Width="74" Click="potvrdiZakazivanjeTerminaButton_Click"/>
+            <Label x:Name="slobodniTerminiLabel" Content="SLOBODNI TERMINI:" HorizontalAlignment="Left" Margin="346,449,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold" IsEnabled="False" Height="31" Width="212" Visibility="Hidden"/>
+            <Label x:Name="lblPacijent" Content="" HorizontalAlignment="Left" Margin="558,449,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold" IsEnabled="False" Height="31" Width="334" Visibility="Hidden"/>
+            <Button x:Name="potvrdiZakazivanjeTerminaButton" Content="POTVRDI" HorizontalAlignment="Left" Margin="346,700,0,0" VerticalAlignment="Top" Width="74" Click="potvrdiZakazivanjeTerminaButton_Click" Visibility="Hidden" IsEnabled="False"/>
+            <Grid x:Name="PotvrdaGrid" HorizontalAlignment="Left" Height="720" Margin="346,10,0,0" VerticalAlignment="Top" Width="1000" Opacity="0.85" ScrollViewer.VerticalScrollBarVisibility="Disabled" Visibility="Hidden">
+                <Grid.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFEAE0EE" Offset="0"/>
+                        <GradientStop Color="#FF876AA4" Offset="1"/>
+                    </LinearGradientBrush>
+                </Grid.Background>
+                <Label Content="DA LI STE SIGURNI DA ŽELITE &#xD;&#xA;  DA POTVRDITE VAŠ IZBOR?" HorizontalAlignment="Left" Margin="187,189,0,0" VerticalAlignment="Top" Height="190" Width="604" FontSize="48" FontWeight="Thin">
+                    <Label.Effect>
+                        <DropShadowEffect BlurRadius="9" Direction="303" Opacity="0.72"/>
+                    </Label.Effect>
+                </Label>
+                <Button x:Name="btnPotvrdiIzbor" Content="POTVRDI" HorizontalAlignment="Left" Margin="284,402,0,0" VerticalAlignment="Top" Width="174" Height="59" FontSize="36" Click="btnPotvrdiIzbor_Click">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FFCFA0FF" Offset="0"/>
+                            <GradientStop Color="#FF8E4DCF" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+                <Button x:Name="btnOdustaniOdIzborra" Content="ODUSTANI" HorizontalAlignment="Left" Margin="519,402,0,0" VerticalAlignment="Top" Width="198" Height="59" FontSize="36" Click="btnOdustaniOdIzborra_Click">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FFCFA0FF" Offset="0"/>
+                            <GradientStop Color="#FF8E4DCF" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+            </Grid>
         </Grid>
     </Grid>
 

@@ -189,7 +189,7 @@ namespace Bolnica_aplikacija.Servis
         }
 
 
-        public List<PacijentTermin> ucitajSlobodneTermine()
+        public List<PacijentTermin> ucitajSlobodneTermine(bool jeSekretar)
         {
             List<PacijentTermin> terminiSlobodni = new List<PacijentTermin>();
 
@@ -222,7 +222,7 @@ namespace Bolnica_aplikacija.Servis
                         {
                             if (lekar.id.Equals(termin.idLekara))
                             {
-                                if (lekar.idSpecijalizacije.Equals("0"))
+                                if (lekar.idSpecijalizacije.Equals("0") || jeSekretar)
                                 {
                                     pacijentTermin.imeLekara = lekar.ime + " " + lekar.prezime;
                                     break;
@@ -234,6 +234,7 @@ namespace Bolnica_aplikacija.Servis
                             }
                             else
                             {
+
                                 pacijentTermin.imeLekara = "";
                             }
                         }
