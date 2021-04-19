@@ -1,4 +1,6 @@
-﻿using Bolnica_aplikacija.PacijentModel;
+﻿using Bolnica_aplikacija.Model;
+using Bolnica_aplikacija.PacijentModel;
+using Bolnica_aplikacija.PomocneKlase;
 using Bolnica_aplikacija.Repozitorijum;
 using Model;
 using System;
@@ -15,8 +17,52 @@ namespace Bolnica_aplikacija.Servis
         private TerminRepozitorijum terminRepozitorijum = new TerminRepozitorijum(); //koristi se za azuriranje/prikaz termina odredjenog pacijenta
         private LekarRepozitorijum lekarRepozitorijum = new LekarRepozitorijum(); //za prikaz imena/prezimena lekara za termin odredjenog pacijenta
         private ProstorijaRepozitorijum prostorijaRepozitorijum = new ProstorijaRepozitorijum();
+        private BolestRepozitorijum bolestRepozitorijum = new BolestRepozitorijum();
+        private TerapijaRepozitorijum terapijaRepozitorijum = new TerapijaRepozitorijum();
         private SpecijalizacijaRepozitorijum specijalizacijaRepozitorijum = new SpecijalizacijaRepozitorijum();
+        private LekRepozitorijum lekRepozitorijum = new LekRepozitorijum();
         private Pacijent pacijent; //lekar -> cuva se izabrani pacijent
+
+        public List<BolestTerapija> nadjiIstorijuBolestiZaPacijenta()
+        {
+            List<BolestTerapija> istorijaBolesti = new List<BolestTerapija>();
+
+            foreach(Bolest bolest in bolestRepozitorijum.ucitajSve())
+            {
+                if (bolest.idPacijenta.Equals(pacijent.id))
+                {
+                    foreach(Terapija terapija in terapijaRepozitorijum.ucitajSve())
+                    {
+                        if (terapija.idBolesti.Equals(bolest.id))
+                        {
+                            foreach(Termin termin in terminRepozitorijum.ucitajSve())
+                            {
+                                if (termin.idTermina.Equals(terapija.idTermina))
+                                {
+                                    foreach (Lek lek in lekRepozitorijum.ucitajSve()) 
+                                    {
+                                        if (lek.id.Equals(terapija.idLeka))
+                                        {
+                                            BolestTerapija bolestTerapija = new BolestTerapija();
+                                            bolestTerapija.idBolesti = bolest.id;
+                                            bolestTerapija.nazivBolesti = bolest.naziv;
+                                            bolestTerapija.idTerapije = terapija.id;
+                                            bolestTerapija.nazivTerapije = lek.naziv;
+                                            bolestTerapija.idTermina = termin.idTermina;
+                                            bolestTerapija.izvestaj = termin.izvestaj;
+                                            istorijaBolesti.Add(bolestTerapija);
+                                        }
+                                        
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            return istorijaBolesti;
+        }
         public List<Pacijent> prikazPacijenata() //prikaz pacijenata kod lekara
         {
             List<Pacijent> sviPacijenti = pacijentRepozitorijum.ucitajSve();

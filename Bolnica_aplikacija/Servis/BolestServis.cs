@@ -25,5 +25,6 @@ namespace Bolnica_aplikacija.Servis
 
             return bolest.id;
         }
+
     }
 }

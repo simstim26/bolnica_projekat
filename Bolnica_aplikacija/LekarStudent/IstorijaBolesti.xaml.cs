@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bolnica_aplikacija.Kontroler;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,6 +28,7 @@ namespace Bolnica_aplikacija.LekarStudent
             LekarProzor.getGlavnaLabela().Content = "Istorija bolesti";
             aktivan = true;
             PacijentInfo.aktivanPacijentInfo = false;
+            this.dataGridIstorijaBolesti.ItemsSource = PacijentKontroler.nadjiIstorijuBolestiZaPacijenta();
         }
 
         private void btnIzmeni_Click(object sender, RoutedEventArgs e)

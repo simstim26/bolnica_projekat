@@ -125,6 +125,7 @@
     </Compile>
     <Compile Include="Model\Bolest.cs" />
     <Compile Include="pacijentRepozitorijum\List.cs" />
+    <Compile Include="PomocneKlase\BolestTerapija.cs" />
     <Compile Include="Repozitorijum\BolestRepozitorijum.cs" />
     <Compile Include="Repozitorijum\KorisnikRepozitorijum.cs" />
     <Compile Include="LekarStudent\PrikazProstorija.xaml.cs">
