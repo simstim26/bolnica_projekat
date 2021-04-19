@@ -1,8 +1,8 @@
 [
   {
     "id": "1",
-    "naziv": "probna dijagnoza",
+    "naziv": "dijagnozic",
     "idTerapije": null,
     "idPacijenta": "1"
-  },
+  }
 ]

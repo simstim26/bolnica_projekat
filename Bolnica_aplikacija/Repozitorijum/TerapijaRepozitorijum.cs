@@ -27,7 +27,25 @@ namespace Bolnica_aplikacija.Repozitorijum
             return sveTerapije;
         }
     
-
+        public void azurirajTerapiju(Terapija terapijaZaAzuriranje)
+        {
+            List<Terapija> sveTerapije = ucitajSve();
+            foreach(Terapija terapija in sveTerapije)
+            {
+                if (terapija.id.Equals(terapijaZaAzuriranje.id))
+                {
+                    terapija.id = terapijaZaAzuriranje.id;
+                    terapija.idBolesti = terapijaZaAzuriranje.idBolesti;
+                    terapija.idLeka = terapijaZaAzuriranje.idLeka;
+                    terapija.idPacijenta = terapijaZaAzuriranje.idPacijenta;
+                    terapija.idTermina = terapijaZaAzuriranje.idTermina;
+                    terapija.nacinUpotrebe = terapijaZaAzuriranje.nacinUpotrebe;
+                    terapija.trajanje = terapijaZaAzuriranje.trajanje;
+                    break;
+                }
+            }
+            upisi(sveTerapije);
+        }
         public void upisi(List<Terapija> sveTerapije)
         {
             var formatiranje = new JsonSerializerOptions

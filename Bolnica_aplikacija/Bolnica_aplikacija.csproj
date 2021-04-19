@@ -101,10 +101,12 @@
     </Compile>
     <Compile Include="Kontroler\KorisnikKontroler.cs" />
     <Compile Include="Kontroler\LekarKontroler.cs" />
+    <Compile Include="Kontroler\LekKontroler.cs" />
     <Compile Include="Kontroler\PacijentKontroler.cs" />
     <Compile Include="Kontroler\ProstorijaKontroler.cs" />
     <Compile Include="Kontroler\SekretarKontroler.cs" />
     <Compile Include="Kontroler\SpecijalizacijaKontroler.cs" />
+    <Compile Include="Kontroler\TerapijaKontroler.cs" />
     <Compile Include="Kontroler\TerminKontroler.cs" />
     <Compile Include="LekarStudent\Alergije.xaml.cs">
       <DependentUpon>Alergije.xaml</DependentUpon>
@@ -139,6 +141,7 @@
       <DependentUpon>PacijentZakaziTermin.xaml</DependentUpon>
     </Compile>
     <Compile Include="PomocneKlase\PomocnaKlasaTermini.cs" />
+    <Compile Include="Repozitorijum\LekRepozitorijum.cs" />
     <Compile Include="Repozitorijum\LekarRepozitorijum.cs" />
     <Compile Include="Repozitorijum\PacijentRepozitorijum.cs" />
     <Compile Include="Repozitorijum\ProstorijaRepozitorijum.cs" />
@@ -154,10 +157,12 @@
     <Compile Include="Servis\BolestServis.cs" />
     <Compile Include="Servis\KorisnikServis.cs" />
     <Compile Include="Servis\LekarServis.cs" />
+    <Compile Include="Servis\LekServis.cs" />
     <Compile Include="Servis\PacijentServis.cs" />
     <Compile Include="Servis\ProstorijaServis.cs" />
     <Compile Include="Servis\SekretarServis.cs" />
     <Compile Include="Servis\SpecijalizacijaServis.cs" />
+    <Compile Include="Servis\TerapijaServis.cs" />
     <Compile Include="Servis\TerminServis.cs" />
     <Compile Include="Servis\UpravnikServis.cs" />
     <Compile Include="UpravnikStudent\UpravnikProzor.xaml.cs">

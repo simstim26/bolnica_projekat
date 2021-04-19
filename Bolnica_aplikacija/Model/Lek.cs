@@ -16,5 +16,20 @@ namespace Model
       public String proizvodjac { get; set; }
       public NacinUpotrebe nacinUpotrebe { get; set; }
 
+      public String getNacinUpotrebeString()
+      {
+            switch (nacinUpotrebe)
+            {
+                case NacinUpotrebe.REKTALNO:
+                    return "Rektalno";
+                case NacinUpotrebe.PER_OS:
+                    return "Per os";
+                case NacinUpotrebe.SUBLINGVALNO:
+                    return "Sublingvalno";
+                default:
+                    return "";
+            }
+      }
+
     }
 }

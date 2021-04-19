@@ -13,6 +13,7 @@ namespace Model
       public String idLeka { get; set; }
       public String idPacijenta { get; set; }
       public String idBolesti { get; set; }
+      public String idTermina { get; set; }
       public DateTime datumPocetka { get; set; }
       public int trajanje { get; set; }
       public String nacinUpotrebe { get; set; }

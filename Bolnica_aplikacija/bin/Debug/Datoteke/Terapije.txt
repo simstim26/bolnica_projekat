@@ -1,0 +1,12 @@
+[
+  {
+    "id": "1",
+    "idLeka": "1",
+    "idPacijenta": "1",
+    "idBolesti": "1",
+    "idTermina": "7",
+    "datumPocetka": "2021-04-19T00:00:00",
+    "trajanje": 7,
+    "nacinUpotrebe": "Rektalno, jednom uvece"
+  }
+]

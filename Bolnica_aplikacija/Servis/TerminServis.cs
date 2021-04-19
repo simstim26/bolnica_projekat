@@ -33,9 +33,16 @@ namespace Bolnica_aplikacija.Servis
         public void dodavanjeIzvestajaZaTermin(String nazivBolesti,String izvestajSaTermina)
         {
             BolestServis bolestServis = new BolestServis();
+            TerapijaServis terapijaServis = new TerapijaServis();
             termin.izvestaj = izvestajSaTermina;
             termin.jeZavrsen = true;
             termin.idBolesti = bolestServis.napraviBolest(nazivBolesti, termin.idPacijenta, termin.idTerapije);
+            Terapija terapija = terapijaServis.nadjiTerapijuZaTermin(termin.idTermina);
+            if (terapija != null)
+            {
+                termin.idTerapije = terapija.id;
+                terapijaServis.dodajIdBolestiZaTerapiju(terapija.id, termin.idBolesti);
+            }
             terminRepozitorijum.azurirajTermin(termin);
         }
 

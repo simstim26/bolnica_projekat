@@ -19,7 +19,7 @@ namespace Bolnica_aplikacija.Servis
             bolest.id = (sveBolesti.Count + 1).ToString();
             bolest.naziv = nazivBolesti;
             bolest.idPacijenta = idPacijenta;
-            bolest.idTerapije = idTerapije;
+           // bolest.idTerapije = idTerapije;
             sveBolesti.Add(bolest);
             bolestRepozitorijum.upisi(sveBolesti);
 

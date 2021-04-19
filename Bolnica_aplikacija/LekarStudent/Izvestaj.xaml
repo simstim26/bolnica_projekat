@@ -29,6 +29,9 @@
         </Button>
         <Button x:Name="btnPonistiIzvestaj" Content="Button" HorizontalAlignment="Left" Margin="313,602,0,0" VerticalAlignment="Top" Width="76" Height="39" Click="btnPonistiIzvestaj_Click"/>
         <Button Content="Zabeleži potrošene stavke" HorizontalAlignment="Left" Margin="98,515,0,0" VerticalAlignment="Top" Width="225" Height="59" Click="Button_Click"/>
+        <Label Content="Dijagnoza:" HorizontalAlignment="Left" Margin="35,268,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtDijagnozaIzvestaj" HorizontalAlignment="Left" Height="23" Margin="142,269,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="154"/>
+
         <Grid x:Name="gridUput" Background="White" Visibility="Hidden">
             <Label Content="Upućuje:" HorizontalAlignment="Left" Margin="50,56,0,0" VerticalAlignment="Top" Height="26" Width="74"/>
             <Label x:Name="lblUpucuje" HorizontalAlignment="Left" Margin="148,56,0,0" VerticalAlignment="Top" Height="26" Width="155"/>
@@ -43,7 +46,7 @@
             <Button Content="Button" HorizontalAlignment="Left" Margin="297,558,0,0" VerticalAlignment="Top" Width="90" Height="38"/>
 
         </Grid>
-        <Grid x:Name="gridRecept" Background="White" Visibility="Hidden">
+        <Grid x:Name="gridRecept" Background="White" Visibility="Hidden" IsVisibleChanged="gridRecept_IsVisibleChanged">
             <Image HorizontalAlignment="Left" Height="31" Margin="59,41,0,0" VerticalAlignment="Top" Width="31" Source="patient-icon-3.jpg"/>
             <Label Content="JMBG:" HorizontalAlignment="Left" Margin="127,55,0,0" VerticalAlignment="Top"/>
             <Label Content="Ime i prezime:" HorizontalAlignment="Left" Margin="127,99,0,0" VerticalAlignment="Top"/>
@@ -59,9 +62,9 @@
             <Label Content="Datum propisivanja:" HorizontalAlignment="Left" Margin="39,344,0,0" VerticalAlignment="Top"/>
             <Label Content="Trajanje:" HorizontalAlignment="Left" Margin="39,385,0,0" VerticalAlignment="Top"/>
             <Label Content="Način upotrebe:" HorizontalAlignment="Left" Margin="39,432,0,0" VerticalAlignment="Top"/>
-            <TextBox HorizontalAlignment="Left" Height="101" Margin="0,461,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="430"/>
-            <Button Content="Button" HorizontalAlignment="Left" Margin="39,594,0,0" VerticalAlignment="Top" Width="75"/>
-            <Button Content="Button" HorizontalAlignment="Left" Margin="306,594,0,0" VerticalAlignment="Top" Width="75"/>
+            <TextBox x:Name="txtNacinUpotrebe" HorizontalAlignment="Left" Height="101" Margin="0,461,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="430"/>
+            <Button x:Name="btnPotvrdiRecept" Content="D" HorizontalAlignment="Left" Margin="39,594,0,0" VerticalAlignment="Top" Width="75" Click="btnPotvrdiRecept_Click"/>
+            <Button x:Name="btnPonistiRecept" Content="Button" HorizontalAlignment="Left" Margin="306,594,0,0" VerticalAlignment="Top" Width="75"/>
             <TextBox x:Name="txtDijagnoza" HorizontalAlignment="Left" Height="23" Margin="205,229,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="123"/>
             <TextBox x:Name="txtNazivLeka" HorizontalAlignment="Left" Height="23" Margin="205,268,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="123"/>
             <TextBox x:Name="txtKol" HorizontalAlignment="Left" Height="23" Margin="205,306,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="123"/>
@@ -94,20 +97,18 @@
 
         </Grid>
         <Grid x:Name="gridOdabirLeka" Background="White" Visibility="Hidden">
-            <DataGrid HorizontalAlignment="Left" Height="432" Margin="0,114,0,0" VerticalAlignment="Top" Width="430">
+            <DataGrid x:Name="dataGridLekovi" IsReadOnly="True" AutoGenerateColumns="False" SelectionMode="Single" HorizontalAlignment="Left" Height="432" Margin="0,114,0,0" VerticalAlignment="Top" Width="430">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Naziv"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Količina"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Način upotrebe"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Naziv" Binding="{Binding naziv}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Količina [mg]" Binding="{Binding kolicina}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Način upotrebe" Binding="{Binding nacinUpotrebe}"></DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
-            <Button Content="Button" HorizontalAlignment="Left" Margin="45,588,0,0" VerticalAlignment="Top" Width="78" RenderTransformOrigin="-0.213,0.3" Height="38"/>
-            <Button Content="Button" HorizontalAlignment="Left" Margin="299,588,0,0" VerticalAlignment="Top" Width="78" RenderTransformOrigin="-0.213,0.3" Height="38"/>
+            <Button x:Name="btnPotvdiOdabirLeka" Content="D" HorizontalAlignment="Left" Margin="45,588,0,0" VerticalAlignment="Top" Width="78" RenderTransformOrigin="-0.213,0.3" Height="38" Click="btnPotvdiOdabirLeka_Click"/>
+            <Button x:Name="btnPonistiOdaberLeka" Content="Button" HorizontalAlignment="Left" Margin="299,588,0,0" VerticalAlignment="Top" Width="78" RenderTransformOrigin="-0.213,0.3" Height="38"/>
 
         </Grid>
-        <Label Content="Dijagnoza:" HorizontalAlignment="Left" Margin="35,268,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtDijagnozaIzvestaj" HorizontalAlignment="Left" Height="23" Margin="142,269,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="154"/>
-
+        
     </Grid>
 
 </UserControl>
