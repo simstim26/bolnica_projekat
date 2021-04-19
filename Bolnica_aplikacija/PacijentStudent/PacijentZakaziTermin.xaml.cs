@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -80,16 +81,50 @@ namespace Bolnica_aplikacija.PacijentStudent
         private void btnPretrazi_Click(object sender, RoutedEventArgs e)
         {
             int indikator = -1;
-            if(rbtnLekar.IsChecked == true)
+            if (rbtnLekar.IsChecked == true)
             {
-                indikator = 0;
+
+                if (!Regex.IsMatch(txtPretraga.Text, @"^[\p{L}\p{M}' \.\-]+$"))
+                {
+                    indikator = -2;
+                }
+                else
+                    indikator = 0;
+
             }
-            if(rbtnTermin.IsChecked == true)
+            if (rbtnTermin.IsChecked == true)
             {
                 indikator = 1;
+
+                var formati = new[] { "dd/MM/yyyy", "d/M/yyyy", "dd.MM.yyyy", "dd.MM.yyyy.", "d.M.yyyy.", "d.M.yyyy" };
+                DateTime dt;
+                if (DateTime.TryParseExact(txtPretraga.Text, formati, null, System.Globalization.DateTimeStyles.None, out dt))
+                {
+                    indikator = 1;
+                }
+                else
+                    indikator = -3;
+
+
             }
-            
-            if(indikator != -1)
+
+            if (indikator == -1)
+            {
+                MessageBox.Show("Molimo izaberite prioritet pretrage.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+                ucitajPodatke();
+                
+            }
+            else if (indikator == -2)
+            {
+                MessageBox.Show("Molimo unesite ime u odgovarajućem formatu.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+                ucitajPodatke();
+            }
+            else if (indikator == -3)
+            {
+                MessageBox.Show("Molimo unesite datum u odgovarajućem formatu. Neki od podržanih formata su: dd/MM/yyyy, d/m/yyyy, dd.MM.yyyy.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+                ucitajPodatke();
+            }
+            else
             {
                 String kriterijum = txtPretraga.Text;
 
@@ -99,11 +134,6 @@ namespace Bolnica_aplikacija.PacijentStudent
                 {
                     ucitajPodatke();
                 }
-            }
-            else
-            {
-                indikator = -1;
-                MessageBox.Show("Molimo izaberite prioritet pretrage.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
     }

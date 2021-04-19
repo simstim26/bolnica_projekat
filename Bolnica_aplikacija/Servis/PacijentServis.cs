@@ -1,4 +1,5 @@
-﻿using Bolnica_aplikacija.PacijentModel;
+﻿using Bolnica_aplikacija.Kontroler;
+using Bolnica_aplikacija.PacijentModel;
 using Bolnica_aplikacija.Repozitorijum;
 using Model;
 using System;
@@ -440,7 +441,7 @@ namespace Bolnica_aplikacija.Servis
                     }
                 }
             }
-            else //pretraga po vremenu odrzavanja
+            else if (indikator == 1) //pretraga po vremenu odrzavanja
             {
                 DateTime kriterijumPretrage = new DateTime();
 
@@ -520,7 +521,6 @@ namespace Bolnica_aplikacija.Servis
                 catch(Exception e)
                 {
                     Console.WriteLine(e);
-                    MessageBox.Show("Molimo unesite validan izraz za datum (npr. DD/MM/YYYY).", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
 
