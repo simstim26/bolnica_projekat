@@ -3,7 +3,7 @@
     "tip": 1,
     "datum": "2021-03-29T00:00:00",
     "satnica": "2021-03-28T12:00:00",
-    "jeZavrsen": false,
+    "jeZavrsen": true,
     "idTermina": "1",
     "idProstorije": "10",
     "idPacijenta": "1",
@@ -21,7 +21,7 @@
   },
   {
     "tip": 0,
-    "datum": "2021-11-12T00:00:00",
+    "datum": "2021-04-20T00:00:00",
     "satnica": "2021-03-28T12:00:00",
     "jeZavrsen": false,
     "idTermina": "3",
@@ -56,7 +56,7 @@
     "jeZavrsen": false,
     "idTermina": "6",
     "idProstorije": "13",
-    "idPacijenta": "1",
+    "idPacijenta": "",
     "idLekara": "2"
   }
 ]

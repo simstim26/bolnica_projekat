@@ -242,6 +242,7 @@
             </DataGrid>
             <Label x:Name="slobodniTerminiLabel" Content="SLOBODNI TERMINI:" HorizontalAlignment="Left" Margin="346,449,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold" IsEnabled="False" Height="31" Width="212" Visibility="Hidden"/>
             <Label x:Name="lblPacijent" Content="" HorizontalAlignment="Left" Margin="558,449,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold" IsEnabled="False" Height="31" Width="334" Visibility="Hidden"/>
+            <Label x:Name="lblUpozorenje" Content="* Nije moguće otkazati termin za manje od 24h" HorizontalAlignment="Left" Margin="346,456,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold" IsEnabled="False" Height="31" Width="502" Foreground="#FFE00000" Visibility="Hidden"/>
             <Button x:Name="potvrdiZakazivanjeTerminaButton" Content="POTVRDI" HorizontalAlignment="Left" Margin="346,700,0,0" VerticalAlignment="Top" Width="74" Click="potvrdiZakazivanjeTerminaButton_Click" Visibility="Hidden" IsEnabled="False"/>
             <Grid x:Name="PotvrdaGrid" HorizontalAlignment="Left" Height="720" Margin="346,10,0,0" VerticalAlignment="Top" Width="1000" Opacity="0.85" ScrollViewer.VerticalScrollBarVisibility="Disabled" Visibility="Hidden">
                 <Grid.Background>

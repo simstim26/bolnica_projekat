@@ -584,6 +584,9 @@ namespace Bolnica_aplikacija
             imePrezimePacijenta = pacijent.ime + " " + pacijent.prezime;
             PacijentKontroler.nadjiPacijenta(pacijent.id);
             TabelaTerminiPacijenta.ItemsSource = PacijentKontroler.prikazPacijentovihTermina();
+
+            lblUpozorenje.Visibility = Visibility.Hidden;
+
         }
 
         private void terminiButton_Click(object sender, RoutedEventArgs e)
@@ -602,10 +605,12 @@ namespace Bolnica_aplikacija
             if (TabelaPacijentiTermini.SelectedIndex != -1)
             {
                 ucitajTerminePacijenta();
+                
                 TabelaSlobodnihTermina.Visibility = Visibility.Hidden;
                 slobodniTerminiLabel.Visibility = Visibility.Hidden;
                 lblPacijent.Visibility = Visibility.Hidden;
                 potvrdiZakazivanjeTerminaButton.Visibility = Visibility.Hidden;
+                lblUpozorenje.Visibility = Visibility.Hidden;
             }
 
         }
@@ -636,7 +641,18 @@ namespace Bolnica_aplikacija
             if (TabelaTerminiPacijenta.SelectedIndex != -1)
             {
                 izabraniTermin = (PacijentTermin)TabelaTerminiPacijenta.SelectedItem;
-                PotvrdaGrid.Visibility = Visibility.Visible;            
+                if (TerminKontroler.proveriDatumTermina(izabraniTermin.id) <= 0)
+                {
+                    //MessageBox.Show("Nije moguće izvršiti otkazivanje termina 24h pred termin.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning)
+                    lblUpozorenje.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    
+                   PotvrdaGrid.Visibility = Visibility.Visible;
+
+                }
+                                      
             }
             else
             {
@@ -729,23 +745,9 @@ namespace Bolnica_aplikacija
             }
             else
             {
-
-                if (izabraniTermin.napomena.Equals("Pregled"))
-                {
-                    if (TerminKontroler.proveriDatumTermina(izabraniTermin.id) <= 0)
-                    {
-                        MessageBox.Show("Nije moguće izvršiti otkazivanje termina 24h pred termin.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    }
-                    else
-                    {
-                        PacijentKontroler.otkaziTerminPacijenta(izabraniTermin.id);
-                    }
-                }
-                else
-                {
-                    PacijentKontroler.otkaziTerminPacijenta(izabraniTermin.id);
-                }
-
+                           
+                PacijentKontroler.otkaziTerminPacijenta(izabraniTermin.id);
+                
                 ucitajTerminePacijenta();
                 TabelaSlobodnihTermina.ItemsSource = PacijentKontroler.ucitajSlobodneTermine(true);
                 TabelaSlobodnihTermina.Items.Refresh();
