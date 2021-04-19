@@ -9,11 +9,14 @@ namespace Model
 {
    public class Stavka
    {
-      private String id;
-      private String naziv;
-      private int kolicina;
-      private String proizvodjac;
-      private String idInventara;
-   
-   }
+        public String id { get; set; }
+        public String naziv { get; set; }
+        public int kolicina { get; set; }
+        public String proizvodjac { get; set; }
+        public String idProstorije { get; set; }
+        public String idBolnice { get; set; }
+        public bool jeStaticka { get; set; }
+        public bool jeLogickiObrisana { get; set; }
+
+    }
 }

@@ -1,0 +1,32 @@
+[
+  {
+    "id": "1",
+    "naziv": "rukavice",
+    "kolicina": 1100,
+    "proizvodjac": "Mipex",
+    "idProstorije": "1",
+    "idBolnice": "1",
+    "jeStaticka": true,
+    "jeLogickiObrisana": false
+  },
+  {
+    "id": "2",
+    "naziv": "aaaaa",
+    "kolicina": 10,
+    "proizvodjac": "aaa",
+    "idProstorije": null,
+    "idBolnice": "1",
+    "jeStaticka": false,
+    "jeLogickiObrisana": true
+  },
+  {
+    "id": "3",
+    "naziv": "Krevet",
+    "kolicina": 50,
+    "proizvodjac": "KrevetKrevet",
+    "idProstorije": null,
+    "idBolnice": "1",
+    "jeStaticka": true,
+    "jeLogickiObrisana": false
+  }
+]

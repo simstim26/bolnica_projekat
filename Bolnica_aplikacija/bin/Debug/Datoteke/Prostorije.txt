@@ -42,9 +42,9 @@
   {
     "id": "13",
     "idBolnice": null,
-    "tipProstorije": 2,
-    "broj": "223",
-    "sprat": 4,
+    "tipProstorije": 1,
+    "broj": "345",
+    "sprat": 3,
     "dostupnost": true,
     "logickiObrisana": false,
     "Stavka": []
@@ -110,11 +110,11 @@
     "Stavka": []
   },
   {
-    "id": "20",
+    "id": "13",
     "idBolnice": null,
     "tipProstorije": 1,
-    "broj": "1233",
-    "sprat": 12333,
+    "broj": "345",
+    "sprat": 3,
     "dostupnost": true,
     "logickiObrisana": true,
     "Stavka": []

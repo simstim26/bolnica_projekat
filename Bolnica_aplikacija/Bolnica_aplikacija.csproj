@@ -105,8 +105,8 @@
     <Compile Include="Kontroler\ProstorijaKontroler.cs" />
     <Compile Include="Kontroler\SekretarKontroler.cs" />
     <Compile Include="Kontroler\SpecijalizacijaKontroler.cs" />
+    <Compile Include="Kontroler\StavkaKontroler.cs" />
     <Compile Include="Kontroler\TerminKontroler.cs" />
-
     <Compile Include="LekarStudent\Alergije.xaml.cs">
       <DependentUpon>Alergije.xaml</DependentUpon>
     </Compile>
@@ -122,14 +122,10 @@
     <Compile Include="LekarStudent\UvidUTerapije.xaml.cs">
       <DependentUpon>UvidUTerapije.xaml</DependentUpon>
     </Compile>
-    
-
-
     <Compile Include="PacijentStudent\ProzorPacijent.xaml.cs">
       <DependentUpon>ProzorPacijent.xaml</DependentUpon>
     </Compile>
     <Compile Include="PomocneKlase\PacijentKomande.cs" />
-
     <Compile Include="Repozitorijum\KorisnikRepozitorijum.cs" />
     <Compile Include="LekarStudent\PrikazProstorija.xaml.cs">
       <DependentUpon>PrikazProstorija.xaml</DependentUpon>
@@ -150,6 +146,7 @@
     <Compile Include="Repozitorijum\ProstorijaRepozitorijum.cs" />
     <Compile Include="Repozitorijum\SekretarRepozitorijum.cs" />
     <Compile Include="Repozitorijum\SpecijalizacijaRepozitorijum.cs" />
+    <Compile Include="Repozitorijum\StavkaRepozitorijum.cs" />
     <Compile Include="Repozitorijum\TerminRepozitorijum.cs" />
     <Compile Include="Repozitorijum\UpravnikRepozitorijum.cs" />
     <Compile Include="SekretarStudent\SekretarProzor.xaml.cs">
@@ -162,6 +159,7 @@
     <Compile Include="Servis\ProstorijaServis.cs" />
     <Compile Include="Servis\SekretarServis.cs" />
     <Compile Include="Servis\SpecijalizacijaServis.cs" />
+    <Compile Include="Servis\StavkaServis.cs" />
     <Compile Include="Servis\TerminServis.cs" />
     <Compile Include="Servis\UpravnikServis.cs" />
     <Compile Include="UpravnikStudent\UpravnikProzor.xaml.cs">
@@ -346,6 +344,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="LekarStudent\doc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UpravnikStudent\images.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets" Condition="Exists('packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets')" />
