@@ -9,11 +9,11 @@ namespace Model
 {
    public class Notifikacija
    {
-        private String id { get; set; }
-        private String nazivNotifikacije { get; set; }
-        private DateTime vremeNotifikovanja { get; set; }
-        private String porukaNotifikacije { get; set; }
-        private String idKorisnika { get; set; }
+        public String id { get; set; }
+        public String nazivNotifikacije { get; set; }
+        public DateTime vremeNotifikovanja { get; set; }
+        public String porukaNotifikacije { get; set; }
+        public String idKorisnika { get; set; }
 
 
 

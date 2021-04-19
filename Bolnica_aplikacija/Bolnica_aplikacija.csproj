@@ -124,6 +124,7 @@
     </Compile>
     <Compile Include="PomocneKlase\PomocnaKlasaTermini.cs" />
     <Compile Include="Repozitorijum\LekarRepozitorijum.cs" />
+    <Compile Include="Repozitorijum\NotifikacijaRepozitorijum.cs" />
     <Compile Include="Repozitorijum\PacijentRepozitorijum.cs" />
     <Compile Include="Repozitorijum\ProstorijaRepozitorijum.cs" />
     <Compile Include="Repozitorijum\SpecijalizacijaRepozitorijum.cs" />
@@ -135,6 +136,7 @@
     <Compile Include="PomocneKlase\PacijentTermin.cs" />
     <Compile Include="Servis\KorisnikServis.cs" />
     <Compile Include="Servis\LekarServis.cs" />
+    <Compile Include="Servis\NotifikacijaServis.cs" />
     <Compile Include="Servis\PacijentServis.cs" />
     <Compile Include="Servis\ProstorijaServis.cs" />
     <Compile Include="Servis\TerminServis.cs" />
