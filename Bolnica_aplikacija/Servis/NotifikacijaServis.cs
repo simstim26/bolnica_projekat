@@ -31,5 +31,34 @@ namespace Bolnica_aplikacija.Servis
             return pacijentoveNotifikacije;
         }
     
+        public void azurirajNotifikaciju(Notifikacija notifikacijaZaAzurirati)
+        {
+            notifikacijaRepozitorijum.azurirajNotifikaciju(notifikacijaZaAzurirati);
+        }
+
+        public Notifikacija getNotifikacija(String idNotifikacije)
+        {
+            Notifikacija notifikacijaPovratna = new Notifikacija();
+
+            List<Notifikacija> sveNotifikacije = prikazPacijentovihNotifikacija();
+
+            foreach(Notifikacija notifikacija in sveNotifikacije)
+            {
+                if (notifikacija.id.Equals(idNotifikacije))
+                {
+                    notifikacijaPovratna.id = notifikacija.id;
+                    notifikacijaPovratna.idKorisnika = notifikacija.idKorisnika;
+                    notifikacijaPovratna.nazivNotifikacije = notifikacija.nazivNotifikacije;
+                    notifikacijaPovratna.porukaNotifikacije = notifikacija.porukaNotifikacije;
+
+                    break;
+                }
+            }
+
+            return notifikacijaPovratna;
+        }
+
+
+
     }
 }
