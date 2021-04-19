@@ -52,7 +52,7 @@ namespace Bolnica_aplikacija.Kontroler
 
         public static List<PacijentTermin> ucitajSlobodneTermine(int indikator, bool jeSekretar)
         {
-            return pacijentServis.ucitajSlobodneTermine(indikator);
+            return pacijentServis.ucitajSlobodneTermine(indikator, jeSekretar);
         }
 
     }

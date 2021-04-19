@@ -350,6 +350,7 @@
   <ItemGroup>
     <Resource Include="SekretarStudent\otkaziTermin.png" />
   </ItemGroup>
+  <ItemGroup>
     <Resource Include="LekarStudent\search.png" />
   </ItemGroup>
   <ItemGroup>

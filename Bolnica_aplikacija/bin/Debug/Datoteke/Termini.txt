@@ -56,7 +56,7 @@
     "jeZavrsen": false,
     "idTermina": "6",
     "idProstorije": "13",
-    "idPacijenta": "",
+    "idPacijenta": "2",
     "idLekara": "2"
   },
   {

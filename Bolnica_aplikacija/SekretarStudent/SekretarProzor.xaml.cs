@@ -624,7 +624,7 @@ namespace Bolnica_aplikacija
             lblPacijent.Content = imePrezimePacijenta;
 
 
-            TabelaSlobodnihTermina.ItemsSource = PacijentKontroler.ucitajSlobodneTermine(true);
+            TabelaSlobodnihTermina.ItemsSource = PacijentKontroler.ucitajSlobodneTermine(0,true);
 
             if (TabelaSlobodnihTermina.SelectedIndex == -1)
             {
@@ -733,7 +733,7 @@ namespace Bolnica_aplikacija
 
                 ucitajTerminePacijenta();
                 TabelaPacijentiTermini.Items.Refresh();
-                TabelaSlobodnihTermina.ItemsSource = PacijentKontroler.ucitajSlobodneTermine(true);
+                TabelaSlobodnihTermina.ItemsSource = PacijentKontroler.ucitajSlobodneTermine(1,true);
                 TabelaSlobodnihTermina.Items.Refresh();
 
                 PotvrdaGrid.Visibility = Visibility.Hidden;
@@ -749,7 +749,7 @@ namespace Bolnica_aplikacija
                 PacijentKontroler.otkaziTerminPacijenta(izabraniTermin.id);
                 
                 ucitajTerminePacijenta();
-                TabelaSlobodnihTermina.ItemsSource = PacijentKontroler.ucitajSlobodneTermine(true);
+                TabelaSlobodnihTermina.ItemsSource = PacijentKontroler.ucitajSlobodneTermine(1,true);
                 TabelaSlobodnihTermina.Items.Refresh();
 
                 PotvrdaGrid.Visibility = Visibility.Hidden;
