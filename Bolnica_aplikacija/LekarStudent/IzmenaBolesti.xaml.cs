@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bolnica_aplikacija.Kontroler;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,6 +27,9 @@ namespace Bolnica_aplikacija.LekarStudent
             InitializeComponent();
             LekarProzor.getGlavnaLabela().Content = "Ažuriranje bolesti";
             aktivan = true;
+            this.txtNaziv.Text = PacijentKontroler.getBolestTerapija().nazivBolesti;
+            this.txtTerapija.Text = PacijentKontroler.getBolestTerapija().nazivTerapije;
+            this.txtIzvestaj.Text = PacijentKontroler.getBolestTerapija().izvestaj;
         }
     }
 }

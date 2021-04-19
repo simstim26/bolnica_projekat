@@ -25,6 +25,7 @@ namespace Bolnica_aplikacija.Servis
         private SpecijalizacijaRepozitorijum specijalizacijaRepozitorijum = new SpecijalizacijaRepozitorijum();
         private LekRepozitorijum lekRepozitorijum = new LekRepozitorijum();
         private Pacijent pacijent; //lekar -> cuva se izabrani pacijent
+        private BolestTerapija bolestTerapija;
 
         public List<BolestTerapija> nadjiIstorijuBolestiZaPacijenta()
         {
@@ -40,7 +41,7 @@ namespace Bolnica_aplikacija.Servis
                         {
                             foreach(Termin termin in terminRepozitorijum.ucitajSve())
                             {
-                                if (termin.idTermina.Equals(terapija.idTermina))
+                                if ( termin.idBolesti != null && termin.idBolesti.Equals(terapija.idBolesti))
                                 {
                                     foreach (Lek lek in lekRepozitorijum.ucitajSve()) 
                                     {
@@ -54,17 +55,30 @@ namespace Bolnica_aplikacija.Servis
                                             bolestTerapija.idTermina = termin.idTermina;
                                             bolestTerapija.izvestaj = termin.izvestaj;
                                             istorijaBolesti.Add(bolestTerapija);
+                                            break;
                                         }
                                         
                                     }
+                                    break;
                                 }
                             }
+                            break;
                         }
                     }
                 }
             }
 
             return istorijaBolesti;
+        }
+
+        public void sacuvajBolestTerapiju(BolestTerapija bolestTerapija)
+        {
+            this.bolestTerapija = bolestTerapija;
+        }
+
+        public BolestTerapija getBolestTerapija()
+        {
+            return bolestTerapija;
         }
         public List<Pacijent> prikazPacijenata() //prikaz pacijenata kod lekara
         {

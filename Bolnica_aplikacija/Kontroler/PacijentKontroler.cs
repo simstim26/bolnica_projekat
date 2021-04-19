@@ -14,6 +14,15 @@ namespace Bolnica_aplikacija.Kontroler
     {
         private static PacijentServis pacijentServis = new PacijentServis();
 
+        public static void sacuvajBolestTerapiju(BolestTerapija bolestTerapija)
+        {
+            pacijentServis.sacuvajBolestTerapiju(bolestTerapija);
+        }
+
+        public static BolestTerapija getBolestTerapija()
+        {
+            return pacijentServis.getBolestTerapija();
+        }
         public static List<BolestTerapija> nadjiIstorijuBolestiZaPacijenta()
         {
             return pacijentServis.nadjiIstorijuBolestiZaPacijenta();
