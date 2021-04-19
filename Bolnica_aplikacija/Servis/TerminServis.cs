@@ -36,12 +36,18 @@ namespace Bolnica_aplikacija.Servis
             TerapijaServis terapijaServis = new TerapijaServis();
             termin.izvestaj = izvestajSaTermina;
             termin.jeZavrsen = true;
-            termin.idBolesti = bolestServis.napraviBolest(nazivBolesti, termin.idPacijenta, termin.idTerapije);
             Terapija terapija = terapijaServis.nadjiTerapijuZaTermin(termin.idTermina);
             if (terapija != null)
             {
                 termin.idTerapije = terapija.id;
+            }
+            
+            termin.idBolesti = bolestServis.napraviBolest(nazivBolesti, termin.idPacijenta, termin.idTerapije);
+           
+            if(terapija != null)
+            {
                 terapijaServis.dodajIdBolestiZaTerapiju(terapija.id, termin.idBolesti);
+
             }
             terminRepozitorijum.azurirajTermin(termin);
         }

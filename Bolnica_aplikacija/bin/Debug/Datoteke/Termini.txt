@@ -1,16 +1,16 @@
 [
   {
     "tip": 1,
-    "datum": "2021-04-19T00:00:00",
+    "datum": "2021-04-20T00:00:00",
     "satnica": "2021-03-28T12:00:00",
     "jeZavrsen": true,
     "idTermina": "1",
     "idProstorije": "10",
     "idPacijenta": "1",
     "idLekara": "1",
-    "idTerapije": null,
-    "idBolesti": "1",
-    "izvestaj": "xyzasdfasdfa"
+    "idTerapije": "2",
+    "idBolesti": "2",
+    "izvestaj": "asdfasdfa"
   },
   {
     "tip": 1,
@@ -86,8 +86,21 @@
     "idProstorije": "15",
     "idPacijenta": "1",
     "idLekara": "1",
+    "idTerapije": "3",
+    "idBolesti": "3",
+    "izvestaj": "Never gonna give you up, never gonna let you down, tanananaananananananaana"
+  },
+  {
+    "tip": 1,
+    "datum": "2021-04-20T00:00:00",
+    "satnica": "2021-03-28T11:00:00",
+    "jeZavrsen": true,
+    "idTermina": "8",
+    "idProstorije": "15",
+    "idPacijenta": "1",
+    "idLekara": "1",
     "idTerapije": "1",
     "idBolesti": "1",
-    "izvestaj": "neki izvestaj sa pregleda/operacije sdmfasokdfaoskdfaoskdnfaskodnfa"
+    "izvestaj": "dsfnapdsnfapksdnf;aksnd;fkladfa"
   }
 ]
