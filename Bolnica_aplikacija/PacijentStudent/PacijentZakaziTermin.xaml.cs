@@ -136,5 +136,13 @@ namespace Bolnica_aplikacija.PacijentStudent
                 }
             }
         }
+
+        private void txtPretraga_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if(txtPretraga.Text.Length == 0)
+            {
+                ucitajPodatke();
+            }
+        }
     }
 }
