@@ -44,7 +44,7 @@
       {
         "id": "2",
         "naziv": "Krevet",
-        "kolicina": 15,
+        "kolicina": 26,
         "proizvodjac": "KrevetKrevet",
         "idProstorije": null,
         "idBolnice": "1",
@@ -174,7 +174,7 @@
     "tipProstorije": 1,
     "broj": "2",
     "sprat": 1,
-    "dostupnost": true,
+    "dostupnost": false,
     "logickiObrisana": false,
     "Stavka": [
       {
@@ -187,6 +187,17 @@
         "jeStaticka": false,
         "jeLogickiObrisana": false,
         "jePotrosnaRoba": true
+      },
+      {
+        "id": "2",
+        "naziv": "Krevet",
+        "kolicina": 2,
+        "proizvodjac": "KrevetKrevet",
+        "idProstorije": null,
+        "idBolnice": "1",
+        "jeStaticka": true,
+        "jeLogickiObrisana": false,
+        "jePotrosnaRoba": false
       }
     ]
   },

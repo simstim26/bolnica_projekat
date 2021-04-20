@@ -296,8 +296,8 @@ namespace Bolnica_aplikacija.Servis
                                     {
                                       
 
-                                        var datumPocetka = upravnikProzor.datumPocetka.SelectedDate.Value;
-                                        var datumKraja = upravnikProzor.datumKraja.SelectedDate.Value;
+                                        var datumPocetka = upravnikProzor.datumPocetkaU.SelectedDate.Value;
+                                        var datumKraja = upravnikProzor.datumKrajaU.SelectedDate.Value;
 
                                         if (datumKraja >= datumPocetka)
                                         {
@@ -318,6 +318,7 @@ namespace Bolnica_aplikacija.Servis
                                             prostorijaZaZauzimanje.idProstorije = p.id;
                                             prostorijaZaZauzimanje.datumPocetka = datumPocetka;
                                             prostorijaZaZauzimanje.datumKraja = datumKraja;
+                                            prostorijaZaZauzimanje.jeZavrseno = false;
                                             prostorijeZauzete.Add(prostorijaZaZauzimanje);
                                         }
                                     }
@@ -332,8 +333,8 @@ namespace Bolnica_aplikacija.Servis
 
                                     if (stavkaKojaSePrebacuje.jeStaticka == true)
                                     {
-                                        var datumPocetka = upravnikProzor.datumPocetka.SelectedDate.Value;
-                                        var datumKraja = upravnikProzor.datumKraja.SelectedDate.Value;
+                                        var datumPocetka = upravnikProzor.datumPocetkaU.SelectedDate.Value;
+                                        var datumKraja = upravnikProzor.datumKrajaU.SelectedDate.Value;
 
                                         if (datumKraja >= datumPocetka)
                                         {
@@ -354,6 +355,7 @@ namespace Bolnica_aplikacija.Servis
                                             prostorijaZaZauzimanje.idProstorije = p.id;
                                             prostorijaZaZauzimanje.datumPocetka = datumPocetka;
                                             prostorijaZaZauzimanje.datumKraja = datumKraja;
+                                            prostorijaZaZauzimanje.jeZavrseno = false;
                                             prostorijeZauzete.Add(prostorijaZaZauzimanje);
                                         }
                                     }
@@ -382,8 +384,8 @@ namespace Bolnica_aplikacija.Servis
                             p.Stavka = prostorijaIz.Stavka;
                             if (stavkaKojaSePrebacuje.jeStaticka == true)
                             {
-                                var datumPocetka = upravnikProzor.datumPocetka.SelectedDate.Value;
-                                var datumKraja = upravnikProzor.datumKraja.SelectedDate.Value;
+                                var datumPocetka = upravnikProzor.datumPocetkaU.SelectedDate.Value;
+                                var datumKraja = upravnikProzor.datumKrajaU.SelectedDate.Value;
 
                                 if (datumKraja >= datumPocetka)
                                 {
@@ -404,6 +406,7 @@ namespace Bolnica_aplikacija.Servis
                                     prostorijaZaZauzimanje.idProstorije = p.id;
                                     prostorijaZaZauzimanje.datumPocetka = datumPocetka;
                                     prostorijaZaZauzimanje.datumKraja = datumKraja;
+                                    prostorijaZaZauzimanje.jeZavrseno = false;
                                     prostorijeZauzete.Add(prostorijaZaZauzimanje);
                                 }
                             }
@@ -417,8 +420,8 @@ namespace Bolnica_aplikacija.Servis
                             p.Stavka = prostorijaU.Stavka;
                             if (stavkaKojaSePrebacuje.jeStaticka == true)
                             {
-                                var datumPocetka = upravnikProzor.datumPocetka.SelectedDate.Value;
-                                var datumKraja = upravnikProzor.datumKraja.SelectedDate.Value;
+                                var datumPocetka = upravnikProzor.datumPocetkaU.SelectedDate.Value;
+                                var datumKraja = upravnikProzor.datumKrajaU.SelectedDate.Value;
 
                                 if (datumKraja >= datumPocetka)
                                 {
@@ -439,6 +442,7 @@ namespace Bolnica_aplikacija.Servis
                                     prostorijaZaZauzimanje.idProstorije = p.id;
                                     prostorijaZaZauzimanje.datumPocetka = datumPocetka;
                                     prostorijaZaZauzimanje.datumKraja = datumKraja;
+                                    prostorijaZaZauzimanje.jeZavrseno = false;
                                     prostorijeZauzete.Add(prostorijaZaZauzimanje);
                                 }
                             }
@@ -478,8 +482,8 @@ namespace Bolnica_aplikacija.Servis
 
                                     if (stavkaKojaSePrebacuje.jeStaticka == true)
                                     {
-                                        var datumPocetka = upravnikProzor.datumPocetka.SelectedDate.Value;
-                                        var datumKraja = upravnikProzor.datumKraja.SelectedDate.Value;
+                                        var datumPocetka = upravnikProzor.datumPocetkaU.SelectedDate.Value;
+                                        var datumKraja = upravnikProzor.datumKrajaU.SelectedDate.Value;
 
                                         if (datumKraja >= datumPocetka)
                                         {
@@ -499,6 +503,7 @@ namespace Bolnica_aplikacija.Servis
                                             prostorijaZaZauzimanje.idProstorije = p.id;
                                             prostorijaZaZauzimanje.datumPocetka = datumPocetka;
                                             prostorijaZaZauzimanje.datumKraja = datumKraja;
+                                            prostorijaZaZauzimanje.jeZavrseno = false;
                                             prostorijeZauzete.Add(prostorijaZaZauzimanje);
                                         }
                                     }
@@ -513,8 +518,8 @@ namespace Bolnica_aplikacija.Servis
 
                                     if (stavkaKojaSePrebacuje.jeStaticka == true)
                                     {
-                                        var datumPocetka = upravnikProzor.datumPocetka.SelectedDate.Value;
-                                        var datumKraja = upravnikProzor.datumKraja.SelectedDate.Value;
+                                        var datumPocetka = upravnikProzor.datumPocetkaU.SelectedDate.Value;
+                                        var datumKraja = upravnikProzor.datumKrajaU.SelectedDate.Value;
 
                                         if (datumKraja >= datumPocetka)
                                         {
@@ -534,6 +539,7 @@ namespace Bolnica_aplikacija.Servis
                                             prostorijaZaZauzimanje.idProstorije = p.id;
                                             prostorijaZaZauzimanje.datumPocetka = datumPocetka;
                                             prostorijaZaZauzimanje.datumKraja = datumKraja;
+                                            prostorijaZaZauzimanje.jeZavrseno = false;
                                             prostorijeZauzete.Add(prostorijaZaZauzimanje);
                                         }
                                     }
@@ -563,8 +569,8 @@ namespace Bolnica_aplikacija.Servis
                             p.Stavka = prostorijaIz.Stavka;
                             if (stavkaKojaSePrebacuje.jeStaticka == true)
                             {
-                                var datumPocetka = upravnikProzor.datumPocetka.SelectedDate.Value;
-                                var datumKraja = upravnikProzor.datumKraja.SelectedDate.Value;
+                                var datumPocetka = upravnikProzor.datumPocetkaU.SelectedDate.Value;
+                                var datumKraja = upravnikProzor.datumKrajaU.SelectedDate.Value;
 
                                 if (datumKraja >= datumPocetka)
                                 {
@@ -584,6 +590,7 @@ namespace Bolnica_aplikacija.Servis
                                     prostorijaZaZauzimanje.idProstorije = p.id;
                                     prostorijaZaZauzimanje.datumPocetka = datumPocetka;
                                     prostorijaZaZauzimanje.datumKraja = datumKraja;
+                                    prostorijaZaZauzimanje.jeZavrseno = false;
                                     prostorijeZauzete.Add(prostorijaZaZauzimanje);
                                 }
                             }
@@ -597,8 +604,8 @@ namespace Bolnica_aplikacija.Servis
                             p.Stavka = prostorijaU.Stavka;
                             if (stavkaKojaSePrebacuje.jeStaticka == true)
                             {
-                                var datumPocetka = upravnikProzor.datumPocetka.SelectedDate.Value;
-                                var datumKraja = upravnikProzor.datumKraja.SelectedDate.Value;
+                                var datumPocetka = upravnikProzor.datumPocetkaU.SelectedDate.Value;
+                                var datumKraja = upravnikProzor.datumKrajaU.SelectedDate.Value;
 
                                 if (datumKraja >= datumPocetka)
                                 {
@@ -618,6 +625,7 @@ namespace Bolnica_aplikacija.Servis
                                     prostorijaZaZauzimanje.idProstorije = p.id;
                                     prostorijaZaZauzimanje.datumPocetka = datumPocetka;
                                     prostorijaZaZauzimanje.datumKraja = datumKraja;
+                                    prostorijaZaZauzimanje.jeZavrseno = false;
                                     prostorijeZauzete.Add(prostorijaZaZauzimanje);
                                 }
                             }
@@ -700,6 +708,7 @@ namespace Bolnica_aplikacija.Servis
                                     prostorijaZaZauzimanje.idProstorije = p.id;
                                     prostorijaZaZauzimanje.datumPocetka = datumPocetka;
                                     prostorijaZaZauzimanje.datumKraja = datumKraja;
+                                    prostorijaZaZauzimanje.jeZavrseno = false;
                                     prostorijeZauzete.Add(prostorijaZaZauzimanje);
                                     ProstorijaZauzetoKontroler.upisi(prostorijeZauzete);
                                     break;
@@ -746,6 +755,7 @@ namespace Bolnica_aplikacija.Servis
                                             ProstorijaZauzeto prostorijaZaZauzimanje = new ProstorijaZauzeto();
                                             prostorijaZaZauzimanje.idProstorije = p.id;
                                             prostorijaZaZauzimanje.datumPocetka = datumPocetka;
+                                            prostorijaZaZauzimanje.jeZavrseno = false;
                                             prostorijaZaZauzimanje.datumKraja = datumKraja;
                                             prostorijeZauzete.Add(prostorijaZaZauzimanje);
                                             ProstorijaZauzetoKontroler.upisi(prostorijeZauzete);
@@ -792,6 +802,7 @@ namespace Bolnica_aplikacija.Servis
                                     prostorijaZaZauzimanje.idProstorije = prost.id;
                                     prostorijaZaZauzimanje.datumPocetka = datumPocetka;
                                     prostorijaZaZauzimanje.datumKraja = datumKraja;
+                                    prostorijaZaZauzimanje.jeZavrseno = false;
                                     prostorijeZauzete.Add(prostorijaZaZauzimanje);
                                     ProstorijaZauzetoKontroler.upisi(prostorijeZauzete);
                                     break;

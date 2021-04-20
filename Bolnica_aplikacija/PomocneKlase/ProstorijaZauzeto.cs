@@ -11,5 +11,7 @@ namespace Bolnica_aplikacija.PomocneKlase
         public String idProstorije { get; set; }
         public DateTime datumPocetka { get; set; }
         public DateTime datumKraja { get; set; }
+
+        public bool jeZavrseno { get; set; }
     }
 }
