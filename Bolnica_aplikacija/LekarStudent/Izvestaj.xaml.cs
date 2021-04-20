@@ -131,13 +131,10 @@ namespace Bolnica_aplikacija.LekarStudent
 
         private void btnPotvrdiRecept_Click(object sender, RoutedEventArgs e)
         {
-            String datumPropisivanja = txtDatum.Text;
-            String[] datumDelovi = datumPropisivanja.Split('.');
-            DateTime datum = Convert.ToDateTime(datumDelovi[1] + "/" + datumDelovi[0] + "/" + datumDelovi[2]);
             int trajanje = Convert.ToInt32(txtTrajanje.Text);
             String nacinUpotrebe = txtNacinUpotrebe.Text;
 
-            TerapijaKontroler.dodajTerapiju(datum, trajanje, nacinUpotrebe, PacijentKontroler.getPacijent().id, 
+            TerapijaKontroler.dodajTerapiju(DateTime.Now, trajanje, nacinUpotrebe, PacijentKontroler.getPacijent().id, 
                 ((Lek)dataGridLekovi.SelectedItem).id);
         }
 

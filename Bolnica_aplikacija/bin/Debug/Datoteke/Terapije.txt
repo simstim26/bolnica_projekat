@@ -1,23 +1,23 @@
 [
   {
     "id": "1",
-    "idLeka": "1",
+    "idLeka": "2",
     "idPacijenta": "1",
     "idBolesti": "1",
     "idTermina": "8",
-    "datumPocetka": "2021-04-19T00:00:00",
+    "datumPocetka": "2021-04-20T14:31:54.2748038+02:00",
     "trajanje": 7,
-    "nacinUpotrebe": "Rektalno, aospidfpaoisdfpaoisdfpaoisdnfpaionsdpofiansdfa"
+    "nacinUpotrebe": "Rektalno"
   },
   {
     "id": "2",
-    "idLeka": "1",
+    "idLeka": "3",
     "idPacijenta": "1",
     "idBolesti": "2",
     "idTermina": "1",
-    "datumPocetka": "2021-04-19T00:00:00",
-    "trajanje": 122,
-    "nacinUpotrebe": "Rektalno, fasdfa"
+    "datumPocetka": "2021-04-20T14:35:12.1211085+02:00",
+    "trajanje": 14,
+    "nacinUpotrebe": "Sublingvalno, bla bla truc dnevno"
   },
   {
     "id": "3",

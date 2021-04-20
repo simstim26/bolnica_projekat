@@ -54,6 +54,7 @@ namespace Bolnica_aplikacija.Servis
                                             bolestTerapija.nazivTerapije = lek.naziv;
                                             bolestTerapija.idTermina = termin.idTermina;
                                             bolestTerapija.izvestaj = termin.izvestaj;
+                                            bolestTerapija.idLeka = lek.id;
                                             istorijaBolesti.Add(bolestTerapija);
                                             break;
                                         }
