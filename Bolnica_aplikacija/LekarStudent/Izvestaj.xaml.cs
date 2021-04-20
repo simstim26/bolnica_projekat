@@ -140,6 +140,9 @@ namespace Bolnica_aplikacija.LekarStudent
 
             TerapijaKontroler.dodajTerapiju(DateTime.Now, trajanje, nacinUpotrebe, PacijentKontroler.getPacijent().id, 
                 ((Lek)dataGridLekovi.SelectedItem).id, TerminKontroler.getTermin().idTermina);
+            this.gridRecept.Visibility = Visibility.Hidden;
+            LekarProzor.getGlavnaLabela().Content = "Izdavanje recepta";
+
         }
 
         private void btnPotvdiOdabirLeka_Click(object sender, RoutedEventArgs e)

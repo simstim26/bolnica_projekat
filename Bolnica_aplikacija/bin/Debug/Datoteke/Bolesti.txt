@@ -28,5 +28,17 @@
     "naziv": "sdf",
     "idTerapije": "6",
     "idPacijenta": "1"
+  },
+  {
+    "id": "6",
+    "naziv": "neka dijagnoza",
+    "idTerapije": "7",
+    "idPacijenta": "1"
+  },
+  {
+    "id": "7",
+    "naziv": "dgadfad",
+    "idTerapije": "7",
+    "idPacijenta": "1"
   }
 ]
