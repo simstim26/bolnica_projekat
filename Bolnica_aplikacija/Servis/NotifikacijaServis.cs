@@ -100,5 +100,27 @@ namespace Bolnica_aplikacija.Servis
 
         }
 
+        public void procitajNotifikaciju(String idNotifikacije)
+        {
+            Notifikacija procitanaNotifikacija = new Notifikacija();
+
+            foreach(Notifikacija notifikacija in prikazPacijentovihNotifikacija())
+            {
+                if(notifikacija.id.Equals(idNotifikacije))
+                {
+                    procitanaNotifikacija.id = idNotifikacije;
+                    procitanaNotifikacija.idKorisnika = notifikacija.idKorisnika;
+                    procitanaNotifikacija.jeProcitana = true;
+                    procitanaNotifikacija.nazivNotifikacije = notifikacija.nazivNotifikacije;
+                    procitanaNotifikacija.porukaNotifikacije = notifikacija.porukaNotifikacije;
+
+                    break;
+                }
+            }
+
+            azurirajNotifikaciju(procitanaNotifikacija);
+
+        }
+
     }
 }

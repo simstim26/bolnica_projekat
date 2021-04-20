@@ -18,7 +18,7 @@
 
         <TextBlock x:Name="txtPoruka" Margin="9,167,9,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="168" FontSize="16" IsHitTestVisible="False"/>
         <CheckBox x:Name="checkBoxProcitano" Content="Pročitano" Margin="186,348,186,0" VerticalAlignment="Top" IsChecked="True" Background="#FF008EFF"/>
-        <Button x:Name="btnPotvrda" Content="Potvrdi" Margin="172,378,172,0" VerticalAlignment="Top"/>
+        <Button x:Name="btnPotvrda" Content="Potvrdi" Margin="172,378,172,0" VerticalAlignment="Top" Click="btnPotvrda_Click"/>
         <Label x:Name="lblNazivObavestenja" Content="" Margin="84,61,291,0" VerticalAlignment="Top" FontSize="18"/>
         <Label x:Name="lblVremeObavestenja" Content="" Margin="84,98,291,0" VerticalAlignment="Top" FontSize="18"/>
 

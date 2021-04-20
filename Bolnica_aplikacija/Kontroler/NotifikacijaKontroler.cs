@@ -37,6 +37,9 @@ namespace Bolnica_aplikacija.Kontroler
             return notifikacijaServis.getNoveNotifikacijeKorisnika(idKorisnika);
         }
 
-
+        public static void procitajNotifikaciju(String idNotifikacije)
+        {
+            notifikacijaServis.procitajNotifikaciju(idNotifikacije);
+        }
     }
 }

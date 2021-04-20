@@ -213,9 +213,26 @@ namespace Bolnica_aplikacija.PacijentStudent
 
             bool proveraDatumaIVremena = NotifikacijaKontroler.proveriVreme(trenutnoVreme, trenutanDatum);
 
-            if(proveraDatumaIVremena)
+            if(!proveraDatumaIVremena)
             {
                 Console.WriteLine("NESTO JE USPELO");
+
+                var zaProveriti = NotifikacijaKontroler.getNoveNotifikacijeKorisnika(idPacijenta);
+
+                if(zaProveriti.Count > 1)
+                {
+                    Console.WriteLine("ovo je onaj slucaj sa vise obavestenja");
+                }
+                else if (zaProveriti.Count == 1)
+                {
+                    NotifikacijaProzor notifikacijaProzor = new NotifikacijaProzor(zaProveriti.ElementAt(0).id);
+                    notifikacijaProzor.ShowDialog();
+
+                }
+                else
+                {
+                    Console.WriteLine("SAD JE VALJDA PRAZNO");
+                }
             }
 
         }

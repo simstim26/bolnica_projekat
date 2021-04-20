@@ -20,17 +20,17 @@ namespace Bolnica_aplikacija.PacijentStudent
     /// </summary>
     public partial class NotifikacijaProzor : Window
     {
+        
         private String idNotifikacije;
-        private String idKorisnika;
 
-        public NotifikacijaProzor(String idKorisnika)
+        public NotifikacijaProzor(String idNotifikacije)
         {
             InitializeComponent();
 
-            //this.idNotifikacije = idNotifikacije;
+            this.idNotifikacije = idNotifikacije;
 
-            //popuniNotifikaciju();
-
+            popuniNotifikaciju();
+            
         }
 
         void popuniNotifikaciju()
@@ -40,6 +40,12 @@ namespace Bolnica_aplikacija.PacijentStudent
             txtPoruka.Text = NotifikacijaKontroler.getNotifikacija(idNotifikacije).porukaNotifikacije;
         }
 
-
+        private void btnPotvrda_Click(object sender, RoutedEventArgs e)
+        {
+            if(checkBoxProcitano.IsChecked == true)
+            {
+                NotifikacijaKontroler.procitajNotifikaciju(idNotifikacije);
+            }
+        }
     }
 }
