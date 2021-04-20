@@ -352,6 +352,10 @@ namespace Bolnica_aplikacija
             if (dataGridInventar.SelectedIndex != -1)
             {
                 var stavka = (Stavka)dataGridInventar.SelectedItem;
+                textBoxKolicinaZaPremestanje.Clear();
+                comboBoxProstorijeZaPremestanje.SelectedIndex = -1;
+                datumPocetka.SelectedDate = null;
+                datumKraja.SelectedDate = null;
 
                 if (stavka.jeStaticka == true)
                 {
@@ -436,6 +440,12 @@ namespace Bolnica_aplikacija
                 var stavka = (Stavka)dataGridInventarProstorije.SelectedItem;
 
                 textBoxStavkaZaPremestanjeU.Text = stavka.naziv;
+                textBoxKolicinaZaPremestanjeU.Clear();
+                comboBoxProstorijeZaPremestanjeU.SelectedIndex = -1;
+                datumPocetkaU.SelectedDate = null;
+                datumKrajaU.SelectedDate = null;
+
+
 
 
                 if (stavka.jeStaticka == true)

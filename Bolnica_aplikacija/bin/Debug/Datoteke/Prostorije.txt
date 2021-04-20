@@ -11,7 +11,7 @@
       {
         "id": "1",
         "naziv": "rukavice",
-        "kolicina": 278,
+        "kolicina": 268,
         "proizvodjac": "Mipex",
         "idProstorije": "1",
         "idBolnice": "1",
@@ -76,7 +76,7 @@
       {
         "id": "1",
         "naziv": "rukavice",
-        "kolicina": 105,
+        "kolicina": 115,
         "proizvodjac": "Mipex",
         "idProstorije": "1",
         "idBolnice": "1",
