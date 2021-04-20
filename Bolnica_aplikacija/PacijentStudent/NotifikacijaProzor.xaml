@@ -1,0 +1,28 @@
+﻿<Window x:Class="Bolnica_aplikacija.PacijentStudent.NotifikacijaProzor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Bolnica_aplikacija.PacijentStudent"
+        mc:Ignorable="d"
+        Title="Obaveštenje" Height="460" Width="450" ResizeMode="NoResize" Topmost="True" WindowStartupLocation="CenterOwner">
+    <Grid>
+        <Rectangle Fill="White" HorizontalAlignment="Left" Height="168" Margin="9,167,0,0" Stroke="Black" VerticalAlignment="Top" Width="426"/>
+
+
+
+        <Label x:Name="lblNaslov" Content="Imate novo obaveštenje!" Margin="120,18,120,0" VerticalAlignment="Top" FontSize="18"/>
+        <Label x:Name="lblNaziv" Content="Naziv:" Margin="10,61,365,0" VerticalAlignment="Top" FontSize="18"/>
+        <Label x:Name="lblVreme" Content="Vreme:" Margin="10,98,365,0" VerticalAlignment="Top" FontSize="18"/>
+        <Label x:Name="lblPoruka" Content="Poruka:" Margin="10,135,365,0" VerticalAlignment="Top" FontSize="18"/>
+
+        <TextBlock x:Name="txtPoruka" Margin="9,167,9,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="168" FontSize="16" IsHitTestVisible="False"/>
+        <CheckBox x:Name="checkBoxProcitano" Content="Pročitano" Margin="186,348,186,0" VerticalAlignment="Top" IsChecked="True" Background="#FF008EFF"/>
+        <Button x:Name="btnPotvrda" Content="Potvrdi" Margin="172,378,172,0" VerticalAlignment="Top" Click="btnPotvrda_Click"/>
+        <Label x:Name="lblNazivObavestenja" Content="" Margin="84,61,291,0" VerticalAlignment="Top" FontSize="18"/>
+        <Label x:Name="lblVremeObavestenja" Content="" Margin="84,98,291,0" VerticalAlignment="Top" FontSize="18"/>
+
+
+
+    </Grid>
+</Window>
