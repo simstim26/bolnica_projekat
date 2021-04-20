@@ -6,9 +6,9 @@
     "proizvodjac": "Mipex",
     "idProstorije": "1",
     "idBolnice": "1",
-    "jeStaticka": true,
+    "jeStaticka": false,
     "jeLogickiObrisana": false,
-    "jePotrosnaRoba": false
+    "jePotrosnaRoba": true
   },
   {
     "id": "2",
@@ -28,9 +28,9 @@
     "proizvodjac": "Spricolino",
     "idProstorije": null,
     "idBolnice": "1",
-    "jeStaticka": true,
+    "jeStaticka": false,
     "jeLogickiObrisana": false,
-    "jePotrosnaRoba": false
+    "jePotrosnaRoba": true
   },
   {
     "id": "4",
@@ -39,7 +39,7 @@
     "proizvodjac": "hanZa",
     "idProstorije": null,
     "idBolnice": "1",
-    "jeStaticka": true,
+    "jeStaticka": false,
     "jeLogickiObrisana": false,
     "jePotrosnaRoba": true
   }

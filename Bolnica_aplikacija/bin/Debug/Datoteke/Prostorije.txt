@@ -11,24 +11,24 @@
       {
         "id": "1",
         "naziv": "rukavice",
-        "kolicina": 333,
+        "kolicina": 228,
         "proizvodjac": "Mipex",
         "idProstorije": "1",
         "idBolnice": "1",
-        "jeStaticka": true,
+        "jeStaticka": false,
         "jeLogickiObrisana": false,
-        "jePotrosnaRoba": false
+        "jePotrosnaRoba": true
       },
       {
-        "id": "3",
-        "naziv": "Spric",
-        "kolicina": 10,
-        "proizvodjac": "Spricolino",
+        "id": "4",
+        "naziv": "hanzaplast",
+        "kolicina": 409,
+        "proizvodjac": "hanZa",
         "idProstorije": null,
         "idBolnice": "1",
-        "jeStaticka": true,
+        "jeStaticka": false,
         "jeLogickiObrisana": false,
-        "jePotrosnaRoba": false
+        "jePotrosnaRoba": true
       }
     ]
   },
@@ -50,7 +50,30 @@
     "sprat": 10,
     "dostupnost": false,
     "logickiObrisana": false,
-    "Stavka": []
+    "Stavka": [
+      {
+        "id": "1",
+        "naziv": "rukavice",
+        "kolicina": 105,
+        "proizvodjac": "Mipex",
+        "idProstorije": "1",
+        "idBolnice": "1",
+        "jeStaticka": false,
+        "jeLogickiObrisana": false,
+        "jePotrosnaRoba": true
+      },
+      {
+        "id": "4",
+        "naziv": "hanzaplast",
+        "kolicina": 40,
+        "proizvodjac": "hanZa",
+        "idProstorije": null,
+        "idBolnice": "1",
+        "jeStaticka": false,
+        "jeLogickiObrisana": false,
+        "jePotrosnaRoba": true
+      }
+    ]
   },
   {
     "id": "4",
@@ -150,7 +173,19 @@
     "sprat": 4,
     "dostupnost": true,
     "logickiObrisana": false,
-    "Stavka": []
+    "Stavka": [
+      {
+        "id": "4",
+        "naziv": "hanzaplast",
+        "kolicina": 38,
+        "proizvodjac": "hanZa",
+        "idProstorije": null,
+        "idBolnice": "1",
+        "jeStaticka": false,
+        "jeLogickiObrisana": false,
+        "jePotrosnaRoba": true
+      }
+    ]
   },
   {
     "id": "14",
@@ -180,7 +215,19 @@
     "sprat": 124,
     "dostupnost": true,
     "logickiObrisana": false,
-    "Stavka": []
+    "Stavka": [
+      {
+        "id": "4",
+        "naziv": "hanzaplast",
+        "kolicina": 13,
+        "proizvodjac": "hanZa",
+        "idProstorije": null,
+        "idBolnice": "1",
+        "jeStaticka": false,
+        "jeLogickiObrisana": false,
+        "jePotrosnaRoba": true
+      }
+    ]
   },
   {
     "id": "17",

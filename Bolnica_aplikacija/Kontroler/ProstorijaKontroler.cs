@@ -46,5 +46,15 @@ namespace Bolnica_aplikacija.Kontroler
         {
             prostorijaServis.dodajStavku(prostorijaId, stavkaId);
         }
+
+        public static List<Stavka> dobaviStavkeIzProstorije(Prostorija prostorija)
+        {
+            return prostorijaServis.dobaviStavkeIzProstorije(prostorija);
+        }
+
+        public static void premestiStavku(String prostorijaIzKojeSePrebacujeId, String prostorijaUKojuSePrebacujeId, String stavkaId)
+        {
+            prostorijaServis.premestiStavku(prostorijaIzKojeSePrebacujeId, prostorijaUKojuSePrebacujeId, stavkaId);
+        }
     }
 }

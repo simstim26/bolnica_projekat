@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -235,7 +236,7 @@ namespace Bolnica_aplikacija.Servis
         {
 
             Prostorija prostorija = new Prostorija();
-            var prostorije = prostorijaRepozitorijum.ucitajNeobrisane();
+            var prostorije = prostorijaRepozitorijum.ucitajSve();
 
             foreach (Prostorija p in prostorije)
             {
@@ -250,6 +251,149 @@ namespace Bolnica_aplikacija.Servis
 
         }
 
+        public void premestiStavku(String prostorijaIzKojeSePrebacujeId, String prostorijaUKojuSePrebacujeId, String stavkaId)
+        {
+            var prostorijaIz = nadjiProstorijuPoId(prostorijaIzKojeSePrebacujeId);
+            var prostorijaU = nadjiProstorijuPoId(prostorijaUKojuSePrebacujeId);
+            var stavkaKojaSePrebacuje = StavkaKontroler.pronadjiStavkuPoId(stavkaId);
+            var prostorije = prostorijaRepozitorijum.ucitajSve();
+            Bolnica_aplikacija.UpravnikProzor upravnikProzor = Bolnica_aplikacija.UpravnikProzor.getInstance();
+            var stavkaIz = new Stavka();
+            int kolicina = Int32.Parse(upravnikProzor.textBoxKolicinaZaPremestanjeU.Text);
+
+            foreach(Stavka stavka in prostorijaIz.Stavka)
+            {
+                if(stavka.id == stavkaId)
+                {
+                    stavkaIz = stavka;
+                }
+            }
+
+            if (kolicina <= stavkaIz.kolicina)
+            {
+                if (stavkaIz.kolicina - kolicina == 0)
+                {
+                    prostorijaIz.Stavka.Remove(stavkaIz);
+
+                    foreach (Stavka s in prostorijaU.Stavka)
+                    {
+                        if (s.id == stavkaId)
+                        {
+                            s.kolicina += kolicina;
+
+                            foreach (Prostorija p in prostorije)
+                            {
+                                if (p.id == prostorijaIz.id)
+                                {
+                                    p.Stavka = prostorijaIz.Stavka;
+                                }
+                            }
+
+                            foreach (Prostorija p in prostorije)
+                            {
+                                if (p.id == prostorijaU.id)
+                                {
+                                    p.Stavka = prostorijaU.Stavka;
+                                }
+                            }
+
+                            prostorijaRepozitorijum.upisi(prostorije);
+                            upravnikProzor.dataGridInventarProstorije.ItemsSource = prostorijaIz.Stavka;
+                            return;
+                        }
+                    }
+
+                    var stavka = new Stavka();
+                    stavka = stavkaIz;
+                    stavka.kolicina = kolicina;
+                    prostorijaU.Stavka.Add(stavka);
+                    foreach (Prostorija p in prostorije)
+                    {
+                        if (p.id == prostorijaIz.id)
+                        {
+                            p.Stavka = prostorijaIz.Stavka;
+                        }
+                    }
+
+                    foreach (Prostorija p in prostorije)
+                    {
+                        if (p.id == prostorijaU.id)
+                        {
+                            p.Stavka = prostorijaU.Stavka;
+                        }
+                    }
+
+                    prostorijaRepozitorijum.upisi(prostorije);
+                    upravnikProzor.dataGridInventarProstorije.ItemsSource = prostorijaIz.Stavka;
+                    return;
+                }
+                else
+                {
+                    foreach(Stavka s in prostorijaIz.Stavka)
+                    {
+                        if(s.id == stavkaIz.id)
+                        {
+                            s.kolicina -= kolicina;
+                        }
+                    }
+
+                    foreach (Stavka s in prostorijaU.Stavka)
+                    {
+                        if (s.id == stavkaId)
+                        {
+                            s.kolicina += kolicina;
+
+                            foreach (Prostorija p in prostorije)
+                            {
+                                if (p.id == prostorijaIz.id)
+                                {
+                                    p.Stavka = prostorijaIz.Stavka;
+                                }
+                            }
+
+                            foreach (Prostorija p in prostorije)
+                            {
+                                if (p.id == prostorijaU.id)
+                                {
+                                    p.Stavka = prostorijaU.Stavka;
+                                }
+                            }
+
+                            prostorijaRepozitorijum.upisi(prostorije);
+                            upravnikProzor.dataGridInventarProstorije.ItemsSource = prostorijaIz.Stavka;
+                            return;
+                        }
+                    }
+
+                    var stavka = new Stavka();
+                    stavka = stavkaKojaSePrebacuje;
+                    stavka.kolicina = kolicina;
+                    prostorijaU.Stavka.Add(stavka);
+
+                    foreach (Prostorija p in prostorije)
+                    {
+                        if (p.id == prostorijaIz.id)
+                        {
+                            p.Stavka = prostorijaIz.Stavka;
+                        }
+                    }
+
+                    foreach (Prostorija p in prostorije)
+                    {
+                        if (p.id == prostorijaU.id)
+                        {
+                            p.Stavka = prostorijaU.Stavka;
+                        }
+                    }
+
+                    prostorijaRepozitorijum.upisi(prostorije);
+                    upravnikProzor.dataGridInventarProstorije.ItemsSource = prostorijaIz.Stavka;
+                    return;
+                   
+                }
+            }
+        }
+
         public void dodajStavku(String prostorijaId, String stavkaId)
         {
             var prostorija = nadjiProstorijuPoId(prostorijaId);
@@ -257,59 +401,76 @@ namespace Bolnica_aplikacija.Servis
             var prostorije = prostorijaRepozitorijum.ucitajSve();
             Bolnica_aplikacija.UpravnikProzor upravnikProzor = Bolnica_aplikacija.UpravnikProzor.getInstance();
 
-          
-            if(prostorija.Stavka.Count == 0)
-            {
-                var prvaStavka = StavkaKontroler.pronadjiStavkuPoId(stavkaId);
-                prvaStavka.kolicina = Int32.Parse(upravnikProzor.textBoxKolicinaZaPremestanje.Text);
-                prostorija.Stavka.Add(prvaStavka);
-                foreach (Prostorija p in prostorije)
-                {
-                    if (p.id == prostorija.id)
-                    {
-                        p.Stavka = prostorija.Stavka;
-                    }
-                }
-                prostorijaRepozitorijum.upisi(prostorije);
-            }
-            else
-            {
-                foreach (Stavka stavka in prostorija.Stavka)
-                {
-                    if (stavka.id == stavkaId)
-                    {
-                        stavka.kolicina += Int32.Parse(upravnikProzor.textBoxKolicinaZaPremestanje.Text);
 
-                        foreach (Prostorija p in prostorije)
+            var novaStavka = StavkaKontroler.pronadjiStavkuPoId(stavkaId);
+            
+        
+                if (prostorija.Stavka.Count == 0)
+                {
+                    novaStavka.kolicina = Int32.Parse(upravnikProzor.textBoxKolicinaZaPremestanje.Text);
+                    prostorija.Stavka.Add(novaStavka);
+                    foreach (Prostorija p in prostorije)
+                    {
+                        if (p.id == prostorija.id)
                         {
-                            if (p.id == prostorijaId)
-                            {
-                                p.Stavka = prostorija.Stavka;
-                            }
+                            p.Stavka = prostorija.Stavka;
                         }
-
-                        prostorijaRepozitorijum.upisi(prostorije);
-                        return;
-
                     }
-                }
 
-
-
-                var novaStavka = StavkaKontroler.pronadjiStavkuPoId(stavkaId);
-                novaStavka.kolicina = Int32.Parse(upravnikProzor.textBoxKolicinaZaPremestanje.Text);
-                prostorija.Stavka.Add(novaStavka);
-
-                foreach (Prostorija prost in prostorije)
-                {
-                    if (prost.id == prostorijaId)
+                    if(novaStavka.jeStaticka == true)
                     {
-                        prost.Stavka = prostorija.Stavka;
+                        var datumPocetka = upravnikProzor.datumPocetka.SelectedDate;
+                        var datumKraja = upravnikProzor.datumKraja.SelectedDate;
+                        
+                        if(datumKraja < datumPocetka)
+                        {
+                            //TO DO
+                            Console.WriteLine("Pogresan izbor datuma");
+                        }
+                        
+                        
                     }
-                }
 
-                prostorijaRepozitorijum.upisi(prostorije);
-            }
+                    prostorijaRepozitorijum.upisi(prostorije);
+                }
+                else
+                {
+                    foreach (Stavka stavka in prostorija.Stavka)
+                    {
+                        if (stavka.id == stavkaId)
+                        {
+                            stavka.kolicina += Int32.Parse(upravnikProzor.textBoxKolicinaZaPremestanje.Text);
+
+                            foreach (Prostorija p in prostorije)
+                            {
+                                if (p.id == prostorijaId)
+                                {
+                                    p.Stavka = prostorija.Stavka;
+                                }
+                            }
+
+                            prostorijaRepozitorijum.upisi(prostorije);
+                            return;
+
+                        }
+                    }
+
+                    novaStavka.kolicina = Int32.Parse(upravnikProzor.textBoxKolicinaZaPremestanje.Text);
+                    prostorija.Stavka.Add(novaStavka);
+
+                    foreach (Prostorija prost in prostorije)
+                    {
+                        if (prost.id == prostorijaId)
+                        {
+                            prost.Stavka = prostorija.Stavka;
+                        }
+                    }
+
+                    prostorijaRepozitorijum.upisi(prostorije);
+                }
+            
+
+            
 
         }
 
@@ -337,6 +498,22 @@ namespace Bolnica_aplikacija.Servis
             Console.WriteLine("ID OD FUNKCIJE KOJI VRACA: " + prostorija.id);
 
             return prostorija;
+        }
+
+        public List<Stavka> dobaviStavkeIzProstorije(Prostorija prostorija)
+        {
+            var prostorije = prostorijaRepozitorijum.ucitajNeobrisane();
+            var stavke = new List<Stavka>();
+
+            foreach(Prostorija p in prostorije)
+            {
+                if (p.id == prostorija.id)
+                {
+                    stavke = p.Stavka;
+                }
+            }
+
+            return stavke;
         }
     }
 

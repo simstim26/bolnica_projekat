@@ -39,8 +39,9 @@
             <ColumnDefinition Width="959*"/>
         </Grid.ColumnDefinitions>
         <TextBlock x:Name="lblIme" Margin="0,22,124,0" TextWrapping="Wrap" Text="Ime i Prezime" VerticalAlignment="Top" FontSize="30" Grid.Column="2" HorizontalAlignment="Right"/>
+
         <Grid x:Name="gridProstorija" Background="LightGray" HorizontalAlignment="Left" Height="640" Margin="10,59,0,0" VerticalAlignment="Top" Width="949" Visibility="Hidden" Grid.Column="2" Grid.RowSpan="3">
-            <DataGrid x:Name="dataGridProstorija" CanUserAddRows="false" IsReadOnly ="True" HorizontalAlignment="Left" Height="514" Margin="37,90,0,0" VerticalAlignment="Top" Width="868" HeadersVisibility="All" AutoGenerateColumns="False" SelectionMode="Single" CanUserResizeRows="False">
+            <DataGrid x:Name="dataGridProstorija" CanUserAddRows="false" IsReadOnly ="True" HorizontalAlignment="Left" Height="472" Margin="37,138,0,0" VerticalAlignment="Top" Width="572" HeadersVisibility="All" AutoGenerateColumns="False" SelectionMode="Single" CanUserResizeRows="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn x:Name="kolonaId" Binding ="{Binding id}" IsReadOnly="True" Header="id (privremeno)" Width="143" CanUserResize="False"/>
                     <DataGridTextColumn x:Name="kolonaTip" Binding ="{Binding tipProstorije}" IsReadOnly="True" Header="tip"  Width="143" CanUserResize="False"/>
@@ -48,9 +49,10 @@
                     <DataGridTextColumn x:Name="Sprat" Binding="{Binding sprat}" IsReadOnly="True" Header="sprat" Width="143" CanUserResize="False"/>
                 </DataGrid.Columns>
             </DataGrid>
-            <Button x:Name="btnDodajProstoriju" Background="White" Content="Dodaj Prostoriju" HorizontalAlignment="Left" Margin="424,34,0,0" VerticalAlignment="Top" Width="99" Height="28" Click="btnDodajProstoriju_Click"  />
-            <Button x:Name="btnIzmeniProstoriju" Background="White" Content="Izmeni Prostoriju" HorizontalAlignment="Left" Margin="615,34,0,0" VerticalAlignment="Top" Width="99" Height="28"  IsEnabled="True" Click="btnIzmeniProstoriju_Click"/>
-            <Button x:Name="btnIzbrisiProstoriju" Background="White" Content="Izbrisi Prostoriju" HorizontalAlignment="Left" Margin="806,34,0,0" VerticalAlignment="Top" Width="99" Height="28" Click="btnIzbrisiProstoriju_Click"/>
+            <Button x:Name="btnDodajProstoriju"  Content="Dodaj Prostoriju" HorizontalAlignment="Left" Margin="680,138,0,0" VerticalAlignment="Top" Width="161" Height="28" Click="btnDodajProstoriju_Click"  />
+            <Button x:Name="btnIzmeniProstoriju"  Content="Izmeni Prostoriju" HorizontalAlignment="Left" Margin="680,278,0,0" VerticalAlignment="Top" Width="161" Height="28"  IsEnabled="True" Click="btnIzmeniProstoriju_Click"/>
+            <Button x:Name="btnIzbrisiProstoriju"  Content="Izbrisi Prostoriju" HorizontalAlignment="Left" Margin="680,416,0,0" VerticalAlignment="Top" Width="161" Height="28" Click="btnIzbrisiProstoriju_Click"/>
+            <Button x:Name="btnPogledajInventar"  Content="Pogledaj Inventar" HorizontalAlignment="Left" Margin="680,530,0,0" VerticalAlignment="Top" Width="161" Height="28" Click="btnPogledajInventar_Click"/>
 
         </Grid>
 
@@ -71,6 +73,38 @@
             <TextBlock x:Name="lblBrojPostojiDodaj" Foreground="Red" Visibility="Hidden" HorizontalAlignment="Left" Margin="290,217,-569,0" TextWrapping="Wrap" Text="*prostorija sa ovim brojem vec postoji" VerticalAlignment="Top" Width="312" FontStyle="Italic"/>
             <TextBlock x:Name="lblNijePopunjenoDodaj" Foreground="Red" Visibility="Hidden" HorizontalAlignment="Left" Margin="136,285,-415,-3" TextWrapping="Wrap" Text="*sva polja moraju biti popunjena!" VerticalAlignment="Top" Width="312" FontStyle="Italic"/>
             <TextBlock x:Name="lblNijePopunjenoIspravnoDodaj" Foreground="Red" Visibility="Hidden" HorizontalAlignment="Left" Margin="136,285,-415,-3" TextWrapping="Wrap" Text="*sva polja moraju biti ispravno popunjena!" VerticalAlignment="Top" Width="312" FontStyle="Italic"/>
+        </Grid>
+
+        <Grid x:Name="gridPogledajInventar" Visibility="Hidden">
+            <Rectangle Fill="LightGray" HorizontalAlignment="Left" Height="638" Stroke="Black" VerticalAlignment="Top" Width="947" Margin="70,59,-984,-399"/>
+            <DataGrid x:Name="dataGridInventarProstorije" HorizontalAlignment="Left" Height="474" Margin="135,186,-710,-362" VerticalAlignment="Top" HeadersVisibility="All" AutoGenerateColumns="False" SelectionMode="Single" CanUserResizeRows="False" CanUserAddRows="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn x:Name="stavkaIdProstorija" Binding ="{Binding id}" IsReadOnly="True" Header="id (privremeno)" Width="143" CanUserResize="False"/>
+                    <DataGridTextColumn x:Name="stavkaNazivProstorija" Binding ="{Binding naziv}" IsReadOnly="True" Header="naziv"  Width="143" CanUserResize="False"/>
+                    <DataGridTextColumn x:Name="stavkaProizvodjacProstorija" Binding="{Binding proizvodjac}" IsReadOnly="True" Header="proizvodjac" Width="143" CanUserResize="False"/>
+                    <DataGridTextColumn x:Name="stavkaKolicinaProstorija" Binding="{Binding kolicina}" IsReadOnly="True" Header="kolicina" Width="143" CanUserResize="False"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button x:Name="btnOtkaziPrikaz" Content="Otkaži" HorizontalAlignment="Left" Margin="744,580,-934,-314" VerticalAlignment="Top" Width="223" Click="btnOtkaziPrikaz_Click"/>
+            <Button x:Name="btnPremestiUDruguProstoriju" Content="Premesti u drugu prostoriju" HorizontalAlignment="Left" Margin="744,434,-934,-168" VerticalAlignment="Top" Width="223" Click="btnPremestiUDruguProstoriju_Click"/>
+        </Grid>
+
+        <Grid x:Name="gridPremestiIzProstorije" Visibility="Hidden">
+            <Rectangle Fill="LightGray" HorizontalAlignment="Left" Height="638" Stroke="Black" VerticalAlignment="Top" Width="947" Margin="70,59,-984,-399"/>
+            <TextBlock x:Name="textNaslov" FontSize="24" HorizontalAlignment="Left" Margin="140,155,-459,0" TextWrapping="Wrap" Text="Premesti stavku u prostoriju:" VerticalAlignment="Top" Width="352"/>
+            <TextBlock x:Name="labelaStavka" FontSize="20" HorizontalAlignment="Left" Margin="140,250,-333,0" TextWrapping="Wrap" Text="Stavka koja se premešta:" VerticalAlignment="Top" Width="271"/>
+            <TextBlock x:Name="labelaKolicina" FontSize="20" HorizontalAlignment="Left" Margin="140,320,-378,-49" TextWrapping="Wrap" Text="Količina:" VerticalAlignment="Top" Width="271"/>
+            <TextBlock x:Name="labelaSobaU" FontSize="20" HorizontalAlignment="Left" Margin="140,396,-378,-125" TextWrapping="Wrap" Text="Premesti u sobu:" VerticalAlignment="Top" Width="271"/>
+            <Button x:Name="btnPremestiU" Content="Premesti" HorizontalAlignment="Left" Margin="160,594,-273,-328" VerticalAlignment="Top" Width="146" Click="btnPremestiU_Click"/>
+            <Button x:Name="btnOtkaziPremestanjeU" Content="Otkaži" HorizontalAlignment="Left" Margin="470,594,-581,-328" VerticalAlignment="Top" Width="144" Click="btnOtkaziPremestanjeU_Click"/>
+            <TextBox x:Name="textBoxStavkaZaPremestanjeU" HorizontalAlignment="Left" Height="24" Margin="409,251,-502,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="171"/>
+            <TextBox x:Name="textBoxKolicinaZaPremestanjeU" HorizontalAlignment="Left" Height="24" Margin="408,323,-547,-49" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="172"/>
+            <ComboBox x:Name="comboBoxProstorijeZaPremestanjeU" SelectedValuePath="Key" DisplayMemberPath="Value" HorizontalAlignment="Left" Margin="416,396,-547,-125" VerticalAlignment="Top" Width="164" Height="27"/>
+            <DatePicker x:Name="datumPocetkaU" HorizontalAlignment="Left" Margin="409,468,-510,-215" VerticalAlignment="Top" Width="134" Height="45"/>
+            <TextBlock x:Name="textStaticka1U" FontSize="20" HorizontalAlignment="Left" Margin="140,481,-328,-215" TextWrapping="Wrap" Text="Zauzmi prostoriju od:" VerticalAlignment="Top" Height="32" Width="221"/>
+            <TextBlock x:Name="textStaticka2U" FontSize="20" HorizontalAlignment="Left" Margin="579,481,-619,-210" TextWrapping="Wrap" Text="do" VerticalAlignment="Top" Width="73"/>
+            <DatePicker x:Name="datumKrajaU" HorizontalAlignment="Left" Margin="657,468,-758,-215" VerticalAlignment="Top" Width="134" Height="45"/>
+
         </Grid>
 
         <Grid x:Name="gridIzmeniProstoriju" Visibility="Hidden">
@@ -167,6 +201,10 @@
                 <TextBox x:Name="textBoxStavkaZaPremestanje" HorizontalAlignment="Left" Height="24" Margin="409,251,-502,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="171"/>
                 <TextBox x:Name="textBoxKolicinaZaPremestanje" HorizontalAlignment="Left" Height="24" Margin="409,323,-503,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="172"/>
                 <ComboBox x:Name="comboBoxProstorijeZaPremestanje" SelectedValuePath="Key" DisplayMemberPath="Value" HorizontalAlignment="Left" Margin="416,396,-502,0" VerticalAlignment="Top" Width="164"/>
+                <DatePicker x:Name="datumPocetka" HorizontalAlignment="Left" Margin="366,466,-422,0" VerticalAlignment="Top" Width="134" Height="45"/>
+                <TextBlock x:Name="textStaticka1" FontSize="20" HorizontalAlignment="Left" Margin="140,479,-283,0" TextWrapping="Wrap" Text="Zauzmi prostoriju od:" VerticalAlignment="Top" Height="32" Width="221"/>
+                <TextBlock x:Name="textStaticka2" FontSize="20" HorizontalAlignment="Left" Margin="560,481,-555,0" TextWrapping="Wrap" Text="do" VerticalAlignment="Top" Width="73"/>
+                <DatePicker x:Name="datumKraja" HorizontalAlignment="Left" Margin="652,466,-708,0" VerticalAlignment="Top" Width="134" Height="45"/>
 
             </Grid>
 
