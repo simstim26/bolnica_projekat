@@ -29,7 +29,6 @@ namespace Bolnica_aplikacija.Servis
             }
 
             return pacijentoveNotifikacije;
-        }
-    
+        }  
     }
 }

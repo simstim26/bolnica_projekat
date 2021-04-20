@@ -43,6 +43,7 @@ namespace Bolnica_aplikacija
             InitializeComponent();
             CenterWindow();
 
+            lblSekretar.Content = KorisnikKontroler.GetSekretar().ime + " " + KorisnikKontroler.GetSekretar().prezime;
             this.PacijentGrid.Visibility = Visibility.Hidden;
             this.TerminiGrid.Visibility = Visibility.Hidden;
 
@@ -144,7 +145,7 @@ namespace Bolnica_aplikacija
                 textIme.Text = pacijent.ime;
                 textPrezime.Text = pacijent.prezime;
                 textAdresa.Text = pacijent.adresa;
-                textDatumRodj.Text = pacijent.datumRodjenja.ToString();
+                textDatumRodj.Text = pacijent.datumRodjenja.Date.ToString("MM/dd/yyyy");
                 textEmail.Text = pacijent.email;
                 textTelefon.Text = pacijent.brojTelefona;
 
@@ -654,8 +655,7 @@ namespace Bolnica_aplikacija
                 else
                 {                    
                     sakrijTabeluSlobodnihTermina();
-                    lblUpozorenje.Visibility = Visibility.Visible;
-                    lblUpozorenje.Content = "* Nema slobodnih termina!";
+                    nemaTerminaObavestenje();
                 }
             }
             else
@@ -744,8 +744,7 @@ namespace Bolnica_aplikacija
                 }
                 else
                 {
-                    lblUpozorenje.Visibility = Visibility.Visible;
-                    lblUpozorenje.Content = "* Nema slobodnih termina!";
+                    nemaTerminaObavestenje();
                 }
             
             }
@@ -885,8 +884,23 @@ namespace Bolnica_aplikacija
             lblUpozorenje.Visibility = Visibility.Hidden;
         }
 
+        private void nemaTerminaObavestenje()
+        {
+            lblUpozorenje.Visibility = Visibility.Visible;
+            lblUpozorenje.Content = "* Nema slobodnih termina!";
+        }
+
         private void lekariButton_Click(object sender, RoutedEventArgs e)
         {
+
+        }
+
+        private void PacijentGrid_TargetUpdated(object sender, DataTransferEventArgs e)
+        {
+            Alergija alergija = (Alergija)dataGridAlergije.Items.GetItemAt(dataGridAlergije.SelectedIndex);
+            
+
+            
 
         }
     }  
