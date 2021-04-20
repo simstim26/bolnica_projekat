@@ -211,11 +211,11 @@ namespace Bolnica_aplikacija.PacijentStudent
             String trenutnoVreme = trenutnoVremeiDatum.ToString("HH:mm");
             String trenutanDatum = trenutnoVremeiDatum.ToString("dd.MM.yyyy.");
 
-            bool proveraDatumaIVremena = NotifikacijaKontroler.proveriVreme(trenutnoVreme, trenutanDatum);
+            bool proveraDatumaIVremena = NotifikacijaKontroler.proveriVreme(trenutnoVreme, trenutanDatum, idPacijenta);
 
             if(!proveraDatumaIVremena)
             {
-                Console.WriteLine("NESTO JE USPELO");
+                //Console.WriteLine("NESTO JE USPELO");
 
                 var zaProveriti = NotifikacijaKontroler.getNoveNotifikacijeKorisnika(idPacijenta);
 
@@ -225,7 +225,7 @@ namespace Bolnica_aplikacija.PacijentStudent
                 }
                 else if (zaProveriti.Count == 1)
                 {
-                    NotifikacijaProzor notifikacijaProzor = new NotifikacijaProzor(zaProveriti.ElementAt(0).id);
+                    NotifikacijaProzor notifikacijaProzor = new NotifikacijaProzor(zaProveriti.ElementAt(0).id, idPacijenta);
                     notifikacijaProzor.ShowDialog();
 
                 }

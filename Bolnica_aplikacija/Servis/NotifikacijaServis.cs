@@ -18,16 +18,16 @@ namespace Bolnica_aplikacija.Servis
 
         public object PacijentSer { get; private set; }
 
-        public List<Notifikacija> prikazPacijentovihNotifikacija()
+        public List<Notifikacija> prikazPacijentovihNotifikacija(String idKorisnika)
         {
             List<Notifikacija> sveNotifikacije = notifikacijaRepozitorijum.ucitajSve();
             List<Notifikacija> pacijentoveNotifikacije = new List<Notifikacija>();
 
-            Pacijent pacijent = pacijentServis.getPacijent();
+            //Pacijent pacijent = pacijentServis.getPacijent();
 
             foreach(Notifikacija notifikacija in sveNotifikacije)
             {
-                if(notifikacija.idKorisnika.Equals(pacijent.id))
+                if(notifikacija.idKorisnika.Equals(idKorisnika))
                 {
                     pacijentoveNotifikacije.Add(notifikacija);
                 }
@@ -41,11 +41,11 @@ namespace Bolnica_aplikacija.Servis
             notifikacijaRepozitorijum.azurirajNotifikaciju(notifikacijaZaAzurirati);
         }
 
-        public Notifikacija getNotifikacija(String idNotifikacije)
+        public Notifikacija getNotifikacija(String idNotifikacije, String idKorisnika)
         {
             Notifikacija notifikacijaPovratna = new Notifikacija();
 
-            List<Notifikacija> sveNotifikacije = prikazPacijentovihNotifikacija();
+            List<Notifikacija> sveNotifikacije = prikazPacijentovihNotifikacija(idKorisnika);
 
             foreach(Notifikacija notifikacija in sveNotifikacije)
             {
@@ -65,9 +65,9 @@ namespace Bolnica_aplikacija.Servis
             return notifikacijaPovratna;
         }
 
-        public bool proveriVreme(String trenutnoVreme, String trenutanDatum)
+        public bool proveriVreme(String trenutnoVreme, String trenutanDatum, String idKorisnika)
         {
-            List<Notifikacija> sveNotifikacije = prikazPacijentovihNotifikacija();
+            List<Notifikacija> sveNotifikacije = prikazPacijentovihNotifikacija(idKorisnika);
 
             foreach (Notifikacija notifikacija in sveNotifikacije)
             {
@@ -92,7 +92,7 @@ namespace Bolnica_aplikacija.Servis
         {
             List<Notifikacija> notifikacijeKorisnika = new List<Notifikacija>();
 
-            foreach(Notifikacija notifikacija in prikazPacijentovihNotifikacija())
+            foreach(Notifikacija notifikacija in prikazPacijentovihNotifikacija(idKorisnika))
             {
                 if (!notifikacija.jeProcitana)
                 {
@@ -105,11 +105,11 @@ namespace Bolnica_aplikacija.Servis
 
         }
 
-        public void procitajNotifikaciju(String idNotifikacije)
+        public void procitajNotifikaciju(String idNotifikacije, String idKorisnika)
         {
             Notifikacija procitanaNotifikacija = new Notifikacija();
 
-            foreach(Notifikacija notifikacija in prikazPacijentovihNotifikacija())
+            foreach(Notifikacija notifikacija in prikazPacijentovihNotifikacija(idKorisnika))
             {
                 if(notifikacija.id.Equals(idNotifikacije))
                 {
