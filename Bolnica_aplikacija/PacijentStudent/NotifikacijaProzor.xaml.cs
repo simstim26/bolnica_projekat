@@ -22,29 +22,30 @@ namespace Bolnica_aplikacija.PacijentStudent
     {
         
         private String idNotifikacije;
+        private String idKorisnika;
 
-        public NotifikacijaProzor(String idNotifikacije)
+        public NotifikacijaProzor(String idNotifikacije, String idKorisnika)
         {
             InitializeComponent();
 
             this.idNotifikacije = idNotifikacije;
-
+            this.idKorisnika = idKorisnika;
             popuniNotifikaciju();
             
         }
 
         void popuniNotifikaciju()
         {
-            lblNazivObavestenja.Content = NotifikacijaKontroler.getNotifikacija(idNotifikacije).nazivNotifikacije;
-            lblVremeObavestenja.Content = NotifikacijaKontroler.getNotifikacija(idNotifikacije).vremeNotifikovanja.ToString("HH:mm");
-            txtPoruka.Text = NotifikacijaKontroler.getNotifikacija(idNotifikacije).porukaNotifikacije;
+            lblNazivObavestenja.Content = NotifikacijaKontroler.getNotifikacija(idNotifikacije, idKorisnika).nazivNotifikacije;
+            lblVremeObavestenja.Content = NotifikacijaKontroler.getNotifikacija(idNotifikacije, idKorisnika).vremeNotifikovanja.ToString("HH:mm");
+            txtPoruka.Text = NotifikacijaKontroler.getNotifikacija(idNotifikacije, idKorisnika).porukaNotifikacije;
         }
 
         private void btnPotvrda_Click(object sender, RoutedEventArgs e)
         {
             if(checkBoxProcitano.IsChecked == true)
             {
-                NotifikacijaKontroler.procitajNotifikaciju(idNotifikacije);
+                NotifikacijaKontroler.procitajNotifikaciju(idNotifikacije, idKorisnika);
             }
         }
     }

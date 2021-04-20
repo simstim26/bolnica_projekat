@@ -12,9 +12,9 @@ namespace Bolnica_aplikacija.Kontroler
     {
         private static NotifikacijaServis notifikacijaServis = new NotifikacijaServis();
 
-        public static List<Notifikacija> prikazPacijentovihNotifikacija()
+        public static List<Notifikacija> prikazPacijentovihNotifikacija(String idKorisnika)
         {
-            return notifikacijaServis.prikazPacijentovihNotifikacija();
+            return notifikacijaServis.prikazPacijentovihNotifikacija(idKorisnika);
         }
 
         public  static void azurirajNotifikaciju(Notifikacija notifikacija)
@@ -22,14 +22,14 @@ namespace Bolnica_aplikacija.Kontroler
             notifikacijaServis.azurirajNotifikaciju(notifikacija);
         }
 
-        public static Notifikacija getNotifikacija(String idNotifikacije)
+        public static Notifikacija getNotifikacija(String idNotifikacije, String idKorisnika)
         {
-            return notifikacijaServis.getNotifikacija(idNotifikacije);
+            return notifikacijaServis.getNotifikacija(idNotifikacije, idKorisnika);
         }
 
-        public static bool proveriVreme(String trenutnoVreme, String trenutanDatum)
+        public static bool proveriVreme(String trenutnoVreme, String trenutanDatum, String idKorisnika)
         {
-            return notifikacijaServis.proveriVreme(trenutnoVreme, trenutanDatum);
+            return notifikacijaServis.proveriVreme(trenutnoVreme, trenutanDatum, idKorisnika);
         }
 
         public static List<Notifikacija> getNoveNotifikacijeKorisnika(String idKorisnika)
@@ -37,9 +37,9 @@ namespace Bolnica_aplikacija.Kontroler
             return notifikacijaServis.getNoveNotifikacijeKorisnika(idKorisnika);
         }
 
-        public static void procitajNotifikaciju(String idNotifikacije)
+        public static void procitajNotifikaciju(String idNotifikacije, String idKorisnika)
         {
-            notifikacijaServis.procitajNotifikaciju(idNotifikacije);
+            notifikacijaServis.procitajNotifikaciju(idNotifikacije, idKorisnika);
         }
 
         public static void napraviNotifikaciju(String nazivNotifikacije, String porukaNotifikacije, String idKorisnika, String tipKorisnika)
