@@ -6,5 +6,21 @@
     "kolicina": 100,
     "proizvodjac": "proizvodjac neki",
     "nacinUpotrebe": 2
+  },
+  {
+    "id": "2",
+    "naziv": "LekLek",
+    "tip": 5,
+    "kolicina": 75,
+    "proizvodjac": "proizvodjac neki",
+    "nacinUpotrebe": 2
+  },
+  {
+    "id": "3",
+    "naziv": "LekLekLek",
+    "tip": 5,
+    "kolicina": 75,
+    "proizvodjac": "proizvodjac neki",
+    "nacinUpotrebe": 1
   }
 ]

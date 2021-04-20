@@ -105,8 +105,10 @@
     <Compile Include="Kontroler\NotifikacijaKontroler.cs" />
     <Compile Include="Kontroler\PacijentKontroler.cs" />
     <Compile Include="Kontroler\ProstorijaKontroler.cs" />
+    <Compile Include="Kontroler\ProstorijaZauzetoKontroler.cs" />
     <Compile Include="Kontroler\SekretarKontroler.cs" />
     <Compile Include="Kontroler\SpecijalizacijaKontroler.cs" />
+    <Compile Include="Kontroler\StavkaKontroler.cs" />
     <Compile Include="Kontroler\TerapijaKontroler.cs" />
     <Compile Include="Kontroler\TerminKontroler.cs" />
     <Compile Include="LekarStudent\Alergije.xaml.cs">
@@ -121,6 +123,9 @@
     <Compile Include="LekarStudent\Izvestaj.xaml.cs">
       <DependentUpon>Izvestaj.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LekarStudent\TerapijeIzdavanjeRecpeta.xaml.cs">
+      <DependentUpon>TerapijeIzdavanjeRecpeta.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LekarStudent\UvidUTerapije.xaml.cs">
       <DependentUpon>UvidUTerapije.xaml</DependentUpon>
     </Compile>
@@ -132,8 +137,10 @@
       <DependentUpon>ProzorPacijent.xaml</DependentUpon>
     </Compile>
     <Compile Include="PomocneKlase\PacijentKomande.cs" />
+    <Compile Include="PomocneKlase\ProstorijaKolicina.cs" />
     <Compile Include="Model\Bolest.cs" />
     <Compile Include="PomocneKlase\BolestTerapija.cs" />
+    <Compile Include="PomocneKlase\ProstorijaZauzeto.cs" />
     <Compile Include="Repozitorijum\AlergijaRepozitorijum.cs" />
     <Compile Include="Repozitorijum\BolestRepozitorijum.cs" />
     <Compile Include="Repozitorijum\KorisnikRepozitorijum.cs" />
@@ -156,8 +163,10 @@
     <Compile Include="Repozitorijum\NotifikacijaRepozitorijum.cs" />
     <Compile Include="Repozitorijum\PacijentRepozitorijum.cs" />
     <Compile Include="Repozitorijum\ProstorijaRepozitorijum.cs" />
+    <Compile Include="Repozitorijum\ProstorijaZauzetoRepozitorijum.cs" />
     <Compile Include="Repozitorijum\SekretarRepozitorijum.cs" />
     <Compile Include="Repozitorijum\SpecijalizacijaRepozitorijum.cs" />
+    <Compile Include="Repozitorijum\StavkaRepozitorijum.cs" />
     <Compile Include="Repozitorijum\TerapijaRepozitorijum.cs" />
     <Compile Include="Repozitorijum\TerminRepozitorijum.cs" />
     <Compile Include="Repozitorijum\UpravnikRepozitorijum.cs" />
@@ -172,8 +181,10 @@
     <Compile Include="Servis\NotifikacijaServis.cs" />
     <Compile Include="Servis\PacijentServis.cs" />
     <Compile Include="Servis\ProstorijaServis.cs" />
+    <Compile Include="Servis\ProstorijaZauzetoServis.cs" />
     <Compile Include="Servis\SekretarServis.cs" />
     <Compile Include="Servis\SpecijalizacijaServis.cs" />
+    <Compile Include="Servis\StavkaServis.cs" />
     <Compile Include="Servis\TerapijaServis.cs" />
     <Compile Include="Servis\TerminServis.cs" />
     <Compile Include="Servis\UpravnikServis.cs" />
@@ -275,6 +286,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="LekarStudent\PrikazProstorija.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LekarStudent\TerapijeIzdavanjeRecpeta.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -381,6 +396,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="SekretarStudent\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UpravnikStudent\images.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets" Condition="Exists('packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets')" />

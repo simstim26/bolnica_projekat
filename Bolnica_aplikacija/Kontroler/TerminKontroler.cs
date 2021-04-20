@@ -15,7 +15,12 @@ namespace Bolnica_aplikacija.Kontroler
         {
             terminServis.nadjiPacijentaZaTermin(idTermina);
         }
-     
+
+        public static void azuriranjeIzvestajaZaTermin(String azuriraniIzvestaj, String idTermina)
+        {
+            terminServis.azuriranjeIzvestajaZaTermin(azuriraniIzvestaj, idTermina);
+        }
+
         public static void dodavanjeIzvestajaZaTermin(String nazivBolesti,String izvestajSaTermina)
         {
             terminServis.dodavanjeIzvestajaZaTermin(nazivBolesti, izvestajSaTermina);
@@ -49,9 +54,15 @@ namespace Bolnica_aplikacija.Kontroler
         {
             return terminServis.getTermin();
         }
+
         public static String nadjiIdLekaraZaTermin(String idTermina)
         {
            return terminServis.nadjiIdLekaraZaTermin(idTermina);
+
+        public static List<Termin> ucitajSve()
+        {
+            return terminServis.ucitajSve();
+
         }
     }
 }
