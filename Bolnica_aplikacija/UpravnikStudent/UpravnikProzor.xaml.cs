@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Bolnica_aplikacija.Kontroler;
+using Bolnica_aplikacija.PomocneKlase;
 using Bolnica_aplikacija.Repozitorijum;
 using Bolnica_aplikacija.Servis;
 using Model;
@@ -259,6 +260,7 @@ namespace Bolnica_aplikacija
                 txtBoxKolicinaStavke.Text = stavka.kolicina.ToString();
                 txtBoxNazivStavke.Text = stavka.naziv;
                 txtBoxProizvodjacStavke.Text = stavka.proizvodjac;
+                labelNepravilanUnosIzmena.Visibility = Visibility.Hidden;
                 
                 if(stavka.jePotrosnaRoba == true)
                 {
@@ -285,24 +287,48 @@ namespace Bolnica_aplikacija
 
         private void btnPotvrdiStavku_Click(object sender, RoutedEventArgs e)
         {
-            StavkaKontroler.DodajStavku();
-            dataGridInventar.ItemsSource = StavkaKontroler.UcitajNeobrisaneStavke();
-            gridDodajStavku.Visibility = Visibility.Hidden;
-            gridInventar.Visibility = Visibility.Visible;
+            labelNepravilnoUneseno.Visibility = Visibility.Hidden;
+            if (StavkaKontroler.DodajStavku())
+            {
+                dataGridInventar.ItemsSource = StavkaKontroler.UcitajNeobrisaneStavke();
+                gridDodajStavku.Visibility = Visibility.Hidden;
+                gridInventar.Visibility = Visibility.Visible;
+            }
+            else if(!StavkaKontroler.DodajStavku())
+            {
+                labelNepravilnoUneseno.Visibility = Visibility.Visible;
+            }    
         }
 
         private void btnDodajStavku_Click(object sender, RoutedEventArgs e)
         {
             gridDodajStavku.Visibility = Visibility.Visible;
+            textBoxNaziv.Clear();
+            textBoxKolicina.Clear();
+            textBoxProizvodjac.Clear();
+            comboBoxTipOpreme.SelectedIndex = -1;
+            checkBoxPotrosna.IsChecked = false;
+            labelNepravilnoUneseno.Visibility = Visibility.Hidden;
+
+
         }
 
         private void btnPotvrdiIzmenuStavke_Click(object sender, RoutedEventArgs e)
         {
+            labelNepravilanUnosIzmena.Visibility = Visibility.Hidden;
             var stavka = (Stavka)dataGridInventar.SelectedItem;
-            StavkaKontroler.IzmeniStavku(stavka);
-            gridIzmeniStavku.Visibility = Visibility.Hidden;
-            dataGridInventar.ItemsSource = StavkaKontroler.UcitajNeobrisaneStavke();
-            gridInventar.Visibility = Visibility.Visible;
+
+            if(StavkaKontroler.IzmeniStavku(stavka))
+            {
+                gridIzmeniStavku.Visibility = Visibility.Hidden;
+                dataGridInventar.ItemsSource = StavkaKontroler.UcitajNeobrisaneStavke();
+                gridInventar.Visibility = Visibility.Visible;
+            }
+            else if(!StavkaKontroler.IzmeniStavku(stavka))
+            {
+                labelNepravilanUnosIzmena.Visibility = Visibility.Visible;
+            }
+            
         }
 
         private void btnOtkaziIzmenuStavke_Click(object sender, RoutedEventArgs e)
@@ -407,6 +433,23 @@ namespace Bolnica_aplikacija
 
                 
                 var prostorija = (Prostorija)dataGridProstorija.SelectedItem;
+                var stavka = (Stavka)dataGridInventarProstorije.SelectedItem;
+
+
+                if (stavka.jeStaticka == true)
+                {
+                    textStaticka1U.Visibility = Visibility.Visible;
+                    textStaticka2U.Visibility = Visibility.Visible;
+                    datumPocetkaU.Visibility = Visibility.Visible;
+                    datumKrajaU.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    textStaticka1U.Visibility = Visibility.Hidden;
+                    textStaticka2U.Visibility = Visibility.Hidden;
+                    datumPocetkaU.Visibility = Visibility.Hidden;
+                    datumKrajaU.Visibility = Visibility.Hidden;
+                }
 
                 Dictionary<string, string> prostorije = new Dictionary<string, string>();
                 var neobrisaneProstorije = ProstorijaKontroler.ucitajNeobrisane();
@@ -442,6 +485,48 @@ namespace Bolnica_aplikacija
             gridPremestiIzProstorije.Visibility = Visibility.Hidden;
             gridPogledajInventar.Visibility = Visibility.Visible;
 
+        }
+
+        private void btnPogledajProstorije_Click(object sender, RoutedEventArgs e)
+        {
+            gridInventar.Visibility = Visibility.Hidden;
+            gridStavkaUProstoriama.Visibility = Visibility.Visible;
+
+            var stavka = (Stavka)dataGridInventar.SelectedItem;
+            var prostorijeTreba = new List<ProstorijaKolicina>();
+            var prostorije = ProstorijaKontroler.ucitajNeobrisane();
+            var kolicina = new List<int>();
+           
+
+            foreach(Prostorija p in prostorije)
+            {
+                foreach(Stavka s in p.Stavka)
+                {
+                    if (s.id == stavka.id)
+                    {
+                        ProstorijaKolicina prostorija = new ProstorijaKolicina();
+                        prostorija.broj = p.broj;
+                        prostorija.sprat = p.sprat;
+                        prostorija.kolicina = s.kolicina;
+                        prostorijeTreba.Add(prostorija);
+                    }
+                }
+            }
+
+            textBoxNazivStavkePoProstorijama.Text = stavka.naziv;
+            textBoxProizvodjacStavkePoProstorijama.Text = stavka.proizvodjac;
+            textBoxKolicinaStavkePoProstorijama.Text = stavka.kolicina.ToString();
+
+           
+
+            dataGridStavkaUProstorijama.ItemsSource = prostorijeTreba;
+            
+        }
+
+        private void btnOtkaziPrikazNeki_Click(object sender, RoutedEventArgs e)
+        {
+            gridInventar.Visibility = Visibility.Visible;
+            gridStavkaUProstoriama.Visibility = Visibility.Hidden;
         }
     }
 }

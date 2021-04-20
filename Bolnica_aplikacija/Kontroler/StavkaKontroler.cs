@@ -31,14 +31,14 @@ namespace Bolnica_aplikacija.Kontroler
             stavkaServis.Upisi(sveStavke);
         }
 
-        public static void DodajStavku()
+        public static bool DodajStavku()
         {
-            stavkaServis.DodajStavku();
+            return stavkaServis.DodajStavku();
         }
 
-        public static void IzmeniStavku(Stavka stavka)
+        public static bool IzmeniStavku(Stavka stavka)
         {
-            stavkaServis.IzmeniStavku(stavka);
+            return stavkaServis.IzmeniStavku(stavka);
         }
 
         public static Stavka pronadjiStavkuPoId(String id)

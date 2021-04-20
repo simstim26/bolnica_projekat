@@ -126,6 +126,7 @@
       <DependentUpon>ProzorPacijent.xaml</DependentUpon>
     </Compile>
     <Compile Include="PomocneKlase\PacijentKomande.cs" />
+    <Compile Include="PomocneKlase\ProstorijaKolicina.cs" />
     <Compile Include="Repozitorijum\KorisnikRepozitorijum.cs" />
     <Compile Include="LekarStudent\PrikazProstorija.xaml.cs">
       <DependentUpon>PrikazProstorija.xaml</DependentUpon>

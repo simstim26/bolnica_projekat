@@ -169,7 +169,25 @@
 
                 <Button x:Name="btnObrisiStavku" Content="Izbriši Stavku" HorizontalAlignment="Left" Margin="706,354,0,0" VerticalAlignment="Top" Width="164" Click="btnObrisiStavku_Click"/>
                 <Button x:Name="btnPremestiUProstoriju" Content="Premesti u prostoriju" HorizontalAlignment="Left" Margin="706,462,0,0" VerticalAlignment="Top" Width="164" Click="btnPremestiUProstoriju_Click"/>
+                <Button x:Name="btnPogledajProstorije" Content="Prikazi Prostorije" HorizontalAlignment="Left" Margin="706,572,0,0" VerticalAlignment="Top" Width="164" Click="btnPogledajProstorije_Click"/>
 
+            </Grid>
+
+            <Grid x:Name="gridStavkaUProstoriama" Visibility="Hidden" Background="LightGray" HorizontalAlignment="Left" Height="640" Margin="64,59,-935,0" VerticalAlignment="Top" Width="949">
+                <DataGrid x:Name="dataGridStavkaUProstorijama" CanUserAddRows="false" IsReadOnly ="True" HorizontalAlignment="Left" Height="433" Margin="37,171,0,0" VerticalAlignment="Top" Width="607" HeadersVisibility="All" AutoGenerateColumns="False" SelectionMode="Single" CanUserResizeRows="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn x:Name="prostorijaBrojUprostorijama" Binding ="{Binding broj}" IsReadOnly="True" Header="broj"  Width="143" CanUserResize="False"/>
+                        <DataGridTextColumn x:Name="prostorijaSptratUprostorijama" Binding="{Binding sprat}" IsReadOnly="True" Header="sprat" Width="143" CanUserResize="False"/>
+                        <DataGridTextColumn x:Name="prostorijaKolicinaUprostorijama" Binding="{Binding kolicina}" IsReadOnly="True" Header="kolicina" Width="143" CanUserResize="False"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <TextBlock x:Name="textBlockNaziv" FontSize="15"  HorizontalAlignment="Left" Margin="37,40,0,0" TextWrapping="Wrap" Text="Naziv stavke:" VerticalAlignment="Top" Height="28" Width="93"/>
+                <TextBlock x:Name="textBlockProizvodjac" FontSize="15"  HorizontalAlignment="Left" Margin="37,73,0,0" TextWrapping="Wrap" Text="Proizvođač:" VerticalAlignment="Top" Height="28" Width="93"/>
+                <TextBlock x:Name="textBlockKolicina" FontSize="15"  HorizontalAlignment="Left" Margin="37,106,0,0" TextWrapping="Wrap" Text="Količina:" VerticalAlignment="Top" Height="28" Width="93"/>
+                <TextBox x:Name="textBoxNazivStavkePoProstorijama" HorizontalAlignment="Left" Height="23" Margin="184,40,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                <TextBox x:Name="textBoxProizvodjacStavkePoProstorijama" HorizontalAlignment="Left" Height="23" Margin="184,68,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                <TextBox x:Name="textBoxKolicinaStavkePoProstorijama" HorizontalAlignment="Left" Height="23" Margin="184,105,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                <Button x:Name="btnOtkaziPrikazNeki" Content="Otkazi" HorizontalAlignment="Left" Margin="692,324,0,0" VerticalAlignment="Top" Width="228" Click="btnOtkaziPrikazNeki_Click"/>
             </Grid>
 
             <Grid x:Name="gridDodajStavku" Visibility="Hidden">
@@ -188,6 +206,7 @@
                     <ComboBoxItem Content="Dinamička"/>
                 </ComboBox>
                 <CheckBox x:Name="checkBoxPotrosna" FontSize="24" Content="Potrošna roba" HorizontalAlignment="Left" Margin="140,440,-232,0" VerticalAlignment="Top" />
+                <Label x:Name="labelNepravilnoUneseno" Content="*Polja nisu ispravno popunjena" Visibility="Hidden" HorizontalAlignment="Left" Margin="140,485,-240,0" VerticalAlignment="Top" Width="178"/>
             </Grid>
 
             <Grid x:Name="gridPremestiUProstoriju" Visibility="Hidden">
@@ -224,6 +243,7 @@
                 <TextBox x:Name="txtBoxKolicinaStavke" HorizontalAlignment="Left" Height="22" Margin="411,230,-507,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="174"/>
                 <TextBox x:Name="txtBoxProizvodjacStavke" HorizontalAlignment="Left" Height="22" Margin="412,316,-508,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="174"/>
                 <CheckBox x:Name="checkBoxPotrosnaIzmeni" FontSize="24" Content="Potrošna roba" HorizontalAlignment="Left" Margin="125,492,-217,0" VerticalAlignment="Top"/>
+                <Label x:Name="labelNepravilanUnosIzmena" Content="*Polja nisu ispravno popunjena" Visibility="Hidden" HorizontalAlignment="Left" Margin="123,524,-229,0" VerticalAlignment="Top" Width="184"/>
 
             </Grid>
 

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Bolnica_aplikacija.Servis
@@ -29,39 +30,54 @@ namespace Bolnica_aplikacija.Servis
             return stavkaRepozitorijum.UcitajNeobrisaneStavke();
         }
 
-        public void DodajStavku() //Da li ovo sve da stavim u UpravnikProzor?
+        public bool DodajStavku() //Da li ovo sve da stavim u UpravnikProzor?
         {
             var sveStavke = stavkaRepozitorijum.UcitajSve();
             Stavka stavka = new Stavka();
 
-            stavka.id = (sveStavke.Count() + 1).ToString();
-            stavka.idBolnice = KorisnikKontroler.GetUpravnik().idBolnice;
-            stavka.kolicina = Int32.Parse(upravnikProzor.textBoxKolicina.Text);
-            stavka.naziv = upravnikProzor.textBoxNaziv.Text;
-            stavka.proizvodjac = upravnikProzor.textBoxProizvodjac.Text;
-            stavka.jeLogickiObrisana = false;
-            stavka.idProstorije = null;
+            String pat = @"^[0-9]+$";
+            Regex r = new Regex(pat);
+            Match m = r.Match(upravnikProzor.textBoxKolicina.Text.Replace(" ", ""));
 
-            if (upravnikProzor.comboBoxTipOpreme.SelectedIndex == 1)
+            if(!String.IsNullOrEmpty(upravnikProzor.textBoxNaziv.Text) && !String.IsNullOrEmpty(upravnikProzor.textBoxProizvodjac.Text) && m.Success && upravnikProzor.comboBoxTipOpreme.SelectedIndex != -1)
             {
-                stavka.jeStaticka = true;
+                stavka.id = (sveStavke.Count() + 1).ToString();
+                stavka.idBolnice = KorisnikKontroler.GetUpravnik().idBolnice;
+                stavka.kolicina = Int32.Parse(upravnikProzor.textBoxKolicina.Text);
+                stavka.naziv = upravnikProzor.textBoxNaziv.Text;
+                stavka.proizvodjac = upravnikProzor.textBoxProizvodjac.Text;
+                stavka.jeLogickiObrisana = false;
+                stavka.idProstorije = null;
+
+
+                if (upravnikProzor.comboBoxTipOpreme.SelectedIndex == 1)
+                {
+                    stavka.jeStaticka = true;
+                }
+                else if (upravnikProzor.comboBoxTipOpreme.SelectedIndex == 2)
+                {
+                    stavka.jeStaticka = false;
+                }
+
+                if (upravnikProzor.checkBoxPotrosna.IsChecked == true)
+                {
+                    stavka.jePotrosnaRoba = true;
+                }
+                else if (upravnikProzor.checkBoxPotrosna.IsChecked == false)
+                {
+                    stavka.jePotrosnaRoba = false;
+                }
+
+                sveStavke.Add(stavka);
+                stavkaRepozitorijum.Upisi(sveStavke);
+                return true;
             }
-            else if (upravnikProzor.comboBoxTipOpreme.SelectedIndex == 2)
+            else
             {
-                stavka.jeStaticka = false;
+                return false;
             }
 
-            if (upravnikProzor.checkBoxPotrosna.IsChecked == true)
-            {
-                stavka.jePotrosnaRoba = true;
-            }
-            else if (upravnikProzor.checkBoxPotrosna.IsChecked == false)
-            {
-                stavka.jePotrosnaRoba = false;
-            }
-
-            sveStavke.Add(stavka);
-            stavkaRepozitorijum.Upisi(sveStavke);
+            
         }
 
         public void IzbrisiStavku(Stavka stavkaZaBrisanje)
@@ -78,56 +94,69 @@ namespace Bolnica_aplikacija.Servis
             stavkaRepozitorijum.Upisi(stavke);
         }
 
-        public void IzmeniStavku(Stavka stavkaZaIzmenu)
+        public bool IzmeniStavku(Stavka stavkaZaIzmenu)
         {
             UpravnikProzor upravnikProzor = UpravnikProzor.getInstance();
 
-            var stavke = stavkaRepozitorijum.UcitajSve();
-            var stavkaKopija = new Stavka();
 
-            foreach (Stavka stavka in stavke)
+            String pat = @"^[0-9]+$";
+            Regex r = new Regex(pat);
+            Match m = r.Match(upravnikProzor.txtBoxKolicinaStavke.Text.Replace(" ", ""));
+
+            if (!String.IsNullOrEmpty(upravnikProzor.txtBoxNazivStavke.Text) && !String.IsNullOrEmpty(upravnikProzor.txtBoxProizvodjacStavke.Text) && m.Success && upravnikProzor.cbTipStavke.SelectedIndex != -1)
             {
-                if (stavka.id == stavkaZaIzmenu.id)
+                var stavke = stavkaRepozitorijum.UcitajSve();
+                var stavkaKopija = new Stavka();
+
+                foreach (Stavka stavka in stavke)
                 {
-                    stavkaKopija = stavka;
+                    if (stavka.id == stavkaZaIzmenu.id)
+                    {
+                        stavkaKopija = stavka;
+                    }
                 }
-            }
 
-            stavkaKopija.naziv = upravnikProzor.txtBoxNazivStavke.Text;
-            stavkaKopija.proizvodjac = upravnikProzor.txtBoxProizvodjacStavke.Text;
-            stavkaKopija.kolicina = Int32.Parse(upravnikProzor.txtBoxKolicinaStavke.Text);
+                stavkaKopija.naziv = upravnikProzor.txtBoxNazivStavke.Text;
+                stavkaKopija.proizvodjac = upravnikProzor.txtBoxProizvodjacStavke.Text;
+                stavkaKopija.kolicina = Int32.Parse(upravnikProzor.txtBoxKolicinaStavke.Text);
 
-            if (upravnikProzor.cbTipStavke.SelectedIndex == 0)
-            {
-                stavkaKopija.jeStaticka = true;
-            }
-            else if (upravnikProzor.cbTipStavke.SelectedIndex == 1)
-            {
-                stavkaKopija.jeStaticka = false;
-            }
-
-
-            if (upravnikProzor.checkBoxPotrosnaIzmeni.IsChecked == true)
-            {
-                stavkaKopija.jePotrosnaRoba = true;
-            }
-            else if (upravnikProzor.checkBoxPotrosnaIzmeni.IsChecked == false)
-            {
-                stavkaKopija.jePotrosnaRoba = false;
-            }
-
-            foreach (Stavka stavka in stavke)
-            {
-                if (stavkaKopija.id == stavka.id)
+                if (upravnikProzor.cbTipStavke.SelectedIndex == 0)
                 {
-                    stavka.kolicina = stavkaKopija.kolicina;
-                    stavka.naziv = stavkaKopija.naziv;
-                    stavka.proizvodjac = stavkaKopija.proizvodjac;
-                    stavka.jeStaticka = stavkaKopija.jeStaticka;
+                    stavkaKopija.jeStaticka = true;
                 }
-            }
+                else if (upravnikProzor.cbTipStavke.SelectedIndex == 1)
+                {
+                    stavkaKopija.jeStaticka = false;
+                }
 
-            stavkaRepozitorijum.Upisi(stavke);
+
+                if (upravnikProzor.checkBoxPotrosnaIzmeni.IsChecked == true)
+                {
+                    stavkaKopija.jePotrosnaRoba = true;
+                }
+                else if (upravnikProzor.checkBoxPotrosnaIzmeni.IsChecked == false)
+                {
+                    stavkaKopija.jePotrosnaRoba = false;
+                }
+
+                foreach (Stavka stavka in stavke)
+                {
+                    if (stavkaKopija.id == stavka.id)
+                    {
+                        stavka.kolicina = stavkaKopija.kolicina;
+                        stavka.naziv = stavkaKopija.naziv;
+                        stavka.proizvodjac = stavkaKopija.proizvodjac;
+                        stavka.jeStaticka = stavkaKopija.jeStaticka;
+                    }
+                }
+
+                stavkaRepozitorijum.Upisi(stavke);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public Stavka pronadjiStavkuPoId(String id)

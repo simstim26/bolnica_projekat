@@ -11,7 +11,7 @@
       {
         "id": "1",
         "naziv": "rukavice",
-        "kolicina": 228,
+        "kolicina": 278,
         "proizvodjac": "Mipex",
         "idProstorije": "1",
         "idBolnice": "1",
@@ -24,6 +24,17 @@
         "naziv": "hanzaplast",
         "kolicina": 409,
         "proizvodjac": "hanZa",
+        "idProstorije": null,
+        "idBolnice": "1",
+        "jeStaticka": false,
+        "jeLogickiObrisana": false,
+        "jePotrosnaRoba": true
+      },
+      {
+        "id": "3",
+        "naziv": "Spric",
+        "kolicina": 100,
+        "proizvodjac": "Spricolino",
         "idProstorije": null,
         "idBolnice": "1",
         "jeStaticka": false,
@@ -143,7 +154,19 @@
     "sprat": 1,
     "dostupnost": true,
     "logickiObrisana": false,
-    "Stavka": []
+    "Stavka": [
+      {
+        "id": "1",
+        "naziv": "rukavice",
+        "kolicina": 767,
+        "proizvodjac": "Mipex",
+        "idProstorije": "1",
+        "idBolnice": "1",
+        "jeStaticka": false,
+        "jeLogickiObrisana": false,
+        "jePotrosnaRoba": true
+      }
+    ]
   },
   {
     "id": "11",

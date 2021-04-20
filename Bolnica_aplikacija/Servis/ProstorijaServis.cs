@@ -269,6 +269,8 @@ namespace Bolnica_aplikacija.Servis
                 }
             }
 
+            
+
             if (kolicina <= stavkaIz.kolicina)
             {
                 if (stavkaIz.kolicina - kolicina == 0)
@@ -400,11 +402,27 @@ namespace Bolnica_aplikacija.Servis
             Console.WriteLine(prostorija.broj);
             var prostorije = prostorijaRepozitorijum.ucitajSve();
             Bolnica_aplikacija.UpravnikProzor upravnikProzor = Bolnica_aplikacija.UpravnikProzor.getInstance();
-
+            int kolicina = Int32.Parse(upravnikProzor.textBoxKolicinaZaPremestanje.Text);
+            int suma = 0;
 
             var novaStavka = StavkaKontroler.pronadjiStavkuPoId(stavkaId);
-            
-        
+
+            foreach (Prostorija p in prostorije)
+            {
+                if (p.Stavka.Count != 0)
+                {
+                    foreach (Stavka s in p.Stavka)
+                    {
+                        if (s.id == stavkaId)
+                        {
+                            suma += s.kolicina;
+                        }
+                    }
+                }
+            }
+
+            if (suma + kolicina <= novaStavka.kolicina)
+            {
                 if (prostorija.Stavka.Count == 0)
                 {
                     novaStavka.kolicina = Int32.Parse(upravnikProzor.textBoxKolicinaZaPremestanje.Text);
@@ -417,18 +435,18 @@ namespace Bolnica_aplikacija.Servis
                         }
                     }
 
-                    if(novaStavka.jeStaticka == true)
+                    if (novaStavka.jeStaticka == true)
                     {
                         var datumPocetka = upravnikProzor.datumPocetka.SelectedDate;
                         var datumKraja = upravnikProzor.datumKraja.SelectedDate;
-                        
-                        if(datumKraja < datumPocetka)
+
+                        if (datumKraja < datumPocetka)
                         {
                             //TO DO
                             Console.WriteLine("Pogresan izbor datuma");
                         }
-                        
-                        
+
+
                     }
 
                     prostorijaRepozitorijum.upisi(prostorije);
@@ -468,10 +486,8 @@ namespace Bolnica_aplikacija.Servis
 
                     prostorijaRepozitorijum.upisi(prostorije);
                 }
+            }
             
-
-            
-
         }
 
         public Prostorija nadjiProstorijuPoId(String id)
