@@ -19,6 +19,11 @@ namespace Bolnica_aplikacija.Kontroler
             pacijentServis.sacuvajBolestTerapiju(bolestTerapija);
         }
 
+        public static List<BolestTerapija> ucitajSveTerapijeZaPacijenta()
+        {
+            return pacijentServis.ucitajSveTerapijeZaPacijenta();
+        }
+
         public static BolestTerapija getBolestTerapija()
         {
             return pacijentServis.getBolestTerapija();

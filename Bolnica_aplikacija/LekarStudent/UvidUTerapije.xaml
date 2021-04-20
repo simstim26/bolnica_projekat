@@ -8,15 +8,15 @@
              mc:Ignorable="d" 
              d:DesignHeight="750" d:DesignWidth="430">
     <Grid Background="White">
-        <DataGrid HorizontalAlignment="Left" Height="623" Margin="0,127,0,0" VerticalAlignment="Top" Width="430">
+        <DataGrid x:Name="dataGridTerapije" IsReadOnly="True" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="623" Margin="0,127,0,0" VerticalAlignment="Top" Width="430">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Naziv leka"></DataGridTextColumn>
-                <DataGridTextColumn Header="Količina"></DataGridTextColumn>
-                <DataGridTextColumn Header="Bolest"></DataGridTextColumn>
-                <DataGridTextColumn Header="Aktivnost"></DataGridTextColumn>
+                <DataGridTextColumn Header="Naziv leka" Binding="{Binding nazivTerapije}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="Količina" Binding="{Binding kolicina}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="Bolest" Binding="{Binding nazivBolesti}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="Aktivnost" Binding="{Binding aktivnost}" IsReadOnly="True"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button HorizontalAlignment="Left" Margin="319,53,0,0" VerticalAlignment="Top" Width="82" Height="52">
+        <Button x:Name="btnIzdavanjeRecepta" HorizontalAlignment="Left" Margin="319,53,0,0" VerticalAlignment="Top" Width="82" Height="52" Click="btnIzdavanjeRecepta_Click">
             <materialDesign:PackIcon Kind="PencilAddOutline" Height="31" Width="37"></materialDesign:PackIcon>
         </Button>
 

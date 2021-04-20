@@ -35,8 +35,18 @@
     "idPacijenta": "1",
     "idBolesti": "4",
     "idTermina": "9",
-    "datumPocetka": "2021-04-20T14:52:27.8050074+02:00",
-    "trajanje": 10,
+    "datumPocetka": "2021-04-20T18:31:04.6518103+02:00",
+    "trajanje": 100,
     "nacinUpotrebe": "Rektalno uzimati antidepresiv uvece"
+  },
+  {
+    "id": "5",
+    "idLeka": "3",
+    "idPacijenta": "1",
+    "idBolesti": "4",
+    "idTermina": null,
+    "datumPocetka": "2021-04-20T18:31:41.5800882+02:00",
+    "trajanje": 10,
+    "nacinUpotrebe": "Sublingvalno"
   }
 ]

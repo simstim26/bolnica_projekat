@@ -52,7 +52,6 @@ namespace Bolnica_aplikacija.Servis
             sveTerapije.Add(terapija);
             terapijaRepozitorijum.upisi(sveTerapije);
         }
-
         public Terapija nadjiTerapijuZaTermin(String idTermina)
         {
             foreach(Terapija t in terapijaRepozitorijum.ucitajSve())

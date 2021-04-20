@@ -139,7 +139,7 @@ namespace Bolnica_aplikacija.LekarStudent
             String nacinUpotrebe = txtNacinUpotrebe.Text;
 
             TerapijaKontroler.dodajTerapiju(DateTime.Now, trajanje, nacinUpotrebe, PacijentKontroler.getPacijent().id, 
-                ((Lek)dataGridLekovi.SelectedItem).id);
+                ((Lek)dataGridLekovi.SelectedItem).id, TerminKontroler.getTermin().idTermina);
         }
 
         private void btnPotvdiOdabirLeka_Click(object sender, RoutedEventArgs e)
