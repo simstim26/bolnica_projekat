@@ -9,8 +9,14 @@
         Title="Sekretar" Height="768" Width="1366" Visibility="Visible" ResizeMode="CanMinimize"
         >
     <Grid x:Name="Grid" HorizontalAlignment="Left" Height="748" Margin="-4,-17,0,0" VerticalAlignment="Top" Width="1356">
-        <Grid x:Name="PocetniEkranGrid" Margin="270,150" d:IsHidden="True">
-            <Button x:Name="pacijentiButton" Content="PACIJENTI" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Height="200" FontSize="36" FontWeight="Bold" Click="pacijenti_Click" >
+        <Grid x:Name="PocetniEkranGrid" Margin="10,18,10,0">
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFABE8AB" Offset="0"/>
+                    <GradientStop Color="#FFE4FBE4" Offset="1"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+            <Button x:Name="pacijentiButton" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Height="200" FontSize="36" FontWeight="Bold" Click="pacijenti_Click" Margin="428,140,0,0" >
                 <Button.Effect>
                     <DropShadowEffect BlurRadius="10" Direction="314"/>
                 </Button.Effect>
@@ -20,8 +26,9 @@
                         <GradientStop Color="#FF70A6D3" Offset="1"/>
                     </LinearGradientBrush>
                 </Button.Background>
+                <materialDesign:PackIcon x:Name="packIconPacijenti" Kind="person" Height="152" Width="158"/>
             </Button>
-            <Button x:Name="terminiButton" Content="TERMINI" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Height="200" FontSize="36" FontWeight="Bold" Margin="308,0,0,0" Click="terminiButton_Click" >
+            <Button x:Name="terminiButton" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Height="200" FontSize="36" FontWeight="Bold" Margin="700,140,0,0" Click="terminiButton_Click" >
                 <Button.Effect>
                     <DropShadowEffect BlurRadius="10"/>
                 </Button.Effect>
@@ -31,8 +38,9 @@
                         <GradientStop Color="#FF9297F0" Offset="1"/>
                     </LinearGradientBrush>
                 </Button.Background>
+                <materialDesign:PackIcon x:Name="packIconTermini" Kind="Calendar" Height="152" Width="158"/>
             </Button>
-            <Button x:Name="saleButton" Content="SALE" VerticalAlignment="Top" Height="200" FontSize="36" FontWeight="Bold" Margin="616,0,0,0">
+            <Button x:Name="saleButton" VerticalAlignment="Top" Height="200" FontSize="36" FontWeight="Bold" Margin="428,388,0,0" HorizontalAlignment="Left" Width="200">
                 <Button.Effect>
                     <DropShadowEffect BlurRadius="10"/>
                 </Button.Effect>
@@ -42,19 +50,9 @@
                         <GradientStop Color="#FFA0E899" Offset="1"/>
                     </LinearGradientBrush>
                 </Button.Background>
+                <materialDesign:PackIcon x:Name="packIconSale" Kind="Bed" Height="152" Width="158"/>
             </Button>
-            <Button x:Name="inventarButton" Content="INVENTAR" FontSize="36" FontWeight="Bold" HorizontalAlignment="Left" Width="200" Margin="0,248,0,0">
-                <Button.Effect>
-                    <DropShadowEffect BlurRadius="10"/>
-                </Button.Effect>
-                <Button.Background>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="#FFDC4358" Offset="0"/>
-                        <GradientStop Color="#FFC77D87" Offset="1"/>
-                    </LinearGradientBrush>
-                </Button.Background>
-            </Button>
-            <Button x:Name="lekariButton" Content="LEKARI" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Height="200" FontSize="36" FontWeight="Bold" Margin="308,248,0,0">
+            <Button x:Name="lekariButton" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Height="200" FontSize="36" FontWeight="Bold" Margin="700,388,0,0" Click="lekariButton_Click">
                 <Button.Effect>
                     <DropShadowEffect BlurRadius="10"/>
                 </Button.Effect>
@@ -64,8 +62,9 @@
                         <GradientStop Color="#FFF3F336" Offset="1"/>
                     </LinearGradientBrush>
                 </Button.Background>
+                <materialDesign:PackIcon x:Name="packIconLekari" Kind="Doctor" Height="152" Width="158"/>
             </Button>
-            <Button x:Name="helpButton" Content="" VerticalAlignment="Top" Height="200" FontSize="36" FontWeight="Bold" BorderThickness="0" Margin="616,248,0,0" >
+            <Button x:Name="helpButton" Content="" VerticalAlignment="Top" Height="64" FontSize="36" FontWeight="Bold" BorderThickness="0" Margin="1238,656,10,0" >
                 <Button.Effect>
                     <DropShadowEffect BlurRadius="22"/>
                 </Button.Effect>
@@ -73,7 +72,7 @@
                     <ImageBrush Stretch="Uniform" ImageSource="question_mark.png"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="odjavaButton" Content="ODJAVI SE" HorizontalAlignment="Left" Margin="903,-107,-228,0" VerticalAlignment="Top" Width="141" Height="55" RenderTransformOrigin="0.624,0" FontSize="22" FontWeight="Bold" Click="odjavaButton_Click"/>
+            <Button x:Name="odjavaButton" Content="ODJAVI SE" HorizontalAlignment="Left" Margin="1185,10,0,0" VerticalAlignment="Top" Width="141" Height="55" RenderTransformOrigin="0.624,0" FontSize="22" FontWeight="Bold" Click="odjavaButton_Click"/>
         </Grid>
         <Grid x:Name="PacijentGrid" HorizontalAlignment="Left" Height="730" Margin="0,18,0,0" VerticalAlignment="Top" Width="1346" d:IsHidden="True">
             <Grid.Background>
@@ -183,7 +182,7 @@
             </Image>
             <Button x:Name="___btnDodajRed_" HorizontalAlignment="Left" Margin="1012,453,0,0" VerticalAlignment="Top" Width="19" Height="18" Click="___btnDodajRed__Click" Background="{x:Null}" BorderBrush="{x:Null}" Content="" IsEnabled="False" />
         </Grid>
-        <Grid x:Name="TerminiGrid" HorizontalAlignment="Left" Height="730" Margin="0,18,0,0" VerticalAlignment="Top" Width="1346">
+        <Grid x:Name="TerminiGrid" HorizontalAlignment="Left" Height="730" Margin="0,18,0,0" VerticalAlignment="Top" Width="1346" d:IsHidden="True">
             <Grid.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF83C8F7" Offset="0"/>
