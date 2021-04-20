@@ -1,4 +1,6 @@
-﻿using Bolnica_aplikacija.PacijentModel;
+﻿using Bolnica_aplikacija.Model;
+using Bolnica_aplikacija.PacijentModel;
+using Bolnica_aplikacija.PomocneKlase;
 using Bolnica_aplikacija.Servis;
 using Model;
 using System;
@@ -12,6 +14,12 @@ namespace Bolnica_aplikacija.Kontroler
     class PacijentKontroler
     {
         private static PacijentServis pacijentServis = new PacijentServis();
+
+        public static List<BolestTerapija> nadjiIstorijuBolestiZaPacijenta()
+        {
+            return pacijentServis.nadjiIstorijuBolestiZaPacijenta();
+        }
+
 
         public static List<Pacijent> prikazPacijenata() //prikaz pacijenata kod lekara
         {
@@ -50,9 +58,25 @@ namespace Bolnica_aplikacija.Kontroler
             return pacijentServis.getPacijent();
         }
 
-        public static List<PacijentTermin> ucitajSlobodneTermine(int indikator)
+        public static List<PacijentTermin> ucitajSlobodneTermine(int indikator, bool jeSekretar)
         {
-            return pacijentServis.ucitajSlobodneTermine(indikator);
+            return pacijentServis.ucitajSlobodneTermine(indikator, jeSekretar);
+        }
+
+        public static List<PacijentTermin> filtrirajTermine(int indikator, String kriterijum)
+        {
+            return pacijentServis.filtrirajTermine(indikator, kriterijum);
+        }
+
+        public static void napraviAlergiju(String idPacijenta, String nazivAlergije)
+        {
+            pacijentServis.napraviAlergiju(idPacijenta, nazivAlergije);
+        }
+
+        public static List<Alergija> procitajAlergije()
+        {
+           
+            return pacijentServis.procitajAlergije();
         }
 
     }

@@ -18,11 +18,12 @@ namespace Bolnica_aplikacija.Servis
         private SekretarRepozitorijum sekretarRepozitorijum = new SekretarRepozitorijum();
         private static PacijentRepozitorijum pacijentRepozitorijum = new PacijentRepozitorijum();
         private static KorisnikRepozitorijum korisnikRepozitorijum = new KorisnikRepozitorijum();
+        private static AlergijaRepozitorijum alergijaRepozitorijum = new AlergijaRepozitorijum();
 
         public String id { get; set; }
         public String idBolnice { get; set; }
 
-        public static void NapraviPacijenta(String idBolnice, bool gost, String korisnickoIme, String lozinka, String jmbg, String ime, String prezime, DateTime datumRodj, string adresa, string email, string telefon)
+        public static void NapraviPacijenta(String idBolnice, bool gost, String korisnickoIme, String lozinka, String jmbg, String ime, String prezime, DateTime datumRodj, string adresa, string email, string telefon, List<Alergija> alergije)
         {
 
             Pacijent pacijent = new Pacijent();
@@ -41,6 +42,11 @@ namespace Bolnica_aplikacija.Servis
             pacijent.email = email;
             pacijent.brojTelefona = telefon;
 
+            foreach(Alergija alergija in alergije)
+            {               
+                alergijaRepozitorijum.dodajAlergiju(new Alergija(pacijent.id, alergija.nazivAlergije));
+            }
+            
             pacijentRepozitorijum.dodajPacijenta(pacijent);
 
             //Unos pacijenta u korisnike
@@ -72,7 +78,7 @@ namespace Bolnica_aplikacija.Servis
            
         }
 
-        public static void AzurirajPacijenta(String id, String idBolnice, bool gost, String korisnickoIme, String lozinka, String jmbg, String ime, String prezime, DateTime datumRodj, string adresa, string email, string telefon)
+        public static void AzurirajPacijenta(String id, String idBolnice, bool gost, String korisnickoIme, String lozinka, String jmbg, String ime, String prezime, DateTime datumRodj, string adresa, string email, string telefon, List<Alergija> alergije)
         {
             List<Pacijent> sviPacijenti = pacijentRepozitorijum.ucitajSve();
             foreach (Pacijent izmeniP in sviPacijenti)
@@ -93,6 +99,7 @@ namespace Bolnica_aplikacija.Servis
                     izmeniP.email = email;
                     izmeniP.brojTelefona = telefon;
 
+                    alergijaRepozitorijum.azurirajAlergije(alergije, izmeniP.id);                   
                     pacijentRepozitorijum.azurirajPacijenta(izmeniP);
                 }
             }
@@ -118,5 +125,7 @@ namespace Bolnica_aplikacija.Servis
 
 
         }
+
+
     }
 }

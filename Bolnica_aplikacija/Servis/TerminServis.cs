@@ -30,6 +30,28 @@ namespace Bolnica_aplikacija.Servis
             return povratnaVrednost;
         }
 
+        public void dodavanjeIzvestajaZaTermin(String nazivBolesti,String izvestajSaTermina)
+        {
+            BolestServis bolestServis = new BolestServis();
+            TerapijaServis terapijaServis = new TerapijaServis();
+            termin.izvestaj = izvestajSaTermina;
+            termin.jeZavrsen = true;
+            Terapija terapija = terapijaServis.nadjiTerapijuZaTermin(termin.idTermina);
+            if (terapija != null)
+            {
+                termin.idTerapije = terapija.id;
+            }
+            
+            termin.idBolesti = bolestServis.napraviBolest(nazivBolesti, termin.idPacijenta, termin.idTerapije);
+           
+            if(terapija != null)
+            {
+                terapijaServis.dodajIdBolestiZaTerapiju(terapija.id, termin.idBolesti);
+
+            }
+            terminRepozitorijum.azurirajTermin(termin);
+        }
+
         public void nadjiPacijentaZaTermin(String idTermina)
         {
             foreach(Termin termin in terminRepozitorijum.ucitajSve())

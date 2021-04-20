@@ -12,10 +12,10 @@
         <Label x:Name="label" Content="Zakazivanje termina" Margin="232,10,231,0" VerticalAlignment="Top" FontStyle="Italic" FontWeight="Bold" Height="60" FontSize="32"/>
         <Label x:Name="lblPretraga" Content="Odaberite prioritet pretrage" Margin="13,70,447,0" VerticalAlignment="Top" FontStyle="Italic" FontSize="24" Height="42"/>
         <Label x:Name="lblTermini" Content="Slobodni termini:" HorizontalAlignment="Left" Margin="13,223,0,0" Width="158" Height="35" VerticalAlignment="Top" FontSize="20"/>
-        <RadioButton x:Name="rbtnLekar" Content="Lekar" Margin="10,112,0,0"  VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold" Height="30" Width="141" FontSize="20"/>
-        <RadioButton x:Name="rbtnTermin" Content="Vreme održavanja" Margin="13,147,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold" Height="30" Width="245" FontSize="20"/>
-        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="36" Margin="10,182,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="270"/>
-        <Button x:Name="btnPretrazi" Content="Pretraži" HorizontalAlignment="Left" Margin="301,182,0,0" VerticalAlignment="Top" Width="145" Height="36" FontSize="20"/>
+        <RadioButton x:Name="rbtnLekar" Content="Lekar" Margin="13,112,0,0"  VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold" Height="30" Width="141" FontSize="20" GroupName="Pretraga"/>
+        <RadioButton x:Name="rbtnTermin" Content="Datum održavanja" Margin="13,147,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold" Height="30" Width="245" FontSize="20" GroupName="Pretraga"/>
+        <TextBox x:Name="txtPretraga" HorizontalAlignment="Left" Height="36" Margin="10,182,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="270" FontSize="18" TextChanged="txtPretraga_TextChanged"/>
+        <Button x:Name="btnPretrazi" Content="Pretraži" HorizontalAlignment="Left" Margin="301,182,0,0" VerticalAlignment="Top" Width="145" Height="36" FontSize="20" Click="btnPretrazi_Click"/>
 
         <DataGrid x:Name="dataGridSlobodniTermini" Height="249" Margin="13,258,13,0"  VerticalAlignment="Top"
                   AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single" Width="768">

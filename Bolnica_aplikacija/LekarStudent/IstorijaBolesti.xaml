@@ -7,10 +7,10 @@
              mc:Ignorable="d" 
              d:DesignHeight="750" d:DesignWidth="430">
     <Grid Background="White">
-        <DataGrid HorizontalAlignment="Left" Height="622" Background="White" AlternatingRowBackground="#FF9900" AlternationCount="2" RowHeight="35" Margin="0,128,0,0" VerticalAlignment="Top" Width="430">
+        <DataGrid x:Name="dataGridIstorijaBolesti" HorizontalAlignment="Left" IsReadOnly="True" AutoGenerateColumns="False" Height="622" Background="White" AlternatingRowBackground="#FF9900" AlternationCount="2" RowHeight="35" Margin="0,128,0,0" VerticalAlignment="Top" Width="430">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Naziv" Width="200"></DataGridTextColumn>
-                <DataGridTextColumn Header="Terapija" Width="200"></DataGridTextColumn>
+                <DataGridTextColumn Header="Naziv" Width="200" Binding="{Binding nazivBolesti}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Terapija" Width="200" Binding="{Binding nazivTerapije}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="btnIzmeni" Content="Izmeni" HorizontalAlignment="Left" Margin="321,67,0,0" VerticalAlignment="Top" Width="86" Height="43" Click="btnIzmeni_Click"/>

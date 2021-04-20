@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -47,7 +48,7 @@ namespace Bolnica_aplikacija.PacijentStudent
 
         public void ucitajPodatke()
         {
-            dataGridSlobodniTermini.ItemsSource = PacijentKontroler.ucitajSlobodneTermine(0);
+            dataGridSlobodniTermini.ItemsSource = PacijentKontroler.ucitajSlobodneTermine(0, false);
         }
 
         private void btnPotvrdi_Click(object sender, RoutedEventArgs e)
@@ -74,6 +75,73 @@ namespace Bolnica_aplikacija.PacijentStudent
             else
             {
                 MessageBox.Show("Molimo izaberite novi termin.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+        private void btnPretrazi_Click(object sender, RoutedEventArgs e)
+        {
+            int indikator = -1;
+            if (rbtnLekar.IsChecked == true)
+            {
+
+                if (!Regex.IsMatch(txtPretraga.Text, @"^[\p{L}\p{M}' \.\-]+$"))
+                {
+                    indikator = -2;
+                }
+                else
+                    indikator = 0;
+
+            }
+            if (rbtnTermin.IsChecked == true)
+            {
+                indikator = 1;
+
+                var formati = new[] { "dd/MM/yyyy", "d/M/yyyy", "dd.MM.yyyy", "dd.MM.yyyy.", "d.M.yyyy.", "d.M.yyyy" };
+                DateTime dt;
+                if (DateTime.TryParseExact(txtPretraga.Text, formati, null, System.Globalization.DateTimeStyles.None, out dt))
+                {
+                    indikator = 1;
+                }
+                else
+                    indikator = -3;
+
+
+            }
+
+            if (indikator == -1)
+            {
+                MessageBox.Show("Molimo izaberite prioritet pretrage.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+                ucitajPodatke();
+                
+            }
+            else if (indikator == -2)
+            {
+                MessageBox.Show("Molimo unesite ime u odgovarajućem formatu.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+                ucitajPodatke();
+            }
+            else if (indikator == -3)
+            {
+                MessageBox.Show("Molimo unesite datum u odgovarajućem formatu. Neki od podržanih formata su: dd/MM/yyyy, d/m/yyyy, dd.MM.yyyy.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+                ucitajPodatke();
+            }
+            else
+            {
+                String kriterijum = txtPretraga.Text;
+
+                dataGridSlobodniTermini.ItemsSource = PacijentKontroler.filtrirajTermine(indikator, kriterijum);
+
+                if (txtPretraga.Text == "")
+                {
+                    ucitajPodatke();
+                }
+            }
+        }
+
+        private void txtPretraga_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if(txtPretraga.Text.Length == 0)
+            {
+                ucitajPodatke();
             }
         }
     }

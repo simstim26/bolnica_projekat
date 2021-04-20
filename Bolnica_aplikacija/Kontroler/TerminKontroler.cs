@@ -16,6 +16,11 @@ namespace Bolnica_aplikacija.Kontroler
             terminServis.nadjiPacijentaZaTermin(idTermina);
         }
 
+        public static void dodavanjeIzvestajaZaTermin(String nazivBolesti,String izvestajSaTermina)
+        {
+            terminServis.dodavanjeIzvestajaZaTermin(nazivBolesti, izvestajSaTermina);
+        }
+
         public static List<Prostorija> nadjiSlobodneProstorijeZaTermin(Lekar lekar, Termin termin)
         {
             return terminServis.nadjiSlobodneProstorijeZaTermin(lekar, termin);

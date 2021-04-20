@@ -101,11 +101,13 @@
     </Compile>
     <Compile Include="Kontroler\KorisnikKontroler.cs" />
     <Compile Include="Kontroler\LekarKontroler.cs" />
+    <Compile Include="Kontroler\LekKontroler.cs" />
     <Compile Include="Kontroler\PacijentKontroler.cs" />
     <Compile Include="Kontroler\ProstorijaKontroler.cs" />
     <Compile Include="Kontroler\SekretarKontroler.cs" />
     <Compile Include="Kontroler\SpecijalizacijaKontroler.cs" />
     <Compile Include="Kontroler\StavkaKontroler.cs" />
+    <Compile Include="Kontroler\TerapijaKontroler.cs" />
     <Compile Include="Kontroler\TerminKontroler.cs" />
     <Compile Include="LekarStudent\Alergije.xaml.cs">
       <DependentUpon>Alergije.xaml</DependentUpon>
@@ -122,11 +124,16 @@
     <Compile Include="LekarStudent\UvidUTerapije.xaml.cs">
       <DependentUpon>UvidUTerapije.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\Alergija.cs" />
     <Compile Include="PacijentStudent\ProzorPacijent.xaml.cs">
       <DependentUpon>ProzorPacijent.xaml</DependentUpon>
     </Compile>
     <Compile Include="PomocneKlase\PacijentKomande.cs" />
     <Compile Include="PomocneKlase\ProstorijaKolicina.cs" />
+    <Compile Include="Model\Bolest.cs" />
+    <Compile Include="PomocneKlase\BolestTerapija.cs" />
+    <Compile Include="Repozitorijum\AlergijaRepozitorijum.cs" />
+    <Compile Include="Repozitorijum\BolestRepozitorijum.cs" />
     <Compile Include="Repozitorijum\KorisnikRepozitorijum.cs" />
     <Compile Include="LekarStudent\PrikazProstorija.xaml.cs">
       <DependentUpon>PrikazProstorija.xaml</DependentUpon>
@@ -142,25 +149,32 @@
       <DependentUpon>PacijentZakaziTermin.xaml</DependentUpon>
     </Compile>
     <Compile Include="PomocneKlase\PomocnaKlasaTermini.cs" />
+    <Compile Include="Repozitorijum\LekRepozitorijum.cs" />
     <Compile Include="Repozitorijum\LekarRepozitorijum.cs" />
+    <Compile Include="Repozitorijum\NotifikacijaRepozitorijum.cs" />
     <Compile Include="Repozitorijum\PacijentRepozitorijum.cs" />
     <Compile Include="Repozitorijum\ProstorijaRepozitorijum.cs" />
     <Compile Include="Repozitorijum\SekretarRepozitorijum.cs" />
     <Compile Include="Repozitorijum\SpecijalizacijaRepozitorijum.cs" />
     <Compile Include="Repozitorijum\StavkaRepozitorijum.cs" />
+    <Compile Include="Repozitorijum\TerapijaRepozitorijum.cs" />
     <Compile Include="Repozitorijum\TerminRepozitorijum.cs" />
     <Compile Include="Repozitorijum\UpravnikRepozitorijum.cs" />
     <Compile Include="SekretarStudent\SekretarProzor.xaml.cs">
       <DependentUpon>SekretarProzor.xaml</DependentUpon>
     </Compile>
     <Compile Include="PomocneKlase\PacijentTermin.cs" />
+    <Compile Include="Servis\BolestServis.cs" />
     <Compile Include="Servis\KorisnikServis.cs" />
     <Compile Include="Servis\LekarServis.cs" />
+    <Compile Include="Servis\LekServis.cs" />
+    <Compile Include="Servis\NotifikacijaServis.cs" />
     <Compile Include="Servis\PacijentServis.cs" />
     <Compile Include="Servis\ProstorijaServis.cs" />
     <Compile Include="Servis\SekretarServis.cs" />
     <Compile Include="Servis\SpecijalizacijaServis.cs" />
     <Compile Include="Servis\StavkaServis.cs" />
+    <Compile Include="Servis\TerapijaServis.cs" />
     <Compile Include="Servis\TerminServis.cs" />
     <Compile Include="Servis\UpravnikServis.cs" />
     <Compile Include="UpravnikStudent\UpravnikProzor.xaml.cs">
@@ -333,6 +347,21 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="SekretarStudent\question_mark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SekretarStudent\termin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SekretarStudent\45-256.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SekretarStudent\zakaziTermin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SekretarStudent\izmeniTermin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SekretarStudent\otkaziTermin.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="LekarStudent\search.png" />

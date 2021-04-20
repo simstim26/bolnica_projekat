@@ -1,4 +1,5 @@
-﻿using Bolnica_aplikacija.Servis;
+﻿using Bolnica_aplikacija.Model;
+using Bolnica_aplikacija.Servis;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -11,9 +12,9 @@ namespace Bolnica_aplikacija.Kontroler
 {
     class SekretarKontroler
     {
-        public static void NapraviPacijenta(String idBolnice, bool gost, String korisnickoIme, String lozinka, String jmbg, String ime, String prezime, DateTime datumRodj, string adresa, string email, string telefon)
+        public static void NapraviPacijenta(String idBolnice, bool gost, String korisnickoIme, String lozinka, String jmbg, String ime, String prezime, DateTime datumRodj, string adresa, string email, string telefon, List<Alergija> alergije)
         {
-            SekretarServis.NapraviPacijenta(idBolnice, gost, korisnickoIme, lozinka, jmbg, ime, prezime, datumRodj, adresa, email, telefon);
+            SekretarServis.NapraviPacijenta(idBolnice, gost, korisnickoIme, lozinka, jmbg, ime, prezime, datumRodj, adresa, email, telefon, alergije);
         }
 
         public static List<Pacijent> ProcitajPacijente()
@@ -21,9 +22,9 @@ namespace Bolnica_aplikacija.Kontroler
             return SekretarServis.ProcitajPacijente();
         }
 
-        public static void AzurirajPacijenta(String id, String idBolnice, bool gost, String korisnickoIme, String lozinka, String jmbg, String ime, String prezime, DateTime datumRodj, string adresa, string email, string telefon)
+        public static void AzurirajPacijenta(String id, String idBolnice, bool gost, String korisnickoIme, String lozinka, String jmbg, String ime, String prezime, DateTime datumRodj, string adresa, string email, string telefon, List<Alergija> alergije)
         {
-            SekretarServis.AzurirajPacijenta(id, idBolnice, gost, korisnickoIme, lozinka, jmbg, ime, prezime, datumRodj, adresa, email, telefon);
+            SekretarServis.AzurirajPacijenta(id, idBolnice, gost, korisnickoIme, lozinka, jmbg, ime, prezime, datumRodj, adresa, email, telefon, alergije);
         }
 
         public static void ObrisiPacijenta(String idPacijenta)
