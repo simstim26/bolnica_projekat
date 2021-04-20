@@ -44,6 +44,10 @@ namespace Bolnica_aplikacija.LekarStudent
                 + SpecijalizacijaKontroler.nadjiSpecijalizacijuPoId(KorisnikKontroler.getLekar().idSpecijalizacije);
             txtDatum.Text = DateTime.Now.ToString("dd.MM.yyyy.");
 
+            lblRJmbg.Content = PacijentKontroler.getPacijent().jmbg;
+            lblRImePrezime.Content = PacijentKontroler.getPacijent().ime + " " + PacijentKontroler.getPacijent().prezime;
+            lblRDatumR.Content = PacijentKontroler.getPacijent().datumRodjenja.ToString("dd.MM.yyyy");
+
             dataGridLekovi.ItemsSource = LekKontroler.ucitajSve();
 
         }

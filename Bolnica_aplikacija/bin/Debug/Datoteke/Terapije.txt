@@ -28,5 +28,15 @@
     "datumPocetka": "2021-04-19T00:00:00",
     "trajanje": 2000,
     "nacinUpotrebe": "Rektalno, asdfa"
+  },
+  {
+    "id": "4",
+    "idLeka": "1",
+    "idPacijenta": "1",
+    "idBolesti": "4",
+    "idTermina": "9",
+    "datumPocetka": "2021-04-20T14:52:27.8050074+02:00",
+    "trajanje": 10,
+    "nacinUpotrebe": "Rektalno uzimati antidepresiv uvece"
   }
 ]
