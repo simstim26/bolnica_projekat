@@ -102,6 +102,7 @@
     <Compile Include="Kontroler\KorisnikKontroler.cs" />
     <Compile Include="Kontroler\LekarKontroler.cs" />
     <Compile Include="Kontroler\LekKontroler.cs" />
+    <Compile Include="Kontroler\NotifikacijaKontroler.cs" />
     <Compile Include="Kontroler\PacijentKontroler.cs" />
     <Compile Include="Kontroler\ProstorijaKontroler.cs" />
     <Compile Include="Kontroler\ProstorijaZauzetoKontroler.cs" />
@@ -126,6 +127,9 @@
       <DependentUpon>UvidUTerapije.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\Alergija.cs" />
+    <Compile Include="PacijentStudent\NotifikacijaProzor.xaml.cs">
+      <DependentUpon>NotifikacijaProzor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PacijentStudent\ProzorPacijent.xaml.cs">
       <DependentUpon>ProzorPacijent.xaml</DependentUpon>
     </Compile>
@@ -287,6 +291,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PacijentStudent\IzmenaTerminaPacijent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PacijentStudent\NotifikacijaProzor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
