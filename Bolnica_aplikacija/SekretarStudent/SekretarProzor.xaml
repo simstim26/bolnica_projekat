@@ -75,7 +75,7 @@
             </Button>
             <Button x:Name="odjavaButton" Content="ODJAVI SE" HorizontalAlignment="Left" Margin="903,-107,-228,0" VerticalAlignment="Top" Width="141" Height="55" RenderTransformOrigin="0.624,0" FontSize="22" FontWeight="Bold" Click="odjavaButton_Click"/>
         </Grid>
-        <Grid x:Name="PacijentGrid" HorizontalAlignment="Left" Height="730" Margin="0,18,0,0" VerticalAlignment="Top" Width="1346">
+        <Grid x:Name="PacijentGrid" HorizontalAlignment="Left" Height="730" Margin="0,18,0,0" VerticalAlignment="Top" Width="1346" d:IsHidden="True">
             <Grid.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF83C8F7" Offset="0"/>
@@ -183,7 +183,7 @@
             </Image>
             <Button x:Name="___btnDodajRed_" HorizontalAlignment="Left" Margin="1012,453,0,0" VerticalAlignment="Top" Width="19" Height="18" Click="___btnDodajRed__Click" Background="{x:Null}" BorderBrush="{x:Null}" Content="" IsEnabled="False" />
         </Grid>
-        <Grid x:Name="TerminiGrid" HorizontalAlignment="Left" Height="730" Margin="0,18,0,0" VerticalAlignment="Top" Width="1346" d:IsHidden="True">
+        <Grid x:Name="TerminiGrid" HorizontalAlignment="Left" Height="730" Margin="0,18,0,0" VerticalAlignment="Top" Width="1346">
             <Grid.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF83C8F7" Offset="0"/>
@@ -220,7 +220,7 @@
                     </LinearGradientBrush>
                 </GridSplitter.Background>
             </GridSplitter>
-            <Button Content="POVRATAK" HorizontalAlignment="Left" Height="25" Margin="110,17,0,0" VerticalAlignment="Top" Width="80" Click="ButtonPovratak_Click" BorderThickness="0" Background="{x:Null}"/>
+            <Button Content="POVRATAK" HorizontalAlignment="Left" Height="25" Margin="92,17,0,0" VerticalAlignment="Top" Width="114" Click="ButtonPovratak_Click" BorderThickness="0" Background="{x:Null}"/>
             <DataGrid x:Name="TabelaPacijentiTermini" HorizontalAlignment="Left" Height="200" Margin="346,0,0,513" VerticalAlignment="Bottom" Width="996" FontSize="24" HeadersVisibility="All" AutoGenerateColumns="False" CanUserAddRows="false" SelectionChanged="TabelaPacijenti1_SelectionChanged" Background="#FFDDD3F0">
                 <DataGrid.Resources>
                     <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" 
@@ -232,11 +232,19 @@
                     <DataGridTextColumn x:Name="kolonaPrezime1" Binding="{Binding prezime}" IsReadOnly="True" Header="PREZIME" Width="347" CanUserResize="False" Foreground="Black" FontSize="24"/>
                 </DataGrid.Columns>
             </DataGrid>
-            <DataGrid x:Name="TabelaTerminiPacijenta" HorizontalAlignment="left" Height="222" Margin="346,0,0,286" VerticalAlignment="Bottom" Width="996" FontSize="24" HeadersVisibility="All" AutoGenerateColumns="False" CanUserAddRows="false" Background="#FFDDD3F0">
+            <DataGrid x:Name="TabelaTerminiPacijenta" HorizontalAlignment="left" Height="202" Margin="346,0,0,306" VerticalAlignment="Bottom" Width="996" FontSize="24" HeadersVisibility="All" AutoGenerateColumns="False" CanUserAddRows="false" Background="#FFDDD3F0" RenderTransformOrigin="0.5,0.5" SelectionChanged="TabelaTerminiPacijenta_SelectionChanged">
                 <DataGrid.Resources>
                     <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" 
                    Color="#FF9D6EEE"/>
                 </DataGrid.Resources>
+                <DataGrid.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleX="-0.384"/>
+                        <RotateTransform/>
+                        <TranslateTransform X="-0.743"/>
+                    </TransformGroup>
+                </DataGrid.RenderTransform>
                 <DataGrid.Columns>
                     <DataGridTextColumn x:Name="kolonaDatum" Binding="{Binding datum}" IsReadOnly="True" Header="Datum održavanja" Width="216" CanUserResize="False" Foreground="Black" FontSize="24"/>
                     <DataGridTextColumn x:Name="kolonaSatnica" Binding="{Binding satnica}" IsReadOnly="True" Header="Satnica" Width="100" CanUserResize="False" Foreground="Black" FontSize="24" />
@@ -260,8 +268,8 @@
             </DataGrid>
             <Label x:Name="slobodniTerminiLabel" Content="SLOBODNI TERMINI:" HorizontalAlignment="Left" Margin="346,449,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold" IsEnabled="False" Height="31" Width="212" Visibility="Hidden"/>
             <Label x:Name="lblPacijent" Content="" HorizontalAlignment="Left" Margin="558,449,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold" IsEnabled="False" Height="31" Width="334" Visibility="Hidden"/>
-            <Label x:Name="lblUpozorenje" Content="* Nije moguće otkazati termin za manje od 24h" HorizontalAlignment="Left" Margin="346,456,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold" IsEnabled="False" Height="31" Width="502" Foreground="#FFE00000" Visibility="Hidden"/>
-            <Button x:Name="potvrdiZakazivanjeTerminaButton" Content="POTVRDI" HorizontalAlignment="Left" Margin="346,700,0,0" VerticalAlignment="Top" Width="74" Click="potvrdiZakazivanjeTerminaButton_Click" Visibility="Hidden" IsEnabled="False"/>
+            <Label x:Name="lblUpozorenje" Content="* Nije moguće otkazati termin za manje od 24h" HorizontalAlignment="Left" Margin="346,424,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold" IsEnabled="False" Height="39" Width="502" Foreground="#FFE00000" Visibility="Hidden"/>
+            <Button x:Name="potvrdiZakazivanjeTerminaButton" Content="POTVRDI" HorizontalAlignment="Left" Margin="346,700,0,-2" VerticalAlignment="Top" Width="104" Click="potvrdiZakazivanjeTerminaButton_Click" IsEnabled="False" Visibility="Hidden"/>
             <Grid x:Name="PotvrdaGrid" HorizontalAlignment="Left" Height="720" Margin="346,10,0,0" VerticalAlignment="Top" Width="1000" Opacity="0.85" ScrollViewer.VerticalScrollBarVisibility="Disabled" Visibility="Hidden">
                 <Grid.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -274,7 +282,7 @@
                         <DropShadowEffect BlurRadius="9" Direction="303" Opacity="0.72"/>
                     </Label.Effect>
                 </Label>
-                <Button x:Name="btnPotvrdiIzbor" Content="POTVRDI" HorizontalAlignment="Left" Margin="284,402,0,0" VerticalAlignment="Top" Width="174" Height="59" FontSize="36" Click="btnPotvrdiIzbor_Click">
+                <Button x:Name="btnPotvrdiIzbor" Content="POTVRDI" HorizontalAlignment="Left" Margin="254,402,0,0" VerticalAlignment="Top" Width="204" Height="59" FontSize="36" Click="btnPotvrdiIzbor_Click">
                     <Button.Background>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                             <GradientStop Color="#FFCFA0FF" Offset="0"/>
@@ -282,7 +290,7 @@
                         </LinearGradientBrush>
                     </Button.Background>
                 </Button>
-                <Button x:Name="btnOdustaniOdIzborra" Content="ODUSTANI" HorizontalAlignment="Left" Margin="519,402,0,0" VerticalAlignment="Top" Width="198" Height="59" FontSize="36" Click="btnOdustaniOdIzborra_Click">
+                <Button x:Name="btnOdustaniOdIzborra" Content="ODUSTANI" HorizontalAlignment="Left" Margin="519,402,0,0" VerticalAlignment="Top" Width="212" Height="59" FontSize="36" Click="btnOdustaniOdIzborra_Click">
                     <Button.Background>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                             <GradientStop Color="#FFCFA0FF" Offset="0"/>
