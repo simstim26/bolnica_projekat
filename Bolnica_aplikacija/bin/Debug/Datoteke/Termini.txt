@@ -1,8 +1,8 @@
 [
   {
     "tip": 1,
-    "datum": "2021-04-24T00:00:00",
-    "satnica": "2021-03-28T12:00:00",
+    "datum": "2021-04-21T00:00:00",
+    "satnica": "2021-03-28T01:16:00",
     "jeZavrsen": false,
     "idTermina": "1",
     "idProstorije": "10",
@@ -128,5 +128,18 @@
     "idTerapije": null,
     "idBolesti": "5",
     "izvestaj": "ggggsadfaadsfah"
+  },
+  {
+    "tip": 1,
+    "datum": "2021-04-21T00:00:00",
+    "satnica": "2021-03-28T01:24:00",
+    "jeZavrsen": true,
+    "idTermina": "11",
+    "idProstorije": "15",
+    "idPacijenta": "1",
+    "idLekara": "1",
+    "idTerapije": "7",
+    "idBolesti": "1",
+    "izvestaj": "sada"
   }
 ]

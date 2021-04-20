@@ -13,7 +13,7 @@
     "id": "2",
     "idLeka": "3",
     "idPacijenta": "1",
-    "idBolesti": "2",
+    "idBolesti": "10",
     "idTermina": "1",
     "datumPocetka": "2021-04-20T14:35:12.1211085+02:00",
     "trajanje": 14,
@@ -61,11 +61,11 @@
   },
   {
     "id": "7",
-    "idLeka": "3",
-    "idPacijenta": "2",
-    "idBolesti": "7",
+    "idLeka": "1",
+    "idPacijenta": "3",
+    "idBolesti": "1",
     "idTermina": "11",
-    "datumPocetka": "2021-04-21T00:53:08.5763666+02:00",
+    "datumPocetka": "2021-04-21T01:24:27.613456+02:00",
     "trajanje": 3,
     "nacinUpotrebe": "Sublingvalno"
   }

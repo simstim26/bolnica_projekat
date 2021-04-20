@@ -1,43 +1,7 @@
 [
   {
     "id": "1",
-    "naziv": "dijagnoza1",
-    "idTerapije": "1",
-    "idPacijenta": "1"
-  },
-  {
-    "id": "2",
-    "naziv": "afsdfa",
-    "idTerapije": "2",
-    "idPacijenta": "1"
-  },
-  {
-    "id": "3",
-    "naziv": "dijagnozic",
-    "idTerapije": "3",
-    "idPacijenta": "1"
-  },
-  {
-    "id": "4",
-    "naziv": "ceca.rs",
-    "idTerapije": "4",
-    "idPacijenta": "1"
-  },
-  {
-    "id": "5",
-    "naziv": "sdf",
-    "idTerapije": "6",
-    "idPacijenta": "1"
-  },
-  {
-    "id": "6",
-    "naziv": "neka dijagnoza",
-    "idTerapije": "7",
-    "idPacijenta": "1"
-  },
-  {
-    "id": "7",
-    "naziv": "dgadfad",
+    "naziv": "a",
     "idTerapije": "7",
     "idPacijenta": "1"
   }
