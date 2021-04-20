@@ -21,14 +21,15 @@ namespace Bolnica_aplikacija.PacijentStudent
     public partial class NotifikacijaProzor : Window
     {
         private String idNotifikacije;
+        private String idKorisnika;
 
-        public NotifikacijaProzor(String idNotifikacije)
+        public NotifikacijaProzor(String idKorisnika)
         {
             InitializeComponent();
 
-            this.idNotifikacije = idNotifikacije;
+            //this.idNotifikacije = idNotifikacije;
 
-            popuniNotifikaciju();
+            //popuniNotifikaciju();
 
         }
 

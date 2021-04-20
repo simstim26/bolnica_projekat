@@ -73,7 +73,7 @@ namespace Bolnica_aplikacija.Servis
                 {
                     if(notifikacijaDatum.Equals(trenutanDatum))
                     {
-                        //nesto
+                        return true;
                     }
                 }
 
@@ -81,6 +81,23 @@ namespace Bolnica_aplikacija.Servis
 
 
             return false;
+        }
+
+        public List<Notifikacija> getNoveNotifikacijeKorisnika(String idKorisnika)
+        {
+            List<Notifikacija> notifikacijeKorisnika = new List<Notifikacija>();
+
+            foreach(Notifikacija notifikacija in prikazPacijentovihNotifikacija())
+            {
+                if (!notifikacija.jeProcitana)
+                {
+                    notifikacijeKorisnika.Add(notifikacija);
+                }
+                
+            }
+
+            return notifikacijeKorisnika;
+
         }
 
     }

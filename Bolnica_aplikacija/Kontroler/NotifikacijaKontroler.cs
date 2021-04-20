@@ -26,5 +26,17 @@ namespace Bolnica_aplikacija.Kontroler
         {
             return notifikacijaServis.getNotifikacija(idNotifikacije);
         }
+
+        public static bool proveriVreme(String trenutnoVreme, String trenutanDatum)
+        {
+            return notifikacijaServis.proveriVreme(trenutnoVreme, trenutanDatum);
+        }
+
+        public static List<Notifikacija> getNoveNotifikacijeKorisnika(String idKorisnika)
+        {
+            return notifikacijaServis.getNoveNotifikacijeKorisnika(idKorisnika);
+        }
+
+
     }
 }

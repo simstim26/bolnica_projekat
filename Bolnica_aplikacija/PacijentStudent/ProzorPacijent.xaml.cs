@@ -206,8 +206,17 @@ namespace Bolnica_aplikacija.PacijentStudent
 
         void timer_Tick(Object sender, EventArgs e)
         {
-            
 
+            DateTime trenutnoVremeiDatum = DateTime.Now.AddHours(1);
+            String trenutnoVreme = trenutnoVremeiDatum.ToString("HH:mm");
+            String trenutanDatum = trenutnoVremeiDatum.ToString("dd.MM.yyyy.");
+
+            bool proveraDatumaIVremena = NotifikacijaKontroler.proveriVreme(trenutnoVreme, trenutanDatum);
+
+            if(proveraDatumaIVremena)
+            {
+                Console.WriteLine("NESTO JE USPELO");
+            }
 
         }
 
