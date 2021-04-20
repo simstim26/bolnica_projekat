@@ -22,6 +22,8 @@ namespace Bolnica_aplikacija.LekarStudent
     /// </summary>
     public partial class TerapijeIzdavanjeRecpeta : UserControl
     {
+        private static Grid gridLekovi;
+        public static bool aktivan;
         public TerapijeIzdavanjeRecpeta()
         {
             InitializeComponent();
@@ -36,7 +38,14 @@ namespace Bolnica_aplikacija.LekarStudent
             txtTrajanje.Text = TerapijaKontroler.nadjiTerapijuPoId(PacijentKontroler.getBolestTerapija().idTerapije).trajanje.ToString();
             txtDatum.Text = DateTime.Now.ToString("dd.MM.yyyy.");
             dataGridLekovi.ItemsSource = LekKontroler.ucitajSveSemTrenutnogNaTerapiji(PacijentKontroler.getBolestTerapija().idLeka);
+            gridLekovi = gridDodavanjeLeka;
+            aktivan = true;
+            UvidUTerapije.aktivan = false;
+        }
 
+        public static Grid getGridLekovi()
+        {
+            return gridLekovi;
         }
 
         private void btnDodavanjeLeka_Click(object sender, RoutedEventArgs e)
@@ -76,6 +85,11 @@ namespace Bolnica_aplikacija.LekarStudent
             }
 
             Content = new UvidUTerapije();
+        }
+
+        private void btnPonistiOdaberLeka_Click(object sender, RoutedEventArgs e)
+        {
+            gridDodavanjeLeka.Visibility = Visibility.Hidden;
         }
     }
 }

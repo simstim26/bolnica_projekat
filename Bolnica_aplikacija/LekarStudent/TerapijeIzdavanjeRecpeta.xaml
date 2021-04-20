@@ -45,7 +45,7 @@
                 </DataGrid.Columns>
             </DataGrid>
             <Button x:Name="btnPotvdiOdabirLeka" Content="D" HorizontalAlignment="Left" Margin="45,588,0,0" VerticalAlignment="Top" Width="78" RenderTransformOrigin="-0.213,0.3" Height="38" Click="btnPotvdiOdabirLeka_Click"/>
-            <Button x:Name="btnPonistiOdaberLeka" Content="Button" HorizontalAlignment="Left" Margin="299,588,0,0" VerticalAlignment="Top" Width="78" RenderTransformOrigin="-0.213,0.3" Height="38"/>
+            <Button x:Name="btnPonistiOdaberLeka" Content="Button" HorizontalAlignment="Left" Margin="299,588,0,0" VerticalAlignment="Top" Width="78" RenderTransformOrigin="-0.213,0.3" Height="38" Click="btnPonistiOdaberLeka_Click"/>
 
         </Grid>
     </Grid>

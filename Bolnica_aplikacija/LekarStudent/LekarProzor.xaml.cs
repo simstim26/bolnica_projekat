@@ -150,6 +150,18 @@ namespace Bolnica_aplikacija
                 LekarProzor.getX().Content = new PacijentInfo();
                 UvidUTerapije.aktivan = false;
             }
+            else if (TerapijeIzdavanjeRecpeta.aktivan)
+            {
+                if(TerapijeIzdavanjeRecpeta.getGridLekovi().Visibility == Visibility.Visible)
+                {
+                    TerapijeIzdavanjeRecpeta.getGridLekovi().Visibility = Visibility.Hidden;
+                }
+                else
+                {
+                    LekarProzor.getX().Content = new UvidUTerapije();
+                    TerapijeIzdavanjeRecpeta.aktivan = false;
+                }
+            }
         }
 
         private void btnPretraga_Click(object sender, RoutedEventArgs e)
