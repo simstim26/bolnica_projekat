@@ -128,5 +128,18 @@
     "idTerapije": "4",
     "idBolesti": "4",
     "izvestaj": "Pacijent je previse gledao sajt ceca.rs i sad ima poremecaje."
+  },
+  {
+    "tip": 1,
+    "datum": "2021-04-20T00:00:00",
+    "satnica": "2021-03-28T23:42:00",
+    "jeZavrsen": true,
+    "idTermina": "10",
+    "idProstorije": "15",
+    "idPacijenta": "1",
+    "idLekara": "1",
+    "idTerapije": null,
+    "idBolesti": "5",
+    "izvestaj": "dfa"
   }
 ]

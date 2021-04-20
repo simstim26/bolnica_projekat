@@ -56,7 +56,7 @@ namespace Bolnica_aplikacija.Servis
         {
             foreach(Terapija t in terapijaRepozitorijum.ucitajSve())
             {
-                if (t.idTermina.Equals(idTermina))
+                if (t.idTermina != null && t.idTermina.Equals(idTermina))
                 {
                     return t;
                 }
