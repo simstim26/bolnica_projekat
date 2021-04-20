@@ -884,6 +884,11 @@ namespace Bolnica_aplikacija
             potvrdiZakazivanjeTerminaButton.Visibility = Visibility.Hidden;
             lblUpozorenje.Visibility = Visibility.Hidden;
         }
+
+        private void lekariButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }  
 }
 

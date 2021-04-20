@@ -9,7 +9,7 @@
         Title="Sekretar" Height="768" Width="1366" Visibility="Visible" ResizeMode="CanMinimize"
         >
     <Grid x:Name="Grid" HorizontalAlignment="Left" Height="748" Margin="-4,-17,0,0" VerticalAlignment="Top" Width="1356">
-        <Grid x:Name="PocetniEkranGrid" Margin="10,18,10,0">
+        <Grid x:Name="PocetniEkranGrid" Margin="10,18,10,0" d:IsHidden="True">
             <Grid.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FFABE8AB" Offset="0"/>
@@ -116,7 +116,7 @@
                 </Button.Background>
 
             </Button>
-            <Button Content="POVRATAK" HorizontalAlignment="Left" Height="25" Margin="110,17,0,0" VerticalAlignment="Top" Width="80" Click="ButtonPovratak_Click" BorderThickness="0">
+            <Button Content="POVRATAK" HorizontalAlignment="Left" Height="25" Margin="94,17,0,0" VerticalAlignment="Top" Width="108" Click="ButtonPovratak_Click" BorderThickness="0">
                 <Button.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                         <GradientStop Color="#FFEA8A48" Offset="0"/>
@@ -160,7 +160,7 @@
                     <TextBox x:Name="textDatumRodj" HorizontalAlignment="Left" Height="41" Margin="82,158,-58,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="260" Background="#FFB2D4EC" FontSize="18" IsEnabled="False" TextChanged="textDatumRodj_TextChanged"/>
                 </Grid>
                 <Button x:Name="buttonPotvrdiDodavanje" Content="POTVRDI" Grid.Column="1" HorizontalAlignment="Left" Margin="97,352,0,0" VerticalAlignment="Top" Width="98" Height="33" Click="buttonPotvrdiDodavanje_Click" Visibility="Hidden"/>
-                <Button x:Name="buttonOdustaniDodavanje" Content="ODUSTANI" Grid.Column="1" HorizontalAlignment="Left" Margin="257,352,0,0" VerticalAlignment="Top" Width="98" Height="33" Click="buttonOdustani_Click" Visibility="Hidden"/>
+                <Button x:Name="buttonOdustaniDodavanje" Content="ODUSTANI" Grid.Column="1" HorizontalAlignment="Left" Margin="257,352,0,0" VerticalAlignment="Top" Width="103" Height="33" Click="buttonOdustani_Click" Visibility="Hidden"/>
                 <Grid x:Name="DodatnaPoljaGrid" Grid.Column="1" Margin="363,-37,96,322">
                     <Label x:Name="labelaKorisnickoIme" Content="KORISNIČKO IME:" HorizontalAlignment="Left" Height="46" Margin="58,5,0,0" VerticalAlignment="Top" Width="166" FontSize="20"/>
                     <TextBox x:Name="textKorisnickoIme" HorizontalAlignment="Left" Height="41" Margin="237,10,-64,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="259" Background="#FFB2D4EC" FontSize="18" IsEnabled="False" TextChanged="textKorisnickoIme_TextChanged"/>
@@ -182,7 +182,7 @@
             </Image>
             <Button x:Name="___btnDodajRed_" HorizontalAlignment="Left" Margin="1012,453,0,0" VerticalAlignment="Top" Width="19" Height="18" Click="___btnDodajRed__Click" Background="{x:Null}" BorderBrush="{x:Null}" Content="" IsEnabled="False" />
         </Grid>
-        <Grid x:Name="TerminiGrid" HorizontalAlignment="Left" Height="730" Margin="0,18,0,0" VerticalAlignment="Top" Width="1346" d:IsHidden="True">
+        <Grid x:Name="TerminiGrid" HorizontalAlignment="Left" Height="730" Margin="0,18,0,0" VerticalAlignment="Top" Width="1346">
             <Grid.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF83C8F7" Offset="0"/>
