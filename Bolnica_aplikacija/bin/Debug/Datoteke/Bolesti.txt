@@ -2,7 +2,13 @@
   {
     "id": "1",
     "naziv": "a",
-    "idTerapije": "7",
+    "idTerapije": "1",
+    "idPacijenta": "1"
+  },
+  {
+    "id": "2",
+    "naziv": "a1",
+    "idTerapije": "2",
     "idPacijenta": "1"
   }
 ]

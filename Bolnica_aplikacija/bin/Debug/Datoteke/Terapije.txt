@@ -11,62 +11,12 @@
   },
   {
     "id": "2",
-    "idLeka": "3",
-    "idPacijenta": "1",
-    "idBolesti": "10",
-    "idTermina": "1",
-    "datumPocetka": "2021-04-20T14:35:12.1211085+02:00",
-    "trajanje": 14,
-    "nacinUpotrebe": "Sublingvalno, bla bla truc dnevno"
-  },
-  {
-    "id": "3",
-    "idLeka": "2",
-    "idPacijenta": "1",
-    "idBolesti": "3",
-    "idTermina": "7",
-    "datumPocetka": "2021-04-21T00:43:43.3230485+02:00",
-    "trajanje": 2000,
-    "nacinUpotrebe": "Rektalno"
-  },
-  {
-    "id": "4",
-    "idLeka": "1",
-    "idPacijenta": "1",
-    "idBolesti": "4",
-    "idTermina": "9",
-    "datumPocetka": "2021-04-20T18:31:04.6518103+02:00",
-    "trajanje": 100,
-    "nacinUpotrebe": "Rektalno uzimati antidepresiv uvece"
-  },
-  {
-    "id": "5",
-    "idLeka": "3",
-    "idPacijenta": "1",
-    "idBolesti": "4",
-    "idTermina": null,
-    "datumPocetka": "2021-04-20T18:31:41.5800882+02:00",
-    "trajanje": 10,
-    "nacinUpotrebe": "Sublingvalno"
-  },
-  {
-    "id": "6",
-    "idLeka": "3",
-    "idPacijenta": "1",
-    "idBolesti": "5",
-    "idTermina": "10",
-    "datumPocetka": "2021-04-21T00:43:25.2993021+02:00",
-    "trajanje": 0,
-    "nacinUpotrebe": "Sublingvalno"
-  },
-  {
-    "id": "7",
     "idLeka": "1",
     "idPacijenta": "3",
-    "idBolesti": "1",
-    "idTermina": "11",
-    "datumPocetka": "2021-04-21T01:24:27.613456+02:00",
-    "trajanje": 3,
+    "idBolesti": "2",
+    "idTermina": "1",
+    "datumPocetka": "2021-04-21T01:27:05.9162239+02:00",
+    "trajanje": 23,
     "nacinUpotrebe": "Sublingvalno"
   }
 ]

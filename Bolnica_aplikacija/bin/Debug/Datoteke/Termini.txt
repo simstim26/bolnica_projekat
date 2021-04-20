@@ -2,15 +2,15 @@
   {
     "tip": 1,
     "datum": "2021-04-21T00:00:00",
-    "satnica": "2021-03-28T01:16:00",
-    "jeZavrsen": false,
+    "satnica": "2021-03-28T01:26:00",
+    "jeZavrsen": true,
     "idTermina": "1",
     "idProstorije": "10",
     "idPacijenta": "1",
     "idLekara": "1",
-    "idTerapije": null,
-    "idBolesti": null,
-    "izvestaj": null
+    "idTerapije": "2",
+    "idBolesti": "2",
+    "izvestaj": "izvestaj"
   },
   {
     "tip": 1,
@@ -81,14 +81,14 @@
     "tip": 1,
     "datum": "2021-04-20T00:00:00",
     "satnica": "2021-03-28T14:00:00",
-    "jeZavrsen": true,
+    "jeZavrsen": false,
     "idTermina": "7",
     "idProstorije": "15",
     "idPacijenta": "1",
     "idLekara": "1",
-    "idTerapije": "3",
-    "idBolesti": "3",
-    "izvestaj": "Never gonna give you up, never gonna let you down, tanananaananananananaana"
+    "idTerapije": null,
+    "idBolesti": null,
+    "izvestaj": null
   },
   {
     "tip": 1,
@@ -107,39 +107,26 @@
     "tip": 1,
     "datum": "2021-04-20T00:00:00",
     "satnica": "2021-03-28T16:18:00",
-    "jeZavrsen": true,
+    "jeZavrsen": false,
     "idTermina": "9",
     "idProstorije": "15",
     "idPacijenta": "1",
     "idLekara": "1",
-    "idTerapije": "4",
-    "idBolesti": "4",
-    "izvestaj": "Pacijent je previse gledao sajt ceca.rs i sad ima poremecaje."
+    "idTerapije": null,
+    "idBolesti": null,
+    "izvestaj": null
   },
   {
     "tip": 1,
     "datum": "2021-04-20T00:00:00",
     "satnica": "2021-03-28T23:42:00",
-    "jeZavrsen": true,
+    "jeZavrsen": false,
     "idTermina": "10",
     "idProstorije": "15",
     "idPacijenta": "1",
     "idLekara": "1",
     "idTerapije": null,
-    "idBolesti": "5",
-    "izvestaj": "ggggsadfaadsfah"
-  },
-  {
-    "tip": 1,
-    "datum": "2021-04-21T00:00:00",
-    "satnica": "2021-03-28T01:24:00",
-    "jeZavrsen": true,
-    "idTermina": "11",
-    "idProstorije": "15",
-    "idPacijenta": "1",
-    "idLekara": "1",
-    "idTerapije": "7",
-    "idBolesti": "1",
-    "izvestaj": "sada"
+    "idBolesti": null,
+    "izvestaj": null
   }
 ]
