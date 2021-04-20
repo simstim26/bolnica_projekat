@@ -57,7 +57,8 @@ namespace Bolnica_aplikacija.Kontroler
 
         public static String nadjiIdLekaraZaTermin(String idTermina)
         {
-           return terminServis.nadjiIdLekaraZaTermin(idTermina);
+            return terminServis.nadjiIdLekaraZaTermin(idTermina);
+        }
 
         public static List<Termin> ucitajSve()
         {

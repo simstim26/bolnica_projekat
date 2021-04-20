@@ -71,7 +71,7 @@
     "jeZavrsen": false,
     "idTermina": "6",
     "idProstorije": "13",
-    "idPacijenta": "2",
+    "idPacijenta": "",
     "idLekara": "2",
     "idTerapije": null,
     "idBolesti": null,

@@ -197,6 +197,7 @@ namespace Bolnica_aplikacija.Servis
                 }
             }
             return idNadjenogLekara;
+        }
 
         public List<Termin> ucitajSve()
         {
