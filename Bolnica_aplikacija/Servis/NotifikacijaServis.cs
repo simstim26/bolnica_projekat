@@ -1,4 +1,5 @@
-﻿using Bolnica_aplikacija.Repozitorijum;
+﻿using Bolnica_aplikacija.Kontroler;
+using Bolnica_aplikacija.Repozitorijum;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,10 @@ namespace Bolnica_aplikacija.Servis
     {
         private NotifikacijaRepozitorijum notifikacijaRepozitorijum = new NotifikacijaRepozitorijum();
         private PacijentServis pacijentServis = new PacijentServis();
+        private PacijentRepozitorijum pacijentRepozitorijum = new PacijentRepozitorijum();
+        private LekarRepozitorijum lekarRepozitorijum = new LekarRepozitorijum();
+
+        public object PacijentSer { get; private set; }
 
         public List<Notifikacija> prikazPacijentovihNotifikacija()
         {
@@ -120,6 +125,42 @@ namespace Bolnica_aplikacija.Servis
 
             azurirajNotifikaciju(procitanaNotifikacija);
 
+        }
+
+        public void napraviNotifikaciju(String nazivNotifikacije, String porukaNotifikacije, String idKorisnika, String tipKorisnika)
+        {
+            List<Notifikacija> notifikacije = notifikacijaRepozitorijum.ucitajSve();
+            List<Pacijent> pacijenti = pacijentRepozitorijum.ucitajSve();
+            List<Lekar> lekari = lekarRepozitorijum.ucitajSve();
+
+            Notifikacija novaNotifikacija = new Notifikacija((notifikacije.Count() + 1).ToString(), nazivNotifikacije, DateTime.Now, porukaNotifikacije, idKorisnika, DateTime.Now, false);
+           
+
+            if (tipKorisnika.Equals("pacijent"))
+            {
+                foreach(Pacijent pacijent in pacijenti)
+                {
+                    if (pacijent.id.Equals(idKorisnika))
+                    {
+                      
+                        pacijent.Notifikacija.Add(novaNotifikacija);
+                        notifikacijaRepozitorijum.dodajNotifikaciju(novaNotifikacija);
+                        
+                    }
+                }              
+            }
+            else //lekar
+            {
+                foreach (Lekar lekar in lekari)
+                {
+                    if (lekar.id.Equals(idKorisnika))
+                    {
+                        lekar.notifikacije.Add(novaNotifikacija);
+                        notifikacijaRepozitorijum.dodajNotifikaciju(novaNotifikacija);
+                    }
+                }
+
+            }
         }
     }
 }

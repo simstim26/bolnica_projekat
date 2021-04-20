@@ -175,5 +175,20 @@ namespace Bolnica_aplikacija.Servis
         {
             return termin;
         }
+
+        public String nadjiIdLekaraZaTermin(String idTermina)
+        {
+            String idNadjenogLekara = "";
+            foreach (Termin termin in terminRepozitorijum.ucitajSve())
+            {
+                if (idTermina.Equals(termin.idTermina))
+                {
+                    idNadjenogLekara = LekarKontroler.nadjiIdLekara(termin.idLekara);
+
+                    break;
+                }
+            }
+            return idNadjenogLekara;
+        }
     }
 }

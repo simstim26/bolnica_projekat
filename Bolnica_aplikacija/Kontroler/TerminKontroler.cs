@@ -15,7 +15,7 @@ namespace Bolnica_aplikacija.Kontroler
         {
             terminServis.nadjiPacijentaZaTermin(idTermina);
         }
-
+     
         public static void dodavanjeIzvestajaZaTermin(String nazivBolesti,String izvestajSaTermina)
         {
             terminServis.dodavanjeIzvestajaZaTermin(nazivBolesti, izvestajSaTermina);
@@ -48,6 +48,10 @@ namespace Bolnica_aplikacija.Kontroler
         public static Termin getTermin()
         {
             return terminServis.getTermin();
+        }
+        public static String nadjiIdLekaraZaTermin(String idTermina)
+        {
+           return terminServis.nadjiIdLekaraZaTermin(idTermina);
         }
     }
 }

@@ -27,5 +27,10 @@ namespace Bolnica_aplikacija.Kontroler
             return lekarServis.pretraziZauzeteTermineZaLekara(lekar, prvi, drugi);
         }
 
+        public static String nadjiIdLekara(String idLekara)
+        {
+           return lekarServis.nadjiIdLekara(idLekara);
+        }
+
     }
 }

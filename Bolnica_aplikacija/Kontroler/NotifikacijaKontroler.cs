@@ -41,5 +41,10 @@ namespace Bolnica_aplikacija.Kontroler
         {
             notifikacijaServis.procitajNotifikaciju(idNotifikacije);
         }
+
+        public static void napraviNotifikaciju(String nazivNotifikacije, String porukaNotifikacije, String idKorisnika, String tipKorisnika)
+        {
+            notifikacijaServis.napraviNotifikaciju(nazivNotifikacije, porukaNotifikacije, idKorisnika, tipKorisnika);
+        }
     }
 }

@@ -712,7 +712,7 @@ namespace Bolnica_aplikacija
                     {
                         if (termin.napomena.Equals("Pregled"))
                         {
-                            slobodniTermini.Add(termin);
+                            slobodniTermini.Add(termin);                          
                         }
                     }
                 }
@@ -781,6 +781,9 @@ namespace Bolnica_aplikacija
                 PacijentKontroler.nadjiPacijenta(idPacijenta);
                 String idSelektovanog = izabraniTermin.id;
                 PacijentKontroler.zakaziTerminPacijentu(idSelektovanog);
+                NotifikacijaKontroler.napraviNotifikaciju("Zakazivanje termina (Pacijent)", "Zakazan je teremin (Pacijent)", idPacijenta, "pacijent");
+                NotifikacijaKontroler.napraviNotifikaciju("Zakazivanje termina (Lekar)", "Zakazan je teremin (Lekar)", TerminKontroler.nadjiIdLekaraZaTermin(izabraniTermin.id), "lekar");
+
 
                 ucitajTerminePacijenta();
                 TabelaPacijentiTermini.Items.Refresh();
@@ -805,6 +808,8 @@ namespace Bolnica_aplikacija
                     PacijentTermin noviTermin = (PacijentTermin)TabelaSlobodnihTermina.SelectedItem;
                     TerminKontroler.sacuvajTermin(izabraniTermin.id);
                     PacijentKontroler.azurirajTerminPacijentu(izabraniTermin.id, noviTermin.id);
+                    NotifikacijaKontroler.napraviNotifikaciju("Izmena termina (Pacijent)", "Izmenjen je teremin (Pacijent)", idPacijenta, "pacijent");
+                    NotifikacijaKontroler.napraviNotifikaciju("Izmena termina (Lekar)", "Izmenjen je teremin (Lekar)", TerminKontroler.nadjiIdLekaraZaTermin(izabraniTermin.id), "lekar");
 
                     ucitajTerminePacijenta();
                     TabelaPacijentiTermini.Items.Refresh();
@@ -820,6 +825,8 @@ namespace Bolnica_aplikacija
             {
 
                 PacijentKontroler.otkaziTerminPacijenta(izabraniTermin.id);
+                NotifikacijaKontroler.napraviNotifikaciju("Otkazivanje termina (Pacijent)", "Otkazan je teremin (Pacijent)", idPacijenta, "pacijent");
+                NotifikacijaKontroler.napraviNotifikaciju("Otkazivanje termina (Lekar)", "Otkazan je teremin (Lekar)", TerminKontroler.nadjiIdLekaraZaTermin(izabraniTermin.id), "lekar");
 
                 ucitajTerminePacijenta();
                 TabelaSlobodnihTermina.ItemsSource = PacijentKontroler.ucitajSlobodneTermine(1, true);

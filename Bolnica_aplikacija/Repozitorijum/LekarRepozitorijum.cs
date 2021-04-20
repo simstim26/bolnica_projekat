@@ -26,5 +26,15 @@ namespace Bolnica_aplikacija.Repozitorijum
 
             return sviLekari;
         }
+
+        public void upisi(List<Lekar> sviLekari)
+        {
+            var formatiranje = new JsonSerializerOptions
+            {
+                WriteIndented = true,
+            };
+            string jsonString = JsonSerializer.Serialize(sviLekari, formatiranje);
+            File.WriteAllText("Datoteke/Lekari.txt", jsonString);
+        }
     }
 }
