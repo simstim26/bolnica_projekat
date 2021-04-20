@@ -55,6 +55,7 @@ namespace Bolnica_aplikacija.LekarStudent
         private void btnPotvrdi_Click(object sender, RoutedEventArgs e)
         {
             TerminKontroler.azuriranjeIzvestajaZaTermin(txtIzvestaj.Text, PacijentKontroler.getBolestTerapija().idTermina);
+            Content = new IstorijaBolesti();
 
         }
 
@@ -67,7 +68,7 @@ namespace Bolnica_aplikacija.LekarStudent
         {
             this.gridIzmenaTerapije.Visibility = Visibility.Visible;
             LekarProzor.getGlavnaLabela().Content = "Izdavanje recepta";
-           txtDijagnoza.Text = PacijentKontroler.getBolestTerapija().nazivBolesti;
+            txtDijagnoza.Text = PacijentKontroler.getBolestTerapija().nazivBolesti;
             txtNazivLeka.Text = PacijentKontroler.getBolestTerapija().nazivTerapije;
             Terapija terapija = TerapijaKontroler.nadjiTerapijuPoId(PacijentKontroler.getBolestTerapija().idTerapije);
             txtTrajanje.Text = (terapija.trajanje).ToString();
@@ -107,8 +108,19 @@ namespace Bolnica_aplikacija.LekarStudent
         {
             this.gridIzmenaTerapije.Visibility = Visibility.Hidden;
             LekarProzor.getGlavnaLabela().Content = "Ažuriranje bolesti";
-            TerapijaKontroler.azurirajTerapiju(PacijentKontroler.getBolestTerapija().idTerapije, PacijentKontroler.getBolestTerapija().idLeka,
-                txtNacinUpotrebe.Text, Convert.ToInt32(txtTrajanje.Text), DateTime.Now);
+            if (PacijentKontroler.getBolestTerapija().idTerapije != null)
+            {
+                TerapijaKontroler.azurirajTerapiju(PacijentKontroler.getBolestTerapija().idTerapije, PacijentKontroler.getBolestTerapija().idLeka,
+                    txtNacinUpotrebe.Text, Convert.ToInt32(txtTrajanje.Text), DateTime.Now);
+            }
+            else
+            {
+                String idTerapije = TerapijaKontroler.dodajTerapijuIzRecepta(DateTime.Now, Convert.ToInt32(txtTrajanje.Text), txtNacinUpotrebe.Text,
+                    PacijentKontroler.getBolestTerapija().idLeka, PacijentKontroler.getPacijent().id,
+                    PacijentKontroler.getBolestTerapija().idTermina, PacijentKontroler.getBolestTerapija().idBolesti);
+                TerminKontroler.azuriranjeTerapijeZaTermin(PacijentKontroler.getBolestTerapija().idTermina, idTerapije);
+                BolestKontroler.azurirajTerapijuZaBolest(PacijentKontroler.getBolestTerapija().idBolesti, idTerapije);
+            }
         }
     }
 }

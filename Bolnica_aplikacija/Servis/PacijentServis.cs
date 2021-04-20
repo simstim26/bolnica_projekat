@@ -36,10 +36,28 @@ namespace Bolnica_aplikacija.Servis
             {
                 if (bolest.idPacijenta.Equals(pacijent.id))
                 {
-                    foreach(Terapija terapija in terapijaRepozitorijum.ucitajSve())
+                    if (bolest.idTerapije == null)
                     {
-                        if (terapija.idTermina != null && terapija.idBolesti.Equals(bolest.id))
+                        foreach(Termin termin in terminRepozitorijum.ucitajSve())
                         {
+                            if(termin.idBolesti != null && termin.idBolesti.Equals(bolest.id))
+                            {
+                                BolestTerapija bolestTerapija = new BolestTerapija();
+                                bolestTerapija.idBolesti = bolest.id;
+                                bolestTerapija.nazivBolesti = bolest.naziv;
+                                bolestTerapija.idTermina = termin.idTermina;
+                                bolestTerapija.izvestaj = termin.izvestaj;
+                                istorijaBolesti.Add(bolestTerapija);
+                                break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        foreach (Terapija terapija in terapijaRepozitorijum.ucitajSve())
+                        {
+                            if (terapija.idTermina != null && terapija.idBolesti.Equals(bolest.id))
+                            {
                                 foreach (Termin termin in terminRepozitorijum.ucitajSve())
                                 {
                                     if (termin.idBolesti != null && termin.idBolesti.Equals(terapija.idBolesti))
@@ -65,9 +83,10 @@ namespace Bolnica_aplikacija.Servis
                                         break;
                                     }
                                 }
-                            break;
+                                break;
+                            }
+
                         }
-                       
                     }
                 }
             }

@@ -3,14 +3,14 @@
     "tip": 1,
     "datum": "2021-04-24T00:00:00",
     "satnica": "2021-03-28T12:00:00",
-    "jeZavrsen": true,
+    "jeZavrsen": false,
     "idTermina": "1",
     "idProstorije": "10",
     "idPacijenta": "1",
     "idLekara": "1",
-    "idTerapije": "2",
-    "idBolesti": "2",
-    "izvestaj": "asdfasdfa"
+    "idTerapije": null,
+    "idBolesti": null,
+    "izvestaj": null
   },
   {
     "tip": 1,
@@ -19,7 +19,7 @@
     "jeZavrsen": false,
     "idTermina": "2",
     "idProstorije": "15",
-    "idPacijenta": "",
+    "idPacijenta": "1",
     "idLekara": "1",
     "idTerapije": null,
     "idBolesti": null,
@@ -138,8 +138,8 @@
     "idProstorije": "15",
     "idPacijenta": "1",
     "idLekara": "1",
-    "idTerapije": null,
+    "idTerapije": "6",
     "idBolesti": "5",
-    "izvestaj": "dfa"
+    "izvestaj": "ggggsadfaadsfah"
   }
 ]

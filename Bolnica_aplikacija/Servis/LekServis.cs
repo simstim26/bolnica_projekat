@@ -15,6 +15,11 @@ namespace Bolnica_aplikacija.Servis
         public List<Lek> ucitajSveSemTrenutnogNaTerapiji(String idLeka)
         {
             List<Lek> povratnaVrednost = new List<Lek>();
+            
+            if(idLeka == null)
+            {
+                return lekRepozitorijum.ucitajSve();
+            }
 
             foreach(Lek lek in ucitajSve())
             {
@@ -32,7 +37,7 @@ namespace Bolnica_aplikacija.Servis
 
             foreach(Lek lek in ucitajSve())
             {
-                if (idLeka.Equals(lek.id))
+                if (idLeka != null && idLeka.Equals(lek.id))
                 {
                     povratnaVrednost.id = lek.id;
                     povratnaVrednost.kolicina = lek.kolicina;

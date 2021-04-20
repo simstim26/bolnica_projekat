@@ -26,7 +26,7 @@
   {
     "id": "5",
     "naziv": "sdf",
-    "idTerapije": null,
+    "idTerapije": "6",
     "idPacijenta": "1"
   }
 ]

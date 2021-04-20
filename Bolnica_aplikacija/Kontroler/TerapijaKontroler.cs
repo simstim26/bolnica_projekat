@@ -23,7 +23,7 @@ namespace Bolnica_aplikacija.Kontroler
             return terapijaServis.nadjiTerapijuPoId(idTerapije);
         }
 
-        public static void dodajTerapijuIzRecepta(DateTime datumPropisivanja, int trajanje, String nacinUpotrebe, String idLeka,
+        public static String dodajTerapijuIzRecepta(DateTime datumPropisivanja, int trajanje, String nacinUpotrebe, String idLeka,
            String idPacijenta, String idTermina, String idBolesti)
         {
             Terapija terapija = new Terapija();
@@ -34,7 +34,7 @@ namespace Bolnica_aplikacija.Kontroler
             terapija.idLeka = idLeka;
             terapija.idTermina = idTermina;
             terapija.idBolesti = idBolesti;
-            terapijaServis.dodajTerapiju(terapija);
+            return terapijaServis.dodajTerapiju(terapija);
 
         }
         public static void dodajTerapiju(DateTime datumPropisivanja,int trajanje,String nacinUpotrebe,String idLeka,

@@ -30,6 +30,12 @@ namespace Bolnica_aplikacija.Servis
             return povratnaVrednost;
         }
 
+        public void azuriranjeTerapijeZaTermin(String idTermina, String idTerapija)
+        {
+            Termin termin = nadjiTerminPoId(idTermina);
+            termin.idTerapije = idTerapija;
+            terminRepozitorijum.azurirajTermin(termin);
+        }
         public void azuriranjeIzvestajaZaTermin(String azuriraniIzvestaj, String idTermina)
         {
             Termin termin = nadjiTerminPoId(idTermina);

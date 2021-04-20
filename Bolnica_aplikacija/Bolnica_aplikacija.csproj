@@ -99,6 +99,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Kontroler\BolestKontroler.cs" />
     <Compile Include="Kontroler\KorisnikKontroler.cs" />
     <Compile Include="Kontroler\LekarKontroler.cs" />
     <Compile Include="Kontroler\LekKontroler.cs" />

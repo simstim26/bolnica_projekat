@@ -28,7 +28,7 @@ namespace Bolnica_aplikacija.Servis
 
             foreach(Terapija terapija in terapijaRepozitorijum.ucitajSve())
             {
-                if (idTerapije.Equals(terapija.id))
+                if (idTerapije != null  && idTerapije.Equals(terapija.id))
                 {
                     povratnaVrednost.id = terapija.id;
                     povratnaVrednost.idBolesti = terapija.idBolesti;
@@ -44,13 +44,14 @@ namespace Bolnica_aplikacija.Servis
             return povratnaVrednost;
         }
 
-        public void dodajTerapiju(Terapija terapija)
+        public String dodajTerapiju(Terapija terapija)
         {
             List<Terapija> sveTerapije = terapijaRepozitorijum.ucitajSve();
             terapija.id = (sveTerapije.Count + 1).ToString();
 
             sveTerapije.Add(terapija);
             terapijaRepozitorijum.upisi(sveTerapije);
+            return terapija.id;
         }
         public Terapija nadjiTerapijuZaTermin(String idTermina)
         {
