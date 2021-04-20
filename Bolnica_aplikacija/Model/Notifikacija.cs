@@ -14,8 +14,7 @@ namespace Model
         public DateTime vremeNotifikovanja { get; set; }
         public String porukaNotifikacije { get; set; }
         public String idKorisnika { get; set; }
-
-
+        public DateTime datumNotifikovanja { get; set; }
 
 
     }

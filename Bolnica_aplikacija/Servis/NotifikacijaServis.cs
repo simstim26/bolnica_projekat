@@ -50,6 +50,8 @@ namespace Bolnica_aplikacija.Servis
                     notifikacijaPovratna.idKorisnika = notifikacija.idKorisnika;
                     notifikacijaPovratna.nazivNotifikacije = notifikacija.nazivNotifikacije;
                     notifikacijaPovratna.porukaNotifikacije = notifikacija.porukaNotifikacije;
+                    notifikacijaPovratna.datumNotifikovanja = notifikacija.datumNotifikovanja;
+                    notifikacijaPovratna.vremeNotifikovanja = notifikacija.vremeNotifikovanja;
 
                     break;
                 }
@@ -58,7 +60,28 @@ namespace Bolnica_aplikacija.Servis
             return notifikacijaPovratna;
         }
 
+        public bool proveriVreme(String trenutnoVreme, String trenutanDatum)
+        {
+            List<Notifikacija> sveNotifikacije = prikazPacijentovihNotifikacija();
 
+            foreach (Notifikacija notifikacija in sveNotifikacije)
+            {
+                String notifikacijaVreme = notifikacija.vremeNotifikovanja.ToString("HH:mm");
+                String notifikacijaDatum = notifikacija.datumNotifikovanja.ToString("dd.MM.yyyy.");
+
+                if (notifikacijaVreme.Equals(trenutnoVreme))
+                {
+                    if(notifikacijaDatum.Equals(trenutanDatum))
+                    {
+                        //nesto
+                    }
+                }
+
+            }
+
+
+            return false;
+        }
 
     }
 }
