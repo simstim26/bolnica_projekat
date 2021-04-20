@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace Bolnica_aplikacija.PacijentStudent
 {
@@ -23,6 +24,8 @@ namespace Bolnica_aplikacija.PacijentStudent
     {
 
         private String idPacijenta;
+        private DispatcherTimer tajmer;
+
         public ProzorPacijent()
         {
             InitializeComponent();
@@ -35,6 +38,7 @@ namespace Bolnica_aplikacija.PacijentStudent
             SetLabelPacijentContent();
 
             PopuniTermine();
+            setujTajmer();
         }
 
         private void PopuniTermine()
@@ -191,5 +195,19 @@ namespace Bolnica_aplikacija.PacijentStudent
         {
             menuItemOdjava.RaiseEvent(new RoutedEventArgs(MenuItem.ClickEvent));
         }
+
+        private void setujTajmer()
+        {
+            tajmer = new DispatcherTimer();
+            tajmer.Interval = TimeSpan.FromMinutes(1);
+            tajmer.Tick += timer_Tick;
+            tajmer.Start();
+        }
+
+        void timer_Tick(Object sender, EventArgs e)
+        {
+            
+        }
+
     }
 }
