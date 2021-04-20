@@ -671,6 +671,7 @@ namespace Bolnica_aplikacija
                 {
                     //MessageBox.Show("Nije moguće izvršiti otkazivanje termina 24h pred termin.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning)
                     lblUpozorenje.Visibility = Visibility.Visible;
+                    lblUpozorenje.Content = "* Nije moguće otkazati termin za manje od 24h!";
                 }
                 else
                 {
@@ -682,7 +683,8 @@ namespace Bolnica_aplikacija
             }
             else
             {
-                MessageBox.Show("Molimo odaberite termin koji želite da otkažete.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+                lblUpozorenje.Visibility = Visibility.Visible;
+                lblUpozorenje.Content = "* Molimo odaberite termin koji želite da otkažete!";
             }
            
         }
@@ -699,7 +701,8 @@ namespace Bolnica_aplikacija
                 {
                     if (TerminKontroler.proveriDatumTermina(izabraniTermin.id) <= 0)
                     {
-                        MessageBox.Show("Nije moguće izvršiti promenu termina 24h pred termin.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        lblUpozorenje.Visibility = Visibility.Visible;
+                        lblUpozorenje.Content = "* Nije moguće otkazati termin za manje od 24h!";
                     }
                     else
                     {
