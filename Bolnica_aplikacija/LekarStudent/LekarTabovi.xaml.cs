@@ -30,6 +30,7 @@ namespace Bolnica_aplikacija
         private static DataGrid raspored;
         private static Grid gridRasporedPretraga;
         private static Grid gridPrikaz;
+        private static int indikator; //0-raspored; 1-prikaz
         public LekarTabovi()
         {
             InitializeComponent();
@@ -42,6 +43,11 @@ namespace Bolnica_aplikacija
             gridPrikaz = this.gridPrikazPacijenata;
             ucitajSve();
 
+        }
+
+        public static  int getIndikator()
+        {
+            return indikator;
         }
 
         public static Grid getRasporedPretraga()
@@ -123,6 +129,7 @@ namespace Bolnica_aplikacija
             if (lstPacijenti.SelectedIndex != -1)
             {
                 PacijentKontroler.nadjiPacijenta(((Pacijent)lstPacijenti.SelectedItem).id);
+                indikator = 1;
                 this.Content = new PacijentInfo();
             }
         }
@@ -133,6 +140,7 @@ namespace Bolnica_aplikacija
             {
                 TerminKontroler.nadjiPacijentaZaTermin(((PacijentTermin)dataRaspored.SelectedItem).id);
                 TerminKontroler.sacuvajTermin(((PacijentTermin)dataRaspored.SelectedItem).id);
+                indikator = 0;
                 this.Content = new PacijentInfo();
             }
         }

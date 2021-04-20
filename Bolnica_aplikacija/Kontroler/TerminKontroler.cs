@@ -15,7 +15,10 @@ namespace Bolnica_aplikacija.Kontroler
         {
             terminServis.nadjiPacijentaZaTermin(idTermina);
         }
-
+        public static void azuriranjeIzvestajaZaTermin(String azuriraniIzvestaj, String idTermina)
+        {
+            terminServis.azuriranjeIzvestajaZaTermin(azuriraniIzvestaj, idTermina);
+        }
         public static void dodavanjeIzvestajaZaTermin(String nazivBolesti,String izvestajSaTermina)
         {
             terminServis.dodavanjeIzvestajaZaTermin(nazivBolesti, izvestajSaTermina);

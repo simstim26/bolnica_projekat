@@ -16,5 +16,11 @@
     "naziv": "dijagnozic",
     "idTerapije": "3",
     "idPacijenta": "1"
+  },
+  {
+    "id": "4",
+    "naziv": "ceca.rs",
+    "idTerapije": "4",
+    "idPacijenta": "1"
   }
 ]

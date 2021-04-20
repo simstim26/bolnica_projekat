@@ -1,4 +1,5 @@
 ﻿using Bolnica_aplikacija.Kontroler;
+using Bolnica_aplikacija.PomocneKlase;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,8 +34,12 @@ namespace Bolnica_aplikacija.LekarStudent
 
         private void btnIzmeni_Click(object sender, RoutedEventArgs e)
         {
-            Content = new IzmenaBolesti();
-            aktivan = false;
+            if (dataGridIstorijaBolesti.SelectedIndex != -1)
+            {
+                PacijentKontroler.sacuvajBolestTerapiju((BolestTerapija)dataGridIstorijaBolesti.SelectedItem);
+                Content = new IzmenaBolesti();
+                aktivan = false;
+            }
         }
     }
 }

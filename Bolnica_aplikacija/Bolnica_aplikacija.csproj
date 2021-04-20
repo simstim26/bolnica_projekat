@@ -121,6 +121,9 @@
     <Compile Include="LekarStudent\Izvestaj.xaml.cs">
       <DependentUpon>Izvestaj.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LekarStudent\TerapijeIzdavanjeRecpeta.xaml.cs">
+      <DependentUpon>TerapijeIzdavanjeRecpeta.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LekarStudent\UvidUTerapije.xaml.cs">
       <DependentUpon>UvidUTerapije.xaml</DependentUpon>
     </Compile>
@@ -275,6 +278,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="LekarStudent\PrikazProstorija.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LekarStudent\TerapijeIzdavanjeRecpeta.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

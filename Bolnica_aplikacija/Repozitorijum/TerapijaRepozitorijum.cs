@@ -41,6 +41,7 @@ namespace Bolnica_aplikacija.Repozitorijum
                     terapija.idTermina = terapijaZaAzuriranje.idTermina;
                     terapija.nacinUpotrebe = terapijaZaAzuriranje.nacinUpotrebe;
                     terapija.trajanje = terapijaZaAzuriranje.trajanje;
+                    terapija.datumPocetka = terapijaZaAzuriranje.datumPocetka; 
                     break;
                 }
             }

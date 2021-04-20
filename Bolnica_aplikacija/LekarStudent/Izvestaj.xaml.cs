@@ -44,6 +44,10 @@ namespace Bolnica_aplikacija.LekarStudent
                 + SpecijalizacijaKontroler.nadjiSpecijalizacijuPoId(KorisnikKontroler.getLekar().idSpecijalizacije);
             txtDatum.Text = DateTime.Now.ToString("dd.MM.yyyy.");
 
+            lblRJmbg.Content = PacijentKontroler.getPacijent().jmbg;
+            lblRImePrezime.Content = PacijentKontroler.getPacijent().ime + " " + PacijentKontroler.getPacijent().prezime;
+            lblRDatumR.Content = PacijentKontroler.getPacijent().datumRodjenja.ToString("dd.MM.yyyy");
+
             dataGridLekovi.ItemsSource = LekKontroler.ucitajSve();
 
         }
@@ -131,14 +135,11 @@ namespace Bolnica_aplikacija.LekarStudent
 
         private void btnPotvrdiRecept_Click(object sender, RoutedEventArgs e)
         {
-            String datumPropisivanja = txtDatum.Text;
-            String[] datumDelovi = datumPropisivanja.Split('.');
-            DateTime datum = Convert.ToDateTime(datumDelovi[1] + "/" + datumDelovi[0] + "/" + datumDelovi[2]);
             int trajanje = Convert.ToInt32(txtTrajanje.Text);
             String nacinUpotrebe = txtNacinUpotrebe.Text;
 
-            TerapijaKontroler.dodajTerapiju(datum, trajanje, nacinUpotrebe, PacijentKontroler.getPacijent().id, 
-                ((Lek)dataGridLekovi.SelectedItem).id);
+            TerapijaKontroler.dodajTerapiju(DateTime.Now, trajanje, nacinUpotrebe, PacijentKontroler.getPacijent().id, 
+                ((Lek)dataGridLekovi.SelectedItem).id, TerminKontroler.getTermin().idTermina);
         }
 
         private void btnPotvdiOdabirLeka_Click(object sender, RoutedEventArgs e)

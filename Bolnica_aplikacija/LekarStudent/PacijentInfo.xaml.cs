@@ -39,6 +39,29 @@ namespace Bolnica_aplikacija
             lblDatumRodjenja.Content = PacijentKontroler.getPacijent().datumRodjenja.ToString("dd.MM.yyyy.");
             lblAdresa.Content = PacijentKontroler.getPacijent().adresa;
             lblKontakt.Content = PacijentKontroler.getPacijent().brojTelefona;
+
+            if(LekarTabovi.getIndikator() == 1)
+            {
+                btnIzvestaj.IsEnabled = false;
+            }
+            else
+            {
+                DateTime danasnjiDatum = DateTime.Now;
+                String satnica = TerminKontroler.getTermin().satnica.ToString("HH:mm:ss");
+                String trenutnaSatnica = danasnjiDatum.ToString("HH:mm");
+                String[] trenutnaSatnica1 = trenutnaSatnica.Split(':');
+                String[] satnica1 = satnica.Split(':');
+                DateTime terminDatum = TerminKontroler.getTermin().datum.Add(new TimeSpan(Convert.ToInt32(satnica1[0]), Convert.ToInt32(satnica1[1]), Convert.ToInt32(satnica1[2])));
+                DateTime pomocni = danasnjiDatum.Date.Add(new TimeSpan(Convert.ToInt32(trenutnaSatnica1[0]), Convert.ToInt32(trenutnaSatnica1[1]), 0));
+                if(DateTime.Compare(terminDatum,pomocni) == 0)
+                {
+                    btnIzvestaj.IsEnabled = true;
+                }
+                else
+                {
+                    btnIzvestaj.IsEnabled = false;
+                }
+            }
            
             dataTermini = this.dataGridTerminiPacijenta;
             ucitajPodatke();
