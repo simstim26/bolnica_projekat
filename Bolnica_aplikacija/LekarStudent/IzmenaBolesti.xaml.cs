@@ -66,7 +66,8 @@ namespace Bolnica_aplikacija.LekarStudent
         private void btnIzmeniTerapiju_Click(object sender, RoutedEventArgs e)
         {
             this.gridIzmenaTerapije.Visibility = Visibility.Visible;
-            txtDijagnoza.Text = PacijentKontroler.getBolestTerapija().nazivBolesti;
+            LekarProzor.getGlavnaLabela().Content = "Izdavanje recepta";
+           txtDijagnoza.Text = PacijentKontroler.getBolestTerapija().nazivBolesti;
             txtNazivLeka.Text = PacijentKontroler.getBolestTerapija().nazivTerapije;
             Terapija terapija = TerapijaKontroler.nadjiTerapijuPoId(PacijentKontroler.getBolestTerapija().idTerapije);
             txtTrajanje.Text = (terapija.trajanje).ToString();
@@ -78,6 +79,7 @@ namespace Bolnica_aplikacija.LekarStudent
         private void btnDodavanjeLeka_Click(object sender, RoutedEventArgs e)
         {
             this.gridIzmenaTerapije.Visibility = Visibility.Hidden;
+            LekarProzor.getGlavnaLabela().Content = "Odabir leka";
             this.gridOdabirLeka.Visibility = Visibility.Visible;
             dataGridLekovi.ItemsSource = LekKontroler.ucitajSveSemTrenutnogNaTerapiji(
                 TerapijaKontroler.nadjiTerapijuPoId(PacijentKontroler.getBolestTerapija().idTerapije).idLeka);
@@ -88,6 +90,7 @@ namespace Bolnica_aplikacija.LekarStudent
             if (dataGridLekovi.SelectedIndex != -1)
             {
                 Lek lek = (Lek)dataGridLekovi.SelectedItem;
+                LekarProzor.getGlavnaLabela().Content = "Izdavanje recepta";
                 PacijentKontroler.getBolestTerapija().idLeka = lek.id;
                 PacijentKontroler.getBolestTerapija().nazivTerapije = lek.naziv;
                 this.txtTerapija.Text = PacijentKontroler.getBolestTerapija().nazivTerapije;
@@ -103,6 +106,7 @@ namespace Bolnica_aplikacija.LekarStudent
         private void btnPotvrdiRecept_Click(object sender, RoutedEventArgs e)
         {
             this.gridIzmenaTerapije.Visibility = Visibility.Hidden;
+            LekarProzor.getGlavnaLabela().Content = "Ažuriranje bolesti";
             TerapijaKontroler.azurirajTerapiju(PacijentKontroler.getBolestTerapija().idTerapije, PacijentKontroler.getBolestTerapija().idLeka,
                 txtNacinUpotrebe.Text, Convert.ToInt32(txtTrajanje.Text), DateTime.Now);
         }

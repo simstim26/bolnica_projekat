@@ -27,6 +27,7 @@ namespace Bolnica_aplikacija.LekarStudent
         public TerapijeIzdavanjeRecpeta()
         {
             InitializeComponent();
+            LekarProzor.getGlavnaLabela().Content = "Izdavanje recepta";
             lblRDatumR.Content = PacijentKontroler.getPacijent().datumRodjenja;
             lblRImePrezime.Content = PacijentKontroler.getPacijent().ime + " " + PacijentKontroler.getPacijent().prezime;
             lblRJmbg.Content = PacijentKontroler.getPacijent().jmbg;
@@ -51,6 +52,7 @@ namespace Bolnica_aplikacija.LekarStudent
         private void btnDodavanjeLeka_Click(object sender, RoutedEventArgs e)
         {
             gridDodavanjeLeka.Visibility = Visibility.Visible;
+            LekarProzor.getGlavnaLabela().Content = "Odabir leka";
         }
 
         private void btnPotvdiOdabirLeka_Click(object sender, RoutedEventArgs e)
@@ -68,6 +70,8 @@ namespace Bolnica_aplikacija.LekarStudent
                 txtNazivLeka.Text = PacijentKontroler.getBolestTerapija().nazivTerapije;
                 txtTrajanje.Text = TerapijaKontroler.nadjiTerapijuPoId(PacijentKontroler.getBolestTerapija().idTerapije).trajanje.ToString();
                 gridDodavanjeLeka.Visibility = Visibility.Hidden;
+                LekarProzor.getGlavnaLabela().Content = "Izdavanje recepta";
+
             }
         }
 
@@ -90,6 +94,8 @@ namespace Bolnica_aplikacija.LekarStudent
         private void btnPonistiOdaberLeka_Click(object sender, RoutedEventArgs e)
         {
             gridDodavanjeLeka.Visibility = Visibility.Hidden;
+            LekarProzor.getGlavnaLabela().Content = "Izdavanje recepta";
+
         }
     }
 }

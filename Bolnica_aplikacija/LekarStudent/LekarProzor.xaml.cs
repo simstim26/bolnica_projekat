@@ -128,10 +128,13 @@ namespace Bolnica_aplikacija
                 if (IzmenaBolesti.getGridLekovi().Visibility == Visibility.Visible)
                 {
                     IzmenaBolesti.getGridLekovi().Visibility = Visibility.Hidden;
+                    IzmenaBolesti.getGridRecept().Visibility = Visibility.Visible;
+                    glavnaLabela.Content = "Izdavanje recepta";
                 }
                 else if (IzmenaBolesti.getGridRecept().Visibility == Visibility.Visible)
                 {
                     IzmenaBolesti.getGridRecept().Visibility = Visibility.Hidden;
+                    LekarProzor.getGlavnaLabela().Content = "Ažuriranje bolesti";
                 }
                 else
                 {
@@ -155,6 +158,7 @@ namespace Bolnica_aplikacija
                 if(TerapijeIzdavanjeRecpeta.getGridLekovi().Visibility == Visibility.Visible)
                 {
                     TerapijeIzdavanjeRecpeta.getGridLekovi().Visibility = Visibility.Hidden;
+                    glavnaLabela.Content = "Izdavanje recepta";
                 }
                 else
                 {
