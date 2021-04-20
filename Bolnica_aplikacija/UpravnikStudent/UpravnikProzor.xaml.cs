@@ -435,6 +435,8 @@ namespace Bolnica_aplikacija
                 var prostorija = (Prostorija)dataGridProstorija.SelectedItem;
                 var stavka = (Stavka)dataGridInventarProstorije.SelectedItem;
 
+                textBoxStavkaZaPremestanjeU.Text = stavka.naziv;
+
 
                 if (stavka.jeStaticka == true)
                 {

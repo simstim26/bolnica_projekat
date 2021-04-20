@@ -49,5 +49,10 @@ namespace Bolnica_aplikacija.Kontroler
         {
             return terminServis.getTermin();
         }
+
+        public static List<Termin> ucitajSve()
+        {
+            return terminServis.ucitajSve();
+        }
     }
 }

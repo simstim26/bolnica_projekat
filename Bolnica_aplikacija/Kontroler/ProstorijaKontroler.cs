@@ -56,5 +56,10 @@ namespace Bolnica_aplikacija.Kontroler
         {
             prostorijaServis.premestiStavku(prostorijaIzKojeSePrebacujeId, prostorijaUKojuSePrebacujeId, stavkaId);
         }
+
+        public static Prostorija nadjiProstorijuPoId(String id)
+        {
+            return prostorijaServis.nadjiProstorijuPoId(id);
+        }
     }
 }

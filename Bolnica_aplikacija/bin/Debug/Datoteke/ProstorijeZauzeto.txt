@@ -1,0 +1,12 @@
+[
+  {
+    "idProstorije": "18",
+    "datumPocetka": "2021-04-21T00:00:00",
+    "datumKraja": "2021-04-22T00:00:00"
+  },
+  {
+    "idProstorije": "1",
+    "datumPocetka": "2021-04-20T00:00:00",
+    "datumKraja": "2021-04-22T00:00:00"
+  }
+]

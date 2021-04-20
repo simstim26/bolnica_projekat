@@ -175,5 +175,10 @@ namespace Bolnica_aplikacija.Servis
         {
             return termin;
         }
+
+        public List<Termin> ucitajSve()
+        {
+            return terminRepozitorijum.ucitajSve();
+        }
     }
 }

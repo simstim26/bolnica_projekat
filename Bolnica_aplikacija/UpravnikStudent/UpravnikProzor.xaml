@@ -97,9 +97,9 @@
             <TextBlock x:Name="labelaSobaU" FontSize="20" HorizontalAlignment="Left" Margin="140,396,-378,-125" TextWrapping="Wrap" Text="Premesti u sobu:" VerticalAlignment="Top" Width="271"/>
             <Button x:Name="btnPremestiU" Content="Premesti" HorizontalAlignment="Left" Margin="160,594,-273,-328" VerticalAlignment="Top" Width="146" Click="btnPremestiU_Click"/>
             <Button x:Name="btnOtkaziPremestanjeU" Content="Otkaži" HorizontalAlignment="Left" Margin="470,594,-581,-328" VerticalAlignment="Top" Width="144" Click="btnOtkaziPremestanjeU_Click"/>
-            <TextBox x:Name="textBoxStavkaZaPremestanjeU" HorizontalAlignment="Left" Height="24" Margin="409,251,-502,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="171"/>
-            <TextBox x:Name="textBoxKolicinaZaPremestanjeU" HorizontalAlignment="Left" Height="24" Margin="408,323,-547,-49" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="172"/>
-            <ComboBox x:Name="comboBoxProstorijeZaPremestanjeU" SelectedValuePath="Key" DisplayMemberPath="Value" HorizontalAlignment="Left" Margin="416,396,-547,-125" VerticalAlignment="Top" Width="164" Height="27"/>
+            <TextBox x:Name="textBoxStavkaZaPremestanjeU" HorizontalAlignment="Left" Height="24" Margin="409,251,-555,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="179"/>
+            <TextBox x:Name="textBoxKolicinaZaPremestanjeU" HorizontalAlignment="Left" Height="24" Margin="416,320,-555,-46" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="172"/>
+            <ComboBox x:Name="comboBoxProstorijeZaPremestanjeU" SelectedValuePath="Key" DisplayMemberPath="Value" HorizontalAlignment="Left" Margin="416,396,-555,-125" VerticalAlignment="Top" Width="172" Height="27"/>
             <DatePicker x:Name="datumPocetkaU" HorizontalAlignment="Left" Margin="409,468,-510,-215" VerticalAlignment="Top" Width="134" Height="45"/>
             <TextBlock x:Name="textStaticka1U" FontSize="20" HorizontalAlignment="Left" Margin="140,481,-328,-215" TextWrapping="Wrap" Text="Zauzmi prostoriju od:" VerticalAlignment="Top" Height="32" Width="221"/>
             <TextBlock x:Name="textStaticka2U" FontSize="20" HorizontalAlignment="Left" Margin="579,481,-619,-210" TextWrapping="Wrap" Text="do" VerticalAlignment="Top" Width="73"/>
