@@ -1,4 +1,5 @@
-﻿using Bolnica_aplikacija.PacijentModel;
+﻿using Bolnica_aplikacija.Model;
+using Bolnica_aplikacija.PacijentModel;
 using Bolnica_aplikacija.PomocneKlase;
 using Bolnica_aplikacija.Servis;
 using Model;
@@ -65,6 +66,17 @@ namespace Bolnica_aplikacija.Kontroler
         public static List<PacijentTermin> filtrirajTermine(int indikator, String kriterijum)
         {
             return pacijentServis.filtrirajTermine(indikator, kriterijum);
+        }
+
+        public static void napraviAlergiju(String idPacijenta, String nazivAlergije)
+        {
+            pacijentServis.napraviAlergiju(idPacijenta, nazivAlergije);
+        }
+
+        public static List<Alergija> procitajAlergije()
+        {
+           
+            return pacijentServis.procitajAlergije();
         }
 
     }

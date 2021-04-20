@@ -1,0 +1,30 @@
+[
+  {
+    "idPacijenta": "1",
+    "nazivAlergije": "SIMS"
+  },
+  {
+    "idPacijenta": "1",
+    "nazivAlergije": "HCI"
+  },
+  {
+    "idPacijenta": "2",
+    "nazivAlergije": "SVE2"
+  },
+  {
+    "idPacijenta": "2",
+    "nazivAlergije": "Sve3"
+  },
+  {
+    "idPacijenta": "5",
+    "nazivAlergije": "Test alergija"
+  },
+  {
+    "idPacijenta": "5",
+    "nazivAlergije": "Test2"
+  },
+  {
+    "idPacijenta": "6",
+    "nazivAlergije": "Alergija neka"
+  }
+]

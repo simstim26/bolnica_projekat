@@ -1,9 +1,10 @@
-﻿<Window x:Name="SekretarGlavniProzor" x:Class="Bolnica_aplikacija.SekretarProzor"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Bolnica_aplikacija"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Name="SekretarGlavniProzor" x:Class="Bolnica_aplikacija.SekretarProzor"
         mc:Ignorable="d"
         Title="Sekretar" Height="768" Width="1366" Visibility="Visible" ResizeMode="CanMinimize"
         >
@@ -74,7 +75,7 @@
             </Button>
             <Button x:Name="odjavaButton" Content="ODJAVI SE" HorizontalAlignment="Left" Margin="903,-107,-228,0" VerticalAlignment="Top" Width="141" Height="55" RenderTransformOrigin="0.624,0" FontSize="22" FontWeight="Bold" Click="odjavaButton_Click"/>
         </Grid>
-        <Grid x:Name="PacijentGrid" HorizontalAlignment="Left" Height="730" Margin="0,18,0,0" VerticalAlignment="Top" Width="1346" d:IsHidden="True">
+        <Grid x:Name="PacijentGrid" HorizontalAlignment="Left" Height="730" Margin="0,18,0,0" VerticalAlignment="Top" Width="1346">
             <Grid.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF83C8F7" Offset="0"/>
@@ -131,6 +132,11 @@
                     <DataGridTextColumn x:Name="kolonaPrezime" Binding="{Binding prezime}" IsReadOnly="True" Header="PREZIME" Width="347" CanUserResize="False" Foreground="Black" FontSize="24"/>
                 </DataGrid.Columns>
             </DataGrid>
+            <DataGrid x:Name="dataGridAlergije" HorizontalAlignment="Left" Height="180" Margin="882,442,0,0" VerticalAlignment="Top" Width="436" CanUserAddRows="true" CanUserDeleteRows="true" AutoGenerateColumns="False" IsEnabled="False" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn x:Name="kolonaAlergije"  Binding="{Binding nazivAlergije}" IsReadOnly="False" Header="NAZIV ALERGIJE" Width="347" CanUserResize="False" Foreground="Black" FontSize="24" />
+                </DataGrid.Columns>
+            </DataGrid>
             <Grid x:Name="PacijentInfoGrid" HorizontalAlignment="Left" Height="437" Margin="324,293,0,0" VerticalAlignment="Top" Width="1022">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="131*"/>
@@ -161,11 +167,23 @@
                     <TextBox x:Name="textKorisnickoIme" HorizontalAlignment="Left" Height="41" Margin="237,10,-64,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="259" Background="#FFB2D4EC" FontSize="18" IsEnabled="False" TextChanged="textKorisnickoIme_TextChanged"/>
                     <Label x:Name="labelaLozinka" Content="LOZINKA:" HorizontalAlignment="Left" Height="46" Margin="58,56,0,0" VerticalAlignment="Top" Width="166" FontSize="20"/>
                     <PasswordBox x:Name="lozinka" HorizontalAlignment="Left" Margin="237,62,-64,0" VerticalAlignment="Top" Width="259" Height="40" Background="#FFCADCEA" PasswordChanged="lozinka_PasswordChanged"/>
+                    <Label x:Name="labelaLozinka_Copy" Content="ALERGIJE:" HorizontalAlignment="Left" Height="46" Margin="58,151,0,-45" VerticalAlignment="Top" Width="166" FontSize="20"/>
                 </Grid>
             </Grid>
             <CheckBox x:Name="checkboxGostujuciNalog" Content="  GOSTUJUĆI NALOG" HorizontalAlignment="Left" Height="29" Margin="882,371,0,0" VerticalAlignment="Top" Width="260" FontSize="20" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" IsEnabled="False"/>
+            <Image x:Name="imgDodajRed" HorizontalAlignment="Left" Height="12" Margin="1006,456,0,0" VerticalAlignment="Top" Width="13" Source="dodajPacijenta.png" RenderTransformOrigin="2,0.389" >
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="-1"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform X="-27"/>
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
+            <Button x:Name="___btnDodajRed_" HorizontalAlignment="Left" Margin="1012,453,0,0" VerticalAlignment="Top" Width="19" Height="18" Click="___btnDodajRed__Click" Background="{x:Null}" BorderBrush="{x:Null}" Content="" IsEnabled="False" />
         </Grid>
-        <Grid x:Name="TerminiGrid" HorizontalAlignment="Left" Height="730" Margin="0,18,0,0" VerticalAlignment="Top" Width="1346">
+        <Grid x:Name="TerminiGrid" HorizontalAlignment="Left" Height="730" Margin="0,18,0,0" VerticalAlignment="Top" Width="1346" d:IsHidden="True">
             <Grid.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF83C8F7" Offset="0"/>
@@ -204,17 +222,21 @@
             </GridSplitter>
             <Button Content="POVRATAK" HorizontalAlignment="Left" Height="25" Margin="110,17,0,0" VerticalAlignment="Top" Width="80" Click="ButtonPovratak_Click" BorderThickness="0" Background="{x:Null}"/>
             <DataGrid x:Name="TabelaPacijentiTermini" HorizontalAlignment="Left" Height="200" Margin="346,0,0,513" VerticalAlignment="Bottom" Width="996" FontSize="24" HeadersVisibility="All" AutoGenerateColumns="False" CanUserAddRows="false" SelectionChanged="TabelaPacijenti1_SelectionChanged" Background="#FFDDD3F0">
+                <DataGrid.Resources>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" 
+                   Color="#FF9D6EEE"/>
+                </DataGrid.Resources>
                 <DataGrid.Columns>
                     <DataGridTextColumn x:Name="kolonaJMBG1" Binding="{Binding jmbg}" IsReadOnly="True" Header="JMBG" Width="347" CanUserResize="False" Foreground="Black" FontSize="24"/>
                     <DataGridTextColumn x:Name="kolonaIme1" Binding="{Binding ime}" IsReadOnly="True" Header="IME" Width="347" CanUserResize="False" Foreground="Black" FontSize="24" />
                     <DataGridTextColumn x:Name="kolonaPrezime1" Binding="{Binding prezime}" IsReadOnly="True" Header="PREZIME" Width="347" CanUserResize="False" Foreground="Black" FontSize="24"/>
                 </DataGrid.Columns>
+            </DataGrid>
+            <DataGrid x:Name="TabelaTerminiPacijenta" HorizontalAlignment="left" Height="222" Margin="346,0,0,286" VerticalAlignment="Bottom" Width="996" FontSize="24" HeadersVisibility="All" AutoGenerateColumns="False" CanUserAddRows="false" Background="#FFDDD3F0">
                 <DataGrid.Resources>
                     <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" 
                    Color="#FF9D6EEE"/>
                 </DataGrid.Resources>
-            </DataGrid>
-            <DataGrid x:Name="TabelaTerminiPacijenta" HorizontalAlignment="left" Height="222" Margin="346,0,0,286" VerticalAlignment="Bottom" Width="996" FontSize="24" HeadersVisibility="All" AutoGenerateColumns="False" CanUserAddRows="false" Background="#FFDDD3F0">
                 <DataGrid.Columns>
                     <DataGridTextColumn x:Name="kolonaDatum" Binding="{Binding datum}" IsReadOnly="True" Header="Datum održavanja" Width="216" CanUserResize="False" Foreground="Black" FontSize="24"/>
                     <DataGridTextColumn x:Name="kolonaSatnica" Binding="{Binding satnica}" IsReadOnly="True" Header="Satnica" Width="100" CanUserResize="False" Foreground="Black" FontSize="24" />
@@ -222,10 +244,6 @@
                     <DataGridTextColumn x:Name="kolonaNapomena" Binding="{Binding napomena}" IsReadOnly="True" Header="Napomena" Width="195" CanUserResize="False" Foreground="Black" FontSize="24"/>
                     <DataGridTextColumn x:Name="kolonaLekar" Binding="{Binding imeLekara}" IsReadOnly="True" Header="Lekar" Width="195" CanUserResize="False" Foreground="Black" FontSize="24"/>
                 </DataGrid.Columns>
-                <DataGrid.Resources>
-                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" 
-                   Color="#FF9D6EEE"/>
-                </DataGrid.Resources>
             </DataGrid>
             <DataGrid x:Name="TabelaSlobodnihTermina" HorizontalAlignment="left" Height="195" Margin="346,0,0,46" VerticalAlignment="Bottom" Width="996" FontSize="24" HeadersVisibility="All" AutoGenerateColumns="False" CanUserAddRows="false" Background="#FFDDD3F0" Visibility="Hidden" SelectionChanged="TabelaSlobodnihTermina_SelectionChanged">
                 <DataGrid.Resources>
@@ -251,7 +269,7 @@
                         <GradientStop Color="#FF876AA4" Offset="1"/>
                     </LinearGradientBrush>
                 </Grid.Background>
-                <Label Content="DA LI STE SIGURNI DA ŽELITE &#xD;&#xA;  DA POTVRDITE VAŠ IZBOR?" HorizontalAlignment="Left" Margin="187,189,0,0" VerticalAlignment="Top" Height="190" Width="604" FontSize="48" FontWeight="Thin">
+                <Label Content="DA LI STE SIGURNI DA ŽELITE &#xA;  DA POTVRDITE VAŠ IZBOR?" HorizontalAlignment="Left" Margin="187,189,0,0" VerticalAlignment="Top" Height="190" Width="604" FontSize="48" FontWeight="Thin">
                     <Label.Effect>
                         <DropShadowEffect BlurRadius="9" Direction="303" Opacity="0.72"/>
                     </Label.Effect>

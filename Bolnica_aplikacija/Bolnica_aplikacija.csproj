@@ -123,12 +123,14 @@
     <Compile Include="LekarStudent\UvidUTerapije.xaml.cs">
       <DependentUpon>UvidUTerapije.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\Alergija.cs" />
     <Compile Include="PacijentStudent\ProzorPacijent.xaml.cs">
       <DependentUpon>ProzorPacijent.xaml</DependentUpon>
     </Compile>
     <Compile Include="PomocneKlase\PacijentKomande.cs" />
     <Compile Include="Model\Bolest.cs" />
     <Compile Include="PomocneKlase\BolestTerapija.cs" />
+    <Compile Include="Repozitorijum\AlergijaRepozitorijum.cs" />
     <Compile Include="Repozitorijum\BolestRepozitorijum.cs" />
     <Compile Include="Repozitorijum\KorisnikRepozitorijum.cs" />
     <Compile Include="LekarStudent\PrikazProstorija.xaml.cs">

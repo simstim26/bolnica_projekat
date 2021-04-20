@@ -46,5 +46,17 @@
     "korisnickoIme": "Guest",
     "lozinka": "guest",
     "tip": "pacijent"
+  },
+  {
+    "id": "5",
+    "korisnickoIme": "test",
+    "lozinka": "test",
+    "tip": "pacijent"
+  },
+  {
+    "id": "6",
+    "korisnickoIme": "test2",
+    "lozinka": "test2",
+    "tip": "pacijent"
   }
 ]

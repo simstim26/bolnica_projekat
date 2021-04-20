@@ -1,4 +1,5 @@
 ﻿using Bolnica_aplikacija.Kontroler;
+using Bolnica_aplikacija.Model;
 using Bolnica_aplikacija.PacijentModel;
 using Bolnica_aplikacija.PacijentStudent;
 using Model;
@@ -35,6 +36,7 @@ namespace Bolnica_aplikacija
         private int tipAkcijeTermini; // 0 - dodaj, 1 - izmeni, 2 - ukloni
         private String imePrezimePacijenta;
         private PacijentTermin izabraniTermin;
+        private List<Alergija> alergije;
 
         public SekretarProzor()
         {
@@ -109,6 +111,9 @@ namespace Bolnica_aplikacija
             buttonPotvrdiDodavanje.Visibility = Visibility.Visible;
             buttonPotvrdiDodavanje.IsEnabled = false;
 
+            alergije = new List<Alergija>();
+            dataGridAlergije.ItemsSource = alergije;
+
 
         }
 
@@ -121,6 +126,8 @@ namespace Bolnica_aplikacija
                 flagIzmeni = true;
 
                 pacijent = (Pacijent)TabelaPacijenti.SelectedItem;
+                PacijentKontroler.nadjiPacijenta(pacijent.id);
+                dataGridAlergije.ItemsSource = PacijentKontroler.procitajAlergije();
 
                 buttonOdustaniDodavanje.Visibility = Visibility.Visible;
                 buttonPotvrdiDodavanje.Visibility = Visibility.Visible;
@@ -140,6 +147,10 @@ namespace Bolnica_aplikacija
                 textDatumRodj.Text = pacijent.datumRodjenja.ToString();
                 textEmail.Text = pacijent.email;
                 textTelefon.Text = pacijent.brojTelefona;
+
+                alergije = (List<Alergija>)dataGridAlergije.ItemsSource;
+
+                Console.WriteLine(dataGridAlergije.IsEnabled);
 
                 if (pacijent.jeGost)
                 {
@@ -198,6 +209,10 @@ namespace Bolnica_aplikacija
                 textKorisnickoIme.Text = pacijent.korisnickoIme;
                 lozinka.Password = pacijent.lozinka;
 
+                PacijentKontroler.nadjiPacijenta(pacijent.id);
+                alergije = PacijentKontroler.procitajAlergije();
+                dataGridAlergije.ItemsSource = alergije;
+
                 if (pacijent.jeGost)
                 {
                     checkboxGostujuciNalog.IsChecked = true;
@@ -246,22 +261,27 @@ namespace Bolnica_aplikacija
                     Console.WriteLine(pacGost);
                     if (!pacGost)
                     {
-
-                        SekretarKontroler.NapraviPacijenta(pacIdBolnice, pacGost, pacKorisnickoIme, pacLozinka, pacJmbg, pacIme, pacPrezime, pacDatumRodjenja, pacAdresa, pacEmail, pacTelefon);
+                        alergije = (List<Alergija>)dataGridAlergije.ItemsSource;
+                        SekretarKontroler.NapraviPacijenta(pacIdBolnice, pacGost, pacKorisnickoIme, pacLozinka, pacJmbg, pacIme, pacPrezime, pacDatumRodjenja, pacAdresa, pacEmail, pacTelefon, alergije);
                         ucitajPacijenteTabela();
                     }
                     else
                     {
-
-                        SekretarKontroler.NapraviPacijenta(pacIdBolnice, pacGost, pacKorisnickoIme, pacLozinka, pacJmbg, pacIme, pacPrezime, pacDatumRodjenja, "", "", pacTelefon);
+                        alergije = (List<Alergija>)dataGridAlergije.ItemsSource;
+                        SekretarKontroler.NapraviPacijenta(pacIdBolnice, pacGost, pacKorisnickoIme, pacLozinka, pacJmbg, pacIme, pacPrezime, pacDatumRodjenja, "", "", pacTelefon, alergije);
                         ucitajPacijenteTabela();
                     }
 
                 }
                 else
                 {
-
-                    SekretarKontroler.AzurirajPacijenta(idPacijenta, pacIdBolnice, pacGost, pacKorisnickoIme, pacLozinka, pacJmbg, pacIme, pacPrezime, pacDatumRodjenja, pacAdresa, pacEmail, pacTelefon);
+                    alergije = (List<Alergija>)dataGridAlergije.ItemsSource;
+                    foreach(Alergija alergija in alergije)
+                    {
+                        alergija.idPacijenta = idPacijenta;
+                    }
+                    
+                    SekretarKontroler.AzurirajPacijenta(idPacijenta, pacIdBolnice, pacGost, pacKorisnickoIme, pacLozinka, pacJmbg, pacIme, pacPrezime, pacDatumRodjenja, pacAdresa, pacEmail, pacTelefon, alergije);
                     ucitajPacijenteTabela();
                 }
 
@@ -272,6 +292,9 @@ namespace Bolnica_aplikacija
 
                 buttonOdustaniDodavanje.Visibility = Visibility.Hidden;
                 buttonPotvrdiDodavanje.Visibility = Visibility.Hidden;
+
+                alergije.Clear();
+                dataGridAlergije.Items.Refresh();
 
             }
             else
@@ -300,6 +323,7 @@ namespace Bolnica_aplikacija
             sviPacijenti = SekretarKontroler.ProcitajPacijente();
             TabelaPacijenti.ItemsSource = sviPacijenti;
             TabelaPacijenti.Items.Refresh();
+
         }
 
 
@@ -318,6 +342,8 @@ namespace Bolnica_aplikacija
             textKorisnickoIme.IsEnabled = flag;
             lozinka.IsEnabled = flag;
             checkboxGostujuciNalog.IsEnabled = flag;
+            dataGridAlergije.IsEnabled = flag;
+            ___btnDodajRed_.IsEnabled = flag;
         }
 
         private void ocistiPolja()
@@ -763,8 +789,12 @@ namespace Bolnica_aplikacija
             potvrdiZakazivanjeTerminaButton.IsEnabled = false;
         }
 
-
-       
+        private void ___btnDodajRed__Click(object sender, RoutedEventArgs e)
+        {
+            alergije.Add(new Alergija("", ""));
+            dataGridAlergije.ItemsSource = alergije;
+            dataGridAlergije.Items.Refresh();
+        }
     }  
 }
 

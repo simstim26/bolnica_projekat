@@ -62,5 +62,37 @@
     "email": "",
     "brojTelefona": "\u002B381649877788",
     "jmbg": "1234567654564"
+  },
+  {
+    "id": "5",
+    "idBolnice": "1",
+    "jeGost": false,
+    "adresa": "neka adresa",
+    "jeLogickiObrisan": false,
+    "Notifikacija": [],
+    "korisnickoIme": "test",
+    "lozinka": "test",
+    "ime": "TEST",
+    "prezime": "TESTIC",
+    "datumRodjenja": "1999-05-04T00:00:00",
+    "email": "nesto@mejl.com",
+    "brojTelefona": "123121",
+    "jmbg": "1234566654531"
+  },
+  {
+    "id": "6",
+    "idBolnice": "1",
+    "jeGost": false,
+    "adresa": "Neka Adresa",
+    "jeLogickiObrisan": true,
+    "Notifikacija": [],
+    "korisnickoIme": "test2",
+    "lozinka": "test2",
+    "ime": "TestOpet",
+    "prezime": "Opet",
+    "datumRodjenja": "1994-01-01T00:00:00",
+    "email": "nesto@mejl.com",
+    "brojTelefona": "1234567",
+    "jmbg": "1234567876567"
   }
 ]
