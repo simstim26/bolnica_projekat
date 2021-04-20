@@ -5,8 +5,63 @@
     "tipProstorije": 0,
     "broj": "120",
     "sprat": 1,
-    "dostupnost": true,
+    "dostupnost": false,
     "logickiObrisana": false,
+    "Stavka": [
+      {
+        "id": "1",
+        "naziv": "rukavice",
+        "kolicina": 278,
+        "proizvodjac": "Mipex",
+        "idProstorije": "1",
+        "idBolnice": "1",
+        "jeStaticka": false,
+        "jeLogickiObrisana": false,
+        "jePotrosnaRoba": true
+      },
+      {
+        "id": "4",
+        "naziv": "hanzaplast",
+        "kolicina": 409,
+        "proizvodjac": "hanZa",
+        "idProstorije": null,
+        "idBolnice": "1",
+        "jeStaticka": false,
+        "jeLogickiObrisana": false,
+        "jePotrosnaRoba": true
+      },
+      {
+        "id": "3",
+        "naziv": "Spric",
+        "kolicina": 100,
+        "proizvodjac": "Spricolino",
+        "idProstorije": null,
+        "idBolnice": "1",
+        "jeStaticka": false,
+        "jeLogickiObrisana": false,
+        "jePotrosnaRoba": true
+      },
+      {
+        "id": "2",
+        "naziv": "Krevet",
+        "kolicina": 26,
+        "proizvodjac": "KrevetKrevet",
+        "idProstorije": null,
+        "idBolnice": "1",
+        "jeStaticka": true,
+        "jeLogickiObrisana": false,
+        "jePotrosnaRoba": false
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "idBolnice": "1",
+    "tipProstorije": 1,
+    "broj": "220",
+    "sprat": 2,
+    "dostupnost": true,
+    "logickiObrisana": true,
     "Stavka": []
   },
   {
@@ -17,6 +72,90 @@
     "sprat": 10,
     "dostupnost": false,
     "logickiObrisana": false,
+    "Stavka": [
+      {
+        "id": "1",
+        "naziv": "rukavice",
+        "kolicina": 105,
+        "proizvodjac": "Mipex",
+        "idProstorije": "1",
+        "idBolnice": "1",
+        "jeStaticka": false,
+        "jeLogickiObrisana": false,
+        "jePotrosnaRoba": true
+      },
+      {
+        "id": "4",
+        "naziv": "hanzaplast",
+        "kolicina": 40,
+        "proizvodjac": "hanZa",
+        "idProstorije": null,
+        "idBolnice": "1",
+        "jeStaticka": false,
+        "jeLogickiObrisana": false,
+        "jePotrosnaRoba": true
+      },
+      {
+        "id": "2",
+        "naziv": "Krevet",
+        "kolicina": 5,
+        "proizvodjac": "KrevetKrevet",
+        "idProstorije": null,
+        "idBolnice": "1",
+        "jeStaticka": true,
+        "jeLogickiObrisana": false,
+        "jePotrosnaRoba": false
+      }
+    ]
+  },
+  {
+    "id": "4",
+    "idBolnice": "1",
+    "tipProstorije": 0,
+    "broj": "201",
+    "sprat": 2,
+    "dostupnost": false,
+    "logickiObrisana": true,
+    "Stavka": []
+  },
+  {
+    "id": "5",
+    "idBolnice": "1",
+    "tipProstorije": 0,
+    "broj": "110",
+    "sprat": 10,
+    "dostupnost": false,
+    "logickiObrisana": true,
+    "Stavka": []
+  },
+  {
+    "id": "6",
+    "idBolnice": "1",
+    "tipProstorije": 0,
+    "broj": "203",
+    "sprat": 2,
+    "dostupnost": false,
+    "logickiObrisana": true,
+    "Stavka": []
+  },
+  {
+    "id": "7",
+    "idBolnice": "3",
+    "tipProstorije": 0,
+    "broj": "11111",
+    "sprat": 10,
+    "dostupnost": false,
+    "logickiObrisana": true,
+    "Stavka": []
+  },
+  {
+    "id": "8",
+    "idBolnice": "3",
+    "tipProstorije": 1,
+    "broj": "800",
+    "sprat": 8,
+    "dostupnost": true,
+    "logickiObrisana": true,
     "Stavka": []
   },
   {
@@ -35,8 +174,51 @@
     "tipProstorije": 1,
     "broj": "2",
     "sprat": 1,
-    "dostupnost": true,
+    "dostupnost": false,
     "logickiObrisana": false,
+    "Stavka": [
+      {
+        "id": "1",
+        "naziv": "rukavice",
+        "kolicina": 767,
+        "proizvodjac": "Mipex",
+        "idProstorije": "1",
+        "idBolnice": "1",
+        "jeStaticka": false,
+        "jeLogickiObrisana": false,
+        "jePotrosnaRoba": true
+      },
+      {
+        "id": "2",
+        "naziv": "Krevet",
+        "kolicina": 2,
+        "proizvodjac": "KrevetKrevet",
+        "idProstorije": null,
+        "idBolnice": "1",
+        "jeStaticka": true,
+        "jeLogickiObrisana": false,
+        "jePotrosnaRoba": false
+      }
+    ]
+  },
+  {
+    "id": "11",
+    "idBolnice": null,
+    "tipProstorije": 2,
+    "broj": "2e2e",
+    "sprat": 2,
+    "dostupnost": true,
+    "logickiObrisana": true,
+    "Stavka": []
+  },
+  {
+    "id": "12",
+    "idBolnice": null,
+    "tipProstorije": 2,
+    "broj": "2121",
+    "sprat": 21,
+    "dostupnost": true,
+    "logickiObrisana": true,
     "Stavka": []
   },
   {
@@ -47,7 +229,19 @@
     "sprat": 4,
     "dostupnost": true,
     "logickiObrisana": false,
-    "Stavka": []
+    "Stavka": [
+      {
+        "id": "4",
+        "naziv": "hanzaplast",
+        "kolicina": 38,
+        "proizvodjac": "hanZa",
+        "idProstorije": null,
+        "idBolnice": "1",
+        "jeStaticka": false,
+        "jeLogickiObrisana": false,
+        "jePotrosnaRoba": true
+      }
+    ]
   },
   {
     "id": "14",
@@ -67,7 +261,19 @@
     "sprat": 3,
     "dostupnost": true,
     "logickiObrisana": false,
-    "Stavka": []
+    "Stavka": [
+      {
+        "id": "2",
+        "naziv": "Krevet",
+        "kolicina": 10,
+        "proizvodjac": "KrevetKrevet",
+        "idProstorije": null,
+        "idBolnice": "1",
+        "jeStaticka": true,
+        "jeLogickiObrisana": false,
+        "jePotrosnaRoba": false
+      }
+    ]
   },
   {
     "id": "16",
@@ -77,7 +283,19 @@
     "sprat": 124,
     "dostupnost": true,
     "logickiObrisana": false,
-    "Stavka": []
+    "Stavka": [
+      {
+        "id": "4",
+        "naziv": "hanzaplast",
+        "kolicina": 13,
+        "proizvodjac": "hanZa",
+        "idProstorije": null,
+        "idBolnice": "1",
+        "jeStaticka": false,
+        "jeLogickiObrisana": false,
+        "jePotrosnaRoba": true
+      }
+    ]
   },
   {
     "id": "17",
@@ -116,7 +334,7 @@
     "broj": "1233",
     "sprat": 12333,
     "dostupnost": true,
-    "logickiObrisana": true,
+    "logickiObrisana": false,
     "Stavka": []
   }
 ]

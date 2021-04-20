@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Bolnica_aplikacija.Kontroler;
+using Bolnica_aplikacija.PomocneKlase;
 using Bolnica_aplikacija.Repozitorijum;
 using Bolnica_aplikacija.Servis;
 using Model;
@@ -42,9 +43,6 @@ namespace Bolnica_aplikacija
         private String lblBrojProstorije1;
         private String lblSprat1;
         private String lblDostupnost1;
-        private List<Prostorija> prostorijeNeobrisane = new List<Prostorija>();
-        private List<Prostorija> prostorije = new List<Prostorija>();
-        private static Upravnik upravnik;
 
         private UpravnikProzor()
         {
@@ -57,7 +55,7 @@ namespace Bolnica_aplikacija
         {
             if (tbProstorija.IsChecked == true)
             {
-                tb_Copy2.IsChecked = false;
+                tbInventar.IsChecked = false;
                 tb_Copy1.IsChecked = false;
             }
         }
@@ -70,7 +68,7 @@ namespace Bolnica_aplikacija
 
         private void tb_Copy1_Click(object sender, RoutedEventArgs e)
         {
-            tb_Copy2.IsChecked = false;
+            tbInventar.IsChecked = false;
             tbProstorija.IsChecked = false;
         }
 
@@ -88,7 +86,7 @@ namespace Bolnica_aplikacija
 
         private void tbProstorija_Unchecked(object sender, RoutedEventArgs e)
         {
-            if (tb_Copy1.IsChecked == false && tb_Copy2.IsChecked == false)
+            if (tb_Copy1.IsChecked == false && tbInventar.IsChecked == false)
             {
                 vodoravniPravougaonik.Visibility = Visibility.Hidden;
                 donjiPravougaonik.Visibility = Visibility.Hidden;
@@ -99,18 +97,23 @@ namespace Bolnica_aplikacija
             gridProstorija.Visibility = Visibility.Hidden;
         }
 
-        private void tb_Copy2_Unchecked(object sender, RoutedEventArgs e)
+        private void tbInventar_Unchecked(object sender, RoutedEventArgs e)
         {
             if (tb_Copy1.IsChecked == false && tbProstorija.IsChecked == false)
             {
                 vodoravniPravougaonik.Visibility = Visibility.Hidden;
                 horizontalniPravougaonik.Visibility = Visibility.Visible;
             }
+
+            horizontalniPravougaonik.Visibility = Visibility.Visible;
+            horizontalniPravougaonik.Height = 679;
+            horizontalniPravougaonik.Margin = new System.Windows.Thickness(19, 60, 0, 0);
+            gridInventar.Visibility = Visibility.Hidden;
         }
 
         private void tb_Copy1_Unchecked(object sender, RoutedEventArgs e)
         {
-            if (tbProstorija.IsChecked == false && tb_Copy2.IsChecked == false)
+            if (tbProstorija.IsChecked == false && tbInventar.IsChecked == false)
             {
                 vodoravniPravougaonik.Visibility = Visibility.Hidden;
                 horizontalniPravougaonik.Visibility = Visibility.Visible;
@@ -124,9 +127,6 @@ namespace Bolnica_aplikacija
 
         private void btnOdjava_Click(object sender, RoutedEventArgs e)
         {
-            var prostorije = JsonSerializer.Deserialize<List<Prostorija>>(File.ReadAllText("Datoteke/Prostorije.txt"));
-            ProstorijaKontroler.upisi(prostorije);
-
             Prijava prijava = new Prijava();
             this.Close();
             instance = null;
@@ -225,6 +225,310 @@ namespace Bolnica_aplikacija
             dataGridProstorija.ItemsSource = ProstorijaKontroler.ucitajNeobrisane();
 
 
+        }
+
+        private void tbInventar_Checked(object sender, RoutedEventArgs e)
+        {
+            if (tbInventar.IsChecked == true)
+            {
+                tbProstorija.IsChecked = false;
+                tb_Copy1.IsChecked = false;
+            }
+
+            dataGridInventar.ItemsSource = StavkaKontroler.UcitajNeobrisaneStavke();
+            vodoravniPravougaonik.Visibility = Visibility.Visible;
+            horizontalniPravougaonik.Height = 33;
+            horizontalniPravougaonik.Margin = new System.Windows.Thickness(19, 697, 0, 0);
+
+
+            donjiPravougaonik.Visibility = Visibility.Visible;
+            gridInventar.Visibility = Visibility.Visible;
+        }
+
+        private void btnIzmeniStavku_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (dataGridInventar.SelectedIndex != -1)
+            {
+                var stavka = (Stavka)dataGridInventar.SelectedItem;
+                gridIzmeniStavku.Visibility = Visibility.Visible;
+
+                lblId1 = lblId.Text;
+                gridIzmeniStavku.Visibility = Visibility.Visible;
+
+
+                txtBoxKolicinaStavke.Text = stavka.kolicina.ToString();
+                txtBoxNazivStavke.Text = stavka.naziv;
+                txtBoxProizvodjacStavke.Text = stavka.proizvodjac;
+                labelNepravilanUnosIzmena.Visibility = Visibility.Hidden;
+                
+                if(stavka.jePotrosnaRoba == true)
+                {
+                    checkBoxPotrosnaIzmeni.IsChecked = true;
+                }
+                else if(stavka.jePotrosnaRoba == false)
+                {
+                    checkBoxPotrosnaIzmeni.IsChecked = false;
+                }
+                
+                if(stavka.jeStaticka == true)
+                {
+                    cbTipStavke.SelectedIndex = 0;
+                }
+                else if(stavka.jeStaticka == false)
+                {
+                    cbTipStavke.SelectedIndex = 1;
+                }
+
+
+            }
+
+        }
+
+        private void btnPotvrdiStavku_Click(object sender, RoutedEventArgs e)
+        {
+            labelNepravilnoUneseno.Visibility = Visibility.Hidden;
+            if (StavkaKontroler.DodajStavku())
+            {
+                dataGridInventar.ItemsSource = StavkaKontroler.UcitajNeobrisaneStavke();
+                gridDodajStavku.Visibility = Visibility.Hidden;
+                gridInventar.Visibility = Visibility.Visible;
+            }
+            else if(!StavkaKontroler.DodajStavku())
+            {
+                labelNepravilnoUneseno.Visibility = Visibility.Visible;
+            }    
+        }
+
+        private void btnDodajStavku_Click(object sender, RoutedEventArgs e)
+        {
+            gridDodajStavku.Visibility = Visibility.Visible;
+            textBoxNaziv.Clear();
+            textBoxKolicina.Clear();
+            textBoxProizvodjac.Clear();
+            comboBoxTipOpreme.SelectedIndex = -1;
+            checkBoxPotrosna.IsChecked = false;
+            labelNepravilnoUneseno.Visibility = Visibility.Hidden;
+
+
+        }
+
+        private void btnPotvrdiIzmenuStavke_Click(object sender, RoutedEventArgs e)
+        {
+            labelNepravilanUnosIzmena.Visibility = Visibility.Hidden;
+            var stavka = (Stavka)dataGridInventar.SelectedItem;
+
+            if(StavkaKontroler.IzmeniStavku(stavka))
+            {
+                gridIzmeniStavku.Visibility = Visibility.Hidden;
+                dataGridInventar.ItemsSource = StavkaKontroler.UcitajNeobrisaneStavke();
+                gridInventar.Visibility = Visibility.Visible;
+            }
+            else if(!StavkaKontroler.IzmeniStavku(stavka))
+            {
+                labelNepravilanUnosIzmena.Visibility = Visibility.Visible;
+            }
+            
+        }
+
+        private void btnOtkaziIzmenuStavke_Click(object sender, RoutedEventArgs e)
+        {
+            gridIzmeniStavku.Visibility = Visibility.Hidden;
+            gridInventar.Visibility = Visibility.Visible;
+        }
+
+        private void btnObrisiStavku_Click(object sender, RoutedEventArgs e)
+        {
+            if (dataGridInventar.SelectedIndex != -1)
+            {
+                StavkaKontroler.IzbrisiStavku((Stavka)dataGridInventar.SelectedItem);
+                dataGridInventar.ItemsSource = StavkaKontroler.UcitajNeobrisaneStavke();
+
+            }
+        }
+
+        private void btnPremestiUProstoriju_Click(object sender, RoutedEventArgs e)
+        {
+            if (dataGridInventar.SelectedIndex != -1)
+            {
+                var stavka = (Stavka)dataGridInventar.SelectedItem;
+
+                if (stavka.jeStaticka == true)
+                {
+                    textStaticka1.Visibility = Visibility.Visible;
+                    textStaticka2.Visibility = Visibility.Visible;
+                    datumPocetka.Visibility = Visibility.Visible;
+                    datumKraja.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    textStaticka1.Visibility = Visibility.Hidden;
+                    textStaticka2.Visibility = Visibility.Hidden;
+                    datumPocetka.Visibility = Visibility.Hidden;
+                    datumKraja.Visibility = Visibility.Hidden;
+                }
+
+                gridPremestiUProstoriju.Visibility = Visibility.Visible;
+
+                textBoxStavkaZaPremestanje.Text = stavka.naziv;
+
+
+                Dictionary<string, string> prostorije = new Dictionary<string, string>();
+                var neobrisaneProstorije = ProstorijaKontroler.ucitajNeobrisane();
+                foreach (Prostorija p in neobrisaneProstorije)
+                {
+                    prostorije.Add(p.id, p.broj + " " + p.sprat);
+                }
+
+
+                comboBoxProstorijeZaPremestanje.ItemsSource = prostorije;
+            }
+        }
+
+        private void btnPremesti_Click(object sender, RoutedEventArgs e)
+        {
+            gridPremestiUProstoriju.Visibility = Visibility.Hidden;
+           
+            var prostorijaId = (KeyValuePair<string, string>)comboBoxProstorijeZaPremestanje.SelectedItem;
+            
+
+            var stavka = (Stavka)dataGridInventar.SelectedItem;
+            ProstorijaKontroler.dodajStavku(prostorijaId.Key, stavka.id);
+            dataGridInventar.ItemsSource = StavkaKontroler.UcitajNeobrisaneStavke();
+            gridInventar.Visibility = Visibility.Visible;
+
+        }
+
+        private void btnOtkaziPremestanje_Click(object sender, RoutedEventArgs e)
+        {
+            gridPremestiUProstoriju.Visibility = Visibility.Hidden;
+            gridInventar.Visibility = Visibility.Visible;
+        }
+
+        private void btnPogledajInventar_Click(object sender, RoutedEventArgs e)
+        {
+            if(dataGridProstorija.SelectedIndex != -1)
+            {
+                var prostorija = (Prostorija)dataGridProstorija.SelectedItem;
+                var stavke = ProstorijaKontroler.dobaviStavkeIzProstorije(prostorija);
+                gridPogledajInventar.Visibility = Visibility.Visible;
+                gridProstorija.Visibility = Visibility.Hidden;
+                dataGridInventarProstorije.ItemsSource = stavke;
+            }
+            
+        }
+
+        private void btnOtkaziPrikaz_Click(object sender, RoutedEventArgs e)
+        {
+            gridPogledajInventar.Visibility = Visibility.Hidden;
+            gridProstorija.Visibility = Visibility.Visible;
+        }
+
+        private void btnPremestiUDruguProstoriju_Click(object sender, RoutedEventArgs e)
+        {
+            if (dataGridInventarProstorije.SelectedIndex != -1)
+            {
+                gridPremestiIzProstorije.Visibility = Visibility.Visible;
+                gridProstorija.Visibility = Visibility.Hidden;
+
+                
+                var prostorija = (Prostorija)dataGridProstorija.SelectedItem;
+                var stavka = (Stavka)dataGridInventarProstorije.SelectedItem;
+
+                textBoxStavkaZaPremestanjeU.Text = stavka.naziv;
+
+
+                if (stavka.jeStaticka == true)
+                {
+                    textStaticka1U.Visibility = Visibility.Visible;
+                    textStaticka2U.Visibility = Visibility.Visible;
+                    datumPocetkaU.Visibility = Visibility.Visible;
+                    datumKrajaU.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    textStaticka1U.Visibility = Visibility.Hidden;
+                    textStaticka2U.Visibility = Visibility.Hidden;
+                    datumPocetkaU.Visibility = Visibility.Hidden;
+                    datumKrajaU.Visibility = Visibility.Hidden;
+                }
+
+                Dictionary<string, string> prostorije = new Dictionary<string, string>();
+                var neobrisaneProstorije = ProstorijaKontroler.ucitajNeobrisane();
+                foreach (Prostorija p in neobrisaneProstorije)
+                {
+                    if (p.id != prostorija.id)
+                    {
+                        prostorije.Add(p.id, p.broj + " " + p.sprat);
+                    }
+
+                }
+                comboBoxProstorijeZaPremestanjeU.ItemsSource = prostorije;
+            }
+            
+        }
+
+        private void btnOtkaziPremestanjeU_Click(object sender, RoutedEventArgs e)
+        {
+            gridPremestiIzProstorije.Visibility = Visibility.Hidden;
+            gridPogledajInventar.Visibility = Visibility.Visible;
+        }
+
+        private void btnPremestiU_Click(object sender, RoutedEventArgs e)
+        {
+            var prostorijaIz = (Prostorija)dataGridProstorija.SelectedItem;
+            var prostorijaU = (KeyValuePair<string, string>)comboBoxProstorijeZaPremestanjeU.SelectedItem;
+            var stavka = (Stavka)dataGridInventarProstorije.SelectedItem;
+            var stavke = ProstorijaKontroler.dobaviStavkeIzProstorije(prostorijaIz);
+
+            ProstorijaKontroler.premestiStavku(prostorijaIz.id, prostorijaU.Key, stavka.id);
+
+            
+            gridPremestiIzProstorije.Visibility = Visibility.Hidden;
+            gridPogledajInventar.Visibility = Visibility.Visible;
+
+        }
+
+        private void btnPogledajProstorije_Click(object sender, RoutedEventArgs e)
+        {
+            gridInventar.Visibility = Visibility.Hidden;
+            gridStavkaUProstoriama.Visibility = Visibility.Visible;
+
+            var stavka = (Stavka)dataGridInventar.SelectedItem;
+            var prostorijeTreba = new List<ProstorijaKolicina>();
+            var prostorije = ProstorijaKontroler.ucitajNeobrisane();
+            var kolicina = new List<int>();
+           
+
+            foreach(Prostorija p in prostorije)
+            {
+                foreach(Stavka s in p.Stavka)
+                {
+                    if (s.id == stavka.id)
+                    {
+                        ProstorijaKolicina prostorija = new ProstorijaKolicina();
+                        prostorija.broj = p.broj;
+                        prostorija.sprat = p.sprat;
+                        prostorija.kolicina = s.kolicina;
+                        prostorijeTreba.Add(prostorija);
+                    }
+                }
+            }
+
+            textBoxNazivStavkePoProstorijama.Text = stavka.naziv;
+            textBoxProizvodjacStavkePoProstorijama.Text = stavka.proizvodjac;
+            textBoxKolicinaStavkePoProstorijama.Text = stavka.kolicina.ToString();
+
+           
+
+            dataGridStavkaUProstorijama.ItemsSource = prostorijeTreba;
+            
+        }
+
+        private void btnOtkaziPrikazNeki_Click(object sender, RoutedEventArgs e)
+        {
+            gridInventar.Visibility = Visibility.Visible;
+            gridStavkaUProstoriama.Visibility = Visibility.Hidden;
         }
     }
 }

@@ -1,0 +1,57 @@
+[
+  {
+    "id": "1",
+    "naziv": "rukavice",
+    "kolicina": 1150,
+    "proizvodjac": "Mipex",
+    "idProstorije": "1",
+    "idBolnice": "1",
+    "jeStaticka": false,
+    "jeLogickiObrisana": false,
+    "jePotrosnaRoba": true
+  },
+  {
+    "id": "2",
+    "naziv": "Krevet",
+    "kolicina": 50,
+    "proizvodjac": "KrevetKrevet",
+    "idProstorije": null,
+    "idBolnice": "1",
+    "jeStaticka": true,
+    "jeLogickiObrisana": false,
+    "jePotrosnaRoba": false
+  },
+  {
+    "id": "3",
+    "naziv": "Spric",
+    "kolicina": 123,
+    "proizvodjac": "Spricolino",
+    "idProstorije": null,
+    "idBolnice": "1",
+    "jeStaticka": false,
+    "jeLogickiObrisana": false,
+    "jePotrosnaRoba": true
+  },
+  {
+    "id": "4",
+    "naziv": "hanzaplast",
+    "kolicina": 1290,
+    "proizvodjac": "hanZa",
+    "idProstorije": null,
+    "idBolnice": "1",
+    "jeStaticka": false,
+    "jeLogickiObrisana": false,
+    "jePotrosnaRoba": true
+  },
+  {
+    "id": "5",
+    "naziv": "Igla",
+    "kolicina": 100,
+    "proizvodjac": "IgloLand",
+    "idProstorije": null,
+    "idBolnice": "1",
+    "jeStaticka": true,
+    "jeLogickiObrisana": false,
+    "jePotrosnaRoba": true
+  }
+]
