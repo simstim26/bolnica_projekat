@@ -31,17 +31,6 @@
         "jePotrosnaRoba": true
       },
       {
-        "id": "3",
-        "naziv": "Spric",
-        "kolicina": 100,
-        "proizvodjac": "Spricolino",
-        "idProstorije": null,
-        "idBolnice": "1",
-        "jeStaticka": false,
-        "jeLogickiObrisana": false,
-        "jePotrosnaRoba": true
-      },
-      {
         "id": "2",
         "naziv": "Krevet",
         "kolicina": 26,

@@ -29,7 +29,7 @@
     "idProstorije": null,
     "idBolnice": "1",
     "jeStaticka": false,
-    "jeLogickiObrisana": false,
+    "jeLogickiObrisana": true,
     "jePotrosnaRoba": true
   },
   {
