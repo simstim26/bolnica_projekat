@@ -50,11 +50,11 @@ namespace Bolnica_aplikacija.Servis
                 stavka.idProstorije = null;
 
 
-                if (upravnikProzor.comboBoxTipOpreme.SelectedIndex == 1)
+                if (upravnikProzor.comboBoxTipOpreme.SelectedIndex == 0)
                 {
                     stavka.jeStaticka = true;
                 }
-                else if (upravnikProzor.comboBoxTipOpreme.SelectedIndex == 2)
+                else if (upravnikProzor.comboBoxTipOpreme.SelectedIndex == 1)
                 {
                     stavka.jeStaticka = false;
                 }

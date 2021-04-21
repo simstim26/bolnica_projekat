@@ -22,17 +22,6 @@
     "jePotrosnaRoba": false
   },
   {
-    "id": "3",
-    "naziv": "Spric",
-    "kolicina": 123,
-    "proizvodjac": "Spricolino",
-    "idProstorije": null,
-    "idBolnice": "1",
-    "jeStaticka": false,
-    "jeLogickiObrisana": true,
-    "jePotrosnaRoba": true
-  },
-  {
     "id": "4",
     "naziv": "hanzaplast",
     "kolicina": 1290,
@@ -50,8 +39,19 @@
     "proizvodjac": "IgloLand",
     "idProstorije": null,
     "idBolnice": "1",
-    "jeStaticka": true,
+    "jeStaticka": false,
     "jeLogickiObrisana": false,
+    "jePotrosnaRoba": true
+  },
+  {
+    "id": "6",
+    "naziv": "stavka",
+    "kolicina": 10,
+    "proizvodjac": "st",
+    "idProstorije": null,
+    "idBolnice": "1",
+    "jeStaticka": false,
+    "jeLogickiObrisana": true,
     "jePotrosnaRoba": true
   }
 ]

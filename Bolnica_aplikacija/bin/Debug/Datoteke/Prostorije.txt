@@ -5,7 +5,7 @@
     "tipProstorije": 0,
     "broj": "120",
     "sprat": 1,
-    "dostupnost": true,
+    "dostupnost": false,
     "logickiObrisana": false,
     "Stavka": [
       {
@@ -33,13 +33,24 @@
       {
         "id": "2",
         "naziv": "Krevet",
-        "kolicina": 27,
+        "kolicina": 25,
         "proizvodjac": "KrevetKrevet",
         "idProstorije": null,
         "idBolnice": "1",
         "jeStaticka": true,
         "jeLogickiObrisana": false,
         "jePotrosnaRoba": false
+      },
+      {
+        "id": "5",
+        "naziv": "Igla",
+        "kolicina": 10,
+        "proizvodjac": "IgloLand",
+        "idProstorije": null,
+        "idBolnice": "1",
+        "jeStaticka": false,
+        "jeLogickiObrisana": false,
+        "jePotrosnaRoba": true
       }
     ]
   },
@@ -59,7 +70,7 @@
     "tipProstorije": 0,
     "broj": "100",
     "sprat": 10,
-    "dostupnost": false,
+    "dostupnost": true,
     "logickiObrisana": false,
     "Stavka": [
       {
@@ -87,7 +98,7 @@
       {
         "id": "2",
         "naziv": "Krevet",
-        "kolicina": 5,
+        "kolicina": 7,
         "proizvodjac": "KrevetKrevet",
         "idProstorije": null,
         "idBolnice": "1",
@@ -103,7 +114,7 @@
     "tipProstorije": 0,
     "broj": "201",
     "sprat": 2,
-    "dostupnost": false,
+    "dostupnost": true,
     "logickiObrisana": true,
     "Stavka": []
   },
@@ -155,7 +166,19 @@
     "sprat": 100,
     "dostupnost": true,
     "logickiObrisana": false,
-    "Stavka": []
+    "Stavka": [
+      {
+        "id": "2",
+        "naziv": "Krevet",
+        "kolicina": 2,
+        "proizvodjac": "KrevetKrevet",
+        "idProstorije": null,
+        "idBolnice": "1",
+        "jeStaticka": true,
+        "jeLogickiObrisana": false,
+        "jePotrosnaRoba": false
+      }
+    ]
   },
   {
     "id": "10",
@@ -335,6 +358,18 @@
     "sprat": 12333,
     "dostupnost": true,
     "logickiObrisana": false,
-    "Stavka": []
+    "Stavka": [
+      {
+        "id": "2",
+        "naziv": "Krevet",
+        "kolicina": 1,
+        "proizvodjac": "KrevetKrevet",
+        "idProstorije": null,
+        "idBolnice": "1",
+        "jeStaticka": true,
+        "jeLogickiObrisana": false,
+        "jePotrosnaRoba": false
+      }
+    ]
   }
 ]
