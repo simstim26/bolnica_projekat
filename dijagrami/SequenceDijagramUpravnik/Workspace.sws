@@ -5,7 +5,7 @@
 <Workspace>
 	<Local Expanded="Yes">
 		<Folder Expanded="Yes" Name="Class">
-			<Model ID="{4AC05ACB-F2EA-4885-8BAE-AB895367E2D7}" Name="classDiagram" Type="{18112060-1A4B-11D1-83D9-444553540000}" URL="../SequenceUpravnik/classDiagram.oom"/>
+			<Model ID="{4AC05ACB-F2EA-4885-8BAE-AB895367E2D7}" Loaded="No" Name="classDiagram" Type="{18112060-1A4B-11D1-83D9-444553540000}" URL="../SequenceUpravnik/classDiagram.oom"/>
 			<Model Expanded="Yes" ID="{50F8B471-FE05-43EA-9959-7A5C5317E8AC}" Name="upravnik" Type="{18112060-1A4B-11D1-83D9-444553540000}" URL="../../Documents/GitHub/bolnica_projekat/dijagrami/SequenceDijagramUpravnik/upravnik.oom"/>
 		</Folder>
 	</Local>
