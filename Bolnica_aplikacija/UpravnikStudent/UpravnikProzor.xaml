@@ -43,7 +43,7 @@
         <Grid x:Name="gridProstorija" Background="LightGray" HorizontalAlignment="Left" Height="640" Margin="10,59,0,0" VerticalAlignment="Top" Width="949" Visibility="Hidden" Grid.Column="2" Grid.RowSpan="3">
             <DataGrid x:Name="dataGridProstorija" CanUserAddRows="false" IsReadOnly ="True" HorizontalAlignment="Left" Height="472" Margin="37,138,0,0" VerticalAlignment="Top" Width="572" HeadersVisibility="All" AutoGenerateColumns="False" SelectionMode="Single" CanUserResizeRows="False">
                 <DataGrid.Columns>
-                    <DataGridTextColumn x:Name="kolonaId" Binding ="{Binding id}" IsReadOnly="True" Header="id (privremeno)" Width="143" CanUserResize="False"/>
+                    
                     <DataGridTextColumn x:Name="kolonaTip" Binding ="{Binding tipProstorije}" IsReadOnly="True" Header="tip"  Width="143" CanUserResize="False"/>
                     <DataGridTextColumn x:Name="Broj" Binding="{Binding broj}" IsReadOnly="True" Header="broj" Width="143" CanUserResize="False"/>
                     <DataGridTextColumn x:Name="Sprat" Binding="{Binding sprat}" IsReadOnly="True" Header="sprat" Width="143" CanUserResize="False"/>
@@ -79,7 +79,7 @@
             <Rectangle Fill="LightGray" HorizontalAlignment="Left" Height="638" Stroke="Black" VerticalAlignment="Top" Width="947" Margin="70,59,-984,-399"/>
             <DataGrid x:Name="dataGridInventarProstorije" HorizontalAlignment="Left" Height="474" Margin="135,186,-710,-362" VerticalAlignment="Top" HeadersVisibility="All" AutoGenerateColumns="False" SelectionMode="Single" CanUserResizeRows="False" CanUserAddRows="False">
                 <DataGrid.Columns>
-                    <DataGridTextColumn x:Name="stavkaIdProstorija" Binding ="{Binding id}" IsReadOnly="True" Header="id (privremeno)" Width="143" CanUserResize="False"/>
+                    
                     <DataGridTextColumn x:Name="stavkaNazivProstorija" Binding ="{Binding naziv}" IsReadOnly="True" Header="naziv"  Width="143" CanUserResize="False"/>
                     <DataGridTextColumn x:Name="stavkaProizvodjacProstorija" Binding="{Binding proizvodjac}" IsReadOnly="True" Header="proizvodjac" Width="143" CanUserResize="False"/>
                     <DataGridTextColumn x:Name="stavkaKolicinaProstorija" Binding="{Binding kolicina}" IsReadOnly="True" Header="kolicina" Width="143" CanUserResize="False"/>
@@ -155,7 +155,7 @@
             <Grid x:Name="gridInventar" Visibility="Hidden" Background="LightGray" HorizontalAlignment="Left" Height="640" Margin="64,59,-935,0" VerticalAlignment="Top" Width="949">
                 <DataGrid x:Name="dataGridInventar" CanUserAddRows="false" IsReadOnly ="True" HorizontalAlignment="Left" Height="466" Margin="37,138,0,0" VerticalAlignment="Top" Width="607" HeadersVisibility="All" AutoGenerateColumns="False" SelectionMode="Single" CanUserResizeRows="False">
                     <DataGrid.Columns>
-                        <DataGridTextColumn x:Name="stavkaId" Binding ="{Binding id}" IsReadOnly="True" Header="id (privremeno)" Width="143" CanUserResize="False"/>
+                        
                         <DataGridTextColumn x:Name="stavkaNaziv" Binding ="{Binding naziv}" IsReadOnly="True" Header="naziv"  Width="143" CanUserResize="False"/>
                         <DataGridTextColumn x:Name="stavkaProizvodjac" Binding="{Binding proizvodjac}" IsReadOnly="True" Header="proizvodjac" Width="143" CanUserResize="False"/>
                         <DataGridTextColumn x:Name="stavkaKolicina" Binding="{Binding kolicina}" IsReadOnly="True" Header="kolicina" Width="143" CanUserResize="False"/>

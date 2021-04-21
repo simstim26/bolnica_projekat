@@ -30,27 +30,27 @@ namespace Bolnica_aplikacija.Servis
             
             foreach (ProstorijaZauzeto pz in prostorijeZaZauzimanje)
             {
-                if(pz.jeZavrseno == false)
+                if (pz.jeZavrseno == false)
                 {
                     foreach (Prostorija p in prostorije)
                     {
                         if (p.id == pz.idProstorije)
                         {
-                            if (DateTime.Now >= pz.datumPocetka && DateTime.Now < pz.datumKraja)
+                            if (DateTime.Now >= pz.datumPocetka && DateTime.Now <= pz.datumKraja)
                             {
                                 p.dostupnost = false;
                             }
 
-                            if (DateTime.Now == pz.datumKraja)
+                            /*if (DateTime.Now == pz.datumKraja)
                             {
                                 pz.jeZavrseno = true;
                                 p.dostupnost = true;
-                            }
+                            }*/
                         }
                     }
-                }
-                
-            }
+                 }
+
+             }
             upisi(prostorijeZaZauzimanje);
             ProstorijaKontroler.upisi(prostorije);
         }
