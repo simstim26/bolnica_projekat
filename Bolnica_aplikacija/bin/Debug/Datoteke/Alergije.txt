@@ -9,7 +9,7 @@
   },
   {
     "idPacijenta": "4",
-    "nazivAlergije": "Redovan nalog"
+    "nazivAlergije": "Test alergija"
   },
   {
     "idPacijenta": "5",
@@ -21,10 +21,10 @@
   },
   {
     "idPacijenta": "1",
-    "nazivAlergije": "MISS"
+    "nazivAlergije": "Alergija 2"
   },
   {
     "idPacijenta": "1",
-    "nazivAlergije": "SPPURV1"
+    "nazivAlergije": "Alergija 3"
   }
 ]
