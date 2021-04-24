@@ -19,5 +19,7 @@ namespace Bolnica_aplikacija.PacijentModel
 
         public String idSpecijalizacije { get; set; }
 
+        public String nazivTerapije { get; set; }
+
     }
 }

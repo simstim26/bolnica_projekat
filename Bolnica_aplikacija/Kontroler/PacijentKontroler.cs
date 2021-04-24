@@ -45,9 +45,13 @@ namespace Bolnica_aplikacija.Kontroler
             return pacijentServis.prikazPacijentovihTermina();
         }
 
-        public static List<PacijentTermin> prikazSvihTerminaPacijenta()
+        public static List<PacijentTermin> prikazBuducihTerminaPacijenta()
         {
-            return pacijentServis.prikazSvihTerminaPacijenta();
+            return pacijentServis.prikazBuducihTerminaPacijenta();
+        }
+        public static List<PacijentTermin> prikazProslihTerminaPacijenta()
+        {
+            return pacijentServis.prikazProslihTerminaPacijenta();
         }
         public static void zakaziTerminPacijentu(String idTermina)
         {

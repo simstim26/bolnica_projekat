@@ -125,7 +125,8 @@ namespace Bolnica_aplikacija
 
         private void ucitajPodatke()
         {
-              dataGridTerminiPacijenta.ItemsSource = PacijentKontroler.prikazSvihTerminaPacijenta();
+            dataGridTerminiPacijenta.ItemsSource = PacijentKontroler.prikazBuducihTerminaPacijenta();
+            dataGridProsliTermini.ItemsSource = PacijentKontroler.prikazProslihTerminaPacijenta();
         }
 
         private void btnPromeni_Click(object sender, RoutedEventArgs e)

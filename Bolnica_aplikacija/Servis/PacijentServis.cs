@@ -256,7 +256,7 @@ namespace Bolnica_aplikacija.Servis
             return terminiPacijenta;
         }
 
-        public List<PacijentTermin> prikazSvihTerminaPacijenta()
+        public List<PacijentTermin> prikazBuducihTerminaPacijenta()
         {
             List<PacijentTermin> terminiPacijenta = new List<PacijentTermin>();
 
@@ -264,31 +264,106 @@ namespace Bolnica_aplikacija.Servis
             {
                 if (termin.idPacijenta.Equals(pacijent.id))
                 {
-                    PacijentTermin pacijentTermin = new PacijentTermin();
-                    pacijentTermin.id = termin.idTermina;
-                    pacijentTermin.napomena = termin.getTipString();
-                    pacijentTermin.datum = termin.datum.Date.ToString("dd.MM.yyyy.");
-                    pacijentTermin.satnica = termin.satnica.ToString("HH:mm");
+                    DateTime terminDatum = termin.datum;
+                    DateTime danasnjiDatum = DateTime.Today;
 
-                    foreach (Lekar lekar in lekarRepozitorijum.ucitajSve())
+                    int rezultat = DateTime.Compare(terminDatum, danasnjiDatum);
+
+                    if (rezultat >= 0)
                     {
-                        if (lekar.id.Equals(termin.idLekara))
-                        {
-                            pacijentTermin.imeLekara = lekar.prezime;
-                            break;
-                        }
-                    }
+                        PacijentTermin pacijentTermin = new PacijentTermin();
+                        pacijentTermin.id = termin.idTermina;
+                        pacijentTermin.napomena = termin.getTipString();
+                        pacijentTermin.datum = termin.datum.Date.ToString("dd.MM.yyyy.");
+                        pacijentTermin.satnica = termin.satnica.ToString("HH:mm");
 
-                    foreach (Prostorija prostorija in prostorijaRepozitorijum.ucitajSve())
+                        foreach (Lekar lekar in lekarRepozitorijum.ucitajSve())
+                        {
+                            if (lekar.id.Equals(termin.idLekara))
+                            {
+                                pacijentTermin.imeLekara = lekar.prezime;
+                                break;
+                            }
+                        }
+
+                        foreach (Prostorija prostorija in prostorijaRepozitorijum.ucitajSve())
+                        {
+                            if (termin.idProstorije.Equals(prostorija.id))
+                            {
+                                pacijentTermin.lokacija = prostorija.sprat + " " + prostorija.broj;
+                                break;
+                            }
+                        }
+
+                        terminiPacijenta.Add(pacijentTermin);
+                    }
+                }
+            }
+
+            return terminiPacijenta;
+        }
+
+        public List<PacijentTermin> prikazProslihTerminaPacijenta()
+        {
+            List<PacijentTermin> terminiPacijenta = new List<PacijentTermin>();
+
+            foreach(Termin termin in terminRepozitorijum.ucitajSve())
+            {
+                if (termin.idPacijenta.Equals(pacijent.id))
+                {
+                    if (termin.jeZavrsen)
                     {
-                        if (termin.idProstorije.Equals(prostorija.id))
-                        {
-                            pacijentTermin.lokacija = prostorija.sprat + " " + prostorija.broj;
-                            break;
-                        }
-                    }
+                        PacijentTermin pacijentTermin = new PacijentTermin();
+                        pacijentTermin.id = termin.idTermina;
+                        pacijentTermin.napomena = termin.getTipString();
+                        pacijentTermin.datum = termin.datum.Date.ToString("dd.MM.yyyy.");
+                        pacijentTermin.satnica = termin.satnica.ToString("HH:mm");
 
-                    terminiPacijenta.Add(pacijentTermin);
+                        foreach (Lekar lekar in lekarRepozitorijum.ucitajSve())
+                        {
+                            if (lekar.id.Equals(termin.idLekara))
+                            {
+                                pacijentTermin.imeLekara = lekar.prezime;
+                                foreach(Specijalizacija specijalizacija in specijalizacijaRepozitorijum.ucitajSve())
+                                {
+                                    if (lekar.idSpecijalizacije.Equals(specijalizacija.idSpecijalizacije))
+                                    {
+                                        pacijentTermin.nazivSpecijalizacije = specijalizacija.nazivSpecijalizacije;
+                                        break;
+                                    }
+                                }
+                                break;
+                            }
+                        }
+
+                        foreach (Prostorija prostorija in prostorijaRepozitorijum.ucitajSve())
+                        {
+                            if (termin.idProstorije.Equals(prostorija.id))
+                            {
+                                pacijentTermin.lokacija = prostorija.sprat + " " + prostorija.broj;
+                                break;
+                            }
+                        }
+
+                        foreach(Terapija terapija in terapijaRepozitorijum.ucitajSve())
+                        {
+                            if (termin.idTerapije.Equals(terapija.id))
+                            {
+                                foreach(Lek lek in lekRepozitorijum.ucitajSve())
+                                {
+                                    if (terapija.idLeka.Equals(lek.id))
+                                    {
+                                        pacijentTermin.nazivTerapije = lek.naziv;
+                                        break;
+                                    }
+                                }
+                                break;
+                            }
+                        }
+
+                        terminiPacijenta.Add(pacijentTermin);
+                    }
+                    
                 }
             }
 
