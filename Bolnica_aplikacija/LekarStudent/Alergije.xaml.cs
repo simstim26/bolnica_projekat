@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Bolnica_aplikacija.Kontroler;
+using Bolnica_aplikacija.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,6 +29,40 @@ namespace Bolnica_aplikacija.LekarStudent
             LekarProzor.getGlavnaLabela().Content = "Alergije";
             PacijentInfo.aktivanPacijentInfo = false;
             aktivan = true;
+            ucitaj();
+        }
+
+        private void ucitaj()
+        {
+            dataGridAlergije.ItemsSource = PacijentKontroler.procitajAlergije();
+
+        }
+        private void btnDodaj_Click(object sender, RoutedEventArgs e)
+        {
+            PacijentKontroler.napraviAlergiju(PacijentKontroler.getPacijent().id, txtDodavanjeAlergije.Text);
+            ucitaj();
+            txtDodavanjeAlergije.Text = "";
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (dataGridAlergije.SelectedIndex != -1)
+            {
+                AlergijaKontroler.obrisiAlergiju((Alergija)dataGridAlergije.SelectedItem);
+                ucitaj();
+            }
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!String.IsNullOrWhiteSpace(txtDodavanjeAlergije.Text))
+            {
+                btnDodaj.IsEnabled = true;
+            }
+            else
+            {
+                btnDodaj.IsEnabled = false;
+            }
         }
     }
 }
