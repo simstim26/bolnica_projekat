@@ -29,6 +29,6 @@
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="btnOdabirProstorije" Content="Odabir prostorije" HorizontalAlignment="Left" Height="42" Margin="241,55,0,0" VerticalAlignment="Top" Width="153" BorderBrush="Black" Click="btnOdabirProstorije_Click"/>
-        <Button x:Name="btnZakaziOperaciju" Content="Zakazi operaciju" HorizontalAlignment="Left" Height="42" Margin="241,55,0,0" VerticalAlignment="Top" Width="153" BorderBrush="Black"/>
+        <Button x:Name="btnZakaziOperaciju" Content="Zakazi operaciju" HorizontalAlignment="Left" Height="42" Margin="241,55,0,0" VerticalAlignment="Top" Width="153" BorderBrush="Black" Click="btnZakaziOperaciju_Click"/>
     </Grid>
 </UserControl>

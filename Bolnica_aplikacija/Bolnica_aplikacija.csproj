@@ -131,6 +131,9 @@
     <Compile Include="LekarStudent\UvidUTerapije.xaml.cs">
       <DependentUpon>UvidUTerapije.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LekarStudent\ZakazivanjeOperacije.xaml.cs">
+      <DependentUpon>ZakazivanjeOperacije.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Model\Alergija.cs" />
     <Compile Include="PacijentStudent\NotifikacijaProzor.xaml.cs">
       <DependentUpon>NotifikacijaProzor.xaml</DependentUpon>
@@ -297,6 +300,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="LekarStudent\UvidUTerapije.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LekarStudent\ZakazivanjeOperacije.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

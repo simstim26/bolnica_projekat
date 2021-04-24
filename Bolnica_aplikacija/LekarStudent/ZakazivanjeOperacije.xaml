@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="Bolnica_aplikacija.LekarStudent.ZakazivanjeOperacije"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Bolnica_aplikacija.LekarStudent"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="750" d:DesignWidth="430">
+    <Grid Background="White">
+        <Image HorizontalAlignment="Left" Height="26" Margin="57,45,0,0" VerticalAlignment="Top" Width="27" Source="patient-icon-3.jpg"/>
+        <Image HorizontalAlignment="Left" Height="57" Margin="47,159,0,0" VerticalAlignment="Top" Width="43" Source="doc.png"/>
+        <Label Content="Datum:" HorizontalAlignment="Left" Margin="56,269,0,0" VerticalAlignment="Top"/>
+        <DatePicker x:Name="datum" HorizontalAlignment="Left" Margin="150,269,0,0" VerticalAlignment="Top" Height="24" Width="90"/>
+        <Label Content="Vreme:" HorizontalAlignment="Left" Margin="57,317,0,0" VerticalAlignment="Top" Width="45"/>
+        <TextBox x:Name="txtVreme" HorizontalAlignment="Left" Height="23" Margin="150,318,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="90"/>
+        <TextBox HorizontalAlignment="Left" Height="25" Margin="57,397,0,0" TextWrapping="Wrap" Text="Prostorija..." VerticalAlignment="Top" Width="120" Foreground="Gray"/>
+        <Button x:Name="btnDodajProstoriju" HorizontalAlignment="Left" Margin="219,394,0,0" VerticalAlignment="Top" Width="49" Height="28">
+            <materialDesign:PackIcon Kind="Plus" ></materialDesign:PackIcon>
+        </Button>
+        <Button x:Name="btnUkloniProstoriju" HorizontalAlignment="Left" Margin="294,394,0,0" VerticalAlignment="Top" Width="49" Height="28">
+            <materialDesign:PackIcon Kind="Minus"></materialDesign:PackIcon>
+        </Button>
+        <Button x:Name="btnPotvrdi" HorizontalAlignment="Left" Margin="47,608,0,0" VerticalAlignment="Top" Width="84" Height="38">
+            <materialDesign:PackIcon Kind="CheckCircle" Height="21" Width="25"></materialDesign:PackIcon>
+        </Button>
+        <Button x:Name="btnPonisti" Content="Button" HorizontalAlignment="Left" Margin="294,608,0,0" VerticalAlignment="Top" Width="84" Height="38"/>
+        <Label x:Name="lblLekar" HorizontalAlignment="Left" Margin="150,169,0,0" VerticalAlignment="Top" Width="214" Height="27"/>
+        <Label x:Name="lblPacijent" HorizontalAlignment="Left" Margin="157,47,0,0" VerticalAlignment="Top" Width="186" Height="24"/>
+
+
+    </Grid>
+</UserControl>
