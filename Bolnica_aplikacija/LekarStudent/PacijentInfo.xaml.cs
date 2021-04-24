@@ -40,7 +40,7 @@ namespace Bolnica_aplikacija
             lblAdresa.Content = PacijentKontroler.getPacijent().adresa;
             lblKontakt.Content = PacijentKontroler.getPacijent().brojTelefona;
 
-            if(LekarTabovi.getIndikator() == 1)
+            /*if(LekarTabovi.getIndikator() == 1)
             {
                 btnIzvestaj.IsEnabled = false;
             }
@@ -61,7 +61,7 @@ namespace Bolnica_aplikacija
                 {
                     btnIzvestaj.IsEnabled = false;
                 }
-            }
+            }*/
            
             dataTermini = this.dataGridTerminiPacijenta;
             ucitajPodatke();
@@ -190,6 +190,11 @@ namespace Bolnica_aplikacija
         private void btnTerapije_Click(object sender, RoutedEventArgs e)
         {
             Content = new UvidUTerapije();
+        }
+
+        private void btnAlergije_Click(object sender, RoutedEventArgs e)
+        {
+            Content = new Alergije();
         }
     }
 }

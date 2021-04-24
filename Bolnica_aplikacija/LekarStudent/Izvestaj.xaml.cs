@@ -27,6 +27,8 @@ namespace Bolnica_aplikacija.LekarStudent
         private static Grid recept;
         private static Grid odabirLeka;
         private static Grid azuriranje;
+        private static Grid lekari;
+        private static Grid zakazivanje;
         public Izvestaj()
         {
             InitializeComponent();
@@ -36,40 +38,73 @@ namespace Bolnica_aplikacija.LekarStudent
             aktivan = true;
             lblJmbg.Content = PacijentKontroler.getPacijent().jmbg;
             lblImePrezime.Content = PacijentKontroler.getPacijent().ime + " " + PacijentKontroler.getPacijent().prezime;
-            uput = this.gridUput;
-            recept = this.gridRecept;
-            azuriranje = this.gridAzuriranje;
-            odabirLeka = this.gridOdabirLeka;
+            lblUpucuje.Content = KorisnikKontroler.getLekar().ime + " " + KorisnikKontroler.getLekar().prezime + ", "
+                + SpecijalizacijaKontroler.nadjiSpecijalizacijuPoId(KorisnikKontroler.getLekar().idSpecijalizacije);     
             lblLekar.Content = KorisnikKontroler.getLekar().ime + " " + KorisnikKontroler.getLekar().prezime + ", " 
                 + SpecijalizacijaKontroler.nadjiSpecijalizacijuPoId(KorisnikKontroler.getLekar().idSpecijalizacije);
             txtDatum.Text = DateTime.Now.ToString("dd.MM.yyyy.");
-
             lblRJmbg.Content = PacijentKontroler.getPacijent().jmbg;
             lblRImePrezime.Content = PacijentKontroler.getPacijent().ime + " " + PacijentKontroler.getPacijent().prezime;
             lblRDatumR.Content = PacijentKontroler.getPacijent().datumRodjenja.ToString("dd.MM.yyyy");
+
+            podesiStaticGridPolja();
+
 
             dataGridLekovi.ItemsSource = LekKontroler.ucitajSve();
 
         }
 
-        public static Grid getGridOdabirLeka()
+        private void podesiStaticGridPolja()
         {
-            return odabirLeka;
+            uput = this.gridUput;
+            recept = this.gridRecept;
+            azuriranje = this.gridAzuriranje;
+            odabirLeka = this.gridOdabirLeka;
+            lekari = this.gridOdabirLekaraUput;
+            zakazivanje = this.gridZakazivanje;
         }
 
-        public static Grid getGridUput()
+        public static void podesiKretanjeZaDugmeNazad()
         {
-            return uput;
-        }
+            if (uput.Visibility == Visibility.Visible)
+            {
+                LekarProzor.getGlavnaLabela().Content = "Pisanje izveštaja";
+                Izvestaj.uput.Visibility = Visibility.Hidden;
 
-        public static Grid getGridRecept()
-        {
-            return recept;
-        }
-
-        public static Grid getGridAzuriranje()
-        {
-            return azuriranje;
+            }
+            else if (recept.Visibility == Visibility.Visible)
+            {
+                LekarProzor.getGlavnaLabela().Content = "Pisanje izveštaja";
+                Izvestaj.recept.Visibility = Visibility.Hidden;
+            }
+            else if (azuriranje.Visibility == Visibility.Visible)
+            {
+                LekarProzor.getGlavnaLabela().Content = "Pisanje izveštaja";
+                azuriranje.Visibility = Visibility.Hidden;
+            }
+            else if (odabirLeka.Visibility == Visibility.Visible)
+            {
+                LekarProzor.getGlavnaLabela().Content = "Izdavanje recepta";
+                odabirLeka.Visibility = Visibility.Hidden;
+                recept.Visibility = Visibility.Visible;
+            }
+            else if (lekari.Visibility == Visibility.Visible)
+            {
+                LekarProzor.getGlavnaLabela().Content = "Izdavanje uputa";
+                lekari.Visibility = Visibility.Hidden;
+                uput.Visibility = Visibility.Visible;
+            }
+            else if (zakazivanje.Visibility == Visibility.Visible)
+            {
+                LekarProzor.getGlavnaLabela().Content = "Odabir lekara";
+                zakazivanje.Visibility = Visibility.Hidden;
+                lekari.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                LekarProzor.getX().Content = new PacijentInfo();
+                aktivan = false;
+            }
         }
 
         private void btnUput_Click(object sender, RoutedEventArgs e)
@@ -153,6 +188,21 @@ namespace Bolnica_aplikacija.LekarStudent
             txtNazivLeka.Text = ((Lek)dataGridLekovi.SelectedItem).naziv;
             txtKol.Text = ((Lek)dataGridLekovi.SelectedItem).kolicina + "mg";
             txtNacinUpotrebe.Text = ((Lek)dataGridLekovi.SelectedItem).getNacinUpotrebeString();
+        }
+
+        private void btnIzaberiLekara_Click(object sender, RoutedEventArgs e)
+        {
+            this.gridOdabirLekaraUput.Visibility = Visibility.Visible;
+            this.gridUput.Visibility = Visibility.Hidden;
+            LekarProzor.getGlavnaLabela().Content = "Odabir lekara";
+        }
+
+        private void btnZakazivanjePregledaUput_Click(object sender, RoutedEventArgs e)
+        {
+            this.gridZakazivanje.Visibility = Visibility.Visible;
+            this.gridOdabirLekaraUput.Visibility = Visibility.Hidden;
+            this.gridUput.Visibility = Visibility.Hidden;
+            LekarProzor.getGlavnaLabela().Content = "Zakazivanje termina";
         }
     }
 }

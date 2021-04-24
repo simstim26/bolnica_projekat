@@ -42,14 +42,24 @@ namespace Bolnica_aplikacija.LekarStudent
             this.btnPotvrdi.IsEnabled = false;
         }
 
-        public static Grid getGridRecept()
+        public static void podesiKretanjeZaDugmeNazad()
         {
-            return gridRecept;
-        }
-
-        public static Grid getGridLekovi()
-        {
-            return gridLekovi;
+            if (gridLekovi.Visibility == Visibility.Visible)
+            {
+                gridLekovi.Visibility = Visibility.Hidden;
+                gridRecept.Visibility = Visibility.Visible;
+                LekarProzor.getGlavnaLabela().Content = "Izdavanje recepta";
+            }
+            else if (gridRecept.Visibility == Visibility.Visible)
+            {
+                gridRecept.Visibility = Visibility.Hidden;
+                LekarProzor.getGlavnaLabela().Content = "Ažuriranje bolesti";
+            }
+            else
+            {
+                LekarProzor.getX().Content = new IstorijaBolesti();
+                IzmenaBolesti.aktivan = false;
+            }
         }
 
         private void btnPotvrdi_Click(object sender, RoutedEventArgs e)

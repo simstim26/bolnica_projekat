@@ -90,33 +90,7 @@ namespace Bolnica_aplikacija
             }
             else if (Izvestaj.aktivan)
             {
-                if (Izvestaj.getGridUput().Visibility == Visibility.Visible)
-                {
-                    lblGlavna.Content = "Pisanje izveštaja";
-                    Izvestaj.getGridUput().Visibility = Visibility.Hidden;
-
-                }
-                else if(Izvestaj.getGridRecept().Visibility == Visibility.Visible)
-                {
-                    lblGlavna.Content = "Pisanje izveštaja";
-                    Izvestaj.getGridRecept().Visibility = Visibility.Hidden;
-                }
-                else if(Izvestaj.getGridAzuriranje().Visibility == Visibility.Visible)
-                {
-                    lblGlavna.Content = "Pisanje izveštaja";
-                    Izvestaj.getGridAzuriranje().Visibility = Visibility.Hidden;
-                }
-                else if(Izvestaj.getGridOdabirLeka().Visibility == Visibility.Visible)
-                {
-                    lblGlavna.Content = "Izdavanje recepta";
-                    Izvestaj.getGridOdabirLeka().Visibility = Visibility.Hidden;
-                    Izvestaj.getGridRecept().Visibility = Visibility.Visible;
-                }
-                else
-                {
-                    LekarProzor.getX().Content = new PacijentInfo();
-                    Izvestaj.aktivan = false;
-                }
+                Izvestaj.podesiKretanjeZaDugmeNazad();
             }
             else if (IstorijaBolesti.aktivan)
             {
@@ -125,22 +99,7 @@ namespace Bolnica_aplikacija
             }
             else if (IzmenaBolesti.aktivan)
             {
-                if (IzmenaBolesti.getGridLekovi().Visibility == Visibility.Visible)
-                {
-                    IzmenaBolesti.getGridLekovi().Visibility = Visibility.Hidden;
-                    IzmenaBolesti.getGridRecept().Visibility = Visibility.Visible;
-                    glavnaLabela.Content = "Izdavanje recepta";
-                }
-                else if (IzmenaBolesti.getGridRecept().Visibility == Visibility.Visible)
-                {
-                    IzmenaBolesti.getGridRecept().Visibility = Visibility.Hidden;
-                    LekarProzor.getGlavnaLabela().Content = "Ažuriranje bolesti";
-                }
-                else
-                {
-                    LekarProzor.getX().Content = new IstorijaBolesti();
-                    IzmenaBolesti.aktivan = false;
-                }
+                IzmenaBolesti.podesiKretanjeZaDugmeNazad();
             }
             else if (Alergije.aktivan)
             {

@@ -25,6 +25,7 @@ namespace Bolnica_aplikacija.LekarStudent
         {
             InitializeComponent();
             LekarProzor.getGlavnaLabela().Content = "Alergije";
+            PacijentInfo.aktivanPacijentInfo = false;
             aktivan = true;
         }
     }
