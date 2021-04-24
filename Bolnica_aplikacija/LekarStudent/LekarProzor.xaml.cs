@@ -125,6 +125,10 @@ namespace Bolnica_aplikacija
                     TerapijeIzdavanjeRecpeta.aktivan = false;
                 }
             }
+            else if (ZakazivanjeOperacije.aktivan)
+            {
+                ZakazivanjeOperacije.podesiKretanjeZaNazad();
+            }
         }
 
         private void btnPretraga_Click(object sender, RoutedEventArgs e)

@@ -15,7 +15,7 @@
         <Label Content="Vreme:" HorizontalAlignment="Left" Margin="57,317,0,0" VerticalAlignment="Top" Width="45"/>
         <TextBox x:Name="txtVreme" HorizontalAlignment="Left" Height="23" Margin="150,318,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="90"/>
         <TextBox HorizontalAlignment="Left" Height="25" Margin="57,397,0,0" TextWrapping="Wrap" Text="Prostorija..." VerticalAlignment="Top" Width="120" Foreground="Gray"/>
-        <Button x:Name="btnDodajProstoriju" HorizontalAlignment="Left" Margin="219,394,0,0" VerticalAlignment="Top" Width="49" Height="28">
+        <Button x:Name="btnDodajProstoriju" HorizontalAlignment="Left" Margin="219,394,0,0" VerticalAlignment="Top" Width="49" Height="28" Click="btnDodajProstoriju_Click">
             <materialDesign:PackIcon Kind="Plus" ></materialDesign:PackIcon>
         </Button>
         <Button x:Name="btnUkloniProstoriju" HorizontalAlignment="Left" Margin="294,394,0,0" VerticalAlignment="Top" Width="49" Height="28">
@@ -28,6 +28,21 @@
         <Label x:Name="lblLekar" HorizontalAlignment="Left" Margin="150,169,0,0" VerticalAlignment="Top" Width="214" Height="27"/>
         <Label x:Name="lblPacijent" HorizontalAlignment="Left" Margin="157,47,0,0" VerticalAlignment="Top" Width="186" Height="24"/>
 
+        <Grid x:Name="gridOdabirProstorija" Background="White" Visibility="Hidden">
+            <DataGrid x:Name="dataGridProstorije" IsReadOnly="True" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="369" Margin="0,169,0,0" VerticalAlignment="Top" Width="430">
+            </DataGrid>
+            <Button x:Name="btnPrikazInventara" Content="Prikaz inventara" HorizontalAlignment="Left" Margin="259,104,0,0" VerticalAlignment="Top" Width="139" Height="46" Click="btnPrikazInventara_Click"/>
+            <Button x:Name="btnPotvrdiProstoriju" HorizontalAlignment="Left" Margin="60,608,0,0" VerticalAlignment="Top" Width="81" Height="42">
+                <materialDesign:PackIcon Kind="CheckCircle" Height="22" Width="24"></materialDesign:PackIcon>
+            </Button>
+            <Button x:Name= "btnPonistiProstoriju" HorizontalAlignment="Left" Margin="292,608,0,0" VerticalAlignment="Top" Width="82" Height="42"/>
+
+        </Grid>
+
+        <Grid x:Name="gridPrikazInventara" Background="White" Visibility="Hidden">
+            <DataGrid HorizontalAlignment="Left" Height="627" Margin="0,123,0,0" VerticalAlignment="Top" Width="430"/>
+
+        </Grid>
 
     </Grid>
 </UserControl>

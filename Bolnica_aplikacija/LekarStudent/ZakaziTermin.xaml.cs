@@ -35,6 +35,7 @@ namespace Bolnica_aplikacija
             PacijentInfo.aktivanPacijentInfo = false;
             PrikazProstorija.aktivan = false;
             aktivan = true;
+            LekarProzor.getPretraga().Visibility = Visibility.Visible;
 
             if (tipAkcije == 1)
             {
