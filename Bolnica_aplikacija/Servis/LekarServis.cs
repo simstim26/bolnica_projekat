@@ -72,35 +72,11 @@ namespace Bolnica_aplikacija.Servis
                     pacijentTermin.id = termin.idTermina;
                     pacijentTermin.napomena = termin.getTipString();
                     pacijentTermin.datum = termin.datum.Date.ToString("dd.MM.yyyy.");
-                    String satnica = termin.satnica.ToString("HH:mm");
-                    pacijentTermin.satnica = satnica;
+                    pacijentTermin.satnica = termin.satnica.ToString("HH:mm");
+                    pacijentTermin.imeLekara = pronadjiImeLekara(termin.idLekara);
+                    pacijentTermin.nazivSpecijalizacije = pronadjiNazivSpecijalizacijeLekara(termin.idLekara);
+                    pacijentTermin.lokacija = ProstorijaServis.getInstance().nadjiBrojISprat(termin.idProstorije);
 
-                    foreach (Lekar lekar in lekarRepozitorijum.ucitajSve())
-                    {
-                        if (lekar.id.Equals(termin.idLekara))
-                        {
-                            pacijentTermin.imeLekara = lekar.prezime;
-
-                            foreach (Specijalizacija spec in specijalizacijaRepozitorijum.ucitajSve())
-                            {
-                                if (lekar.idSpecijalizacije.Equals(spec.idSpecijalizacije))
-                                {
-                                    pacijentTermin.nazivSpecijalizacije = spec.nazivSpecijalizacije;
-                                    break;
-                                }
-                            }
-                            break;
-                        }
-                    }
-
-                    foreach (Prostorija prostorija in prostorijaRepozitorijum.ucitajSve())
-                    {
-                        if (termin.idProstorije.Equals(prostorija.id))
-                        {
-                            pacijentTermin.lokacija = prostorija.sprat + " " + prostorija.broj;
-                            break;
-                        }
-                    }
                     if (!ulogovaniLekar.idSpecijalizacije.Equals("0") && pacijentTermin.napomena.Equals("Operacija"))
                     {
                         if (tipAkcije == 0 && rezultat >= 0)
@@ -147,15 +123,7 @@ namespace Bolnica_aplikacija.Servis
                         pacijentTermin.napomena = termin.getTipString();
                         pacijentTermin.datum = termin.datum.ToString("dd.MM.yyyy.");
                         pacijentTermin.satnica = termin.satnica.ToString("HH:mm");
-
-                        foreach (Prostorija prostorija in prostorijaRepozitorijum.ucitajSve())
-                        {
-                            if (termin.idProstorije.Equals(prostorija.id))
-                            {
-                                pacijentTermin.lokacija = prostorija.sprat + " " + prostorija.broj;
-                                break;
-                            }
-                        }
+                        pacijentTermin.lokacija = ProstorijaServis.getInstance().nadjiBrojISprat(termin.idProstorije);
 
                         terminiZaPrikaz.Add(pacijentTermin);
                     }
@@ -179,15 +147,8 @@ namespace Bolnica_aplikacija.Servis
                         pacijentTermin.datum = termin.datum.ToString("dd.MM.yyyy.");
                         pacijentTermin.satnica = termin.satnica.ToString("HH:mm");
                         pacijentTermin.id = termin.idTermina;
-                        pacijentTermin.napomena = termin.getTipString(); 
-                        foreach (Prostorija prostorija in prostorijaRepozitorijum.ucitajSve())
-                        {
-                            if (termin.idProstorije.Equals(prostorija.id))
-                            {
-                                pacijentTermin.lokacija = prostorija.sprat + " " + prostorija.broj;
-                                break;
-                            }
-                        }
+                        pacijentTermin.napomena = termin.getTipString();
+                        pacijentTermin.lokacija = ProstorijaServis.getInstance().nadjiBrojISprat(termin.idProstorije);
 
                         terminiZaPrikaz.Add(pacijentTermin);
                     }
