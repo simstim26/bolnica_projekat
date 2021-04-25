@@ -77,20 +77,23 @@ namespace Bolnica_aplikacija.Servis
 
             foreach (Terapija terapija in TerapijaServis.getInstance().ucitajSve())
             {
-                Bolest bolest = BolestServis.getInstance().nadjiBolestPoId(terapija.idBolesti);
-                if (terapija.idBolesti.Equals(bolest.id))
+                if (terapija.idPacijenta.Equals(pacijent.id))
                 {
-                    Lek lek = LekServis.getInstance().nadjiLekPoId(terapija.idLeka);
-                    if (lek != null)
+                    Bolest bolest = BolestServis.getInstance().nadjiBolestPoId(terapija.idBolesti);
+                    if (terapija.idBolesti.Equals(bolest.id))
                     {
-                        BolestTerapija bolestTerapija = new BolestTerapija();
-                        bolestTerapija.idBolesti = bolest.id;
-                        bolestTerapija.nazivBolesti = bolest.naziv;
-                        bolestTerapija.idTerapije = terapija.id;
-                        bolestTerapija.nazivTerapije = lek.naziv;
-                        bolestTerapija.idLeka = lek.id;
-                        bolestTerapija.kolicina = lek.kolicina.ToString();
-                        povratnaVrednost.Add(bolestTerapija);
+                        Lek lek = LekServis.getInstance().nadjiLekPoId(terapija.idLeka);
+                        if (lek != null)
+                        {
+                            BolestTerapija bolestTerapija = new BolestTerapija();
+                            bolestTerapija.idBolesti = bolest.id;
+                            bolestTerapija.nazivBolesti = bolest.naziv;
+                            bolestTerapija.idTerapije = terapija.id;
+                            bolestTerapija.nazivTerapije = lek.naziv;
+                            bolestTerapija.idLeka = lek.id;
+                            bolestTerapija.kolicina = lek.kolicina.ToString();
+                            povratnaVrednost.Add(bolestTerapija);
+                        }
                     }
                 }
             }
