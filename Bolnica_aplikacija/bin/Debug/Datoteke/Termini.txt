@@ -99,7 +99,7 @@
     "idProstorije": "15",
     "idPacijenta": "1",
     "idLekara": "1",
-    "idTerapije": "1",
+    "idTerapije": "5",
     "idBolesti": "1",
     "izvestaj": "dsfnapdsnfapksdnf;aksnd;fkladfa"
   },

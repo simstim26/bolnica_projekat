@@ -30,19 +30,14 @@ namespace Bolnica_aplikacija.Servis
                 {
                     if (bolest.idTerapije == null)
                     {
-                        foreach(Termin termin in TerminServis.getInstance().ucitajSve())
-                        {
-                            if(termin.idBolesti != null && termin.idBolesti.Equals(bolest.id))
-                            {
-                                BolestTerapija bolestTerapija = new BolestTerapija();
-                                bolestTerapija.idBolesti = bolest.id;
-                                bolestTerapija.nazivBolesti = bolest.naziv;
-                                bolestTerapija.idTermina = termin.idTermina;
-                                bolestTerapija.izvestaj = termin.izvestaj;
-                                istorijaBolesti.Add(bolestTerapija);
-                                break;
-                            }
-                        }
+                        Termin termin = TerminServis.getInstance().nadjiTerminZaBolest(bolest.id);
+
+                        BolestTerapija bolestTerapija = new BolestTerapija();
+                        bolestTerapija.idBolesti = bolest.id;
+                        bolestTerapija.nazivBolesti = bolest.naziv;
+                        bolestTerapija.idTermina = termin.idTermina;
+                        bolestTerapija.izvestaj = termin.izvestaj;
+                        istorijaBolesti.Add(bolestTerapija);
                     }
                     else
                     {
@@ -50,26 +45,20 @@ namespace Bolnica_aplikacija.Servis
                         {
                             if (terapija.idTermina != null && terapija.idBolesti.Equals(bolest.id))
                             {
-                                foreach (Termin termin in TerminServis.getInstance().ucitajSve())
+                                Termin termin = TerminServis.getInstance().nadjiTerminZaBolest(terapija.idBolesti);
+                                Lek lek = LekServis.getInstance().nadjiLekPoId(terapija.idLeka);
+                                if (lek != null)
                                 {
-                                    if (termin.idBolesti != null && termin.idBolesti.Equals(terapija.idBolesti))
-                                    {
-                                        Lek lek = LekServis.getInstance().nadjiLekPoId(terapija.idLeka);
-                                        if (lek != null)
-                                        {
-                                            BolestTerapija bolestTerapija = new BolestTerapija();
-                                            bolestTerapija.idBolesti = bolest.id;
-                                            bolestTerapija.nazivBolesti = bolest.naziv;
-                                            bolestTerapija.idTerapije = terapija.id;
-                                            bolestTerapija.nazivTerapije = lek.naziv;
-                                            bolestTerapija.idTermina = termin.idTermina;
-                                            bolestTerapija.izvestaj = termin.izvestaj;
-                                            bolestTerapija.idLeka = lek.id;
-                                            bolestTerapija.kolicina = lek.kolicina.ToString();
-                                            istorijaBolesti.Add(bolestTerapija);
-                                        }
-                                        break;
-                                    }
+                                    BolestTerapija bolestTerapija = new BolestTerapija();
+                                    bolestTerapija.idBolesti = bolest.id;
+                                    bolestTerapija.nazivBolesti = bolest.naziv;
+                                    bolestTerapija.idTerapije = terapija.id;
+                                    bolestTerapija.nazivTerapije = lek.naziv;
+                                    bolestTerapija.idTermina = termin.idTermina;
+                                    bolestTerapija.izvestaj = termin.izvestaj;
+                                    bolestTerapija.idLeka = lek.id;
+                                    bolestTerapija.kolicina = lek.kolicina.ToString();
+                                    istorijaBolesti.Add(bolestTerapija);
                                 }
                                 break;
                             }
@@ -85,57 +74,26 @@ namespace Bolnica_aplikacija.Servis
         public List<BolestTerapija> ucitajSveTerapijeZaPacijenta()
         {
             List<BolestTerapija> povratnaVrednost = new List<BolestTerapija>();
-            foreach (Bolest bolest in BolestServis.getInstance().ucitajSve())
-            {
-                if (bolest.idPacijenta.Equals(pacijent.id))
-                {
-                    foreach (Terapija terapija in TerapijaServis.getInstance().ucitajSve())
-                    {
-                        if(terapija.idTermina == null && terapija.idBolesti.Equals(bolest.id))
-                        {
-                            Lek lek = LekServis.getInstance().nadjiLekPoId(terapija.idLeka);
-                            if (lek != null)
-                            {
-                                BolestTerapija bolestTerapija = new BolestTerapija();
-                                bolestTerapija.idBolesti = bolest.id;
-                                bolestTerapija.nazivBolesti = bolest.naziv;
-                                bolestTerapija.idTerapije = terapija.id;
-                                bolestTerapija.nazivTerapije = lek.naziv;
-                                bolestTerapija.idLeka = lek.id;
-                                bolestTerapija.kolicina = lek.kolicina.ToString();
-                                povratnaVrednost.Add(bolestTerapija);
-                            }
-                            break;
-                        }
-                        if (terapija.idTermina != null && terapija.idBolesti.Equals(bolest.id))
-                        {
-                            foreach (Termin termin in TerminServis.getInstance().ucitajSve())
-                            {
-                                if (termin.idBolesti != null && termin.idBolesti.Equals(terapija.idBolesti))
-                                {
-                                    Lek lek = LekServis.getInstance().nadjiLekPoId(terapija.idLeka);
-                                    if (lek != null)
-                                    {
-                                        BolestTerapija bolestTerapija = new BolestTerapija();
-                                        bolestTerapija.idBolesti = bolest.id;
-                                        bolestTerapija.nazivBolesti = bolest.naziv;
-                                        bolestTerapija.idTerapije = terapija.id;
-                                        bolestTerapija.nazivTerapije = lek.naziv;
-                                        bolestTerapija.idTermina = termin.idTermina;
-                                        bolestTerapija.izvestaj = termin.izvestaj;
-                                        bolestTerapija.idLeka = lek.id;
-                                        bolestTerapija.kolicina = lek.kolicina.ToString();
-                                        povratnaVrednost.Add(bolestTerapija);
-                                    }
-                                    break;
-                                }
-                            }
-                        }
 
+            foreach (Terapija terapija in TerapijaServis.getInstance().ucitajSve())
+            {
+                Bolest bolest = BolestServis.getInstance().nadjiBolestPoId(terapija.idBolesti);
+                if (terapija.idBolesti.Equals(bolest.id))
+                {
+                    Lek lek = LekServis.getInstance().nadjiLekPoId(terapija.idLeka);
+                    if (lek != null)
+                    {
+                        BolestTerapija bolestTerapija = new BolestTerapija();
+                        bolestTerapija.idBolesti = bolest.id;
+                        bolestTerapija.nazivBolesti = bolest.naziv;
+                        bolestTerapija.idTerapije = terapija.id;
+                        bolestTerapija.nazivTerapije = lek.naziv;
+                        bolestTerapija.idLeka = lek.id;
+                        bolestTerapija.kolicina = lek.kolicina.ToString();
+                        povratnaVrednost.Add(bolestTerapija);
                     }
                 }
             }
-
             return povratnaVrednost;
         }
 

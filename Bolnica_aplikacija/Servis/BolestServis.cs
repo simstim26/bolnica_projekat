@@ -21,6 +21,20 @@ namespace Bolnica_aplikacija.Servis
         }
         private BolestRepozitorijum bolestRepozitorijum = new BolestRepozitorijum();
 
+        public Bolest nadjiBolestPoId(String id)
+        {
+            Bolest povratnaVrednost = null;
+            foreach(Bolest bolest in bolestRepozitorijum.ucitajSve())
+            {
+                if (id.Equals(bolest.id))
+                {
+                    povratnaVrednost = bolest;
+                    break;
+                }
+            }
+            return povratnaVrednost;
+        }
+
         public List<Bolest> ucitajSve()
         {
             return bolestRepozitorijum.ucitajSve();

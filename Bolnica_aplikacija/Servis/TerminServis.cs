@@ -28,6 +28,22 @@ namespace Bolnica_aplikacija.Servis
         {
             terminRepozitorijum.azurirajTermin(terminZaAzuriranje);
         }
+
+        public Termin nadjiTerminZaBolest(String idBolesti)
+        {
+            Termin povratnaVrednost = null;
+            foreach(Termin termin in terminRepozitorijum.ucitajSve())
+            {
+                if (idBolesti.Equals(termin.idBolesti))
+                {
+                    povratnaVrednost = termin;
+                    break;
+                }
+            }
+
+            return povratnaVrednost;
+        }
+
         public Termin nadjiTerminPoId(String idTermina)
         {
             Termin povratnaVrednost = null;
