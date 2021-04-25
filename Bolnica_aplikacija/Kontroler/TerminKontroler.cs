@@ -10,64 +10,63 @@ namespace Bolnica_aplikacija.Kontroler
 {
     class TerminKontroler
     {
-        private static TerminServis terminServis = new TerminServis();
         public static void nadjiPacijentaZaTermin(String idTermina)
         {
-            terminServis.nadjiPacijentaZaTermin(idTermina);
+            TerminServis.getInstance().nadjiPacijentaZaTermin(idTermina);
         }
 
         public static void azuriranjeTerapijeZaTermin(String idTermina, String idTerapija)
         {
-            terminServis.azuriranjeTerapijeZaTermin(idTermina ,idTerapija);
+            TerminServis.getInstance().azuriranjeTerapijeZaTermin(idTermina ,idTerapija);
         }
 
         public static void azuriranjeIzvestajaZaTermin(String azuriraniIzvestaj, String idTermina)
         {
-            terminServis.azuriranjeIzvestajaZaTermin(azuriraniIzvestaj, idTermina);
+            TerminServis.getInstance().azuriranjeIzvestajaZaTermin(azuriraniIzvestaj, idTermina);
         }
 
         public static void dodavanjeIzvestajaZaTermin(String nazivBolesti,String izvestajSaTermina)
         {
-            terminServis.dodavanjeIzvestajaZaTermin(nazivBolesti, izvestajSaTermina);
+            TerminServis.getInstance().dodavanjeIzvestajaZaTermin(nazivBolesti, izvestajSaTermina);
         }
 
         public static List<Prostorija> nadjiSlobodneProstorijeZaTermin(Lekar lekar, Termin termin)
         {
-            return terminServis.nadjiSlobodneProstorijeZaTermin(lekar, termin);
+            return TerminServis.getInstance().nadjiSlobodneProstorijeZaTermin(lekar, termin);
         }
         public static int proveriDatumTermina(String idTermina)
         {
-            Termin termin = terminServis.nadjiTerminPoId(idTermina);
+            Termin termin = TerminServis.getInstance().nadjiTerminPoId(idTermina);
             DateTime trenutanDatum = DateTime.Now.AddDays(1);
             return DateTime.Compare(termin.datum, trenutanDatum);
         }
 
         public static void promeniProstorijuTermina(String idTermina, String idProstorije)
         {
-            terminServis.promeniProstorijuTermina(idTermina,idProstorije);
+            TerminServis.getInstance().promeniProstorijuTermina(idTermina,idProstorije);
         }
         public static bool proveriTipTermina(Lekar ulogovaniLekar, String idTermina)
         {
-            return terminServis.proveriTipTermina(ulogovaniLekar, idTermina);
+            return TerminServis.getInstance().proveriTipTermina(ulogovaniLekar, idTermina);
         }
         public static void sacuvajTermin(String idTermina)
         {
-            terminServis.sacuvajTermin(idTermina);
+            TerminServis.getInstance().sacuvajTermin(idTermina);
         }
 
         public static Termin getTermin()
         {
-            return terminServis.getTermin();
+            return TerminServis.getInstance().getTermin();
         }
 
         public static String nadjiIdLekaraZaTermin(String idTermina)
         {
-            return terminServis.nadjiIdLekaraZaTermin(idTermina);
+            return TerminServis.getInstance().nadjiIdLekaraZaTermin(idTermina);
         }
 
         public static List<Termin> ucitajSve()
         {
-            return terminServis.ucitajSve();
+            return TerminServis.getInstance().ucitajSve();
 
         }
     }

@@ -23,6 +23,16 @@ namespace Bolnica_aplikacija.Servis
             return instance;
         }
 
+        public List<Alergija> ucitajSve()
+        {
+            return alergijaRepozitorijum.ucitajSve();
+        }
+
+        public void dodajAlergiju(Alergija alergija)
+        {
+            alergijaRepozitorijum.dodajAlergiju(alergija);
+        }
+
         public void obrisiAlergiju(Alergija alergija)
         {
             List<Alergija> alergije = alergijaRepozitorijum.ucitajSve();

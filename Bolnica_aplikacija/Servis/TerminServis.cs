@@ -11,10 +11,18 @@ namespace Bolnica_aplikacija.Servis
 {
     class TerminServis
     {
+        private static TerminServis instance;
+        public static TerminServis getInstance()
+        {
+            if(instance == null)
+            {
+                instance = new TerminServis();
+            }
+            return instance;
+        }
         private TerminRepozitorijum terminRepozitorijum = new TerminRepozitorijum();
         private ProstorijaRepozitorijum prostorijaRepozitorijum = new ProstorijaRepozitorijum();
         private Termin termin; //lekar -> cuvanje izabranog termina (promena termina ili promena prostorije za izabrani termin
-
         public Termin nadjiTerminPoId(String idTermina)
         {
             Termin povratnaVrednost = null;

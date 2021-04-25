@@ -23,11 +23,7 @@ namespace Bolnica_aplikacija.Servis
             return instance;
         }
 
-        private TerminRepozitorijum terminRepozitorijum = new TerminRepozitorijum();
         private LekarRepozitorijum lekarRepozitorijum = new LekarRepozitorijum();
-        private SpecijalizacijaRepozitorijum specijalizacijaRepozitorijum = new SpecijalizacijaRepozitorijum();
-        private ProstorijaRepozitorijum prostorijaRepozitorijum = new ProstorijaRepozitorijum();
-
         public String pronadjiImeLekara(String idLekara)
         {
             String povratnaVrednost = "";
@@ -61,8 +57,8 @@ namespace Bolnica_aplikacija.Servis
         public List<PacijentTermin> prikaziSlobodneTermineZaLekara(Lekar ulogovaniLekar, int tipAkcije)
         {
             List<PacijentTermin> slobodniTermini = new List<PacijentTermin>();
-            foreach (Termin termin in terminRepozitorijum.ucitajSve())
-            {
+            foreach (Termin termin in TerminServis.getInstance().ucitajSve())
+            { 
                 if (termin.idPacijenta.Equals(""))
                 {
                     DateTime trenutanDatum = DateTime.Now.AddDays(1);
@@ -111,7 +107,7 @@ namespace Bolnica_aplikacija.Servis
             List<PacijentTermin> terminiZaPrikaz = new List<PacijentTermin>();
             DateTime danasnjiDatum = DateTime.Now;
             DateTime danasnji = danasnjiDatum.Date.Add(new TimeSpan(0, 0, 0));
-            foreach (Termin termin in terminRepozitorijum.ucitajSve())
+            foreach (Termin termin in TerminServis.getInstance().ucitajSve())
             {
                 if (!termin.jeZavrsen && termin.idLekara.Equals(lekar.id) && !termin.idPacijenta.Equals(""))
                 {
@@ -135,7 +131,7 @@ namespace Bolnica_aplikacija.Servis
         public List<PacijentTermin> pretraziZauzeteTermineZaLekara(Lekar lekar, DateTime prvi, DateTime drugi)
         {
             List<PacijentTermin> terminiZaPrikaz = new List<PacijentTermin>();
-            foreach (Termin termin in terminRepozitorijum.ucitajSve())
+            foreach (Termin termin in TerminServis.getInstance().ucitajSve())
             {
                 if (termin.idLekara.Equals(lekar.id) && !termin.idPacijenta.Equals(""))
                 {

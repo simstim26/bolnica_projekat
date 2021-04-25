@@ -22,9 +22,6 @@ namespace Bolnica_aplikacija.Servis
         private ProstorijaRepozitorijum prostorijaRepozitorijum = new ProstorijaRepozitorijum();
         private BolestRepozitorijum bolestRepozitorijum = new BolestRepozitorijum();
         private TerapijaRepozitorijum terapijaRepozitorijum = new TerapijaRepozitorijum();
-        private SpecijalizacijaRepozitorijum specijalizacijaRepozitorijum = new SpecijalizacijaRepozitorijum();
-        private LekRepozitorijum lekRepozitorijum = new LekRepozitorijum();
-        private AlergijaRepozitorijum alergijaRepozitorijum = new AlergijaRepozitorijum();
         private Pacijent pacijent; //lekar -> cuva se izabrani pacijent
         private BolestTerapija bolestTerapija;
 
@@ -688,14 +685,14 @@ namespace Bolnica_aplikacija.Servis
         public void napraviAlergiju(String idPacijenta, String nazivAlergije)
         {
             Alergija alergija = new Alergija(idPacijenta, nazivAlergije);
-            alergijaRepozitorijum.dodajAlergiju(alergija);
+            AlergijaServis.getInstance().dodajAlergiju(alergija);
         }
         
         public List<Alergija> procitajAlergije()
         {
             List<Alergija> alergije = new List<Alergija>();
 
-            foreach (Alergija alergija in alergijaRepozitorijum.ucitajSve())
+            foreach (Alergija alergija in AlergijaServis.getInstance().ucitajSve())
             {
                 if (alergija.idPacijenta.Equals(pacijent.id))
                 {
