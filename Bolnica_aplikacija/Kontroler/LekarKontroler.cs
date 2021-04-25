@@ -11,25 +11,23 @@ namespace Bolnica_aplikacija.Kontroler
 {
     class LekarKontroler
     {
-        private static LekarServis lekarServis = new LekarServis();
-
         public static List<PacijentTermin> prikaziSlobodneTermineZaLekara(Lekar ulogovaniLekar, int tipAkcije)
         {
-            return lekarServis.prikaziSlobodneTermineZaLekara(ulogovaniLekar, tipAkcije);
+            return LekarServis.getInstance().prikaziSlobodneTermineZaLekara(ulogovaniLekar, tipAkcije);
         }
 
         public static List<PacijentTermin> prikaziZauzeteTermineZaLekara(Lekar ulogovaniLekar)
         {
-            return lekarServis.prikaziZauzeteTermineZaLekara(ulogovaniLekar);
+            return LekarServis.getInstance().prikaziZauzeteTermineZaLekara(ulogovaniLekar);
         }
         public static List<PacijentTermin> pretraziZauzeteTermineZaLekara(Lekar lekar, DateTime prvi, DateTime drugi)
         {
-            return lekarServis.pretraziZauzeteTermineZaLekara(lekar, prvi, drugi);
+            return LekarServis.getInstance().pretraziZauzeteTermineZaLekara(lekar, prvi, drugi);
         }
 
         public static String nadjiIdLekara(String idLekara)
         {
-           return lekarServis.nadjiIdLekara(idLekara);
+           return LekarServis.getInstance().nadjiIdLekara(idLekara);
         }
 
     }

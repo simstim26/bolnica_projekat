@@ -11,10 +11,52 @@ namespace Bolnica_aplikacija.Servis
 {
     class LekarServis
     {
+        private static LekarServis instance;
+
+        public static LekarServis getInstance()
+        {
+            if(instance == null)
+            {
+                instance = new LekarServis();
+            }
+
+            return instance;
+        }
+
         private TerminRepozitorijum terminRepozitorijum = new TerminRepozitorijum();
         private LekarRepozitorijum lekarRepozitorijum = new LekarRepozitorijum();
         private SpecijalizacijaRepozitorijum specijalizacijaRepozitorijum = new SpecijalizacijaRepozitorijum();
         private ProstorijaRepozitorijum prostorijaRepozitorijum = new ProstorijaRepozitorijum();
+
+        public String pronadjiImeLekara(String idLekara)
+        {
+            String povratnaVrednost = "";
+
+            foreach(Lekar lekar in lekarRepozitorijum.ucitajSve())
+            {
+                if (idLekara.Equals(lekar.id))
+                {
+                    povratnaVrednost = lekar.prezime;
+                }
+            }
+
+            return povratnaVrednost;
+        }
+
+        public String pronadjiNazivSpecijalizacijeLekara(String idLekara)
+        {
+            String povratnaVrednost = "";
+
+            foreach(Lekar lekar in lekarRepozitorijum.ucitajSve())
+            {
+                if (idLekara.Equals(lekar.id))
+                {
+                    povratnaVrednost = SpecijalizacijaServis.getInstance().nadjiSpecijalizacijuPoId(lekar.idSpecijalizacije);
+                }
+            }
+
+            return povratnaVrednost;
+        }
 
         public List<PacijentTermin> prikaziSlobodneTermineZaLekara(Lekar ulogovaniLekar, int tipAkcije)
         {
@@ -154,7 +196,7 @@ namespace Bolnica_aplikacija.Servis
                 return terminiZaPrikaz;
         }
 
-        public String nadjiIdLekara(String idLekara)
+         public String nadjiIdLekara(String idLekara)
         {
             String idNadjenogLekara = "";
             var sviLekari = lekarRepozitorijum.ucitajSve();

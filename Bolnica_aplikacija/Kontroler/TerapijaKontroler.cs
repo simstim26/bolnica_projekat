@@ -10,17 +10,15 @@ namespace Bolnica_aplikacija.Kontroler
 {
     class TerapijaKontroler
     {
-        private static TerapijaServis terapijaServis = new TerapijaServis();
-
         public static void azurirajTerapiju(String idTerapije, String idLeka, String nacinUpotrebe, int trajanje
             , DateTime datumPropisivanja)
         {
-            terapijaServis.azurirajTerapiju(idTerapije, idLeka, nacinUpotrebe, trajanje, datumPropisivanja);
+            TerapijaServis.getInstance().azurirajTerapiju(idTerapije, idLeka, nacinUpotrebe, trajanje, datumPropisivanja);
         }
 
         public static Terapija nadjiTerapijuPoId(String idTerapije)
         {
-            return terapijaServis.nadjiTerapijuPoId(idTerapije);
+            return TerapijaServis.getInstance().nadjiTerapijuPoId(idTerapije);
         }
 
         public static String dodajTerapijuIzRecepta(DateTime datumPropisivanja, int trajanje, String nacinUpotrebe, String idLeka,
@@ -34,7 +32,7 @@ namespace Bolnica_aplikacija.Kontroler
             terapija.idLeka = idLeka;
             terapija.idTermina = idTermina;
             terapija.idBolesti = idBolesti;
-            return terapijaServis.dodajTerapiju(terapija);
+            return TerapijaServis.getInstance().dodajTerapiju(terapija);
 
         }
         public static void dodajTerapiju(DateTime datumPropisivanja,int trajanje,String nacinUpotrebe,String idLeka,
@@ -47,7 +45,7 @@ namespace Bolnica_aplikacija.Kontroler
             terapija.trajanje = trajanje;
             terapija.idLeka = idLeka;
             terapija.idTermina = idTermina;
-            terapijaServis.dodajTerapiju(terapija);
+            TerapijaServis.getInstance().dodajTerapiju(terapija);
         }
     }
 }

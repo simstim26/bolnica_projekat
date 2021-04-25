@@ -16,9 +16,34 @@ namespace Bolnica_aplikacija.Servis
 {
     class ProstorijaServis
     {
+        private static ProstorijaServis instance;
+        public static ProstorijaServis getInstance()
+        {
+            if(instance == null)
+            {
+                instance = new ProstorijaServis();
+            }
+
+            return instance;
+        }
 
         ProstorijaRepozitorijum prostorijaRepozitorijum = new ProstorijaRepozitorijum();
         //StavkaServis stavkaServis = new StavkaServis();
+
+        public String nadjiBrojISprat(String idProstorije)
+        {
+            String povratnaVrednost = "";
+            foreach (Prostorija prostorija in prostorijaRepozitorijum.ucitajSve())
+            {
+                if (idProstorije.Equals(prostorija.id))
+                {
+                    povratnaVrednost = prostorija.broj + " " + prostorija.sprat;
+                    break;
+                }
+            }
+
+            return povratnaVrednost;
+        }
 
         public List<Prostorija> ucitajSve()
         {

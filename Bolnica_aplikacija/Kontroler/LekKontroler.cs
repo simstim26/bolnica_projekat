@@ -10,19 +10,17 @@ namespace Bolnica_aplikacija.Kontroler
 {
     class LekKontroler
     {
-        private static LekServis lekServis = new LekServis();
-
         public static List<Lek> ucitajSveSemTrenutnogNaTerapiji(String idLeka)
         {
-            return lekServis.ucitajSveSemTrenutnogNaTerapiji(idLeka);
+            return LekServis.getInstance().ucitajSveSemTrenutnogNaTerapiji(idLeka);
         }
         public static Lek nadjiLekPoId(String idLeka)
         {
-            return lekServis.nadjiLekPoId(idLeka);
+            return LekServis.getInstance().nadjiLekPoId(idLeka);
         }
         public static List<Lek> ucitajSve()
         {
-            return lekServis.ucitajSve();
+            return LekServis.getInstance().ucitajSve();
         }
     }
 }

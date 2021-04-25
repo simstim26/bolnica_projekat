@@ -10,7 +10,18 @@ namespace Bolnica_aplikacija.Servis
 {
     class LekServis
     {
+        private static LekServis instance;
+        public static LekServis getInstance()
+        {
+            if(instance == null)
+            {
+                instance = new LekServis();
+            }
+
+            return instance;
+        }
         private LekRepozitorijum lekRepozitorijum = new LekRepozitorijum();
+        
 
         public List<Lek> ucitajSveSemTrenutnogNaTerapiji(String idLeka)
         {
