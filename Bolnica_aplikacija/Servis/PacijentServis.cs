@@ -80,20 +80,17 @@ namespace Bolnica_aplikacija.Servis
                 if (terapija.idPacijenta.Equals(pacijent.id))
                 {
                     Bolest bolest = BolestServis.getInstance().nadjiBolestPoId(terapija.idBolesti);
-                    if (terapija.idBolesti.Equals(bolest.id))
+                    Lek lek = LekServis.getInstance().nadjiLekPoId(terapija.idLeka);
+                    if (lek != null)
                     {
-                        Lek lek = LekServis.getInstance().nadjiLekPoId(terapija.idLeka);
-                        if (lek != null)
-                        {
-                            BolestTerapija bolestTerapija = new BolestTerapija();
-                            bolestTerapija.idBolesti = bolest.id;
-                            bolestTerapija.nazivBolesti = bolest.naziv;
-                            bolestTerapija.idTerapije = terapija.id;
-                            bolestTerapija.nazivTerapije = lek.naziv;
-                            bolestTerapija.idLeka = lek.id;
-                            bolestTerapija.kolicina = lek.kolicina.ToString();
-                            povratnaVrednost.Add(bolestTerapija);
-                        }
+                        BolestTerapija bolestTerapija = new BolestTerapija();
+                        bolestTerapija.idBolesti = bolest.id;
+                        bolestTerapija.nazivBolesti = bolest.naziv;
+                        bolestTerapija.idTerapije = terapija.id;
+                        bolestTerapija.nazivTerapije = lek.naziv;
+                        bolestTerapija.idLeka = lek.id;
+                        bolestTerapija.kolicina = lek.kolicina.ToString();
+                        povratnaVrednost.Add(bolestTerapija);
                     }
                 }
             }
