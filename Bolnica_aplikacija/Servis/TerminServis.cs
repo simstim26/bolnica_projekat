@@ -23,6 +23,11 @@ namespace Bolnica_aplikacija.Servis
         private TerminRepozitorijum terminRepozitorijum = new TerminRepozitorijum();
         private ProstorijaRepozitorijum prostorijaRepozitorijum = new ProstorijaRepozitorijum();
         private Termin termin; //lekar -> cuvanje izabranog termina (promena termina ili promena prostorije za izabrani termin
+
+        public void azurirajTermin(Termin terminZaAzuriranje) //da li ide u servis ??
+        {
+            terminRepozitorijum.azurirajTermin(terminZaAzuriranje);
+        }
         public Termin nadjiTerminPoId(String idTermina)
         {
             Termin povratnaVrednost = null;

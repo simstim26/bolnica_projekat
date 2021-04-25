@@ -35,6 +35,11 @@ namespace Bolnica_aplikacija.Servis
 
             return povratnaVrednost;
         }
+
+        public List<Terapija> ucitajSve()
+        {
+            return terapijaRepozitorijum.ucitajSve();
+        }
         public void azurirajTerapiju(String idTerapije, String idLeka, String nacinUpotrebe, int trajanje
             , DateTime datumPropisivanja)
         {

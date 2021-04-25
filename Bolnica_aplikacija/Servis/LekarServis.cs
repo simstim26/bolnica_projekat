@@ -24,6 +24,11 @@ namespace Bolnica_aplikacija.Servis
         }
 
         private LekarRepozitorijum lekarRepozitorijum = new LekarRepozitorijum();
+
+        public List<Lekar> ucitajSve()
+        {
+            return lekarRepozitorijum.ucitajSve();
+        }
         public String pronadjiImeLekara(String idLekara)
         {
             String povratnaVrednost = "";

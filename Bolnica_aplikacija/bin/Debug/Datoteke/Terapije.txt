@@ -1,11 +1,11 @@
 [
   {
     "id": "1",
-    "idLeka": "1",
+    "idLeka": "2",
     "idPacijenta": "1",
     "idBolesti": "1",
     "idTermina": "8",
-    "datumPocetka": "2021-04-20T22:42:04.6374989+02:00",
+    "datumPocetka": "2021-04-25T12:42:11.121123+02:00",
     "trajanje": 7,
     "nacinUpotrebe": "Rektalno"
   },

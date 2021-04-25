@@ -17,11 +17,6 @@ namespace Bolnica_aplikacija.Servis
     class PacijentServis
     {
         private PacijentRepozitorijum pacijentRepozitorijum = new PacijentRepozitorijum();
-        private TerminRepozitorijum terminRepozitorijum = new TerminRepozitorijum(); //koristi se za azuriranje/prikaz termina odredjenog pacijenta
-        private LekarRepozitorijum lekarRepozitorijum = new LekarRepozitorijum(); //za prikaz imena/prezimena lekara za termin odredjenog pacijenta
-        private ProstorijaRepozitorijum prostorijaRepozitorijum = new ProstorijaRepozitorijum();
-        private BolestRepozitorijum bolestRepozitorijum = new BolestRepozitorijum();
-        private TerapijaRepozitorijum terapijaRepozitorijum = new TerapijaRepozitorijum();
         private Pacijent pacijent; //lekar -> cuva se izabrani pacijent
         private BolestTerapija bolestTerapija;
 
@@ -29,13 +24,13 @@ namespace Bolnica_aplikacija.Servis
         {
             List<BolestTerapija> istorijaBolesti = new List<BolestTerapija>();
 
-            foreach(Bolest bolest in bolestRepozitorijum.ucitajSve())
+            foreach(Bolest bolest in BolestServis.getInstance().ucitajSve())
             {
                 if (bolest.idPacijenta.Equals(pacijent.id))
                 {
                     if (bolest.idTerapije == null)
                     {
-                        foreach(Termin termin in terminRepozitorijum.ucitajSve())
+                        foreach(Termin termin in TerminServis.getInstance().ucitajSve())
                         {
                             if(termin.idBolesti != null && termin.idBolesti.Equals(bolest.id))
                             {
@@ -51,11 +46,11 @@ namespace Bolnica_aplikacija.Servis
                     }
                     else
                     {
-                        foreach (Terapija terapija in terapijaRepozitorijum.ucitajSve())
+                        foreach (Terapija terapija in TerapijaServis.getInstance().ucitajSve())
                         {
                             if (terapija.idTermina != null && terapija.idBolesti.Equals(bolest.id))
                             {
-                                foreach (Termin termin in terminRepozitorijum.ucitajSve())
+                                foreach (Termin termin in TerminServis.getInstance().ucitajSve())
                                 {
                                     if (termin.idBolesti != null && termin.idBolesti.Equals(terapija.idBolesti))
                                     {
@@ -90,11 +85,11 @@ namespace Bolnica_aplikacija.Servis
         public List<BolestTerapija> ucitajSveTerapijeZaPacijenta()
         {
             List<BolestTerapija> povratnaVrednost = new List<BolestTerapija>();
-            foreach (Bolest bolest in bolestRepozitorijum.ucitajSve())
+            foreach (Bolest bolest in BolestServis.getInstance().ucitajSve())
             {
                 if (bolest.idPacijenta.Equals(pacijent.id))
                 {
-                    foreach (Terapija terapija in terapijaRepozitorijum.ucitajSve())
+                    foreach (Terapija terapija in TerapijaServis.getInstance().ucitajSve())
                     {
                         if(terapija.idTermina == null && terapija.idBolesti.Equals(bolest.id))
                         {
@@ -114,7 +109,7 @@ namespace Bolnica_aplikacija.Servis
                         }
                         if (terapija.idTermina != null && terapija.idBolesti.Equals(bolest.id))
                         {
-                            foreach (Termin termin in terminRepozitorijum.ucitajSve())
+                            foreach (Termin termin in TerminServis.getInstance().ucitajSve())
                             {
                                 if (termin.idBolesti != null && termin.idBolesti.Equals(terapija.idBolesti))
                                 {
@@ -171,18 +166,18 @@ namespace Bolnica_aplikacija.Servis
 
         public void azurirajTerminPacijentu(String idStarogTermina, String idNovogTermina)
         {
-            foreach (Termin termin in terminRepozitorijum.ucitajSve())
+            foreach (Termin termin in TerminServis.getInstance().ucitajSve())
             {
                 if (idStarogTermina.Equals(termin.idTermina)) //otkazivanje starog termina
                 {
                     termin.idPacijenta = "";
-                    terminRepozitorijum.azurirajTermin(termin);
+                    TerminServis.getInstance().azurirajTermin(termin);
                 }
 
                 if (idNovogTermina.Equals(termin.idTermina))
                 {
                     termin.idPacijenta = pacijent.id;
-                    terminRepozitorijum.azurirajTermin(termin); 
+                    TerminServis.getInstance().azurirajTermin(termin); 
                 }
             }
 
@@ -191,7 +186,7 @@ namespace Bolnica_aplikacija.Servis
         public List<PacijentTermin> prikazPacijentovihTermina()
         {
             List<PacijentTermin> terminiPacijenta = new List<PacijentTermin>();
-            foreach(Termin termin in terminRepozitorijum.ucitajSve())
+            foreach(Termin termin in TerminServis.getInstance().ucitajSve())
             {
                 if(termin.idPacijenta.Equals(pacijent.id))
                 {
@@ -203,7 +198,7 @@ namespace Bolnica_aplikacija.Servis
                     if (rezultat > 0)
                     {
                         PacijentTermin pacijentTermin = new PacijentTermin();
-                        foreach (Prostorija prostorija in prostorijaRepozitorijum.ucitajSve())
+                        foreach (Prostorija prostorija in ProstorijaServis.getInstance().ucitajSve())
                         {
                             if (prostorija.id.Equals(termin.idProstorije))
                             {
@@ -212,7 +207,7 @@ namespace Bolnica_aplikacija.Servis
                             }
                         }
 
-                        foreach (Lekar lekar in lekarRepozitorijum.ucitajSve())
+                        foreach (Lekar lekar in LekarServis.getInstance().ucitajSve())
                         {
                             if (lekar.id.Equals(termin.idLekara))
                             {
@@ -246,7 +241,7 @@ namespace Bolnica_aplikacija.Servis
         {
             List<PacijentTermin> terminiPacijenta = new List<PacijentTermin>();
 
-            foreach(Termin termin in terminRepozitorijum.ucitajSve())
+            foreach(Termin termin in TerminServis.getInstance().ucitajSve())
             {
                 if (termin.idPacijenta.Equals(pacijent.id))
                 {
@@ -276,7 +271,7 @@ namespace Bolnica_aplikacija.Servis
         {
             List<PacijentTermin> terminiPacijenta = new List<PacijentTermin>();
 
-            foreach(Termin termin in terminRepozitorijum.ucitajSve())
+            foreach(Termin termin in TerminServis.getInstance().ucitajSve())
             {
                 if (termin.idPacijenta.Equals(pacijent.id))
                 {
@@ -303,24 +298,24 @@ namespace Bolnica_aplikacija.Servis
 
         public void zakaziTerminPacijentu(String idTermina)
         {
-            foreach(Termin termin in terminRepozitorijum.ucitajSve())
+            foreach(Termin termin in TerminServis.getInstance().ucitajSve())
             {
                 if (idTermina.Equals(termin.idTermina))
                 {
                     termin.idPacijenta = pacijent.id;
-                    terminRepozitorijum.azurirajTermin(termin);
+                    TerminServis.getInstance().azurirajTermin(termin);
                     break;
                 }
             }
         }
         public void otkaziTerminPacijenta(String idTermina)
         {
-            foreach (Termin termin in terminRepozitorijum.ucitajSve())
+            foreach (Termin termin in TerminServis.getInstance().ucitajSve())
             {
                 if (idTermina.Equals(termin.idTermina))
                 {
                     termin.idPacijenta = "";
-                    terminRepozitorijum.azurirajTermin(termin);
+                    TerminServis.getInstance().azurirajTermin(termin);
                     break;
                 }
             }
@@ -354,7 +349,7 @@ namespace Bolnica_aplikacija.Servis
 
             if(jeZakazivanje == 0)
             {
-                foreach (Termin termin in terminRepozitorijum.ucitajSve())
+                foreach (Termin termin in TerminServis.getInstance().ucitajSve())
                 {
                     if (termin.idPacijenta.Equals(""))
                     {
@@ -365,7 +360,7 @@ namespace Bolnica_aplikacija.Servis
                         if (rezultat > 0)
                         {
                             PacijentTermin pacijentTermin = new PacijentTermin();
-                            foreach (Prostorija prostorija in prostorijaRepozitorijum.ucitajSve())
+                            foreach (Prostorija prostorija in ProstorijaServis.getInstance().ucitajSve())
                             {
                                 if (prostorija.id.Equals(termin.idProstorije))
                                 {
@@ -378,7 +373,7 @@ namespace Bolnica_aplikacija.Servis
                                 }
                             }
 
-                            foreach (Lekar lekar in lekarRepozitorijum.ucitajSve())
+                            foreach (Lekar lekar in LekarServis.getInstance().ucitajSve())
                             {
                                 if (lekar.id.Equals(termin.idLekara))
                                 {
@@ -419,7 +414,7 @@ namespace Bolnica_aplikacija.Servis
             }
             else
             {
-                foreach (Termin termin in terminRepozitorijum.ucitajSve())
+                foreach (Termin termin in TerminServis.getInstance().ucitajSve())
                 {
                     if (termin.idPacijenta.Equals(""))
                     {
@@ -437,7 +432,7 @@ namespace Bolnica_aplikacija.Servis
                         if (rezultat > 0 && rezultatGornji < 0 && rezultatDodatni < 0)
                         {
                             PacijentTermin pacijentTermin = new PacijentTermin();
-                            foreach (Prostorija prostorija in prostorijaRepozitorijum.ucitajSve())
+                            foreach (Prostorija prostorija in ProstorijaServis.getInstance().ucitajSve())
                             {
                                 if (prostorija.id.Equals(termin.idProstorije))
                                 {
@@ -450,7 +445,7 @@ namespace Bolnica_aplikacija.Servis
                                 }
                             }
 
-                            foreach (Lekar lekar in lekarRepozitorijum.ucitajSve())
+                            foreach (Lekar lekar in LekarServis.getInstance().ucitajSve())
                             {
                                 if (lekar.id.Equals(termin.idLekara))
                                 {
@@ -508,7 +503,7 @@ namespace Bolnica_aplikacija.Servis
 
                 String[] podaci = kriterijum.Split(' ');
 
-                foreach (Termin termin in terminRepozitorijum.ucitajSve())
+                foreach (Termin termin in TerminServis.getInstance().ucitajSve())
                 {
                     if (termin.idPacijenta.Equals(""))
                     {
@@ -519,7 +514,7 @@ namespace Bolnica_aplikacija.Servis
                         if (rezultat > 0)
                         {
                             PacijentTermin pacijentTermin = new PacijentTermin();
-                            foreach (Prostorija prostorija in prostorijaRepozitorijum.ucitajSve())
+                            foreach (Prostorija prostorija in ProstorijaServis.getInstance().ucitajSve())
                             {
                                 if (prostorija.id.Equals(termin.idProstorije))
                                 {
@@ -532,7 +527,7 @@ namespace Bolnica_aplikacija.Servis
                                 }
                             }
 
-                            foreach (Lekar lekar in lekarRepozitorijum.ucitajSve())
+                            foreach (Lekar lekar in LekarServis.getInstance().ucitajSve())
                             {
                                 if (podaci.Length == 2)
                                 {
@@ -604,7 +599,7 @@ namespace Bolnica_aplikacija.Servis
                 {
                     kriterijumPretrage = Convert.ToDateTime(kriterijum);
 
-                    foreach (Termin termin in terminRepozitorijum.ucitajSve())
+                    foreach (Termin termin in TerminServis.getInstance().ucitajSve())
                     {
                         if (termin.idPacijenta.Equals(""))
                         {
@@ -617,7 +612,7 @@ namespace Bolnica_aplikacija.Servis
                             if (rezultat > 0 && rezultatPretrage == 0)
                             {
                                 PacijentTermin pacijentTermin = new PacijentTermin();
-                                foreach (Prostorija prostorija in prostorijaRepozitorijum.ucitajSve())
+                                foreach (Prostorija prostorija in ProstorijaServis.getInstance().ucitajSve())
                                 {
                                     if (prostorija.id.Equals(termin.idProstorije))
                                     {
@@ -630,7 +625,7 @@ namespace Bolnica_aplikacija.Servis
                                     }
                                 }
 
-                                foreach (Lekar lekar in lekarRepozitorijum.ucitajSve())
+                                foreach (Lekar lekar in LekarServis.getInstance().ucitajSve())
                                 {
 
 
