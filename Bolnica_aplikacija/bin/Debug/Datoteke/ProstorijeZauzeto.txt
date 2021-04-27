@@ -22,7 +22,7 @@
     "idProstorijeUKojuSePrebacuje": "9",
     "datumPocetka": "2021-04-24T00:00:00",
     "datumKraja": "2021-04-25T00:00:00",
-    "jeZavrseno": false,
+    "jeZavrseno": true,
     "idStavke": "2",
     "kolicinaStavke": 5
   },
@@ -49,7 +49,7 @@
     "idProstorijeUKojuSePrebacuje": null,
     "datumPocetka": "2021-04-24T00:00:00",
     "datumKraja": "2021-04-25T00:00:00",
-    "jeZavrseno": false,
+    "jeZavrseno": true,
     "idStavke": "6",
     "kolicinaStavke": 10
   },

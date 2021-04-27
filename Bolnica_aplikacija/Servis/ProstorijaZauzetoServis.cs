@@ -32,14 +32,12 @@ namespace Bolnica_aplikacija.Servis
 
             foreach (ProstorijaZauzeto pz in prostorijeZaZauzimanje)
             {
-                if(pz.jeZavrseno == false)
                 if (pz.idProstorijeUKojuSePrebacuje != null)
                 {
                     if (pz.jeZavrseno == false)
                     {
                         foreach (Prostorija p in prostorije)
                         {
-                            if (DateTime.Now >= pz.datumPocetka && DateTime.Now < pz.datumKraja)
                             postoji = false;
                             if (p.id == pz.idProstorije)
                             {
@@ -56,15 +54,6 @@ namespace Bolnica_aplikacija.Servis
 
                             }
 
-                            if (DateTime.Now == pz.datumKraja)
-                            {
-                                pz.jeZavrseno = true;
-                                p.dostupnost = true;
-                            }
-                        }
-                    }
-                }
-                
                             if (p.id == pz.idProstorijeUKojuSePrebacuje)
                             {
                                 if (DateTime.Now >= pz.datumPocetka && DateTime.Now < pz.datumKraja)

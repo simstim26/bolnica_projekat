@@ -31,7 +31,7 @@ namespace Bolnica_aplikacija
             string korisnickoIme = txtKorisnickoIme.Text;
             string lozinka = txtLozinka.Password.ToString();
             String[] ulogovaniKorisnik = KorisnikKontroler.prijava(korisnickoIme, lozinka); // [0] - tip; // [1] - id
-            ProstorijaZauzetoKontroler.zauzmiProstorije();
+            
             switch (ulogovaniKorisnik[0])
             {
                  case "pacijent":
@@ -60,6 +60,7 @@ namespace Bolnica_aplikacija
                      break;
                  case "upravnik":
                     KorisnikKontroler.NadjiUpravnika(ulogovaniKorisnik[1]);
+                    ProstorijaZauzetoKontroler.zauzmiProstorije();
                     UpravnikProzor upravnikProzor = UpravnikProzor.getInstance();
                     this.Close();
                     upravnikProzor.ShowDialog();

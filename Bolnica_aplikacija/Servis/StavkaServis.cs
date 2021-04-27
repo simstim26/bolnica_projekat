@@ -162,7 +162,7 @@ namespace Bolnica_aplikacija.Servis
         public Stavka pronadjiStavkuPoId(String id)
         {
             var stavke = stavkaRepozitorijum.UcitajSve();
-            var stavka = new Stavka();
+            Stavka stavka = null;
             foreach (Stavka s in stavke)
             {
                 if (s.id == id)
