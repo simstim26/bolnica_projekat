@@ -50,11 +50,11 @@ namespace Bolnica_aplikacija.Servis
                 stavka.idProstorije = null;
 
 
-                if (upravnikProzor.comboBoxTipOpreme.SelectedIndex == 1)
+                if (upravnikProzor.comboBoxTipOpreme.SelectedIndex == 0)
                 {
                     stavka.jeStaticka = true;
                 }
-                else if (upravnikProzor.comboBoxTipOpreme.SelectedIndex == 2)
+                else if (upravnikProzor.comboBoxTipOpreme.SelectedIndex == 1)
                 {
                     stavka.jeStaticka = false;
                 }
@@ -83,16 +83,35 @@ namespace Bolnica_aplikacija.Servis
         public void IzbrisiStavku(Stavka stavkaZaBrisanje)
         {
             var stavke = stavkaRepozitorijum.UcitajNeobrisaneStavke();
+
+            var prostorije = ProstorijaKontroler.ucitajSve();
+
             foreach (Stavka stavka in stavke)
             {
                 if (stavka.id == stavkaZaBrisanje.id)
                 {
+                    foreach (Prostorija p in prostorije)
+                    {
+                        if (p.Stavka.Count != 0)
+                        {
+                            foreach (Stavka s in p.Stavka)
+                            {
+                                if (s.id == stavka.id)
+                                {
+                                    p.Stavka.Remove(s);
+                                    break;
+                                }
+                            }
+                        }
+                    }
                     stavka.jeLogickiObrisana = true;
                 }
             }
 
+            ProstorijaKontroler.upisi(prostorije);
             stavkaRepozitorijum.Upisi(stavke);
         }
+           
 
         public bool IzmeniStavku(Stavka stavkaZaIzmenu)
         {

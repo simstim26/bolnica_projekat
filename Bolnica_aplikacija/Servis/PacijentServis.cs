@@ -26,6 +26,7 @@ namespace Bolnica_aplikacija.Servis
         private LekRepozitorijum lekRepozitorijum = new LekRepozitorijum();
         private AlergijaRepozitorijum alergijaRepozitorijum = new AlergijaRepozitorijum();
         private Pacijent pacijent; //lekar -> cuva se izabrani pacijent
+        private BolestTerapija bolestTerapija;
 
         public List<BolestTerapija> nadjiIstorijuBolestiZaPacijenta()
         {
@@ -35,15 +36,99 @@ namespace Bolnica_aplikacija.Servis
             {
                 if (bolest.idPacijenta.Equals(pacijent.id))
                 {
-                    foreach(Terapija terapija in terapijaRepozitorijum.ucitajSve())
+                    if (bolest.idTerapije == null)
                     {
-                        if (terapija.idBolesti.Equals(bolest.id))
+                        foreach(Termin termin in terminRepozitorijum.ucitajSve())
                         {
-                            foreach(Termin termin in terminRepozitorijum.ucitajSve())
+                            if(termin.idBolesti != null && termin.idBolesti.Equals(bolest.id))
                             {
-                                if (termin.idTermina.Equals(terapija.idTermina))
+                                BolestTerapija bolestTerapija = new BolestTerapija();
+                                bolestTerapija.idBolesti = bolest.id;
+                                bolestTerapija.nazivBolesti = bolest.naziv;
+                                bolestTerapija.idTermina = termin.idTermina;
+                                bolestTerapija.izvestaj = termin.izvestaj;
+                                istorijaBolesti.Add(bolestTerapija);
+                                break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        foreach (Terapija terapija in terapijaRepozitorijum.ucitajSve())
+                        {
+                            if (terapija.idTermina != null && terapija.idBolesti.Equals(bolest.id))
+                            {
+                                foreach (Termin termin in terminRepozitorijum.ucitajSve())
                                 {
-                                    foreach (Lek lek in lekRepozitorijum.ucitajSve()) 
+                                    if (termin.idBolesti != null && termin.idBolesti.Equals(terapija.idBolesti))
+                                    {
+                                        foreach (Lek lek in lekRepozitorijum.ucitajSve())
+                                        {
+                                            if (lek.id.Equals(terapija.idLeka))
+                                            {
+                                                BolestTerapija bolestTerapija = new BolestTerapija();
+                                                bolestTerapija.idBolesti = bolest.id;
+                                                bolestTerapija.nazivBolesti = bolest.naziv;
+                                                bolestTerapija.idTerapije = terapija.id;
+                                                bolestTerapija.nazivTerapije = lek.naziv;
+                                                bolestTerapija.idTermina = termin.idTermina;
+                                                bolestTerapija.izvestaj = termin.izvestaj;
+                                                bolestTerapija.idLeka = lek.id;
+                                                bolestTerapija.kolicina = lek.kolicina.ToString();
+                                                istorijaBolesti.Add(bolestTerapija);
+                                                break;
+                                            }
+
+                                        }
+                                        break;
+                                    }
+                                }
+                                break;
+                            }
+
+                        }
+                    }
+                }
+            }
+
+            return istorijaBolesti;
+        }
+
+        public List<BolestTerapija> ucitajSveTerapijeZaPacijenta()
+        {
+            List<BolestTerapija> povratnaVrednost = new List<BolestTerapija>();
+            foreach (Bolest bolest in bolestRepozitorijum.ucitajSve())
+            {
+                if (bolest.idPacijenta.Equals(pacijent.id))
+                {
+                    foreach (Terapija terapija in terapijaRepozitorijum.ucitajSve())
+                    {
+                        if(terapija.idTermina == null && terapija.idBolesti.Equals(bolest.id))
+                        {
+                            foreach (Lek lek in lekRepozitorijum.ucitajSve())
+                            {
+                                if (lek.id.Equals(terapija.idLeka))
+                                {
+                                    BolestTerapija bolestTerapija = new BolestTerapija();
+                                    bolestTerapija.idBolesti = bolest.id;
+                                    bolestTerapija.nazivBolesti = bolest.naziv;
+                                    bolestTerapija.idTerapije = terapija.id;
+                                    bolestTerapija.nazivTerapije = lek.naziv;
+                                    bolestTerapija.idLeka = lek.id;
+                                    bolestTerapija.kolicina = lek.kolicina.ToString();
+                                    povratnaVrednost.Add(bolestTerapija);
+                                    break;
+                                }
+
+                            }
+                        }
+                        if (terapija.idTermina != null && terapija.idBolesti.Equals(bolest.id))
+                        {
+                            foreach (Termin termin in terminRepozitorijum.ucitajSve())
+                            {
+                                if (termin.idBolesti != null && termin.idBolesti.Equals(terapija.idBolesti))
+                                {
+                                    foreach (Lek lek in lekRepozitorijum.ucitajSve())
                                     {
                                         if (lek.id.Equals(terapija.idLeka))
                                         {
@@ -54,18 +139,33 @@ namespace Bolnica_aplikacija.Servis
                                             bolestTerapija.nazivTerapije = lek.naziv;
                                             bolestTerapija.idTermina = termin.idTermina;
                                             bolestTerapija.izvestaj = termin.izvestaj;
-                                            istorijaBolesti.Add(bolestTerapija);
+                                            bolestTerapija.idLeka = lek.id;
+                                            bolestTerapija.kolicina = lek.kolicina.ToString();
+                                            povratnaVrednost.Add(bolestTerapija);
+                                            break;
                                         }
-                                        
+
                                     }
+                                    break;
                                 }
                             }
                         }
+
                     }
                 }
             }
 
-            return istorijaBolesti;
+            return povratnaVrednost;
+        }
+
+        public void sacuvajBolestTerapiju(BolestTerapija bolestTerapija)
+        {
+            this.bolestTerapija = bolestTerapija;
+        }
+
+        public BolestTerapija getBolestTerapija()
+        {
+            return bolestTerapija;
         }
         public List<Pacijent> prikazPacijenata() //prikaz pacijenata kod lekara
         {

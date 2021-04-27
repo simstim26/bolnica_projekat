@@ -12,6 +12,19 @@ namespace Bolnica_aplikacija.Servis
     {
         private BolestRepozitorijum bolestRepozitorijum = new BolestRepozitorijum();
 
+        public void azurirajTerapijuZaBolest(String idBolesti, String idTerapije)
+        {
+            List<Bolest> bolesti = bolestRepozitorijum.ucitajSve();
+            foreach (Bolest bolest in bolesti)
+            {
+                if (idBolesti.Equals(bolest.id))
+                {
+                    bolest.idTerapije = idTerapije;
+                    break;
+                }
+            }
+            bolestRepozitorijum.upisi(bolesti);
+        }
         public String napraviBolest(String nazivBolesti, String idPacijenta, String idTerapije)
         {
             var sveBolesti = bolestRepozitorijum.ucitajSve();

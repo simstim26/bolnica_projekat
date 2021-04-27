@@ -14,6 +14,12 @@ namespace Bolnica_aplikacija.PomocneKlase
 
         public String idTerapije { get; set; }
 
+        public String idLeka { get; set; }
+
+        public String kolicina { get; set; }
+
+        public String aktivnost { get; set; }
+
         public String nazivTerapije { get; set; }
         public String idTermina { get; set; }
         public String izvestaj { get; set; }

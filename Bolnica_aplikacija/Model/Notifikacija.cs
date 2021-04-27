@@ -16,6 +16,22 @@ namespace Model
         public String idKorisnika { get; set; }
         public DateTime datumNotifikovanja { get; set; }
         public bool jeProcitana { get; set; }
+        
+        public Notifikacija()
+        {
+
+        }
+        
+        public Notifikacija(String id, String nazivNotifikacije, DateTime vremeNotifikovanja, String porukaNotifikacije, String idKorisnika, DateTime datumNotifikovanja, bool jeProcitana)
+        {
+            this.id = id;
+            this.nazivNotifikacije = nazivNotifikacije;
+            this.vremeNotifikovanja = vremeNotifikovanja;
+            this.porukaNotifikacije = porukaNotifikacije;
+            this.idKorisnika = idKorisnika;
+            this.datumNotifikovanja = datumNotifikovanja;
+            this.jeProcitana = jeProcitana;
+        }
 
     }
 }

@@ -1,0 +1,56 @@
+[
+  {
+    "id": "1",
+    "nazivNotifikacije": "Otkazivanje termina (Pacijent)",
+    "vremeNotifikovanja": "2021-04-21T13:12:32.2727636+02:00",
+    "porukaNotifikacije": "Otkazan je teremin (Pacijent)",
+    "idKorisnika": "1",
+    "datumNotifikovanja": "2021-04-21T13:12:32.2727636+02:00",
+    "jeProcitana": false
+  },
+  {
+    "id": "2",
+    "nazivNotifikacije": "Otkazivanje termina (Lekar)",
+    "vremeNotifikovanja": "2021-04-21T13:12:32.2887641+02:00",
+    "porukaNotifikacije": "Otkazan je teremin (Lekar)",
+    "idKorisnika": "1",
+    "datumNotifikovanja": "2021-04-21T13:12:32.2887641+02:00",
+    "jeProcitana": false
+  },
+  {
+    "id": "3",
+    "nazivNotifikacije": "Zakazivanje termina (Pacijent)",
+    "vremeNotifikovanja": "2021-04-21T13:12:43.7451676+02:00",
+    "porukaNotifikacije": "Zakazan je teremin (Pacijent)",
+    "idKorisnika": "1",
+    "datumNotifikovanja": "2021-04-21T13:12:43.7451676+02:00",
+    "jeProcitana": false
+  },
+  {
+    "id": "4",
+    "nazivNotifikacije": "Zakazivanje termina (Lekar)",
+    "vremeNotifikovanja": "2021-04-21T13:12:43.7551683+02:00",
+    "porukaNotifikacije": "Zakazan je teremin (Lekar)",
+    "idKorisnika": "1",
+    "datumNotifikovanja": "2021-04-21T13:12:43.7551683+02:00",
+    "jeProcitana": false
+  },
+  {
+    "id": "5",
+    "nazivNotifikacije": "Izmena termina (Pacijent)",
+    "vremeNotifikovanja": "2021-04-21T13:13:02.9235052+02:00",
+    "porukaNotifikacije": "Izmenjen je teremin (Pacijent)",
+    "idKorisnika": "1",
+    "datumNotifikovanja": "2021-04-21T13:13:02.9235052+02:00",
+    "jeProcitana": false
+  },
+  {
+    "id": "6",
+    "nazivNotifikacije": "Izmena termina (Lekar)",
+    "vremeNotifikovanja": "2021-04-21T13:13:02.9335047+02:00",
+    "porukaNotifikacije": "Izmenjen je teremin (Lekar)",
+    "idKorisnika": "1",
+    "datumNotifikovanja": "2021-04-21T13:13:02.9335047+02:00",
+    "jeProcitana": false
+  }
+]

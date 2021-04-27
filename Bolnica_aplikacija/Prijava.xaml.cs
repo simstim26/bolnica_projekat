@@ -9,6 +9,7 @@ using Bolnica_aplikacija.Model;
 using Model;
 using Bolnica_aplikacija.PacijentStudent;
 using Bolnica_aplikacija.Kontroler;
+using Bolnica_aplikacija.Repozitorijum;
 
 namespace Bolnica_aplikacija
 {

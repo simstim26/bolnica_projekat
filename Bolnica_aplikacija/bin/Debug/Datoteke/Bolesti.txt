@@ -1,20 +1,14 @@
 [
   {
     "id": "1",
-    "naziv": "dijagnoza1",
+    "naziv": "a",
     "idTerapije": "1",
     "idPacijenta": "1"
   },
   {
     "id": "2",
-    "naziv": "afsdfa",
+    "naziv": "a1",
     "idTerapije": "2",
-    "idPacijenta": "1"
-  },
-  {
-    "id": "3",
-    "naziv": "dijagnozic",
-    "idTerapije": "3",
     "idPacijenta": "1"
   }
 ]

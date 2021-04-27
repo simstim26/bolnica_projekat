@@ -95,9 +95,9 @@ namespace Bolnica_aplikacija.Servis
             DateTime danasnji = danasnjiDatum.Date.Add(new TimeSpan(0, 0, 0));
             foreach (Termin termin in terminRepozitorijum.ucitajSve())
             {
-                if (termin.idLekara.Equals(lekar.id) && !termin.idPacijenta.Equals(""))
+                if (!termin.jeZavrsen && termin.idLekara.Equals(lekar.id) && !termin.idPacijenta.Equals(""))
                 {
-                    if (DateTime.Compare(termin.datum, danasnji) >= 1)
+                    if (DateTime.Compare(termin.datum, danasnji) >= 0)
                     {
                         PacijentTermin pacijentTermin = new PacijentTermin();
                         pacijentTermin.id = termin.idTermina;

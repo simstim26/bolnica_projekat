@@ -98,7 +98,7 @@ namespace Bolnica_aplikacija.Servis
                     izmeniP.adresa = adresa;
                     izmeniP.email = email;
                     izmeniP.brojTelefona = telefon;
-
+ 
                     alergijaRepozitorijum.azurirajAlergije(alergije, izmeniP.id);                   
                     pacijentRepozitorijum.azurirajPacijenta(izmeniP);
                 }

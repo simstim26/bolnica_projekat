@@ -26,6 +26,5 @@ namespace Bolnica_aplikacija.Kontroler
         {
             return lekarServis.pretraziZauzeteTermineZaLekara(lekar, prvi, drugi);
         }
-
     }
 }

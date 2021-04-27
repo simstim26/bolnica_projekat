@@ -43,6 +43,7 @@ namespace Bolnica_aplikacija
             InitializeComponent();
             CenterWindow();
 
+            lblSekretar.Content = KorisnikKontroler.GetSekretar().ime + " " + KorisnikKontroler.GetSekretar().prezime;
             this.PacijentGrid.Visibility = Visibility.Hidden;
             this.TerminiGrid.Visibility = Visibility.Hidden;
 
@@ -144,7 +145,7 @@ namespace Bolnica_aplikacija
                 textIme.Text = pacijent.ime;
                 textPrezime.Text = pacijent.prezime;
                 textAdresa.Text = pacijent.adresa;
-                textDatumRodj.Text = pacijent.datumRodjenja.ToString();
+                textDatumRodj.Text = pacijent.datumRodjenja.Date.ToString("MM/dd/yyyy");
                 textEmail.Text = pacijent.email;
                 textTelefon.Text = pacijent.brojTelefona;
 
@@ -629,6 +630,7 @@ namespace Bolnica_aplikacija
 
         private void zakaziTerminButton_Click(object sender, RoutedEventArgs e)
         {
+            lblUpozorenje.Visibility = Visibility.Hidden;
             if (TabelaPacijentiTermini.SelectedIndex != -1)
             {
                 List<PacijentTermin> slobodniTermini = PacijentKontroler.ucitajSlobodneTermine(0, true);
@@ -654,8 +656,7 @@ namespace Bolnica_aplikacija
                 else
                 {                    
                     sakrijTabeluSlobodnihTermina();
-                    lblUpozorenje.Visibility = Visibility.Visible;
-                    lblUpozorenje.Content = "* Nema slobodnih termina!";
+                    nemaTerminaObavestenje();
                 }
             }
             else
@@ -706,47 +707,58 @@ namespace Bolnica_aplikacija
                 List<PacijentTermin> sviTermini = PacijentKontroler.ucitajSlobodneTermine(0, true);
                 List<PacijentTermin> slobodniTermini = new List<PacijentTermin>();
 
-                if (izabraniTermin.napomena.Equals("Pregled"))
-                {
-                    foreach(PacijentTermin termin in sviTermini)
-                    {
-                        if (termin.napomena.Equals("Pregled"))
-                        {
-                            slobodniTermini.Add(termin);
-                        }
-                    }
-                }
-                else
-                {
-                    foreach (PacijentTermin termin in sviTermini)
-                    {
-                        if (termin.napomena.Equals("Operacija"))
-                        {
-                            slobodniTermini.Add(termin);
-                        }
-                    }
-
-                }
-
-                if(slobodniTermini.Count != 0)
-                {
-                    TabelaSlobodnihTermina.Visibility = Visibility.Visible;
-                    slobodniTerminiLabel.Visibility = Visibility.Visible;
-                    lblPacijent.Visibility = Visibility.Visible;
-                    lblPacijent.Content = imePrezimePacijenta;
-
-                    TabelaSlobodnihTermina.ItemsSource = slobodniTermini;
-                    TabelaSlobodnihTermina.Items.Refresh();
-
-                    potvrdiZakazivanjeTerminaButton.Visibility = Visibility.Visible;
-                    potvrdiZakazivanjeTerminaButton.IsEnabled = false;
-
-                }
-                else
-                {
+                if (TerminKontroler.proveriDatumTermina(izabraniTermin.id) <= 0)
+                {                   
+                    sakrijTabeluSlobodnihTermina();
                     lblUpozorenje.Visibility = Visibility.Visible;
-                    lblUpozorenje.Content = "* Nema slobodnih termina!";
+                    lblUpozorenje.Content = "* Nije moguće izmeniti termin za manje od 24h!";
                 }
+                else
+                {
+
+                    if (izabraniTermin.napomena.Equals("Pregled"))
+                    {
+                        foreach (PacijentTermin termin in sviTermini)
+                        {
+                            if (termin.napomena.Equals("Pregled"))
+                            {
+                                slobodniTermini.Add(termin);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        foreach (PacijentTermin termin in sviTermini)
+                        {
+                            if (termin.napomena.Equals("Operacija"))
+                            {
+                                slobodniTermini.Add(termin);
+                            }
+                        }
+
+                    }
+
+                    if (slobodniTermini.Count != 0)
+                    {
+                        TabelaSlobodnihTermina.Visibility = Visibility.Visible;
+                        slobodniTerminiLabel.Visibility = Visibility.Visible;
+                        lblPacijent.Visibility = Visibility.Visible;
+                        lblPacijent.Content = imePrezimePacijenta;
+
+                        TabelaSlobodnihTermina.ItemsSource = slobodniTermini;
+                        TabelaSlobodnihTermina.Items.Refresh();
+
+                        potvrdiZakazivanjeTerminaButton.Visibility = Visibility.Visible;
+                        potvrdiZakazivanjeTerminaButton.IsEnabled = false;
+
+                    }
+                    else
+                    {
+                        nemaTerminaObavestenje();
+                    }
+                }
+              
+              
             
             }
             else
@@ -782,6 +794,9 @@ namespace Bolnica_aplikacija
                 PacijentKontroler.nadjiPacijenta(idPacijenta);
                 String idSelektovanog = izabraniTermin.id;
                 PacijentKontroler.zakaziTerminPacijentu(idSelektovanog);
+                NotifikacijaKontroler.napraviNotifikaciju("Zakazivanje termina (Pacijent)", "Zakazan je teremin (Pacijent)", idPacijenta, "pacijent");
+                NotifikacijaKontroler.napraviNotifikaciju("Zakazivanje termina (Lekar)", "Zakazan je teremin (Lekar)", TerminKontroler.nadjiIdLekaraZaTermin(izabraniTermin.id), "lekar");
+
 
                 ucitajTerminePacijenta();
                 TabelaPacijentiTermini.Items.Refresh();
@@ -796,31 +811,26 @@ namespace Bolnica_aplikacija
             else if (tipAkcijeTermini == 1)
             {
                 PacijentTermin izabraniTermin = (PacijentTermin)TabelaTerminiPacijenta.SelectedItem;
-                if (TerminKontroler.proveriDatumTermina(izabraniTermin.id) <= 0)
-                {
-                    lblUpozorenje.Visibility = Visibility.Visible;
-                    lblUpozorenje.Content = "* Nije moguće otkazati termin za manje od 24h!";
-                }
-                else
-                {
-                    PacijentTermin noviTermin = (PacijentTermin)TabelaSlobodnihTermina.SelectedItem;
-                    TerminKontroler.sacuvajTermin(izabraniTermin.id);
-                    PacijentKontroler.azurirajTerminPacijentu(izabraniTermin.id, noviTermin.id);
+                PacijentTermin noviTermin = (PacijentTermin)TabelaSlobodnihTermina.SelectedItem;
+                TerminKontroler.sacuvajTermin(izabraniTermin.id);
+                PacijentKontroler.azurirajTerminPacijentu(izabraniTermin.id, noviTermin.id);
+                NotifikacijaKontroler.napraviNotifikaciju("Izmena termina (Pacijent)", "Izmenjen je teremin (Pacijent)", idPacijenta, "pacijent");
+                NotifikacijaKontroler.napraviNotifikaciju("Izmena termina (Lekar)", "Izmenjen je teremin (Lekar)", TerminKontroler.nadjiIdLekaraZaTermin(izabraniTermin.id), "lekar");
 
-                    ucitajTerminePacijenta();
-                    TabelaPacijentiTermini.Items.Refresh();
-                    TabelaSlobodnihTermina.ItemsSource = PacijentKontroler.ucitajSlobodneTermine(1, true);
-                    TabelaSlobodnihTermina.Items.Refresh();
+                ucitajTerminePacijenta();
+                TabelaPacijentiTermini.Items.Refresh();
+                TabelaSlobodnihTermina.ItemsSource = PacijentKontroler.ucitajSlobodneTermine(1, true);
+                TabelaSlobodnihTermina.Items.Refresh();
 
-                    PotvrdaGrid.Visibility = Visibility.Hidden;
-                    potvrdiZakazivanjeTerminaButton.IsEnabled = false;
-                    
-                }
+                PotvrdaGrid.Visibility = Visibility.Hidden;
+                potvrdiZakazivanjeTerminaButton.IsEnabled = false;
             }
             else
             {
 
                 PacijentKontroler.otkaziTerminPacijenta(izabraniTermin.id);
+                NotifikacijaKontroler.napraviNotifikaciju("Otkazivanje termina (Pacijent)", "Otkazan je teremin (Pacijent)", idPacijenta, "pacijent");
+                NotifikacijaKontroler.napraviNotifikaciju("Otkazivanje termina (Lekar)", "Otkazan je teremin (Lekar)", TerminKontroler.nadjiIdLekaraZaTermin(izabraniTermin.id), "lekar");
 
                 ucitajTerminePacijenta();
                 TabelaSlobodnihTermina.ItemsSource = PacijentKontroler.ucitajSlobodneTermine(1, true);
@@ -885,8 +895,23 @@ namespace Bolnica_aplikacija
             lblUpozorenje.Visibility = Visibility.Hidden;
         }
 
+        private void nemaTerminaObavestenje()
+        {
+            lblUpozorenje.Visibility = Visibility.Visible;
+            lblUpozorenje.Content = "* Nema slobodnih termina!";
+        }
+
         private void lekariButton_Click(object sender, RoutedEventArgs e)
         {
+
+        }
+
+        private void PacijentGrid_TargetUpdated(object sender, DataTransferEventArgs e)
+        {
+            Alergija alergija = (Alergija)dataGridAlergije.Items.GetItemAt(dataGridAlergije.SelectedIndex);
+            
+
+            
 
         }
     }  

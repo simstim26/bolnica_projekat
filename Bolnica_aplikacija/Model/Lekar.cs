@@ -14,6 +14,8 @@ namespace Model
       public double prosecnaOcena { get; set; }
       public String idBolnice { get; set; }
       public String idSpecijalizacije { get; set; }
+      
+      public List<Notifikacija> notifikacije { get; set; }
       public void NapraviTermin(String idTermina)
       {
           /*  var sviTermini = JsonSerializer.Deserialize<List<Termin>>(File.ReadAllText("Datoteke/Termini.txt"));

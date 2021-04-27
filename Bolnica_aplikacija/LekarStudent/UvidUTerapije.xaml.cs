@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Bolnica_aplikacija.Kontroler;
+using Bolnica_aplikacija.PomocneKlase;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,6 +29,16 @@ namespace Bolnica_aplikacija.LekarStudent
             LekarProzor.getGlavnaLabela().Content = "Uvid u terapije";
             PacijentInfo.aktivanPacijentInfo = false;
             aktivan = true;
+            this.dataGridTerapije.ItemsSource = PacijentKontroler.ucitajSveTerapijeZaPacijenta();
+        }
+
+        private void btnIzdavanjeRecepta_Click(object sender, RoutedEventArgs e)
+        {
+            if (dataGridTerapije.SelectedIndex != -1)
+            {
+                PacijentKontroler.sacuvajBolestTerapiju((BolestTerapija)dataGridTerapije.SelectedItem);
+                Content = new TerapijeIzdavanjeRecpeta();
+            }
         }
     }
 }

@@ -1,8 +1,8 @@
 [
   {
     "tip": 1,
-    "datum": "2021-04-24T00:00:00",
-    "satnica": "2021-03-28T12:00:00",
+    "datum": "2021-04-21T00:00:00",
+    "satnica": "2021-03-28T01:26:00",
     "jeZavrsen": true,
     "idTermina": "1",
     "idProstorije": "10",
@@ -10,7 +10,7 @@
     "idLekara": "1",
     "idTerapije": "2",
     "idBolesti": "2",
-    "izvestaj": "asdfasdfa"
+    "izvestaj": "izvestaj"
   },
   {
     "tip": 1,
@@ -32,7 +32,7 @@
     "jeZavrsen": false,
     "idTermina": "3",
     "idProstorije": "16",
-    "idPacijenta": "2",
+    "idPacijenta": "",
     "idLekara": "1",
     "idTerapije": null,
     "idBolesti": null,
@@ -71,19 +71,6 @@
     "jeZavrsen": false,
     "idTermina": "6",
     "idProstorije": "13",
-    "idPacijenta": "2",
-    "idLekara": "2",
-    "idTerapije": null,
-    "idBolesti": null,
-    "izvestaj": null
-  },
-  {
-    "tip": 0,
-    "datum": "2021-04-20T00:00:00",
-    "satnica": "2021-03-28T12:00:00",
-    "jeZavrsen": false,
-    "idTermina": "7",
-    "idProstorije": "13",
     "idPacijenta": "",
     "idLekara": "2",
     "idTerapije": null,
@@ -94,14 +81,14 @@
     "tip": 1,
     "datum": "2021-04-20T00:00:00",
     "satnica": "2021-03-28T14:00:00",
-    "jeZavrsen": true,
+    "jeZavrsen": false,
     "idTermina": "7",
     "idProstorije": "15",
     "idPacijenta": "1",
     "idLekara": "1",
-    "idTerapije": "3",
-    "idBolesti": "3",
-    "izvestaj": "Never gonna give you up, never gonna let you down, tanananaananananananaana"
+    "idTerapije": null,
+    "idBolesti": null,
+    "izvestaj": null
   },
   {
     "tip": 1,
@@ -115,5 +102,44 @@
     "idTerapije": "1",
     "idBolesti": "1",
     "izvestaj": "dsfnapdsnfapksdnf;aksnd;fkladfa"
+  },
+  {
+    "tip": 1,
+    "datum": "2021-04-20T00:00:00",
+    "satnica": "2021-03-28T16:18:00",
+    "jeZavrsen": false,
+    "idTermina": "9",
+    "idProstorije": "15",
+    "idPacijenta": "1",
+    "idLekara": "1",
+    "idTerapije": null,
+    "idBolesti": null,
+    "izvestaj": null
+  },
+  {
+    "tip": 1,
+    "datum": "2021-04-20T00:00:00",
+    "satnica": "2021-03-28T23:42:00",
+    "jeZavrsen": false,
+    "idTermina": "10",
+    "idProstorije": "15",
+    "idPacijenta": "1",
+    "idLekara": "1",
+    "idTerapije": null,
+    "idBolesti": null,
+    "izvestaj": null
+  },
+  {
+    "tip": 0,
+    "datum": "2021-04-25T00:00:00",
+    "satnica": "2021-03-28T12:00:00",
+    "jeZavrsen": false,
+    "idTermina": "11",
+    "idProstorije": "16",
+    "idPacijenta": "1",
+    "idLekara": "1",
+    "idTerapije": null,
+    "idBolesti": null,
+    "izvestaj": null
   }
 ]

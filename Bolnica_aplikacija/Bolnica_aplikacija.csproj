@@ -99,6 +99,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Kontroler\BolestKontroler.cs" />
     <Compile Include="Kontroler\KorisnikKontroler.cs" />
     <Compile Include="Kontroler\LekarKontroler.cs" />
     <Compile Include="Kontroler\LekKontroler.cs" />
@@ -122,6 +123,9 @@
     </Compile>
     <Compile Include="LekarStudent\Izvestaj.xaml.cs">
       <DependentUpon>Izvestaj.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LekarStudent\TerapijeIzdavanjeRecpeta.xaml.cs">
+      <DependentUpon>TerapijeIzdavanjeRecpeta.xaml</DependentUpon>
     </Compile>
     <Compile Include="LekarStudent\UvidUTerapije.xaml.cs">
       <DependentUpon>UvidUTerapije.xaml</DependentUpon>
@@ -286,6 +290,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="LekarStudent\TerapijeIzdavanjeRecpeta.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="LekarStudent\UvidUTerapije.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -386,6 +394,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="LekarStudent\doc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SekretarStudent\logo.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="UpravnikStudent\images.png" />

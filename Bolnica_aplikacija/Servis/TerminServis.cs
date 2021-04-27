@@ -30,6 +30,19 @@ namespace Bolnica_aplikacija.Servis
             return povratnaVrednost;
         }
 
+        public void azuriranjeTerapijeZaTermin(String idTermina, String idTerapija)
+        {
+            Termin termin = nadjiTerminPoId(idTermina);
+            termin.idTerapije = idTerapija;
+            terminRepozitorijum.azurirajTermin(termin);
+        }
+        public void azuriranjeIzvestajaZaTermin(String azuriraniIzvestaj, String idTermina)
+        {
+            Termin termin = nadjiTerminPoId(idTermina);
+            termin.izvestaj = azuriraniIzvestaj;
+            terminRepozitorijum.azurirajTermin(termin);
+        }
+
         public void dodavanjeIzvestajaZaTermin(String nazivBolesti,String izvestajSaTermina)
         {
             BolestServis bolestServis = new BolestServis();
@@ -176,9 +189,26 @@ namespace Bolnica_aplikacija.Servis
             return termin;
         }
 
+
+        public String nadjiIdLekaraZaTermin(String idTermina)
+        {
+            String idNadjenogLekara = "";
+            foreach (Termin termin in terminRepozitorijum.ucitajSve())
+            {
+                if (idTermina.Equals(termin.idTermina))
+                {
+                    idNadjenogLekara = termin.idLekara;
+
+                    break;
+                }
+            }
+            return idNadjenogLekara;
+        }
+
         public List<Termin> ucitajSve()
         {
             return terminRepozitorijum.ucitajSve();
+
         }
     }
 }

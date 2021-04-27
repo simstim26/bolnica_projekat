@@ -125,8 +125,22 @@ namespace Bolnica_aplikacija
             }
             else if (IzmenaBolesti.aktivan)
             {
-                LekarProzor.getX().Content = new IstorijaBolesti();
-                IzmenaBolesti.aktivan = false;
+                if (IzmenaBolesti.getGridLekovi().Visibility == Visibility.Visible)
+                {
+                    IzmenaBolesti.getGridLekovi().Visibility = Visibility.Hidden;
+                    IzmenaBolesti.getGridRecept().Visibility = Visibility.Visible;
+                    glavnaLabela.Content = "Izdavanje recepta";
+                }
+                else if (IzmenaBolesti.getGridRecept().Visibility == Visibility.Visible)
+                {
+                    IzmenaBolesti.getGridRecept().Visibility = Visibility.Hidden;
+                    LekarProzor.getGlavnaLabela().Content = "Ažuriranje bolesti";
+                }
+                else
+                {
+                    LekarProzor.getX().Content = new IstorijaBolesti();
+                    IzmenaBolesti.aktivan = false;
+                }
             }
             else if (Alergije.aktivan)
             {
@@ -138,6 +152,19 @@ namespace Bolnica_aplikacija
             {
                 LekarProzor.getX().Content = new PacijentInfo();
                 UvidUTerapije.aktivan = false;
+            }
+            else if (TerapijeIzdavanjeRecpeta.aktivan)
+            {
+                if(TerapijeIzdavanjeRecpeta.getGridLekovi().Visibility == Visibility.Visible)
+                {
+                    TerapijeIzdavanjeRecpeta.getGridLekovi().Visibility = Visibility.Hidden;
+                    glavnaLabela.Content = "Izdavanje recepta";
+                }
+                else
+                {
+                    LekarProzor.getX().Content = new UvidUTerapije();
+                    TerapijeIzdavanjeRecpeta.aktivan = false;
+                }
             }
         }
 
