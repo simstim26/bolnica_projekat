@@ -5,7 +5,7 @@
     "tipProstorije": 0,
     "broj": "120",
     "sprat": 1,
-    "dostupnost": false,
+    "dostupnost": true,
     "logickiObrisana": false,
     "Stavka": [
       {
@@ -22,7 +22,7 @@
       {
         "id": "4",
         "naziv": "hanzaplast",
-        "kolicina": 409,
+        "kolicina": 200,
         "proizvodjac": "hanZa",
         "idProstorije": null,
         "idBolnice": "1",
@@ -42,10 +42,10 @@
         "jePotrosnaRoba": true
       },
       {
-        "id": "2",
-        "naziv": "Krevet",
-        "kolicina": 26,
-        "proizvodjac": "KrevetKrevet",
+        "id": "5",
+        "naziv": "Igla",
+        "kolicina": 5,
+        "proizvodjac": "IgloLand",
         "idProstorije": null,
         "idBolnice": "1",
         "jeStaticka": true,
@@ -98,13 +98,24 @@
       {
         "id": "2",
         "naziv": "Krevet",
-        "kolicina": 5,
+        "kolicina": 27,
         "proizvodjac": "KrevetKrevet",
         "idProstorije": null,
         "idBolnice": "1",
         "jeStaticka": true,
         "jeLogickiObrisana": false,
         "jePotrosnaRoba": false
+      },
+      {
+        "id": "5",
+        "naziv": "Igla",
+        "kolicina": 1,
+        "proizvodjac": "IgloLand",
+        "idProstorije": null,
+        "idBolnice": "1",
+        "jeStaticka": false,
+        "jeLogickiObrisana": false,
+        "jePotrosnaRoba": true
       }
     ]
   },
@@ -164,7 +175,7 @@
     "tipProstorije": 2,
     "broj": "100",
     "sprat": 100,
-    "dostupnost": true,
+    "dostupnost": false,
     "logickiObrisana": false,
     "Stavka": []
   },
@@ -198,6 +209,28 @@
         "jeStaticka": true,
         "jeLogickiObrisana": false,
         "jePotrosnaRoba": false
+      },
+      {
+        "id": "4",
+        "naziv": "hanzaplast",
+        "kolicina": 21,
+        "proizvodjac": "hanZa",
+        "idProstorije": null,
+        "idBolnice": "1",
+        "jeStaticka": false,
+        "jeLogickiObrisana": false,
+        "jePotrosnaRoba": true
+      },
+      {
+        "id": "5",
+        "naziv": "Igla",
+        "kolicina": 12,
+        "proizvodjac": "IgloLand",
+        "idProstorije": null,
+        "idBolnice": "1",
+        "jeStaticka": false,
+        "jeLogickiObrisana": false,
+        "jePotrosnaRoba": true
       }
     ]
   },
@@ -233,7 +266,7 @@
       {
         "id": "4",
         "naziv": "hanzaplast",
-        "kolicina": 38,
+        "kolicina": 26,
         "proizvodjac": "hanZa",
         "idProstorije": null,
         "idBolnice": "1",
@@ -305,7 +338,19 @@
     "sprat": 1,
     "dostupnost": true,
     "logickiObrisana": false,
-    "Stavka": []
+    "Stavka": [
+      {
+        "id": "5",
+        "naziv": "Igla",
+        "kolicina": 3,
+        "proizvodjac": "IgloLand",
+        "idProstorije": null,
+        "idBolnice": "1",
+        "jeStaticka": false,
+        "jeLogickiObrisana": false,
+        "jePotrosnaRoba": true
+      }
+    ]
   },
   {
     "id": "18",
@@ -325,7 +370,30 @@
     "sprat": 12,
     "dostupnost": true,
     "logickiObrisana": false,
-    "Stavka": []
+    "Stavka": [
+      {
+        "id": "2",
+        "naziv": "Krevet",
+        "kolicina": 1,
+        "proizvodjac": "KrevetKrevet",
+        "idProstorije": null,
+        "idBolnice": "1",
+        "jeStaticka": true,
+        "jeLogickiObrisana": false,
+        "jePotrosnaRoba": false
+      },
+      {
+        "id": "5",
+        "naziv": "Igla",
+        "kolicina": 2,
+        "proizvodjac": "IgloLand",
+        "idProstorije": null,
+        "idBolnice": "1",
+        "jeStaticka": false,
+        "jeLogickiObrisana": false,
+        "jePotrosnaRoba": true
+      }
+    ]
   },
   {
     "id": "20",

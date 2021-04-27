@@ -1,20 +1,65 @@
 [
   {
     "idProstorije": "1",
-    "datumPocetka": "2021-04-20T00:00:00",
-    "datumKraja": "2021-04-22T00:00:00",
-    "jeZavrseno": false
-  },
-  {
-    "idProstorije": "10",
-    "datumPocetka": "2021-04-20T00:00:00",
-    "datumKraja": "2021-04-22T00:00:00",
-    "jeZavrseno": false
+    "idProstorijeUKojuSePrebacuje": "3",
+    "datumPocetka": "2021-04-23T00:00:00",
+    "datumKraja": "2021-04-24T00:00:00",
+    "jeZavrseno": true,
+    "idStavke": "2",
+    "kolicinaStavke": 1
   },
   {
     "idProstorije": "1",
-    "datumPocetka": "2021-04-20T00:00:00",
-    "datumKraja": "2021-04-22T00:00:00",
-    "jeZavrseno": false
+    "idProstorijeUKojuSePrebacuje": "3",
+    "datumPocetka": "2021-04-23T00:00:00",
+    "datumKraja": "2021-04-24T00:00:00",
+    "jeZavrseno": true,
+    "idStavke": "2",
+    "kolicinaStavke": 23
+  },
+  {
+    "idProstorije": "3",
+    "idProstorijeUKojuSePrebacuje": "9",
+    "datumPocetka": "2021-04-24T00:00:00",
+    "datumKraja": "2021-04-25T00:00:00",
+    "jeZavrseno": false,
+    "idStavke": "2",
+    "kolicinaStavke": 5
+  },
+  {
+    "idProstorije": "3",
+    "idProstorijeUKojuSePrebacuje": "17",
+    "datumPocetka": "2021-04-24T00:00:00",
+    "datumKraja": "2021-04-24T00:00:00",
+    "jeZavrseno": true,
+    "idStavke": "2",
+    "kolicinaStavke": 1
+  },
+  {
+    "idProstorije": "17",
+    "idProstorijeUKojuSePrebacuje": "1",
+    "datumPocetka": "2021-04-24T00:00:00",
+    "datumKraja": "2021-04-24T00:00:00",
+    "jeZavrseno": true,
+    "idStavke": "2",
+    "kolicinaStavke": 1
+  },
+  {
+    "idProstorije": "10",
+    "idProstorijeUKojuSePrebacuje": null,
+    "datumPocetka": "2021-04-24T00:00:00",
+    "datumKraja": "2021-04-25T00:00:00",
+    "jeZavrseno": false,
+    "idStavke": "6",
+    "kolicinaStavke": 10
+  },
+  {
+    "idProstorije": "1",
+    "idProstorijeUKojuSePrebacuje": "19",
+    "datumPocetka": "2021-04-24T00:00:00",
+    "datumKraja": "2021-04-24T00:00:00",
+    "jeZavrseno": true,
+    "idStavke": "2",
+    "kolicinaStavke": 1
   }
 ]

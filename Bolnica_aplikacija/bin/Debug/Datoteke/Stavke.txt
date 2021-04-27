@@ -53,5 +53,27 @@
     "jeStaticka": true,
     "jeLogickiObrisana": false,
     "jePotrosnaRoba": true
+  },
+  {
+    "id": "6",
+    "naziv": "stavka",
+    "kolicina": 10,
+    "proizvodjac": "st",
+    "idProstorije": null,
+    "idBolnice": "1",
+    "jeStaticka": false,
+    "jeLogickiObrisana": true,
+    "jePotrosnaRoba": true
+  },
+  {
+    "id": "6",
+    "naziv": "dusan",
+    "kolicina": 100,
+    "proizvodjac": "sisarica",
+    "idProstorije": null,
+    "idBolnice": "1",
+    "jeStaticka": true,
+    "jeLogickiObrisana": false,
+    "jePotrosnaRoba": false
   }
 ]
