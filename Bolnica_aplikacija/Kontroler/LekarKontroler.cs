@@ -24,11 +24,5 @@ namespace Bolnica_aplikacija.Kontroler
         {
             return LekarServis.getInstance().pretraziZauzeteTermineZaLekara(lekar, prvi, drugi);
         }
-
-        public static String nadjiIdLekara(String idLekara)
-        {
-           return LekarServis.getInstance().nadjiIdLekara(idLekara);
-        }
-
     }
 }

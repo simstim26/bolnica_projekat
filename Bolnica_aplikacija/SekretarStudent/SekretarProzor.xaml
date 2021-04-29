@@ -9,7 +9,7 @@
         Title="Sekretar" Height="768" Width="1366" Visibility="Visible" ResizeMode="CanMinimize"
         >
     <Grid x:Name="Grid" HorizontalAlignment="Left" Height="748" Margin="-4,-17,0,0" VerticalAlignment="Top" Width="1356">
-        <Grid x:Name="PocetniEkranGrid" Margin="0,18,-8,-9" HorizontalAlignment="Left" Width="1364" Background="#FFF7FFF4" d:IsHidden="True">
+        <Grid x:Name="PocetniEkranGrid" Margin="0,18,-8,-9" HorizontalAlignment="Left" Width="1364" Background="#FFF7FFF4">
             <Button x:Name="pacijentiButton" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Height="200" FontSize="36" FontWeight="Bold" Click="pacijenti_Click" Margin="428,140,0,0" BorderBrush="#FF67B6D5" >
                 <Button.Effect>
                     <DropShadowEffect BlurRadius="10" Direction="314" Opacity="0.35"/>
@@ -81,7 +81,7 @@
                 </Label.Effect>
             </Label>
         </Grid>
-        <Grid x:Name="PacijentGrid" HorizontalAlignment="Left" Height="730" Margin="0,18,0,0" VerticalAlignment="Top" Width="1346" TargetUpdated="PacijentGrid_TargetUpdated">
+        <Grid x:Name="PacijentGrid" HorizontalAlignment="Left" Height="730" Margin="0,18,0,0" VerticalAlignment="Top" Width="1346" TargetUpdated="PacijentGrid_TargetUpdated" d:IsHidden="True">
             <Grid.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF83C8F7" Offset="0"/>

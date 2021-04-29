@@ -27,29 +27,125 @@ namespace Bolnica_aplikacija.Servis
         {
             var prostorijeZaZauzimanje = ucitajSve();
             var prostorije = ProstorijaKontroler.ucitajSve();
-            
+            //var stavke = StavkaKontroler.UcitajSve();
+            bool postoji = false;
+
             foreach (ProstorijaZauzeto pz in prostorijeZaZauzimanje)
             {
-                if(pz.jeZavrseno == false)
+                if (pz.idProstorijeUKojuSePrebacuje != null)
                 {
-                    foreach (Prostorija p in prostorije)
+                    if (pz.jeZavrseno == false)
                     {
-                        if (p.id == pz.idProstorije)
+                        foreach (Prostorija p in prostorije)
                         {
-                            if (DateTime.Now >= pz.datumPocetka && DateTime.Now < pz.datumKraja)
+                            postoji = false;
+                            if (p.id == pz.idProstorije)
                             {
-                                p.dostupnost = false;
+                                if (DateTime.Now >= pz.datumPocetka && DateTime.Now < pz.datumKraja)
+                                {
+                                    p.dostupnost = false;
+                                }
+
+                                if (DateTime.Now >= pz.datumKraja)
+                                {
+                                    p.dostupnost = true;
+                                    pz.jeZavrseno = true;
+                                }
+
                             }
 
-                            if (DateTime.Now == pz.datumKraja)
+                            if (p.id == pz.idProstorijeUKojuSePrebacuje)
                             {
-                                pz.jeZavrseno = true;
-                                p.dostupnost = true;
+                                if (DateTime.Now >= pz.datumPocetka && DateTime.Now < pz.datumKraja)
+                                {
+                                    p.dostupnost = false;
+                                }
+
+                                if (DateTime.Now >= pz.datumKraja)
+                                {
+                                    p.dostupnost = true;
+                                    pz.jeZavrseno = true;
+
+                                    if (p.Stavka.Count != 0)
+                                    {
+                                        foreach (Stavka s in p.Stavka)
+                                        {
+                                            if (s.id == pz.idStavke)
+                                            {
+                                                s.kolicina += pz.kolicinaStavke;
+                                                postoji = true;
+                                            }
+                                        }
+
+                                        if (postoji == false)
+                                        {
+                                            var stavka = StavkaKontroler.pronadjiStavkuPoId(pz.idStavke);
+                                            stavka.kolicina = pz.kolicinaStavke;
+                                            p.Stavka.Add(stavka);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        var stavka = StavkaKontroler.pronadjiStavkuPoId(pz.idStavke);
+                                        stavka.kolicina = pz.kolicinaStavke;
+                                        p.Stavka.Add(stavka);
+                                    }
+
+                                }
                             }
+
                         }
                     }
                 }
-                
+                else
+                {
+                    if (pz.jeZavrseno == false)
+                    {
+                        foreach (Prostorija p in prostorije)
+                        {
+                            if (p.id == pz.idProstorije)
+                            {
+                                if (DateTime.Now >= pz.datumPocetka && DateTime.Now < pz.datumKraja)
+                                {
+                                    p.dostupnost = false;
+                                }
+
+                                if (DateTime.Now >= pz.datumKraja)
+                                {
+                                    p.dostupnost = true;
+                                    pz.jeZavrseno = true;
+
+                                    if (p.Stavka.Count != 0)
+                                    {
+                                        foreach (Stavka s in p.Stavka)
+                                        {
+                                            if (s.id == pz.idStavke)
+                                            {
+                                                s.kolicina += pz.kolicinaStavke;
+                                                postoji = true;
+                                            }
+                                        }
+
+                                        if (postoji == false)
+                                        {
+                                            var stavka = StavkaKontroler.pronadjiStavkuPoId(pz.idStavke);
+                                            stavka.kolicina = pz.kolicinaStavke;
+                                            p.Stavka.Add(stavka);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        var stavka = StavkaKontroler.pronadjiStavkuPoId(pz.idStavke);
+                                        stavka.kolicina = pz.kolicinaStavke;
+                                        p.Stavka.Add(stavka);
+                                    }
+                                }
+
+                            }
+                        }
+
+                    }
+                }
             }
             upisi(prostorijeZaZauzimanje);
             ProstorijaKontroler.upisi(prostorije);

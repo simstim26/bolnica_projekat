@@ -226,7 +226,7 @@ namespace Bolnica_aplikacija.Servis
             {
                 if (idTermina.Equals(termin.idTermina))
                 {
-                    idNadjenogLekara = LekarKontroler.nadjiIdLekara(termin.idLekara);
+                    idNadjenogLekara = termin.idLekara;
 
                     break;
                 }

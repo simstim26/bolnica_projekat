@@ -157,22 +157,5 @@ namespace Bolnica_aplikacija.Servis
             }
                 return terminiZaPrikaz;
         }
-
-         public String nadjiIdLekara(String idLekara)
-        {
-            String idNadjenogLekara = "";
-            var sviLekari = lekarRepozitorijum.ucitajSve();
-
-            foreach (Lekar lekar in sviLekari)
-            {
-                if (lekar.id.Equals(idLekara))
-                {
-                    idNadjenogLekara = lekar.id;
-                    break;
-                }
-            }
-
-            return idNadjenogLekara;
-        }
     }
 }
