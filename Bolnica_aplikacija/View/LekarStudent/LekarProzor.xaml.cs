@@ -206,8 +206,13 @@ namespace Bolnica_aplikacija
             if (gridInfoLek.Visibility == Visibility.Visible)
             {
                 gridInfoLek.Visibility = Visibility.Hidden;
-                glavnaLabela.Content = "Odobracanje lekova";
-
+                glavnaLabela.Content = "Odobravanje lekova";
+            }
+            else if(gridRUZamenskiLekovi.Visibility == Visibility.Visible)
+            {
+                gridRUZamenskiLekovi.Visibility = Visibility.Hidden;
+                gridInfoLek.Visibility = Visibility.Visible;
+                glavnaLabela.Content = "Informacije o leku";
             }
             else
             {
@@ -225,11 +230,17 @@ namespace Bolnica_aplikacija
             {
                 sacuvajStareVrednosti();
             }
+            ucitavanjePostojecihLekova();
             gridOdobravanjeLekova.Visibility = Visibility.Hidden;
             gridRULekovi.Visibility = Visibility.Visible;
             glavnaLabela.Content = "Pregled i izmena lekova";
             btnNazad.Visibility = Visibility.Visible;
             btnPretraga.Visibility = Visibility.Hidden;
+        }
+
+        private void ucitavanjePostojecihLekova()
+        {
+            dataGridPostojeciLekovi.ItemsSource = LekKontroler.ucitajSve();
         }
 
         private void podesiKretanjeUnazadZaRULekova()
@@ -238,6 +249,12 @@ namespace Bolnica_aplikacija
             {
                 glavnaLabela.Content = "Pregled i izmena lekova";
                 gridIzmenaLekova.Visibility = Visibility.Hidden;
+            }
+            else if (gridRUZamenskiLekovi.Visibility == Visibility.Visible)
+            {
+                gridRUZamenskiLekovi.Visibility = Visibility.Hidden;
+                gridIzmenaLekova.Visibility = Visibility.Visible;
+                glavnaLabela.Content = "Informacije o leku";
             }
             else
             {
@@ -251,8 +268,38 @@ namespace Bolnica_aplikacija
 
         private void btnIzmeniPostojeciLek_Click(object sender, RoutedEventArgs e)
         {
-            gridIzmenaLekova.Visibility = Visibility.Visible;
-            glavnaLabela.Content = "Izmena leka";
+            if (dataGridPostojeciLekovi.SelectedIndex != -1)
+            {
+                Lek izabraniLek = (Lek)dataGridPostojeciLekovi.SelectedItem;
+                lblRUNacinUpotrebe.Content = izabraniLek.getNacinUpotrebeString();
+                lblRUTipLeka.Content = izabraniLek.getTipString();
+                lblRUProizvodjac.Content = izabraniLek.proizvodjac;
+                lblRUNazivLeka.Content = izabraniLek.naziv;
+                gridIzmenaLekova.Visibility = Visibility.Visible;
+                glavnaLabela.Content = "Izmena leka";
+            }
+        }
+
+        private void btnRUZamenskiLekovi_Click(object sender, RoutedEventArgs e)
+        {
+            gridIzmenaLekova.Visibility = Visibility.Hidden;
+            btnDodajZamenskiLek.Visibility = Visibility.Visible;
+            gridRUZamenskiLekovi.Visibility = Visibility.Visible;
+            glavnaLabela.Content = "Zamenski lekovi";
+        }
+
+        private void btnZamenskiLekovi_Click(object sender, RoutedEventArgs e)
+        {
+            gridRUZamenskiLekovi.Visibility = Visibility.Visible;
+            btnDodajZamenskiLek.Visibility = Visibility.Hidden;
+            gridInfoLek.Visibility = Visibility.Hidden;
+            glavnaLabela.Content = "Zamenski lekovi";
+        }
+
+        private void btnDodajZamenskiLek_Click(object sender, RoutedEventArgs e)
+        {
+            gridDodavanjeZamenskogLeka.Visibility = Visibility.Visible;
+            glavnaLabela.Content = "Dodavanje zamenskog leka";
         }
     }
 }

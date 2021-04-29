@@ -48,7 +48,8 @@
                 </materialDesign:PackIcon>
             </Button>
         </Grid>
-        <ContentControl x:Name ="contentControl" HorizontalAlignment="Left" Margin="0,46,0,0" VerticalAlignment="Top" Height="675" Width="424" Background="White" Grid.RowSpan="2"/>
+        <ContentControl x:Name ="contentControl" HorizontalAlignment="Left" Margin="0,46,0,0" VerticalAlignment="Top" Height="675" Width="424" Background="White" Grid.RowSpan="2">
+        </ContentControl>
         <Grid x:Name="gridOdobravanjeLekova" Background="White" Margin="0,46,0,2.4" Grid.RowSpan="2" Visibility="Hidden">
             <DataGrid HorizontalAlignment="Left" Height="533" Margin="0,141,0,0" VerticalAlignment="Top" Width="424"/>
             <Button x:Name="btnOdbaci" Content="Odbaci" HorizontalAlignment="Left" Margin="311,81,0,0" VerticalAlignment="Top" Width="82" Height="36"/>
@@ -61,19 +62,22 @@
                 <Label Content="Proizvođač:" HorizontalAlignment="Left" Margin="54,57,0,0" VerticalAlignment="Top"/>
                 <Label Content="Tip leka:" HorizontalAlignment="Left" Margin="54,92,0,0" VerticalAlignment="Top"/>
                 <Label Content="Način upotrebe:" HorizontalAlignment="Left" Margin="54,129,0,0" VerticalAlignment="Top"/>
-                <Label Content="Sastojci:" HorizontalAlignment="Left" Margin="17,183,0,0" VerticalAlignment="Top"/>
-                <ListBox x:Name="listSastojci" Background="#F5F5F5" HorizontalAlignment="Left" Height="397" Margin="17,212,0,0" VerticalAlignment="Top" Width="387"/>
-
+                <Label Content="Sastojci:" HorizontalAlignment="Left" Margin="17,158,0,0" VerticalAlignment="Top"/>
+                <Label x:Name="lblNazivLeka" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="209,22,0,0" Width="168" Height="24"/>
+                <Label x:Name="lblProizvodjac" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="209,57,0,0" Width="168" Height="24"/>
+                <Label x:Name="lblTipLeka" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="209,92,0,0" Width="168" Height="24"/>
+                <Label x:Name="lblNacinUpotrebe" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="209,129,0,0" Width="168" Height="24"/>
+                <ListBox x:Name="listSastojci" Background="#F5F5F5" HorizontalAlignment="Left" Height="353" Margin="17,187,0,0" VerticalAlignment="Top" Width="387"/>
+                <Button x:Name="btnZamenskiLekovi" Content="Vidi zamenske lekove" HorizontalAlignment="Left" Margin="17,580,0,0" VerticalAlignment="Top" Width="387" Height="56" Click="btnZamenskiLekovi_Click"/>
             </Grid>
 
         </Grid>
         <Grid x:Name="gridRULekovi" Background="White" Margin="0,46,0,2.4" Grid.RowSpan="2" Visibility="Hidden" >
-            <DataGrid HorizontalAlignment="Left" Height="526" Margin="0,148,0,0" VerticalAlignment="Top" Width="424">
+            <DataGrid x:Name="dataGridPostojeciLekovi" AutoGenerateColumns="False" IsReadOnly="True" HorizontalAlignment="Left" Height="526" Margin="0,148,0,0" VerticalAlignment="Top" Width="424">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Naziv leka"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Proizvođač"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Tip leka"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Način upotrebe"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Naziv leka" Binding="{Binding naziv}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Tip leka" Binding="{Binding tip}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Način upotrebe" Binding="{Binding nacinUpotrebe}"></DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
             <Button x:Name="btnIzmeniPostojeciLek" Content="Izmeni" HorizontalAlignment="Left" Margin="305,81,0,0" VerticalAlignment="Top" Width="86" Height="45" Click="btnIzmeniPostojeciLek_Click"/>
@@ -83,16 +87,35 @@
                 <Label Content="Proizvođač:" HorizontalAlignment="Left" Margin="54,57,0,0" VerticalAlignment="Top"/>
                 <Label Content="Tip leka:" HorizontalAlignment="Left" Margin="54,92,0,0" VerticalAlignment="Top"/>
                 <Label Content="Način upotrebe:" HorizontalAlignment="Left" Margin="54,129,0,0" VerticalAlignment="Top"/>
-                <Label Content="Sastojci:" HorizontalAlignment="Left" Margin="17,196,0,0" VerticalAlignment="Top"/>
-                <ListBox Background="#F5F5F5" HorizontalAlignment="Left" Height="324" Margin="17,285,0,0" VerticalAlignment="Top" Width="387"/>
-                <TextBox x:Name="txtDodavanjeSastojaka" HorizontalAlignment="Left" Height="23" Margin="17,242,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                <Button x:Name="btnDodavanjeSastojka" HorizontalAlignment="Left" Margin="162,233,0,0" VerticalAlignment="Top" Width="49">
+                <Label Content="Sastojci:" HorizontalAlignment="Left" Margin="17,188,0,0" VerticalAlignment="Top"/>
+                <Label x:Name="lblRUNazivLeka" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="209,22,0,0" Width="168" Height="24"/>
+                <Label x:Name="lblRUProizvodjac" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="209,57,0,0" Width="168" Height="24"/>
+                <Label x:Name="lblRUTipLeka" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="209,92,0,0" Width="168" Height="24"/>
+                <Label x:Name="lblRUNacinUpotrebe" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="209,129,0,0" Width="168" Height="24"/>
+                <ListBox Background="#F5F5F5" HorizontalAlignment="Left" Height="297" Margin="17,259,0,0" VerticalAlignment="Top" Width="387"/>
+                <TextBox x:Name="txtDodavanjeSastojaka" HorizontalAlignment="Left" Height="23" Margin="17,217,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                <Button x:Name="btnDodavanjeSastojka" HorizontalAlignment="Left" Margin="167,208,0,0" VerticalAlignment="Top" Width="49">
                     <materialDesign:PackIcon Kind="Plus" HorizontalAlignment="Center" Height="25" Width="28"></materialDesign:PackIcon>
                 </Button>
-                <Button x:Name="btnIzbrisiSastojak" HorizontalAlignment="Left" Margin="320,233,0,0" VerticalAlignment="Top" Width="49">
+                <Button x:Name="btnIzbrisiSastojak" HorizontalAlignment="Left" Margin="320,208,0,0" VerticalAlignment="Top" Width="49">
                     <materialDesign:PackIcon Kind="TrashCan" HorizontalAlignment="Center"  Height="25" Width="23"></materialDesign:PackIcon>
                 </Button>
+                <Button x:Name="btnRUZamenskiLekovi" Content="Vidi zamenske lekove" HorizontalAlignment="Left" Margin="54,588,0,0" VerticalAlignment="Top" Width="305" Height="40" Click="btnRUZamenskiLekovi_Click"/>
+            </Grid>
+
+        </Grid>
+        <Grid x:Name="gridRUZamenskiLekovi" Background="White" Margin="0,4.6,0,1.4" Grid.Row="1" Visibility="Hidden">
+            <DataGrid HorizontalAlignment="Left" Height="538" Margin="0,132,0,0" VerticalAlignment="Top" Width="424"/>
+            <Button x:Name="btnInformacijeOZamenskomLeku" Content="Info" HorizontalAlignment="Left" Margin="321,69,0,0" VerticalAlignment="Top" Width="75"/>
+            <Button x:Name="btnDodajZamenskiLek" Content="Dodaj" HorizontalAlignment="Left" Margin="41,69,0,0" VerticalAlignment="Top" Width="75" Click="btnDodajZamenskiLek_Click"/>
+            <Grid x:Name="gridDodavanjeZamenskogLeka" Background="White" Visibility="Hidden">
+                <DataGrid HorizontalAlignment="Left" Height="426" Margin="0,114,0,0" VerticalAlignment="Top" Width="424"/>
+                <Button x:Name="btnPotvrdaZamenskogLeka" HorizontalAlignment="Left" Margin="36,574,0,0" VerticalAlignment="Top" Width="85" Height="46">
+                    <materialDesign:PackIcon Kind="CheckCircle"></materialDesign:PackIcon>
+                </Button>
+                <Button x:Name="btnPonistavanjeZamenskogLeka" Content="Button" HorizontalAlignment="Left" Margin="299,574,0,0" VerticalAlignment="Top" Width="80" Height="46"/>
             </Grid>
         </Grid>
+
     </Grid>
 </Window>
