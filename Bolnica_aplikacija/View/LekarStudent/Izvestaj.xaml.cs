@@ -29,6 +29,9 @@ namespace Bolnica_aplikacija.LekarStudent
         private static Grid azuriranje;
         private static Grid lekari;
         private static Grid zakazivanje;
+        private static Grid zakazivanjeOperacije;
+        private static Grid odabirProstorije;
+        private static Grid prikazInventaraProstorije;
         public Izvestaj()
         {
             InitializeComponent();
@@ -62,6 +65,9 @@ namespace Bolnica_aplikacija.LekarStudent
             odabirLeka = this.gridOdabirLeka;
             lekari = this.gridOdabirLekaraUput;
             zakazivanje = this.gridZakazivanje;
+            zakazivanjeOperacije = this.gridZakazivanjeOperacije;
+            odabirProstorije = this.gridOdabirProstorija;
+            prikazInventaraProstorije = this.gridPrikazInventara;
         }
 
         public static void podesiKretanjeZaDugmeNazad()
@@ -99,6 +105,26 @@ namespace Bolnica_aplikacija.LekarStudent
                 LekarProzor.getGlavnaLabela().Content = "Odabir lekara";
                 zakazivanje.Visibility = Visibility.Hidden;
                 lekari.Visibility = Visibility.Visible;
+            }
+            else if(zakazivanjeOperacije.Visibility == Visibility.Visible)
+            {
+                if (odabirProstorije.Visibility == Visibility.Visible)
+                {
+                    LekarProzor.getGlavnaLabela().Content = "Zakazivanje operacije";
+                    odabirProstorije.Visibility = Visibility.Hidden;
+                }
+                else if (prikazInventaraProstorije.Visibility == Visibility.Visible)
+                {
+                    LekarProzor.getGlavnaLabela().Content = "Odabir prostorije";
+                    prikazInventaraProstorije.Visibility = Visibility.Hidden;
+                    odabirProstorije.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    LekarProzor.getGlavnaLabela().Content = "Odabir lekara";
+                    zakazivanjeOperacije.Visibility = Visibility.Hidden;
+                    lekari.Visibility = Visibility.Visible;
+                }
             }
             else
             {
@@ -197,12 +223,54 @@ namespace Bolnica_aplikacija.LekarStudent
             LekarProzor.getGlavnaLabela().Content = "Odabir lekara";
         }
 
-        private void btnZakazivanjePregledaUput_Click(object sender, RoutedEventArgs e)
+        private void btnPotvrdaIzbora_Click(object sender, RoutedEventArgs e)
         {
-            this.gridZakazivanje.Visibility = Visibility.Visible;
-            this.gridOdabirLekaraUput.Visibility = Visibility.Hidden;
-            this.gridUput.Visibility = Visibility.Hidden;
-            LekarProzor.getGlavnaLabela().Content = "Zakazivanje termina";
+            gridPitanjeOZakazivanju.Visibility = Visibility.Visible;
         }
+
+        private void btnZakaziPregled_Click(object sender, RoutedEventArgs e)
+        {
+            gridZakazivanje.Visibility = Visibility.Visible;
+            gridOdabirLekaraUput.Visibility = Visibility.Hidden;
+            gridPitanjeOZakazivanju.Visibility = Visibility.Hidden;
+            gridUput.Visibility = Visibility.Hidden;
+            LekarProzor.getGlavnaLabela().Content = "Zakazivanje pregleda";
+        }
+
+        private void btnOdbijZakazivanje_Click(object sender, RoutedEventArgs e)
+        {
+            gridPitanjeOZakazivanju.Visibility = Visibility.Hidden;
+            gridOdabirLekaraUput.Visibility = Visibility.Hidden;
+            gridUput.Visibility = Visibility.Visible;
+            LekarProzor.getGlavnaLabela().Content = "Izdavanje uputa";
+        }
+
+        private void btnZakaziOperaciju_Click(object sender, RoutedEventArgs e)
+        {
+            gridZakazivanjeOperacije.Visibility = Visibility.Visible;
+            gridOdabirLekaraUput.Visibility = Visibility.Hidden;
+            gridPitanjeOZakazivanju.Visibility = Visibility.Hidden;
+            gridUput.Visibility = Visibility.Hidden;
+            LekarProzor.getGlavnaLabela().Content = "Zakazivanje operacije";
+        }
+
+        private void btnDodajProstoriju_Click(object sender, RoutedEventArgs e)
+        {
+            gridOdabirProstorija.Visibility = Visibility.Visible;
+            LekarProzor.getGlavnaLabela().Content = "Odabir prostorije";
+        }
+
+        private void btnUkloniProstoriju_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnPrikazInventara_Click(object sender, RoutedEventArgs e)
+        {
+            gridOdabirProstorija.Visibility = Visibility.Hidden;
+            gridPrikazInventara.Visibility = Visibility.Visible;
+            LekarProzor.getGlavnaLabela().Content = "Prikaz inventara";
+        }
+
     }
 }
