@@ -131,6 +131,7 @@
       <DependentUpon>UvidUTerapije.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\Alergija.cs" />
+    <Compile Include="Model\Obavestenje.cs" />
     <Compile Include="PacijentStudent\NotifikacijaProzor.xaml.cs">
       <DependentUpon>NotifikacijaProzor.xaml</DependentUpon>
     </Compile>
@@ -162,6 +163,7 @@
     <Compile Include="Repozitorijum\LekRepozitorijum.cs" />
     <Compile Include="Repozitorijum\LekarRepozitorijum.cs" />
     <Compile Include="Repozitorijum\NotifikacijaRepozitorijum.cs" />
+    <Compile Include="Repozitorijum\ObavestenjeRepozitorijum.cs" />
     <Compile Include="Repozitorijum\PacijentRepozitorijum.cs" />
     <Compile Include="Repozitorijum\ProstorijaRepozitorijum.cs" />
     <Compile Include="Repozitorijum\ProstorijaZauzetoRepozitorijum.cs" />
