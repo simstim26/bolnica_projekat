@@ -29,6 +29,9 @@ namespace Bolnica_aplikacija
         private static Button nazad;
         private static Button pretraga;
         private static Label glavnaLabela;
+        private String prethodniSadrzajGlavneLabele;
+        private Visibility btnNazadVisibility;
+        private Visibility btnPretragaVisibility;
         public LekarProzor()
         {
             InitializeComponent();
@@ -67,7 +70,15 @@ namespace Bolnica_aplikacija
 
         private void btnNazad_Click(object sender, RoutedEventArgs e)
         {
-            if (PacijentInfo.aktivanPacijentInfo)
+            if(gridOdobravanjeLekova.Visibility == Visibility.Visible)
+            {
+                podesiKretanjeUnazadZaOdobravanjeLekova();
+            }
+            else if(gridRULekovi.Visibility == Visibility.Visible)
+            {
+                podesiKretanjeUnazadZaRULekova();
+            }
+            else if (PacijentInfo.aktivanPacijentInfo)
             {
                 lblGlavna.Content = "Zdravo korporacija";
                 LekarProzor.getX().Content = new LekarTabovi();
@@ -162,6 +173,86 @@ namespace Bolnica_aplikacija
         private void Window_Activated(object sender, EventArgs e)
         {
 
+        }
+
+        private void odobriLekove_Click(object sender, RoutedEventArgs e)
+        {
+            if (gridRULekovi.Visibility == Visibility.Hidden)
+            {
+                sacuvajStareVrednosti();
+            }
+            gridRULekovi.Visibility = Visibility.Hidden;
+            glavnaLabela.Content = "Odobravanje lekova";
+            gridOdobravanjeLekova.Visibility = Visibility.Visible;
+            btnNazad.Visibility = Visibility.Visible;
+            btnPretraga.Visibility = Visibility.Hidden;
+        }
+
+        private void btnInfoLek_Click(object sender, RoutedEventArgs e)
+        {
+            glavnaLabela.Content = "Informacije o leku";
+            gridInfoLek.Visibility = Visibility.Visible;
+        }
+
+        private void sacuvajStareVrednosti()
+        {
+            prethodniSadrzajGlavneLabele = (String)glavnaLabela.Content;
+            btnNazadVisibility = btnNazad.Visibility;
+            btnPretragaVisibility = btnPretraga.Visibility;
+        }
+
+        private void podesiKretanjeUnazadZaOdobravanjeLekova()
+        {
+            if (gridInfoLek.Visibility == Visibility.Visible)
+            {
+                gridInfoLek.Visibility = Visibility.Hidden;
+                glavnaLabela.Content = "Odobracanje lekova";
+
+            }
+            else
+            {
+                gridOdobravanjeLekova.Visibility = Visibility.Hidden;
+                glavnaLabela.Content = prethodniSadrzajGlavneLabele;
+                btnNazad.Visibility = btnNazadVisibility;
+                btnPretraga.Visibility = btnPretragaVisibility;
+            }
+           
+        }
+
+        private void RULekovi_Click(object sender, RoutedEventArgs e)
+        {
+            if (gridOdobravanjeLekova.Visibility == Visibility.Hidden)
+            {
+                sacuvajStareVrednosti();
+            }
+            gridOdobravanjeLekova.Visibility = Visibility.Hidden;
+            gridRULekovi.Visibility = Visibility.Visible;
+            glavnaLabela.Content = "Pregled i izmena lekova";
+            btnNazad.Visibility = Visibility.Visible;
+            btnPretraga.Visibility = Visibility.Hidden;
+        }
+
+        private void podesiKretanjeUnazadZaRULekova()
+        {
+            if (gridIzmenaLekova.Visibility == Visibility.Visible)
+            {
+                glavnaLabela.Content = "Pregled i izmena lekova";
+                gridIzmenaLekova.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                gridRULekovi.Visibility = Visibility.Hidden;
+                glavnaLabela.Content = prethodniSadrzajGlavneLabele;
+                btnNazad.Visibility = btnNazadVisibility;
+                btnPretraga.Visibility = btnPretragaVisibility;
+
+            }
+        }
+
+        private void btnIzmeniPostojeciLek_Click(object sender, RoutedEventArgs e)
+        {
+            gridIzmenaLekova.Visibility = Visibility.Visible;
+            glavnaLabela.Content = "Izmena leka";
         }
     }
 }
