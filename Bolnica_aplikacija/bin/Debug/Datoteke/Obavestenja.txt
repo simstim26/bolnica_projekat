@@ -1,8 +1,8 @@
 [
   {
     "id": "1",
-    "naslovObavestenja": "Test Naslov",
-    "sadrzajObavestenja": "Ovo je prvo obavestenje koje treba upisati u fajl, esus pomogi",
+    "naslovObavestenja": "Test Naslov IZMENA 6",
+    "sadrzajObavestenja": "Ovo je izmena 6",
     "notifikacija": null,
     "jeLogickiObrisano": false
   },
@@ -15,8 +15,8 @@
   },
   {
     "id": "3",
-    "naslovObavestenja": "Test Naslov 3",
-    "sadrzajObavestenja": "Uh Oh najebali ste",
+    "naslovObavestenja": "Test Naslov izmena 3",
+    "sadrzajObavestenja": "Uh Oh najebali steeee",
     "notifikacija": null,
     "jeLogickiObrisano": false
   },

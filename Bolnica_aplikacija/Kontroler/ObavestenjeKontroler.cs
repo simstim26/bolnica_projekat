@@ -20,5 +20,10 @@ namespace Bolnica_aplikacija.Kontroler
         {
             return obavestenjeServis.ucitajObavestenja();
         }
+
+        public static void azurirajObavestenje(String id, String naslovObavestenja, String sadrzajObavestenja)
+        {
+            obavestenjeServis.azurirajObavestenje(id, naslovObavestenja, sadrzajObavestenja);
+        }
     }
 }

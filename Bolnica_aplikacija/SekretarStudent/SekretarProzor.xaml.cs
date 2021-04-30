@@ -37,6 +37,7 @@ namespace Bolnica_aplikacija
         private int tipAkcijeObavestenja; // 0 - dodaj, 1 - izmeni, 2 - ukloni
         private String imePrezimePacijenta;
         private PacijentTermin izabraniTermin;
+        private Obavestenje izabranoObavestenje;
         private List<Alergija> alergije;
 
         public SekretarProzor()
@@ -991,14 +992,25 @@ namespace Bolnica_aplikacija
         private void dataGridObavestenja_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             tipAkcijeObavestenja = 1;
-            Obavestenje selektovanoObavestenje = (Obavestenje)dataGridObavestenja.SelectedItem;
-            txtNaslovObavestenja.Text = selektovanoObavestenje.naslovObavestenja;
-            txtSadrzajObavestenja.Text = selektovanoObavestenje.sadrzajObavestenja;
+            Console.WriteLine("Selektovano");
+            if (dataGridObavestenja.SelectedIndex != -1)
+            {
+                izabranoObavestenje = (Obavestenje)dataGridObavestenja.SelectedItem;
+                txtNaslovObavestenja.Text = izabranoObavestenje.naslovObavestenja;
+                txtSadrzajObavestenja.Text = izabranoObavestenje.sadrzajObavestenja;
+            }
+            else
+            {
+                btnIzbrisiObavestenje.IsEnabled = false;
+            }           
+            
         }
 
         private void btnIzmeniObavestenje_Click(object sender, RoutedEventArgs e)
         {
-           
+            ObavestenjeKontroler.azurirajObavestenje(izabranoObavestenje.id, txtNaslovObavestenja.Text, txtSadrzajObavestenja.Text);
+            ocistiPoljaObavestenja();
+            ucitajObavestenjaUTabelu();
 
         }
     }
