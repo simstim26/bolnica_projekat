@@ -570,6 +570,8 @@ namespace Bolnica_aplikacija
         private void btnDodajLek_Click(object sender, RoutedEventArgs e)
         {
             LekZaOdobravanje noviLek = LekZaOdobravanje.getInstance();
+            List<String> sastojci = new List<string>();
+            noviLek.sastojci = sastojci;
 
             gridLekovi.Visibility = Visibility.Hidden;
             gridLekoviDodaj.Visibility = Visibility.Visible;
@@ -581,6 +583,7 @@ namespace Bolnica_aplikacija
         {
             gridLekoviDodajSastojke.Visibility = Visibility.Visible;
             gridLekoviDodaj.Visibility = Visibility.Hidden;
+            dataGridDodajSastojke.ItemsSource = LekZaOdobravanje.getInstance().sastojci;
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)
@@ -602,6 +605,7 @@ namespace Bolnica_aplikacija
         {
 
             LekZaOdobravanje noviLek = LekZaOdobravanje.getInstance();
+            var provera = (List<Lek>)dataGridZamenskiUbaceniLekovi.ItemsSource;
             noviLek.zamenskiLekovi = (List<Lek>)dataGridZamenskiUbaceniLekovi.ItemsSource;
             gridLekoviDodajZamenskeLekove.Visibility = Visibility.Hidden;
             gridLekoviDodaj.Visibility = Visibility.Visible;
@@ -663,6 +667,16 @@ namespace Bolnica_aplikacija
         {
             gridLekoviDodaj.Visibility = Visibility.Hidden;
             gridLekovi.Visibility = Visibility.Visible;
+        }
+
+        private void btnSastojakUnesi_Click(object sender, RoutedEventArgs e)
+        {
+            LekZaOdobravanje noviLek = LekZaOdobravanje.getInstance();
+            String sastojak = textBoxUpisiSastojak.Text;
+            noviLek.sastojci.Add(sastojak);
+            dataGridDodajSastojke.Items.Refresh();
+            textBoxUpisiSastojak.Clear();
+
         }
     }
 }

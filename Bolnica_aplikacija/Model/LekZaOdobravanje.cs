@@ -58,5 +58,10 @@ namespace Bolnica_aplikacija.Model
             lekariKojimaJePoslatLek = lekZaOdobravanje.lekariKojimaJePoslatLek;
             propratnaPoruka = lekZaOdobravanje.propratnaPoruka;
         }
+
+        public void staviInstancuNaNull()
+        {
+            instance = null;
+        }
     }
 }

@@ -285,10 +285,10 @@
             </Grid>
 
             <Grid x:Name="gridLekoviDodajSastojke" Visibility="Hidden" Background="LightGray" HorizontalAlignment="Left" Height="640" Margin="69,59,-940,0" VerticalAlignment="Top" Width="949">
-                <DataGrid x:Name="dataGrid1" HorizontalAlignment="Left" Height="520" Margin="74,69,0,0" VerticalAlignment="Top" Width="302"/>
+                <DataGrid x:Name="dataGridDodajSastojke" HorizontalAlignment="Left" Height="520" Margin="74,69,0,0" VerticalAlignment="Top" Width="302"/>
                 <TextBlock x:Name="textBlock3" FontSize="24" HorizontalAlignment="Left" Margin="488,69,0,0" TextWrapping="Wrap" Text="Unesite sastojak leka:" VerticalAlignment="Top"/>
                 <TextBox x:Name="textBoxUpisiSastojak" FontSize="24" HorizontalAlignment="Left" Height="45" Margin="488,153,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="225"/>
-                <Button x:Name="btnSastojakUnesi" Content="Button" HorizontalAlignment="Left" Margin="764,166,0,0" VerticalAlignment="Top" Width="75"/>
+                <Button x:Name="btnSastojakUnesi" Content="Button" HorizontalAlignment="Left" Margin="764,166,0,0" VerticalAlignment="Top" Width="75" Click="btnSastojakUnesi_Click"/>
                 <Button x:Name="button1" Content="Potvrdi" HorizontalAlignment="Left" Margin="488,319,0,0" VerticalAlignment="Top" Width="351" Height="270" Click="button1_Click"/>
             </Grid>
 
