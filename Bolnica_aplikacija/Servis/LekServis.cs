@@ -107,12 +107,7 @@ namespace Bolnica_aplikacija.Servis
             {
                 if (idLeka != null && idLeka.Equals(lek.id))
                 {
-                    povratnaVrednost.id = lek.id;
-                    povratnaVrednost.kolicina = lek.kolicina;
-                    povratnaVrednost.nacinUpotrebe = lek.nacinUpotrebe;
-                    povratnaVrednost.naziv = lek.naziv;
-                    povratnaVrednost.proizvodjac = lek.proizvodjac;
-                    povratnaVrednost.tip = lek.tip;
+                    povratnaVrednost.kopiraj(lek);
 
                     break;
                 }
@@ -180,19 +175,48 @@ namespace Bolnica_aplikacija.Servis
         }
         public void dodajSastojak(String idLeka, String sastojak)
         {
-            foreach (Lek lek in lekRepozitorijum.ucitajSve())
-            {
-                if (idLeka.Equals(lek.id))
-                {
-                    if (lek.sastojci == null)
-                        lek.sastojci = new List<String>();
+            Lek lek = nadjiLekPoId(idLeka);
+            if (lek.sastojci == null)
+                lek.sastojci = new List<String>();
+            
+            lek.sastojci.Add(sastojak);
+            lekRepozitorijum.azurirajLek(lek);
+        }
+        public List<Lek> ucitajSveLekoveBezZamenskih(String idLeka)
+        {
+            Lek izabraniLek = nadjiLekPoId(idLeka);
 
-                    lek.sastojci.Add(sastojak);
-                    lekRepozitorijum.azurirajLek(lek);
+            if (izabraniLek.zamenskiLekovi == null)
+                return ucitajSveSemTrenutnogNaTerapiji(idLeka);
+
+            List<Lek> povratnaVrednost = new List<Lek>();
+
+            foreach (Lek lek in ucitajSveSemTrenutnogNaTerapiji(idLeka))
+            {
+                if(!nalaziSeUZamenskim(izabraniLek, lek))
+                {
+                    povratnaVrednost.Add(lek);
+                }
+            }
+
+            return povratnaVrednost;
+        }
+
+        private bool nalaziSeUZamenskim(Lek izabraniLek, Lek lek)
+        {
+            bool povratnaVrednost = false;
+            foreach(Lek zamenskiLek in izabraniLek.zamenskiLekovi)
+            {
+                if (lek.id.Equals(zamenskiLek.id))
+                {
+                    povratnaVrednost = true;
                     break;
                 }
             }
 
+
+            return povratnaVrednost;
         }
+
     }
 }

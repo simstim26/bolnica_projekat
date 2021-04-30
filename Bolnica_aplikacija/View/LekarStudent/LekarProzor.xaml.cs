@@ -287,9 +287,18 @@ namespace Bolnica_aplikacija
            
             if (gridRUZamenskiLekovi.Visibility == Visibility.Visible)
             {
-                gridRUZamenskiLekovi.Visibility = Visibility.Hidden;
-                gridIzmenaLekova.Visibility = Visibility.Visible;
-                glavnaLabela.Content = "Informacije o leku";
+                if (gridDodavanjeZamenskogLeka.Visibility == Visibility.Visible)
+                {
+                    gridDodavanjeZamenskogLeka.Visibility = Visibility.Hidden;
+                    glavnaLabela.Content = "Zamenski lekovi";
+
+                }
+                else
+                {
+                    gridRUZamenskiLekovi.Visibility = Visibility.Hidden;
+                    gridIzmenaLekova.Visibility = Visibility.Visible;
+                    glavnaLabela.Content = "Informacije o leku";
+                }
             }
             else if (gridIzmenaLekova.Visibility == Visibility.Visible)
             {
@@ -343,6 +352,7 @@ namespace Bolnica_aplikacija
         {
             gridDodavanjeZamenskogLeka.Visibility = Visibility.Visible;
             glavnaLabela.Content = "Dodavanje zamenskog leka";
+            dataGridDodavanjeZamenskogLeka.ItemsSource = LekKontroler.ucitajSveLekoveBezZamenskih(((Lek)dataGridPostojeciLekovi.SelectedItem).id);
         }
 
         private void PopupBox_Opened(object sender, RoutedEventArgs e)
@@ -444,6 +454,10 @@ namespace Bolnica_aplikacija
                 LekKontroler.izbrisiSastojak(((Lek)dataGridPostojeciLekovi.SelectedItem).id, (String)listRUSastojci.SelectedItem);
                 osveziPrikaz(id);
             }
+            else
+            {
+                MessageBox.Show("Izaberite sastojak za brisanje", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
         private void osveziPrikaz(int id)
@@ -451,6 +465,18 @@ namespace Bolnica_aplikacija
             dataGridPostojeciLekovi.ItemsSource = LekKontroler.ucitajSve();
             dataGridPostojeciLekovi.SelectedIndex = id;
             listRUSastojci.ItemsSource = ((Lek)dataGridPostojeciLekovi.SelectedItem).sastojci;
+        }
+
+        private void btnPotvrdaZamenskogLeka_Click(object sender, RoutedEventArgs e)
+        {
+            if(dataGridDodavanjeZamenskogLeka.SelectedIndex != -1)
+            {
+
+            }
+            else
+            {
+                MessageBox.Show("Izaberite lek za dodavanje.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
     }
 }

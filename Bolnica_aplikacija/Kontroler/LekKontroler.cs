@@ -89,5 +89,10 @@ namespace Bolnica_aplikacija.Kontroler
         {
             LekServis.getInstance().dodajSastojak(idLeka, sastojak);
         }
+
+        public static List<Lek> ucitajSveLekoveBezZamenskih(String idLeka)
+        {
+            return LekServis.getInstance().ucitajSveLekoveBezZamenskih(idLeka);
+        }
     }
 }

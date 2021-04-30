@@ -150,7 +150,7 @@
                         <DataGridTextColumn Header="Način upotrebe" Binding="{Binding nacinUpotrebe}"></DataGridTextColumn>
                     </DataGrid.Columns>
                 </DataGrid>
-                <Button x:Name="btnPotvrdaZamenskogLeka" HorizontalAlignment="Left" Margin="36,574,0,0" VerticalAlignment="Top" Width="85" Height="46">
+                <Button x:Name="btnPotvrdaZamenskogLeka" HorizontalAlignment="Left" Margin="36,574,0,0" VerticalAlignment="Top" Width="85" Height="46" Click="btnPotvrdaZamenskogLeka_Click">
                     <materialDesign:PackIcon Kind="CheckCircle"></materialDesign:PackIcon>
                 </Button>
                 <Button x:Name="btnPonistavanjeZamenskogLeka" Content="Button" HorizontalAlignment="Left" Margin="299,574,0,0" VerticalAlignment="Top" Width="80" Height="46"/>
