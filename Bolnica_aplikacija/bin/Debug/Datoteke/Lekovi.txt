@@ -8,7 +8,7 @@
     "nacinUpotrebe": 2,
     "sastojci": [
       "eeee",
-      "aaa"
+      "dfadfa"
     ],
     "zamenskiLekovi": [
       {
@@ -52,6 +52,16 @@
             "nacinUpotrebe": 1,
             "sastojci": null,
             "zamenskiLekovi": null
+          },
+          {
+            "id": "4",
+            "naziv": "aaaaaaaLek",
+            "tip": 2,
+            "kolicina": 48921,
+            "proizvodjac": "najebacuTiSeMameAkoNeBudesRadio",
+            "nacinUpotrebe": 2,
+            "sastojci": null,
+            "zamenskiLekovi": null
           }
         ]
       }
@@ -65,7 +75,7 @@
     "proizvodjac": "proizvodjac neki",
     "nacinUpotrebe": 2,
     "sastojci": null,
-    "zamenskiLekovi": null
+    "zamenskiLekovi": []
   },
   {
     "id": "3",

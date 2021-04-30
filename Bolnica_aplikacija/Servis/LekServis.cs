@@ -163,16 +163,11 @@ namespace Bolnica_aplikacija.Servis
 
         public void izbrisiSastojak(String idLeka, String sastojak)
         {
-            foreach(Lek lek in lekRepozitorijum.ucitajSve())
-            {
-                if (idLeka.Equals(lek.id))
-                {
-                    lek.sastojci.Remove(sastojak);
-                    lekRepozitorijum.azurirajLek(lek);
-                    break;
-                }
-            }
+            Lek lek = nadjiLekPoId(idLeka);
+            lek.sastojci.Remove(sastojak);
+            lekRepozitorijum.azurirajLek(lek);        
         }
+
         public void dodajSastojak(String idLeka, String sastojak)
         {
             Lek lek = nadjiLekPoId(idLeka);
@@ -227,6 +222,21 @@ namespace Bolnica_aplikacija.Servis
             lek.zamenskiLekovi.Add(zamenskiLek);
             lekRepozitorijum.azurirajLek(lek);
         }
+
+        public void obrisiZamenskiLek(String idLek, String idZamenskogLeka)
+        {
+            Lek lek = nadjiLekPoId(idLek);
+            foreach(Lek zamenskiLek in lek.zamenskiLekovi)
+            {
+                if (idZamenskogLeka.Equals(zamenskiLek.id))
+                {
+                    lek.zamenskiLekovi.Remove(zamenskiLek);
+                    lekRepozitorijum.azurirajLek(lek);
+                    break;
+                }
+            }
+        }
+
 
     }
 }

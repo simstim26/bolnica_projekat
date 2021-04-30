@@ -99,5 +99,10 @@ namespace Bolnica_aplikacija.Kontroler
         {
             LekServis.getInstance().dodajZamenskiLek(idLek, zamenskiLek);
         }
+
+        public static void obrisiZamenskiLek(String idLek, String idZamenskogLeka)
+        {
+            LekServis.getInstance().obrisiZamenskiLek(idLek, idZamenskogLeka);
+        }
     }
 }

@@ -47,6 +47,7 @@ namespace Bolnica_aplikacija
             {
                 postojeLekoviZaOdobravanje.Visibility = Visibility.Visible;
             }
+            btnDodavanjeSastojka.IsEnabled = false;
         }
 
         public static Label getGlavnaLabela()
@@ -480,6 +481,20 @@ namespace Bolnica_aplikacija
             else
             {
                 MessageBox.Show("Izaberite lek za dodavanje.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+        private void btnObrisiZamenskiLek_Click(object sender, RoutedEventArgs e)
+        {
+            if(dataGridZamenskiLekovi.SelectedIndex != -1)
+            {
+                int id = dataGridPostojeciLekovi.SelectedIndex;
+                LekKontroler.obrisiZamenskiLek(((Lek)dataGridPostojeciLekovi.SelectedItem).id, ((Lek)dataGridZamenskiLekovi.SelectedItem).id);
+                osveziPrikaz(id);
+            }
+            else
+            {
+                MessageBox.Show("Izaberite lek za brisanje.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
     }
