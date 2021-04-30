@@ -25,9 +25,20 @@
         <Label Content="Izveštaj:" HorizontalAlignment="Left" Margin="35,303,0,0" VerticalAlignment="Top" Height="23" Width="66"/>
         <TextBox x:Name="txtIzvestaj" HorizontalAlignment="Left" Height="158" Margin="22,331,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="389" BorderBrush="#FF010104"/>
         <Button x:Name="btnPotvrdaIzvestaj" HorizontalAlignment="Left" Margin="35,602,0,0" VerticalAlignment="Top" Width="75" Height="39" Click="btnPotvrdaIzvestaj_Click">
-            <materialDesign:PackIcon Kind="CheckCircle" Height="21" Width="22"></materialDesign:PackIcon>
+            <materialDesign:PackIcon Kind="CheckCircle" Height="29" Width="27"></materialDesign:PackIcon>
         </Button>
-        <Button x:Name="btnPonistiIzvestaj" Content="Button" HorizontalAlignment="Left" Margin="313,602,0,0" VerticalAlignment="Top" Width="76" Height="39" Click="btnPonistiIzvestaj_Click"/>
+        <Button x:Name="btnPonistiIzvestaj" HorizontalAlignment="Left" Margin="313,602,0,0" VerticalAlignment="Top" Width="76" Height="39" Click="btnPonistiIzvestaj_Click">
+            <materialDesign:PackIcon Kind="PlusCircle" Height="28" Width="30" RenderTransformOrigin="0.5,0.5">
+                <materialDesign:PackIcon.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="45.85"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </materialDesign:PackIcon.RenderTransform>
+            </materialDesign:PackIcon>
+        </Button>
         <Button Content="Zabeleži potrošene stavke" HorizontalAlignment="Left" Margin="98,515,0,0" VerticalAlignment="Top" Width="225" Height="59" Click="Button_Click"/>
         <Label Content="Dijagnoza:" HorizontalAlignment="Left" Margin="35,268,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtDijagnozaIzvestaj" HorizontalAlignment="Left" Height="23" Margin="142,269,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="154"/>
@@ -42,8 +53,21 @@
             </Button>
             <Label Content="Upućuje se na " HorizontalAlignment="Left" Margin="34,150,0,0" VerticalAlignment="Top"/>
             <TextBox HorizontalAlignment="Left" Height="244" Margin="10,245,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="410"/>
-            <Button Content="Button" HorizontalAlignment="Left" Margin="34,558,0,0" VerticalAlignment="Top" Width="90" Height="38"/>
-            <Button Content="Button" HorizontalAlignment="Left" Margin="297,558,0,0" VerticalAlignment="Top" Width="90" Height="38"/>
+            <Button x:Name="btnPotvrdiUput" HorizontalAlignment="Left" Margin="34,558,0,0" VerticalAlignment="Top" Width="90" Height="38">
+                <materialDesign:PackIcon Kind="CheckCircle" Height="28" Width="39"></materialDesign:PackIcon>
+            </Button>
+            <Button x:Name="btnPonistiUput" HorizontalAlignment="Left" Margin="297,558,0,0" VerticalAlignment="Top" Width="90" Height="38">
+                <materialDesign:PackIcon Kind="PlusCircle" Height="28" Width="30" RenderTransformOrigin="0.5,0.5">
+                    <materialDesign:PackIcon.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="45.85"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </materialDesign:PackIcon.RenderTransform>
+                </materialDesign:PackIcon>
+            </Button>
             <RadioButton  x:Name="radioBtnPregled"   Content="Pregled" HorizontalAlignment="Left" Margin="34,185,0,0" VerticalAlignment="Top"/>
             <RadioButton x:Name="radioBtnOperacija" Content="Operaciju" HorizontalAlignment="Left" Margin="141,185,0,0" VerticalAlignment="Top"/>
             <Label Content="radi:" HorizontalAlignment="Left" Margin="34,213,0,0" VerticalAlignment="Top"/>
@@ -66,8 +90,21 @@
             <Label Content="Trajanje:" HorizontalAlignment="Left" Margin="39,385,0,0" VerticalAlignment="Top"/>
             <Label Content="Način upotrebe:" HorizontalAlignment="Left" Margin="39,432,0,0" VerticalAlignment="Top"/>
             <TextBox x:Name="txtNacinUpotrebe" HorizontalAlignment="Left" Height="101" Margin="0,461,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="430"/>
-            <Button x:Name="btnPotvrdiRecept" Content="D" HorizontalAlignment="Left" Margin="39,594,0,0" VerticalAlignment="Top" Width="75" Click="btnPotvrdiRecept_Click"/>
-            <Button x:Name="btnPonistiRecept" Content="Button" HorizontalAlignment="Left" Margin="306,594,0,0" VerticalAlignment="Top" Width="75"/>
+            <Button x:Name="btnPotvrdiRecept" HorizontalAlignment="Left" Margin="39,594,0,0" VerticalAlignment="Top" Width="75" Click="btnPotvrdiRecept_Click">
+                <materialDesign:PackIcon Kind="CheckCircle" Height="28" Width="39"></materialDesign:PackIcon>
+            </Button>
+            <Button x:Name="btnPonistiRecept" HorizontalAlignment="Left" Margin="306,594,0,0" VerticalAlignment="Top" Width="75">
+                <materialDesign:PackIcon Kind="PlusCircle" Height="28" Width="30" RenderTransformOrigin="0.5,0.5">
+                    <materialDesign:PackIcon.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="45.85"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </materialDesign:PackIcon.RenderTransform>
+                </materialDesign:PackIcon>
+            </Button>
             <TextBox x:Name="txtDijagnoza" HorizontalAlignment="Left" Height="23" Margin="205,229,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="123"/>
             <TextBox x:Name="txtNazivLeka" HorizontalAlignment="Left" Height="23" Margin="205,268,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="123"/>
             <TextBox x:Name="txtKol" HorizontalAlignment="Left" Height="23" Margin="205,306,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="123"/>
