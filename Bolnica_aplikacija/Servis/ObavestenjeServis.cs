@@ -36,7 +36,17 @@ namespace Bolnica_aplikacija.Servis
         public List<Obavestenje> ucitajObavestenja()
         {
             List<Obavestenje> svaObavestenja = obavestenjeRepozitorijum.ucitajSve();
-            return svaObavestenja;
+            List<Obavestenje> neobrisanaObavestenja = new List<Obavestenje>();
+
+            foreach(Obavestenje obavestenje in svaObavestenja)
+            {
+                if (!obavestenje.jeLogickiObrisano)
+                {
+                    neobrisanaObavestenja.Add(obavestenje);
+                }
+            }
+
+            return neobrisanaObavestenja;
         }
 
         public void azurirajObavestenje(String id, String naslovObavestenja, String sadrzajObavestenja)

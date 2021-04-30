@@ -25,5 +25,10 @@ namespace Bolnica_aplikacija.Kontroler
         {
             obavestenjeServis.azurirajObavestenje(id, naslovObavestenja, sadrzajObavestenja);
         }
+
+        public static void obrisiObavestenje(String idObavestenja)
+        {
+            obavestenjeServis.obrisiObavestenje(idObavestenja);
+        }
     }
 }

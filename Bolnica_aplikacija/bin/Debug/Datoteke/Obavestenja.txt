@@ -1,30 +1,9 @@
 [
   {
     "id": "1",
-    "naslovObavestenja": "Test Naslov IZMENA 6",
-    "sadrzajObavestenja": "Ovo je izmena 6",
+    "naslovObavestenja": "Neki naslov izmena",
+    "sadrzajObavestenja": "Neki sadrzaj vesti izmena",
     "notifikacija": null,
-    "jeLogickiObrisano": false
-  },
-  {
-    "id": "2",
-    "naslovObavestenja": "Test Naslov 2",
-    "sadrzajObavestenja": "Ovo je DRUGO obavestenje koje treba upisati u fajl, esus pomogi",
-    "notifikacija": null,
-    "jeLogickiObrisano": false
-  },
-  {
-    "id": "3",
-    "naslovObavestenja": "Test Naslov izmena 3",
-    "sadrzajObavestenja": "Uh Oh najebali steeee",
-    "notifikacija": null,
-    "jeLogickiObrisano": false
-  },
-  {
-    "id": "4",
-    "naslovObavestenja": "Novo obavestenje",
-    "sadrzajObavestenja": "Bla bla bla",
-    "notifikacija": null,
-    "jeLogickiObrisano": false
+    "jeLogickiObrisano": true
   }
 ]

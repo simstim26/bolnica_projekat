@@ -56,217 +56,55 @@
   {
     "id": "7",
     "nazivNotifikacije": "Nova vest",
-    "vremeNotifikovanja": "2021-04-30T17:28:35.5350286+02:00",
-    "porukaNotifikacije": "Test Naslov",
+    "vremeNotifikovanja": "2021-04-30T19:05:30.9584874+02:00",
+    "porukaNotifikacije": "Neki naslov",
     "idKorisnika": "1",
-    "datumNotifikovanja": "2021-04-30T17:28:35.5350286+02:00",
+    "datumNotifikovanja": "2021-04-30T19:05:30.9584874+02:00",
     "jeProcitana": false
   },
   {
     "id": "8",
     "nazivNotifikacije": "Nova vest",
-    "vremeNotifikovanja": "2021-04-30T17:28:35.5460302+02:00",
-    "porukaNotifikacije": "Test Naslov",
+    "vremeNotifikovanja": "2021-04-30T19:05:30.9814896+02:00",
+    "porukaNotifikacije": "Neki naslov",
     "idKorisnika": "2",
-    "datumNotifikovanja": "2021-04-30T17:28:35.5460302+02:00",
+    "datumNotifikovanja": "2021-04-30T19:05:30.9814896+02:00",
     "jeProcitana": false
   },
   {
     "id": "9",
     "nazivNotifikacije": "Nova vest",
-    "vremeNotifikovanja": "2021-04-30T17:28:35.5560319+02:00",
-    "porukaNotifikacije": "Test Naslov",
+    "vremeNotifikovanja": "2021-04-30T19:05:30.9924912+02:00",
+    "porukaNotifikacije": "Neki naslov",
     "idKorisnika": "3",
-    "datumNotifikovanja": "2021-04-30T17:28:35.5560319+02:00",
+    "datumNotifikovanja": "2021-04-30T19:05:30.9924912+02:00",
     "jeProcitana": false
   },
   {
     "id": "10",
     "nazivNotifikacije": "Nova vest",
-    "vremeNotifikovanja": "2021-04-30T17:28:35.5660304+02:00",
-    "porukaNotifikacije": "Test Naslov",
+    "vremeNotifikovanja": "2021-04-30T19:05:31.0024916+02:00",
+    "porukaNotifikacije": "Neki naslov",
     "idKorisnika": "4",
-    "datumNotifikovanja": "2021-04-30T17:28:35.5660304+02:00",
+    "datumNotifikovanja": "2021-04-30T19:05:31.0024916+02:00",
     "jeProcitana": false
   },
   {
     "id": "11",
     "nazivNotifikacije": "Nova vest",
-    "vremeNotifikovanja": "2021-04-30T17:28:35.5750338+02:00",
-    "porukaNotifikacije": "Test Naslov",
+    "vremeNotifikovanja": "2021-04-30T19:05:31.0274932+02:00",
+    "porukaNotifikacije": "Neki naslov",
     "idKorisnika": "5",
-    "datumNotifikovanja": "2021-04-30T17:28:35.5750338+02:00",
+    "datumNotifikovanja": "2021-04-30T19:05:31.0274932+02:00",
     "jeProcitana": false
   },
   {
     "id": "12",
     "nazivNotifikacije": "Nova vest",
-    "vremeNotifikovanja": "2021-04-30T17:28:35.5890336+02:00",
-    "porukaNotifikacije": "Test Naslov",
+    "vremeNotifikovanja": "2021-04-30T19:05:31.0364934+02:00",
+    "porukaNotifikacije": "Neki naslov",
     "idKorisnika": "6",
-    "datumNotifikovanja": "2021-04-30T17:28:35.5890336+02:00",
-    "jeProcitana": false
-  },
-  {
-    "id": "13",
-    "nazivNotifikacije": "Nova vest",
-    "vremeNotifikovanja": "2021-04-30T17:29:32.1097489+02:00",
-    "porukaNotifikacije": "Test Naslov 2",
-    "idKorisnika": "1",
-    "datumNotifikovanja": "2021-04-30T17:29:32.1097489+02:00",
-    "jeProcitana": false
-  },
-  {
-    "id": "14",
-    "nazivNotifikacije": "Nova vest",
-    "vremeNotifikovanja": "2021-04-30T17:29:32.1227522+02:00",
-    "porukaNotifikacije": "Test Naslov 2",
-    "idKorisnika": "2",
-    "datumNotifikovanja": "2021-04-30T17:29:32.1227522+02:00",
-    "jeProcitana": false
-  },
-  {
-    "id": "15",
-    "nazivNotifikacije": "Nova vest",
-    "vremeNotifikovanja": "2021-04-30T17:29:32.132752+02:00",
-    "porukaNotifikacije": "Test Naslov 2",
-    "idKorisnika": "3",
-    "datumNotifikovanja": "2021-04-30T17:29:32.132752+02:00",
-    "jeProcitana": false
-  },
-  {
-    "id": "16",
-    "nazivNotifikacije": "Nova vest",
-    "vremeNotifikovanja": "2021-04-30T17:29:32.1427517+02:00",
-    "porukaNotifikacije": "Test Naslov 2",
-    "idKorisnika": "4",
-    "datumNotifikovanja": "2021-04-30T17:29:32.1427517+02:00",
-    "jeProcitana": false
-  },
-  {
-    "id": "17",
-    "nazivNotifikacije": "Nova vest",
-    "vremeNotifikovanja": "2021-04-30T17:29:32.1527535+02:00",
-    "porukaNotifikacije": "Test Naslov 2",
-    "idKorisnika": "5",
-    "datumNotifikovanja": "2021-04-30T17:29:32.1527535+02:00",
-    "jeProcitana": false
-  },
-  {
-    "id": "18",
-    "nazivNotifikacije": "Nova vest",
-    "vremeNotifikovanja": "2021-04-30T17:29:32.1627532+02:00",
-    "porukaNotifikacije": "Test Naslov 2",
-    "idKorisnika": "6",
-    "datumNotifikovanja": "2021-04-30T17:29:32.1627532+02:00",
-    "jeProcitana": false
-  },
-  {
-    "id": "19",
-    "nazivNotifikacije": "Nova vest",
-    "vremeNotifikovanja": "2021-04-30T17:37:56.8307702+02:00",
-    "porukaNotifikacije": "Test Naslov 3",
-    "idKorisnika": "1",
-    "datumNotifikovanja": "2021-04-30T17:37:56.8307702+02:00",
-    "jeProcitana": false
-  },
-  {
-    "id": "20",
-    "nazivNotifikacije": "Nova vest",
-    "vremeNotifikovanja": "2021-04-30T17:37:56.8447601+02:00",
-    "porukaNotifikacije": "Test Naslov 3",
-    "idKorisnika": "2",
-    "datumNotifikovanja": "2021-04-30T17:37:56.8447601+02:00",
-    "jeProcitana": false
-  },
-  {
-    "id": "21",
-    "nazivNotifikacije": "Nova vest",
-    "vremeNotifikovanja": "2021-04-30T17:37:56.8547618+02:00",
-    "porukaNotifikacije": "Test Naslov 3",
-    "idKorisnika": "3",
-    "datumNotifikovanja": "2021-04-30T17:37:56.8547618+02:00",
-    "jeProcitana": false
-  },
-  {
-    "id": "22",
-    "nazivNotifikacije": "Nova vest",
-    "vremeNotifikovanja": "2021-04-30T17:37:56.864762+02:00",
-    "porukaNotifikacije": "Test Naslov 3",
-    "idKorisnika": "4",
-    "datumNotifikovanja": "2021-04-30T17:37:56.864762+02:00",
-    "jeProcitana": false
-  },
-  {
-    "id": "23",
-    "nazivNotifikacije": "Nova vest",
-    "vremeNotifikovanja": "2021-04-30T17:37:56.8757627+02:00",
-    "porukaNotifikacije": "Test Naslov 3",
-    "idKorisnika": "5",
-    "datumNotifikovanja": "2021-04-30T17:37:56.8757627+02:00",
-    "jeProcitana": false
-  },
-  {
-    "id": "24",
-    "nazivNotifikacije": "Nova vest",
-    "vremeNotifikovanja": "2021-04-30T17:37:56.8857634+02:00",
-    "porukaNotifikacije": "Test Naslov 3",
-    "idKorisnika": "6",
-    "datumNotifikovanja": "2021-04-30T17:37:56.8857634+02:00",
-    "jeProcitana": false
-  },
-  {
-    "id": "25",
-    "nazivNotifikacije": "Nova vest",
-    "vremeNotifikovanja": "2021-04-30T17:43:16.7677464+02:00",
-    "porukaNotifikacije": "Novo obavestenje",
-    "idKorisnika": "1",
-    "datumNotifikovanja": "2021-04-30T17:43:16.7677464+02:00",
-    "jeProcitana": false
-  },
-  {
-    "id": "26",
-    "nazivNotifikacije": "Nova vest",
-    "vremeNotifikovanja": "2021-04-30T17:43:16.7797493+02:00",
-    "porukaNotifikacije": "Novo obavestenje",
-    "idKorisnika": "2",
-    "datumNotifikovanja": "2021-04-30T17:43:16.7797493+02:00",
-    "jeProcitana": false
-  },
-  {
-    "id": "27",
-    "nazivNotifikacije": "Nova vest",
-    "vremeNotifikovanja": "2021-04-30T17:43:16.7897492+02:00",
-    "porukaNotifikacije": "Novo obavestenje",
-    "idKorisnika": "3",
-    "datumNotifikovanja": "2021-04-30T17:43:16.7897492+02:00",
-    "jeProcitana": false
-  },
-  {
-    "id": "28",
-    "nazivNotifikacije": "Nova vest",
-    "vremeNotifikovanja": "2021-04-30T17:43:16.8007503+02:00",
-    "porukaNotifikacije": "Novo obavestenje",
-    "idKorisnika": "4",
-    "datumNotifikovanja": "2021-04-30T17:43:16.8007503+02:00",
-    "jeProcitana": false
-  },
-  {
-    "id": "29",
-    "nazivNotifikacije": "Nova vest",
-    "vremeNotifikovanja": "2021-04-30T17:43:16.810752+02:00",
-    "porukaNotifikacije": "Novo obavestenje",
-    "idKorisnika": "5",
-    "datumNotifikovanja": "2021-04-30T17:43:16.810752+02:00",
-    "jeProcitana": false
-  },
-  {
-    "id": "30",
-    "nazivNotifikacije": "Nova vest",
-    "vremeNotifikovanja": "2021-04-30T17:43:16.8207512+02:00",
-    "porukaNotifikacije": "Novo obavestenje",
-    "idKorisnika": "6",
-    "datumNotifikovanja": "2021-04-30T17:43:16.8207512+02:00",
+    "datumNotifikovanja": "2021-04-30T19:05:31.0364934+02:00",
     "jeProcitana": false
   }
 ]

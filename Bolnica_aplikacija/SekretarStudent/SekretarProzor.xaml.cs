@@ -937,7 +937,6 @@ namespace Bolnica_aplikacija
             this.ObavestenjaGrid.Visibility = Visibility.Hidden;
         }
 
-        //KREIRANJE OBAVESTENJA
         private void txtNaslovObavestenja_TextChanged(object sender, TextChangedEventArgs e)
         {
             proveriPopunjenostPoljaObavestenja();
@@ -974,6 +973,22 @@ namespace Bolnica_aplikacija
             ucitajObavestenjaUTabelu();    
         }
 
+        private void btnIzmeniObavestenje_Click(object sender, RoutedEventArgs e)
+        {
+            ObavestenjeKontroler.azurirajObavestenje(izabranoObavestenje.id, txtNaslovObavestenja.Text, txtSadrzajObavestenja.Text);
+            ocistiPoljaObavestenja();
+            ucitajObavestenjaUTabelu();
+        
+        }
+
+        private void btnIzbrisiObavestenje_Click(object sender, RoutedEventArgs e)
+        {
+            ObavestenjeKontroler.obrisiObavestenje(izabranoObavestenje.id);
+            ocistiPoljaObavestenja();
+            ucitajObavestenjaUTabelu();
+          
+        }
+
         private void ucitajObavestenjaUTabelu()
         {
             List<Obavestenje> svaObavestenja = ObavestenjeKontroler.ucitajObavestenja();
@@ -986,9 +1001,11 @@ namespace Bolnica_aplikacija
             txtSadrzajObavestenja.Clear();
             txtNaslovObavestenja.Clear();
             btnDodajObavestenje.IsEnabled = false;
+            btnIzbrisiObavestenje.IsEnabled = false;
+            btnIzbrisiObavestenje.IsEnabled = false;
+            btnOdustaniIzmenaObavestenja.Visibility = Visibility.Hidden;
         }
 
-        //IZMENA OBAVESTENJA
         private void dataGridObavestenja_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             tipAkcijeObavestenja = 1;
@@ -998,20 +1015,22 @@ namespace Bolnica_aplikacija
                 izabranoObavestenje = (Obavestenje)dataGridObavestenja.SelectedItem;
                 txtNaslovObavestenja.Text = izabranoObavestenje.naslovObavestenja;
                 txtSadrzajObavestenja.Text = izabranoObavestenje.sadrzajObavestenja;
+                btnIzbrisiObavestenje.IsEnabled = true;
+                btnOdustaniIzmenaObavestenja.Visibility = Visibility.Visible;
             }
             else
             {
+                btnIzmeniObavestenje.IsEnabled = false;
                 btnIzbrisiObavestenje.IsEnabled = false;
+                tipAkcijeObavestenja = 0;
             }           
             
         }
 
-        private void btnIzmeniObavestenje_Click(object sender, RoutedEventArgs e)
+        private void btnOdustaniIzmenaObavestenja_Click(object sender, RoutedEventArgs e)
         {
-            ObavestenjeKontroler.azurirajObavestenje(izabranoObavestenje.id, txtNaslovObavestenja.Text, txtSadrzajObavestenja.Text);
+            dataGridObavestenja.SelectedIndex = -1;
             ocistiPoljaObavestenja();
-            ucitajObavestenjaUTabelu();
-
         }
     }
 }

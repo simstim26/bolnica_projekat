@@ -9,7 +9,7 @@
         Title="Sekretar" Height="768" Width="1366" Visibility="Visible" ResizeMode="CanMinimize"
         >
     <Grid x:Name="Grid" HorizontalAlignment="Left" Height="748" Margin="-4,-17,0,0" VerticalAlignment="Top" Width="1356">
-        <Grid x:Name="PocetniEkranGrid" Margin="0,18,-8,-9" HorizontalAlignment="Left" Width="1364" Background="#FFF7FFF4" d:IsHidden="True">
+        <Grid x:Name="PocetniEkranGrid" Margin="0,18,-8,-9" HorizontalAlignment="Left" Width="1364" Background="#FFF7FFF4">
             <Button x:Name="pacijentiButton" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Height="200" FontSize="36" FontWeight="Bold" Click="pacijenti_Click" Margin="428,140,0,0" BorderBrush="#FF67B6D5" >
                 <Button.Effect>
                     <DropShadowEffect BlurRadius="10" Direction="314" Opacity="0.35"/>
@@ -337,7 +337,7 @@
                     <ImageBrush  Stretch="Uniform" ImageSource="IzmeniPacijenta.png"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="btnIzbrisiObavestenje" Content=" " HorizontalAlignment="Left" Height="80" Margin="110,520,0,0" VerticalAlignment="Top" Width="80" RenderTransformOrigin="0.325,0.75" BorderThickness="0" ToolTip="Obriši obaveštenje" IsEnabled="False" >
+            <Button x:Name="btnIzbrisiObavestenje" Content=" " HorizontalAlignment="Left" Height="80" Margin="110,520,0,0" VerticalAlignment="Top" Width="80" RenderTransformOrigin="0.325,0.75" BorderThickness="0" ToolTip="Obriši obaveštenje" IsEnabled="False" Click="btnIzbrisiObavestenje_Click" >
                 <Button.Background>
                     <ImageBrush  Stretch="Uniform" ImageSource="IzbrisiPacijenta.png"/>
                 </Button.Background>
@@ -392,6 +392,7 @@
             <materialDesign:PackIcon x:Name="iconObavestenje" Kind="InfoOutline" HorizontalAlignment="Left" Margin="62,111,0,0" VerticalAlignment="Top" Height="180" Width="180" Foreground="#FF188DE6"/>
             <TextBox x:Name="txtSadrzajObavestenja" HorizontalAlignment="Left" Height="355" Margin="346,320,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="996" materialDesign:HintAssist.Hint=" Unesite sadržaj obaveštenja..." FontSize="24" Background="#FFBBCBF5" BorderBrush="{x:Null}" TextChanged="txtSadrzajObavestenja_TextChanged"/>
             <TextBox x:Name="txtNaslovObavestenja" HorizontalAlignment="Left" Height="43" Margin="346,253,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="614" FontSize="20" materialDesign:HintAssist.Hint="Unesite naslov obaveštenja..." TextChanged="txtNaslovObavestenja_TextChanged"/>
+            <Button x:Name="btnOdustaniIzmenaObavestenja" Content="ODUSTANI" HorizontalAlignment="Left" Margin="346,680,0,0" VerticalAlignment="Top" Width="109" Visibility="Hidden" Click="btnOdustaniIzmenaObavestenja_Click"/>
         </Grid>
     </Grid>
 
