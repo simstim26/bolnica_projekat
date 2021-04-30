@@ -74,5 +74,10 @@ namespace Bolnica_aplikacija.Kontroler
         {
             LekServis.getInstance().odbacivanjeLeka(lekZaOdbacivanje);
         }
+
+        public static void azurirajLek(Lek lekZaAzuriranje)
+        {
+            LekServis.getInstance().azurirajLek(lekZaAzuriranje);
+        }
     }
 }

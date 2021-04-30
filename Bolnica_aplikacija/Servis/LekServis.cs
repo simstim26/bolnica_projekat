@@ -161,5 +161,9 @@ namespace Bolnica_aplikacija.Servis
             lekRepozitorijum.dodajLekZaOdbacivanje(lekZaOdbacivanje);
         }
 
+        public void azurirajLek(Lek lekZaAzuriranje)
+        {
+            lekRepozitorijum.azurirajLek(lekZaAzuriranje);
+        }
     }
 }

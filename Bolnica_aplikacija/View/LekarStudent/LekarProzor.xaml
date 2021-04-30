@@ -121,9 +121,9 @@
                 <Label x:Name="lblRUProizvodjac" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="209,57,0,0" Width="168" Height="24"/>
                 <Label x:Name="lblRUTipLeka" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="209,92,0,0" Width="168" Height="24"/>
                 <Label x:Name="lblRUNacinUpotrebe" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="209,129,0,0" Width="168" Height="24"/>
-                <ListBox Background="#F5F5F5" HorizontalAlignment="Left" Height="297" Margin="17,259,0,0" VerticalAlignment="Top" Width="387"/>
-                <TextBox x:Name="txtDodavanjeSastojaka" HorizontalAlignment="Left" Height="23" Margin="17,217,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                <Button x:Name="btnDodavanjeSastojka" HorizontalAlignment="Left" Margin="167,208,0,0" VerticalAlignment="Top" Width="49">
+                <ListBox x:Name="listRUSastojci" Background="#F5F5F5" HorizontalAlignment="Left" Height="297" Margin="17,259,0,0" VerticalAlignment="Top" Width="387"/>
+                <TextBox x:Name="txtDodavanjeSastojaka" HorizontalAlignment="Left" Height="23" Margin="17,217,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="txtDodavanjeSastojaka_TextChanged"/>
+                <Button x:Name="btnDodavanjeSastojka" HorizontalAlignment="Left" Margin="167,208,0,0" VerticalAlignment="Top" Width="49" Click="btnDodavanjeSastojka_Click">
                     <materialDesign:PackIcon Kind="Plus" HorizontalAlignment="Center" Height="25" Width="28"></materialDesign:PackIcon>
                 </Button>
                 <Button x:Name="btnIzbrisiSastojak" HorizontalAlignment="Left" Margin="320,208,0,0" VerticalAlignment="Top" Width="49">

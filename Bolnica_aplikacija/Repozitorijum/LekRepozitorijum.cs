@@ -142,5 +142,21 @@ namespace Bolnica_aplikacija.Repozitorijum
             string jsonString = JsonSerializer.Serialize(lekoviZaOdbacivanje, formatiranje);
             File.WriteAllText("Datoteke/OdbaceniLekovi.txt", jsonString);
         }
+
+        public void azurirajLek(Lek lekZaAzuriranje)
+        {
+            List<Lek> sviLekovi = ucitajSve();
+
+            foreach(Lek lek in sviLekovi)
+            {
+                if (lek.id.Equals(lekZaAzuriranje.id))
+                {
+                    lek.kopiraj(lekZaAzuriranje);
+                    break;
+                }
+            }
+
+            upisi(sviLekovi);
+        }
     }
 }

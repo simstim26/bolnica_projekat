@@ -317,6 +317,8 @@ namespace Bolnica_aplikacija
                 lblRUNazivLeka.Content = izabraniLek.naziv;
                 gridIzmenaLekova.Visibility = Visibility.Visible;
                 glavnaLabela.Content = "Izmena leka";
+                listRUSastojci.ItemsSource = izabraniLek.sastojci;
+
             }
         }
 
@@ -406,6 +408,29 @@ namespace Bolnica_aplikacija
             LekKontroler.odbacivanjeLeka(lek);
             gridPropratnaPoruka.Visibility = Visibility.Hidden;
             ucitajLekoveZaOdobravanje();
+        }
+
+        private void btnDodavanjeSastojka_Click(object sender, RoutedEventArgs e)
+        {
+            Lek lek = (Lek)dataGridPostojeciLekovi.SelectedItem;
+            if (lek.sastojci == null)
+                lek.sastojci = new List<String>();
+            lek.sastojci.Add(txtDodavanjeSastojaka.Text);
+            LekKontroler.azurirajLek(lek);
+            txtDodavanjeSastojaka.Text = "";
+            listRUSastojci.Items.Refresh();
+        }
+
+        private void txtDodavanjeSastojaka_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (String.IsNullOrWhiteSpace(txtDodavanjeSastojaka.Text))
+            {
+                btnDodavanjeSastojka.IsEnabled = false;
+            }
+            else
+            {
+                btnDodavanjeSastojka.IsEnabled = true;
+            }
         }
     }
 }

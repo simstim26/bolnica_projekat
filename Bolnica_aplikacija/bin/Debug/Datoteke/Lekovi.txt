@@ -6,7 +6,16 @@
     "kolicina": 100,
     "proizvodjac": "proizvodjac neki",
     "nacinUpotrebe": 2,
-    "sastojci": null,
+    "sastojci": [
+      "aaaaa",
+      "bbbbb",
+      "bbbbb",
+      "bbbbb",
+      "aaaaaa",
+      "ccc",
+      "vvv",
+      "aaaaaaa"
+    ],
     "zamenskiLekovi": null
   },
   {

@@ -47,6 +47,18 @@ namespace Model
             }
       }
 
+      public void kopiraj(Lek lek)
+      {
+            id = lek.id;
+            naziv = lek.naziv;
+            tip = lek.tip;
+            kolicina = lek.kolicina;
+            proizvodjac = lek.proizvodjac;
+            sastojci = lek.sastojci;
+            zamenskiLekovi = lek.zamenskiLekovi;
+            nacinUpotrebe = lek.nacinUpotrebe;
+      }
+
       public String getTipString()
         {
             switch (tip)
