@@ -34,6 +34,7 @@ namespace Bolnica_aplikacija
         private bool flagIzmeni;
         private String idPacijenta;
         private int tipAkcijeTermini; // 0 - dodaj, 1 - izmeni, 2 - ukloni
+        private int tipAkcijeObavestenja; // 0 - dodaj, 1 - izmeni, 2 - ukloni
         private String imePrezimePacijenta;
         private PacijentTermin izabraniTermin;
         private List<Alergija> alergije;
@@ -87,6 +88,7 @@ namespace Bolnica_aplikacija
             this.PocetniEkranGrid.Visibility = Visibility.Visible;
             this.PacijentGrid.Visibility = Visibility.Hidden;
             this.TerminiGrid.Visibility = Visibility.Hidden;
+            this.ObavestenjaGrid.Visibility = Visibility.Hidden;
 
             //Termini
             slobodniTerminiLabel.Visibility = Visibility.Hidden;
@@ -910,10 +912,95 @@ namespace Bolnica_aplikacija
         {
             Alergija alergija = (Alergija)dataGridAlergije.Items.GetItemAt(dataGridAlergije.SelectedIndex);
             
+        }
 
+        // OBAVESTENJA
+
+        private void btnObavestenja_Click(object sender, RoutedEventArgs e)
+        {
+            PocetniEkranGrid.Visibility = Visibility.Hidden;
+            PacijentGrid.Visibility = Visibility.Hidden;
+            TerminiGrid.Visibility = Visibility.Hidden;
+            ObavestenjaGrid.Visibility = Visibility.Visible;
             
+            ucitajObavestenjaUTabelu();
+        }
+
+        private void btnPovratakObavestenja_Click(object sender, RoutedEventArgs e)
+        {
+            ocistiPoljaObavestenja();
+            
+            this.PocetniEkranGrid.Visibility = Visibility.Visible;
+            this.PacijentGrid.Visibility = Visibility.Hidden;
+            this.TerminiGrid.Visibility = Visibility.Hidden;
+            this.ObavestenjaGrid.Visibility = Visibility.Hidden;
+        }
+
+        //KREIRANJE OBAVESTENJA
+        private void txtNaslovObavestenja_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            proveriPopunjenostPoljaObavestenja();
+        }
+
+        private void txtSadrzajObavestenja_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            proveriPopunjenostPoljaObavestenja();
+        }
+
+        private void proveriPopunjenostPoljaObavestenja()
+        {
+            if(tipAkcijeObavestenja == 0)
+            {
+                this.btnDodajObavestenje.IsEnabled = !string.IsNullOrWhiteSpace(this.txtNaslovObavestenja.Text) &&
+                                                     !string.IsNullOrWhiteSpace(this.txtSadrzajObavestenja.Text);
+            }
+            else
+            {
+                this.btnIzmeniObavestenje.IsEnabled = !string.IsNullOrWhiteSpace(this.txtNaslovObavestenja.Text) &&
+                                                      !string.IsNullOrWhiteSpace(this.txtSadrzajObavestenja.Text);
+            }
+           
+        }
+
+        private void btnDodajObavestenje_Click(object sender, RoutedEventArgs e)
+        {
+            tipAkcijeObavestenja = 0;
+            String naslovObavestenja = txtNaslovObavestenja.Text;
+            String sadrzajObavestenja = txtSadrzajObavestenja.Text;
+
+            ObavestenjeKontroler.napraviObavestenje(naslovObavestenja, sadrzajObavestenja);
+            ocistiPoljaObavestenja();
+            ucitajObavestenjaUTabelu();    
+        }
+
+        private void ucitajObavestenjaUTabelu()
+        {
+            List<Obavestenje> svaObavestenja = ObavestenjeKontroler.ucitajObavestenja();
+            dataGridObavestenja.ItemsSource = svaObavestenja;
+            dataGridObavestenja.Items.Refresh();
+        }
+
+        private void ocistiPoljaObavestenja()
+        {
+            txtSadrzajObavestenja.Clear();
+            txtNaslovObavestenja.Clear();
+            btnDodajObavestenje.IsEnabled = false;
+        }
+
+        //IZMENA OBAVESTENJA
+        private void dataGridObavestenja_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            tipAkcijeObavestenja = 1;
+            Obavestenje selektovanoObavestenje = (Obavestenje)dataGridObavestenja.SelectedItem;
+            txtNaslovObavestenja.Text = selektovanoObavestenje.naslovObavestenja;
+            txtSadrzajObavestenja.Text = selektovanoObavestenje.sadrzajObavestenja;
+        }
+
+        private void btnIzmeniObavestenje_Click(object sender, RoutedEventArgs e)
+        {
+           
 
         }
-    }  
+    }
 }
 

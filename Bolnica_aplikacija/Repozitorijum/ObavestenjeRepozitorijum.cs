@@ -44,7 +44,7 @@ namespace Bolnica_aplikacija.Repozitorijum
             File.WriteAllText("Datoteke/Obavestenja.txt", jsonString);
         }
 
-        public void azurirajPacijenta(Obavestenje obavestenjeZaAzuriranje)
+        public void azurirajObavestenje(Obavestenje obavestenjeZaAzuriranje)
         {
             var svaObavestenja = ucitajSve();
 

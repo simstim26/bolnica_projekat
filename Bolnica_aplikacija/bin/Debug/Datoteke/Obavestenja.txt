@@ -1,0 +1,30 @@
+[
+  {
+    "id": "1",
+    "naslovObavestenja": "Test Naslov",
+    "sadrzajObavestenja": "Ovo je prvo obavestenje koje treba upisati u fajl, esus pomogi",
+    "notifikacija": null,
+    "jeLogickiObrisano": false
+  },
+  {
+    "id": "2",
+    "naslovObavestenja": "Test Naslov 2",
+    "sadrzajObavestenja": "Ovo je DRUGO obavestenje koje treba upisati u fajl, esus pomogi",
+    "notifikacija": null,
+    "jeLogickiObrisano": false
+  },
+  {
+    "id": "3",
+    "naslovObavestenja": "Test Naslov 3",
+    "sadrzajObavestenja": "Uh Oh najebali ste",
+    "notifikacija": null,
+    "jeLogickiObrisano": false
+  },
+  {
+    "id": "4",
+    "naslovObavestenja": "Novo obavestenje",
+    "sadrzajObavestenja": "Bla bla bla",
+    "notifikacija": null,
+    "jeLogickiObrisano": false
+  }
+]

@@ -9,7 +9,7 @@
         Title="Sekretar" Height="768" Width="1366" Visibility="Visible" ResizeMode="CanMinimize"
         >
     <Grid x:Name="Grid" HorizontalAlignment="Left" Height="748" Margin="-4,-17,0,0" VerticalAlignment="Top" Width="1356">
-        <Grid x:Name="PocetniEkranGrid" Margin="0,18,-8,-9" HorizontalAlignment="Left" Width="1364" Background="#FFF7FFF4">
+        <Grid x:Name="PocetniEkranGrid" Margin="0,18,-8,-9" HorizontalAlignment="Left" Width="1364" Background="#FFF7FFF4" d:IsHidden="True">
             <Button x:Name="pacijentiButton" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Height="200" FontSize="36" FontWeight="Bold" Click="pacijenti_Click" Margin="428,140,0,0" BorderBrush="#FF67B6D5" >
                 <Button.Effect>
                     <DropShadowEffect BlurRadius="10" Direction="314" Opacity="0.35"/>
@@ -58,9 +58,9 @@
                 </Button.Background>
                 <materialDesign:PackIcon x:Name="packIconLekari" Kind="Doctor" Height="152" Width="158"/>
             </Button>
-            <Button x:Name="helpButton" Content="" VerticalAlignment="Top" Height="64" FontSize="36" FontWeight="Bold" BorderThickness="0" Margin="1238,656,10,0" >
+            <Button x:Name="helpButton" Content="" VerticalAlignment="Top" Height="65" FontSize="36" FontWeight="Bold" BorderThickness="0" Margin="1254,651,44,0" Width="65" RenderTransformOrigin="0.569,1.138" >
                 <Button.Effect>
-                    <DropShadowEffect BlurRadius="22"/>
+                    <DropShadowEffect BlurRadius="22" Opacity="0.45"/>
                 </Button.Effect>
                 <Button.Background>
                     <ImageBrush Stretch="Uniform" ImageSource="question_mark.png"/>
@@ -80,6 +80,14 @@
                     <DropShadowEffect ShadowDepth="2" Opacity="0.15"/>
                 </Label.Effect>
             </Label>
+            <Button x:Name="btnObavestenja" HorizontalAlignment="Left" Margin="1148,639,0,0" VerticalAlignment="Top" Width="90" Height="90" BorderBrush="{x:Null}" Click="btnObavestenja_Click">
+                <Button.Effect>
+                    <DropShadowEffect BlurRadius="22" Opacity="0.45"/>
+                </Button.Effect>
+                <Button.Background>
+                    <ImageBrush ImageSource="PacijentInfo.png" Stretch="Uniform"/>
+                </Button.Background>
+            </Button>
         </Grid>
         <Grid x:Name="PacijentGrid" HorizontalAlignment="Left" Height="730" Margin="0,18,0,0" VerticalAlignment="Top" Width="1346" TargetUpdated="PacijentGrid_TargetUpdated" d:IsHidden="True">
             <Grid.Background>
@@ -305,6 +313,85 @@
                     </Button.Background>
                 </Button>
             </Grid>
+        </Grid>
+        <Grid x:Name="ObavestenjaGrid" HorizontalAlignment="Left" Height="730" Margin="0,18,-8,0" VerticalAlignment="Top" Width="1364" Visibility="Hidden" d:IsHidden="True">
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF83C8F7" Offset="0"/>
+                    <GradientStop Color="#FFD3DDE8" Offset="1"/>
+                    <GradientStop Color="#FF6EA8EE" Offset="0"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+            <Label Content="OBAVEŠTENJA" HorizontalAlignment="Left" Height="46" Margin="28,42,0,0" VerticalAlignment="Top" Width="252" FontSize="36" FontFamily="Consolas" FontWeight="Bold" Background="{x:Null}" HorizontalContentAlignment="Center" Foreground="#DD193755">
+                <Label.Effect>
+                    <DropShadowEffect BlurRadius="21" Opacity="0.365" Color="#FFFFF0DE"/>
+                </Label.Effect>
+            </Label>
+            <Button x:Name="btnDodajObavestenje" Content="                     " HorizontalAlignment="Left" Height="80" Margin="110,320,0,0" VerticalAlignment="Top" Width="80" RenderTransformOrigin="0.325,0.75" BorderThickness="0" ToolTip="Napravi obaveštenje" BorderBrush="#FF9C5353" Foreground="#FF2A83A4" IsEnabled="False" Click="btnDodajObavestenje_Click">
+                <Button.Background>
+                    <ImageBrush  Stretch="Uniform" ImageSource="dodajPacijenta.png"/>
+                </Button.Background>
+            </Button>
+            <Button x:Name="btnIzmeniObavestenje" Content="                     " HorizontalAlignment="Left" Height="80" Margin="110,420,0,0" VerticalAlignment="Top" Width="80" RenderTransformOrigin="0.325,0.75" BorderThickness="0" ToolTip="Izmeni obaveštenje" IsEnabled="False" Click="btnIzmeniObavestenje_Click">
+                <Button.Background>
+                    <ImageBrush  Stretch="Uniform" ImageSource="IzmeniPacijenta.png"/>
+                </Button.Background>
+            </Button>
+            <Button x:Name="btnIzbrisiObavestenje" Content=" " HorizontalAlignment="Left" Height="80" Margin="110,520,0,0" VerticalAlignment="Top" Width="80" RenderTransformOrigin="0.325,0.75" BorderThickness="0" ToolTip="Obriši obaveštenje" IsEnabled="False" >
+                <Button.Background>
+                    <ImageBrush  Stretch="Uniform" ImageSource="IzbrisiPacijenta.png"/>
+                </Button.Background>
+            </Button>
+            <GridSplitter HorizontalAlignment="Left" Height="730" Margin="326,0,-20,0" VerticalAlignment="Top" Width="1040">
+                <GridSplitter.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFCFC9C9" Offset="0"/>
+                        <GradientStop Color="White" Offset="1"/>
+                    </LinearGradientBrush>
+                </GridSplitter.Background>
+            </GridSplitter>
+            <Button x:Name="btnPovratakObavestenja" Content="POVRATAK" HorizontalAlignment="Left" Height="25" Margin="92,17,0,0" VerticalAlignment="Top" Width="114" BorderThickness="0" Background="{x:Null}" Click="btnPovratakObavestenja_Click"/>
+            <DataGrid x:Name="dataGridObavestenja" HorizontalAlignment="Left" Height="200" Margin="346,0,0,513" VerticalAlignment="Bottom" Width="996" FontSize="24" HeadersVisibility="All" AutoGenerateColumns="False" CanUserAddRows="false" SelectionChanged="dataGridObavestenja_SelectionChanged" Background="#FFBBCBF5">
+                <DataGrid.Resources>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" 
+                        Color="#FF9D6EEE"/>
+                </DataGrid.Resources>
+                <DataGrid.Columns>
+                    <DataGridTextColumn x:Name="kolonaNaslov" Binding="{Binding naslovObavestenja}" IsReadOnly="True" Header="NASLOV OBAVEŠTENJA" Width="347" CanUserResize="False" Foreground="Black" FontSize="24"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Grid x:Name="PotvrdaGrid1" HorizontalAlignment="Left" Height="720" Margin="346,10,0,0" VerticalAlignment="Top" Width="1000" Opacity="0.85" ScrollViewer.VerticalScrollBarVisibility="Disabled" Visibility="Hidden">
+                <Grid.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFEAE0EE" Offset="0"/>
+                        <GradientStop Color="#FF876AA4" Offset="1"/>
+                    </LinearGradientBrush>
+                </Grid.Background>
+                <Label Content="DA LI STE SIGURNI DA ŽELITE &#xA;  DA POTVRDITE VAŠ IZBOR?" HorizontalAlignment="Left" Margin="187,189,0,0" VerticalAlignment="Top" Height="190" Width="604" FontSize="48" FontWeight="Thin">
+                    <Label.Effect>
+                        <DropShadowEffect BlurRadius="9" Direction="303" Opacity="0.72"/>
+                    </Label.Effect>
+                </Label>
+                <Button x:Name="btnPotvrdiIzbor1" Content="POTVRDI" HorizontalAlignment="Left" Margin="254,402,0,0" VerticalAlignment="Top" Width="204" Height="59" FontSize="36" Click="btnPotvrdiIzbor_Click">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FFCFA0FF" Offset="0"/>
+                            <GradientStop Color="#FF8E4DCF" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+                <Button x:Name="btnOdustaniOdIzborra1" Content="ODUSTANI" HorizontalAlignment="Left" Margin="519,402,0,0" VerticalAlignment="Top" Width="212" Height="59" FontSize="36" Click="btnOdustaniOdIzborra_Click">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FFCFA0FF" Offset="0"/>
+                            <GradientStop Color="#FF8E4DCF" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+            </Grid>
+            <materialDesign:PackIcon x:Name="iconObavestenje" Kind="InfoOutline" HorizontalAlignment="Left" Margin="62,111,0,0" VerticalAlignment="Top" Height="180" Width="180" Foreground="#FF188DE6"/>
+            <TextBox x:Name="txtSadrzajObavestenja" HorizontalAlignment="Left" Height="355" Margin="346,320,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="996" materialDesign:HintAssist.Hint=" Unesite sadržaj obaveštenja..." FontSize="24" Background="#FFBBCBF5" BorderBrush="{x:Null}" TextChanged="txtSadrzajObavestenja_TextChanged"/>
+            <TextBox x:Name="txtNaslovObavestenja" HorizontalAlignment="Left" Height="43" Margin="346,253,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="614" FontSize="20" materialDesign:HintAssist.Hint="Unesite naslov obaveštenja..." TextChanged="txtNaslovObavestenja_TextChanged"/>
         </Grid>
     </Grid>
 

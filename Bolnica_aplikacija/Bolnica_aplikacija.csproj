@@ -104,6 +104,7 @@
     <Compile Include="Kontroler\LekarKontroler.cs" />
     <Compile Include="Kontroler\LekKontroler.cs" />
     <Compile Include="Kontroler\NotifikacijaKontroler.cs" />
+    <Compile Include="Kontroler\ObavestenjeKontroler.cs" />
     <Compile Include="Kontroler\PacijentKontroler.cs" />
     <Compile Include="Kontroler\ProstorijaKontroler.cs" />
     <Compile Include="Kontroler\ProstorijaZauzetoKontroler.cs" />
@@ -182,6 +183,7 @@
     <Compile Include="Servis\LekarServis.cs" />
     <Compile Include="Servis\LekServis.cs" />
     <Compile Include="Servis\NotifikacijaServis.cs" />
+    <Compile Include="Servis\ObavestenjeServis.cs" />
     <Compile Include="Servis\PacijentServis.cs" />
     <Compile Include="Servis\ProstorijaServis.cs" />
     <Compile Include="Servis\ProstorijaZauzetoServis.cs" />
