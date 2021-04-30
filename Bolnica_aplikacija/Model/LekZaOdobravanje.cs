@@ -40,5 +40,20 @@ namespace Bolnica_aplikacija.Model
             this.brLekaraKojiSuodobriliLek = 0;
             this.odobren = false;
         }
+
+        public void kopiraj(LekZaOdobravanje lekZaOdobravanje)
+        {
+            id = lekZaOdobravanje.id;
+            naziv = lekZaOdobravanje.naziv;
+            tip = lekZaOdobravanje.tip;
+            kolicina = lekZaOdobravanje.kolicina;
+            proizvodjac = lekZaOdobravanje.proizvodjac;
+            nacinUpotrebe = lekZaOdobravanje.nacinUpotrebe;
+            brLekaraKojiSuodobriliLek = lekZaOdobravanje.brLekaraKojiSuodobriliLek;
+            odobren = lekZaOdobravanje.odobren;
+            sastojci = lekZaOdobravanje.sastojci;
+            zamenskiLekovi = lekZaOdobravanje.zamenskiLekovi;
+            lekariKojimaJePoslatLek = lekZaOdobravanje.lekariKojimaJePoslatLek;
+        }
     }
 }

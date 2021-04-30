@@ -28,6 +28,26 @@ namespace Bolnica_aplikacija.Servis
             return nadjiLekoveZaOdobravanjeZaLogovanogLekara(idLekara).Count == 0;
         }
 
+        public void azurirajOdobravanje(LekZaOdobravanje lekZaAzuriranje)
+        {
+            ++lekZaAzuriranje.brLekaraKojiSuodobriliLek;
+            lekRepozitorijum.azurirajLekZaOdobravanje(ukloniLekaraKojiJeOdobrioLek(lekZaAzuriranje));
+        }
+
+        public LekZaOdobravanje ukloniLekaraKojiJeOdobrioLek(LekZaOdobravanje lekZaAzuriranje)
+        {
+            foreach(String idLekara in lekZaAzuriranje.lekariKojimaJePoslatLek)
+            {
+                if (idLekara.Equals(KorisnikServis.getInstance().getLekar().id))
+                {
+                    lekZaAzuriranje.lekariKojimaJePoslatLek.Remove(idLekara);
+                    break;
+                }
+            }
+
+            return lekZaAzuriranje;
+        }
+
         public List<LekZaOdobravanje> nadjiLekoveZaOdobravanjeZaLogovanogLekara(String idLogovanogLekara)
         {
             List<LekZaOdobravanje> povratnaVrednost = new List<LekZaOdobravanje>();
@@ -128,6 +148,12 @@ namespace Bolnica_aplikacija.Servis
         public void dodajLekuLekare(List<String> idLekari, LekZaOdobravanje lek)
         {
             lek.lekariKojimaJePoslatLek = idLekari;
+        }
+
+        public void dodajLek(LekZaOdobravanje lekZaDodavanje)
+        {
+            lekRepozitorijum.fizickiObrisiLekZaDodavanje(lekZaDodavanje);
+            lekRepozitorijum.dodajLek(new Lek(lekZaDodavanje, (ucitajSve().Count + 1).ToString()));
         }
     }
 }

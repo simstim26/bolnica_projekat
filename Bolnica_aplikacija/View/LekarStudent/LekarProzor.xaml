@@ -60,8 +60,8 @@
                     <DataGridTextColumn Header="Proizvođač" Binding="{Binding proizvodjac}"></DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
-            <Button x:Name="btnOdbaci" Content="Odbaci" HorizontalAlignment="Left" Margin="311,81,0,0" VerticalAlignment="Top" Width="82" Height="36"/>
-            <Button x:Name="btnOdobri" Content="Odobri" HorizontalAlignment="Left" Margin="175,81,0,0" VerticalAlignment="Top" Width="82" Height="36"/>
+            <Button x:Name="btnOdbaci" Content="Odbaci" HorizontalAlignment="Left" Margin="311,81,0,0" VerticalAlignment="Top" Width="82" Height="36" Click="btnOdbaci_Click"/>
+            <Button x:Name="btnOdobri" Content="Odobri" HorizontalAlignment="Left" Margin="175,81,0,0" VerticalAlignment="Top" Width="82" Height="36" Click="btnOdobri_Click"/>
             <Button x:Name="btnInfoLek" HorizontalAlignment="Left" Margin="37,81,0,0" VerticalAlignment="Top" Width="82" Height="36" Click="btnInfoLek_Click">
                 <materialDesign:PackIcon Kind="InfoCircle" Height="24" Width="25"></materialDesign:PackIcon>
             </Button>

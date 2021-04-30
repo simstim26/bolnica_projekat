@@ -15,6 +15,10 @@ namespace Bolnica_aplikacija.Kontroler
         {
             return LekServis.getInstance().proveriLekoveZaOdobravanjeZaLogovanogLekara(idLekara);
         }
+        public static void azurirajOdobravanje(LekZaOdobravanje lekZaAzuriranje)
+        {
+            LekServis.getInstance().azurirajOdobravanje(lekZaAzuriranje);
+        }
 
         public static List<LekZaOdobravanje> nadjiLekoveZaOdobravanjeZaLogovanogLekara(String idLekara)
         {
@@ -59,6 +63,11 @@ namespace Bolnica_aplikacija.Kontroler
         public static void dodajLekuLekare(List<String> idLekari, LekZaOdobravanje lek)
         {
             LekServis.getInstance().dodajLekuLekare(idLekari, lek);
+        }
+
+        public static void dodajLek(LekZaOdobravanje lekZaDodavanje)
+        {
+            LekServis.getInstance().dodajLek(lekZaDodavanje);
         }
     }
 }

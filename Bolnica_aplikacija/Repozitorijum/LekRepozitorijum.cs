@@ -27,6 +27,27 @@ namespace Bolnica_aplikacija.Repozitorijum
 
             return sviLekovi;
         }
+        
+        public void dodajLek(Lek noviLek)
+        {
+            List<Lek> sviLekovi = ucitajSve();
+            sviLekovi.Add(noviLek);
+            upisi(sviLekovi);
+        }
+
+        public void azurirajLekZaOdobravanje(LekZaOdobravanje lekZaAzuriranje)
+        {
+            List<LekZaOdobravanje> lekoviZaOdobravanje = ucitajLekoveZaOdobravanje();
+            foreach(LekZaOdobravanje lek in lekoviZaOdobravanje)
+            {
+                if (lek.id.Equals(lekZaAzuriranje.id))
+                {
+                    lek.kopiraj(lekZaAzuriranje);
+                    break;
+                }
+            }
+            upisiLekoveZaObradu(lekoviZaOdobravanje);
+        }
 
         public void upisi(List<Lek> sviLekovi)
         {
@@ -61,6 +82,32 @@ namespace Bolnica_aplikacija.Repozitorijum
             };
             string jsonString = JsonSerializer.Serialize(lekovi, formatiranje);
             File.WriteAllText("Datoteke/LekoviZaOdobravanje.txt", jsonString);
+        }
+
+        public void fizickiObrisiLekZaDodavanje(LekZaOdobravanje lekZaDodavanje)
+        {
+            List<LekZaOdobravanje> lekoviZaOdobravanje = ucitajLekoveZaOdobravanje();
+            foreach(LekZaOdobravanje lek in lekoviZaOdobravanje)
+            {
+                if (lek.id.Equals(lekZaDodavanje.id))
+                {
+                    lekoviZaOdobravanje.Remove(lek);
+                    upisiLekoveZaObradu(resetujIdejeve(lekoviZaOdobravanje));
+                    break;
+                }
+            }
+        }
+
+        private List<LekZaOdobravanje> resetujIdejeve(List<LekZaOdobravanje> lekovi)
+        {
+            int id = 1;
+            foreach(LekZaOdobravanje lek in lekovi)
+            {
+                lek.id = id.ToString();
+                ++id;
+            }
+
+            return lekovi;
         }
     }
 }

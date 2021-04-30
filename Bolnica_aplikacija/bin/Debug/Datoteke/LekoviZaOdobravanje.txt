@@ -3,7 +3,7 @@
     "brLekaraKojiSuodobriliLek": 0,
     "lekariKojimaJePoslatLek": null,
     "odobren": false,
-    "id": null,
+    "id": "1",
     "naziv": "leEekeL",
     "tip": 2,
     "kolicina": 100,
@@ -11,61 +11,5 @@
     "nacinUpotrebe": 2,
     "sastojci": null,
     "zamenskiLekovi": null
-  },
-  {
-    "brLekaraKojiSuodobriliLek": 0,
-    "lekariKojimaJePoslatLek": [
-      "1",
-      "2"
-    ],
-    "odobren": false,
-    "id": null,
-    "naziv": "aaaaaaaLek",
-    "tip": 2,
-    "kolicina": 48921,
-    "proizvodjac": "najebacuTiSeMameAkoNeBudesRadio",
-    "nacinUpotrebe": 2,
-    "sastojci": null,
-    "zamenskiLekovi": null
-  },
-  {
-    "brLekaraKojiSuodobriliLek": 0,
-    "lekariKojimaJePoslatLek": [
-      "1",
-      "2"
-    ],
-    "odobren": false,
-    "id": null,
-    "naziv": "punMiJeKuracVise",
-    "tip": 3,
-    "kolicina": 69,
-    "proizvodjac": "popisamSeNaSims",
-    "nacinUpotrebe": 2,
-    "sastojci": [
-	"proba",
-	"proba1"
-     ],
-    "zamenskiLekovi": [
-      {
-        "id": "2",
-        "naziv": "LekLek",
-        "tip": 5,
-        "kolicina": 75,
-        "proizvodjac": "proizvodjac neki",
-        "nacinUpotrebe": 2,
-        "sastojci": null,
-        "zamenskiLekovi": null
-      },
-      {
-        "id": "3",
-        "naziv": "LekLekLek",
-        "tip": 5,
-        "kolicina": 75,
-        "proizvodjac": "proizvodjac neki",
-        "nacinUpotrebe": 1,
-        "sastojci": null,
-        "zamenskiLekovi": null
-      }
-    ]
   }
 ]

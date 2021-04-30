@@ -197,7 +197,13 @@ namespace Bolnica_aplikacija
             btnNazad.Visibility = Visibility.Visible;
             btnPretraga.Visibility = Visibility.Hidden;
 
+            ucitajLekoveZaOdobravanje();
+        }
+
+        private void ucitajLekoveZaOdobravanje()
+        {
             dataGridLekoviZaOdobravanje.ItemsSource = LekKontroler.nadjiLekoveZaOdobravanjeZaLogovanogLekara(KorisnikKontroler.getLekar().id);
+
         }
 
         private void btnInfoLek_Click(object sender, RoutedEventArgs e)
@@ -351,6 +357,32 @@ namespace Bolnica_aplikacija
             {
                 odobriLekove.Content = "Odobri lekova";
 
+            }
+        }
+
+        private void btnOdbaci_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnOdobri_Click(object sender, RoutedEventArgs e)
+        {
+            if(dataGridLekoviZaOdobravanje.SelectedIndex != -1)
+            {
+                if(((LekZaOdobravanje)dataGridLekoviZaOdobravanje.SelectedItem).brLekaraKojiSuodobriliLek + 1 < 2)
+                {
+                    LekKontroler.azurirajOdobravanje((LekZaOdobravanje)dataGridLekoviZaOdobravanje.SelectedItem);
+                    ucitajLekoveZaOdobravanje();
+                }
+                else
+                {
+                    LekKontroler.dodajLek((LekZaOdobravanje)dataGridLekoviZaOdobravanje.SelectedItem);
+                    ucitajLekoveZaOdobravanje();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Potrebno je izabrati lek!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
     }
