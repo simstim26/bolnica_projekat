@@ -11,6 +11,16 @@ namespace Bolnica_aplikacija.Kontroler
 {
     class LekKontroler
     {
+        public static bool proveriLekoveZaOdobravanjeZaLogovanogLekara(String idLekara)
+        {
+            return LekServis.getInstance().proveriLekoveZaOdobravanjeZaLogovanogLekara(idLekara);
+        }
+
+        public static List<LekZaOdobravanje> nadjiLekoveZaOdobravanjeZaLogovanogLekara(String idLekara)
+        {
+            return LekServis.getInstance().nadjiLekoveZaOdobravanjeZaLogovanogLekara(idLekara);
+        }
+
         public static List<Lek> ucitajSveSemTrenutnogNaTerapiji(String idLeka)
         {
             return LekServis.getInstance().ucitajSveSemTrenutnogNaTerapiji(idLeka);

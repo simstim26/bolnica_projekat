@@ -17,6 +17,7 @@ using System.IO;
 using Model;
 using Bolnica_aplikacija.Kontroler;
 using Bolnica_aplikacija.LekarStudent;
+using Bolnica_aplikacija.Model;
 
 namespace Bolnica_aplikacija
 {
@@ -42,6 +43,10 @@ namespace Bolnica_aplikacija
             nazad = this.btnNazad;
             pretraga = this.btnPretraga;
             btnNazad.Visibility = Visibility.Hidden;
+            if (!LekKontroler.proveriLekoveZaOdobravanjeZaLogovanogLekara(KorisnikKontroler.getLekar().id))
+            {
+                postojeLekoviZaOdobravanje.Visibility = Visibility.Visible;
+            }
         }
 
         public static Label getGlavnaLabela()
@@ -177,6 +182,7 @@ namespace Bolnica_aplikacija
 
         private void odobriLekove_Click(object sender, RoutedEventArgs e)
         {
+
             if (gridRULekovi.Visibility == Visibility.Hidden)
             {
                 sacuvajStareVrednosti();
@@ -190,12 +196,28 @@ namespace Bolnica_aplikacija
             gridOdobravanjeLekova.Visibility = Visibility.Visible;
             btnNazad.Visibility = Visibility.Visible;
             btnPretraga.Visibility = Visibility.Hidden;
+
+            dataGridLekoviZaOdobravanje.ItemsSource = LekKontroler.nadjiLekoveZaOdobravanjeZaLogovanogLekara(KorisnikKontroler.getLekar().id);
         }
 
         private void btnInfoLek_Click(object sender, RoutedEventArgs e)
         {
-            glavnaLabela.Content = "Informacije o leku";
-            gridInfoLek.Visibility = Visibility.Visible;
+            if (dataGridLekoviZaOdobravanje.SelectedIndex != -1)
+            {
+                glavnaLabela.Content = "Informacije o leku";
+                gridInfoLek.Visibility = Visibility.Visible;
+                LekZaOdobravanje lek = (LekZaOdobravanje)dataGridLekoviZaOdobravanje.SelectedItem;
+                lblNazivLeka.Content = lek.naziv;
+                lblProizvodjac.Content = lek.proizvodjac;
+                lblNacinUpotrebe.Content = lek.getNacinUpotrebeString();
+                lblTipLeka.Content = lek.getTipString();
+
+                listSastojci.ItemsSource = lek.sastojci;
+            }
+            else
+            {
+                MessageBox.Show("Potrebno je izabrati lek!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
         private void sacuvajStareVrednosti()
@@ -293,6 +315,7 @@ namespace Bolnica_aplikacija
             btnDodajZamenskiLek.Visibility = Visibility.Visible;
             gridRUZamenskiLekovi.Visibility = Visibility.Visible;
             glavnaLabela.Content = "Zamenski lekovi";
+            dataGridZamenskiLekovi.ItemsSource = ((Lek)dataGridPostojeciLekovi.SelectedItem).zamenskiLekovi;
         }
 
         private void btnZamenskiLekovi_Click(object sender, RoutedEventArgs e)
@@ -300,12 +323,35 @@ namespace Bolnica_aplikacija
             gridRUZamenskiLekovi.Visibility = Visibility.Visible;
             btnDodajZamenskiLek.Visibility = Visibility.Hidden;
             glavnaLabela.Content = "Zamenski lekovi";
+            dataGridZamenskiLekovi.ItemsSource = ((LekZaOdobravanje)dataGridLekoviZaOdobravanje.SelectedItem).zamenskiLekovi;
         }
 
         private void btnDodajZamenskiLek_Click(object sender, RoutedEventArgs e)
         {
             gridDodavanjeZamenskogLeka.Visibility = Visibility.Visible;
             glavnaLabela.Content = "Dodavanje zamenskog leka";
+        }
+
+        private void PopupBox_Opened(object sender, RoutedEventArgs e)
+        {
+            if (!LekKontroler.proveriLekoveZaOdobravanjeZaLogovanogLekara(KorisnikKontroler.getLekar().id))
+            {
+                odobriLekove.Content = "! Odobri lekova";
+            }
+            postojeLekoviZaOdobravanje.Visibility = Visibility.Hidden;
+        }
+
+        private void PopupBox_Closed(object sender, RoutedEventArgs e)
+        {
+            if (!LekKontroler.proveriLekoveZaOdobravanjeZaLogovanogLekara(KorisnikKontroler.getLekar().id))
+            {
+                postojeLekoviZaOdobravanje.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                odobriLekove.Content = "Odobri lekova";
+
+            }
         }
     }
 }

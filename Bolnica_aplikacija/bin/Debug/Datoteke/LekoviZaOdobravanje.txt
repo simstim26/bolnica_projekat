@@ -41,7 +41,10 @@
     "kolicina": 69,
     "proizvodjac": "popisamSeNaSims",
     "nacinUpotrebe": 2,
-    "sastojci": null,
+    "sastojci": [
+	"proba",
+	"proba1"
+     ],
     "zamenskiLekovi": [
       {
         "id": "2",

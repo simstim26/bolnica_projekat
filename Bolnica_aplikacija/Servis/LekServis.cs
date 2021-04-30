@@ -23,6 +23,42 @@ namespace Bolnica_aplikacija.Servis
         }
         private LekRepozitorijum lekRepozitorijum = new LekRepozitorijum();
 
+        public bool proveriLekoveZaOdobravanjeZaLogovanogLekara(String idLekara)
+        {
+            return nadjiLekoveZaOdobravanjeZaLogovanogLekara(idLekara).Count == 0;
+        }
+
+        public List<LekZaOdobravanje> nadjiLekoveZaOdobravanjeZaLogovanogLekara(String idLogovanogLekara)
+        {
+            List<LekZaOdobravanje> povratnaVrednost = new List<LekZaOdobravanje>();
+
+            foreach(LekZaOdobravanje lek in lekRepozitorijum.ucitajLekoveZaOdobravanje())
+            {
+                if (proveriLogovanogLekaraIIzabranog(lek.lekariKojimaJePoslatLek))
+                {
+                    povratnaVrednost.Add(lek);
+                }
+            }
+
+            return povratnaVrednost;
+        } 
+
+        private bool proveriLogovanogLekaraIIzabranog(List<String> lekariKojimaJePoslatLek)
+        {
+            bool povratnaVrednost = false;
+            if(lekariKojimaJePoslatLek != null)
+            {
+                foreach(String idLekara in lekariKojimaJePoslatLek)
+                {
+                    if (idLekara.Equals(KorisnikServis.getInstance().getLekar().id))
+                    {
+                        povratnaVrednost = true;
+                        break;
+                    }
+                }
+            }
+            return povratnaVrednost;
+        }
 
         public List<Lek> ucitajSveSemTrenutnogNaTerapiji(String idLeka)
         {

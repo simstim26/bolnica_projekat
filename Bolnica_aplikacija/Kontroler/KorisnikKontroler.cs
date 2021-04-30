@@ -10,50 +10,49 @@ namespace Bolnica_aplikacija.Kontroler
 {
     class KorisnikKontroler
     {
-        private static KorisnikServis korisnikServis = new KorisnikServis();
         public static String[] prijava(String korisnickoIme, String lozinka)
         {
-            return korisnikServis.prijava(korisnickoIme, lozinka);
+            return KorisnikServis.getInstance().prijava(korisnickoIme, lozinka);
         }
 
         public static void nadjiLekara(String idLekara)
         {
-            korisnikServis.nadjiLekara(idLekara);
+            KorisnikServis.getInstance().nadjiLekara(idLekara);
         }
 
         public static void NadjiPacijenta(String idPacijenta)
         {
-            korisnikServis.NadjiPacijenta(idPacijenta);
+            KorisnikServis.getInstance().NadjiPacijenta(idPacijenta);
         }
 
         public static void NadjiUpravnika(String idUpravnika)
         {
-            korisnikServis.NadjiUpravnika(idUpravnika);
+            KorisnikServis.getInstance().NadjiUpravnika(idUpravnika);
         }
 
         public static void nadjiSekretara(String idSekretara)
         {
-            korisnikServis.nadjiSekretara(idSekretara);
+            KorisnikServis.getInstance().nadjiSekretara(idSekretara);
         }
 
         public static Lekar getLekar()
         {
-            return korisnikServis.getLekar();
+            return KorisnikServis.getInstance().getLekar();
         }
 
         public static Pacijent GetPacijent()
         {
-            return korisnikServis.GetPacijent();
+            return KorisnikServis.getInstance().GetPacijent();
         }
 
         public static Upravnik GetUpravnik()
         {
-            return korisnikServis.GetUpravnik();
+            return KorisnikServis.getInstance().GetUpravnik();
         }
 
         public static Sekretar GetSekretar()
         {
-            return korisnikServis.getSekretar();
+            return KorisnikServis.getInstance().getSekretar();
         }
 
     }
