@@ -104,10 +104,9 @@
             </Grid>
 
         </Grid>
-        <Grid x:Name="gridRUZamenskiLekovi" Background="White" Margin="0,4.6,0,1.4" Grid.Row="1" Visibility="Hidden">
+        <Grid x:Name="gridRUZamenskiLekovi" Background="White" Margin="0,4.6,0,1.4" Grid.Row="1" Visibility="hidden">
             <DataGrid HorizontalAlignment="Left" Height="538" Margin="0,132,0,0" VerticalAlignment="Top" Width="424"/>
-            <Button x:Name="btnInformacijeOZamenskomLeku" Content="Info" HorizontalAlignment="Left" Margin="321,69,0,0" VerticalAlignment="Top" Width="75"/>
-            <Button x:Name="btnDodajZamenskiLek" Content="Dodaj" HorizontalAlignment="Left" Margin="41,69,0,0" VerticalAlignment="Top" Width="75" Click="btnDodajZamenskiLek_Click"/>
+            <Button x:Name="btnDodajZamenskiLek" Content="Dodaj" HorizontalAlignment="Left" Margin="315,75,0,0" VerticalAlignment="Top" Width="75" Click="btnDodajZamenskiLek_Click"/>
             <Grid x:Name="gridDodavanjeZamenskogLeka" Background="White" Visibility="Hidden">
                 <DataGrid HorizontalAlignment="Left" Height="426" Margin="0,114,0,0" VerticalAlignment="Top" Width="424"/>
                 <Button x:Name="btnPotvrdaZamenskogLeka" HorizontalAlignment="Left" Margin="36,574,0,0" VerticalAlignment="Top" Width="85" Height="46">
