@@ -109,5 +109,38 @@ namespace Bolnica_aplikacija.Repozitorijum
 
             return lekovi;
         }
+
+        public List<LekZaOdobravanje> ucitajOdbaceneLekove()
+        {
+            List<LekZaOdobravanje> sviLekovi;
+            try
+            {
+                sviLekovi = JsonSerializer.Deserialize<List<LekZaOdobravanje>>(File.ReadAllText("Datoteke/OdbaceniLekovi.txt"));
+            }
+            catch (Exception e)
+            {
+                sviLekovi = new List<LekZaOdobravanje>();
+            }
+
+            return sviLekovi;
+        }
+
+        public void dodajLekZaOdbacivanje(LekZaOdobravanje lekZaOdbacivanje)
+        {
+            List<LekZaOdobravanje> odbaceniLekovi = ucitajOdbaceneLekove();
+            lekZaOdbacivanje.id = (odbaceniLekovi.Count + 1).ToString();
+            odbaceniLekovi.Add(lekZaOdbacivanje);
+            upisiOdbaceneLekove(odbaceniLekovi);
+        }
+        
+        public void upisiOdbaceneLekove(List<LekZaOdobravanje> lekoviZaOdbacivanje)
+        {
+            var formatiranje = new JsonSerializerOptions
+            {
+                WriteIndented = true,
+            };
+            string jsonString = JsonSerializer.Serialize(lekoviZaOdbacivanje, formatiranje);
+            File.WriteAllText("Datoteke/OdbaceniLekovi.txt", jsonString);
+        }
     }
 }

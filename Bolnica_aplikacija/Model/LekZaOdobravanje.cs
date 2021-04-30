@@ -25,6 +25,8 @@ namespace Bolnica_aplikacija.Model
         public List<String> lekariKojimaJePoslatLek { get; set; }
         public bool odobren { get; set; }
 
+        public String propratnaPoruka { get; set; }
+
         public LekZaOdobravanje()
         {
 
@@ -54,6 +56,7 @@ namespace Bolnica_aplikacija.Model
             sastojci = lekZaOdobravanje.sastojci;
             zamenskiLekovi = lekZaOdobravanje.zamenskiLekovi;
             lekariKojimaJePoslatLek = lekZaOdobravanje.lekariKojimaJePoslatLek;
+            propratnaPoruka = lekZaOdobravanje.propratnaPoruka;
         }
     }
 }

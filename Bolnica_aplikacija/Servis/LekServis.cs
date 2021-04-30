@@ -155,5 +155,11 @@ namespace Bolnica_aplikacija.Servis
             lekRepozitorijum.fizickiObrisiLekZaDodavanje(lekZaDodavanje);
             lekRepozitorijum.dodajLek(new Lek(lekZaDodavanje, (ucitajSve().Count + 1).ToString()));
         }
+        public void odbacivanjeLeka(LekZaOdobravanje lekZaOdbacivanje)
+        {
+            lekRepozitorijum.fizickiObrisiLekZaDodavanje(lekZaOdbacivanje);
+            lekRepozitorijum.dodajLekZaOdbacivanje(lekZaOdbacivanje);
+        }
+
     }
 }
