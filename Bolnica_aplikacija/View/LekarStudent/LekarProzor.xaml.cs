@@ -464,6 +464,8 @@ namespace Bolnica_aplikacija
         {
             dataGridPostojeciLekovi.ItemsSource = LekKontroler.ucitajSve();
             dataGridPostojeciLekovi.SelectedIndex = id;
+            dataGridZamenskiLekovi.ItemsSource = ((Lek)dataGridPostojeciLekovi.SelectedItem).zamenskiLekovi;
+            dataGridDodavanjeZamenskogLeka.ItemsSource = LekKontroler.ucitajSveLekoveBezZamenskih(((Lek)dataGridPostojeciLekovi.SelectedItem).id);
             listRUSastojci.ItemsSource = ((Lek)dataGridPostojeciLekovi.SelectedItem).sastojci;
         }
 
@@ -471,7 +473,9 @@ namespace Bolnica_aplikacija
         {
             if(dataGridDodavanjeZamenskogLeka.SelectedIndex != -1)
             {
-
+                int id = dataGridPostojeciLekovi.SelectedIndex;
+                LekKontroler.dodajZamenskiLek(((Lek)dataGridPostojeciLekovi.SelectedItem).id,(Lek)dataGridDodavanjeZamenskogLeka.SelectedItem);
+                osveziPrikaz(id);     
             }
             else
             {

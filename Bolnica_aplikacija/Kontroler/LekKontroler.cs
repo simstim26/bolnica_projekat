@@ -53,7 +53,7 @@ namespace Bolnica_aplikacija.Kontroler
             LekServis.getInstance().napraviLek(lek);
         }
 
-        public static void napraviLek(String naziv, TipLeka tipLeka, int kolicina, String proizvodjac, NacinUpotrebe nacinUpotrebe, 
+        public static void napraviLek(String naziv, TipLeka tipLeka, int kolicina, String proizvodjac, NacinUpotrebe nacinUpotrebe,
             LekZaOdobravanje lek)
         {
             lek = new LekZaOdobravanje(naziv, tipLeka, kolicina, proizvodjac, nacinUpotrebe);
@@ -70,7 +70,7 @@ namespace Bolnica_aplikacija.Kontroler
             LekServis.getInstance().dodajLek(lekZaDodavanje);
         }
 
-        public static  void odbacivanjeLeka(LekZaOdobravanje lekZaOdbacivanje)
+        public static void odbacivanjeLeka(LekZaOdobravanje lekZaOdbacivanje)
         {
             LekServis.getInstance().odbacivanjeLeka(lekZaOdbacivanje);
         }
@@ -93,6 +93,11 @@ namespace Bolnica_aplikacija.Kontroler
         public static List<Lek> ucitajSveLekoveBezZamenskih(String idLeka)
         {
             return LekServis.getInstance().ucitajSveLekoveBezZamenskih(idLeka);
+        }
+
+        public static void dodajZamenskiLek(String idLek, Lek zamenskiLek)
+        {
+            LekServis.getInstance().dodajZamenskiLek(idLek, zamenskiLek);
         }
     }
 }

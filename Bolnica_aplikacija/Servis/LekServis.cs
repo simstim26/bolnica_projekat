@@ -218,5 +218,15 @@ namespace Bolnica_aplikacija.Servis
             return povratnaVrednost;
         }
 
+        public void dodajZamenskiLek(String idLek, Lek zamenskiLek)
+        {
+            Lek lek = nadjiLekPoId(idLek);
+            if (lek.zamenskiLekovi == null)
+                lek.zamenskiLekovi = new List<Lek>();
+
+            lek.zamenskiLekovi.Add(zamenskiLek);
+            lekRepozitorijum.azurirajLek(lek);
+        }
+
     }
 }
