@@ -7,6 +7,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -14,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Bolnica_aplikacija.Kontroler;
+using Bolnica_aplikacija.Model;
 using Bolnica_aplikacija.PomocneKlase;
 using Bolnica_aplikacija.Repozitorijum;
 using Bolnica_aplikacija.Servis;
@@ -56,17 +58,17 @@ namespace Bolnica_aplikacija
             if (tbProstorija.IsChecked == true)
             {
                 tbInventar.IsChecked = false;
-                tb_Copy1.IsChecked = false;
+                tbLekovi.IsChecked = false;
             }
         }
 
         private void tb_Copy_Click(object sender, RoutedEventArgs e)
         {
             tbProstorija.IsChecked = false;
-            tb_Copy1.IsChecked = false;
+            tbLekovi.IsChecked = false;
         }
 
-        private void tb_Copy1_Click(object sender, RoutedEventArgs e)
+        private void tbLekovi_Click(object sender, RoutedEventArgs e)
         {
             tbInventar.IsChecked = false;
             tbProstorija.IsChecked = false;
@@ -86,7 +88,7 @@ namespace Bolnica_aplikacija
 
         private void tbProstorija_Unchecked(object sender, RoutedEventArgs e)
         {
-            if (tb_Copy1.IsChecked == false && tbInventar.IsChecked == false)
+            if (tbLekovi.IsChecked == false && tbInventar.IsChecked == false)
             {
                 vodoravniPravougaonik.Visibility = Visibility.Hidden;
                 donjiPravougaonik.Visibility = Visibility.Hidden;
@@ -99,7 +101,7 @@ namespace Bolnica_aplikacija
 
         private void tbInventar_Unchecked(object sender, RoutedEventArgs e)
         {
-            if (tb_Copy1.IsChecked == false && tbProstorija.IsChecked == false)
+            if (tbLekovi.IsChecked == false && tbProstorija.IsChecked == false)
             {
                 vodoravniPravougaonik.Visibility = Visibility.Hidden;
                 horizontalniPravougaonik.Visibility = Visibility.Visible;
@@ -111,18 +113,29 @@ namespace Bolnica_aplikacija
             gridInventar.Visibility = Visibility.Hidden;
         }
 
-        private void tb_Copy1_Unchecked(object sender, RoutedEventArgs e)
+        private void tbLekovi_Unchecked(object sender, RoutedEventArgs e)
         {
             if (tbProstorija.IsChecked == false && tbInventar.IsChecked == false)
             {
                 vodoravniPravougaonik.Visibility = Visibility.Hidden;
                 horizontalniPravougaonik.Visibility = Visibility.Visible;
             }
+            horizontalniPravougaonik.Visibility = Visibility.Visible;
+            horizontalniPravougaonik.Height = 679;
+            horizontalniPravougaonik.Margin = new System.Windows.Thickness(19, 60, 0, 0);
+            gridLekovi.Visibility = Visibility.Hidden;
         }
 
-        private void tb_Copy1_Checked(object sender, RoutedEventArgs e)
+        private void tbLekovi_Checked(object sender, RoutedEventArgs e)
         {
+            dataGridLekovi.ItemsSource = LekKontroler.ucitajSve();
+            gridLekovi.Visibility = Visibility.Visible;
+            vodoravniPravougaonik.Visibility = Visibility.Visible;
+            horizontalniPravougaonik.Height = 33;
+            horizontalniPravougaonik.Margin = new System.Windows.Thickness(19, 697, 0, 0);
 
+
+            donjiPravougaonik.Visibility = Visibility.Visible;
         }
 
         private void btnOdjava_Click(object sender, RoutedEventArgs e)
@@ -232,7 +245,7 @@ namespace Bolnica_aplikacija
             if (tbInventar.IsChecked == true)
             {
                 tbProstorija.IsChecked = false;
-                tb_Copy1.IsChecked = false;
+                tbLekovi.IsChecked = false;
             }
 
             dataGridInventar.ItemsSource = StavkaKontroler.UcitajNeobrisaneStavke();
@@ -539,6 +552,117 @@ namespace Bolnica_aplikacija
         {
             gridInventar.Visibility = Visibility.Visible;
             gridStavkaUProstoriama.Visibility = Visibility.Hidden;
+        }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            if (dataGridSviLekoviZaZamenski.SelectedIndex != -1)
+            {
+                List<Lek> sviLekovi = (List<Lek>)dataGridSviLekoviZaZamenski.ItemsSource;
+                List<Lek> zamenSkiLekovi = (List<Lek>)dataGridZamenskiUbaceniLekovi.ItemsSource;
+                zamenSkiLekovi.Add((Lek)dataGridSviLekoviZaZamenski.SelectedItem);
+                sviLekovi.Remove((Lek)dataGridSviLekoviZaZamenski.SelectedItem);
+                dataGridZamenskiUbaceniLekovi.Items.Refresh();
+                dataGridSviLekoviZaZamenski.Items.Refresh();
+            }
+        }
+
+        private void btnDodajLek_Click(object sender, RoutedEventArgs e)
+        {
+            LekZaOdobravanje noviLek = LekZaOdobravanje.getInstance();
+
+            gridLekovi.Visibility = Visibility.Hidden;
+            gridLekoviDodaj.Visibility = Visibility.Visible;
+            cbTipLekaDodavanje.ItemsSource = LekKontroler.tipLeka();
+            comboBoxNacinUpotrebe.ItemsSource = LekKontroler.nacinUpotrebeLeka();
+        }
+
+        private void btnDodajSastojke_Click(object sender, RoutedEventArgs e)
+        {
+            gridLekoviDodajSastojke.Visibility = Visibility.Visible;
+            gridLekoviDodaj.Visibility = Visibility.Hidden;
+        }
+
+        private void button1_Click(object sender, RoutedEventArgs e)
+        {
+            gridLekoviDodajSastojke.Visibility = Visibility.Hidden;
+            gridLekoviDodaj.Visibility = Visibility.Visible;
+        }
+
+        private void btnDodajZamenskeLekove_Click(object sender, RoutedEventArgs e)
+        {
+            dataGridSviLekoviZaZamenski.ItemsSource = LekKontroler.ucitajSve();
+            List<Lek> zamenskiLekovi = new List<Lek>();
+            dataGridZamenskiUbaceniLekovi.ItemsSource = zamenskiLekovi;
+            gridLekoviDodajZamenskeLekove.Visibility = Visibility.Visible;
+            gridLekoviDodaj.Visibility = Visibility.Hidden;
+        }
+
+        private void btnPotvrdiZamenske_Click(object sender, RoutedEventArgs e)
+        {
+
+            LekZaOdobravanje noviLek = LekZaOdobravanje.getInstance();
+            noviLek.zamenskiLekovi = (List<Lek>)dataGridZamenskiUbaceniLekovi.ItemsSource;
+            gridLekoviDodajZamenskeLekove.Visibility = Visibility.Hidden;
+            gridLekoviDodaj.Visibility = Visibility.Visible;
+        }
+
+        private void btnPotvrdiDodavanjeLekova_Click(object sender, RoutedEventArgs e)
+        {
+            gridLekoviDodaj.Visibility = Visibility.Hidden;
+            dataGridLekovi.ItemsSource = LekKontroler.ucitajSve();
+            gridLekovi.Visibility = Visibility.Visible;
+            TipLeka tipLeka = (TipLeka)cbTipLekaDodavanje.SelectedItem;
+            NacinUpotrebe nacinUpotrebe = (NacinUpotrebe)comboBoxNacinUpotrebe.SelectedItem;
+
+            LekZaOdobravanje noviLek = LekZaOdobravanje.getInstance();
+
+            noviLek.naziv = textBoxNazivLekaUnos.Text;
+            noviLek.tip = tipLeka;
+            noviLek.kolicina = Int32.Parse(textBoxKolicinaLekaUnos.Text);
+            noviLek.proizvodjac = textBoxProizvodjacLekaUnos.Text;
+            noviLek.nacinUpotrebe = nacinUpotrebe;
+
+            LekKontroler.napraviLek(noviLek);
+
+        }
+
+        private void btnIzaberiLekare_Click(object sender, RoutedEventArgs e)
+        {
+            dataGridLekariZaSlanje.ItemsSource = LekarKontroler.ucitajSve();
+            gridIzaberiLekareZaSlanje.Visibility = Visibility.Visible;
+            gridLekoviDodaj.Visibility = Visibility.Hidden;
+
+        }
+
+        private void btnOtkaziLekare_Click(object sender, RoutedEventArgs e)
+        {
+            gridIzaberiLekareZaSlanje.Visibility = Visibility.Hidden;
+            gridLekoviDodaj.Visibility = Visibility.Visible;
+        }
+
+        private void btnPotvrdiLekare_Click(object sender, RoutedEventArgs e)
+        {
+            List<String> lekariId = new List<String>();
+            foreach(var selektovan in dataGridLekariZaSlanje.SelectedItems)
+            {
+                Lekar lekar = (Lekar)selektovan;
+                lekariId.Add(lekar.id);
+            }
+
+            LekZaOdobravanje noviLek = LekZaOdobravanje.getInstance();
+            noviLek.lekariKojimaJePoslatLek = lekariId;
+        }
+
+        private void OnChecked(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine(dataGridLekariZaSlanje.SelectedIndex.ToString());
+        }
+
+        private void btnOtkaziDodavanjeLeka_Click(object sender, RoutedEventArgs e)
+        {
+            gridLekoviDodaj.Visibility = Visibility.Hidden;
+            gridLekovi.Visibility = Visibility.Visible;
         }
     }
 }

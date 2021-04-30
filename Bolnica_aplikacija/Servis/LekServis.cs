@@ -1,4 +1,5 @@
-﻿using Bolnica_aplikacija.Repozitorijum;
+﻿using Bolnica_aplikacija.Model;
+using Bolnica_aplikacija.Repozitorijum;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ namespace Bolnica_aplikacija.Servis
         private static LekServis instance;
         public static LekServis getInstance()
         {
-            if(instance == null)
+            if (instance == null)
             {
                 instance = new LekServis();
             }
@@ -21,18 +22,18 @@ namespace Bolnica_aplikacija.Servis
             return instance;
         }
         private LekRepozitorijum lekRepozitorijum = new LekRepozitorijum();
-        
+
 
         public List<Lek> ucitajSveSemTrenutnogNaTerapiji(String idLeka)
         {
             List<Lek> povratnaVrednost = new List<Lek>();
-            
-            if(idLeka == null)
+
+            if (idLeka == null)
             {
                 return lekRepozitorijum.ucitajSve();
             }
 
-            foreach(Lek lek in ucitajSve())
+            foreach (Lek lek in ucitajSve())
             {
                 if (!idLeka.Equals(lek.id))
                 {
@@ -46,7 +47,7 @@ namespace Bolnica_aplikacija.Servis
         {
             Lek povratnaVrednost = new Lek();
 
-            foreach(Lek lek in ucitajSve())
+            foreach (Lek lek in ucitajSve())
             {
                 if (idLeka != null && idLeka.Equals(lek.id))
                 {
@@ -69,5 +70,28 @@ namespace Bolnica_aplikacija.Servis
             return lekRepozitorijum.ucitajSve();
         }
 
+        public List<NacinUpotrebe> nacinUpotrebeLeka()
+        {
+            List<NacinUpotrebe> nacinUpotrebe = Enum.GetValues(typeof(NacinUpotrebe)).Cast<NacinUpotrebe>().ToList();
+            return nacinUpotrebe;
+        }
+
+        public List<TipLeka> tipLeka()
+        {
+            List<TipLeka> tipLeka = Enum.GetValues(typeof(TipLeka)).Cast<TipLeka>().ToList();
+            return tipLeka;
+        }
+
+        public void napraviLek(LekZaOdobravanje lek)
+        {
+            var lekoviZaOdobravanje = lekRepozitorijum.ucitajLekoveZaOdobravanje();
+            lekoviZaOdobravanje.Add(lek);
+            lekRepozitorijum.upisiLekoveZaObradu(lekoviZaOdobravanje);
+        }
+
+        public void dodajLekuLekare(List<String> idLekari, LekZaOdobravanje lek)
+        {
+            lek.lekariKojimaJePoslatLek = idLekari;
+        }
     }
 }
