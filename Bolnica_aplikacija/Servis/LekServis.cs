@@ -165,5 +165,34 @@ namespace Bolnica_aplikacija.Servis
         {
             lekRepozitorijum.azurirajLek(lekZaAzuriranje);
         }
+
+        public void izbrisiSastojak(String idLeka, String sastojak)
+        {
+            foreach(Lek lek in lekRepozitorijum.ucitajSve())
+            {
+                if (idLeka.Equals(lek.id))
+                {
+                    lek.sastojci.Remove(sastojak);
+                    lekRepozitorijum.azurirajLek(lek);
+                    break;
+                }
+            }
+        }
+        public void dodajSastojak(String idLeka, String sastojak)
+        {
+            foreach (Lek lek in lekRepozitorijum.ucitajSve())
+            {
+                if (idLeka.Equals(lek.id))
+                {
+                    if (lek.sastojci == null)
+                        lek.sastojci = new List<String>();
+
+                    lek.sastojci.Add(sastojak);
+                    lekRepozitorijum.azurirajLek(lek);
+                    break;
+                }
+            }
+
+        }
     }
 }

@@ -7,14 +7,8 @@
     "proizvodjac": "proizvodjac neki",
     "nacinUpotrebe": 2,
     "sastojci": [
-      "aaaaa",
-      "bbbbb",
-      "bbbbb",
-      "bbbbb",
-      "aaaaaa",
-      "ccc",
-      "vvv",
-      "aaaaaaa"
+      "eeee",
+      "aaa"
     ],
     "zamenskiLekovi": null
   },

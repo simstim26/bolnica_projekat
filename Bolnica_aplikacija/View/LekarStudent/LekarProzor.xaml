@@ -126,7 +126,7 @@
                 <Button x:Name="btnDodavanjeSastojka" HorizontalAlignment="Left" Margin="167,208,0,0" VerticalAlignment="Top" Width="49" Click="btnDodavanjeSastojka_Click">
                     <materialDesign:PackIcon Kind="Plus" HorizontalAlignment="Center" Height="25" Width="28"></materialDesign:PackIcon>
                 </Button>
-                <Button x:Name="btnIzbrisiSastojak" HorizontalAlignment="Left" Margin="320,208,0,0" VerticalAlignment="Top" Width="49">
+                <Button x:Name="btnIzbrisiSastojak" HorizontalAlignment="Left" Margin="320,208,0,0" VerticalAlignment="Top" Width="49" Click="btnIzbrisiSastojak_Click">
                     <materialDesign:PackIcon Kind="TrashCan" HorizontalAlignment="Center"  Height="25" Width="23"></materialDesign:PackIcon>
                 </Button>
                 <Button x:Name="btnRUZamenskiLekovi" Content="Vidi zamenske lekove" HorizontalAlignment="Left" Margin="54,588,0,0" VerticalAlignment="Top" Width="305" Height="40" Click="btnRUZamenskiLekovi_Click"/>

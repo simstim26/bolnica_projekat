@@ -412,13 +412,16 @@ namespace Bolnica_aplikacija
 
         private void btnDodavanjeSastojka_Click(object sender, RoutedEventArgs e)
         {
-            Lek lek = (Lek)dataGridPostojeciLekovi.SelectedItem;
-            if (lek.sastojci == null)
-                lek.sastojci = new List<String>();
-            lek.sastojci.Add(txtDodavanjeSastojaka.Text);
-            LekKontroler.azurirajLek(lek);
+            //Lek lek = (Lek)dataGridPostojeciLekovi.SelectedItem;
+            //if (lek.sastojci == null)
+            //  lek.sastojci = new List<String>();
+            ///lek.sastojci.Add(txtDodavanjeSastojaka.Text);
+            //LekKontroler.azurirajLek(lek);
+            int id = dataGridPostojeciLekovi.SelectedIndex;
+            LekKontroler.dodajSastojak(((Lek)dataGridPostojeciLekovi.SelectedItem).id, txtDodavanjeSastojaka.Text);
+            osveziPrikaz(id);
             txtDodavanjeSastojaka.Text = "";
-            listRUSastojci.Items.Refresh();
+            //listRUSastojci.Items.Refresh();
         }
 
         private void txtDodavanjeSastojaka_TextChanged(object sender, TextChangedEventArgs e)
@@ -431,6 +434,23 @@ namespace Bolnica_aplikacija
             {
                 btnDodavanjeSastojka.IsEnabled = true;
             }
+        }
+
+        private void btnIzbrisiSastojak_Click(object sender, RoutedEventArgs e)
+        {
+            if(listRUSastojci.SelectedIndex != -1)
+            {
+                int id = dataGridPostojeciLekovi.SelectedIndex;
+                LekKontroler.izbrisiSastojak(((Lek)dataGridPostojeciLekovi.SelectedItem).id, (String)listRUSastojci.SelectedItem);
+                osveziPrikaz(id);
+            }
+        }
+
+        private void osveziPrikaz(int id)
+        {
+            dataGridPostojeciLekovi.ItemsSource = LekKontroler.ucitajSve();
+            dataGridPostojeciLekovi.SelectedIndex = id;
+            listRUSastojci.ItemsSource = ((Lek)dataGridPostojeciLekovi.SelectedItem).sastojci;
         }
     }
 }

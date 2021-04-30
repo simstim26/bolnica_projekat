@@ -79,5 +79,15 @@ namespace Bolnica_aplikacija.Kontroler
         {
             LekServis.getInstance().azurirajLek(lekZaAzuriranje);
         }
+
+        public static void izbrisiSastojak(String idLeka, String sastojak)
+        {
+            LekServis.getInstance().izbrisiSastojak(idLeka, sastojak);
+        }
+
+        public static void dodajSastojak(String idLeka, String sastojak)
+        {
+            LekServis.getInstance().dodajSastojak(idLeka, sastojak);
+        }
     }
 }
