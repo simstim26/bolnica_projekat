@@ -336,6 +336,7 @@ namespace Bolnica_aplikacija
         {
             gridIzmenaLekova.Visibility = Visibility.Hidden;
             btnDodajZamenskiLek.Visibility = Visibility.Visible;
+            btnObrisiZamenskiLek.Visibility = Visibility.Visible;
             gridRUZamenskiLekovi.Visibility = Visibility.Visible;
             glavnaLabela.Content = "Zamenski lekovi";
             dataGridZamenskiLekovi.ItemsSource = ((Lek)dataGridPostojeciLekovi.SelectedItem).zamenskiLekovi;
@@ -345,6 +346,7 @@ namespace Bolnica_aplikacija
         {
             gridRUZamenskiLekovi.Visibility = Visibility.Visible;
             btnDodajZamenskiLek.Visibility = Visibility.Hidden;
+            btnObrisiZamenskiLek.Visibility = Visibility.Hidden;
             glavnaLabela.Content = "Zamenski lekovi";
             dataGridZamenskiLekovi.ItemsSource = ((LekZaOdobravanje)dataGridLekoviZaOdobravanje.SelectedItem).zamenskiLekovi;
         }
