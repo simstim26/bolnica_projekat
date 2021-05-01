@@ -1,4 +1,5 @@
-﻿using Bolnica_aplikacija.Servis;
+﻿using Bolnica_aplikacija.PacijentModel;
+using Bolnica_aplikacija.Servis;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -69,5 +70,11 @@ namespace Bolnica_aplikacija.Kontroler
             return TerminServis.getInstance().ucitajSve();
 
         }
+
+        public static List<PacijentTermin> ucitajPregledaZaIzabranogLekara(String idLekara)
+        {
+            return TerminServis.getInstance().ucitajPregledaZaIzabranogLekara(idLekara);
+        }
+
     }
 }

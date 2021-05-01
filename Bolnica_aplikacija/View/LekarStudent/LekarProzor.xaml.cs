@@ -176,11 +176,6 @@ namespace Bolnica_aplikacija
             }
         }
 
-        private void Window_Activated(object sender, EventArgs e)
-        {
-
-        }
-
         private void odobriLekove_Click(object sender, RoutedEventArgs e)
         {
 

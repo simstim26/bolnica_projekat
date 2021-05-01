@@ -1,4 +1,6 @@
 ﻿using Bolnica_aplikacija.Kontroler;
+using Bolnica_aplikacija.PacijentModel;
+using Bolnica_aplikacija.PomocneKlase;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -136,6 +138,7 @@ namespace Bolnica_aplikacija.LekarStudent
         private void btnUput_Click(object sender, RoutedEventArgs e)
         {
             this.gridUput.Visibility = Visibility.Visible;
+            dataGridLekari.ItemsSource = LekarKontroler.ucitajLekareSaSpecijalizacijom();
             LekarProzor.getGlavnaLabela().Content = "Izdavanje uputa";
 
         }
@@ -235,6 +238,7 @@ namespace Bolnica_aplikacija.LekarStudent
             gridPitanjeOZakazivanju.Visibility = Visibility.Hidden;
             gridUput.Visibility = Visibility.Hidden;
             LekarProzor.getGlavnaLabela().Content = "Zakazivanje pregleda";
+            dataGridSlobodniTerminiLekara.ItemsSource = TerminKontroler.ucitajPregledaZaIzabranogLekara(((LekarSpecijalizacija)dataGridLekari.SelectedItem).idLekara);
         }
 
         private void btnOdbijZakazivanje_Click(object sender, RoutedEventArgs e)
@@ -272,5 +276,16 @@ namespace Bolnica_aplikacija.LekarStudent
             LekarProzor.getGlavnaLabela().Content = "Prikaz inventara";
         }
 
+        private void btnPotvrdaZakazivanja_Click(object sender, RoutedEventArgs e)
+        {
+            PacijentKontroler.zakaziTerminPacijentu(((PacijentTermin)dataGridSlobodniTerminiLekara.SelectedItem).id);
+            gridZakazivanje.Visibility = Visibility.Hidden;
+            gridOdabirLekaraUput.Visibility = Visibility.Hidden;
+            txtLekarUput.Text = LekarKontroler.nadjiLekaraPoId(((LekarSpecijalizacija)dataGridLekari.SelectedItem).idLekara).ime + " " +
+                LekarKontroler.nadjiLekaraPoId(((LekarSpecijalizacija)dataGridLekari.SelectedItem).idLekara).prezime + ", " 
+                + ((LekarSpecijalizacija)dataGridLekari.SelectedItem).nazivSpecijalizacije;
+            radioBtnPregled.IsChecked = true;
+            radioBtnOperacija.IsEnabled = false;
+        }
     }
 }

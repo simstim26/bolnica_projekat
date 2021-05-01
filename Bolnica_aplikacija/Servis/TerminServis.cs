@@ -1,4 +1,5 @@
 ﻿using Bolnica_aplikacija.Kontroler;
+using Bolnica_aplikacija.PacijentModel;
 using Bolnica_aplikacija.Repozitorijum;
 using Model;
 using System;
@@ -238,6 +239,20 @@ namespace Bolnica_aplikacija.Servis
         {
             return terminRepozitorijum.ucitajSve();
 
+        }
+
+        public List<PacijentTermin> ucitajPregledaZaIzabranogLekara(String idLekara)
+        {
+            List<PacijentTermin> povratnaVrednost = new List<PacijentTermin>();
+            foreach(PacijentTermin termin in LekarServis.getInstance().prikaziSlobodneTermineZaLekara(LekarServis.getInstance().nadjiLekaraPoId(idLekara), 0))
+            {
+                if (termin.idLekara.Equals(idLekara) && termin.napomena.Equals("Pregled"))
+                {
+                    povratnaVrednost.Add(termin);
+                }
+            }
+
+            return povratnaVrednost;
         }
     }
 }

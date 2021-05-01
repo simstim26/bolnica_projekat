@@ -114,6 +114,7 @@
     <Compile Include="Kontroler\TerapijaKontroler.cs" />
     <Compile Include="Kontroler\TerminKontroler.cs" />
     <Compile Include="Model\LekZaOdobravanje.cs" />
+    <Compile Include="PomocneKlase\LekarSpecijalizacija.cs" />
     <Compile Include="View\LekarStudent\Alergije.xaml.cs">
       <DependentUpon>Alergije.xaml</DependentUpon>
     </Compile>

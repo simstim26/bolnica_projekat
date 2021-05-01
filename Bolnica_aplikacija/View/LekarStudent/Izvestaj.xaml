@@ -47,12 +47,12 @@
             <Label Content="Upućuje:" HorizontalAlignment="Left" Margin="50,56,0,0" VerticalAlignment="Top" Height="26" Width="74"/>
             <Label x:Name="lblUpucuje" HorizontalAlignment="Left" Margin="148,56,0,0" VerticalAlignment="Top" Height="26" Width="155"/>
             <Label Content="Kod:" HorizontalAlignment="Left" Margin="50,97,0,0" VerticalAlignment="Top" Height="27" Width="74"/>
-            <TextBox HorizontalAlignment="Left" Height="23" Margin="148,97,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155"/>
+            <TextBox x:Name="txtLekarUput" HorizontalAlignment="Left" Height="23" Margin="148,97,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155"/>
             <Button x:Name="btnIzaberiLekara" HorizontalAlignment="Left" Margin="332,87,0,0" VerticalAlignment="Top" Width="45" Height="33" Click="btnIzaberiLekara_Click">
                 <materialDesign:PackIcon Kind="Plus" Width="22" Height="22" HorizontalAlignment="Center"></materialDesign:PackIcon>
             </Button>
             <Label Content="Upućuje se na " HorizontalAlignment="Left" Margin="34,150,0,0" VerticalAlignment="Top"/>
-            <TextBox HorizontalAlignment="Left" Height="244" Margin="10,245,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="410"/>
+            <TextBox x:Name="txtUputIzvestaj" HorizontalAlignment="Left" Height="244" Margin="10,245,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="410"/>
             <Button x:Name="btnPotvrdiUput" HorizontalAlignment="Left" Margin="34,558,0,0" VerticalAlignment="Top" Width="90" Height="38">
                 <materialDesign:PackIcon Kind="CheckCircle" Height="28" Width="39"></materialDesign:PackIcon>
             </Button>
@@ -150,10 +150,10 @@
         </Grid>
 
         <Grid x:Name="gridOdabirLekaraUput" Background="White" Visibility="Hidden">
-            <DataGrid HorizontalAlignment="Left" Height="436" AutoGenerateColumns="False" IsReadOnly="True" Margin="0,140,0,0" VerticalAlignment="Top" Width="430">
+            <DataGrid x:Name="dataGridLekari" HorizontalAlignment="Left" Height="436" AutoGenerateColumns="False" IsReadOnly="True" Margin="0,140,0,0" VerticalAlignment="Top" Width="430">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Lekar"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Specijalizacija"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Lekar" Binding="{Binding imeLekara}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Specijalizacija" Binding="{Binding nazivSpecijalizacije}"></DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
             <Button x:Name="btnPotvrdaIzbora" HorizontalAlignment="Left" Margin="40,601,0,0" VerticalAlignment="Top" Width="77" Height="38" Click="btnPotvrdaIzbora_Click">
@@ -175,16 +175,16 @@
 
         </Grid>
         <Grid x:Name="gridZakazivanje" Background="White" Visibility="Hidden">
-            <DataGrid HorizontalAlignment="Left" IsReadOnly="True" AutoGenerateColumns="False" Height="436" Margin="0,122,0,0" VerticalAlignment="Top" Width="430">
+            <DataGrid x:Name="dataGridSlobodniTerminiLekara" HorizontalAlignment="Left" IsReadOnly="True" AutoGenerateColumns="False" Height="436" Margin="0,122,0,0" VerticalAlignment="Top" Width="430">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Datum"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Vreme"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Mesto"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Lekar"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Specijalizacija"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Datum" Binding="{Binding datum}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Vreme" Binding="{Binding satnica}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Mesto" Binding="{Binding lokacija}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Lekar" Binding="{Binding imeLekara}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Specijalizacija" Binding="{Binding nazivSpecijalizacije}"></DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
-            <Button x:Name="btnPotvrdaZakazivanja" HorizontalAlignment="Left" Margin="33,595,0,0" VerticalAlignment="Top" Width="85" Height="43">
+            <Button x:Name="btnPotvrdaZakazivanja" HorizontalAlignment="Left" Margin="33,595,0,0" VerticalAlignment="Top" Width="85" Height="43" Click="btnPotvrdaZakazivanja_Click" >
                 <materialDesign:PackIcon Kind="CheckCircle" Height="27" Width="31"></materialDesign:PackIcon>
             </Button>
             <Button x:Name="btnPonistavanjeZakazivanja" Content="Button" HorizontalAlignment="Left" Margin="308,595,0,0" VerticalAlignment="Top" Width="85" Height="43"/>
