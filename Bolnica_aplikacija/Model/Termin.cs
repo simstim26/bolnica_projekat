@@ -20,6 +20,29 @@ namespace Model
         public String idTerapije { get; set; }
         public String idBolesti { get; set; }
         public String izvestaj { get; set; }
+        public String izvestajUputa { get; set; }
+        public String idUputLekara { get; set; }
+        public String idUputTermin { get; set; }
+        public bool jeHitan { get; set; }
+
+        public void kopiraj(Termin termin)
+        {
+            tip = termin.tip;
+            datum = termin.datum;
+            satnica = termin.satnica;
+            jeZavrsen = termin.jeZavrsen;
+            idTermina = termin.idTermina;
+            idProstorije = termin.idProstorije;
+            idPacijenta = termin.idPacijenta;
+            idLekara = termin.idLekara;
+            idTerapije = termin.idTerapije;
+            idBolesti = termin.idBolesti;
+            izvestaj = termin.izvestaj;
+            izvestajUputa = termin.izvestajUputa;
+            idUputLekara = termin.idUputLekara;
+            idUputTermin = termin.idUputTermin;
+            jeHitan = termin.jeHitan;
+        }
 
         public String getTipString()
         {

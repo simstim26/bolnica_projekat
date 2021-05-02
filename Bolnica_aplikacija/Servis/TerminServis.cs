@@ -254,5 +254,12 @@ namespace Bolnica_aplikacija.Servis
 
             return povratnaVrednost;
         }
+
+        public void napraviTermin(Termin termin)
+        {
+            termin.idTermina = (ucitajSve().Count + 1).ToString();
+            terminRepozitorijum.dodajTermin(termin);
+        }
+
     }
 }

@@ -76,5 +76,10 @@ namespace Bolnica_aplikacija.Kontroler
             return TerminServis.getInstance().ucitajPregledaZaIzabranogLekara(idLekara);
         }
 
+        public static void napraviTermin(Termin termin)
+        {
+            TerminServis.getInstance().napraviTermin(termin);
+        }
+
     }
 }

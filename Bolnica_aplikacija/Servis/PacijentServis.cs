@@ -52,7 +52,7 @@ namespace Bolnica_aplikacija.Servis
                                     BolestTerapija bolestTerapija = new BolestTerapija();
                                     bolestTerapija.idBolesti = bolest.id;
                                     bolestTerapija.nazivBolesti = bolest.naziv;
-                                    bolestTerapija.idTerapije = terapija.id;
+                                    bolestTerapija.idTerapije = terapija.id; 
                                     bolestTerapija.nazivTerapije = lek.naziv;
                                     bolestTerapija.idTermina = termin.idTermina;
                                     bolestTerapija.izvestaj = termin.izvestaj;

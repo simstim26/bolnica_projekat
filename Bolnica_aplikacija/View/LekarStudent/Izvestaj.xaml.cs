@@ -229,6 +229,10 @@ namespace Bolnica_aplikacija.LekarStudent
         private void btnPotvrdaIzbora_Click(object sender, RoutedEventArgs e)
         {
             gridPitanjeOZakazivanju.Visibility = Visibility.Visible;
+            if(((LekarSpecijalizacija)dataGridLekari.SelectedItem).nazivSpecijalizacije.Equals("Opšta praksa"))
+            {
+                btnZakaziOperaciju.IsEnabled = false;
+            }
         }
 
         private void btnZakaziPregled_Click(object sender, RoutedEventArgs e)
@@ -262,6 +266,14 @@ namespace Bolnica_aplikacija.LekarStudent
         {
             gridOdabirProstorija.Visibility = Visibility.Visible;
             LekarProzor.getGlavnaLabela().Content = "Odabir prostorije";
+            Termin termin = new Termin();
+            termin.datum = (DateTime)datum.SelectedDate;
+            termin.idLekara = ((LekarSpecijalizacija)dataGridLekari.SelectedItem).idLekara;
+            String[] satnica = txtVreme.Text.Split(':');
+            termin.satnica = termin.datum + (new TimeSpan(Convert.ToInt32(satnica[0]), Convert.ToInt32(satnica[1]), 0));
+            termin.tip = TipTermina.OPERACIJA;
+            termin.idProstorije = "";
+            dataGridProstorije.ItemsSource = TerminKontroler.nadjiSlobodneProstorijeZaTermin(LekarKontroler.nadjiLekaraPoId(((LekarSpecijalizacija)dataGridLekari.SelectedItem).idLekara), termin);
         }
 
         private void btnUkloniProstoriju_Click(object sender, RoutedEventArgs e)
@@ -271,9 +283,17 @@ namespace Bolnica_aplikacija.LekarStudent
 
         private void btnPrikazInventara_Click(object sender, RoutedEventArgs e)
         {
-            gridOdabirProstorija.Visibility = Visibility.Hidden;
-            gridPrikazInventara.Visibility = Visibility.Visible;
-            LekarProzor.getGlavnaLabela().Content = "Prikaz inventara";
+            if (dataGridProstorije.SelectedIndex != -1)
+            {
+                gridOdabirProstorija.Visibility = Visibility.Hidden;
+                gridPrikazInventara.Visibility = Visibility.Visible;
+                LekarProzor.getGlavnaLabela().Content = "Prikaz inventara";
+                dataGridInventar.ItemsSource = ((Prostorija)dataGridProstorije.SelectedItem).Stavka;
+            }
+            else
+            {
+                MessageBox.Show("Potrebno je izabrati prostoriju.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
         private void btnPotvrdaZakazivanja_Click(object sender, RoutedEventArgs e)
@@ -286,6 +306,39 @@ namespace Bolnica_aplikacija.LekarStudent
                 + ((LekarSpecijalizacija)dataGridLekari.SelectedItem).nazivSpecijalizacije;
             radioBtnPregled.IsChecked = true;
             radioBtnOperacija.IsEnabled = false;
+        }
+
+        private void btnPotvrdi_Click(object sender, RoutedEventArgs e)
+        {
+            Termin termin = new Termin();
+            termin.idTermina = "";
+            termin.idPacijenta = PacijentKontroler.getPacijent().id;
+            termin.datum = (DateTime)datum.SelectedDate;
+            termin.idLekara = ((LekarSpecijalizacija)dataGridLekari.SelectedItem).idLekara;
+            termin.idProstorije = ((Prostorija)dataGridProstorije.SelectedItem).id;
+            termin.jeZavrsen = false;
+            String[] satnica = txtVreme.Text.Split(':');
+            DateTime sat = DateTime.Now.Add(new TimeSpan(Convert.ToInt32(satnica[0]), Convert.ToInt32(satnica[1]), 0));
+            termin.satnica = termin.datum + (new TimeSpan(Convert.ToInt32(satnica[0]), Convert.ToInt32(satnica[1]), 0));
+            termin.tip = TipTermina.OPERACIJA;
+            termin.jeHitan = (bool)cBoxHitna.IsChecked;
+            TerminKontroler.napraviTermin(termin);
+
+        }
+
+        private void btnPotvrdiProstoriju_Click(object sender, RoutedEventArgs e)
+        {
+            if(dataGridProstorije.SelectedIndex != -1)
+            {
+                txtProstorija.Text = ProstorijaKontroler.nadjiProstorijuPoId(((Prostorija)dataGridProstorije.SelectedItem).id).sprat + " " +
+                    ProstorijaKontroler.nadjiProstorijuPoId(((Prostorija)dataGridProstorije.SelectedItem).id).broj;
+                gridOdabirProstorija.Visibility = Visibility.Hidden;
+                LekarProzor.getGlavnaLabela().Content = "Zakazivanje operacije";
+            }
+            else
+            {
+                MessageBox.Show("Potrebno je izabrati prostoriju.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
     }
 }
