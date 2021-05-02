@@ -25,12 +25,14 @@ namespace Bolnica_aplikacija.PacijentStudent
     /// </summary>
     public partial class PacijentZakaziTermin : Window
     {
-       private DataGrid dataGrid;
+        private DataGrid dataGrid;
+        private String idPacijenta;
 
-        public PacijentZakaziTermin(DataGrid dataGrid)
+        public PacijentZakaziTermin(DataGrid dataGrid, String idPacijenta)
         {
             InitializeComponent();
-            
+
+            this.idPacijenta = idPacijenta;
             this.dataGrid = dataGrid;
             dataGridSlobodniTermini.Loaded += SetMinSirina;
 
@@ -67,6 +69,41 @@ namespace Bolnica_aplikacija.PacijentStudent
                         String idSelektovanog = selektovanTermin.id;
                         PacijentKontroler.zakaziTerminPacijentu(idSelektovanog);
                         dataGrid.ItemsSource = PacijentKontroler.prikazPacijentovihTermina();
+
+                        //ANTI TROL SISTEM
+                       
+                        if(LogovanjeKontroler.proveriPostojanjeLogovanja(idPacijenta))
+                        {
+                            //AKO POSTOJI VEC LOGOVANJE
+                            
+                            if(LogovanjeKontroler.proveriVremePostojecegLogovanja(idPacijenta))
+                            {
+                                //ako je true, onda je brojac resetovan na 1
+                                //resetovati broj na 1
+                                //TO DO IZMENA LOGOVANJA
+                                LogovanjeKontroler.resetujLogovanje(idPacijenta);
+
+                            }
+                            else
+                            {
+                                //povecati broj
+                                LogovanjeKontroler.uvecajBrojIzmena(idPacijenta);
+                            }
+
+                            //TREBA PROVERITI BROJ IZMENA
+
+                        }
+                        else
+                        {
+                            //ako ne postoji kreira se
+                            DateTime vremeIzmene = DateTime.Now;
+                            //Termin termin = new Termin();
+                            //termin.idTermina = idSelektovanog;
+                            int brojUzastopnihIzmena = 1;
+                            LogovanjeKontroler.dodajLogovanje(new PomocneKlase.Logovanje(idPacijenta, vremeIzmene, brojUzastopnihIzmena));
+
+                        }
+
                         this.Close();
 
                     }

@@ -104,6 +104,7 @@
     <Compile Include="Kontroler\KorisnikKontroler.cs" />
     <Compile Include="Kontroler\LekarKontroler.cs" />
     <Compile Include="Kontroler\LekKontroler.cs" />
+    <Compile Include="Kontroler\LogovanjeKontroler.cs" />
     <Compile Include="Kontroler\NotifikacijaKontroler.cs" />
     <Compile Include="Kontroler\PacijentKontroler.cs" />
     <Compile Include="Kontroler\ProstorijaKontroler.cs" />
@@ -113,6 +114,9 @@
     <Compile Include="Kontroler\StavkaKontroler.cs" />
     <Compile Include="Kontroler\TerapijaKontroler.cs" />
     <Compile Include="Kontroler\TerminKontroler.cs" />
+    <Compile Include="PomocneKlase\Logovanje.cs" />
+    <Compile Include="Repozitorijum\LogovanjeRepozitorijum.cs" />
+    <Compile Include="Servis\LogovanjeServis.cs" />
     <Compile Include="View\LekarStudent\Alergije.xaml.cs">
       <DependentUpon>Alergije.xaml</DependentUpon>
     </Compile>

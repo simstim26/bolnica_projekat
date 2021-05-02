@@ -69,6 +69,29 @@ namespace Bolnica_aplikacija.PacijentStudent
                         PacijentKontroler.azurirajTerminPacijentu(TerminKontroler.getTermin().idTermina,noviTermin.id);
                         dataGrid.ItemsSource = PacijentKontroler.prikazPacijentovihTermina();
 
+                        //ANTI TROL
+
+                        if(LogovanjeKontroler.proveriPostojanjeLogovanja(idPacijenta))
+                        {
+                            if (LogovanjeKontroler.proveriVremePostojecegLogovanja(idPacijenta))
+                            {
+                                LogovanjeKontroler.resetujLogovanje(idPacijenta);
+                            }
+                            else
+                                LogovanjeKontroler.uvecajBrojIzmena(idPacijenta);
+                        }
+                        else
+                        {
+                            //ako ne postoji kreira se
+                            DateTime vremeIzmene = DateTime.Now;
+                            //Termin termin = new Termin();
+                            //termin.idTermina = idSelektovanog;
+                            int brojUzastopnihIzmena = 1;
+                            LogovanjeKontroler.dodajLogovanje(new PomocneKlase.Logovanje(idPacijenta, vremeIzmene, brojUzastopnihIzmena));
+
+                        }
+
+
                         this.Close();
                     }
             }
