@@ -35,8 +35,8 @@ namespace Bolnica_aplikacija.Kontroler
             return TerapijaServis.getInstance().dodajTerapiju(terapija);
 
         }
-        public static void dodajTerapiju(DateTime datumPropisivanja,int trajanje,String nacinUpotrebe,String idLeka,
-           String idPacijenta, String idTermina)
+        public static void dodajTerapiju(DateTime datumPropisivanja,int trajanje,String nacinUpotrebe,String idPacijenta,
+           String idLeka, String idTermina)
         {
             Terapija terapija = new Terapija();
             terapija.datumPocetka = datumPropisivanja;

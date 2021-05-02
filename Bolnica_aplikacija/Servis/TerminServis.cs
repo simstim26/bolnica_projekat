@@ -262,12 +262,11 @@ namespace Bolnica_aplikacija.Servis
             return termin.idTermina;
         }
 
-        public void azurirajUputTermina(String idTerminUput, String uputIzvestaj)
+        public void veziTermin(String idTerminUput)
         {
             Termin terminUput = nadjiTerminPoId(idTerminUput);
-            termin.idUputLekara = terminUput.idUputLekara;
+            termin.idUputLekara = terminUput.idLekara;
             termin.idUputTermin = terminUput.idTermina;
-            termin.izvestajUputa = uputIzvestaj;
             termin.jeZavrsen = true;
             terminRepozitorijum.azurirajTermin(termin);
         }

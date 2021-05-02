@@ -16,6 +16,11 @@ namespace Bolnica_aplikacija.Kontroler
             TerminServis.getInstance().nadjiPacijentaZaTermin(idTermina);
         }
 
+        public static void azurirajTermin(Termin terminZaAzuriranje)
+        {
+            TerminServis.getInstance().azurirajTermin(terminZaAzuriranje);
+        }
+
         public static void azuriranjeTerapijeZaTermin(String idTermina, String idTerapija)
         {
             TerminServis.getInstance().azuriranjeTerapijeZaTermin(idTermina ,idTerapija);
@@ -81,9 +86,9 @@ namespace Bolnica_aplikacija.Kontroler
             return TerminServis.getInstance().napraviTermin(termin);
         }
 
-        public static void azurirajUputTermina(String idTerminUput, String uputIzvestaj)
+        public static void veziTermin(String idTerminUput)
         {
-            TerminServis.getInstance().azurirajUputTermina(idTerminUput, uputIzvestaj);
+            TerminServis.getInstance().veziTermin(idTerminUput);
         }
 
     }
