@@ -1,4 +1,5 @@
 ﻿using Bolnica_aplikacija.Kontroler;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -62,6 +63,12 @@ namespace Bolnica_aplikacija.LekarStudent
         private void btnDodajProstoriju_Click(object sender, RoutedEventArgs e)
         {
             gridOdabirProstorija.Visibility = Visibility.Visible;
+            Termin termin = new Termin();
+            termin.datum = (DateTime)datum.SelectedDate;
+            String[] satnica = txtVreme.Text.Split(':');
+            termin.satnica = termin.datum + (new TimeSpan(Convert.ToInt32(satnica[0]), Convert.ToInt32(satnica[1]), 0));
+            termin.idProstorije = "";
+            dataGridProstorije.ItemsSource = TerminKontroler.nadjiSlobodneProstorijeZaTermin(KorisnikKontroler.getLekar(), termin);
             LekarProzor.getGlavnaLabela().Content = "Odabir prostorije";
 
         }
@@ -72,6 +79,21 @@ namespace Bolnica_aplikacija.LekarStudent
             LekarProzor.getGlavnaLabela().Content = "Prikaz inventara";
 
             gridPrikazInventara.Visibility = Visibility.Visible;
+        }
+
+        private void btnPotvrdi_Click(object sender, RoutedEventArgs e)
+        {
+            Termin termin = new Termin();
+            termin.datum = (DateTime)datum.SelectedDate;
+            String[] satnica = txtVreme.Text.Split(':');
+            termin.satnica = termin.datum + (new TimeSpan(Convert.ToInt32(satnica[0]), Convert.ToInt32(satnica[1]), 0));
+            termin.idTermina = "";
+            termin.idLekara = KorisnikKontroler.getLekar().id;
+            termin.idProstorije = ((Prostorija)dataGridProstorije.SelectedItem).id;
+            termin.idPacijenta = PacijentKontroler.getPacijent().id;
+            termin.tip = TipTermina.OPERACIJA;
+            termin.jeHitan = (bool)cBoxHitna.IsChecked;
+            TerminKontroler.napraviTermin(termin);
         }
     }
 }
