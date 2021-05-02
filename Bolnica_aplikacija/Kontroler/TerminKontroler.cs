@@ -76,9 +76,14 @@ namespace Bolnica_aplikacija.Kontroler
             return TerminServis.getInstance().ucitajPregledaZaIzabranogLekara(idLekara);
         }
 
-        public static void napraviTermin(Termin termin)
+        public static String napraviTermin(Termin termin)
         {
-            TerminServis.getInstance().napraviTermin(termin);
+            return TerminServis.getInstance().napraviTermin(termin);
+        }
+
+        public static void azurirajUputTermina(String idTerminUput, String uputIzvestaj)
+        {
+            TerminServis.getInstance().azurirajUputTermina(idTerminUput, uputIzvestaj);
         }
 
     }

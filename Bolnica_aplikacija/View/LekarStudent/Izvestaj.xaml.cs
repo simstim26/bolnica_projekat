@@ -322,7 +322,8 @@ namespace Bolnica_aplikacija.LekarStudent
             termin.satnica = termin.datum + (new TimeSpan(Convert.ToInt32(satnica[0]), Convert.ToInt32(satnica[1]), 0));
             termin.tip = TipTermina.OPERACIJA;
             termin.jeHitan = (bool)cBoxHitna.IsChecked;
-            TerminKontroler.napraviTermin(termin);
+            String idNovog = TerminKontroler.napraviTermin(termin);
+            TerminKontroler.azurirajUputTermina(idNovog, txtUputIzvestaj.Text);
 
         }
 

@@ -255,11 +255,23 @@ namespace Bolnica_aplikacija.Servis
             return povratnaVrednost;
         }
 
-        public void napraviTermin(Termin termin)
+        public String napraviTermin(Termin termin)
         {
             termin.idTermina = (ucitajSve().Count + 1).ToString();
             terminRepozitorijum.dodajTermin(termin);
+            return termin.idTermina;
         }
+
+        public void azurirajUputTermina(String idTerminUput, String uputIzvestaj)
+        {
+            Termin terminUput = nadjiTerminPoId(idTerminUput);
+            termin.idUputLekara = terminUput.idUputLekara;
+            termin.idUputTermin = terminUput.idTermina;
+            termin.izvestajUputa = uputIzvestaj;
+            termin.jeZavrsen = true;
+            terminRepozitorijum.azurirajTermin(termin);
+        }
+
 
     }
 }
