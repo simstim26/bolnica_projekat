@@ -48,22 +48,34 @@ namespace Bolnica_aplikacija.Servis
 
         public bool proveriVremePostojecegLogovanja(String idKorisnika)
         {
+            bool povratnaVrednost = false;
             foreach(Logovanje logovanje in ucitajSve())
             {
                 if(logovanje.idKorisnika.Equals(idKorisnika))
                 {
                     DateTime vreme = DateTime.Now;
 
-                    if (DateTime.Compare(vreme, logovanje.vremeIzmene.AddHours(1)) > 0)
+                    int rezultatPoredjenja = DateTime.Compare(vreme, logovanje.vremeIzmene.AddHours(1));
+
+                    if (rezultatPoredjenja < 0)
                     {
-                        return true;
+                        povratnaVrednost = false;
+                        Console.WriteLine("manji je");
+                    }
+                    else if (rezultatPoredjenja == 0)
+                    {
+                        povratnaVrednost = false;
+                        Console.WriteLine("jednako");
                     }
                     else
-                        return false;
+                    {
+                        povratnaVrednost = true;
+                        Console.WriteLine("WUHU");
+                    }
                 }
             }
 
-            return false;
+            return povratnaVrednost;
         }
 
         public void resetujLogovanje(String idKorisnika)
@@ -107,6 +119,20 @@ namespace Bolnica_aplikacija.Servis
             }
 
             return -1;
+        }
+
+        public DateTime getVremeIzmene(String idKorisnika)
+        {
+            var svaLogovanja = ucitajSve();
+            foreach(Logovanje logovanje in svaLogovanja)
+            {
+                if(logovanje.idKorisnika.Equals(idKorisnika))
+                {
+                    return logovanje.vremeIzmene;
+                }
+            }
+
+            return new DateTime();
         }
 
     }

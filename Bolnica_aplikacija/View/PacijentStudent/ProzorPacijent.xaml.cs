@@ -1,5 +1,6 @@
 ﻿using Bolnica_aplikacija.Kontroler;
 using Bolnica_aplikacija.PacijentModel;
+using Bolnica_aplikacija.PomocneKlase;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -282,14 +283,36 @@ namespace Bolnica_aplikacija.PacijentStudent
 
         bool proveraUzastopnihIzmena()
         {
+            bool povratnaVrednost = false;
             int brojPonavljanja = LogovanjeKontroler.getBrojUzastopnihPonavljanja(idPacijenta);
+            bool proveraDatuma = PomocnaKlasaProvere.uporediDatumSaDanasnjim(LogovanjeKontroler.getVremeIzmene(idPacijenta));
 
-            if (brojPonavljanja > 3)
+
+          /*  if (brojPonavljanja > 3)
             {
                return false;
             }
             else
                 return true;
+          */
+
+            if(brojPonavljanja > 3 )
+            {
+                if(proveraDatuma)
+                {
+                    LogovanjeKontroler.resetujLogovanje(idPacijenta);
+                    povratnaVrednost = true;
+                }
+                else
+                {
+                    povratnaVrednost = false;
+                }
+            }
+            else
+            {
+                povratnaVrednost = true;
+            }
+            return povratnaVrednost;
 
         }
 

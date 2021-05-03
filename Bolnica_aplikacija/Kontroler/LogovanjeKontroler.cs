@@ -45,5 +45,10 @@ namespace Bolnica_aplikacija.Kontroler
             return LogovanjeServis.getInstance().getBrojUzastopnihIzmena(idKorisnika);
         }
 
+        public static DateTime getVremeIzmene(String idKorisnika)
+        {
+            return LogovanjeServis.getInstance().getVremeIzmene(idKorisnika);
+        }
+
     }
 }
