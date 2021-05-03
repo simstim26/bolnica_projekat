@@ -134,7 +134,7 @@
                 </Button.Background>
 
             </Button>
-            <Button Content="POVRATAK" HorizontalAlignment="Left" Height="25" Margin="94,17,0,0" VerticalAlignment="Top" Width="108" Click="ButtonPovratak_Click" BorderThickness="0">
+            <Button x:Name="btnPovratakPacijent" Content="POVRATAK" HorizontalAlignment="Left" Height="25" Margin="94,17,0,0" VerticalAlignment="Top" Width="108" Click="ButtonPovratak_Click" BorderThickness="0">
                 <Button.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                         <GradientStop Color="#FFEA8A48" Offset="0"/>
@@ -437,9 +437,14 @@
             <Button x:Name="btnDodajGosta" HorizontalAlignment="Left" Margin="346,288,0,0" VerticalAlignment="Top" Width="78" Height="79" Background="#FFDB2B42" BorderBrush="{x:Null}" ToolTip="Kreiraj nalog" Click="btnDodajGosta_Click">
                 <materialDesign:PackIcon x:Name="iconPacijent1" Kind="PersonAdd" Height="48" Width="48"/>
             </Button>
-            <Label x:Name="lblOdaberitePacijenta" Content="Odaberite pacijenta:" HorizontalAlignment="Left" Margin="346,17,0,0" VerticalAlignment="Top" FontSize="22" FontWeight="Bold" IsEnabled="False" Height="31" Width="294"/>
+            <Label x:Name="lblOdaberitePacijenta" Content="Odaberite pacijenta:" HorizontalAlignment="Left" Margin="346,17,0,0" VerticalAlignment="Top" FontSize="22" FontWeight="Bold" IsEnabled="False" Height="52" Width="294"/>
             <RadioButton x:Name="btnPregled" Content="PREGLED" HorizontalAlignment="Left" Margin="465,288,0,0" VerticalAlignment="Top" FontSize="22" Width="211" IsEnabled="False"/>
             <RadioButton x:Name="btnOperacija" Content="OPERACIJA" HorizontalAlignment="Left" Margin="465,336,0,0" VerticalAlignment="Top" FontSize="22" Width="211" IsEnabled="False"/>
+            <Label x:Name="lblOdaberitePacijenta_Copy" Content="Odaberite specijalizaciju:" HorizontalAlignment="Left" Margin="346,389,0,0" VerticalAlignment="Top" FontSize="22" FontWeight="Bold" IsEnabled="False" Height="52" Width="294"/>
+            <ListBox x:Name="lstBoxSpec" HorizontalAlignment="Left" Height="100" Margin="645,398,0,0" VerticalAlignment="Top" Width="420">
+                <ListBoxItem x:Name="lstBoxItemOpstaPraksa" Content="Opšta praksa"/>
+                <ListBoxItem x:Name="lstBoxItemKardiohirurg" Content="Kardiohirurg"/>
+            </ListBox>
         </Grid>
     </Grid>
 
