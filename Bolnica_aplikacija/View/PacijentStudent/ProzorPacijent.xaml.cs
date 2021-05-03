@@ -1,6 +1,7 @@
 ﻿using Bolnica_aplikacija.Kontroler;
 using Bolnica_aplikacija.PacijentModel;
 using Bolnica_aplikacija.PomocneKlase;
+using Bolnica_aplikacija.View.PacijentStudent;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -316,5 +317,10 @@ namespace Bolnica_aplikacija.PacijentStudent
 
         }
 
+        private void btnOceniLekara_Click(object sender, RoutedEventArgs e)
+        {
+            OceniteLekara oceniteLekara = new OceniteLekara();
+            oceniteLekara.Show();
+        }
     }
 }

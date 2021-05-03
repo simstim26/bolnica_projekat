@@ -1,0 +1,22 @@
+﻿<Window x:Class="Bolnica_aplikacija.View.PacijentStudent.OceniteLekara"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Bolnica_aplikacija.View.PacijentStudent"
+        mc:Ignorable="d"
+        Title="Ocenite lekara" Height="600" Width="541" Topmost="True" ResizeMode="NoResize">
+    <Grid>
+        <Label x:Name="label" Content="Vaši utisci su nam bitni!" Margin="87,26,86,0" VerticalAlignment="Top" FontSize="32" FontWeight="Bold"/>
+        <Label x:Name="label1" Content="Odaberite lekara:" HorizontalAlignment="Left" Margin="69,106,0,0" VerticalAlignment="Top" FontSize="24"/>
+        <Label x:Name="label1_Copy" Content="Odaberite ocenu:" HorizontalAlignment="Left" Margin="67,174,0,0" VerticalAlignment="Top" FontSize="24"/>
+        <ComboBox x:Name="comboBoxLekar" Margin="263,105,72,0" VerticalAlignment="Top" FontSize="24"/>
+        <ComboBox x:Name="comboBoxOcena" HorizontalAlignment="Left" Margin="263,173,0,0" VerticalAlignment="Top" Width="200" FontSize="24"/>
+        <Label x:Name="label2" Content="Prostor za Vaš komentar:" HorizontalAlignment="Left" Margin="10,239,0,0" VerticalAlignment="Top" FontSize="18" FontStyle="Italic"/>
+        <Rectangle Fill="#FFF4F4F5" Height="177" Margin="10,276,10,0" Stroke="Black" VerticalAlignment="Top"/>
+        <Button x:Name="btnOceni" Content="Oceni" Margin="142,490,277,0" VerticalAlignment="Top" Height="41" FontSize="24"/>
+        <Button x:Name="btnOtkazi" Content="Otkaži" Margin="276,490,143,0" VerticalAlignment="Top" Height="41" FontSize="24" IsCancel="True"/>
+        <TextBox x:Name="txtKomentar" Height="177" Margin="10,276,10,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="18"/>
+
+    </Grid>
+</Window>
