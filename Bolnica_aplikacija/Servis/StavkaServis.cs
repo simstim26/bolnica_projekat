@@ -39,7 +39,7 @@ namespace Bolnica_aplikacija.Servis
             Regex r = new Regex(pat);
             Match m = r.Match(upravnikProzor.textBoxKolicina.Text.Replace(" ", ""));
 
-            if(!String.IsNullOrEmpty(upravnikProzor.textBoxNaziv.Text) && !String.IsNullOrEmpty(upravnikProzor.textBoxProizvodjac.Text) && m.Success && upravnikProzor.comboBoxTipOpreme.SelectedIndex != -1)
+            if (!String.IsNullOrEmpty(upravnikProzor.textBoxNaziv.Text) && !String.IsNullOrEmpty(upravnikProzor.textBoxProizvodjac.Text) && m.Success && upravnikProzor.comboBoxTipOpreme.SelectedIndex != -1)
             {
                 stavka.id = (sveStavke.Count() + 1).ToString();
                 stavka.idBolnice = KorisnikKontroler.GetUpravnik().idBolnice;
@@ -77,7 +77,7 @@ namespace Bolnica_aplikacija.Servis
                 return false;
             }
 
-            
+
         }
 
         public void IzbrisiStavku(Stavka stavkaZaBrisanje)
@@ -111,7 +111,7 @@ namespace Bolnica_aplikacija.Servis
             ProstorijaKontroler.upisi(prostorije);
             stavkaRepozitorijum.Upisi(stavke);
         }
-           
+
 
         public bool IzmeniStavku(Stavka stavkaZaIzmenu)
         {
@@ -181,7 +181,7 @@ namespace Bolnica_aplikacija.Servis
         public Stavka pronadjiStavkuPoId(String id)
         {
             var stavke = stavkaRepozitorijum.UcitajSve();
-            var stavka = new Stavka();
+            Stavka stavka = null;
             foreach (Stavka s in stavke)
             {
                 if (s.id == id)
@@ -193,5 +193,19 @@ namespace Bolnica_aplikacija.Servis
             return stavka;
         }
 
+        public Stavka pronadjiStavkuIzProstorijePoId(Prostorija prostorija, String stavkaId)
+        {
+            Stavka stavka = null;
+
+            foreach (Stavka s in prostorija.Stavka)
+            {
+                if (s.id == stavkaId)
+                {
+                    return stavka;
+                }
+            }
+
+            return stavka;
+        }
     }
 }

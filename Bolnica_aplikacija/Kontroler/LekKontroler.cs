@@ -1,4 +1,5 @@
-﻿using Bolnica_aplikacija.Servis;
+﻿using Bolnica_aplikacija.Model;
+using Bolnica_aplikacija.Servis;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -10,19 +11,98 @@ namespace Bolnica_aplikacija.Kontroler
 {
     class LekKontroler
     {
-        private static LekServis lekServis = new LekServis();
+        public static bool proveriLekoveZaOdobravanjeZaLogovanogLekara(String idLekara)
+        {
+            return LekServis.getInstance().proveriLekoveZaOdobravanjeZaLogovanogLekara(idLekara);
+        }
+        public static void azurirajOdobravanje(LekZaOdobravanje lekZaAzuriranje)
+        {
+            LekServis.getInstance().azurirajOdobravanje(lekZaAzuriranje);
+        }
+
+        public static List<LekZaOdobravanje> nadjiLekoveZaOdobravanjeZaLogovanogLekara(String idLekara)
+        {
+            return LekServis.getInstance().nadjiLekoveZaOdobravanjeZaLogovanogLekara(idLekara);
+        }
 
         public static List<Lek> ucitajSveSemTrenutnogNaTerapiji(String idLeka)
         {
-            return lekServis.ucitajSveSemTrenutnogNaTerapiji(idLeka);
+            return LekServis.getInstance().ucitajSveSemTrenutnogNaTerapiji(idLeka);
         }
         public static Lek nadjiLekPoId(String idLeka)
         {
-            return lekServis.nadjiLekPoId(idLeka);
+            return LekServis.getInstance().nadjiLekPoId(idLeka);
         }
         public static List<Lek> ucitajSve()
         {
-            return lekServis.ucitajSve();
+            return LekServis.getInstance().ucitajSve();
+        }
+
+        public static List<TipLeka> tipLeka()
+        {
+            return LekServis.getInstance().tipLeka();
+        }
+
+        public static List<NacinUpotrebe> nacinUpotrebeLeka()
+        {
+            return LekServis.getInstance().nacinUpotrebeLeka();
+        }
+
+        public static void napraviLek(LekZaOdobravanje lek)
+        {
+            LekServis.getInstance().napraviLek(lek);
+        }
+
+        public static void napraviLek(String naziv, TipLeka tipLeka, int kolicina, String proizvodjac, NacinUpotrebe nacinUpotrebe,
+            LekZaOdobravanje lek)
+        {
+            lek = new LekZaOdobravanje(naziv, tipLeka, kolicina, proizvodjac, nacinUpotrebe);
+            LekServis.getInstance().napraviLek(lek);
+        }
+
+        public static void dodajLekuLekare(List<String> idLekari, LekZaOdobravanje lek)
+        {
+            LekServis.getInstance().dodajLekuLekare(idLekari, lek);
+        }
+
+        public static void dodajLek(LekZaOdobravanje lekZaDodavanje)
+        {
+            LekServis.getInstance().dodajLek(lekZaDodavanje);
+        }
+
+        public static void odbacivanjeLeka(LekZaOdobravanje lekZaOdbacivanje)
+        {
+            LekServis.getInstance().odbacivanjeLeka(lekZaOdbacivanje);
+        }
+
+        public static void azurirajLek(Lek lekZaAzuriranje)
+        {
+            LekServis.getInstance().azurirajLek(lekZaAzuriranje);
+        }
+
+        public static void izbrisiSastojak(String idLeka, String sastojak)
+        {
+            LekServis.getInstance().izbrisiSastojak(idLeka, sastojak);
+        }
+
+        public static void dodajSastojak(String idLeka, String sastojak)
+        {
+            LekServis.getInstance().dodajSastojak(idLeka, sastojak);
+        }
+
+        public static List<Lek> ucitajSveLekoveBezZamenskih(String idLeka)
+        {
+            return LekServis.getInstance().ucitajSveLekoveBezZamenskih(idLeka);
+        }
+
+        public static void dodajZamenskiLek(String idLek, Lek zamenskiLek)
+        {
+            LekServis.getInstance().dodajZamenskiLek(idLek, zamenskiLek);
+        }
+
+        public static void obrisiZamenskiLek(String idLek, String idZamenskogLeka)
+        {
+            LekServis.getInstance().obrisiZamenskiLek(idLek, idZamenskogLeka);
         }
     }
 }

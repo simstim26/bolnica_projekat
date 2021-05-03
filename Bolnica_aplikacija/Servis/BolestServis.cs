@@ -10,8 +10,35 @@ namespace Bolnica_aplikacija.Servis
 {
     class BolestServis
     {
+        private static BolestServis instance;
+        public static BolestServis getInstance()
+        {
+            if(instance == null)
+            {
+                instance = new BolestServis();
+            }
+            return instance;
+        }
         private BolestRepozitorijum bolestRepozitorijum = new BolestRepozitorijum();
 
+        public Bolest nadjiBolestPoId(String id)
+        {
+            Bolest povratnaVrednost = null;
+            foreach(Bolest bolest in bolestRepozitorijum.ucitajSve())
+            {
+                if (id.Equals(bolest.id))
+                {
+                    povratnaVrednost = bolest;
+                    break;
+                }
+            }
+            return povratnaVrednost;
+        }
+
+        public List<Bolest> ucitajSve()
+        {
+            return bolestRepozitorijum.ucitajSve();
+        }
         public void azurirajTerapijuZaBolest(String idBolesti, String idTerapije)
         {
             List<Bolest> bolesti = bolestRepozitorijum.ucitajSve();

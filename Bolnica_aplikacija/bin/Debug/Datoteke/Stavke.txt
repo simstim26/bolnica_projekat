@@ -53,5 +53,16 @@
     "jeStaticka": false,
     "jeLogickiObrisana": true,
     "jePotrosnaRoba": true
+  },
+  {
+    "id": "7",
+    "naziv": "dusan",
+    "kolicina": 100,
+    "proizvodjac": "sisarica",
+    "idProstorije": null,
+    "idBolnice": "1",
+    "jeStaticka": true,
+    "jeLogickiObrisana": false,
+    "jePotrosnaRoba": false
   }
 ]

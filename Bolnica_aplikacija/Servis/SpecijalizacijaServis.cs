@@ -10,6 +10,17 @@ namespace Bolnica_aplikacija.Servis
 {
     class SpecijalizacijaServis
     {
+        private static SpecijalizacijaServis instance;
+
+        public static SpecijalizacijaServis getInstance()
+        {
+            if(instance == null)
+            {
+                instance = new SpecijalizacijaServis();
+            }
+            return instance;
+        }
+
         private SpecijalizacijaRepozitorijum specijalizacijaRepozitorijum = new SpecijalizacijaRepozitorijum();
 
         public String nadjiSpecijalizacijuPoId(String id)

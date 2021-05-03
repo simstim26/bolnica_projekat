@@ -11,6 +11,17 @@ namespace Bolnica_aplikacija.Servis
 {
     class KorisnikServis
     {
+        private static KorisnikServis instance;
+        public static KorisnikServis getInstance()
+        {
+            if(instance == null)
+            {
+                instance = new KorisnikServis();
+            }
+
+            return instance;
+        }
+
         /*---Za cuvanje ulogovanog korisnika---*/
         private Lekar lekar;
         private Pacijent pacijent;

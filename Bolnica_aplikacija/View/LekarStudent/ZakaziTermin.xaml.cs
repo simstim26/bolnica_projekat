@@ -35,6 +35,7 @@ namespace Bolnica_aplikacija
             PacijentInfo.aktivanPacijentInfo = false;
             PrikazProstorija.aktivan = false;
             aktivan = true;
+            LekarProzor.getPretraga().Visibility = Visibility.Visible;
 
             if (tipAkcije == 1)
             {
@@ -108,6 +109,11 @@ namespace Bolnica_aplikacija
             {
                 MessageBox.Show("Ne može se promeniti lokacija termina drugog lekara.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
+        }
+
+        private void btnZakaziOperaciju_Click(object sender, RoutedEventArgs e)
+        {
+            Content = new ZakazivanjeOperacije();
         }
     }
 }

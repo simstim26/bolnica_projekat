@@ -1,0 +1,19 @@
+[
+  {
+    "brLekaraKojiSuodobriliLek": 0,
+    "lekariKojimaJePoslatLek": [
+      "1",
+      "2"
+    ],
+    "odobren": false,
+    "propratnaPoruka": "Odbacujem lek zato sto mi se odbacuje i zelim da mucim upravnika. Hvala na razumevanju!",
+    "id": "1",
+    "naziv": "leEekeL",
+    "tip": 2,
+    "kolicina": 100,
+    "proizvodjac": "LekizvodjacxD",
+    "nacinUpotrebe": 2,
+    "sastojci": null,
+    "zamenskiLekovi": null
+  }
+]

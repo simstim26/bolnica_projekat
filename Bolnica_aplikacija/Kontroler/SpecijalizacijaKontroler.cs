@@ -9,10 +9,9 @@ namespace Bolnica_aplikacija.Kontroler
 {
     class SpecijalizacijaKontroler
     {
-        private static SpecijalizacijaServis specijalizacijaServis = new SpecijalizacijaServis();
         public static String nadjiSpecijalizacijuPoId(String id)
         {
-            return specijalizacijaServis.nadjiSpecijalizacijuPoId(id);
+            return SpecijalizacijaServis.getInstance().nadjiSpecijalizacijuPoId(id);
         }
 
     }

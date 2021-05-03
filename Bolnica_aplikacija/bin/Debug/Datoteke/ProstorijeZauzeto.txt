@@ -1,14 +1,119 @@
 [
   {
     "idProstorije": "1",
-    "datumPocetka": "2021-04-21T00:00:00",
-    "datumKraja": "2021-04-23T00:00:00",
-    "jeZavrseno": false
+    "idProstorijeUKojuSePrebacuje": "3",
+    "datumPocetka": "2021-04-23T00:00:00",
+    "datumKraja": "2021-04-24T00:00:00",
+    "jeZavrseno": true,
+    "idStavke": "2",
+    "kolicinaStavke": 1
+  },
+  {
+    "idProstorije": "1",
+    "idProstorijeUKojuSePrebacuje": "3",
+    "datumPocetka": "2021-04-23T00:00:00",
+    "datumKraja": "2021-04-24T00:00:00",
+    "jeZavrseno": true,
+    "idStavke": "2",
+    "kolicinaStavke": 23
   },
   {
     "idProstorije": "3",
-    "datumPocetka": "2021-04-23T00:00:00",
+    "idProstorijeUKojuSePrebacuje": "9",
+    "datumPocetka": "2021-04-24T00:00:00",
     "datumKraja": "2021-04-25T00:00:00",
-    "jeZavrseno": false
+    "jeZavrseno": true,
+    "idStavke": "2",
+    "kolicinaStavke": 5
+  },
+  {
+    "idProstorije": "3",
+    "idProstorijeUKojuSePrebacuje": "17",
+    "datumPocetka": "2021-04-24T00:00:00",
+    "datumKraja": "2021-04-24T00:00:00",
+    "jeZavrseno": true,
+    "idStavke": "2",
+    "kolicinaStavke": 1
+  },
+  {
+    "idProstorije": "17",
+    "idProstorijeUKojuSePrebacuje": "1",
+    "datumPocetka": "2021-04-24T00:00:00",
+    "datumKraja": "2021-04-24T00:00:00",
+    "jeZavrseno": true,
+    "idStavke": "2",
+    "kolicinaStavke": 1
+  },
+  {
+    "idProstorije": "10",
+    "idProstorijeUKojuSePrebacuje": null,
+    "datumPocetka": "2021-04-24T00:00:00",
+    "datumKraja": "2021-04-25T00:00:00",
+    "jeZavrseno": true,
+    "idStavke": "6",
+    "kolicinaStavke": 10
+  },
+  {
+    "idProstorije": "1",
+    "idProstorijeUKojuSePrebacuje": "19",
+    "datumPocetka": "2021-04-24T00:00:00",
+    "datumKraja": "2021-04-24T00:00:00",
+    "jeZavrseno": true,
+    "idStavke": "2",
+    "kolicinaStavke": 1
+  },
+  {
+    "idProstorije": "1",
+    "idProstorijeUKojuSePrebacuje": "14",
+    "datumPocetka": "2021-04-29T00:00:00",
+    "datumKraja": "2021-04-30T00:00:00",
+    "jeZavrseno": true,
+    "idStavke": "2",
+    "kolicinaStavke": 2
+  },
+  {
+    "idProstorije": "14",
+    "idProstorijeUKojuSePrebacuje": "14",
+    "datumPocetka": "2021-04-29T00:00:00",
+    "datumKraja": "2021-04-29T00:00:00",
+    "jeZavrseno": true,
+    "idStavke": "7",
+    "kolicinaStavke": 3
+  },
+  {
+    "idProstorije": "16",
+    "idProstorijeUKojuSePrebacuje": null,
+    "datumPocetka": "2021-04-29T00:00:00",
+    "datumKraja": "2021-04-29T00:00:00",
+    "jeZavrseno": true,
+    "idStavke": "7",
+    "kolicinaStavke": 1
+  },
+  {
+    "idProstorije": "16",
+    "idProstorijeUKojuSePrebacuje": null,
+    "datumPocetka": "2021-04-29T00:00:00",
+    "datumKraja": "2021-04-30T00:00:00",
+    "jeZavrseno": true,
+    "idStavke": "7",
+    "kolicinaStavke": 5
+  },
+  {
+    "idProstorije": "16",
+    "idProstorijeUKojuSePrebacuje": null,
+    "datumPocetka": "2021-04-29T00:00:00",
+    "datumKraja": "2021-04-29T00:00:00",
+    "jeZavrseno": true,
+    "idStavke": "7",
+    "kolicinaStavke": 1
+  },
+  {
+    "idProstorije": "14",
+    "idProstorijeUKojuSePrebacuje": "16",
+    "datumPocetka": "2021-04-29T00:00:00",
+    "datumKraja": "2021-04-29T00:00:00",
+    "jeZavrseno": true,
+    "idStavke": "7",
+    "kolicinaStavke": 1
   }
 ]

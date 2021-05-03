@@ -41,16 +41,7 @@ namespace Bolnica_aplikacija.Repozitorijum
             {
                 if (termin.idTermina.Equals(terminZaAzuriranje.idTermina))
                 {
-                    termin.idLekara = terminZaAzuriranje.idLekara;
-                    termin.idPacijenta = terminZaAzuriranje.idPacijenta;
-                    termin.idProstorije = terminZaAzuriranje.idProstorije;
-                    termin.jeZavrsen = terminZaAzuriranje.jeZavrsen;
-                    termin.datum = terminZaAzuriranje.datum;
-                    termin.satnica = terminZaAzuriranje.satnica;
-                    termin.izvestaj = terminZaAzuriranje.izvestaj;
-                    termin.idBolesti = terminZaAzuriranje.idBolesti;
-                    termin.idTerapije = terminZaAzuriranje.idTerapije;
-                    
+                    termin.kopiraj(terminZaAzuriranje); 
                     break;
                 }
             }

@@ -45,5 +45,10 @@ namespace Bolnica_aplikacija.Kontroler
         {
             return stavkaServis.pronadjiStavkuPoId(id);
         }
+
+        public static Stavka pronadjiStavkuIzProstorijePoId(Prostorija prostorija, String stavkaId)
+        {
+            return stavkaServis.pronadjiStavkuIzProstorijePoId(prostorija, stavkaId);
+        }
     }
 }

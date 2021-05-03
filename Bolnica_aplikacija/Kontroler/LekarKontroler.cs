@@ -1,4 +1,5 @@
 ﻿using Bolnica_aplikacija.PacijentModel;
+using Bolnica_aplikacija.PomocneKlase;
 using Bolnica_aplikacija.Servis;
 using Model;
 using System;
@@ -11,20 +12,31 @@ namespace Bolnica_aplikacija.Kontroler
 {
     class LekarKontroler
     {
-        private static LekarServis lekarServis = new LekarServis();
-
         public static List<PacijentTermin> prikaziSlobodneTermineZaLekara(Lekar ulogovaniLekar, int tipAkcije)
         {
-            return lekarServis.prikaziSlobodneTermineZaLekara(ulogovaniLekar, tipAkcije);
+            return LekarServis.getInstance().prikaziSlobodneTermineZaLekara(ulogovaniLekar, tipAkcije);
         }
 
         public static List<PacijentTermin> prikaziZauzeteTermineZaLekara(Lekar ulogovaniLekar)
         {
-            return lekarServis.prikaziZauzeteTermineZaLekara(ulogovaniLekar);
+            return LekarServis.getInstance().prikaziZauzeteTermineZaLekara(ulogovaniLekar);
         }
         public static List<PacijentTermin> pretraziZauzeteTermineZaLekara(Lekar lekar, DateTime prvi, DateTime drugi)
         {
-            return lekarServis.pretraziZauzeteTermineZaLekara(lekar, prvi, drugi);
+            return LekarServis.getInstance().pretraziZauzeteTermineZaLekara(lekar, prvi, drugi);
+        }
+        public static List<Lekar> ucitajSve()
+        {
+            return LekarServis.getInstance().ucitajSve();
+        }
+        public static List<LekarSpecijalizacija> ucitajLekareSaSpecijalizacijom()
+        {
+            return LekarServis.getInstance().ucitajLekareSaSpecijalizacijom();
+        }
+
+        public static Lekar nadjiLekaraPoId(String idLekara)
+        {
+            return LekarServis.getInstance().nadjiLekaraPoId(idLekara);
         }
     }
 }

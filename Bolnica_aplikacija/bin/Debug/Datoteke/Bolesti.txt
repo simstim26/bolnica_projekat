@@ -10,5 +10,17 @@
     "naziv": "a1",
     "idTerapije": "2",
     "idPacijenta": "1"
+  },
+  {
+    "id": "3",
+    "naziv": "sada",
+    "idTerapije": "5",
+    "idPacijenta": "1"
+  },
+  {
+    "id": "4",
+    "naziv": "asdfa",
+    "idTerapije": "6",
+    "idPacijenta": "1"
   }
 ]

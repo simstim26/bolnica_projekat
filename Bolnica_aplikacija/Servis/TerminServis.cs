@@ -1,4 +1,5 @@
 ﻿using Bolnica_aplikacija.Kontroler;
+using Bolnica_aplikacija.PacijentModel;
 using Bolnica_aplikacija.Repozitorijum;
 using Model;
 using System;
@@ -11,9 +12,38 @@ namespace Bolnica_aplikacija.Servis
 {
     class TerminServis
     {
+        private static TerminServis instance;
+        public static TerminServis getInstance()
+        {
+            if(instance == null)
+            {
+                instance = new TerminServis();
+            }
+            return instance;
+        }
         private TerminRepozitorijum terminRepozitorijum = new TerminRepozitorijum();
         private ProstorijaRepozitorijum prostorijaRepozitorijum = new ProstorijaRepozitorijum();
         private Termin termin; //lekar -> cuvanje izabranog termina (promena termina ili promena prostorije za izabrani termin
+
+        public void azurirajTermin(Termin terminZaAzuriranje) //da li ide u servis ??
+        {
+            terminRepozitorijum.azurirajTermin(terminZaAzuriranje);
+        }
+
+        public Termin nadjiTerminZaBolest(String idBolesti)
+        {
+            Termin povratnaVrednost = null;
+            foreach(Termin termin in terminRepozitorijum.ucitajSve())
+            {
+                if (idBolesti.Equals(termin.idBolesti))
+                {
+                    povratnaVrednost = termin;
+                    break;
+                }
+            }
+
+            return povratnaVrednost;
+        }
 
         public Termin nadjiTerminPoId(String idTermina)
         {
@@ -210,5 +240,37 @@ namespace Bolnica_aplikacija.Servis
             return terminRepozitorijum.ucitajSve();
 
         }
+
+        public List<PacijentTermin> ucitajPregledaZaIzabranogLekara(String idLekara)
+        {
+            List<PacijentTermin> povratnaVrednost = new List<PacijentTermin>();
+            foreach(PacijentTermin termin in LekarServis.getInstance().prikaziSlobodneTermineZaLekara(LekarServis.getInstance().nadjiLekaraPoId(idLekara), 0))
+            {
+                if (termin.idLekara.Equals(idLekara) && termin.napomena.Equals("Pregled"))
+                {
+                    povratnaVrednost.Add(termin);
+                }
+            }
+
+            return povratnaVrednost;
+        }
+
+        public String napraviTermin(Termin termin)
+        {
+            termin.idTermina = (ucitajSve().Count + 1).ToString();
+            terminRepozitorijum.dodajTermin(termin);
+            return termin.idTermina;
+        }
+
+        public void veziTermin(String idTerminUput)
+        {
+            Termin terminUput = nadjiTerminPoId(idTerminUput);
+            termin.idUputLekara = terminUput.idLekara;
+            termin.idUputTermin = terminUput.idTermina;
+            termin.jeZavrsen = true;
+            terminRepozitorijum.azurirajTermin(termin);
+        }
+
+
     }
 }
