@@ -628,6 +628,7 @@ namespace Bolnica_aplikacija
             noviLek.nacinUpotrebe = nacinUpotrebe;
 
             LekKontroler.napraviLek(noviLek);
+            //noviLek.staviInstancuNaNull();
 
         }
 
@@ -677,6 +678,170 @@ namespace Bolnica_aplikacija
             dataGridDodajSastojke.Items.Refresh();
             textBoxUpisiSastojak.Clear();
 
+        }
+
+        private void btnOdbijeniZahtevi_Click(object sender, RoutedEventArgs e)
+        {
+            List<LekZaOdobravanje> lekovi = LekKontroler.ucitajOdbaceneLekove();
+            dataGridOdbijeniLekovi.ItemsSource = lekovi;
+            gridLekovi.Visibility = Visibility.Hidden;
+            gridOdbijeniLekovi.Visibility = Visibility.Visible;
+            
+        }
+
+        private void btnOtkaziOdbacenLek_Click(object sender, RoutedEventArgs e)
+        {
+            gridOdbijeniLekovi.Visibility = Visibility.Hidden;
+            gridLekovi.Visibility = Visibility.Visible;
+        }
+
+        private void btnIzmeniLek_Click(object sender, RoutedEventArgs e)
+        {
+            if (dataGridOdbijeniLekovi.SelectedIndex != -1)
+            {
+                gridLekoviIzmenaOdbijenih.Visibility = Visibility.Visible;
+                gridOdbijeniLekovi.Visibility = Visibility.Hidden;
+                cbTipLekaDodavanjeOdbijenog.ItemsSource = LekKontroler.tipLeka();
+                comboBoxNacinUpotrebeOdbijenog.ItemsSource = LekKontroler.nacinUpotrebeLeka();
+
+                LekZaOdobravanje odbijeniLek = (LekZaOdobravanje)dataGridOdbijeniLekovi.SelectedItem;
+
+                textBoxNazivLekaUnosOdbijenog.Text = odbijeniLek.naziv;
+                cbTipLekaDodavanjeOdbijenog.SelectedItem = odbijeniLek.tip;
+                textBoxKolicinaLekaUnosOdbijenog.Text = odbijeniLek.kolicina.ToString();
+                textBoxProizvodjacLekaUnosOdbijenog.Text = odbijeniLek.proizvodjac;
+                comboBoxNacinUpotrebeOdbijenog.SelectedItem = odbijeniLek.nacinUpotrebe;
+            }
+        }
+
+        private void btnOtkaziDodavanjeLekaOdbijenog_Click(object sender, RoutedEventArgs e)
+        {
+            gridLekoviIzmenaOdbijenih.Visibility = Visibility.Hidden;
+            gridOdbijeniLekovi.Visibility = Visibility.Visible;
+        }
+
+        private void btnDodajSastojkeOdbijenog_Click(object sender, RoutedEventArgs e)
+        {
+            gridLekoviIzmeniSastojkeOdbijenog.Visibility = Visibility.Visible;
+            gridLekoviIzmenaOdbijenih.Visibility = Visibility.Hidden;
+            LekZaOdobravanje odbijeniLek = (LekZaOdobravanje)dataGridOdbijeniLekovi.SelectedItem;
+            List<String> sastojci = odbijeniLek.sastojci;
+            dataGridDodajSastojkeOdbijenog.ItemsSource = sastojci;
+        }
+
+        private void btnSastojakUnesiOdbijenog_Click(object sender, RoutedEventArgs e)
+        {
+            String sastojak = textBoxUpisiSastojakOdbijenog.Text;
+            List<String> sastojci = (List<String>)dataGridDodajSastojkeOdbijenog.ItemsSource;
+            sastojci.Add(sastojak);
+            
+            dataGridDodajSastojkeOdbijenog.ItemsSource = sastojci;
+            dataGridDodajSastojkeOdbijenog.Items.Refresh();
+            textBoxUpisiSastojakOdbijenog.Clear();
+        }
+
+        private void btnIzbrisiSastojakOdbijenog_Click(object sender, RoutedEventArgs e)
+        {
+            if(dataGridDodajSastojkeOdbijenog.SelectedIndex != -1)
+            {
+                List<String> sastojci = (List<String>)dataGridDodajSastojkeOdbijenog.ItemsSource;
+                sastojci.Remove((String)dataGridDodajSastojkeOdbijenog.SelectedItem);
+                dataGridDodajSastojkeOdbijenog.ItemsSource = sastojci;
+                dataGridDodajSastojkeOdbijenog.Items.Refresh();
+            }
+        }
+
+        private void btnPotvrdiSastojkeOdbijenog_Click(object sender, RoutedEventArgs e)
+        {
+            LekZaOdobravanje odbijeniLek = (LekZaOdobravanje)dataGridOdbijeniLekovi.SelectedItem;
+            odbijeniLek.sastojci = (List<String>)dataGridDodajSastojkeOdbijenog.ItemsSource;
+          
+            gridLekoviIzmeniSastojkeOdbijenog.Visibility = Visibility.Hidden;
+            gridLekoviIzmenaOdbijenih.Visibility = Visibility.Visible;
+        }
+
+        private void btnDodajZamenskeLekoveOdbijenog_Click(object sender, RoutedEventArgs e)
+        {
+            gridLekoviIzmenaOdbijenih.Visibility = Visibility.Hidden;
+            gridLekoviIzmeniZamenskeLekoveOdbijenog.Visibility = Visibility.Visible;
+
+            LekZaOdobravanje odbijeniLek = (LekZaOdobravanje)dataGridOdbijeniLekovi.SelectedItem;
+            dataGridZamenskiUbaceniLekoviOdbijenog.ItemsSource = odbijeniLek.zamenskiLekovi;
+            dataGridSviLekoviZaZamenskiOdbijenog.ItemsSource = LekKontroler.ucitajSve();
+        }
+
+        private void dodajZamenskiOdbijenog_Click(object sender, RoutedEventArgs e)
+        {
+            LekZaOdobravanje odbijeniLek = (LekZaOdobravanje)dataGridOdbijeniLekovi.SelectedItem;
+            List<Lek> sviLekovi = (List<Lek>)dataGridSviLekoviZaZamenskiOdbijenog.ItemsSource;
+            odbijeniLek.zamenskiLekovi.Add((Lek)dataGridSviLekoviZaZamenskiOdbijenog.SelectedItem);
+            sviLekovi.Remove((Lek)dataGridSviLekoviZaZamenskiOdbijenog.SelectedItem);
+            dataGridZamenskiUbaceniLekoviOdbijenog.ItemsSource = odbijeniLek.zamenskiLekovi;
+            dataGridSviLekoviZaZamenskiOdbijenog.ItemsSource = sviLekovi;
+            dataGridZamenskiUbaceniLekoviOdbijenog.Items.Refresh();
+            dataGridSviLekoviZaZamenskiOdbijenog.Items.Refresh();
+        }
+
+        private void btnPotvrdiZamenskeOdbijenog_Click(object sender, RoutedEventArgs e)
+        {
+            LekZaOdobravanje odbijeniLek = (LekZaOdobravanje)dataGridOdbijeniLekovi.SelectedItem;
+            odbijeniLek.zamenskiLekovi = (List<Lek>)dataGridZamenskiUbaceniLekoviOdbijenog.ItemsSource;
+            gridLekoviIzmeniZamenskeLekoveOdbijenog.Visibility = Visibility.Hidden;
+            gridLekoviIzmenaOdbijenih.Visibility = Visibility.Visible;
+        }
+
+        private void btnPotvrdiDodavanjeLekovaOdbijenog_Click(object sender, RoutedEventArgs e)
+        {
+            TipLeka tipLeka = (TipLeka)cbTipLekaDodavanjeOdbijenog.SelectedItem;
+            NacinUpotrebe nacinUpotrebe = (NacinUpotrebe)comboBoxNacinUpotrebeOdbijenog.SelectedItem;
+
+            LekZaOdobravanje odbijeniLek = (LekZaOdobravanje)dataGridOdbijeniLekovi.SelectedItem;
+            LekKontroler.fizickiObrisiLekZaOdbacivanje(odbijeniLek);
+
+            odbijeniLek.naziv = textBoxNazivLekaUnosOdbijenog.Text;
+            odbijeniLek.tip = tipLeka;
+            odbijeniLek.kolicina = Int32.Parse(textBoxKolicinaLekaUnosOdbijenog.Text);
+            odbijeniLek.proizvodjac = textBoxProizvodjacLekaUnosOdbijenog.Text;
+            odbijeniLek.nacinUpotrebe = nacinUpotrebe;
+            odbijeniLek.id = (LekKontroler.ucitajLekoveZaOdobravanje().Count() + 1).ToString();
+
+            LekKontroler.napraviCeoLek(odbijeniLek);
+        }
+
+        private void btnObrisiOdbacenLek_Click(object sender, RoutedEventArgs e)
+        {
+            if(dataGridOdbijeniLekovi.SelectedIndex != -1)
+            {
+                LekKontroler.fizickiObrisiLekZaOdbacivanje((LekZaOdobravanje)dataGridOdbijeniLekovi.SelectedItem);
+                dataGridOdbijeniLekovi.ItemsSource = LekKontroler.ucitajOdbaceneLekove();
+                dataGridOdbijeniLekovi.Items.Refresh();
+            }
+        }
+
+        private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+            if (comboBoxFiltrirajStavku.SelectedIndex == -1)
+            {
+                dataGridInventar.ItemsSource = StavkaKontroler.UcitajNeobrisaneStavke();
+                dataGridInventar.Items.Refresh();
+            }
+            else if (comboBoxFiltrirajStavku.SelectedIndex == 0)
+            {
+                dataGridInventar.ItemsSource = StavkaKontroler.ucitajDinamickeStavke();
+                dataGridInventar.Items.Refresh();
+            }
+            else if (comboBoxFiltrirajStavku.SelectedIndex == 1)
+            {
+                dataGridInventar.ItemsSource = StavkaKontroler.ucitajStatickeStavke();
+                dataGridInventar.Items.Refresh();
+            }
+            
+        }
+
+        private void btnPonistiFiltriranje_Click(object sender, RoutedEventArgs e)
+        {
+            comboBoxFiltrirajStavku.SelectedIndex = -1;
         }
     }
 }

@@ -207,5 +207,15 @@ namespace Bolnica_aplikacija.Servis
 
             return stavka;
         }
+
+        public List<Stavka> ucitajStatickeStavke()
+        {
+            return stavkaRepozitorijum.ucitajStatickeStavke();
+        }
+
+        public List<Stavka> ucitajDinamickeStavke()
+        {
+            return stavkaRepozitorijum.ucitajDinamickeStavke();
+        }
     }
 }

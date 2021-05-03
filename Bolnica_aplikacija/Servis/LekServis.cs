@@ -237,6 +237,26 @@ namespace Bolnica_aplikacija.Servis
             }
         }
 
+        public void fizickiObrisiLekZaOdbacivanje(LekZaOdobravanje lekZaOdbacivanje)
+        {
+            lekRepozitorijum.fizickiObrisiLekZaOdbacivanje(lekZaOdbacivanje);
+        }
+
+        public List<LekZaOdobravanje> ucitajOdbaceneLekove()
+        {
+            return lekRepozitorijum.ucitajOdbaceneLekove();
+        }
+
+        public void upisiOdbaceneLekove(List<LekZaOdobravanje> lekoviZaOdbacivanje)
+        {
+            lekRepozitorijum.upisiOdbaceneLekove(lekoviZaOdbacivanje);
+        }
+
+        public List<LekZaOdobravanje> ucitajLekoveZaOdobravanje()
+        {
+            return lekRepozitorijum.ucitajLekoveZaOdobravanje();
+        }
+
 
     }
 }

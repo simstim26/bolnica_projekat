@@ -50,5 +50,15 @@ namespace Bolnica_aplikacija.Kontroler
         {
             return stavkaServis.pronadjiStavkuIzProstorijePoId(prostorija, stavkaId);
         }
+
+        public static List<Stavka> ucitajStatickeStavke()
+        {
+            return stavkaServis.ucitajStatickeStavke();
+        }
+
+        public static List<Stavka> ucitajDinamickeStavke()
+        {
+            return stavkaServis.ucitajDinamickeStavke();
+        }
     }
 }

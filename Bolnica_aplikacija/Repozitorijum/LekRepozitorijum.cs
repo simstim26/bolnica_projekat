@@ -98,6 +98,20 @@ namespace Bolnica_aplikacija.Repozitorijum
             }
         }
 
+        public void fizickiObrisiLekZaOdbacivanje(LekZaOdobravanje lekZaOdbacivanje)
+        {
+            List<LekZaOdobravanje> odbaceniLekovi = ucitajOdbaceneLekove();
+            foreach (LekZaOdobravanje lek in odbaceniLekovi)
+            {
+                if (lek.id.Equals(lekZaOdbacivanje.id))
+                {
+                    odbaceniLekovi.Remove(lek);
+                    break;
+                }
+            }
+            upisiOdbaceneLekove(odbaceniLekovi);
+        }
+
         private List<LekZaOdobravanje> resetujIdejeve(List<LekZaOdobravanje> lekovi)
         {
             int id = 1;
