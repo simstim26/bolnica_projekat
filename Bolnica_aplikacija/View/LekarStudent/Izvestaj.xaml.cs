@@ -377,45 +377,49 @@ namespace Bolnica_aplikacija.LekarStudent
         private void txtVreme_TextChanged(object sender, TextChangedEventArgs e)
         {
             omoguciDugme();
-            dozvoliUnosProstorije();
+            omoguciDugmeZaProstoriju();
         }
 
         private void txtProstorija_TextChanged(object sender, TextChangedEventArgs e)
         {
             omoguciDugme();
-            dozvoliUnosProstorije();
-            if (!txtProstorija.Text.Equals("Prostorija..."))
-            {
-                btnUkloniProstoriju.IsEnabled = true;
-            }
-            else
-            {
-                btnUkloniProstoriju.IsEnabled = false;
-            }
+            omoguciDugmeZaProstoriju();
         }
 
-        private void dozvoliUnosProstorije()
-        {
-            if (String.IsNullOrWhiteSpace(txtVreme.Text) && datum.SelectedDate == null)
-            {
-                btnDodajProstoriju.IsEnabled = false;
-            }
-            else
-            {
-                btnDodajProstoriju.IsEnabled = true;
-            }
-        }
 
         private void omoguciDugme()
         {
-            if (String.IsNullOrWhiteSpace(txtVreme.Text) && !txtProstorija.Text.Equals("Prostorija...") && datum.SelectedDate == null)
-            {
-                btnPotvrdi.IsEnabled = false;
-            }
-            else
+            if (!String.IsNullOrWhiteSpace(txtVreme.Text) && datum.SelectedDate != null && !txtProstorija.Text.Equals("Prostorija..."))
             {
                 btnPotvrdi.IsEnabled = true;
             }
+            else
+            {
+                btnPotvrdi.IsEnabled = false;
+            }
         }
+
+        private void omoguciDugmeZaProstoriju()
+        {
+            if (!String.IsNullOrWhiteSpace(txtVreme.Text) && datum.SelectedDate != null)
+            {
+                btnDodajProstoriju.IsEnabled = true;
+            }
+            else
+            {
+                btnDodajProstoriju.IsEnabled = false;
+            }
+
+            if (txtProstorija.Text.Equals("Prostorija..."))
+            {
+                btnUkloniProstoriju.IsEnabled = false;
+            }
+            else
+            {
+                btnUkloniProstoriju.IsEnabled = true;
+            }
+        }
+
+
     }
 }

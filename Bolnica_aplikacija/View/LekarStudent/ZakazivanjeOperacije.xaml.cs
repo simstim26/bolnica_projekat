@@ -139,6 +139,15 @@ namespace Bolnica_aplikacija.LekarStudent
             {
                 btnDodajProstoriju.IsEnabled = false;
             }
+
+            if (txtProstorija.Text.Equals("Prostorija..."))
+            {
+                btnUkloniProstoriju.IsEnabled = false;
+            }
+            else
+            {
+                btnUkloniProstoriju.IsEnabled = true;
+            }
         }
 
         private void btnPotvrdiProstoriju_Click(object sender, RoutedEventArgs e)
@@ -149,6 +158,16 @@ namespace Bolnica_aplikacija.LekarStudent
                     ((Prostorija)dataGridProstorije.SelectedItem).broj;
                 gridOdabirProstorija.Visibility = Visibility.Hidden;
             }
+            else
+            {
+                MessageBox.Show("Potrebno je izabrati prostoriju.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+        private void btnUkloniProstoriju_Click(object sender, RoutedEventArgs e)
+        {
+            txtProstorija.Text = "Prostorija...";
+            dataGridProstorije.SelectedIndex = -1;
         }
     }
 }

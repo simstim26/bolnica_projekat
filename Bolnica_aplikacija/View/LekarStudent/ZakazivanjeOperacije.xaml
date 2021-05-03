@@ -11,7 +11,7 @@
         <Button x:Name="btnDodajProstoriju" HorizontalAlignment="Left" Margin="219,394,0,0" VerticalAlignment="Top" Width="49" Height="28" Click="btnDodajProstoriju_Click">
             <materialDesign:PackIcon Kind="Plus" ></materialDesign:PackIcon>
         </Button>
-        <Button x:Name="btnUkloniProstoriju" HorizontalAlignment="Left" Margin="294,394,0,0" VerticalAlignment="Top" Width="49" Height="28">
+        <Button x:Name="btnUkloniProstoriju" HorizontalAlignment="Left" Margin="294,394,0,0" VerticalAlignment="Top" Width="49" Height="28" Click="btnUkloniProstoriju_Click">
             <materialDesign:PackIcon Kind="Minus"></materialDesign:PackIcon>
         </Button>
         <Button x:Name="btnPotvrdi" HorizontalAlignment="Left" Margin="47,608,0,0" VerticalAlignment="Top" Width="84" Height="38" Click="btnPotvrdi_Click">
