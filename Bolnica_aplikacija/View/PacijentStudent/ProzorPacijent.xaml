@@ -46,7 +46,7 @@
                 <ToolBarTray Grid.Row="0" IsLocked="True" HorizontalAlignment="Right">
                     <ToolBar>
                         <Button Name="btnCenovnik" FontSize="16">Cenovnik</Button>
-                        <Button Name="btnPlacanje" FontSize="16">Plaćanje</Button>
+                        <Button Name="btnPlacanje" FontSize="16" Click="btnPlacanje_Click">Plaćanje</Button>
                         <Button Name="btnOceniLekara" FontSize="16" VerticalAlignment="Bottom" Click="btnOceniLekara_Click">Oceni lekara</Button>
                     </ToolBar>
                 </ToolBarTray>

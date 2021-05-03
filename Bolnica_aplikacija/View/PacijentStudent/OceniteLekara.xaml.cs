@@ -1,5 +1,6 @@
 ﻿using Bolnica_aplikacija.Kontroler;
 using Bolnica_aplikacija.PacijentModel;
+using Bolnica_aplikacija.PacijentStudent;
 using Bolnica_aplikacija.Servis;
 using System;
 using System.Collections.Generic;
@@ -65,21 +66,31 @@ namespace Bolnica_aplikacija.View.PacijentStudent
 
         private void btnOceni_Click(object sender, RoutedEventArgs e)
         {
-            int ocena = 0;
 
-            switch(comboBoxOcena.SelectedIndex)
+            PotvrdaProzor pprozor = new PotvrdaProzor();
+            pprozor.Owner = this;
+            pprozor.ShowDialog();
+
+            if (pprozor.GetPovratnaVrednost() == 1)
             {
-                case 0: ocena = 1; break;
-                case 1: ocena = 2; break;
-                case 2: ocena = 3; break;
-                case 3: ocena = 4; break;
-                case 4: ocena = 5; break;
-                default: ocena = -1; break;
+                int ocena = 0;
+
+                switch (comboBoxOcena.SelectedIndex)
+                {
+                    case 0: ocena = 1; break;
+                    case 1: ocena = 2; break;
+                    case 2: ocena = 3; break;
+                    case 3: ocena = 4; break;
+                    case 4: ocena = 5; break;
+                    default: ocena = -1; break;
+                }
+
+                int brojOcena = OcenaLekaraKontroler.ucitajSve().Count + 1;
+
+                OcenaLekaraKontroler.dodajOcenu(new Model.OcenaLekara("OL " + brojOcena.ToString(), comboBoxLekar.SelectedItem.ToString(), ocena, txtKomentar.Text));
+
+                this.Close();
             }
-
-            int brojOcena = OcenaLekaraKontroler.ucitajSve().Count + 1;
-
-            OcenaLekaraKontroler.dodajOcenu(new Model.OcenaLekara("OL "+brojOcena.ToString(),comboBoxLekar.SelectedItem.ToString(),ocena,txtKomentar.Text));
         }
     }
 }

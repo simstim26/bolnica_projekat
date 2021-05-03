@@ -147,6 +147,9 @@
     <Compile Include="View\PacijentStudent\NotifikacijaProzor.xaml.cs">
       <DependentUpon>NotifikacijaProzor.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\PacijentStudent\OceniteBolnicu.xaml.cs">
+      <DependentUpon>OceniteBolnicu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\PacijentStudent\OceniteLekara.xaml.cs">
       <DependentUpon>OceniteLekara.xaml</DependentUpon>
     </Compile>
@@ -324,6 +327,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\PacijentStudent\NotifikacijaProzor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PacijentStudent\OceniteBolnicu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

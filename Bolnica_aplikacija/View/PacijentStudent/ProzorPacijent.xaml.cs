@@ -288,15 +288,6 @@ namespace Bolnica_aplikacija.PacijentStudent
             int brojPonavljanja = LogovanjeKontroler.getBrojUzastopnihPonavljanja(idPacijenta);
             bool proveraDatuma = PomocnaKlasaProvere.uporediDatumSaDanasnjim(LogovanjeKontroler.getVremeIzmene(idPacijenta));
 
-
-          /*  if (brojPonavljanja > 3)
-            {
-               return false;
-            }
-            else
-                return true;
-          */
-
             if(brojPonavljanja > 3 )
             {
                 if(proveraDatuma)
@@ -320,7 +311,17 @@ namespace Bolnica_aplikacija.PacijentStudent
         private void btnOceniLekara_Click(object sender, RoutedEventArgs e)
         {
             OceniteLekara oceniteLekara = new OceniteLekara(idPacijenta);
-            oceniteLekara.Show();
+            oceniteLekara.Owner = this;
+            oceniteLekara.ShowDialog();
+        }
+
+        //zbog testiranja
+
+        private void btnPlacanje_Click(object sender, RoutedEventArgs e)
+        {
+            OceniteBolnicu oceniteBolnicu = new OceniteBolnicu(idPacijenta);
+            oceniteBolnicu.Owner = this;
+            oceniteBolnicu.ShowDialog();
         }
     }
 }

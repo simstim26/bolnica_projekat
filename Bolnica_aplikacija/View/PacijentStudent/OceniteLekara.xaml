@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Bolnica_aplikacija.View.PacijentStudent"
         mc:Ignorable="d"
-        Title="Ocenite lekara" Height="600" Width="541" Topmost="True" ResizeMode="NoResize">
+        Title="Ocenite lekara" Height="600" Width="541" Topmost="True" WindowStartupLocation="CenterOwner" ResizeMode="NoResize">
     <Grid>
         <Label x:Name="label" Content="Vaši utisci su nam bitni!" Margin="87,26,86,0" VerticalAlignment="Top" FontSize="32" FontWeight="Bold"/>
         <Label x:Name="label1" Content="Odaberite lekara:" HorizontalAlignment="Left" Margin="69,106,0,0" VerticalAlignment="Top" FontSize="24"/>
