@@ -29,6 +29,11 @@ namespace Model
         }
         public Pacijent() { }
 
+        public Pacijent(String idPacijenta)
+        {
+            this.id = idPacijenta;
+        }
+          
         public String[] toString()
         {
             String[] stringovi = { jmbg, ime, prezime };
