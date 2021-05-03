@@ -14,7 +14,7 @@
         <ComboBox x:Name="comboBoxOcena" HorizontalAlignment="Left" Margin="263,173,0,0" VerticalAlignment="Top" Width="200" FontSize="24"/>
         <Label x:Name="label2" Content="Prostor za Vaš komentar:" HorizontalAlignment="Left" Margin="10,239,0,0" VerticalAlignment="Top" FontSize="18" FontStyle="Italic"/>
         <Rectangle Fill="#FFF4F4F5" Height="177" Margin="10,276,10,0" Stroke="Black" VerticalAlignment="Top"/>
-        <Button x:Name="btnOceni" Content="Oceni" Margin="142,490,277,0" VerticalAlignment="Top" Height="41" FontSize="24"/>
+        <Button x:Name="btnOceni" Content="Oceni" Margin="142,490,277,0" VerticalAlignment="Top" Height="41" FontSize="24" Click="btnOceni_Click"/>
         <Button x:Name="btnOtkazi" Content="Otkaži" Margin="276,490,143,0" VerticalAlignment="Top" Height="41" FontSize="24" IsCancel="True"/>
         <TextBox x:Name="txtKomentar" Height="177" Margin="10,276,10,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="18"/>
 

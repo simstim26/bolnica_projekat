@@ -1,4 +1,6 @@
 ﻿using Bolnica_aplikacija.Kontroler;
+using Bolnica_aplikacija.PacijentModel;
+using Bolnica_aplikacija.Servis;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,16 +49,37 @@ namespace Bolnica_aplikacija.View.PacijentStudent
 
         private void popuniLekara()
         {
-            String[] lekari = OcenaLekaraKontroler.pronadjiImenaLekara(idPacijenta).Split('|');
+            Dictionary<string, string> lekari = new Dictionary<string, string>();
+            var prosliTermini = PacijentKontroler.prikazProslihTerminaPacijentaKodOcenjivanjaLekara(idPacijenta);
+            foreach (PacijentTermin termin in prosliTermini)
+            {
+                lekari.Add(termin.id, termin.imeLekara);
+            }
 
-            lekari = lekari.Distinct().ToArray();
+            var listaLekara = lekari.Values.Distinct().ToList();
 
-            for (int i = 0; i < lekari.Length; i++)
-                comboBoxLekar.Items.Add(lekari[i]);
-
+            comboBoxLekar.ItemsSource = listaLekara;
             comboBoxLekar.SelectedIndex = 0;
-
+         
         }
 
+        private void btnOceni_Click(object sender, RoutedEventArgs e)
+        {
+            int ocena = 0;
+
+            switch(comboBoxOcena.SelectedIndex)
+            {
+                case 0: ocena = 1; break;
+                case 1: ocena = 2; break;
+                case 2: ocena = 3; break;
+                case 3: ocena = 4; break;
+                case 4: ocena = 5; break;
+                default: ocena = -1; break;
+            }
+
+            int brojOcena = OcenaLekaraKontroler.ucitajSve().Count + 1;
+
+            OcenaLekaraKontroler.dodajOcenu(new Model.OcenaLekara("OL "+brojOcena.ToString(),comboBoxLekar.SelectedItem.ToString(),ocena,txtKomentar.Text));
+        }
     }
 }

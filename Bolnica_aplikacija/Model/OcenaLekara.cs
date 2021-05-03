@@ -10,8 +10,17 @@ namespace Bolnica_aplikacija.Model
     class OcenaLekara
     {
         public String idOcene { get; set; }
-        public Lekar lekar { get; set; }
+        public String imeLekara { get; set; }
         public int ocena { get; set; }
         public String komentar { get; set; }
+
+        public OcenaLekara(String idOcene, String imeLekara, int ocena, String komentar)
+        {
+            this.idOcene = idOcene;
+            this.imeLekara = imeLekara;
+            this.ocena = ocena;
+            this.komentar = komentar;
+        }
+
     }
 }
