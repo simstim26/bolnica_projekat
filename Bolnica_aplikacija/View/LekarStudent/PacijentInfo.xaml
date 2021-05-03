@@ -53,7 +53,7 @@
                 <TabItem.HeaderTemplate>
                     <DataTemplate>
                         <TextBlock Grid.ColumnSpan="2" Margin="-12,-5,-11,-3.8" IsEnabled="False">
-                                  <materialDesign:PackIcon Kind="Heart"></materialDesign:PackIcon>
+                                  <materialDesign:PackIcon Kind="HeartPulse"></materialDesign:PackIcon>
                         </TextBlock>
                     </DataTemplate>
                 </TabItem.HeaderTemplate>

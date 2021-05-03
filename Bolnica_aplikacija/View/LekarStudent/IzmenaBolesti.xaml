@@ -18,7 +18,9 @@
         <Button x:Name="btnPotvrdi" HorizontalAlignment="Left" Margin="37,589,0,0" VerticalAlignment="Top" Width="84" Height="44" Click="btnPotvrdi_Click">
             <materialDesign:PackIcon Kind="CheckCircle" Height="25" Width="29"></materialDesign:PackIcon>
         </Button>
-        <Button x:Name="btnPonisti" Content="Button" HorizontalAlignment="Left" Margin="295,589,0,0" VerticalAlignment="Top" Width="84" Height="44"/>
+        <Button x:Name="btnPonisti" HorizontalAlignment="Left" Margin="295,589,0,0" VerticalAlignment="Top" Width="84" Height="44">
+            <materialDesign:PackIcon Kind="CloseCircle" Height="23" Width="24" RenderTransformOrigin="0.5,0.5"/>
+        </Button>
         <Grid x:Name="gridIzmenaTerapije" Background="White" Visibility="Hidden" >
             <Image HorizontalAlignment="Left" Height="31" Margin="59,41,0,0" VerticalAlignment="Top" Width="31" Source="patient-icon-3.jpg"/>
             <Label Content="JMBG:" HorizontalAlignment="Left" Margin="127,55,0,0" VerticalAlignment="Top"/>
