@@ -24,7 +24,7 @@ namespace Bolnica_aplikacija.View.PacijentStudent
     {
         private String idPacijenta;
 
-        public OceniteBolnicu(String idPacijenca)
+        public OceniteBolnicu(String idPacijenta)
         {
             InitializeComponent();
             this.idPacijenta = idPacijenta;
@@ -65,7 +65,7 @@ namespace Bolnica_aplikacija.View.PacijentStudent
                 }
 
                 OcenaBolniceKontroler.dodajOcenu(new Model.OcenaBolnice("BO "+brojOcena,ocena, txtKomentar.Text, new Pacijent(idPacijenta)));
-
+                PacijentKontroler.postaviStanjeAnkete(idPacijenta);
                 this.Close();
             
             }

@@ -697,5 +697,46 @@ namespace Bolnica_aplikacija.Servis
             return terminiPacijenta;
         }
 
+        public bool proveriStanjeAnkete(String idPacijenta)
+        {
+            foreach(Pacijent pacijent in pacijentRepozitorijum.ucitajSve())
+            {
+                if(pacijent.id.Equals(idPacijenta))
+                {
+                    if (pacijent.anketa)
+                    {
+                        return true;
+                    }
+                    else
+                        return false;
+                }
+            }
+
+            return false;
+        }
+
+        public void postaviStanjeAnkete(String idPacijenta)
+        {
+            List<Pacijent> sviPacijenti = new List<Pacijent>();
+
+            foreach (Pacijent pacijent in pacijentRepozitorijum.ucitajSve())
+            {
+                if (pacijent.id.Equals(idPacijenta))
+                {
+                    if (pacijent.anketa)
+                    {
+                        pacijent.anketa = false;
+                    }
+                    else
+                        pacijent.anketa = true;
+                }
+
+                sviPacijenti.Add(pacijent);
+
+            }
+
+            pacijentRepozitorijum.upisi(sviPacijenti);
+
+        }
     }
 }

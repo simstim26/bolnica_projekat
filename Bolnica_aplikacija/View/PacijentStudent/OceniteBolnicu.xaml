@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Bolnica_aplikacija.View.PacijentStudent"
         mc:Ignorable="d"
-        Title="Ocenite usluge bolnice" Height="600" Width="541" Topmost="True" WindowStartupLocation="CenterOwner" ResizeMode="NoResize">
+        Title="Ocenite usluge bolnice" Height="600" Width="541" Topmost="True" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
         <Label x:Name="label" Content="Ocenite usluge bolnice!" Margin="65,26,66,0" VerticalAlignment="Top" FontSize="36" FontWeight="Bold"/>
         <Label x:Name="label1" Content="Moja ocena:" HorizontalAlignment="Left" Margin="87,142,0,0" VerticalAlignment="Top" FontSize="24"/>

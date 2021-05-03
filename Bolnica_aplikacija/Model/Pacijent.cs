@@ -19,6 +19,9 @@ namespace Model
       public bool jeGost { get; set; }
       public String adresa { get; set; }
       public Termin[] termin;
+
+        public bool anketa { get; set; }
+
       public bool jeLogickiObrisan { get; set; }
 
         public Pacijent (String jmbg, String ime, String prezime)

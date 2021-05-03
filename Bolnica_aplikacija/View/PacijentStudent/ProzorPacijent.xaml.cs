@@ -41,6 +41,7 @@ namespace Bolnica_aplikacija.PacijentStudent
 
             PopuniTermine();
             setujTajmer();
+            proveraAnkete();
         }
 
         private void PopuniTermine()
@@ -322,6 +323,32 @@ namespace Bolnica_aplikacija.PacijentStudent
             OceniteBolnicu oceniteBolnicu = new OceniteBolnicu(idPacijenta);
             oceniteBolnicu.Owner = this;
             oceniteBolnicu.ShowDialog();
+        }
+
+        private void proveraAnkete()
+        {
+            int mesec = DateTime.Now.Month;
+            bool proveraMeseca = false;
+
+            switch(mesec)
+            {
+                case 4:     proveraMeseca = true;    break;
+                case 8:     proveraMeseca = true;    break;
+                case 12:    proveraMeseca = true;    break;
+                default:    proveraMeseca = false;    break;
+            }
+
+            if(proveraMeseca)
+            {
+                //proveriti stanje anketa polja u pacijentu
+
+                if(!PacijentKontroler.proveriStanjeAnkete(idPacijenta))
+                {
+                    OceniteBolnicu oceniteBolnicu = new OceniteBolnicu(idPacijenta);
+                    oceniteBolnicu.ShowDialog();
+
+                }
+            }
         }
     }
 }
