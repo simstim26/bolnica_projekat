@@ -806,6 +806,13 @@ namespace Bolnica_aplikacija.Servis
 
             return stavke;
         }
+
+        public void zakaziRenoviranje(ProstorijaRenoviranje prostorija)
+        {
+            var prostorijeZaRenoviranje = prostorijaRepozitorijum.ucitajProstorijeZaRenoviranje();
+            prostorijeZaRenoviranje.Add(prostorija);
+            prostorijaRepozitorijum.upisiProstorijeZaRenoviranje(prostorijeZaRenoviranje);
+        }
     }
 
 

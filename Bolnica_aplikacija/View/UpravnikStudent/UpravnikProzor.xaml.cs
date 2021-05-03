@@ -843,5 +843,35 @@ namespace Bolnica_aplikacija
         {
             comboBoxFiltrirajStavku.SelectedIndex = -1;
         }
+
+        private void btnZakaziRenoviranje_Click(object sender, RoutedEventArgs e)
+        {
+            gridProstorija.Visibility = Visibility.Hidden;
+            gridZakaziProstorijuZaRenoviranje.Visibility = Visibility.Visible;
+            dataGridProstorijeZaRenoviranje.ItemsSource = ProstorijaKontroler.ucitajSve();
+        }
+
+        private void btnZakaziRenoviranjeProstorije_Click(object sender, RoutedEventArgs e)
+        {
+            if(dataGridProstorijeZaRenoviranje.SelectedItems.Count != 0)
+            {
+                foreach (var selektovan in dataGridProstorijeZaRenoviranje.SelectedItems)
+                {
+                    Prostorija selektovanaProstorija = (Prostorija)selektovan;
+                    ProstorijaRenoviranje prostorijaZaRenoviranje = new ProstorijaRenoviranje(selektovanaProstorija.id, (DateTime)datumRenoviranjaOd.SelectedDate, 
+                                                                    (DateTime)datumRenoviranjaDo.SelectedDate, textBoxRazlogRenoviranja.Text);
+                    ProstorijaKontroler.zakaziRenoviranje(prostorijaZaRenoviranje);
+                }
+            }
+
+            gridZakaziProstorijuZaRenoviranje.Visibility = Visibility.Hidden;
+            gridProstorija.Visibility = Visibility.Visible;
+        }
+
+        private void btnOtkaziRenoviranjeProstorije_Click(object sender, RoutedEventArgs e)
+        {
+            gridZakaziProstorijuZaRenoviranje.Visibility = Visibility.Hidden;
+            gridProstorija.Visibility = Visibility.Visible;
+        }
     }
 }
