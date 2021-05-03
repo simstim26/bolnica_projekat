@@ -38,5 +38,10 @@ namespace Bolnica_aplikacija.Kontroler
         {
             return sekretarServis.ucitajTermineZaHitanSlucaj(tip, idSpecijalizacije);
         }
+
+        public static void pomeriTerminNaPrviSlobodan(String idPacijenta, String idTermina, String tip, String idSpecijalizacije)
+        {
+            sekretarServis.pomeriTerminNaPrviSlobodan(idPacijenta, idTermina, tip, idSpecijalizacije);
+        }
     }
 }

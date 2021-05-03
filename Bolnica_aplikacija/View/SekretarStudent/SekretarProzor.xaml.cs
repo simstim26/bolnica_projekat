@@ -781,7 +781,19 @@ namespace Bolnica_aplikacija
             PotvrdaGrid.Visibility = Visibility.Visible;
         }
 
-        
+        private void ucitajPacijenteUTabeluTermina()
+        {
+            ucitajTerminePacijenta();
+            TabelaSlobodnihTermina.ItemsSource = PacijentKontroler.ucitajSlobodneTermine(1, true);
+            TabelaSlobodnihTermina.Items.Refresh();
+        }
+
+        private void sakrijGridZaPotvrdu()
+        {
+            PotvrdaGrid.Visibility = Visibility.Hidden;
+            potvrdiZakazivanjeTerminaButton.IsEnabled = false;
+        }
+
 
         private void btnPotvrdiIzbor_Click(object sender, RoutedEventArgs e)
         {
@@ -791,18 +803,12 @@ namespace Bolnica_aplikacija
                 PacijentKontroler.nadjiPacijenta(idPacijenta);
                 String idSelektovanog = izabraniTermin.id;
                 PacijentKontroler.zakaziTerminPacijentu(idSelektovanog);
+                
                 NotifikacijaKontroler.napraviNotifikaciju("Zakazivanje termina (Pacijent)", "Zakazan je teremin (Pacijent)", idPacijenta, "pacijent");
                 NotifikacijaKontroler.napraviNotifikaciju("Zakazivanje termina (Lekar)", "Zakazan je teremin (Lekar)", TerminKontroler.nadjiIdLekaraZaTermin(izabraniTermin.id), "lekar");
 
-
-                ucitajTerminePacijenta();
-                TabelaPacijentiTermini.Items.Refresh();
-                TabelaSlobodnihTermina.ItemsSource = PacijentKontroler.ucitajSlobodneTermine(1, true);
-                TabelaSlobodnihTermina.Items.Refresh();
-
-                PotvrdaGrid.Visibility = Visibility.Hidden;
-                potvrdiZakazivanjeTerminaButton.IsEnabled = false;
-
+                ucitajPacijenteUTabeluTermina();
+                sakrijGridZaPotvrdu();
                 sakrijTabeluSlobodnihTermina();
             }
             else if (tipAkcijeTermini == 1)
@@ -811,29 +817,23 @@ namespace Bolnica_aplikacija
                 PacijentTermin noviTermin = (PacijentTermin)TabelaSlobodnihTermina.SelectedItem;
                 TerminKontroler.sacuvajTermin(izabraniTermin.id);
                 PacijentKontroler.azurirajTerminPacijentu(izabraniTermin.id, noviTermin.id);
+                
                 NotifikacijaKontroler.napraviNotifikaciju("Izmena termina (Pacijent)", "Izmenjen je teremin (Pacijent)", idPacijenta, "pacijent");
                 NotifikacijaKontroler.napraviNotifikaciju("Izmena termina (Lekar)", "Izmenjen je teremin (Lekar)", TerminKontroler.nadjiIdLekaraZaTermin(izabraniTermin.id), "lekar");
 
-                ucitajTerminePacijenta();
-                TabelaPacijentiTermini.Items.Refresh();
-                TabelaSlobodnihTermina.ItemsSource = PacijentKontroler.ucitajSlobodneTermine(1, true);
-                TabelaSlobodnihTermina.Items.Refresh();
-
-                PotvrdaGrid.Visibility = Visibility.Hidden;
-                potvrdiZakazivanjeTerminaButton.IsEnabled = false;
+                ucitajPacijenteUTabeluTermina();
+                sakrijGridZaPotvrdu();
+                sakrijTabeluSlobodnihTermina();
             }
             else
             {
-
                 PacijentKontroler.otkaziTerminPacijenta(izabraniTermin.id);
+               
                 NotifikacijaKontroler.napraviNotifikaciju("Otkazivanje termina (Pacijent)", "Otkazan je teremin (Pacijent)", idPacijenta, "pacijent");
                 NotifikacijaKontroler.napraviNotifikaciju("Otkazivanje termina (Lekar)", "Otkazan je teremin (Lekar)", TerminKontroler.nadjiIdLekaraZaTermin(izabraniTermin.id), "lekar");
 
-                ucitajTerminePacijenta();
-                TabelaSlobodnihTermina.ItemsSource = PacijentKontroler.ucitajSlobodneTermine(1, true);
-                TabelaSlobodnihTermina.Items.Refresh();
-
-                PotvrdaGrid.Visibility = Visibility.Hidden;
+                ucitajPacijenteUTabeluTermina();
+                sakrijGridZaPotvrdu();
                 sakrijTabeluSlobodnihTermina();
 
             }
@@ -1126,6 +1126,8 @@ namespace Bolnica_aplikacija
         {
             HitanSlucajGrid.Visibility = Visibility.Hidden;
             PocetniEkranGrid.Visibility = Visibility.Visible;
+            dataGridSlobodniTerminiHitanSlucaj.Items.Clear();
+            lblUpozorenjeTermin.Visibility = Visibility.Hidden;
         }
 
         private void lstBoxItemOpstaPraksa_Selected(object sender, RoutedEventArgs e)
@@ -1193,13 +1195,38 @@ namespace Bolnica_aplikacija
         {
             pacijent = (Pacijent)dataGridPacijentiHitanSlucaj.SelectedItem;
             izabraniTermin = (PacijentTermin)dataGridSlobodniTerminiHItanSlucaj.SelectedItem;
-            PacijentKontroler.nadjiPacijenta(pacijent.id);
-            String idSelektovanog = izabraniTermin.id;
-            PacijentKontroler.zakaziTerminPacijentu(idSelektovanog);
-            NotifikacijaKontroler.napraviNotifikaciju("Zakazivanje hitnog slucaja (Pacijent)", "Hitan Slucaj (Pacijent)", idPacijenta, "pacijent");
-            NotifikacijaKontroler.napraviNotifikaciju("Zakazivanje hitnog slucaja (Lekar)", "Hitaj slucaj (Lekar)", TerminKontroler.nadjiIdLekaraZaTermin(izabraniTermin.id), "lekar");
 
-            ucitajSlobodneTermineHitanSlucaj(tipSpecijalizacije);
+            Termin termin = TerminKontroler.nadjiTerminPoId(izabraniTermin.id);
+
+            if (termin.idPacijenta.Equals(""))
+            {
+                PacijentKontroler.nadjiPacijenta(pacijent.id);
+                String idSelektovanog = izabraniTermin.id;
+                PacijentKontroler.zakaziTerminPacijentu(idSelektovanog);
+
+                NotifikacijaKontroler.napraviNotifikaciju("Zakazivanje hitnog slucaja (Pacijent)", "Hitan Slucaj (Pacijent)", pacijent.id, "pacijent");
+                NotifikacijaKontroler.napraviNotifikaciju("Zakazivanje hitnog slucaja (Lekar)", "Hitaj slucaj (Lekar)", TerminKontroler.nadjiIdLekaraZaTermin(izabraniTermin.id), "lekar");
+                
+                dataGridSlobodniTerminiHitanSlucaj.Items.Clear();
+                dataGridSlobodniTerminiHitanSlucaj.Items.Refresh();
+            }
+            else
+            {
+                String idPacijentaZaPomeranje = termin.idPacijenta;
+                SekretarKontroler.pomeriTerminNaPrviSlobodan(idPacijentaZaPomeranje, termin.idTermina, tipHitanSlucaj, tipSpecijalizacije);
+                PacijentKontroler.nadjiPacijenta(pacijent.id);
+                String idSelektovanog = izabraniTermin.id;
+                PacijentKontroler.zakaziTerminPacijentu(idSelektovanog);
+
+                NotifikacijaKontroler.napraviNotifikaciju("Zakazivanje hitnog slucaja uz pomeranje (Pacijent)", "Hitan Slucaj (Pacijent)", pacijent.id, "pacijent");
+                NotifikacijaKontroler.napraviNotifikaciju("Zakazivanje hitnog slucaja uz pomeranje (Lekar)", "Hitaj slucaj (Lekar)", TerminKontroler.nadjiIdLekaraZaTermin(izabraniTermin.id), "lekar");
+
+                dataGridSlobodniTerminiHitanSlucaj.Items.Clear();
+                dataGridSlobodniTerminiHitanSlucaj.Items.Refresh();
+
+            }
+
+           
         }
     }
 }
