@@ -335,9 +335,18 @@ namespace Bolnica_aplikacija.Servis
                             {
                                 if (lekar.id.Equals(termin.idLekara))
                                 {
-                                    if (lekar.idSpecijalizacije.Equals("0") || jeSekretar)
+                                    if (lekar.idSpecijalizacije.Equals("0") || (jeSekretar && lekar.idSpecijalizacije.Equals("0")))
                                     {
                                         pacijentTermin.imeLekara = lekar.ime + " " + lekar.prezime;
+                                        pacijentTermin.idSpecijalizacije = "0";
+                                        Console.WriteLine(pacijentTermin.imeLekara + " " + pacijentTermin.idSpecijalizacije);
+                                        break;
+                                    }
+                                    else if (jeSekretar)
+                                    {
+                                        pacijentTermin.imeLekara = lekar.ime + " " + lekar.prezime;
+                                        pacijentTermin.idSpecijalizacije = lekar.idSpecijalizacije;
+                                        Console.WriteLine(pacijentTermin.imeLekara + " " + pacijentTermin.idSpecijalizacije);
                                         break;
                                     }
                                     else

@@ -1,4 +1,5 @@
 ﻿using Bolnica_aplikacija.Model;
+using Bolnica_aplikacija.PacijentModel;
 using Bolnica_aplikacija.Repozitorijum;
 using Model;
 using System;
@@ -19,11 +20,13 @@ namespace Bolnica_aplikacija.Servis
         private static PacijentRepozitorijum pacijentRepozitorijum = new PacijentRepozitorijum();
         private static KorisnikRepozitorijum korisnikRepozitorijum = new KorisnikRepozitorijum();
         private static AlergijaRepozitorijum alergijaRepozitorijum = new AlergijaRepozitorijum();
+        private static TerminRepozitorijum terminRepozitorijum = new TerminRepozitorijum();
+        private static PacijentServis pacijentServis = new PacijentServis();
 
         public String id { get; set; }
         public String idBolnice { get; set; }
 
-        public static void NapraviPacijenta(String idBolnice, bool gost, String korisnickoIme, String lozinka, String jmbg, String ime, String prezime, DateTime datumRodj, string adresa, string email, string telefon, List<Alergija> alergije)
+        public void NapraviPacijenta(String idBolnice, bool gost, String korisnickoIme, String lozinka, String jmbg, String ime, String prezime, DateTime datumRodj, string adresa, string email, string telefon, List<Alergija> alergije)
         {
 
             Pacijent pacijent = new Pacijent();
@@ -61,7 +64,7 @@ namespace Bolnica_aplikacija.Servis
           
         }
 
-        public static List<Pacijent> ProcitajPacijente()
+        public List<Pacijent> ProcitajPacijente()
         {
             List<Pacijent> ucitaniPacijenti = pacijentRepozitorijum.ucitajSve();
             List<Pacijent> neobrisaniPacijenti = new List<Pacijent>();
@@ -78,7 +81,7 @@ namespace Bolnica_aplikacija.Servis
            
         }
 
-        public static void AzurirajPacijenta(String id, String idBolnice, bool gost, String korisnickoIme, String lozinka, String jmbg, String ime, String prezime, DateTime datumRodj, string adresa, string email, string telefon, List<Alergija> alergije)
+        public void AzurirajPacijenta(String id, String idBolnice, bool gost, String korisnickoIme, String lozinka, String jmbg, String ime, String prezime, DateTime datumRodj, string adresa, string email, string telefon, List<Alergija> alergije)
         {
             List<Pacijent> sviPacijenti = pacijentRepozitorijum.ucitajSve();
             foreach (Pacijent izmeniP in sviPacijenti)
@@ -106,7 +109,7 @@ namespace Bolnica_aplikacija.Servis
      
         }
 
-        public static void ObrisiPacijenta(String idPacijenta)
+        public void ObrisiPacijenta(String idPacijenta)
         {
 
             //Pronadji pacijenta za brisanje i postavi mu jeLogickiObrisan na true
@@ -124,6 +127,47 @@ namespace Bolnica_aplikacija.Servis
             pacijentRepozitorijum.upisi(sviPacijenti);
 
 
+        }
+
+        public List<PacijentTermin> ucitajTermineZaHitanSlucaj(String tip, String idSpecijalizacije)
+        {
+            List<PacijentTermin> sviTermini = pacijentServis.ucitajSlobodneTermine(0, true);
+            List<PacijentTermin> datumiUOpsegu = new List<PacijentTermin>();
+            List<PacijentTermin> filtriraniTermini = new List<PacijentTermin>();
+
+            foreach (Termin termin in terminRepozitorijum.ucitajSve())
+            {
+                foreach(PacijentTermin pacijentTermin in sviTermini)
+                {
+                    if (pacijentTermin.id.Equals(termin.idTermina))
+                    {
+                        DateTime terminDatum = termin.datum;
+                        DateTime trenutniDatum = DateTime.Now.AddHours(1);
+
+                        int rezultat = DateTime.Compare(terminDatum, trenutniDatum);
+                        
+                        if (rezultat < 0)
+                        {
+                            Console.WriteLine("U opsegu je" + " " + rezultat);
+                            datumiUOpsegu.Add(pacijentTermin);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Nije u opsegu" + " " + rezultat);
+                        }
+                    }
+                }
+            }
+
+            foreach (PacijentTermin pacijentTermin in datumiUOpsegu)
+            {
+                if (pacijentTermin.napomena.Equals(tip) && pacijentTermin.idSpecijalizacije.Equals(idSpecijalizacije))
+                {
+                    filtriraniTermini.Add(pacijentTermin);
+                }
+            }
+                
+            return filtriraniTermini;
         }
 
 

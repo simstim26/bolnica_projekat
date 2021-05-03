@@ -40,6 +40,8 @@ namespace Bolnica_aplikacija
         private Obavestenje izabranoObavestenje;
         private List<Alergija> alergije;
         private bool jeHitanSlucaj;
+        private String tipHitanSlucaj;
+        private String tipSpecijalizacije;
 
         public SekretarProzor()
         {
@@ -1124,6 +1126,80 @@ namespace Bolnica_aplikacija
         {
             HitanSlucajGrid.Visibility = Visibility.Hidden;
             PocetniEkranGrid.Visibility = Visibility.Visible;
+        }
+
+        private void lstBoxItemOpstaPraksa_Selected(object sender, RoutedEventArgs e)
+        {
+            tipSpecijalizacije = "0";
+            ucitajSlobodneTermineHitanSlucaj(tipSpecijalizacije);
+        }
+
+        private void lstBoxItemKardiohirurg_Selected(object sender, RoutedEventArgs e)
+        {
+
+            tipSpecijalizacije = "1";
+            ucitajSlobodneTermineHitanSlucaj(tipSpecijalizacije);
+
+        }
+
+        private void ucitajSlobodneTermineHitanSlucaj(String idSpecijalizacije)
+        {
+            List<PacijentTermin> termini = new List<PacijentTermin>();
+            Console.WriteLine(tipHitanSlucaj);
+            termini = SekretarKontroler.ucitajTermineZaHitanSlucaj(tipHitanSlucaj, idSpecijalizacije);
+
+            if (termini.Count == 0)
+            {
+                lblUpozorenjeTermin.Visibility = Visibility.Visible;
+            }
+
+            dataGridSlobodniTerminiHItanSlucaj.ItemsSource = termini;
+            dataGridSlobodniTerminiHItanSlucaj.Items.Refresh();
+        }
+
+       
+        private void btnPregled_Checked(object sender, RoutedEventArgs e)
+        {
+            tipHitanSlucaj = "Pregled";
+            lstBoxItemOpstaPraksa.IsEnabled = true;
+            lblUpozorenjeTermin.Visibility = Visibility.Hidden;
+        }
+
+        private void btnOperacija_Checked(object sender, RoutedEventArgs e)
+        {
+            tipHitanSlucaj = "Operacija";
+            lstBoxItemOpstaPraksa.IsEnabled = false;
+            lblUpozorenjeTermin.Visibility = Visibility.Hidden;
+        }
+
+        private void dataGridPacijentiHitanSlucaj_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+            if (dataGridPacijentiHitanSlucaj.SelectedIndex != -1 && dataGridSlobodniTerminiHItanSlucaj.SelectedIndex != -1)
+            {
+                btnZakaziHitanPregled.IsEnabled = true;
+            }
+        }
+
+
+        private void dataGridSlobodniTerminiHItanSlucaj_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (dataGridSlobodniTerminiHItanSlucaj.SelectedIndex != -1 && dataGridPacijentiHitanSlucaj.SelectedIndex != -1)
+            {
+                btnZakaziHitanPregled.IsEnabled = true;
+            }
+        }
+
+        private void btnZakaziHitanPregled_Click(object sender, RoutedEventArgs e)
+        {
+            pacijent = (Pacijent)dataGridPacijentiHitanSlucaj.SelectedItem;
+            izabraniTermin = (PacijentTermin)dataGridSlobodniTerminiHItanSlucaj.SelectedItem;
+            PacijentKontroler.nadjiPacijenta(pacijent.id);
+            String idSelektovanog = izabraniTermin.id;
+            PacijentKontroler.zakaziTerminPacijentu(idSelektovanog);
+            NotifikacijaKontroler.napraviNotifikaciju("Zakazivanje hitnog slucaja (Pacijent)", "Hitan Slucaj (Pacijent)", idPacijenta, "pacijent");
+            NotifikacijaKontroler.napraviNotifikaciju("Zakazivanje hitnog slucaja (Lekar)", "Hitaj slucaj (Lekar)", TerminKontroler.nadjiIdLekaraZaTermin(izabraniTermin.id), "lekar");
+
+            ucitajSlobodneTermineHitanSlucaj(tipSpecijalizacije);
         }
     }
 }

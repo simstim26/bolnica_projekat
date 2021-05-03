@@ -153,13 +153,13 @@
     "jeHitan": false
   },
   {
-    "tip": 1,
+    "tip": 0,
     "datum": "2021-05-06T00:00:00",
     "satnica": "2021-03-28T23:42:00",
     "jeZavrsen": false,
     "idTermina": "10",
     "idProstorije": "15",
-    "idPacijenta": "",
+    "idPacijenta": "7",
     "idLekara": "2",
     "idTerapije": null,
     "idBolesti": null,
@@ -270,5 +270,39 @@
     "idUputLekara": null,
     "idUputTermin": null,
     "jeHitan": true
+  },
+  {
+    "tip": 0,
+    "datum": "2021-05-19T00:00:00",
+    "satnica": "2021-05-19T12:00:00",
+    "jeZavrsen": false,
+    "idTermina": "17",
+    "idProstorije": "16",
+    "idPacijenta": "",
+    "idLekara": "1",
+    "idTerapije": null,
+    "idBolesti": null,
+    "izvestaj": null,
+    "izvestajUputa": null,
+    "idUputLekara": null,
+    "idUputTermin": null,
+    "jeHitan": false
+  },
+  {
+    "tip": 1,
+    "datum": "2021-05-03T21:00:00",
+    "satnica": "2021-05-03T21:00:00",
+    "jeZavrsen": false,
+    "idTermina": "18",
+    "idProstorije": "16",
+    "idPacijenta": "",
+    "idLekara": "1",
+    "idTerapije": null,
+    "idBolesti": null,
+    "izvestaj": null,
+    "izvestajUputa": null,
+    "idUputLekara": null,
+    "idUputTermin": null,
+    "jeHitan": false
   }
 ]
