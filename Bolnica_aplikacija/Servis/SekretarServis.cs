@@ -147,9 +147,12 @@ namespace Bolnica_aplikacija.Servis
 
                         int rezultat1 = DateTime.Compare(terminDatum, trenutniDatum);
                         int rezultat2 = DateTime.Compare(terminDatum, DateTime.Now);
+
+                        Console.WriteLine(rezultat1 + " " + rezultat2);
                         
                         if (rezultat1 <= 0 && rezultat2 > 0)
                         {
+                            Console.WriteLine(pacijentTermin.datum);
                             datumiUOpsegu.Add(pacijentTermin);
                         }
                       
@@ -268,10 +271,15 @@ namespace Bolnica_aplikacija.Servis
             List<PacijentTermin> sviTermini = pacijentServis.ucitajSlobodneTermine(0, true);
             bool pronadjenTermin = false;
 
+            Console.WriteLine(idPacijenta + " " + idTermina + " " + tip + " " + idSpecijalizacije);
+            Console.WriteLine(sviTermini.Count);
+            Console.WriteLine("Petlja:");
+
             foreach (PacijentTermin pacijentTermin in sviTermini)
             {
+                Console.WriteLine(pacijentTermin.napomena + " " + pacijentTermin.idSpecijalizacije);
                 if (pacijentTermin.napomena.Equals(tip) && pacijentTermin.idSpecijalizacije.Equals(idSpecijalizacije))
-                {
+                {              
                     PacijentKontroler.nadjiPacijenta(idPacijenta);
                     PacijentKontroler.azurirajTerminPacijentu(idTermina, pacijentTermin.id);
                     pronadjenTermin = true;

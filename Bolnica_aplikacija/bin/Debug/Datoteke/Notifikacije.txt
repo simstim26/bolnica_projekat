@@ -1,38 +1,38 @@
 [
   {
     "id": "1",
-    "nazivNotifikacije": "Zakazivanje hitnog slucaja (Pacijent)",
-    "vremeNotifikovanja": "2021-05-04T00:12:21.7763388+02:00",
-    "porukaNotifikacije": "Hitan Slucaj (Pacijent)",
-    "idKorisnika": "2",
-    "datumNotifikovanja": "2021-05-04T00:12:21.7763388+02:00",
+    "nazivNotifikacije": "Pomeranje termina (Pacijent)",
+    "vremeNotifikovanja": "2021-05-04T00:59:56.9443541+02:00",
+    "porukaNotifikacije": "Pomeren je termin (Pacijent)",
+    "idKorisnika": "1",
+    "datumNotifikovanja": "2021-05-04T00:59:56.9443541+02:00",
     "jeProcitana": false
   },
   {
     "id": "2",
-    "nazivNotifikacije": "Zakazivanje hitnog slucaja (Lekar)",
-    "vremeNotifikovanja": "2021-05-04T00:12:21.8633447+02:00",
-    "porukaNotifikacije": "Hitaj slucaj (Lekar)",
-    "idKorisnika": "1",
-    "datumNotifikovanja": "2021-05-04T00:12:21.8633447+02:00",
+    "nazivNotifikacije": "Pomeranje termina (Lekar)",
+    "vremeNotifikovanja": "2021-05-04T00:59:56.9623366+02:00",
+    "porukaNotifikacije": "Pomeren je termin (Lekar)",
+    "idKorisnika": "2",
+    "datumNotifikovanja": "2021-05-04T00:59:56.9623366+02:00",
     "jeProcitana": false
   },
   {
     "id": "3",
     "nazivNotifikacije": "Zakazivanje hitnog slucaja uz pomeranje (Pacijent)",
-    "vremeNotifikovanja": "2021-05-04T00:12:55.036546+02:00",
+    "vremeNotifikovanja": "2021-05-04T00:59:56.9973467+02:00",
     "porukaNotifikacije": "Hitan Slucaj (Pacijent)",
     "idKorisnika": "2",
-    "datumNotifikovanja": "2021-05-04T00:12:55.036546+02:00",
+    "datumNotifikovanja": "2021-05-04T00:59:56.9973467+02:00",
     "jeProcitana": false
   },
   {
     "id": "4",
     "nazivNotifikacije": "Zakazivanje hitnog slucaja uz pomeranje (Lekar)",
-    "vremeNotifikovanja": "2021-05-04T00:12:55.0995518+02:00",
+    "vremeNotifikovanja": "2021-05-04T00:59:57.0293434+02:00",
     "porukaNotifikacije": "Hitaj slucaj (Lekar)",
     "idKorisnika": "2",
-    "datumNotifikovanja": "2021-05-04T00:12:55.0995518+02:00",
+    "datumNotifikovanja": "2021-05-04T00:59:57.0293434+02:00",
     "jeProcitana": false
   }
 ]
