@@ -44,6 +44,21 @@ namespace Bolnica_aplikacija.Servis
             return povratnaVrednost;
         }
 
+        public String pronadjiPunoImeLekara(String idLekara)
+        {
+            String povratnaVrednost = "";
+            foreach(Lekar lekar in lekarRepozitorijum.ucitajSve())
+            {
+                if(idLekara.Equals(lekar.id))
+                {
+                    povratnaVrednost = lekar.ime + " " + lekar.prezime;
+                    break;
+                }
+            }
+
+            return povratnaVrednost;
+        }
+
         public String pronadjiNazivSpecijalizacijeLekara(String idLekara)
         {
             String povratnaVrednost = "";

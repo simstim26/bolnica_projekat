@@ -19,6 +19,18 @@ namespace Bolnica_aplikacija.Servis
         private PacijentRepozitorijum pacijentRepozitorijum = new PacijentRepozitorijum();
         private Pacijent pacijent; //lekar -> cuva se izabrani pacijent
         private BolestTerapija bolestTerapija;
+        private static PacijentServis instance;
+
+        public static PacijentServis getInstance()
+        {
+            if(instance == null)
+            {
+                instance = new PacijentServis();
+            }
+
+            return instance;
+        }
+
 
         public List<BolestTerapija> nadjiIstorijuBolestiZaPacijenta()
         {
@@ -656,5 +668,34 @@ namespace Bolnica_aplikacija.Servis
 
             return alergije;
         }
+        public List<PacijentTermin> prikazProslihTerminaPacijentaKodOcenjivanjaLekara(String idPacijenta)
+        {
+            List<PacijentTermin> terminiPacijenta = new List<PacijentTermin>();
+
+            foreach (Termin termin in TerminServis.getInstance().ucitajSve())
+            {
+                if (termin.idPacijenta.Equals(idPacijenta))
+                {
+                    if (termin.jeZavrsen)
+                    {
+                        PacijentTermin pacijentTermin = new PacijentTermin();
+                        pacijentTermin.id = termin.idTermina;
+                        pacijentTermin.napomena = termin.getTipString();
+                        pacijentTermin.datum = termin.datum.Date.ToString("dd.MM.yyyy.");
+                        pacijentTermin.satnica = termin.satnica.ToString("HH:mm");
+                        pacijentTermin.imeLekara = LekarServis.getInstance().pronadjiPunoImeLekara(termin.idLekara);
+                        pacijentTermin.nazivSpecijalizacije = LekarServis.getInstance().pronadjiNazivSpecijalizacijeLekara(termin.idLekara);
+                        pacijentTermin.lokacija = ProstorijaServis.getInstance().nadjiBrojISprat(termin.idProstorije);
+                        pacijentTermin.nazivTerapije = TerapijaServis.getInstance().nadjiNazivLekaZaTerapiju(termin.idTerapije);
+
+                        terminiPacijenta.Add(pacijentTermin);
+                    }
+
+                }
+            }
+
+            return terminiPacijenta;
+        }
+
     }
 }

@@ -319,7 +319,7 @@ namespace Bolnica_aplikacija.PacijentStudent
 
         private void btnOceniLekara_Click(object sender, RoutedEventArgs e)
         {
-            OceniteLekara oceniteLekara = new OceniteLekara();
+            OceniteLekara oceniteLekara = new OceniteLekara(idPacijenta);
             oceniteLekara.Show();
         }
     }
