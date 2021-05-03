@@ -94,5 +94,21 @@
     "email": "nesto@mejl.com",
     "brojTelefona": "1234567",
     "jmbg": "1234567876567"
+  },
+  {
+    "id": "7",
+    "idBolnice": "1",
+    "jeGost": true,
+    "adresa": "",
+    "jeLogickiObrisan": false,
+    "Notifikacija": [],
+    "korisnickoIme": "guest2",
+    "lozinka": "guest",
+    "ime": "Testgost",
+    "prezime": "Gostic",
+    "datumRodjenja": "1966-01-01T00:00:00",
+    "email": "",
+    "brojTelefona": "0649875567",
+    "jmbg": "1123456766565"
   }
 ]
