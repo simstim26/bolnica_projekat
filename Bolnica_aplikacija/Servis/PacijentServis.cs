@@ -17,7 +17,6 @@ namespace Bolnica_aplikacija.Servis
     class PacijentServis
     {
         private PacijentRepozitorijum pacijentRepozitorijum = new PacijentRepozitorijum();
-        private AlergijaRepozitorijum alergijaRepozitorijum = new AlergijaRepozitorijum();
         private Pacijent pacijent; //lekar -> cuva se izabrani pacijent
         private BolestTerapija bolestTerapija;
         private static PacijentServis instance;
@@ -692,7 +691,7 @@ namespace Bolnica_aplikacija.Servis
 
             foreach (Alergija alergija in alergije)
             {
-                alergijaRepozitorijum.dodajAlergiju(new Alergija(pacijent.id, alergija.nazivAlergije));
+                AlergijaServis.getInstance().dodajAlergiju(new Alergija(pacijent.id, alergija.nazivAlergije));
             }
 
             pacijentRepozitorijum.dodajPacijenta(pacijent);
@@ -735,7 +734,7 @@ namespace Bolnica_aplikacija.Servis
                     izmeniP.email = email;
                     izmeniP.brojTelefona = telefon;
 
-                    alergijaRepozitorijum.azurirajAlergije(alergije, izmeniP.id);
+                    AlergijaServis.getInstance().azurirajAlergije(alergije, izmeniP.id);
                     pacijentRepozitorijum.azurirajPacijenta(izmeniP);
                 }
             }

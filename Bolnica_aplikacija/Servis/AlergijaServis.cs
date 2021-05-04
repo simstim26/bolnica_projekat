@@ -46,5 +46,10 @@ namespace Bolnica_aplikacija.Servis
             }
             alergijaRepozitorijum.upisi(alergije);
         }
+
+        public void azurirajAlergije(List<Alergija> alergije, String id)
+        {
+            alergijaRepozitorijum.azurirajAlergije(alergije, id);
+        }
     }
 }
