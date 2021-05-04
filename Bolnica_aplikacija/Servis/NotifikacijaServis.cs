@@ -12,7 +12,6 @@ namespace Bolnica_aplikacija.Servis
     class NotifikacijaServis
     {
         private NotifikacijaRepozitorijum notifikacijaRepozitorijum = new NotifikacijaRepozitorijum();
-        private PacijentServis pacijentServis = new PacijentServis();
         private PacijentRepozitorijum pacijentRepozitorijum = new PacijentRepozitorijum();
         private LekarRepozitorijum lekarRepozitorijum = new LekarRepozitorijum();
 
