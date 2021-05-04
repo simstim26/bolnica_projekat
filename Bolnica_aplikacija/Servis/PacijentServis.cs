@@ -384,7 +384,7 @@ namespace Bolnica_aplikacija.Servis
             return terminiSlobodni;
         }
 
-        private void popuniPacijentTermin(Termin termin, PacijentTermin pacijentTermin, bool jeSekretar)
+        public void popuniPacijentTermin(Termin termin, PacijentTermin pacijentTermin, bool jeSekretar)
         {
             foreach (Prostorija prostorija in ProstorijaServis.getInstance().ucitajSve())
             {
@@ -409,7 +409,7 @@ namespace Bolnica_aplikacija.Servis
 						pacijentTermin.idSpecijalizacije = lekar.idSpecijalizacije;
                         break;
                     }
-					else if (jeSekretar)
+					else 
 					{
 						pacijentTermin.imeLekara = lekar.ime + " " + lekar.prezime;
 						pacijentTermin.idSpecijalizacije = lekar.idSpecijalizacije;
@@ -419,7 +419,7 @@ namespace Bolnica_aplikacija.Servis
             }
         }
 
-        private void dopuniPacijentTermin(Termin termin, PacijentTermin pacijentTermin)
+        public void dopuniPacijentTermin(Termin termin, PacijentTermin pacijentTermin)
         {
             pacijentTermin.datum = termin.datum.Date.ToString("dd/MM/yyyy");
             switch (termin.tip)
