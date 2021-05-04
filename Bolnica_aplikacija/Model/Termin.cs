@@ -23,6 +23,8 @@ namespace Model
         public String izvestajUputa { get; set; }
         public String idUputLekara { get; set; }
         public String idUputTermin { get; set; }
+
+        public TipTermina tipUput { get; set; }
         public bool jeHitan { get; set; }
 
         public void kopiraj(Termin termin)
@@ -42,6 +44,7 @@ namespace Model
             idUputLekara = termin.idUputLekara;
             idUputTermin = termin.idUputTermin;
             jeHitan = termin.jeHitan;
+            tipUput = termin.tipUput;
         }
 
         public String getTipString()
