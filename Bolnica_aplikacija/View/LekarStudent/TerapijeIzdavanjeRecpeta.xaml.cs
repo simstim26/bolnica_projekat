@@ -79,13 +79,14 @@ namespace Bolnica_aplikacija.LekarStudent
         {
             if(PacijentKontroler.getBolestTerapija().idTermina == null)
             {
-                TerapijaKontroler.dodajTerapijuIzRecepta(DateTime.Now, Convert.ToInt32(txtTrajanje.Text), txtNacinUpotrebe.Text, 
-                    PacijentKontroler.getBolestTerapija().idLeka, PacijentKontroler.getPacijent().id, null, PacijentKontroler.getBolestTerapija().idBolesti);
+                TerapijaKontroler.dodajTerapiju(new Terapija("", PacijentKontroler.getBolestTerapija().idLeka, PacijentKontroler.getPacijent().id,
+                    PacijentKontroler.getBolestTerapija().idBolesti, null, DateTime.Now, Convert.ToInt32(txtTrajanje.Text), txtNacinUpotrebe.Text));
             }
             else
             {
-                TerapijaKontroler.azurirajTerapiju(PacijentKontroler.getBolestTerapija().idTerapije, PacijentKontroler.getBolestTerapija().idLeka
-                    , txtNacinUpotrebe.Text, Convert.ToInt32(txtTrajanje.Text), DateTime.Now);
+                Terapija terapija = TerapijaKontroler.nadjiTerapijuPoId(PacijentKontroler.getBolestTerapija().idTerapije);
+                TerapijaKontroler.azurirajTerapiju(new Terapija(terapija.id, PacijentKontroler.getBolestTerapija().idLeka, terapija.idPacijenta,
+                   terapija.idBolesti, terapija.idTermina, DateTime.Now, Convert.ToInt32(txtTrajanje.Text), txtNacinUpotrebe.Text));
             }
 
             Content = new UvidUTerapije();

@@ -21,7 +21,7 @@
         <Button x:Name="btnUput" Content="Uput" HorizontalAlignment="Left" Margin="58,204,0,0" VerticalAlignment="Top" Width="85" Height="39" Click="btnUput_Click"/>
         <Button x:Name="btnRecept" Content="Recept" HorizontalAlignment="Left" Margin="275,204,0,0" VerticalAlignment="Top" Width="85" Height="39" Click="btnRecept_Click"/>
         <Image HorizontalAlignment="Left" Height="54" Margin="58,121,0,0" VerticalAlignment="Top" Width="50" Source="doc.png"/>
-        <Label x:Name="lblLekar" HorizontalAlignment="Left" Margin="128,137,0,0" VerticalAlignment="Top" Width="222" Height="30"/>
+        <Label x:Name="lblLekar" HorizontalAlignment="Left" Margin="128,137,0,0" VerticalAlignment="Top" Width="232" Height="30"/>
         <Label Content="Izveštaj:" HorizontalAlignment="Left" Margin="35,303,0,0" VerticalAlignment="Top" Height="23" Width="66"/>
         <TextBox x:Name="txtIzvestaj" HorizontalAlignment="Left" Height="158" Margin="22,331,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="389" BorderBrush="#FF010104"/>
         <Button x:Name="btnPotvrdaIzvestaj" HorizontalAlignment="Left" Margin="35,602,0,0" VerticalAlignment="Top" Width="75" Height="39" Click="btnPotvrdaIzvestaj_Click">
@@ -94,16 +94,7 @@
                 <materialDesign:PackIcon Kind="CheckCircle" Height="28" Width="39"></materialDesign:PackIcon>
             </Button>
             <Button x:Name="btnPonistiRecept" HorizontalAlignment="Left" Margin="306,594,0,0" VerticalAlignment="Top" Width="75">
-                <materialDesign:PackIcon Kind="PlusCircle" Height="28" Width="30" RenderTransformOrigin="0.5,0.5">
-                    <materialDesign:PackIcon.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform/>
-                            <SkewTransform/>
-                            <RotateTransform Angle="45.85"/>
-                            <TranslateTransform/>
-                        </TransformGroup>
-                    </materialDesign:PackIcon.RenderTransform>
-                </materialDesign:PackIcon>
+                <materialDesign:PackIcon Kind="CloseCircle" Height="28" Width="30" RenderTransformOrigin="0.5,0.5"/>
             </Button>
             <TextBox x:Name="txtDijagnoza" HorizontalAlignment="Left" Height="23" Margin="205,229,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="123"/>
             <TextBox x:Name="txtNazivLeka" HorizontalAlignment="Left" Height="23" Margin="205,268,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="123"/>
@@ -144,8 +135,12 @@
                     <DataGridTextColumn Header="Način upotrebe" Binding="{Binding nacinUpotrebe}"></DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
-            <Button x:Name="btnPotvdiOdabirLeka" Content="D" HorizontalAlignment="Left" Margin="45,588,0,0" VerticalAlignment="Top" Width="78" RenderTransformOrigin="-0.213,0.3" Height="38" Click="btnPotvdiOdabirLeka_Click"/>
-            <Button x:Name="btnPonistiOdaberLeka" Content="Button" HorizontalAlignment="Left" Margin="299,588,0,0" VerticalAlignment="Top" Width="78" RenderTransformOrigin="-0.213,0.3" Height="38"/>
+            <Button x:Name="btnPotvdiOdabirLeka" HorizontalAlignment="Left" Margin="45,588,0,0" VerticalAlignment="Top" Width="78" RenderTransformOrigin="-0.213,0.3" Height="38" Click="btnPotvdiOdabirLeka_Click">
+                <materialDesign:PackIcon Kind="CheckCircle"></materialDesign:PackIcon>
+            </Button>
+            <Button x:Name="btnPonistiOdaberLeka" HorizontalAlignment="Left" Margin="299,588,0,0" VerticalAlignment="Top" Width="78" RenderTransformOrigin="-0.213,0.3" Height="38">
+                <materialDesign:PackIcon Kind="CloseCircle"></materialDesign:PackIcon>
+            </Button>
 
         </Grid>
 

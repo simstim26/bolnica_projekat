@@ -27,7 +27,7 @@ namespace Bolnica_aplikacija.Servis
             String povratnaVrednost = "";
             foreach(Terapija terapija in terapijaRepozitorijum.ucitajSve())
             {
-                if (idTerapije.Equals(terapija.id))
+                if (idTerapije != null && idTerapije.Equals(terapija.id))
                 {
                     povratnaVrednost = LekServis.getInstance().nadjiLekPoId(terapija.idLeka).naziv;
                 }
@@ -40,15 +40,9 @@ namespace Bolnica_aplikacija.Servis
         {
             return terapijaRepozitorijum.ucitajSve();
         }
-        public void azurirajTerapiju(String idTerapije, String idLeka, String nacinUpotrebe, int trajanje
-            , DateTime datumPropisivanja)
+        public void azurirajTerapiju(Terapija terapijaZaAzuriranje)
         {
-            Terapija terapija = nadjiTerapijuPoId(idTerapije);
-            terapija.idLeka = idLeka;
-            terapija.nacinUpotrebe = nacinUpotrebe;
-            terapija.trajanje = trajanje;
-            terapija.datumPocetka = datumPropisivanja;
-            terapijaRepozitorijum.azurirajTerapiju(terapija);
+            terapijaRepozitorijum.azurirajTerapiju(terapijaZaAzuriranje);
         }
 
         public Terapija nadjiTerapijuPoId(String idTerapije)

@@ -47,12 +47,12 @@ namespace Bolnica_aplikacija.Servis
 
         public Termin nadjiTerminPoId(String idTermina)
         {
-            Termin povratnaVrednost = null;
+            Termin povratnaVrednost = new Termin();
             foreach(Termin termin in terminRepozitorijum.ucitajSve())
             {
-                if (idTermina.Equals(termin.idTermina))
+                if (idTermina != null && idTermina.Equals(termin.idTermina))
                 {
-                    povratnaVrednost = termin;
+                    povratnaVrednost.kopiraj(termin);
                     break;
                 }
             }
