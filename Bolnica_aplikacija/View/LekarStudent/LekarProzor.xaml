@@ -7,7 +7,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="Lekar" MaxHeight="750" MaxWidth="430" Height="750" Width="430"
-        WindowStartupLocation="CenterScreen" Activated="Window_Activated">
+        WindowStartupLocation="CenterScreen">
     <Grid >
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" MinHeight="46.4"/>
@@ -20,10 +20,10 @@
                 <ColumnDefinition Width="50*"/>
                 <ColumnDefinition Width="41*"/>
             </Grid.ColumnDefinitions>
-            <materialDesign:PopupBox HorizontalAlignment="Right" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False" Margin="0,10,10,11.2" Width="34" Grid.Column="2" Grid.ColumnSpan="2">
+            <materialDesign:PopupBox HorizontalAlignment="Right" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False" Margin="0,10,10,11.2" Width="34" Grid.Column="2" Grid.ColumnSpan="2" Opened="PopupBox_Opened" Closed="PopupBox_Closed">
                 <StackPanel Width="160">
                     <Button Content="Moj nalog"/>
-                    <Button Content="Odobri lekove" Click="odobriLekove_Click"/>
+                    <Button x:Name="odobriLekove" Content="Odobri lekove" Click="odobriLekove_Click"/>
                     <Button Content="Pregled i izmena lekova" Click="RULekovi_Click" />
                     <Button Content="Pomoc"/>
                     <Button Content="Odjava" Click="meniOdjava_Click"/>
@@ -47,13 +47,21 @@
 
                 </materialDesign:PackIcon>
             </Button>
+            <materialDesign:PackIcon x:Name="postojeLekoviZaOdobravanje" Visibility="Hidden" Kind="MessageAlert" Grid.Column="2" HorizontalAlignment="Left" Margin="44.2,25,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="15" Width="15"/>
         </Grid>
         <ContentControl x:Name ="contentControl" HorizontalAlignment="Left" Margin="0,46,0,0" VerticalAlignment="Top" Height="675" Width="424" Background="White" Grid.RowSpan="2">
         </ContentControl>
         <Grid x:Name="gridOdobravanjeLekova" Background="White" Margin="0,46,0,2.4" Grid.RowSpan="2" Visibility="Hidden">
-            <DataGrid HorizontalAlignment="Left" Height="533" Margin="0,141,0,0" VerticalAlignment="Top" Width="424"/>
-            <Button x:Name="btnOdbaci" Content="Odbaci" HorizontalAlignment="Left" Margin="311,81,0,0" VerticalAlignment="Top" Width="82" Height="36"/>
-            <Button x:Name="btnOdobri" Content="Odobri" HorizontalAlignment="Left" Margin="175,81,0,0" VerticalAlignment="Top" Width="82" Height="36"/>
+            <DataGrid x:Name="dataGridLekoviZaOdobravanje" HorizontalAlignment="Left" AutoGenerateColumns="False" IsReadOnly="True" Height="533" Margin="0,141,0,0" VerticalAlignment="Top" Width="424">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Naziv leka" Binding="{Binding naziv}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Tip" Binding="{Binding tip}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Način upotrebe" Binding="{Binding nacinUpotrebe}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Proizvođač" Binding="{Binding proizvodjac}"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button x:Name="btnOdbaci" Content="Odbaci" HorizontalAlignment="Left" Margin="311,81,0,0" VerticalAlignment="Top" Width="82" Height="36" Click="btnOdbaci_Click"/>
+            <Button x:Name="btnOdobri" Content="Odobri" HorizontalAlignment="Left" Margin="175,81,0,0" VerticalAlignment="Top" Width="82" Height="36" Click="btnOdobri_Click"/>
             <Button x:Name="btnInfoLek" HorizontalAlignment="Left" Margin="37,81,0,0" VerticalAlignment="Top" Width="82" Height="36" Click="btnInfoLek_Click">
                 <materialDesign:PackIcon Kind="InfoCircle" Height="24" Width="25"></materialDesign:PackIcon>
             </Button>
@@ -67,8 +75,29 @@
                 <Label x:Name="lblProizvodjac" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="209,57,0,0" Width="168" Height="24"/>
                 <Label x:Name="lblTipLeka" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="209,92,0,0" Width="168" Height="24"/>
                 <Label x:Name="lblNacinUpotrebe" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="209,129,0,0" Width="168" Height="24"/>
-                <ListBox x:Name="listSastojci" Background="#F5F5F5" HorizontalAlignment="Left" Height="353" Margin="17,187,0,0" VerticalAlignment="Top" Width="387"/>
+                <ListBox x:Name="listSastojci"  Background="#F5F5F5" HorizontalAlignment="Left" Height="353" Margin="17,187,0,0" VerticalAlignment="Top" Width="387">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
                 <Button x:Name="btnZamenskiLekovi" Content="Vidi zamenske lekove" HorizontalAlignment="Left" Margin="17,580,0,0" VerticalAlignment="Top" Width="387" Height="56" Click="btnZamenskiLekovi_Click"/>
+            </Grid>
+            <Grid x:Name="gridPropratnaPoruka" Visibility="Hidden">
+                <Grid.Background>
+                    <SolidColorBrush Color="White" Opacity="0.5"/>
+                </Grid.Background>
+                <Grid Background="White" Margin="0,181,0,212.4" >
+                    <Label Content="Molimo Vas, unesite obrazloženje: (opciono)" HorizontalAlignment="Left" Margin="28,31,0,0" VerticalAlignment="Top" Height="26" Width="331"/>
+                    <TextBox x:Name="txtPropratnaPoruka" HorizontalAlignment="Left" Height="107" Margin="28,62,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="369"/>
+                    <Button x:Name="btnPotvrdaUnosaPropratnePoruke" HorizontalAlignment="Left" Margin="165,212,0,0" VerticalAlignment="Top" Width="75" Height="35" Click="btnPotvrdaUnosaPropratnePoruke_Click">
+                        <materialDesign:PackIcon Kind="CheckCircle" Height="25" Width="29"></materialDesign:PackIcon>
+                    </Button>
+
+                </Grid>
             </Grid>
 
         </Grid>
@@ -92,24 +121,39 @@
                 <Label x:Name="lblRUProizvodjac" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="209,57,0,0" Width="168" Height="24"/>
                 <Label x:Name="lblRUTipLeka" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="209,92,0,0" Width="168" Height="24"/>
                 <Label x:Name="lblRUNacinUpotrebe" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="209,129,0,0" Width="168" Height="24"/>
-                <ListBox Background="#F5F5F5" HorizontalAlignment="Left" Height="297" Margin="17,259,0,0" VerticalAlignment="Top" Width="387"/>
-                <TextBox x:Name="txtDodavanjeSastojaka" HorizontalAlignment="Left" Height="23" Margin="17,217,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                <Button x:Name="btnDodavanjeSastojka" HorizontalAlignment="Left" Margin="167,208,0,0" VerticalAlignment="Top" Width="49">
+                <ListBox x:Name="listRUSastojci" Background="#F5F5F5" HorizontalAlignment="Left" Height="297" Margin="17,259,0,0" VerticalAlignment="Top" Width="387"/>
+                <TextBox x:Name="txtDodavanjeSastojaka" HorizontalAlignment="Left" Height="23" Margin="17,217,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="txtDodavanjeSastojaka_TextChanged"/>
+                <Button x:Name="btnDodavanjeSastojka" HorizontalAlignment="Left" Margin="167,208,0,0" VerticalAlignment="Top" Width="49" Click="btnDodavanjeSastojka_Click">
                     <materialDesign:PackIcon Kind="Plus" HorizontalAlignment="Center" Height="25" Width="28"></materialDesign:PackIcon>
                 </Button>
-                <Button x:Name="btnIzbrisiSastojak" HorizontalAlignment="Left" Margin="320,208,0,0" VerticalAlignment="Top" Width="49">
+                <Button x:Name="btnIzbrisiSastojak" HorizontalAlignment="Left" Margin="320,208,0,0" VerticalAlignment="Top" Width="49" Click="btnIzbrisiSastojak_Click">
                     <materialDesign:PackIcon Kind="TrashCan" HorizontalAlignment="Center"  Height="25" Width="23"></materialDesign:PackIcon>
                 </Button>
                 <Button x:Name="btnRUZamenskiLekovi" Content="Vidi zamenske lekove" HorizontalAlignment="Left" Margin="54,588,0,0" VerticalAlignment="Top" Width="305" Height="40" Click="btnRUZamenskiLekovi_Click"/>
             </Grid>
 
         </Grid>
-        <Grid x:Name="gridRUZamenskiLekovi" Background="White" Margin="0,4.6,0,1.4" Grid.Row="1" Visibility="hidden">
-            <DataGrid HorizontalAlignment="Left" Height="538" Margin="0,132,0,0" VerticalAlignment="Top" Width="424"/>
+        <Grid x:Name="gridRUZamenskiLekovi" Background="White" Margin="0,4.6,0,1.4" Grid.Row="1" Visibility="Hidden">
+            <Button x:Name="btnObrisiZamenskiLek" HorizontalAlignment="Left" Margin="166,75,0,0" VerticalAlignment="Top" Width="75" Click="btnObrisiZamenskiLek_Click">
+                <materialDesign:PackIcon Kind="TrashCan" Height="26" Width="29"></materialDesign:PackIcon>
+            </Button>
+            <DataGrid x:Name="dataGridZamenskiLekovi" IsReadOnly="True" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="538" Margin="0,132,0,0" VerticalAlignment="Top" Width="424">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Naziv leka" Binding="{Binding naziv}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Tip leka" Binding="{Binding tip}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Način upotrebe" Binding="{Binding nacinUpotrebe}"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
             <Button x:Name="btnDodajZamenskiLek" Content="Dodaj" HorizontalAlignment="Left" Margin="315,75,0,0" VerticalAlignment="Top" Width="75" Click="btnDodajZamenskiLek_Click"/>
             <Grid x:Name="gridDodavanjeZamenskogLeka" Background="White" Visibility="Hidden">
-                <DataGrid HorizontalAlignment="Left" Height="426" Margin="0,114,0,0" VerticalAlignment="Top" Width="424"/>
-                <Button x:Name="btnPotvrdaZamenskogLeka" HorizontalAlignment="Left" Margin="36,574,0,0" VerticalAlignment="Top" Width="85" Height="46">
+                <DataGrid x:Name="dataGridDodavanjeZamenskogLeka" IsReadOnly="True" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="426" Margin="0,114,0,0" VerticalAlignment="Top" Width="424">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Naziv leka" Binding="{Binding naziv}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Tip leka" Binding="{Binding tip}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Način upotrebe" Binding="{Binding nacinUpotrebe}"></DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Button x:Name="btnPotvrdaZamenskogLeka" HorizontalAlignment="Left" Margin="36,574,0,0" VerticalAlignment="Top" Width="85" Height="46" Click="btnPotvrdaZamenskogLeka_Click">
                     <materialDesign:PackIcon Kind="CheckCircle"></materialDesign:PackIcon>
                 </Button>
                 <Button x:Name="btnPonistavanjeZamenskogLeka" Content="Button" HorizontalAlignment="Left" Margin="299,574,0,0" VerticalAlignment="Top" Width="80" Height="46"/>

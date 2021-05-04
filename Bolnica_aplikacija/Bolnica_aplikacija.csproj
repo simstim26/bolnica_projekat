@@ -126,6 +126,8 @@
     <Compile Include="Servis\LogovanjeServis.cs" />
     <Compile Include="Servis\OcenaBolniceServis.cs" />
     <Compile Include="Servis\OcenaLekaraServis.cs" />
+    <Compile Include="Model\LekZaOdobravanje.cs" />
+    <Compile Include="PomocneKlase\LekarSpecijalizacija.cs" />
     <Compile Include="View\LekarStudent\Alergije.xaml.cs">
       <DependentUpon>Alergije.xaml</DependentUpon>
     </Compile>

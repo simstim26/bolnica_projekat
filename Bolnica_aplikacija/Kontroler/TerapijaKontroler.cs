@@ -10,10 +10,9 @@ namespace Bolnica_aplikacija.Kontroler
 {
     class TerapijaKontroler
     {
-        public static void azurirajTerapiju(String idTerapije, String idLeka, String nacinUpotrebe, int trajanje
-            , DateTime datumPropisivanja)
+        public static void azurirajTerapiju(Terapija terapijaZaAzuriranje)
         {
-            TerapijaServis.getInstance().azurirajTerapiju(idTerapije, idLeka, nacinUpotrebe, trajanje, datumPropisivanja);
+            TerapijaServis.getInstance().azurirajTerapiju(terapijaZaAzuriranje);
         }
 
         public static Terapija nadjiTerapijuPoId(String idTerapije)
@@ -21,31 +20,9 @@ namespace Bolnica_aplikacija.Kontroler
             return TerapijaServis.getInstance().nadjiTerapijuPoId(idTerapije);
         }
 
-        public static String dodajTerapijuIzRecepta(DateTime datumPropisivanja, int trajanje, String nacinUpotrebe, String idLeka,
-           String idPacijenta, String idTermina, String idBolesti)
+        public static String dodajTerapiju(Terapija terapija)
         {
-            Terapija terapija = new Terapija();
-            terapija.datumPocetka = datumPropisivanja;
-            terapija.idPacijenta = idPacijenta;
-            terapija.nacinUpotrebe = nacinUpotrebe;
-            terapija.trajanje = trajanje;
-            terapija.idLeka = idLeka;
-            terapija.idTermina = idTermina;
-            terapija.idBolesti = idBolesti;
             return TerapijaServis.getInstance().dodajTerapiju(terapija);
-
-        }
-        public static void dodajTerapiju(DateTime datumPropisivanja,int trajanje,String nacinUpotrebe,String idLeka,
-           String idPacijenta, String idTermina)
-        {
-            Terapija terapija = new Terapija();
-            terapija.datumPocetka = datumPropisivanja;
-            terapija.idPacijenta = idPacijenta;
-            terapija.nacinUpotrebe = nacinUpotrebe;
-            terapija.trajanje = trajanje;
-            terapija.idLeka = idLeka;
-            terapija.idTermina = idTermina;
-            TerapijaServis.getInstance().dodajTerapiju(terapija);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Bolnica_aplikacija.Kontroler;
+using Bolnica_aplikacija.PacijentModel;
 using Bolnica_aplikacija.Repozitorijum;
 using Model;
 using System;
@@ -46,12 +47,12 @@ namespace Bolnica_aplikacija.Servis
 
         public Termin nadjiTerminPoId(String idTermina)
         {
-            Termin povratnaVrednost = null;
+            Termin povratnaVrednost = new Termin();
             foreach(Termin termin in terminRepozitorijum.ucitajSve())
             {
-                if (idTermina.Equals(termin.idTermina))
+                if (idTermina != null && idTermina.Equals(termin.idTermina))
                 {
-                    povratnaVrednost = termin;
+                    povratnaVrednost.kopiraj(termin);
                     break;
                 }
             }
@@ -239,5 +240,37 @@ namespace Bolnica_aplikacija.Servis
             return terminRepozitorijum.ucitajSve();
 
         }
+
+        public List<PacijentTermin> ucitajPregledaZaIzabranogLekara(String idLekara)
+        {
+            List<PacijentTermin> povratnaVrednost = new List<PacijentTermin>();
+            foreach(PacijentTermin termin in LekarServis.getInstance().prikaziSlobodneTermineZaLekara(LekarServis.getInstance().nadjiLekaraPoId(idLekara), 0))
+            {
+                if (termin.idLekara.Equals(idLekara) && termin.napomena.Equals("Pregled"))
+                {
+                    povratnaVrednost.Add(termin);
+                }
+            }
+
+            return povratnaVrednost;
+        }
+
+        public String napraviTermin(Termin termin)
+        {
+            termin.idTermina = (ucitajSve().Count + 1).ToString();
+            terminRepozitorijum.dodajTermin(termin);
+            return termin.idTermina;
+        }
+
+        public void veziTermin(String idTerminUput)
+        {
+            Termin terminUput = nadjiTerminPoId(idTerminUput);
+            termin.idUputLekara = terminUput.idLekara;
+            termin.idUputTermin = terminUput.idTermina;
+            termin.jeZavrsen = true;
+            terminRepozitorijum.azurirajTermin(termin);
+        }
+
+
     }
 }

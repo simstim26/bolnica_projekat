@@ -1,4 +1,5 @@
-﻿using Bolnica_aplikacija.Servis;
+﻿using Bolnica_aplikacija.PacijentModel;
+using Bolnica_aplikacija.Servis;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,11 @@ namespace Bolnica_aplikacija.Kontroler
         public static void nadjiPacijentaZaTermin(String idTermina)
         {
             TerminServis.getInstance().nadjiPacijentaZaTermin(idTermina);
+        }
+
+        public static void azurirajTermin(Termin terminZaAzuriranje)
+        {
+            TerminServis.getInstance().azurirajTermin(terminZaAzuriranje);
         }
 
         public static void azuriranjeTerapijeZaTermin(String idTermina, String idTerapija)
@@ -69,5 +75,21 @@ namespace Bolnica_aplikacija.Kontroler
             return TerminServis.getInstance().ucitajSve();
 
         }
+
+        public static List<PacijentTermin> ucitajPregledaZaIzabranogLekara(String idLekara)
+        {
+            return TerminServis.getInstance().ucitajPregledaZaIzabranogLekara(idLekara);
+        }
+
+        public static String napraviTermin(Termin termin)
+        {
+            return TerminServis.getInstance().napraviTermin(termin);
+        }
+
+        public static void veziTermin(String idTerminUput)
+        {
+            TerminServis.getInstance().veziTermin(idTerminUput);
+        }
+
     }
 }

@@ -11,7 +11,7 @@
       {
         "id": "1",
         "naziv": "rukavice",
-        "kolicina": 268,
+        "kolicina": 185,
         "proizvodjac": "Mipex",
         "idProstorije": "1",
         "idBolnice": "1",
@@ -22,7 +22,7 @@
       {
         "id": "4",
         "naziv": "hanzaplast",
-        "kolicina": 200,
+        "kolicina": 185,
         "proizvodjac": "hanZa",
         "idProstorije": null,
         "idBolnice": "1",
@@ -44,7 +44,7 @@
       {
         "id": "2",
         "naziv": "Krevet",
-        "kolicina": 25,
+        "kolicina": 23,
         "proizvodjac": "KrevetKrevet",
         "idProstorije": null,
         "idBolnice": "1",
@@ -307,6 +307,17 @@
         "jeStaticka": false,
         "jeLogickiObrisana": false,
         "jePotrosnaRoba": true
+      },
+      {
+        "id": "1",
+        "naziv": "rukavice",
+        "kolicina": 10,
+        "proizvodjac": "Mipex",
+        "idProstorije": "1",
+        "idBolnice": "1",
+        "jeStaticka": false,
+        "jeLogickiObrisana": false,
+        "jePotrosnaRoba": true
       }
     ]
   },
@@ -318,7 +329,63 @@
     "sprat": 11,
     "dostupnost": true,
     "logickiObrisana": false,
-    "Stavka": []
+    "Stavka": [
+      {
+        "id": "4",
+        "naziv": "hanzaplast",
+        "kolicina": 15,
+        "proizvodjac": "hanZa",
+        "idProstorije": null,
+        "idBolnice": "1",
+        "jeStaticka": false,
+        "jeLogickiObrisana": false,
+        "jePotrosnaRoba": true
+      },
+      {
+        "id": "1",
+        "naziv": "rukavice",
+        "kolicina": 15,
+        "proizvodjac": "Mipex",
+        "idProstorije": "1",
+        "idBolnice": "1",
+        "jeStaticka": false,
+        "jeLogickiObrisana": false,
+        "jePotrosnaRoba": true
+      },
+      {
+        "id": "5",
+        "naziv": "Igla",
+        "kolicina": 23,
+        "proizvodjac": "IgloLand",
+        "idProstorije": null,
+        "idBolnice": "1",
+        "jeStaticka": false,
+        "jeLogickiObrisana": false,
+        "jePotrosnaRoba": true
+      },
+      {
+        "id": "7",
+        "naziv": "dusan",
+        "kolicina": 2,
+        "proizvodjac": "sisarica",
+        "idProstorije": null,
+        "idBolnice": "1",
+        "jeStaticka": true,
+        "jeLogickiObrisana": false,
+        "jePotrosnaRoba": false
+      },
+      {
+        "id": "2",
+        "naziv": "Krevet",
+        "kolicina": 2,
+        "proizvodjac": "KrevetKrevet",
+        "idProstorije": null,
+        "idBolnice": "1",
+        "jeStaticka": true,
+        "jeLogickiObrisana": false,
+        "jePotrosnaRoba": false
+      }
+    ]
   },
   {
     "id": "15",
@@ -352,21 +419,32 @@
     "logickiObrisana": false,
     "Stavka": [
       {
-        "id": "4",
-        "naziv": "hanzaplast",
-        "kolicina": 13,
-        "proizvodjac": "hanZa",
+        "id": "2",
+        "naziv": "Krevet",
+        "kolicina": 2,
+        "proizvodjac": "KrevetKrevet",
         "idProstorije": null,
+        "idBolnice": "1",
+        "jeStaticka": true,
+        "jeLogickiObrisana": false,
+        "jePotrosnaRoba": false
+      },
+      {
+        "id": "1",
+        "naziv": "rukavice",
+        "kolicina": 18,
+        "proizvodjac": "Mipex",
+        "idProstorije": "1",
         "idBolnice": "1",
         "jeStaticka": false,
         "jeLogickiObrisana": false,
         "jePotrosnaRoba": true
       },
       {
-        "id": "2",
-        "naziv": "Krevet",
-        "kolicina": 2,
-        "proizvodjac": "KrevetKrevet",
+        "id": "7",
+        "naziv": "dusan",
+        "kolicina": 8,
+        "proizvodjac": "sisarica",
         "idProstorije": null,
         "idBolnice": "1",
         "jeStaticka": true,
@@ -383,19 +461,7 @@
     "sprat": 1,
     "dostupnost": true,
     "logickiObrisana": false,
-    "Stavka": [
-      {
-        "id": "5",
-        "naziv": "Igla",
-        "kolicina": 3,
-        "proizvodjac": "IgloLand",
-        "idProstorije": null,
-        "idBolnice": "1",
-        "jeStaticka": false,
-        "jeLogickiObrisana": false,
-        "jePotrosnaRoba": true
-      }
-    ]
+    "Stavka": []
   },
   {
     "id": "18",

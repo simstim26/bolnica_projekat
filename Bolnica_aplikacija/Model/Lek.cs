@@ -3,6 +3,7 @@
 // Created: Monday, March 22, 2021 8:10:25 PM
 // Purpose: Definition of Class Lek
 
+using Bolnica_aplikacija.Model;
 using System;
 using System.Collections.Generic;
 
@@ -19,6 +20,18 @@ namespace Model
       public List<String> sastojci { get; set; }
       public List<Lek> zamenskiLekovi { get; set; }
 
+      public Lek() { }
+      public Lek(LekZaOdobravanje lek, String id)
+      {
+            this.id = id;
+            naziv = lek.naziv;
+            tip = lek.tip;
+            kolicina = lek.kolicina;
+            proizvodjac = lek.proizvodjac;
+            nacinUpotrebe = lek.nacinUpotrebe;
+            sastojci = lek.sastojci;
+            zamenskiLekovi = lek.zamenskiLekovi;
+      }
       public String getNacinUpotrebeString()
       {
             switch (nacinUpotrebe)
@@ -32,6 +45,18 @@ namespace Model
                 default:
                     return "";
             }
+      }
+
+      public void kopiraj(Lek lek)
+      {
+            id = lek.id;
+            naziv = lek.naziv;
+            tip = lek.tip;
+            kolicina = lek.kolicina;
+            proizvodjac = lek.proizvodjac;
+            sastojci = lek.sastojci;
+            zamenskiLekovi = lek.zamenskiLekovi;
+            nacinUpotrebe = lek.nacinUpotrebe;
       }
 
       public String getTipString()

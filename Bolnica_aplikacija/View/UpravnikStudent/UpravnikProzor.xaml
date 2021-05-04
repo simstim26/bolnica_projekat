@@ -43,7 +43,7 @@
         <Grid x:Name="gridProstorija" Background="LightGray" HorizontalAlignment="Left" Height="640" Margin="10,59,0,0" VerticalAlignment="Top" Width="949" Visibility="Hidden" Grid.Column="2" Grid.RowSpan="3">
             <DataGrid x:Name="dataGridProstorija" CanUserAddRows="false" IsReadOnly ="True" HorizontalAlignment="Left" Height="472" Margin="37,138,0,0" VerticalAlignment="Top" Width="572" HeadersVisibility="All" AutoGenerateColumns="False" SelectionMode="Single" CanUserResizeRows="False">
                 <DataGrid.Columns>
-                    
+
                     <DataGridTextColumn x:Name="kolonaTip" Binding ="{Binding tipProstorije}" IsReadOnly="True" Header="tip"  Width="143" CanUserResize="False"/>
                     <DataGridTextColumn x:Name="Broj" Binding="{Binding broj}" IsReadOnly="True" Header="broj" Width="143" CanUserResize="False"/>
                     <DataGridTextColumn x:Name="Sprat" Binding="{Binding sprat}" IsReadOnly="True" Header="sprat" Width="143" CanUserResize="False"/>
@@ -79,7 +79,7 @@
             <Rectangle Fill="LightGray" HorizontalAlignment="Left" Height="638" Stroke="Black" VerticalAlignment="Top" Width="947" Margin="70,59,-984,-399"/>
             <DataGrid x:Name="dataGridInventarProstorije" HorizontalAlignment="Left" Height="474" Margin="135,186,-710,-362" VerticalAlignment="Top" HeadersVisibility="All" AutoGenerateColumns="False" SelectionMode="Single" CanUserResizeRows="False" CanUserAddRows="False">
                 <DataGrid.Columns>
-                    
+
                     <DataGridTextColumn x:Name="stavkaNazivProstorija" Binding ="{Binding naziv}" IsReadOnly="True" Header="naziv"  Width="143" CanUserResize="False"/>
                     <DataGridTextColumn x:Name="stavkaProizvodjacProstorija" Binding="{Binding proizvodjac}" IsReadOnly="True" Header="proizvodjac" Width="143" CanUserResize="False"/>
                     <DataGridTextColumn x:Name="stavkaKolicinaProstorija" Binding="{Binding kolicina}" IsReadOnly="True" Header="kolicina" Width="143" CanUserResize="False"/>
@@ -155,7 +155,7 @@
             <Grid x:Name="gridInventar" Visibility="Hidden" Background="LightGray" HorizontalAlignment="Left" Height="640" Margin="64,59,-935,0" VerticalAlignment="Top" Width="949">
                 <DataGrid x:Name="dataGridInventar" CanUserAddRows="false" IsReadOnly ="True" HorizontalAlignment="Left" Height="466" Margin="37,138,0,0" VerticalAlignment="Top" Width="607" HeadersVisibility="All" AutoGenerateColumns="False" SelectionMode="Single" CanUserResizeRows="False">
                     <DataGrid.Columns>
-                        
+
                         <DataGridTextColumn x:Name="stavkaNaziv" Binding ="{Binding naziv}" IsReadOnly="True" Header="naziv"  Width="143" CanUserResize="False"/>
                         <DataGridTextColumn x:Name="stavkaProizvodjac" Binding="{Binding proizvodjac}" IsReadOnly="True" Header="proizvodjac" Width="143" CanUserResize="False"/>
                         <DataGridTextColumn x:Name="stavkaKolicina" Binding="{Binding kolicina}" IsReadOnly="True" Header="kolicina" Width="143" CanUserResize="False"/>
@@ -247,13 +247,88 @@
 
             </Grid>
 
-            <ToggleButton x:Name = "tb_Copy1"  
+            <ToggleButton x:Name = "tbLekovi"  
             Margin = "0,305,14,335"
-            Width = "64" Height="66" HorizontalAlignment = "Center" BorderThickness="0" Click="tb_Copy1_Click" Unchecked="tb_Copy1_Unchecked" Checked="tb_Copy1_Checked">
+            Width = "64" Height="66" HorizontalAlignment = "Center" BorderThickness="0" Click="tbLekovi_Click" Unchecked="tbLekovi_Unchecked" Checked="tbLekovi_Checked">
                 <ToggleButton.Background>
                     <ImageBrush ImageSource="logo.png"/>
                 </ToggleButton.Background>
             </ToggleButton>
+
+            <Grid x:Name="gridLekovi" Visibility="Hidden" Background="LightGray" HorizontalAlignment="Left" Height="640" Margin="69,59,-940,0" VerticalAlignment="Top" Width="949">
+                <DataGrid x:Name="dataGridLekovi" CanUserAddRows="false" IsReadOnly ="True" HorizontalAlignment="Left" Height="515" Margin="37,89,0,0" VerticalAlignment="Top" Width="495" HeadersVisibility="All" AutoGenerateColumns="False" SelectionMode="Single" CanUserResizeRows="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn x:Name="nazivLeka" Binding ="{Binding naziv}" IsReadOnly="True" Header="Naziv"  Width="143" CanUserResize="False"/>
+                        <DataGridTextColumn x:Name="tipLeka" Binding="{Binding tip}" IsReadOnly="True" Header="Tip" Width="143" CanUserResize="False"/>
+                        <DataGridTextColumn x:Name="nacinUpotrebe" Binding="{Binding nacinUpotrebe}" IsReadOnly="True" Header="Nacin Upotrebe" Width="143" CanUserResize="False"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Button x:Name="btnDodajLek" Content="Dodaj Lek" HorizontalAlignment="Left" Margin="613,89,0,0" VerticalAlignment="Top" Width="273" Height="74" Click="btnDodajLek_Click"/>
+            </Grid>
+
+            <Grid x:Name="gridLekoviDodaj" Visibility="Hidden" Background="LightGray" HorizontalAlignment="Left" Height="640" Margin="69,59,-940,0" VerticalAlignment="Top" Width="949">
+                <Label x:Name="lblNazivLekaUnos" Content="Naziv leka" HorizontalAlignment="Left" Margin="127,82,0,0" VerticalAlignment="Top"/>
+                <TextBox x:Name="textBoxNazivLekaUnos" HorizontalAlignment="Left" Height="23" Margin="389,83,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                <Label x:Name="lblTipLekaUnos" Content="Tip leka" HorizontalAlignment="Left" Margin="127,161,0,0" VerticalAlignment="Top"/>
+                <Label x:Name="lblTipLekaUnos_Copy" Content="Kolicina leka" HorizontalAlignment="Left" Margin="127,244,0,0" VerticalAlignment="Top"/>
+                <Label x:Name="lblTipLekaUnos_Copy1" Content="Proizvodjac" HorizontalAlignment="Left" Margin="127,309,0,0" VerticalAlignment="Top"/>
+                <TextBox x:Name="textBoxKolicinaLekaUnos" HorizontalAlignment="Left" Height="23" Margin="389,245,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                <TextBox x:Name="textBoxProizvodjacLekaUnos" HorizontalAlignment="Left" Height="23" Margin="389,310,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                <Label x:Name="lblTipLekaUnos_Copy2" Content="Nacin upotrebe" HorizontalAlignment="Left" Margin="127,393,0,0" VerticalAlignment="Top"/>
+                <ComboBox x:Name="comboBoxNacinUpotrebe" HorizontalAlignment="Left" Margin="389,393,0,0" VerticalAlignment="Top" Width="120"/>
+                <Button x:Name="btnDodajSastojke" Content="Dodaj sastojke" HorizontalAlignment="Left" Margin="84,503,0,0" VerticalAlignment="Top" Width="236" Height="74" Click="btnDodajSastojke_Click"/>
+                <Button x:Name="btnDodajZamenskeLekove" Content="Dodaj zamenske lekove" HorizontalAlignment="Left" Margin="389,503,0,0" VerticalAlignment="Top" Width="225" Height="74" Click="btnDodajZamenskeLekove_Click"/>
+                <Button x:Name="btnPotvrdiDodavanjeLekova" Content="Potvrdi" HorizontalAlignment="Left" Margin="692,503,0,0" VerticalAlignment="Top" Width="214" Height="74" Click="btnPotvrdiDodavanjeLekova_Click"/>
+                <ComboBox x:Name="cbTipLekaDodavanje" HorizontalAlignment="Left" Margin="389,160,0,0" VerticalAlignment="Top" Width="120"/>
+                <Button x:Name="btnIzaberiLekare" Content="IzaberiLekare" HorizontalAlignment="Left" Margin="692,310,0,0" VerticalAlignment="Top" Width="214" Height="78" Click="btnIzaberiLekare_Click"/>
+                <Button x:Name="btnOtkaziDodavanjeLeka" Content="Otkazi!!!!!!!!!!" HorizontalAlignment="Left" Margin="692,139,0,0" VerticalAlignment="Top" Width="214" Height="80" Click="btnOtkaziDodavanjeLeka_Click"/>
+            </Grid>
+
+            <Grid x:Name="gridLekoviDodajSastojke" Visibility="Hidden" Background="LightGray" HorizontalAlignment="Left" Height="640" Margin="69,59,-940,0" VerticalAlignment="Top" Width="949">
+                <DataGrid x:Name="dataGridDodajSastojke" HorizontalAlignment="Left" Height="520" Margin="74,69,0,0" VerticalAlignment="Top" Width="302"/>
+                <TextBlock x:Name="textBlock3" FontSize="24" HorizontalAlignment="Left" Margin="488,69,0,0" TextWrapping="Wrap" Text="Unesite sastojak leka:" VerticalAlignment="Top"/>
+                <TextBox x:Name="textBoxUpisiSastojak" FontSize="24" HorizontalAlignment="Left" Height="45" Margin="488,153,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="225"/>
+                <Button x:Name="btnSastojakUnesi" Content="Button" HorizontalAlignment="Left" Margin="764,166,0,0" VerticalAlignment="Top" Width="75" Click="btnSastojakUnesi_Click"/>
+                <Button x:Name="button1" Content="Potvrdi" HorizontalAlignment="Left" Margin="488,319,0,0" VerticalAlignment="Top" Width="351" Height="270" Click="button1_Click"/>
+            </Grid>
+
+            <Grid x:Name="gridLekoviDodajZamenskeLekove" Visibility="Hidden" Background="LightGray" HorizontalAlignment="Left" Height="640" Margin="69,59,-940,0" VerticalAlignment="Top" Width="949">
+                <DataGrid x:Name="dataGridSviLekoviZaZamenski" CanUserAddRows="false" IsReadOnly ="True" HorizontalAlignment="Left" Height="515" Margin="37,89,0,0" VerticalAlignment="Top" Width="425" HeadersVisibility="All" AutoGenerateColumns="False" SelectionMode="Single" CanUserResizeRows="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn x:Name="nazivLekaZaZamenu" Binding ="{Binding naziv}" IsReadOnly="True" Header="Naziv"  Width="150" CanUserResize="True"/>
+                        <DataGridTextColumn x:Name="tipLekaZaZamenu" Binding="{Binding tip}" IsReadOnly="True" Header="Tip" Width="auto" CanUserResize="True"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Button x:Name="button" Content="Dodaj Zamenski Lek" HorizontalAlignment="Left" Margin="533,386,0,0" VerticalAlignment="Top" Width="343" Height="59" Click="button_Click"/>
+                <DataGrid x:Name="dataGridZamenskiUbaceniLekovi" CanUserAddRows="false" HorizontalAlignment="Left" Height="259" Margin="533,84,0,0" VerticalAlignment="Top" Width="343">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn x:Name="nazivLekaZaZamenuPremesten" Binding ="{Binding naziv}" IsReadOnly="True" Header="Naziv"  Width="150" CanUserResize="True"/>
+                        <DataGridTextColumn x:Name="tipLekaZaZamenuPremesten" Binding="{Binding tip}" IsReadOnly="True" Header="Tip" Width="auto" CanUserResize="True"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Button x:Name="btnPotvrdiZamenske" Content="Potvrdi" HorizontalAlignment="Left" Margin="533,503,0,0" VerticalAlignment="Top" Width="343" Height="59" Click="btnPotvrdiZamenske_Click"/>
+
+            </Grid>
+
+            <Grid x:Name="gridIzaberiLekareZaSlanje" Visibility="Hidden" Background="LightGray" HorizontalAlignment="Left" Height="640" Margin="69,59,-940,0" VerticalAlignment="Top" Width="949">
+                <DataGrid x:Name="dataGridLekariZaSlanje" CanUserAddRows="false" IsReadOnly ="True" HorizontalAlignment="Left" Height="515" Margin="37,89,0,0" VerticalAlignment="Top" Width="425" HeadersVisibility="All" AutoGenerateColumns="False" SelectionMode="Extended" CanUserResizeRows="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn x:Name="imeLekara" Binding ="{Binding ime}" IsReadOnly="True" Header="Ime"  Width="auto" CanUserResize="True"/>
+                        <DataGridTextColumn x:Name="prezimeLekara" Binding="{Binding prezime}" IsReadOnly="True" Header="Prezime" Width="auto" CanUserResize="True"/>
+                        <DataGridTextColumn x:Name="specijalizacijaLekara" Binding="{Binding idSpecijalizacije}" IsReadOnly="True" Header="Specijalizacija" Width="auto" CanUserResize="True"/>
+                        <DataGridCheckBoxColumn x:Name="izabran" IsReadOnly="False" Header="Izabran" Width="auto" CanUserResize="True">
+                        <DataGridCheckBoxColumn.CellStyle>
+                            <Style>
+                                <EventSetter Event="CheckBox.Checked" Handler="OnChecked"/>
+                            </Style>
+                        </DataGridCheckBoxColumn.CellStyle>
+                        </DataGridCheckBoxColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Button x:Name="btnPotvrdiLekare" Content="Dodaj Lekare" HorizontalAlignment="Left" Margin="556,92,0,0" VerticalAlignment="Top" Width="351" Height="118" Click="btnPotvrdiLekare_Click"/>
+                <Button x:Name="btnOtkaziLekare" Content="[X] Otkazi" HorizontalAlignment="Left" Margin="556,280,0,0" VerticalAlignment="Top" Width="351" Height="118" Click="btnOtkaziLekare_Click"/>
+
+            </Grid>
 
         </Grid>
         <Rectangle x:Name="vodoravniPravougaonik" Fill="Black" Visibility="Hidden" HorizontalAlignment="Left" Height="2" Margin="19,60,0,0" Stroke="Black" VerticalAlignment="Top" Width="940" Grid.Column="2"/>
