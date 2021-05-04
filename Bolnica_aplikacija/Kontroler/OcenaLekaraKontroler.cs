@@ -19,11 +19,5 @@ namespace Bolnica_aplikacija.Kontroler
         {
             OcenaLekaraServis.getInstance().dodajOcenu(ocena);
         }
-
-        public static String pronadjiImenaLekara(String idPacijenta)
-        {
-            return OcenaLekaraServis.getInstance().pronadjiImenaLekara(idPacijenta);
-        }
-
     }
 }

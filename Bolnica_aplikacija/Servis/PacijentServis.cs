@@ -556,7 +556,7 @@ namespace Bolnica_aplikacija.Servis
             Alergija alergija = new Alergija(idPacijenta, nazivAlergije);
             AlergijaServis.getInstance().dodajAlergiju(alergija);
         }
-        
+
         public List<Alergija> procitajAlergije()
         {
             List<Alergija> alergije = new List<Alergija>();
@@ -571,37 +571,6 @@ namespace Bolnica_aplikacija.Servis
             }
 
             return alergije;
-        }
-
-
-        //obavezno refaktorisati
-        public List<PacijentTermin> prikazProslihTerminaPacijentaKodOcenjivanjaLekara(String idPacijenta)
-        {
-            List<PacijentTermin> terminiPacijenta = new List<PacijentTermin>();
-
-            foreach (Termin termin in TerminServis.getInstance().ucitajSve())
-            {
-                if (termin.idPacijenta.Equals(idPacijenta))
-                {
-                    if (termin.jeZavrsen)
-                    {
-                        PacijentTermin pacijentTermin = new PacijentTermin();
-                        pacijentTermin.id = termin.idTermina;
-                        pacijentTermin.napomena = termin.getTipString();
-                        pacijentTermin.datum = termin.datum.Date.ToString("dd.MM.yyyy.");
-                        pacijentTermin.satnica = termin.satnica.ToString("HH:mm");
-                        pacijentTermin.imeLekara = LekarServis.getInstance().pronadjiPunoImeLekara(termin.idLekara);
-                        pacijentTermin.nazivSpecijalizacije = LekarServis.getInstance().pronadjiNazivSpecijalizacijeLekara(termin.idLekara);
-                        pacijentTermin.lokacija = ProstorijaServis.getInstance().nadjiBrojISprat(termin.idProstorije);
-                        pacijentTermin.nazivTerapije = TerapijaServis.getInstance().nadjiNazivLekaZaTerapiju(termin.idTerapije);
-
-                        terminiPacijenta.Add(pacijentTermin);
-                    }
-
-                }
-            }
-
-            return terminiPacijenta;
         }
 
         public bool proveriStanjeAnkete(String idPacijenta)

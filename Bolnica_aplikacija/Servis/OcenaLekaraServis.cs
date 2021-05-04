@@ -31,20 +31,5 @@ namespace Bolnica_aplikacija.Servis
         {
             ocenaLekaraRepozitorijum.dodajOcenu(ocena);
         }
-
-        public String pronadjiImenaLekara(String idPacijenta)
-        {
-            String povratnaVrednost = "";
-            var prosliTermini = PacijentServis.getInstance().prikazProslihTerminaPacijentaKodOcenjivanjaLekara(idPacijenta);
-
-            foreach(PacijentTermin termin in prosliTermini)
-            {
-                povratnaVrednost = povratnaVrednost + termin.imeLekara + "|";
-            }
-
-            return povratnaVrednost;
-        }
-
-
     }
 }
