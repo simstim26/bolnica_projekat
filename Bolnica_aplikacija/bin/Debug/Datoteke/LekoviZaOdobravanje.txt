@@ -52,10 +52,10 @@
           },
           {
             "id": "5",
-            "naziv": "punMiJeKuracVise",
+            "naziv": "dobro smo",
             "tip": 3,
             "kolicina": 69,
-            "proizvodjac": "popisamSeNaSims",
+            "proizvodjac": "ZdravoZdravo",
             "nacinUpotrebe": 2,
             "sastojci": [
               "proba",
@@ -87,7 +87,7 @@
                 "naziv": "aaaaaaaLek",
                 "tip": 2,
                 "kolicina": 48921,
-                "proizvodjac": "najebacuTiSeMameAkoNeBudesRadio",
+                "proizvodjac": "volimoSeKorporacija",
                 "nacinUpotrebe": 2,
                 "sastojci": null,
                 "zamenskiLekovi": null
