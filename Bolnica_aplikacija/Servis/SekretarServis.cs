@@ -143,16 +143,13 @@ namespace Bolnica_aplikacija.Servis
                     if (pacijentTermin.id.Equals(termin.idTermina))
                     {
                         DateTime terminDatum = termin.datum;
-                        DateTime trenutniDatum = DateTime.Now.AddHours(1);
+                        DateTime datumSatUnapred = DateTime.Now.AddHours(1);
 
-                        int rezultat1 = DateTime.Compare(terminDatum, trenutniDatum);
+                        int rezultat1 = DateTime.Compare(terminDatum, datumSatUnapred);
                         int rezultat2 = DateTime.Compare(terminDatum, DateTime.Now);
-
-                        Console.WriteLine(rezultat1 + " " + rezultat2);
                         
                         if (rezultat1 <= 0 && rezultat2 > 0)
-                        {
-                            Console.WriteLine(pacijentTermin.datum);
+                        {                           
                             datumiUOpsegu.Add(pacijentTermin);
                         }
                       
@@ -195,9 +192,9 @@ namespace Bolnica_aplikacija.Servis
                     if (!termin.idPacijenta.Equals(""))
                     {
                         DateTime terminDatum = termin.datum;
-                        DateTime trenutniDatum = DateTime.Now.AddHours(1);
+                        DateTime datumSatUnapred = DateTime.Now.AddHours(1);
 
-                        int rezultat1 = DateTime.Compare(terminDatum, trenutniDatum);
+                        int rezultat1 = DateTime.Compare(terminDatum, datumSatUnapred);
                         int rezultat2 = DateTime.Compare(terminDatum, DateTime.Now);
 
                     if (rezultat1 <= 0 && rezultat2 > 0)
@@ -270,14 +267,9 @@ namespace Bolnica_aplikacija.Servis
         {
             List<PacijentTermin> sviTermini = pacijentServis.ucitajSlobodneTermine(0, true);
             bool pronadjenTermin = false;
-
-            Console.WriteLine(idPacijenta + " " + idTermina + " " + tip + " " + idSpecijalizacije);
-            Console.WriteLine(sviTermini.Count);
-            Console.WriteLine("Petlja:");
-
+           
             foreach (PacijentTermin pacijentTermin in sviTermini)
             {
-                Console.WriteLine(pacijentTermin.napomena + " " + pacijentTermin.idSpecijalizacije);
                 if (pacijentTermin.napomena.Equals(tip) && pacijentTermin.idSpecijalizacije.Equals(idSpecijalizacije))
                 {              
                     PacijentKontroler.nadjiPacijenta(idPacijenta);
@@ -286,15 +278,14 @@ namespace Bolnica_aplikacija.Servis
 
                     NotifikacijaKontroler.napraviNotifikaciju("Pomeranje termina (Pacijent)", "Pomeren je termin (Pacijent)", idPacijenta, "pacijent");
                     NotifikacijaKontroler.napraviNotifikaciju("Pomeranje termina (Lekar)", "Pomeren je termin (Lekar)", TerminKontroler.nadjiIdLekaraZaTermin(pacijentTermin.id), "lekar");
-
-
                     break;
                 }
             }
 
             if (!pronadjenTermin)
             {
-                Console.WriteLine("Nema slobodan termin");
+                NotifikacijaKontroler.napraviNotifikaciju("Otkazivanje termina (Pacijent)", "Otkazan je termin usled pomeranja (Pacijent)", idPacijenta, "pacijent");
+                
             }        
 
         }
