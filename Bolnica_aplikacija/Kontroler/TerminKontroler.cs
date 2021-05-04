@@ -96,5 +96,9 @@ namespace Bolnica_aplikacija.Kontroler
             return TerminServis.getInstance().nadjiTerminPoId(idTermina);
         }
 
+        public static List<PacijentTermin> ucitajTermineZaHitanSlucaj(String tip, String idSpecijalizacije)
+        {
+            return TerminServis.getInstance().ucitajTermineZaHitanSlucaj(tip, idSpecijalizacije);
+        }
     }
 }

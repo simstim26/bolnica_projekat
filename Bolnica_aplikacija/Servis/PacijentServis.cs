@@ -17,6 +17,7 @@ namespace Bolnica_aplikacija.Servis
     class PacijentServis
     {
         private PacijentRepozitorijum pacijentRepozitorijum = new PacijentRepozitorijum();
+        private AlergijaRepozitorijum alergijaRepozitorijum = new AlergijaRepozitorijum();
         private Pacijent pacijent; //lekar -> cuva se izabrani pacijent
         private BolestTerapija bolestTerapija;
         private static PacijentServis instance;
@@ -311,7 +312,6 @@ namespace Bolnica_aplikacija.Servis
                 if (termin.idPacijenta.Equals(""))
                 {
                     int rezultat = DateTime.Compare(termin.datum, DateTime.Today);
-
                     if (rezultat > 0)
                     {
                         PacijentTermin pacijentTermin = new PacijentTermin();
@@ -363,7 +363,7 @@ namespace Bolnica_aplikacija.Servis
             return terminiSlobodni;
         }
 
-        private void popuniPacijentTermin(Termin termin, PacijentTermin pacijentTermin, bool jeSekretar)
+        public void popuniPacijentTermin(Termin termin, PacijentTermin pacijentTermin, bool jeSekretar)
         {
             foreach (Prostorija prostorija in ProstorijaServis.getInstance().ucitajSve())
             {
@@ -382,16 +382,23 @@ namespace Bolnica_aplikacija.Servis
 
                 if (lekar.id.Equals(termin.idLekara))
                 {
-                    if (lekar.idSpecijalizacije.Equals("0") || jeSekretar)
+                    if (lekar.idSpecijalizacije.Equals("0") || jeSekretar && lekar.idSpecijalizacije.Equals("0") )
                     {
                         pacijentTermin.imeLekara = lekar.ime + " " + lekar.prezime;
+						pacijentTermin.idSpecijalizacije = lekar.idSpecijalizacije;
                         break;
                     }
+					else 
+					{
+						pacijentTermin.imeLekara = lekar.ime + " " + lekar.prezime;
+						pacijentTermin.idSpecijalizacije = lekar.idSpecijalizacije;
+                        break;
+					}
                 }
             }
         }
 
-        private void dopuniPacijentTermin(Termin termin, PacijentTermin pacijentTermin)
+        public void dopuniPacijentTermin(Termin termin, PacijentTermin pacijentTermin)
         {
             pacijentTermin.datum = termin.datum.Date.ToString("dd/MM/yyyy");
             switch (termin.tip)
@@ -603,6 +610,150 @@ namespace Bolnica_aplikacija.Servis
 
             pacijentRepozitorijum.upisi(sviPacijenti);
 
+        }
+
+        public List<PacijentTermin> ucitajZauzeteTermine()
+
+        {
+            List<PacijentTermin> terminiZauzeti = new List<PacijentTermin>();
+
+            foreach (Termin termin in TerminServis.getInstance().ucitajSve())
+            {
+                if (!termin.idPacijenta.Equals(""))
+                {
+                    DateTime terminDatum = termin.datum;
+                    DateTime datumSatUnapred = DateTime.Now.AddHours(1);
+
+                    int rezultat1 = DateTime.Compare(terminDatum, datumSatUnapred);
+                    int rezultat2 = DateTime.Compare(terminDatum, DateTime.Now);
+
+                    if (rezultat1 <= 0 && rezultat2 > 0)
+                    {
+                        PacijentTermin pacijentTermin = new PacijentTermin();
+
+                        PacijentServis.getInstance().popuniPacijentTermin(termin, pacijentTermin, true);
+
+                        if (!pacijentTermin.imeLekara.Equals("") && !pacijentTermin.lokacija.Equals(""))
+                        {
+                            PacijentServis.getInstance().dopuniPacijentTermin(termin, pacijentTermin);
+                            terminiZauzeti.Add(pacijentTermin);
+                        }
+
+                    }
+                }
+            }
+            return terminiZauzeti;
+        }
+
+        public void pomeriTerminNaPrviSlobodan(String idPacijenta, String idTermina, String tip, String idSpecijalizacije)
+        {
+            List<PacijentTermin> sviTermini = ucitajSlobodneTermine(0, true);
+            bool pronadjenTermin = false;
+
+            foreach (PacijentTermin pacijentTermin in sviTermini)
+            {
+                if (pacijentTermin.napomena.Equals(tip) && pacijentTermin.idSpecijalizacije.Equals(idSpecijalizacije))
+                {
+                    PacijentKontroler.nadjiPacijenta(idPacijenta);
+                    PacijentKontroler.azurirajTerminPacijentu(idTermina, pacijentTermin.id);
+                    pronadjenTermin = true;
+
+                    NotifikacijaKontroler.napraviNotifikaciju("Pomeranje termina (Pacijent)", "Pomeren je termin (Pacijent)", idPacijenta, "pacijent");
+                    NotifikacijaKontroler.napraviNotifikaciju("Pomeranje termina (Lekar)", "Pomeren je termin (Lekar)", TerminKontroler.nadjiIdLekaraZaTermin(pacijentTermin.id), "lekar");
+                    break;
+                }
+            }
+
+            if (!pronadjenTermin)
+            {
+                NotifikacijaKontroler.napraviNotifikaciju("Otkazivanje termina (Pacijent)", "Otkazan je termin usled pomeranja (Pacijent)", idPacijenta, "pacijent");
+
+            }
+
+        }
+
+        public void NapraviPacijenta(String idBolnice, bool gost, String korisnickoIme, String lozinka, String jmbg, String ime, String prezime, DateTime datumRodj, string adresa, string email, string telefon, List<Alergija> alergije)
+        {
+            Pacijent pacijent = new Pacijent();
+            List<Pacijent> sviPacijenti = pacijentRepozitorijum.ucitajSve();
+
+            pacijent.id = (sviPacijenti.Count() + 1).ToString();
+            pacijent.idBolnice = idBolnice;
+            pacijent.jeGost = gost;
+            pacijent.korisnickoIme = korisnickoIme;
+            pacijent.lozinka = lozinka;
+            pacijent.jmbg = jmbg;
+            pacijent.ime = ime;
+            pacijent.prezime = prezime;
+            pacijent.datumRodjenja = datumRodj;
+            pacijent.adresa = adresa;
+            pacijent.email = email;
+            pacijent.brojTelefona = telefon;
+
+            foreach (Alergija alergija in alergije)
+            {
+                alergijaRepozitorijum.dodajAlergiju(new Alergija(pacijent.id, alergija.nazivAlergije));
+            }
+
+            pacijentRepozitorijum.dodajPacijenta(pacijent);
+            KorisnikServis.getInstance().dodajKorisnika(pacijent.id, pacijent.korisnickoIme, pacijent.lozinka, "pacijent");
+        }
+
+        public List<Pacijent> ProcitajPacijente()
+        {
+            List<Pacijent> ucitaniPacijenti = pacijentRepozitorijum.ucitajSve();
+            List<Pacijent> neobrisaniPacijenti = new List<Pacijent>();
+
+            foreach (Pacijent p in ucitaniPacijenti)
+            {
+                if (!p.jeLogickiObrisan)
+                {
+                    neobrisaniPacijenti.Add(p);
+                }
+            }
+            return neobrisaniPacijenti;
+        }
+
+        public void AzurirajPacijenta(String id, String idBolnice, bool gost, String korisnickoIme, String lozinka, String jmbg, String ime, String prezime, DateTime datumRodj, string adresa, string email, string telefon, List<Alergija> alergije)
+        {
+            List<Pacijent> sviPacijenti = pacijentRepozitorijum.ucitajSve();
+            foreach (Pacijent izmeniP in sviPacijenti)
+            {
+                if (izmeniP.id.Equals(id))
+                {
+
+                    izmeniP.id = id;
+                    izmeniP.idBolnice = idBolnice;
+                    izmeniP.jeGost = gost;
+                    izmeniP.korisnickoIme = korisnickoIme;
+                    izmeniP.lozinka = lozinka;
+                    izmeniP.jmbg = jmbg;
+                    izmeniP.ime = ime;
+                    izmeniP.prezime = prezime;
+                    izmeniP.datumRodjenja = datumRodj;
+                    izmeniP.adresa = adresa;
+                    izmeniP.email = email;
+                    izmeniP.brojTelefona = telefon;
+
+                    alergijaRepozitorijum.azurirajAlergije(alergije, izmeniP.id);
+                    pacijentRepozitorijum.azurirajPacijenta(izmeniP);
+                }
+            }
+
+        }
+
+        public void ObrisiPacijenta(String idPacijenta)
+        {
+            List<Pacijent> sviPacijenti = pacijentRepozitorijum.ucitajSve();
+            foreach (Pacijent p in sviPacijenti)
+            {
+                if (p.id.Equals(idPacijenta))
+                {
+                    p.jeLogickiObrisan = true;
+
+                }
+            }
+            pacijentRepozitorijum.upisi(sviPacijenti);
         }
     }
 }

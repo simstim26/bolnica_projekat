@@ -106,6 +106,7 @@
     <Compile Include="Kontroler\LekKontroler.cs" />
     <Compile Include="Kontroler\LogovanjeKontroler.cs" />
     <Compile Include="Kontroler\NotifikacijaKontroler.cs" />
+    <Compile Include="Kontroler\ObavestenjeKontroler.cs" />
     <Compile Include="Kontroler\OcenaBolniceKontroler.cs" />
     <Compile Include="Kontroler\OcenaLekaraKontroler.cs" />
     <Compile Include="Kontroler\PacijentKontroler.cs" />
@@ -116,6 +117,8 @@
     <Compile Include="Kontroler\StavkaKontroler.cs" />
     <Compile Include="Kontroler\TerapijaKontroler.cs" />
     <Compile Include="Kontroler\TerminKontroler.cs" />
+    <Compile Include="Model\LekZaOdobravanje.cs" />
+    <Compile Include="PomocneKlase\LekarSpecijalizacija.cs" />
     <Compile Include="Model\OcenaBolnice.cs" />
     <Compile Include="Model\OcenaLekara.cs" />
     <Compile Include="PomocneKlase\Logovanje.cs" />
@@ -126,8 +129,6 @@
     <Compile Include="Servis\LogovanjeServis.cs" />
     <Compile Include="Servis\OcenaBolniceServis.cs" />
     <Compile Include="Servis\OcenaLekaraServis.cs" />
-    <Compile Include="Model\LekZaOdobravanje.cs" />
-    <Compile Include="PomocneKlase\LekarSpecijalizacija.cs" />
     <Compile Include="View\LekarStudent\Alergije.xaml.cs">
       <DependentUpon>Alergije.xaml</DependentUpon>
     </Compile>
@@ -150,6 +151,7 @@
       <DependentUpon>ZakazivanjeOperacije.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\Alergija.cs" />
+    <Compile Include="Model\Obavestenje.cs" />
     <Compile Include="View\PacijentStudent\NotifikacijaProzor.xaml.cs">
       <DependentUpon>NotifikacijaProzor.xaml</DependentUpon>
     </Compile>
@@ -187,6 +189,7 @@
     <Compile Include="Repozitorijum\LekRepozitorijum.cs" />
     <Compile Include="Repozitorijum\LekarRepozitorijum.cs" />
     <Compile Include="Repozitorijum\NotifikacijaRepozitorijum.cs" />
+    <Compile Include="Repozitorijum\ObavestenjeRepozitorijum.cs" />
     <Compile Include="Repozitorijum\PacijentRepozitorijum.cs" />
     <Compile Include="Repozitorijum\ProstorijaRepozitorijum.cs" />
     <Compile Include="Repozitorijum\ProstorijaZauzetoRepozitorijum.cs" />
@@ -206,6 +209,7 @@
     <Compile Include="Servis\LekarServis.cs" />
     <Compile Include="Servis\LekServis.cs" />
     <Compile Include="Servis\NotifikacijaServis.cs" />
+    <Compile Include="Servis\ObavestenjeServis.cs" />
     <Compile Include="Servis\PacijentServis.cs" />
     <Compile Include="Servis\ProstorijaServis.cs" />
     <Compile Include="Servis\ProstorijaZauzetoServis.cs" />
@@ -438,6 +442,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="View\UpravnikStudent\images.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\SekretarStudent\hitanSlucaj.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\SekretarStudent\ZakaziHitanSlucaj.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets" Condition="Exists('packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets')" />

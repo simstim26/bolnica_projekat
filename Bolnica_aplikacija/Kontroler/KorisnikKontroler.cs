@@ -55,5 +55,10 @@ namespace Bolnica_aplikacija.Kontroler
             return KorisnikServis.getInstance().getSekretar();
         }
 
+        public void dodajKorisnika(String id, String korisnickoIme, String lozinka, String tipKorisnika)
+        {
+            KorisnikServis.getInstance().dodajKorisnika(id, korisnickoIme, lozinka, tipKorisnika);
+        }
+
     }
 }
