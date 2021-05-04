@@ -1,24 +1,3 @@
 [
-  {
-    "idOcene": "BO 1",
-    "ocena": 3,
-    "komentar": "ISUSSE DAJ MI LAVLJE SRCE DA PREZIVIM DANE BUDUCE",
-    "pacijent": {
-      "id": "1",
-      "idBolnice": null,
-      "jeGost": false,
-      "adresa": null,
-      "anketa": false,
-      "jeLogickiObrisan": false,
-      "Notifikacija": [],
-      "korisnickoIme": null,
-      "lozinka": null,
-      "ime": null,
-      "prezime": null,
-      "datumRodjenja": "0001-01-01T00:00:00",
-      "email": null,
-      "brojTelefona": null,
-      "jmbg": null
-    }
-  }
+  
 ]

@@ -4,7 +4,7 @@
     "idBolnice": "1",
     "jeGost": false,
     "adresa": "neka adresa 10, neki grad",
-    "anketa": true,
+    "anketa": false,
     "jeLogickiObrisan": false,
     "Notifikacija": [],
     "korisnickoIme": "kneginja",

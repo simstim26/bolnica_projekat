@@ -61,16 +61,19 @@ namespace Bolnica_aplikacija.Servis
                     {
                         povratnaVrednost = false;
                         Console.WriteLine("manji je");
+                        break;
                     }
                     else if (rezultatPoredjenja == 0)
                     {
                         povratnaVrednost = false;
                         Console.WriteLine("jednako");
+                        break;
                     }
                     else
                     {
                         povratnaVrednost = true;
                         Console.WriteLine("WUHU");
+                        break;
                     }
                 }
             }

@@ -579,12 +579,7 @@ namespace Bolnica_aplikacija.Servis
             {
                 if(pacijent.id.Equals(idPacijenta))
                 {
-                    if (pacijent.anketa)
-                    {
-                        return true;
-                    }
-                    else
-                        return false;
+                    return pacijent.anketa;
                 }
             }
 
@@ -599,12 +594,7 @@ namespace Bolnica_aplikacija.Servis
             {
                 if (pacijent.id.Equals(idPacijenta))
                 {
-                    if (pacijent.anketa)
-                    {
-                        pacijent.anketa = false;
-                    }
-                    else
-                        pacijent.anketa = true;
+                    pacijent.anketa = !pacijent.anketa;
                 }
 
                 sviPacijenti.Add(pacijent);

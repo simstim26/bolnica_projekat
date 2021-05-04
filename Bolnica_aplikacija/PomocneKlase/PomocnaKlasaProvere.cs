@@ -33,12 +33,12 @@ namespace Bolnica_aplikacija.PomocneKlase
         {
             if (LogovanjeKontroler.proveriPostojanjeLogovanja(idPacijenta))
             {
-                if (LogovanjeKontroler.proveriVremePostojecegLogovanja(idPacijenta))
+                if (!LogovanjeKontroler.proveriVremePostojecegLogovanja(idPacijenta))
                 {
-                    LogovanjeKontroler.resetujLogovanje(idPacijenta);
-                }
-                else
+                    //LogovanjeKontroler.resetujLogovanje(idPacijenta);
                     LogovanjeKontroler.uvecajBrojIzmena(idPacijenta);
+                }
+                
             }
             else
             {
