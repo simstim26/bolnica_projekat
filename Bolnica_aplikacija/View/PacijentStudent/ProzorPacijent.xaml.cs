@@ -1,5 +1,7 @@
 ﻿using Bolnica_aplikacija.Kontroler;
 using Bolnica_aplikacija.PacijentModel;
+using Bolnica_aplikacija.PomocneKlase;
+using Bolnica_aplikacija.View.PacijentStudent;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,6 +41,7 @@ namespace Bolnica_aplikacija.PacijentStudent
 
             PopuniTermine();
             setujTajmer();
+            proveraAnkete();
         }
 
         private void PopuniTermine()
@@ -101,87 +104,130 @@ namespace Bolnica_aplikacija.PacijentStudent
 
         private void btnOtkaziPregled_Click(object sender, RoutedEventArgs e)
         {
-            if (dataGridTermin.SelectedIndex != -1)
+            if(proveraUzastopnihIzmena())
             {
-                PacijentTermin izabraniTermin = (PacijentTermin)dataGridTermin.SelectedItem;
-
-                if (izabraniTermin.napomena.Equals("Pregled"))
+                if (dataGridTermin.SelectedIndex != -1)
                 {
-                    if (TerminKontroler.proveriDatumTermina(izabraniTermin.id) <= 0)
+                    PacijentTermin izabraniTermin = (PacijentTermin)dataGridTermin.SelectedItem;
+
+                    if (izabraniTermin.napomena.Equals("Pregled"))
                     {
-                        MessageBox.Show("Nije moguće izvršiti otkazivanje termina 24h pred termin.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    }
-                    else
-                    {
-                        if (izabraniTermin.idSpecijalizacije.Equals("0"))
+                        if (TerminKontroler.proveriDatumTermina(izabraniTermin.id) <= 0)
                         {
-                            PacijentKontroler.otkaziTerminPacijenta(izabraniTermin.id);
+                            MessageBox.Show("Nije moguće izvršiti otkazivanje termina 24h pred termin.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
                         }
                         else
                         {
-                            MessageBox.Show("Potrebno je da se konsultujete sa Vašim specijalistom kako biste otkazali ovaj termin pregleda.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            if (izabraniTermin.idSpecijalizacije.Equals("0"))
+                            {
+                                PacijentKontroler.otkaziTerminPacijenta(izabraniTermin.id);
+
+                                //ANTI TROL
+
+                                if (LogovanjeKontroler.proveriPostojanjeLogovanja(idPacijenta))
+                                {
+                                    if (LogovanjeKontroler.proveriVremePostojecegLogovanja(idPacijenta))
+                                    {
+                                        LogovanjeKontroler.resetujLogovanje(idPacijenta);
+                                    }
+                                    else
+                                        LogovanjeKontroler.uvecajBrojIzmena(idPacijenta);
+                                }
+                                else
+                                {
+                                    //ako ne postoji kreira se
+                                    DateTime vremeIzmene = DateTime.Now;
+                                    //Termin termin = new Termin();
+                                    //termin.idTermina = idSelektovanog;
+                                    int brojUzastopnihIzmena = 1;
+                                    LogovanjeKontroler.dodajLogovanje(new PomocneKlase.Logovanje(idPacijenta, vremeIzmene, brojUzastopnihIzmena));
+
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("Potrebno je da se konsultujete sa Vašim specijalistom kako biste otkazali ovaj termin pregleda.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            }
                         }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Potrebno je da se konsultujete sa Vašim lekarom kako biste otkazali termin operacije.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Potrebno je da se konsultujete sa Vašim lekarom kako biste otkazali termin operacije.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("Molimo odaberite termin koji želite da otkažete.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
+
+                PopuniTermine();
             }
             else
             {
-                MessageBox.Show("Molimo odaberite termin koji želite da otkažete.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Poštovani, izvršili ste previše izmena u kratkom vremenskom periodu. Molimo sačekajte.", "Obaveštenje", MessageBoxButton.OK, MessageBoxImage.Information);
             }
-
-            PopuniTermine();
         }
 
         private void btnIzmeniTermin_Click(object sender, RoutedEventArgs e)
         {
-            if (dataGridTermin.SelectedIndex != -1)
+            if(proveraUzastopnihIzmena())
             {
-
-                PacijentTermin izabraniTermin = (PacijentTermin)dataGridTermin.SelectedItem;
-
-                if (izabraniTermin.napomena.Equals("Pregled"))
+                if (dataGridTermin.SelectedIndex != -1)
                 {
-                    if (TerminKontroler.proveriDatumTermina(izabraniTermin.id) <= 0)
+
+                    PacijentTermin izabraniTermin = (PacijentTermin)dataGridTermin.SelectedItem;
+
+                    if (izabraniTermin.napomena.Equals("Pregled"))
                     {
-                        MessageBox.Show("Nije moguće izvršiti promenu termina 24h pred termin.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    }
-                    else
-                    {
-                        if (izabraniTermin.idSpecijalizacije.Equals("0"))
+                        if (TerminKontroler.proveriDatumTermina(izabraniTermin.id) <= 0)
                         {
-                            TerminKontroler.sacuvajTermin(izabraniTermin.id);
-                            IzmenaTerminaPacijent izmenaTermina = new IzmenaTerminaPacijent(dataGridTermin, this.idPacijenta);
-                            izmenaTermina.Owner = this;
-                            izmenaTermina.ShowDialog();
+                            MessageBox.Show("Nije moguće izvršiti promenu termina 24h pred termin.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
                         }
                         else
                         {
-                            MessageBox.Show("Potrebno je da se konsultujete sa Vašim specijalistom oko izmene termina pregleda.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            if (izabraniTermin.idSpecijalizacije.Equals("0"))
+                            {
+                                TerminKontroler.sacuvajTermin(izabraniTermin.id);
+                                IzmenaTerminaPacijent izmenaTermina = new IzmenaTerminaPacijent(dataGridTermin, this.idPacijenta);
+                                izmenaTermina.Owner = this;
+                                izmenaTermina.ShowDialog();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Potrebno je da se konsultujete sa Vašim specijalistom oko izmene termina pregleda.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            }
                         }
                     }
+                    else
+                    {
+                        MessageBox.Show("Za izmenu termina operacije je potrebno da se konsultujete sa Vašim lekarom.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+
+                    }
+
                 }
                 else
                 {
-                    MessageBox.Show("Za izmenu termina operacije je potrebno da se konsultujete sa Vašim lekarom.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
-
+                    MessageBox.Show("Molimo odaberite termin koji želite da izmenite.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
-
             }
             else
             {
-                MessageBox.Show("Molimo odaberite termin koji želite da izmenite.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Poštovani, izvršili ste previše izmena u kratkom vremenskom periodu. Molimo sačekajte.", "Obaveštenje", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 
         private void btnZakaziPregled_Click_1(object sender, RoutedEventArgs e)
         {
-            PacijentZakaziTermin zakaziTermin = new PacijentZakaziTermin(dataGridTermin);
-            zakaziTermin.Owner = this;
-            zakaziTermin.ShowDialog();
+            if(proveraUzastopnihIzmena())
+            {
+                PacijentZakaziTermin zakaziTermin = new PacijentZakaziTermin(dataGridTermin, idPacijenta);
+                zakaziTermin.Owner = this;
+                zakaziTermin.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Poštovani, izvršili ste previše izmena u kratkom vremenskom periodu. Molimo sačekajte.", "Obaveštenje", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
 
         private void menuItemOdjava_Click(object sender, RoutedEventArgs e)
@@ -221,7 +267,7 @@ namespace Bolnica_aplikacija.PacijentStudent
 
                 if(zaProveriti.Count > 1)
                 {
-                    Console.WriteLine("ovo je onaj slucaj sa vise obavestenja");
+                    //Console.WriteLine("ovo je onaj slucaj sa vise obavestenja");
                 }
                 else if (zaProveriti.Count == 1)
                 {
@@ -237,5 +283,72 @@ namespace Bolnica_aplikacija.PacijentStudent
 
         }
 
+        bool proveraUzastopnihIzmena()
+        {
+            bool povratnaVrednost = false;
+            int brojPonavljanja = LogovanjeKontroler.getBrojUzastopnihPonavljanja(idPacijenta);
+            bool proveraDatuma = PomocnaKlasaProvere.uporediDatumSaDanasnjim(LogovanjeKontroler.getVremeIzmene(idPacijenta));
+
+            if(brojPonavljanja > 3 )
+            {
+                if(proveraDatuma)
+                {
+                    LogovanjeKontroler.resetujLogovanje(idPacijenta);
+                    povratnaVrednost = true;
+                }
+                else
+                {
+                    povratnaVrednost = false;
+                }
+            }
+            else
+            {
+                povratnaVrednost = true;
+            }
+            return povratnaVrednost;
+
+        }
+
+        private void btnOceniLekara_Click(object sender, RoutedEventArgs e)
+        {
+            OceniteLekara oceniteLekara = new OceniteLekara(idPacijenta);
+            oceniteLekara.Owner = this;
+            oceniteLekara.ShowDialog();
+        }
+
+        //zbog testiranja
+
+        private void btnPlacanje_Click(object sender, RoutedEventArgs e)
+        {
+            OceniteBolnicu oceniteBolnicu = new OceniteBolnicu(idPacijenta);
+            oceniteBolnicu.Owner = this;
+            oceniteBolnicu.ShowDialog();
+        }
+
+        private void proveraAnkete()
+        {
+            int mesec = DateTime.Now.Month;
+            bool proveraMeseca = false;
+
+            switch(mesec)
+            {
+                case 4:     proveraMeseca = true;    break;
+                case 8:     proveraMeseca = true;    break;
+                case 12:    proveraMeseca = true;    break;
+                default:    proveraMeseca = false;    break;
+            }
+
+            if(proveraMeseca)
+            {
+                //proveriti stanje anketa polja u pacijentu
+
+                if(!PacijentKontroler.proveriStanjeAnkete(idPacijenta))
+                {
+                    OceniteBolnicu oceniteBolnicu = new OceniteBolnicu(idPacijenta);
+                    oceniteBolnicu.ShowDialog();
+
+                }
+            }
+        }
     }
 }

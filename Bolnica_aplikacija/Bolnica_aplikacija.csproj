@@ -104,8 +104,11 @@
     <Compile Include="Kontroler\KorisnikKontroler.cs" />
     <Compile Include="Kontroler\LekarKontroler.cs" />
     <Compile Include="Kontroler\LekKontroler.cs" />
+    <Compile Include="Kontroler\LogovanjeKontroler.cs" />
     <Compile Include="Kontroler\NotifikacijaKontroler.cs" />
     <Compile Include="Kontroler\ObavestenjeKontroler.cs" />
+    <Compile Include="Kontroler\OcenaBolniceKontroler.cs" />
+    <Compile Include="Kontroler\OcenaLekaraKontroler.cs" />
     <Compile Include="Kontroler\PacijentKontroler.cs" />
     <Compile Include="Kontroler\ProstorijaKontroler.cs" />
     <Compile Include="Kontroler\ProstorijaZauzetoKontroler.cs" />
@@ -116,6 +119,16 @@
     <Compile Include="Kontroler\TerminKontroler.cs" />
     <Compile Include="Model\LekZaOdobravanje.cs" />
     <Compile Include="PomocneKlase\LekarSpecijalizacija.cs" />
+    <Compile Include="Model\OcenaBolnice.cs" />
+    <Compile Include="Model\OcenaLekara.cs" />
+    <Compile Include="PomocneKlase\Logovanje.cs" />
+    <Compile Include="PomocneKlase\PomocnaKlasaProvere.cs" />
+    <Compile Include="Repozitorijum\LogovanjeRepozitorijum.cs" />
+    <Compile Include="Repozitorijum\OcenaBolniceRepozitorijum.cs" />
+    <Compile Include="Repozitorijum\OcenaLekaraRepozitorijum.cs" />
+    <Compile Include="Servis\LogovanjeServis.cs" />
+    <Compile Include="Servis\OcenaBolniceServis.cs" />
+    <Compile Include="Servis\OcenaLekaraServis.cs" />
     <Compile Include="View\LekarStudent\Alergije.xaml.cs">
       <DependentUpon>Alergije.xaml</DependentUpon>
     </Compile>
@@ -141,6 +154,12 @@
     <Compile Include="Model\Obavestenje.cs" />
     <Compile Include="View\PacijentStudent\NotifikacijaProzor.xaml.cs">
       <DependentUpon>NotifikacijaProzor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PacijentStudent\OceniteBolnicu.xaml.cs">
+      <DependentUpon>OceniteBolnicu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PacijentStudent\OceniteLekara.xaml.cs">
+      <DependentUpon>OceniteLekara.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\PacijentStudent\ProzorPacijent.xaml.cs">
       <DependentUpon>ProzorPacijent.xaml</DependentUpon>
@@ -318,6 +337,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\PacijentStudent\NotifikacijaProzor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PacijentStudent\OceniteBolnicu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PacijentStudent\OceniteLekara.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -96,6 +96,20 @@ namespace Bolnica_aplikacija.Kontroler
            
             return pacijentServis.procitajAlergije();
         }
+        public static List<PacijentTermin> prikazProslihTerminaPacijentaKodOcenjivanjaLekara(String idPacijenta)
+        {
+            return PacijentServis.getInstance().prikazProslihTerminaPacijentaKodOcenjivanjaLekara(idPacijenta);
+        }
+
+        public static bool proveriStanjeAnkete(String idPacijenta)
+        {
+            return PacijentServis.getInstance().proveriStanjeAnkete(idPacijenta);
+        }
+
+        public static void postaviStanjeAnkete(String idPacijenta)
+        {
+            PacijentServis.getInstance().postaviStanjeAnkete(idPacijenta);
+        }
 
     }
 }
