@@ -62,6 +62,7 @@ namespace Bolnica_aplikacija
                  case "upravnik":
                     KorisnikKontroler.NadjiUpravnika(ulogovaniKorisnik[1]);
                     ProstorijaZauzetoKontroler.zauzmiProstorije();
+                    ProstorijaKontroler.pregledajProstorijeZaRenoviranje();
                     UpravnikProzor upravnikProzor = UpravnikProzor.getInstance();
                     this.Close();
                     upravnikProzor.ShowDialog();

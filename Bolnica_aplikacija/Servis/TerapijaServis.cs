@@ -10,16 +10,38 @@ namespace Bolnica_aplikacija.Servis
 {
     class TerapijaServis
     {
-        private TerapijaRepozitorijum terapijaRepozitorijum = new TerapijaRepozitorijum();
-        public void azurirajTerapiju(String idTerapije, String idLeka, String nacinUpotrebe, int trajanje
-            , DateTime datumPropisivanja)
+        private static TerapijaServis instance;
+        public static TerapijaServis getInstance()
         {
-            Terapija terapija = nadjiTerapijuPoId(idTerapije);
-            terapija.idLeka = idLeka;
-            terapija.nacinUpotrebe = nacinUpotrebe;
-            terapija.trajanje = trajanje;
-            terapija.datumPocetka = datumPropisivanja;
-            terapijaRepozitorijum.azurirajTerapiju(terapija);
+            if(instance == null)
+            {
+                instance = new TerapijaServis();
+            }
+
+            return instance;
+        }
+        private TerapijaRepozitorijum terapijaRepozitorijum = new TerapijaRepozitorijum();
+        public String nadjiNazivLekaZaTerapiju(String idTerapije)
+        {
+            String povratnaVrednost = "";
+            foreach(Terapija terapija in terapijaRepozitorijum.ucitajSve())
+            {
+                if (idTerapije != null && idTerapije.Equals(terapija.id))
+                {
+                    povratnaVrednost = LekServis.getInstance().nadjiLekPoId(terapija.idLeka).naziv;
+                }
+            }
+
+            return povratnaVrednost;
+        }
+
+        public List<Terapija> ucitajSve()
+        {
+            return terapijaRepozitorijum.ucitajSve();
+        }
+        public void azurirajTerapiju(Terapija terapijaZaAzuriranje)
+        {
+            terapijaRepozitorijum.azurirajTerapiju(terapijaZaAzuriranje);
         }
 
         public Terapija nadjiTerapijuPoId(String idTerapije)

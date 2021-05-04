@@ -13,11 +13,31 @@ namespace Bolnica_aplikacija.PacijentModel
         public String satnica { get; set; }
         public String lokacija { get; set; }
         public String napomena { get; set; }
+
+        public String idLekara { get; set; }
         public String imeLekara { get; set; }
 
         public String nazivSpecijalizacije { get; set; }
 
         public String idSpecijalizacije { get; set; }
+
+        public String nazivTerapije { get; set; }
+
+        public PacijentTermin() { }
+
+        public PacijentTermin(String id, String datum, String satnica, String lokacija, String napomena, String imeLekara,
+            String nazivSpecijalizacije, String idSpecijalizacije, String nazivTerapije)
+        {
+            this.id = id;
+            this.datum = datum;
+            this.satnica = satnica;
+            this.lokacija = lokacija;
+            this.napomena = napomena;
+            this.imeLekara = imeLekara;
+            this.nazivSpecijalizacije = nazivSpecijalizacije;
+            this.idSpecijalizacije = idSpecijalizacije;
+            this.nazivTerapije = nazivTerapije;
+        }
 
     }
 }

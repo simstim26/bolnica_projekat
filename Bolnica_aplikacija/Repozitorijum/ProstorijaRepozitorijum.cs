@@ -1,4 +1,5 @@
-﻿using Model;
+﻿using Bolnica_aplikacija.PomocneKlase;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -80,5 +81,46 @@ namespace Bolnica_aplikacija.Repozitorijum
             string jsonString = JsonSerializer.Serialize(sveProstorije, formatiranje);
             File.WriteAllText("Datoteke/Prostorije.txt", jsonString);
         }
+
+        public Dictionary<string, string> prostorijaBrojSprat()
+        {
+            var neobrisaneProstorije = ucitajNeobrisane();
+            Dictionary<string, string> prostorije = new Dictionary<string, string>();
+
+            foreach (Prostorija p in neobrisaneProstorije)
+            {
+                prostorije.Add(p.id, p.broj + " " + p.sprat);
+            }
+
+            return prostorije;
+        }
+
+        public void upisiProstorijeZaRenoviranje(List<ProstorijaRenoviranje> prostorijeZaRenoviranje)
+        {
+            var formatiranje = new JsonSerializerOptions
+            {
+                WriteIndented = true,
+            };
+            string jsonString = JsonSerializer.Serialize(prostorijeZaRenoviranje, formatiranje);
+            File.WriteAllText("Datoteke/ProstorijeRenoviranje.txt", jsonString);
+        }
+
+        public List<ProstorijaRenoviranje> ucitajProstorijeZaRenoviranje()
+        {
+            List<ProstorijaRenoviranje> prostorijeZaRenoviranje;
+
+            try
+            {
+                prostorijeZaRenoviranje = JsonSerializer.Deserialize<List<ProstorijaRenoviranje>>(File.ReadAllText("Datoteke/ProstorijeRenoviranje.txt"));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                prostorijeZaRenoviranje = new List<ProstorijaRenoviranje>();
+            }
+
+            return prostorijeZaRenoviranje;
+        }
+
     }
 }

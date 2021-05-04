@@ -1,4 +1,5 @@
-﻿using Bolnica_aplikacija.Repozitorijum;
+﻿using Bolnica_aplikacija.PomocneKlase;
+using Bolnica_aplikacija.Repozitorijum;
 using Bolnica_aplikacija.Servis;
 using Model;
 using System;
@@ -60,6 +61,24 @@ namespace Bolnica_aplikacija.Kontroler
         public static Prostorija nadjiProstorijuPoId(String id)
         {
             return prostorijaServis.nadjiProstorijuPoId(id);
+        }
+
+        public static void zakaziRenoviranje(ProstorijaRenoviranje prostorija)
+        {
+            Prostorija prostorijaKojaSeRenovira = nadjiProstorijuPoId(prostorija.idProstorije);
+            
+            prostorijaServis.zakaziRenoviranje(prostorija);
+            
+        }
+
+        public static void pregledajProstorijeZaRenoviranje()
+        {
+            prostorijaServis.pregledajProstorijeZaRenoviranje();
+        }
+
+        public static bool postojeTerminiZaPeriodPremestanja(DateTime datumPocetka, DateTime datumKraja, Prostorija p)
+        {
+            return prostorijaServis.postojeTerminiZaPeriodPremestanja(datumPocetka, datumKraja, p);
         }
     }
 }

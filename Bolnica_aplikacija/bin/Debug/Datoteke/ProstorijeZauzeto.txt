@@ -61,5 +61,221 @@
     "jeZavrseno": true,
     "idStavke": "2",
     "kolicinaStavke": 1
+  },
+  {
+    "idProstorije": "1",
+    "idProstorijeUKojuSePrebacuje": "14",
+    "datumPocetka": "2021-04-29T00:00:00",
+    "datumKraja": "2021-04-30T00:00:00",
+    "jeZavrseno": true,
+    "idStavke": "2",
+    "kolicinaStavke": 2
+  },
+  {
+    "idProstorije": "14",
+    "idProstorijeUKojuSePrebacuje": "14",
+    "datumPocetka": "2021-04-29T00:00:00",
+    "datumKraja": "2021-04-29T00:00:00",
+    "jeZavrseno": true,
+    "idStavke": "7",
+    "kolicinaStavke": 3
+  },
+  {
+    "idProstorije": "16",
+    "idProstorijeUKojuSePrebacuje": null,
+    "datumPocetka": "2021-04-29T00:00:00",
+    "datumKraja": "2021-04-29T00:00:00",
+    "jeZavrseno": true,
+    "idStavke": "7",
+    "kolicinaStavke": 1
+  },
+  {
+    "idProstorije": "16",
+    "idProstorijeUKojuSePrebacuje": null,
+    "datumPocetka": "2021-04-29T00:00:00",
+    "datumKraja": "2021-04-30T00:00:00",
+    "jeZavrseno": true,
+    "idStavke": "7",
+    "kolicinaStavke": 5
+  },
+  {
+    "idProstorije": "16",
+    "idProstorijeUKojuSePrebacuje": null,
+    "datumPocetka": "2021-04-29T00:00:00",
+    "datumKraja": "2021-04-29T00:00:00",
+    "jeZavrseno": true,
+    "idStavke": "7",
+    "kolicinaStavke": 1
+  },
+  {
+    "idProstorije": "14",
+    "idProstorijeUKojuSePrebacuje": "16",
+    "datumPocetka": "2021-04-29T00:00:00",
+    "datumKraja": "2021-04-29T00:00:00",
+    "jeZavrseno": true,
+    "idStavke": "7",
+    "kolicinaStavke": 1
+  },
+  {
+    "idProstorije": "3",
+    "idProstorijeUKojuSePrebacuje": null,
+    "datumPocetka": "2021-05-04T00:00:00",
+    "datumKraja": "2021-05-04T00:00:00",
+    "jeZavrseno": true,
+    "idStavke": "7",
+    "kolicinaStavke": 1
+  },
+  {
+    "idProstorije": "3",
+    "idProstorijeUKojuSePrebacuje": null,
+    "datumPocetka": "2021-05-04T00:00:00",
+    "datumKraja": "2021-05-05T00:00:00",
+    "jeZavrseno": false,
+    "idStavke": "7",
+    "kolicinaStavke": 2
+  },
+  {
+    "idProstorije": "3",
+    "idProstorijeUKojuSePrebacuje": null,
+    "datumPocetka": "2021-05-04T00:00:00",
+    "datumKraja": "2021-05-04T00:00:00",
+    "jeZavrseno": true,
+    "idStavke": "7",
+    "kolicinaStavke": 1
+  },
+  {
+    "idProstorije": "1",
+    "idProstorijeUKojuSePrebacuje": "9",
+    "datumPocetka": "2021-05-04T00:00:00",
+    "datumKraja": "2021-05-04T00:00:00",
+    "jeZavrseno": true,
+    "idStavke": "2",
+    "kolicinaStavke": 23
+  },
+  {
+    "idProstorije": "1",
+    "idProstorijeUKojuSePrebacuje": null,
+    "datumPocetka": "2021-05-04T00:00:00",
+    "datumKraja": "2021-05-04T00:00:00",
+    "jeZavrseno": true,
+    "idStavke": "7",
+    "kolicinaStavke": 3
+  },
+  {
+    "idProstorije": "3",
+    "idProstorijeUKojuSePrebacuje": null,
+    "datumPocetka": "2021-05-04T00:00:00",
+    "datumKraja": "2021-05-04T00:00:00",
+    "jeZavrseno": true,
+    "idStavke": "7",
+    "kolicinaStavke": 2
+  },
+  {
+    "idProstorije": "3",
+    "idProstorijeUKojuSePrebacuje": "1",
+    "datumPocetka": "2021-05-04T00:00:00",
+    "datumKraja": "2021-05-04T00:00:00",
+    "jeZavrseno": true,
+    "idStavke": "7",
+    "kolicinaStavke": 4
+  },
+  {
+    "idProstorije": "3",
+    "idProstorijeUKojuSePrebacuje": "1",
+    "datumPocetka": "2021-05-04T00:00:00",
+    "datumKraja": "2021-05-04T00:00:00",
+    "jeZavrseno": true,
+    "idStavke": "7",
+    "kolicinaStavke": 4
+  },
+  {
+    "idProstorije": "3",
+    "idProstorijeUKojuSePrebacuje": "1",
+    "datumPocetka": "2021-05-04T00:00:00",
+    "datumKraja": "2021-05-04T00:00:00",
+    "jeZavrseno": true,
+    "idStavke": "7",
+    "kolicinaStavke": 4
+  },
+  {
+    "idProstorije": "3",
+    "idProstorijeUKojuSePrebacuje": "9",
+    "datumPocetka": "2021-05-04T00:00:00",
+    "datumKraja": "2021-05-04T00:00:00",
+    "jeZavrseno": true,
+    "idStavke": "2",
+    "kolicinaStavke": 27
+  },
+  {
+    "idProstorije": "10",
+    "idProstorijeUKojuSePrebacuje": "9",
+    "datumPocetka": "2021-05-04T00:00:00",
+    "datumKraja": "2021-05-04T00:00:00",
+    "jeZavrseno": true,
+    "idStavke": "2",
+    "kolicinaStavke": 2
+  },
+  {
+    "idProstorije": "1",
+    "idProstorijeUKojuSePrebacuje": "10",
+    "datumPocetka": "2021-05-04T00:00:00",
+    "datumKraja": "2021-05-04T00:00:00",
+    "jeZavrseno": true,
+    "idStavke": "7",
+    "kolicinaStavke": 15
+  },
+  {
+    "idProstorije": "15",
+    "idProstorijeUKojuSePrebacuje": "14",
+    "datumPocetka": "2021-05-04T00:00:00",
+    "datumKraja": "2021-05-04T00:00:00",
+    "jeZavrseno": true,
+    "idStavke": "2",
+    "kolicinaStavke": 10
+  },
+  {
+    "idProstorije": "1",
+    "idProstorijeUKojuSePrebacuje": "3",
+    "datumPocetka": "2021-05-04T00:00:00",
+    "datumKraja": "2021-05-04T00:00:00",
+    "jeZavrseno": true,
+    "idStavke": "7",
+    "kolicinaStavke": 10
+  },
+  {
+    "idProstorije": "3",
+    "idProstorijeUKojuSePrebacuje": "14",
+    "datumPocetka": "2021-05-04T00:00:00",
+    "datumKraja": "2021-05-04T00:00:00",
+    "jeZavrseno": true,
+    "idStavke": "7",
+    "kolicinaStavke": 5
+  },
+  {
+    "idProstorije": "3",
+    "idProstorijeUKojuSePrebacuje": "1",
+    "datumPocetka": "2021-05-04T00:00:00",
+    "datumKraja": "2021-05-04T00:00:00",
+    "jeZavrseno": true,
+    "idStavke": "7",
+    "kolicinaStavke": 3
+  },
+  {
+    "idProstorije": "1",
+    "idProstorijeUKojuSePrebacuje": "18",
+    "datumPocetka": "2021-05-04T00:00:00",
+    "datumKraja": "2021-05-04T00:00:00",
+    "jeZavrseno": true,
+    "idStavke": "7",
+    "kolicinaStavke": 2
+  },
+  {
+    "idProstorije": "1",
+    "idProstorijeUKojuSePrebacuje": "18",
+    "datumPocetka": "2021-05-04T00:00:00",
+    "datumKraja": "2021-05-04T00:00:00",
+    "jeZavrseno": true,
+    "idStavke": "7",
+    "kolicinaStavke": 1
   }
 ]

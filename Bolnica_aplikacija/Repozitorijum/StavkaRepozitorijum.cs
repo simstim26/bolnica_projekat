@@ -51,5 +51,35 @@ namespace Bolnica_aplikacija.Repozitorijum
             string jsonString = JsonSerializer.Serialize(sveStavke, formatiranje);
             File.WriteAllText("Datoteke/Stavke.txt", jsonString);
         }
+
+        public List<Stavka> ucitajStatickeStavke()
+        {
+            var sveStavke = UcitajNeobrisaneStavke();
+            List<Stavka> statickeStavke = new List<Stavka>();
+
+            foreach(Stavka s in sveStavke)
+            {
+                if (s.jeStaticka)
+                {
+                    statickeStavke.Add(s);
+                }
+            }
+            return statickeStavke;
+        }
+
+        public List<Stavka> ucitajDinamickeStavke()
+        {
+            var sveStavke = UcitajNeobrisaneStavke();
+            List<Stavka> dinamickeStavke = new List<Stavka>();
+
+            foreach (Stavka s in sveStavke)
+            {
+                if (!s.jeStaticka)
+                {
+                    dinamickeStavke.Add(s);
+                }
+            }
+            return dinamickeStavke;
+        }
     }
 }

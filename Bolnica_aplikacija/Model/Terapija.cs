@@ -17,6 +17,32 @@ namespace Model
       public DateTime datumPocetka { get; set; }
       public int trajanje { get; set; }
       public String nacinUpotrebe { get; set; }
+    
+      public Terapija() { }
+      public Terapija(String id, String idLeka, String idPacijenta, String idBolesti, String idTermina, DateTime datumPocetka, 
+          int trajanje, String nacinUpotrebe)
+      {
+            this.id = id;
+            this.idLeka = idLeka;
+            this.idPacijenta = idPacijenta;
+            this.idBolesti = idBolesti;
+            this.idTermina = idTermina;
+            this.datumPocetka = datumPocetka;
+            this.trajanje = trajanje;
+            this.nacinUpotrebe = nacinUpotrebe;
+      }
+
+      public void kopiraj(Terapija terapija)
+      {
+            id = terapija.id;
+            idLeka = terapija.idLeka;
+            idPacijenta = terapija.idPacijenta;
+            idBolesti = terapija.idBolesti;
+            idTermina = terapija.idTermina;
+            datumPocetka = terapija.datumPocetka;
+            trajanje = terapija.trajanje;
+            nacinUpotrebe = terapija.nacinUpotrebe;
+      }
 
     }
 }

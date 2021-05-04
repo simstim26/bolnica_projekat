@@ -1,0 +1,30 @@
+﻿<UserControl x:Class="Bolnica_aplikacija.LekarStudent.PrikazProstorija"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Bolnica_aplikacija.LekarStudent"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             Height="Auto" Width="Auto">
+    <Grid Background="White" Margin="0,0,0.4,0.4" Height="667">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Button x:Name="btnPotvrdi" HorizontalAlignment="Left" Height="Auto" Margin="31,574,0,53.2" Width="145" BorderBrush="Black" Click="btnPotvrdi_Click" Grid.Row="1">
+            <materialDesign:PackIcon Kind="CheckCircle" Height="28" Width="31"></materialDesign:PackIcon>
+        </Button>
+        <Button x:Name="btnPonisti" Height="Auto" Margin="249,574,26.4,53.2"  BorderBrush="Black" Click="btnPonisti_Click" Grid.Row="1">
+            <materialDesign:PackIcon Kind="CloseCircle" Height="23" Width="24" RenderTransformOrigin="0.5,0.5"/>
+        </Button>
+        <DataGrid x:Name="dataProstorije" AlternationCount="2" AlternatingRowBackground="#FF9900" RowHeight="33" IsReadOnly ="True" SelectionMode="Single" Height="415" Margin="0,117,-0.4,0" VerticalAlignment="Top" AutoGenerateColumns="False" Grid.Row="1">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name ="kolonaTip" IsReadOnly="True" CanUserResize="False" Binding="{Binding tipProstorije}" Width="143" Header="Tip prostorije"></DataGridTextColumn>
+                <DataGridTextColumn x:Name="kolonaBroj" IsReadOnly="True" CanUserResize="False" Binding="{Binding broj}" Width="143" Header="Broj"></DataGridTextColumn>
+                <DataGridTextColumn x:Name="kolonaSprat" IsReadOnly="True" CanUserResize="False" Binding="{Binding sprat}" Header="Sprat" Width="115"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="btnInventarProstorije" Content="Prikaz inventara" Height="42" Margin="267,49,43.4,0" VerticalAlignment="Top" BorderBrush="Black" Grid.Row="1"/>
+    </Grid>
+</UserControl>

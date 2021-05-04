@@ -45,5 +45,45 @@ namespace Bolnica_aplikacija.Kontroler
         {
             return stavkaServis.pronadjiStavkuPoId(id);
         }
+
+        public static Stavka pronadjiStavkuIzProstorijePoId(Prostorija prostorija, String stavkaId)
+        {
+            return stavkaServis.pronadjiStavkuIzProstorijePoId(prostorija, stavkaId);
+        }
+
+        public static List<Stavka> ucitajStatickeStavke()
+        {
+            return stavkaServis.ucitajStatickeStavke();
+        }
+
+        public static List<Stavka> ucitajDinamickeStavke()
+        {
+            return stavkaServis.ucitajDinamickeStavke();
+        }
+
+        public static List<Stavka> poredjajListuStavkiPoKoliciniRastuce(List<Stavka> stavke)
+        {
+            return stavkaServis.poredjajListuStavkiPoKoliciniRastuce(stavke);
+        }
+
+        public static List<Stavka> poredjajListuStavkiPoKoliciniOpadajuce(List<Stavka> stavke)
+        {
+            return stavkaServis.poredjajListuStavkiPoKoliciniOpadajuce(stavke);
+        }
+
+        public static List<Stavka> poredjajListuStavkiPoNazivuOpadajuce(List<Stavka> stavke)
+        {
+            return stavkaServis.poredjajListuStavkiPoNazivuOpadajuce(stavke);
+        }
+
+        public static List<Stavka> poredjajListuStavkiPoNazivuRastuce(List<Stavka> stavke)
+        {
+            return stavkaServis.poredjajListuStavkiPoNazivuRastuce(stavke);
+        }
+        public static List<Stavka> pretraziStavku(String kriterijum, List<Stavka> stavke)
+        {
+            return stavkaServis.pretraziStavku(kriterijum, stavke);
+        }
+
     }
 }
