@@ -1,5 +1,6 @@
 ﻿using Bolnica_aplikacija.Kontroler;
 using Bolnica_aplikacija.PacijentModel;
+using Bolnica_aplikacija.PomocneKlase;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -71,38 +72,8 @@ namespace Bolnica_aplikacija.PacijentStudent
                         dataGrid.ItemsSource = PacijentKontroler.prikazPacijentovihTermina();
 
                         //ANTI TROL SISTEM
-                       
-                        if(LogovanjeKontroler.proveriPostojanjeLogovanja(idPacijenta))
-                        {
-                            //AKO POSTOJI VEC LOGOVANJE
-                            
-                            if(LogovanjeKontroler.proveriVremePostojecegLogovanja(idPacijenta))
-                            {
-                                //ako je true, onda je brojac resetovan na 1
-                                //resetovati broj na 1
-                                //TO DO IZMENA LOGOVANJA
-                                LogovanjeKontroler.resetujLogovanje(idPacijenta);
 
-                            }
-                            else
-                            {
-                                //povecati broj
-                                LogovanjeKontroler.uvecajBrojIzmena(idPacijenta);
-                            }
-
-                            //TREBA PROVERITI BROJ IZMENA
-
-                        }
-                        else
-                        {
-                            //ako ne postoji kreira se
-                            DateTime vremeIzmene = DateTime.Now;
-                            //Termin termin = new Termin();
-                            //termin.idTermina = idSelektovanog;
-                            int brojUzastopnihIzmena = 1;
-                            LogovanjeKontroler.dodajLogovanje(new PomocneKlase.Logovanje(idPacijenta, vremeIzmene, brojUzastopnihIzmena));
-
-                        }
+                        PomocnaKlasaProvere.antiTrolMetoda(idPacijenta);
 
                         this.Close();
 
@@ -145,20 +116,8 @@ namespace Bolnica_aplikacija.PacijentStudent
 
             }
 
-            if (indikator == -1)
+            if(!PomocnaKlasaProvere.proveraPretrage(indikator))
             {
-                MessageBox.Show("Molimo izaberite prioritet pretrage.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
-                ucitajPodatke();
-                
-            }
-            else if (indikator == -2)
-            {
-                MessageBox.Show("Molimo unesite ime u odgovarajućem formatu.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
-                ucitajPodatke();
-            }
-            else if (indikator == -3)
-            {
-                MessageBox.Show("Molimo unesite datum u odgovarajućem formatu. Neki od podržanih formata su: dd/MM/yyyy, d/m/yyyy, dd.MM.yyyy.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
                 ucitajPodatke();
             }
             else

@@ -1,5 +1,6 @@
 ﻿using Bolnica_aplikacija.Kontroler;
 using Bolnica_aplikacija.PacijentModel;
+using Bolnica_aplikacija.PomocneKlase;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -70,28 +71,7 @@ namespace Bolnica_aplikacija.PacijentStudent
                         dataGrid.ItemsSource = PacijentKontroler.prikazPacijentovihTermina();
 
                         //ANTI TROL
-
-                        if(LogovanjeKontroler.proveriPostojanjeLogovanja(idPacijenta))
-                        {
-                            if (LogovanjeKontroler.proveriVremePostojecegLogovanja(idPacijenta))
-                            {
-                                LogovanjeKontroler.resetujLogovanje(idPacijenta);
-                                //Console.WriteLine("USAO JE OVDE");
-                            }
-                            else
-                                LogovanjeKontroler.uvecajBrojIzmena(idPacijenta);
-                        }
-                        else
-                        {
-                            //ako ne postoji kreira se
-                            DateTime vremeIzmene = DateTime.Now;
-                            //Termin termin = new Termin();
-                            //termin.idTermina = idSelektovanog;
-                            int brojUzastopnihIzmena = 1;
-                            LogovanjeKontroler.dodajLogovanje(new PomocneKlase.Logovanje(idPacijenta, vremeIzmene, brojUzastopnihIzmena));
-
-                        }
-
+                        PomocnaKlasaProvere.antiTrolMetoda(idPacijenta);
 
                         this.Close();
                     }
