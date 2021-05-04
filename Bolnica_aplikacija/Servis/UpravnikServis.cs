@@ -10,7 +10,6 @@ namespace Bolnica_aplikacija.Servis
     class UpravnikServis
     {
         private Upravnik upravnik;
-
         
     }
 }

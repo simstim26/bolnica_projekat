@@ -34,9 +34,14 @@ namespace Bolnica_aplikacija
         private bool flagIzmeni;
         private String idPacijenta;
         private int tipAkcijeTermini; // 0 - dodaj, 1 - izmeni, 2 - ukloni
+        private int tipAkcijeObavestenja; // 0 - dodaj, 1 - izmeni, 2 - ukloni
         private String imePrezimePacijenta;
         private PacijentTermin izabraniTermin;
+        private Obavestenje izabranoObavestenje;
         private List<Alergija> alergije;
+        private bool jeHitanSlucaj;
+        private String tipHitanSlucaj;
+        private String tipSpecijalizacije;
 
         public SekretarProzor()
         {
@@ -46,6 +51,8 @@ namespace Bolnica_aplikacija
             lblSekretar.Content = KorisnikKontroler.GetSekretar().ime + " " + KorisnikKontroler.GetSekretar().prezime;
             this.PacijentGrid.Visibility = Visibility.Hidden;
             this.TerminiGrid.Visibility = Visibility.Hidden;
+            this.ObavestenjaGrid.Visibility = Visibility.Hidden;
+            this.HitanSlucajGrid.Visibility = Visibility.Hidden;
 
         }
         private void CenterWindow()
@@ -87,6 +94,7 @@ namespace Bolnica_aplikacija
             this.PocetniEkranGrid.Visibility = Visibility.Visible;
             this.PacijentGrid.Visibility = Visibility.Hidden;
             this.TerminiGrid.Visibility = Visibility.Hidden;
+            this.ObavestenjaGrid.Visibility = Visibility.Hidden;
 
             //Termini
             slobodniTerminiLabel.Visibility = Visibility.Hidden;
@@ -102,19 +110,7 @@ namespace Bolnica_aplikacija
 
         private void dodajPacijentaButton_Click(object sender, RoutedEventArgs e)
         {
-            //Radi se o dodavanju
-            flagIzmeni = false;
-
-            omoguciKoriscenjaPolja(true);
-            ocistiPolja();
-
-            buttonOdustaniDodavanje.Visibility = Visibility.Visible;
-            buttonPotvrdiDodavanje.Visibility = Visibility.Visible;
-            buttonPotvrdiDodavanje.IsEnabled = false;
-
-            alergije = new List<Alergija>();
-            dataGridAlergije.ItemsSource = alergije;
-
+            podesiDodavanjePacijenta();
 
         }
 
@@ -178,7 +174,7 @@ namespace Bolnica_aplikacija
             {
                 Pacijent izabraniPacijent = (Pacijent)TabelaPacijenti.SelectedItem;
                 String idZaBrisanje = izabraniPacijent.id;
-                SekretarKontroler.ObrisiPacijenta(idZaBrisanje);
+                PacijentKontroler.ObrisiPacijenta(idZaBrisanje);
 
             }
 
@@ -263,13 +259,13 @@ namespace Bolnica_aplikacija
                     if (!pacGost)
                     {
                         alergije = (List<Alergija>)dataGridAlergije.ItemsSource;
-                        SekretarKontroler.NapraviPacijenta(pacIdBolnice, pacGost, pacKorisnickoIme, pacLozinka, pacJmbg, pacIme, pacPrezime, pacDatumRodjenja, pacAdresa, pacEmail, pacTelefon, alergije);
+                        PacijentKontroler.NapraviPacijenta(pacIdBolnice, pacGost, pacKorisnickoIme, pacLozinka, pacJmbg, pacIme, pacPrezime, pacDatumRodjenja, pacAdresa, pacEmail, pacTelefon, alergije);
                         ucitajPacijenteTabela();
                     }
                     else
                     {
                         alergije = (List<Alergija>)dataGridAlergije.ItemsSource;
-                        SekretarKontroler.NapraviPacijenta(pacIdBolnice, pacGost, pacKorisnickoIme, pacLozinka, pacJmbg, pacIme, pacPrezime, pacDatumRodjenja, "", "", pacTelefon, alergije);
+                        PacijentKontroler.NapraviPacijenta(pacIdBolnice, pacGost, pacKorisnickoIme, pacLozinka, pacJmbg, pacIme, pacPrezime, pacDatumRodjenja, "", "", pacTelefon, alergije);
                         ucitajPacijenteTabela();
                     }
 
@@ -281,8 +277,8 @@ namespace Bolnica_aplikacija
                     {
                         alergija.idPacijenta = idPacijenta;
                     }
-                    
-                    SekretarKontroler.AzurirajPacijenta(idPacijenta, pacIdBolnice, pacGost, pacKorisnickoIme, pacLozinka, pacJmbg, pacIme, pacPrezime, pacDatumRodjenja, pacAdresa, pacEmail, pacTelefon, alergije);
+
+                    PacijentKontroler.AzurirajPacijenta(idPacijenta, pacIdBolnice, pacGost, pacKorisnickoIme, pacLozinka, pacJmbg, pacIme, pacPrezime, pacDatumRodjenja, pacAdresa, pacEmail, pacTelefon, alergije);
                     ucitajPacijenteTabela();
                 }
 
@@ -297,6 +293,14 @@ namespace Bolnica_aplikacija
                 alergije.Clear();
                 dataGridAlergije.Items.Refresh();
 
+                if (jeHitanSlucaj)
+                {
+                    PacijentGrid.Visibility = Visibility.Hidden;
+                    HitanSlucajGrid.Visibility = Visibility.Visible;
+                    podesiDugmadPacijenti(true);
+                    ucitajPacijenteTabelaHitanSlucaj();
+                }
+
             }
             else
             {
@@ -308,20 +312,13 @@ namespace Bolnica_aplikacija
         private void buttonOdustani_Click(object sender, RoutedEventArgs e)
         {
 
-            omoguciKoriscenjaPolja(false);
-            ocistiPolja();
-
-            textAdresa.IsEnabled = false;
-            textEmail.IsEnabled = false;
-
-            buttonPotvrdiDodavanje.Visibility = Visibility.Hidden;
-            buttonOdustaniDodavanje.Visibility = Visibility.Hidden;
-
+            odustaniOdRukovanjaPacijentom();
+                 
         }
 
         private void ucitajPacijenteTabela()
         {
-            sviPacijenti = SekretarKontroler.ProcitajPacijente();
+            sviPacijenti = PacijentKontroler.ProcitajPacijente();
             TabelaPacijenti.ItemsSource = sviPacijenti;
             TabelaPacijenti.Items.Refresh();
 
@@ -622,12 +619,18 @@ namespace Bolnica_aplikacija
             this.PacijentGrid.Visibility = Visibility.Hidden;
             this.TerminiGrid.Visibility = Visibility.Visible;
 
-            sviPacijenti = SekretarKontroler.ProcitajPacijente();
+            sviPacijenti = PacijentKontroler.ProcitajPacijente();
             TabelaPacijentiTermini.ItemsSource = sviPacijenti;
             TabelaPacijentiTermini.Items.Refresh();
         }
 
-
+        private void prikaziTabeluSlobodnihTermina()
+        {
+            TabelaSlobodnihTermina.Visibility = Visibility.Visible;
+            slobodniTerminiLabel.Visibility = Visibility.Visible;
+            lblPacijent.Visibility = Visibility.Visible;
+            lblPacijent.Content = imePrezimePacijenta;
+        }
         private void zakaziTerminButton_Click(object sender, RoutedEventArgs e)
         {
             lblUpozorenje.Visibility = Visibility.Hidden;
@@ -639,10 +642,7 @@ namespace Bolnica_aplikacija
                 if (slobodniTermini.Count() != 0)
                 {
                     tipAkcijeTermini = 0;
-                    TabelaSlobodnihTermina.Visibility = Visibility.Visible;
-                    slobodniTerminiLabel.Visibility = Visibility.Visible;
-                    lblPacijent.Visibility = Visibility.Visible;
-                    lblPacijent.Content = imePrezimePacijenta;
+                    prikaziTabeluSlobodnihTermina();
 
                     if (TabelaSlobodnihTermina.SelectedIndex == -1)
                     {
@@ -784,7 +784,19 @@ namespace Bolnica_aplikacija
             PotvrdaGrid.Visibility = Visibility.Visible;
         }
 
-        
+        private void ucitajPacijenteUTabeluTermina()
+        {
+            ucitajTerminePacijenta();
+            TabelaSlobodnihTermina.ItemsSource = PacijentKontroler.ucitajSlobodneTermine(1, true);
+            TabelaSlobodnihTermina.Items.Refresh();
+        }
+
+        private void sakrijGridZaPotvrdu()
+        {
+            PotvrdaGrid.Visibility = Visibility.Hidden;
+            potvrdiZakazivanjeTerminaButton.IsEnabled = false;
+        }
+
 
         private void btnPotvrdiIzbor_Click(object sender, RoutedEventArgs e)
         {
@@ -794,49 +806,37 @@ namespace Bolnica_aplikacija
                 PacijentKontroler.nadjiPacijenta(idPacijenta);
                 String idSelektovanog = izabraniTermin.id;
                 PacijentKontroler.zakaziTerminPacijentu(idSelektovanog);
+                
                 NotifikacijaKontroler.napraviNotifikaciju("Zakazivanje termina (Pacijent)", "Zakazan je teremin (Pacijent)", idPacijenta, "pacijent");
                 NotifikacijaKontroler.napraviNotifikaciju("Zakazivanje termina (Lekar)", "Zakazan je teremin (Lekar)", TerminKontroler.nadjiIdLekaraZaTermin(izabraniTermin.id), "lekar");
 
-
-                ucitajTerminePacijenta();
-                TabelaPacijentiTermini.Items.Refresh();
-                TabelaSlobodnihTermina.ItemsSource = PacijentKontroler.ucitajSlobodneTermine(1, true);
-                TabelaSlobodnihTermina.Items.Refresh();
-
-                PotvrdaGrid.Visibility = Visibility.Hidden;
-                potvrdiZakazivanjeTerminaButton.IsEnabled = false;
-
+                ucitajPacijenteUTabeluTermina();
+                sakrijGridZaPotvrdu();
                 sakrijTabeluSlobodnihTermina();
             }
             else if (tipAkcijeTermini == 1)
             {
-                PacijentTermin izabraniTermin = (PacijentTermin)TabelaTerminiPacijenta.SelectedItem;
+                izabraniTermin = (PacijentTermin)TabelaTerminiPacijenta.SelectedItem;
                 PacijentTermin noviTermin = (PacijentTermin)TabelaSlobodnihTermina.SelectedItem;
                 TerminKontroler.sacuvajTermin(izabraniTermin.id);
                 PacijentKontroler.azurirajTerminPacijentu(izabraniTermin.id, noviTermin.id);
+                
                 NotifikacijaKontroler.napraviNotifikaciju("Izmena termina (Pacijent)", "Izmenjen je teremin (Pacijent)", idPacijenta, "pacijent");
                 NotifikacijaKontroler.napraviNotifikaciju("Izmena termina (Lekar)", "Izmenjen je teremin (Lekar)", TerminKontroler.nadjiIdLekaraZaTermin(izabraniTermin.id), "lekar");
 
-                ucitajTerminePacijenta();
-                TabelaPacijentiTermini.Items.Refresh();
-                TabelaSlobodnihTermina.ItemsSource = PacijentKontroler.ucitajSlobodneTermine(1, true);
-                TabelaSlobodnihTermina.Items.Refresh();
-
-                PotvrdaGrid.Visibility = Visibility.Hidden;
-                potvrdiZakazivanjeTerminaButton.IsEnabled = false;
+                ucitajPacijenteUTabeluTermina();
+                sakrijGridZaPotvrdu();
+                sakrijTabeluSlobodnihTermina();
             }
             else
             {
-
                 PacijentKontroler.otkaziTerminPacijenta(izabraniTermin.id);
+               
                 NotifikacijaKontroler.napraviNotifikaciju("Otkazivanje termina (Pacijent)", "Otkazan je teremin (Pacijent)", idPacijenta, "pacijent");
                 NotifikacijaKontroler.napraviNotifikaciju("Otkazivanje termina (Lekar)", "Otkazan je teremin (Lekar)", TerminKontroler.nadjiIdLekaraZaTermin(izabraniTermin.id), "lekar");
 
-                ucitajTerminePacijenta();
-                TabelaSlobodnihTermina.ItemsSource = PacijentKontroler.ucitajSlobodneTermine(1, true);
-                TabelaSlobodnihTermina.Items.Refresh();
-
-                PotvrdaGrid.Visibility = Visibility.Hidden;
+                ucitajPacijenteUTabeluTermina();
+                sakrijGridZaPotvrdu();
                 sakrijTabeluSlobodnihTermina();
 
             }
@@ -910,10 +910,340 @@ namespace Bolnica_aplikacija
         {
             Alergija alergija = (Alergija)dataGridAlergije.Items.GetItemAt(dataGridAlergije.SelectedIndex);
             
+        }
+  
+        // OBAVESTENJA
 
+        private void btnObavestenja_Click(object sender, RoutedEventArgs e)
+        {
+            PocetniEkranGrid.Visibility = Visibility.Hidden;
+            PacijentGrid.Visibility = Visibility.Hidden;
+            TerminiGrid.Visibility = Visibility.Hidden;
+            ObavestenjaGrid.Visibility = Visibility.Visible;
             
+            ucitajObavestenjaUTabelu();
+        }
+
+        private void btnPovratakObavestenja_Click(object sender, RoutedEventArgs e)
+        {
+            ocistiPoljaObavestenja();
+            
+            this.PocetniEkranGrid.Visibility = Visibility.Visible;
+            this.PacijentGrid.Visibility = Visibility.Hidden;
+            this.TerminiGrid.Visibility = Visibility.Hidden;
+            this.ObavestenjaGrid.Visibility = Visibility.Hidden;
+        }
+
+        private void txtNaslovObavestenja_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            proveriPopunjenostPoljaObavestenja();
+        }
+
+        private void txtSadrzajObavestenja_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            proveriPopunjenostPoljaObavestenja();
+        }
+
+        private void proveriPopunjenostPoljaObavestenja()
+        {
+            if(tipAkcijeObavestenja == 0)
+            {
+                this.btnDodajObavestenje.IsEnabled = !string.IsNullOrWhiteSpace(this.txtNaslovObavestenja.Text) &&
+                                                     !string.IsNullOrWhiteSpace(this.txtSadrzajObavestenja.Text);
+            }
+            else
+            {
+                this.btnIzmeniObavestenje.IsEnabled = !string.IsNullOrWhiteSpace(this.txtNaslovObavestenja.Text) &&
+                                                      !string.IsNullOrWhiteSpace(this.txtSadrzajObavestenja.Text);
+            }
+           
+        }
+
+        private void btnDodajObavestenje_Click(object sender, RoutedEventArgs e)
+        {
+            tipAkcijeObavestenja = 0;
+            String naslovObavestenja = txtNaslovObavestenja.Text;
+            String sadrzajObavestenja = txtSadrzajObavestenja.Text;
+
+            ObavestenjeKontroler.napraviObavestenje(naslovObavestenja, sadrzajObavestenja);
+            ocistiPoljaObavestenja();
+            ucitajObavestenjaUTabelu();    
+        }
+
+        private void btnIzmeniObavestenje_Click(object sender, RoutedEventArgs e)
+        {
+            ObavestenjeKontroler.azurirajObavestenje(izabranoObavestenje.id, txtNaslovObavestenja.Text, txtSadrzajObavestenja.Text);
+            ocistiPoljaObavestenja();
+            ucitajObavestenjaUTabelu();
+        
+        }
+
+        private void btnIzbrisiObavestenje_Click(object sender, RoutedEventArgs e)
+        {
+            ObavestenjeKontroler.obrisiObavestenje(izabranoObavestenje.id);
+            ocistiPoljaObavestenja();
+            ucitajObavestenjaUTabelu();
+          
+        }
+
+        private void ucitajObavestenjaUTabelu()
+        {
+            List<Obavestenje> svaObavestenja = ObavestenjeKontroler.ucitajObavestenja();
+            dataGridObavestenja.ItemsSource = svaObavestenja;
+            dataGridObavestenja.Items.Refresh();
+        }
+
+        private void ocistiPoljaObavestenja()
+        {
+            txtSadrzajObavestenja.Clear();
+            txtNaslovObavestenja.Clear();
+            btnDodajObavestenje.IsEnabled = false;
+            btnIzbrisiObavestenje.IsEnabled = false;
+            btnIzbrisiObavestenje.IsEnabled = false;
+            btnOdustaniIzmenaObavestenja.Visibility = Visibility.Hidden;
+        }
+
+        private void dataGridObavestenja_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            tipAkcijeObavestenja = 1;
+            Console.WriteLine("Selektovano");
+            if (dataGridObavestenja.SelectedIndex != -1)
+            {
+                izabranoObavestenje = (Obavestenje)dataGridObavestenja.SelectedItem;
+                txtNaslovObavestenja.Text = izabranoObavestenje.naslovObavestenja;
+                txtSadrzajObavestenja.Text = izabranoObavestenje.sadrzajObavestenja;
+                btnIzbrisiObavestenje.IsEnabled = true;
+                btnOdustaniIzmenaObavestenja.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                btnIzmeniObavestenje.IsEnabled = false;
+                btnIzbrisiObavestenje.IsEnabled = false;
+                tipAkcijeObavestenja = 0;
+            }           
+            
+        }
+
+        private void btnOdustaniIzmenaObavestenja_Click(object sender, RoutedEventArgs e)
+        {
+            dataGridObavestenja.SelectedIndex = -1;
+            ocistiPoljaObavestenja();
+        }
+
+        // HITAN SLUCAJ
+
+        private void btnHitanSlucaj_Click(object sender, RoutedEventArgs e)
+        {
+
+            this.PocetniEkranGrid.Visibility = Visibility.Hidden;
+            this.PacijentGrid.Visibility = Visibility.Hidden;
+            this.TerminiGrid.Visibility = Visibility.Hidden;
+            this.ObavestenjaGrid.Visibility = Visibility.Hidden;
+            this.HitanSlucajGrid.Visibility = Visibility.Visible;
+            this.dataGridSlobodniTerminiHitanSlucaj.Visibility = Visibility.Hidden;
+
+            ucitajPacijenteTabelaHitanSlucaj();
 
         }
-    }  
+
+        private void ucitajPacijenteTabelaHitanSlucaj()
+        {
+            sviPacijenti = PacijentKontroler.ProcitajPacijente();
+            dataGridPacijentiHitanSlucaj.ItemsSource = sviPacijenti;
+            dataGridPacijentiHitanSlucaj.Items.Refresh();
+
+        }
+
+        private void dataGridPacijentiHitanSlucaj_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(dataGridPacijentiHitanSlucaj.SelectedIndex != -1)
+            {
+                pacijent = (Pacijent)dataGridPacijentiHitanSlucaj.SelectedItem;
+                
+                btnPregled.IsEnabled = true;
+                btnOperacija.IsEnabled = true;
+            }
+        }
+
+        private void btnDodajGosta_Click(object sender, RoutedEventArgs e)
+        {
+            jeHitanSlucaj = true;
+            HitanSlucajGrid.Visibility = Visibility.Hidden;
+            PacijentGrid.Visibility = Visibility.Visible;
+            ucitajPacijenteTabela();
+            podesiDodavanjePacijenta();
+            podesiDugmadPacijenti(false);
+        }
+
+        public void podesiDugmadPacijenti(bool jeUkljucen)
+        {
+            btnPovratakPacijent.IsEnabled = jeUkljucen;
+            btnDodajPacijenta.IsEnabled = jeUkljucen;
+            btnIzmeniPacijenta.IsEnabled = jeUkljucen;
+            btnObrisiPacijenta.IsEnabled = jeUkljucen;
+            btnInfoPacijenta.IsEnabled = jeUkljucen;
+        }
+
+        public void podesiDodavanjePacijenta()
+        {
+            flagIzmeni = false;
+
+            omoguciKoriscenjaPolja(true);
+            ocistiPolja();
+
+            buttonOdustaniDodavanje.Visibility = Visibility.Visible;
+            buttonPotvrdiDodavanje.Visibility = Visibility.Visible;
+            buttonPotvrdiDodavanje.IsEnabled = false;
+
+            alergije = new List<Alergija>();
+            dataGridAlergije.ItemsSource = alergije;
+
+            if (jeHitanSlucaj)
+            {
+                checkboxGostujuciNalog.IsChecked = true;
+                checkboxGostujuciNalog.IsEnabled = false;
+            }
+
+        }
+
+        public void odustaniOdRukovanjaPacijentom()
+        {
+            omoguciKoriscenjaPolja(false);
+            ocistiPolja();
+
+            textAdresa.IsEnabled = false;
+            textEmail.IsEnabled = false;
+
+            buttonPotvrdiDodavanje.Visibility = Visibility.Hidden;
+            buttonOdustaniDodavanje.Visibility = Visibility.Hidden;
+
+            if (jeHitanSlucaj)
+            {
+                PacijentGrid.Visibility = Visibility.Hidden;
+                HitanSlucajGrid.Visibility = Visibility.Visible;
+                podesiDugmadPacijenti(true);
+                jeHitanSlucaj = false;
+            }
+
+        }
+
+        private void btnPovratakHitanSlucaj_Click(object sender, RoutedEventArgs e)
+        {
+            HitanSlucajGrid.Visibility = Visibility.Hidden;
+            PocetniEkranGrid.Visibility = Visibility.Visible;
+            lblUpozorenjeTermin.Visibility = Visibility.Hidden;
+            
+            btnZakaziHitanPregled.IsEnabled = false;
+            btnPregled.IsChecked = false;
+            btnOperacija.IsChecked = false;
+         
+        }
+
+        private void lstBoxItemOpstaPraksa_Selected(object sender, RoutedEventArgs e)
+        {
+            tipSpecijalizacije = "0";
+            ucitajSlobodneTermineHitanSlucaj(tipSpecijalizacije);
+        }
+
+        private void lstBoxItemKardiohirurg_Selected(object sender, RoutedEventArgs e)
+        {
+
+            tipSpecijalizacije = "1";
+            ucitajSlobodneTermineHitanSlucaj(tipSpecijalizacije);
+
+        }
+
+        private void ucitajSlobodneTermineHitanSlucaj(String idSpecijalizacije)
+        {
+            List<PacijentTermin> termini = new List<PacijentTermin>();
+            Console.WriteLine(tipHitanSlucaj);
+            termini = TerminKontroler.ucitajTermineZaHitanSlucaj(tipHitanSlucaj, idSpecijalizacije);
+
+            if (termini.Count == 0)
+            {
+                lblUpozorenjeTermin.Visibility = Visibility.Visible;
+            }
+
+            dataGridSlobodniTerminiHitanSlucaj.Visibility = Visibility.Visible;
+            dataGridSlobodniTerminiHItanSlucaj.ItemsSource = termini;
+            dataGridSlobodniTerminiHItanSlucaj.Items.Refresh();
+        }
+
+       
+        private void btnPregled_Checked(object sender, RoutedEventArgs e)
+        {
+            tipHitanSlucaj = "Pregled";
+            lstBoxItemOpstaPraksa.IsEnabled = true;
+            lblUpozorenjeTermin.Visibility = Visibility.Hidden;
+        }
+
+        private void btnOperacija_Checked(object sender, RoutedEventArgs e)
+        {
+            tipHitanSlucaj = "Operacija";
+            lstBoxItemOpstaPraksa.IsEnabled = false;
+            lblUpozorenjeTermin.Visibility = Visibility.Hidden;
+        }
+
+        private void dataGridPacijentiHitanSlucaj_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+            if (dataGridPacijentiHitanSlucaj.SelectedIndex != -1 && dataGridSlobodniTerminiHItanSlucaj.SelectedIndex != -1)
+            {
+                btnZakaziHitanPregled.IsEnabled = true;
+            }
+        }
+
+
+        private void dataGridSlobodniTerminiHItanSlucaj_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (dataGridSlobodniTerminiHItanSlucaj.SelectedIndex != -1 && dataGridPacijentiHitanSlucaj.SelectedIndex != -1)
+            {
+                btnZakaziHitanPregled.IsEnabled = true;
+            }
+        }
+
+        private void btnZakaziHitanPregled_Click(object sender, RoutedEventArgs e)
+        {
+            pacijent = (Pacijent)dataGridPacijentiHitanSlucaj.SelectedItem;
+            izabraniTermin = (PacijentTermin)dataGridSlobodniTerminiHItanSlucaj.SelectedItem;
+
+            Termin termin = TerminKontroler.nadjiTerminPoId(izabraniTermin.id);
+
+            if (termin.idPacijenta.Equals(""))
+            {
+                PacijentKontroler.nadjiPacijenta(pacijent.id);
+                String idSelektovanog = izabraniTermin.id;
+                PacijentKontroler.zakaziTerminPacijentu(idSelektovanog);
+
+                NotifikacijaKontroler.napraviNotifikaciju("Zakazivanje hitnog slucaja (Pacijent)", "Hitan Slucaj (Pacijent)", pacijent.id, "pacijent");
+                NotifikacijaKontroler.napraviNotifikaciju("Zakazivanje hitnog slucaja (Lekar)", "Hitaj slucaj (Lekar)", TerminKontroler.nadjiIdLekaraZaTermin(izabraniTermin.id), "lekar");
+
+                dataGridSlobodniTerminiHitanSlucaj.ItemsSource = null;
+                dataGridSlobodniTerminiHitanSlucaj.Items.Refresh();
+
+                btnZakaziHitanPregled.IsEnabled = false;
+                dataGridSlobodniTerminiHitanSlucaj.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                String idPacijentaZaPomeranje = termin.idPacijenta;
+                PacijentKontroler.pomeriTerminNaPrviSlobodan(idPacijentaZaPomeranje, termin.idTermina, tipHitanSlucaj, tipSpecijalizacije);
+                PacijentKontroler.nadjiPacijenta(pacijent.id);
+                String idSelektovanog = izabraniTermin.id;
+                PacijentKontroler.zakaziTerminPacijentu(idSelektovanog);
+
+                NotifikacijaKontroler.napraviNotifikaciju("Zakazivanje hitnog slucaja uz pomeranje (Pacijent)", "Hitan Slucaj (Pacijent)", pacijent.id, "pacijent");
+                NotifikacijaKontroler.napraviNotifikaciju("Zakazivanje hitnog slucaja uz pomeranje (Lekar)", "Hitaj slucaj (Lekar)", TerminKontroler.nadjiIdLekaraZaTermin(izabraniTermin.id), "lekar");
+
+                dataGridSlobodniTerminiHitanSlucaj.ItemsSource = null;
+                dataGridSlobodniTerminiHitanSlucaj.Items.Refresh();
+
+                btnZakaziHitanPregled.IsEnabled = false;
+                dataGridSlobodniTerminiHitanSlucaj.Visibility = Visibility.Hidden;
+
+            }
+
+           
+        }
+    }
 }
 

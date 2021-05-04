@@ -120,14 +120,16 @@ namespace Bolnica_aplikacija.LekarStudent
             LekarProzor.getGlavnaLabela().Content = "Ažuriranje bolesti";
             if (PacijentKontroler.getBolestTerapija().idTerapije != null)
             {
-                TerapijaKontroler.azurirajTerapiju(PacijentKontroler.getBolestTerapija().idTerapije, PacijentKontroler.getBolestTerapija().idLeka,
-                    txtNacinUpotrebe.Text, Convert.ToInt32(txtTrajanje.Text), DateTime.Now);
+                Terapija terapija = TerapijaKontroler.nadjiTerapijuPoId(PacijentKontroler.getBolestTerapija().idTerapije);
+                TerapijaKontroler.azurirajTerapiju(new Terapija(terapija.id, PacijentKontroler.getBolestTerapija().idLeka, terapija.idPacijenta, terapija.idBolesti,
+                    terapija.idTermina, DateTime.Now, Convert.ToInt32(txtTrajanje.Text), txtNacinUpotrebe.Text));
+
             }
             else
             {
-                String idTerapije = TerapijaKontroler.dodajTerapijuIzRecepta(DateTime.Now, Convert.ToInt32(txtTrajanje.Text), txtNacinUpotrebe.Text,
-                    PacijentKontroler.getBolestTerapija().idLeka, PacijentKontroler.getPacijent().id,
-                    PacijentKontroler.getBolestTerapija().idTermina, PacijentKontroler.getBolestTerapija().idBolesti);
+
+                String idTerapije = TerapijaKontroler.dodajTerapiju(new Terapija("", PacijentKontroler.getBolestTerapija().idLeka, PacijentKontroler.getPacijent().id,
+                   PacijentKontroler.getBolestTerapija().idBolesti, PacijentKontroler.getBolestTerapija().idTermina, DateTime.Now, Convert.ToInt32(txtTrajanje.Text), txtNacinUpotrebe.Text));
                 TerminKontroler.azuriranjeTerapijeZaTermin(PacijentKontroler.getBolestTerapija().idTermina, idTerapije);
                 BolestKontroler.azurirajTerapijuZaBolest(PacijentKontroler.getBolestTerapija().idBolesti, idTerapije);
             }

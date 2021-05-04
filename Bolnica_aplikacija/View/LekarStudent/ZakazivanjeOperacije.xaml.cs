@@ -1,4 +1,5 @@
 ﻿using Bolnica_aplikacija.Kontroler;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,6 +37,8 @@ namespace Bolnica_aplikacija.LekarStudent
             LekarProzor.getGlavnaLabela().Content = "Zakazivanje operacije";
             odabirProstorije = gridOdabirProstorija;
             prikazInventara = gridPrikazInventara;
+            btnPotvrdi.IsEnabled = false;
+            btnDodajProstoriju.IsEnabled = false;
         }
 
         public static void podesiKretanjeZaNazad()
@@ -62,16 +65,109 @@ namespace Bolnica_aplikacija.LekarStudent
         private void btnDodajProstoriju_Click(object sender, RoutedEventArgs e)
         {
             gridOdabirProstorija.Visibility = Visibility.Visible;
+            Termin termin = new Termin();
+            termin.datum = (DateTime)datum.SelectedDate;
+            String[] satnica = txtVreme.Text.Split(':');
+            termin.satnica = termin.datum + (new TimeSpan(Convert.ToInt32(satnica[0]), Convert.ToInt32(satnica[1]), 0));
+            termin.idProstorije = "";
+            dataGridProstorije.ItemsSource = TerminKontroler.nadjiSlobodneProstorijeZaTermin(KorisnikKontroler.getLekar(), termin);
             LekarProzor.getGlavnaLabela().Content = "Odabir prostorije";
 
         }
 
         private void btnPrikazInventara_Click(object sender, RoutedEventArgs e)
         {
-            gridOdabirProstorija.Visibility = Visibility.Hidden;
-            LekarProzor.getGlavnaLabela().Content = "Prikaz inventara";
+            if (dataGridProstorije.SelectedIndex != -1)
+            {
+                gridOdabirProstorija.Visibility = Visibility.Hidden;
+                LekarProzor.getGlavnaLabela().Content = "Prikaz inventara";
+                dataGridStavke.ItemsSource = ((Prostorija)dataGridProstorije.SelectedItem).Stavka;
+                gridPrikazInventara.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                MessageBox.Show("Potrebno je izabrati prostoriju.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
 
-            gridPrikazInventara.Visibility = Visibility.Visible;
+        private void btnPotvrdi_Click(object sender, RoutedEventArgs e)
+        {
+            Termin termin = new Termin();
+            termin.datum = (DateTime)datum.SelectedDate;
+            String[] satnica = txtVreme.Text.Split(':');
+            termin.satnica = termin.datum + (new TimeSpan(Convert.ToInt32(satnica[0]), Convert.ToInt32(satnica[1]), 0));
+            termin.idTermina = "";
+            termin.idLekara = KorisnikKontroler.getLekar().id;
+            termin.idProstorije = ((Prostorija)dataGridProstorije.SelectedItem).id;
+            termin.idPacijenta = PacijentKontroler.getPacijent().id;
+            termin.tip = TipTermina.OPERACIJA;
+            termin.jeHitan = (bool)cBoxHitna.IsChecked;
+            TerminKontroler.napraviTermin(termin);
+        }
+
+        private void txtVreme_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            omoguciDugme();
+            omoguciDugmeZaProstoriju();
+        }
+
+        private void txtProstorija_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            omoguciDugme();
+            omoguciDugmeZaProstoriju();
+        }
+
+        private void omoguciDugme()
+        {
+            if (!String.IsNullOrWhiteSpace(txtVreme.Text) && datum.SelectedDate != null && !txtProstorija.Text.Equals("Prostorija..."))
+            {
+                btnPotvrdi.IsEnabled = true;
+            }
+            else
+            {
+                btnPotvrdi.IsEnabled = false;
+            }
+        }
+
+        private void omoguciDugmeZaProstoriju()
+        {
+            if(!String.IsNullOrWhiteSpace(txtVreme.Text) && datum.SelectedDate != null)
+            {
+                btnDodajProstoriju.IsEnabled = true;
+            }
+            else
+            {
+                btnDodajProstoriju.IsEnabled = false;
+            }
+
+            if (txtProstorija.Text.Equals("Prostorija..."))
+            {
+                btnUkloniProstoriju.IsEnabled = false;
+            }
+            else
+            {
+                btnUkloniProstoriju.IsEnabled = true;
+            }
+        }
+
+        private void btnPotvrdiProstoriju_Click(object sender, RoutedEventArgs e)
+        {
+            if(dataGridProstorije.SelectedIndex != -1)
+            {
+                txtProstorija.Text = ((Prostorija)dataGridProstorije.SelectedItem).sprat + " " +
+                    ((Prostorija)dataGridProstorije.SelectedItem).broj;
+                gridOdabirProstorija.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                MessageBox.Show("Potrebno je izabrati prostoriju.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+        private void btnUkloniProstoriju_Click(object sender, RoutedEventArgs e)
+        {
+            txtProstorija.Text = "Prostorija...";
+            dataGridProstorije.SelectedIndex = -1;
         }
     }
 }

@@ -21,6 +21,7 @@ namespace Bolnica_aplikacija.Servis
         }
         private BolestRepozitorijum bolestRepozitorijum = new BolestRepozitorijum();
 
+
         public Bolest nadjiBolestPoId(String id)
         {
             Bolest povratnaVrednost = null;

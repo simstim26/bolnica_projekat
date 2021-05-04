@@ -1,5 +1,6 @@
 ﻿using Bolnica_aplikacija.Kontroler;
 using Bolnica_aplikacija.PacijentModel;
+using Bolnica_aplikacija.PomocneKlase;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -25,12 +26,14 @@ namespace Bolnica_aplikacija.PacijentStudent
     /// </summary>
     public partial class PacijentZakaziTermin : Window
     {
-       private DataGrid dataGrid;
+        private DataGrid dataGrid;
+        private String idPacijenta;
 
-        public PacijentZakaziTermin(DataGrid dataGrid)
+        public PacijentZakaziTermin(DataGrid dataGrid, String idPacijenta)
         {
             InitializeComponent();
-            
+
+            this.idPacijenta = idPacijenta;
             this.dataGrid = dataGrid;
             dataGridSlobodniTermini.Loaded += SetMinSirina;
 
@@ -67,6 +70,11 @@ namespace Bolnica_aplikacija.PacijentStudent
                         String idSelektovanog = selektovanTermin.id;
                         PacijentKontroler.zakaziTerminPacijentu(idSelektovanog);
                         dataGrid.ItemsSource = PacijentKontroler.prikazPacijentovihTermina();
+
+                        //ANTI TROL SISTEM
+
+                        PomocnaKlasaProvere.antiTrolMetoda(idPacijenta);
+
                         this.Close();
 
                     }
@@ -108,20 +116,8 @@ namespace Bolnica_aplikacija.PacijentStudent
 
             }
 
-            if (indikator == -1)
+            if(!PomocnaKlasaProvere.proveraPretrage(indikator))
             {
-                MessageBox.Show("Molimo izaberite prioritet pretrage.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
-                ucitajPodatke();
-                
-            }
-            else if (indikator == -2)
-            {
-                MessageBox.Show("Molimo unesite ime u odgovarajućem formatu.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
-                ucitajPodatke();
-            }
-            else if (indikator == -3)
-            {
-                MessageBox.Show("Molimo unesite datum u odgovarajućem formatu. Neki od podržanih formata su: dd/MM/yyyy, d/m/yyyy, dd.MM.yyyy.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
                 ucitajPodatke();
             }
             else

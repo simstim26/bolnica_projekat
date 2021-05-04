@@ -1,0 +1,8 @@
+[
+  {
+    "idOcene": "OL 1",
+    "imeLekara": "Milena Milenovic",
+    "ocena": 4,
+    "komentar": "ISUSE DAJ MI LAVLJE SRCE DA PREZIVIM DANE BUDUCE"
+  }
+]

@@ -1,5 +1,6 @@
 ﻿using Bolnica_aplikacija.Kontroler;
 using Bolnica_aplikacija.PacijentModel;
+using Bolnica_aplikacija.PomocneKlase;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -68,6 +69,9 @@ namespace Bolnica_aplikacija.PacijentStudent
 
                         PacijentKontroler.azurirajTerminPacijentu(TerminKontroler.getTermin().idTermina,noviTermin.id);
                         dataGrid.ItemsSource = PacijentKontroler.prikazPacijentovihTermina();
+
+                        //ANTI TROL
+                        PomocnaKlasaProvere.antiTrolMetoda(idPacijenta);
 
                         this.Close();
                     }

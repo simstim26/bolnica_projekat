@@ -1,4 +1,5 @@
 ﻿using Bolnica_aplikacija.PacijentModel;
+using Bolnica_aplikacija.PomocneKlase;
 using Bolnica_aplikacija.Servis;
 using Model;
 using System;
@@ -27,6 +28,15 @@ namespace Bolnica_aplikacija.Kontroler
         public static List<Lekar> ucitajSve()
         {
             return LekarServis.getInstance().ucitajSve();
+        }
+        public static List<LekarSpecijalizacija> ucitajLekareSaSpecijalizacijom()
+        {
+            return LekarServis.getInstance().ucitajLekareSaSpecijalizacijom();
+        }
+
+        public static Lekar nadjiLekaraPoId(String idLekara)
+        {
+            return LekarServis.getInstance().nadjiLekaraPoId(idLekara);
         }
     }
 }

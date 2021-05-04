@@ -13,6 +13,7 @@ namespace Bolnica_aplikacija.Servis
         private static AlergijaServis instance;
         private static AlergijaRepozitorijum alergijaRepozitorijum = new AlergijaRepozitorijum();
 
+
         public static AlergijaServis getInstance()
         {
             if(instance == null)
@@ -45,6 +46,11 @@ namespace Bolnica_aplikacija.Servis
                 }
             }
             alergijaRepozitorijum.upisi(alergije);
+        }
+
+        public void azurirajAlergije(List<Alergija> alergije, String id)
+        {
+            alergijaRepozitorijum.azurirajAlergije(alergije, id);
         }
     }
 }

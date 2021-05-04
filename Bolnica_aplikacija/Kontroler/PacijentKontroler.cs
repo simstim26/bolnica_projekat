@@ -96,6 +96,40 @@ namespace Bolnica_aplikacija.Kontroler
            
             return pacijentServis.procitajAlergije();
         }
+        public static bool proveriStanjeAnkete(String idPacijenta)
+        {
+            return PacijentServis.getInstance().proveriStanjeAnkete(idPacijenta);
+        }
+
+        public static void postaviStanjeAnkete(String idPacijenta)
+        {
+            PacijentServis.getInstance().postaviStanjeAnkete(idPacijenta);
+        }
+
+        public static void pomeriTerminNaPrviSlobodan(String idPacijenta, String idTermina, String tip, String idSpecijalizacije)
+        {
+            PacijentServis.getInstance().pomeriTerminNaPrviSlobodan(idPacijenta, idTermina, tip, idSpecijalizacije);
+        }
+
+        public static void NapraviPacijenta(String idBolnice, bool gost, String korisnickoIme, String lozinka, String jmbg, String ime, String prezime, DateTime datumRodj, string adresa, string email, string telefon, List<Alergija> alergije)
+        {
+            PacijentServis.getInstance().NapraviPacijenta(idBolnice, gost, korisnickoIme, lozinka, jmbg, ime, prezime, datumRodj, adresa, email, telefon, alergije);
+        }
+
+        public static List<Pacijent> ProcitajPacijente()
+        {
+            return PacijentServis.getInstance().ProcitajPacijente();
+        }
+
+        public static void AzurirajPacijenta(String id, String idBolnice, bool gost, String korisnickoIme, String lozinka, String jmbg, String ime, String prezime, DateTime datumRodj, string adresa, string email, string telefon, List<Alergija> alergije)
+        {
+            PacijentServis.getInstance().AzurirajPacijenta(id, idBolnice, gost, korisnickoIme, lozinka, jmbg, ime, prezime, datumRodj, adresa, email, telefon, alergije);
+        }
+
+        public static void ObrisiPacijenta(String idPacijenta)
+        {
+            PacijentServis.getInstance().ObrisiPacijenta(idPacijenta);
+        }
 
     }
 }

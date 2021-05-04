@@ -26,5 +26,9 @@
   {
     "idPacijenta": "1",
     "nazivAlergije": "Alergija 3"
+  },
+  {
+    "idPacijenta": "7",
+    "nazivAlergije": "Penicilin"
   }
 ]

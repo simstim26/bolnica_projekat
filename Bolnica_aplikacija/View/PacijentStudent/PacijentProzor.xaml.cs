@@ -102,7 +102,7 @@ namespace Bolnica_aplikacija.PacijentStudent
 
         private void btnZakaziPregled_Click_1(object sender, RoutedEventArgs e)
         {
-            PacijentZakaziTermin zakaziTermin = new PacijentZakaziTermin(dataGridTermin);
+            PacijentZakaziTermin zakaziTermin = new PacijentZakaziTermin(dataGridTermin, idPacijenta);
             zakaziTermin.Owner = this;
             zakaziTermin.ShowDialog();
         }

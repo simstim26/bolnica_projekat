@@ -23,6 +23,7 @@ namespace Bolnica_aplikacija.Servis
         }
         private LekRepozitorijum lekRepozitorijum = new LekRepozitorijum();
 
+
         public bool proveriLekoveZaOdobravanjeZaLogovanogLekara(String idLekara)
         {
             return nadjiLekoveZaOdobravanjeZaLogovanogLekara(idLekara).Count == 0;

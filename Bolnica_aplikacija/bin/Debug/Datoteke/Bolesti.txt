@@ -10,5 +10,41 @@
     "naziv": "a1",
     "idTerapije": "2",
     "idPacijenta": "1"
+  },
+  {
+    "id": "3",
+    "naziv": "sada",
+    "idTerapije": "5",
+    "idPacijenta": "1"
+  },
+  {
+    "id": "4",
+    "naziv": "asdfa",
+    "idTerapije": "6",
+    "idPacijenta": "1"
+  },
+  {
+    "id": "5",
+    "naziv": "nije normalan",
+    "idTerapije": "7",
+    "idPacijenta": "2"
+  },
+  {
+    "id": "6",
+    "naziv": "GUBIS VREME",
+    "idTerapije": "9",
+    "idPacijenta": "2"
+  },
+  {
+    "id": "7",
+    "naziv": "aaaaaaaaaaa",
+    "idTerapije": null,
+    "idPacijenta": "2"
+  },
+  {
+    "id": "8",
+    "naziv": "proba",
+    "idTerapije": "10",
+    "idPacijenta": "3"
   }
 ]

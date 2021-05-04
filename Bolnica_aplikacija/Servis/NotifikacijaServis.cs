@@ -12,7 +12,6 @@ namespace Bolnica_aplikacija.Servis
     class NotifikacijaServis
     {
         private NotifikacijaRepozitorijum notifikacijaRepozitorijum = new NotifikacijaRepozitorijum();
-        private PacijentServis pacijentServis = new PacijentServis();
         private PacijentRepozitorijum pacijentRepozitorijum = new PacijentRepozitorijum();
         private LekarRepozitorijum lekarRepozitorijum = new LekarRepozitorijum();
 
@@ -22,8 +21,6 @@ namespace Bolnica_aplikacija.Servis
         {
             List<Notifikacija> sveNotifikacije = notifikacijaRepozitorijum.ucitajSve();
             List<Notifikacija> pacijentoveNotifikacije = new List<Notifikacija>();
-
-            //Pacijent pacijent = pacijentServis.getPacijent();
 
             foreach(Notifikacija notifikacija in sveNotifikacije)
             {

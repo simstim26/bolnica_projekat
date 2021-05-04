@@ -1,4 +1,5 @@
 ﻿using Bolnica_aplikacija.PacijentModel;
+using Bolnica_aplikacija.PomocneKlase;
 using Bolnica_aplikacija.Repozitorijum;
 using Model;
 using System;
@@ -12,6 +13,7 @@ namespace Bolnica_aplikacija.Servis
     class LekarServis
     {
         private static LekarServis instance;
+
 
         public static LekarServis getInstance()
         {
@@ -38,6 +40,21 @@ namespace Bolnica_aplikacija.Servis
                 if (idLekara.Equals(lekar.id))
                 {
                     povratnaVrednost = lekar.prezime;
+                }
+            }
+
+            return povratnaVrednost;
+        }
+
+        public String pronadjiPunoImeLekara(String idLekara)
+        {
+            String povratnaVrednost = "";
+            foreach(Lekar lekar in lekarRepozitorijum.ucitajSve())
+            {
+                if(idLekara.Equals(lekar.id))
+                {
+                    povratnaVrednost = lekar.ime + " " + lekar.prezime;
+                    break;
                 }
             }
 
@@ -71,6 +88,7 @@ namespace Bolnica_aplikacija.Servis
                     int rezultat = DateTime.Compare(termin.datum, trenutanDatum);
                     PacijentTermin pacijentTermin = new PacijentTermin();
                     pacijentTermin.id = termin.idTermina;
+                    pacijentTermin.idLekara = termin.idLekara;
                     pacijentTermin.napomena = termin.getTipString();
                     pacijentTermin.datum = termin.datum.Date.ToString("dd.MM.yyyy.");
                     pacijentTermin.satnica = termin.satnica.ToString("HH:mm");
@@ -156,6 +174,30 @@ namespace Bolnica_aplikacija.Servis
                 }
             }
                 return terminiZaPrikaz;
+        }
+
+        public List<LekarSpecijalizacija> ucitajLekareSaSpecijalizacijom()
+        {
+            List<LekarSpecijalizacija> povratnaVrednost = new List<LekarSpecijalizacija>();
+            foreach(Lekar lekar in ucitajSve())
+            {
+                povratnaVrednost.Add(new LekarSpecijalizacija(lekar.id, lekar.prezime,
+                    SpecijalizacijaServis.getInstance().nadjiSpecijalizacijuPoId(lekar.idSpecijalizacije)));
+            }
+
+            return povratnaVrednost;
+        }
+        public Lekar nadjiLekaraPoId(String idLekara)
+        {
+            foreach(Lekar lekar in ucitajSve())
+            {
+                if (idLekara.Equals(lekar.id))
+                {
+                    return lekar;
+                }
+            }
+
+            return null;
         }
     }
 }
