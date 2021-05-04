@@ -153,6 +153,38 @@ namespace Bolnica_aplikacija.Servis
 
         }
 
+        private void radSaPacijentTerminomPrikazPacijentovihTermina(Termin termin, PacijentTermin pacijentTermin)
+        {
+            foreach (Prostorija prostorija in ProstorijaServis.getInstance().ucitajSve())
+            {
+                if (prostorija.id.Equals(termin.idProstorije))
+                {
+                    pacijentTermin.lokacija = "Sprat " + prostorija.sprat + ", sala broj " + prostorija.broj;
+                    break;
+                }
+            }
+
+            foreach (Lekar lekar in LekarServis.getInstance().ucitajSve())
+            {
+                if (lekar.id.Equals(termin.idLekara))
+                {
+                    pacijentTermin.imeLekara = lekar.ime + " " + lekar.prezime;
+                    pacijentTermin.idSpecijalizacije = lekar.idSpecijalizacije;
+                    break;
+                }
+            }
+
+            pacijentTermin.datum = termin.datum.Date.ToString("dd/MM/yyyy");
+            switch (termin.tip)
+            {
+                case TipTermina.OPERACIJA: pacijentTermin.napomena = "Operacija"; break;
+                case TipTermina.PREGLED: pacijentTermin.napomena = "Pregled"; break;
+                default: break;
+            }
+            pacijentTermin.satnica = termin.satnica.ToString("HH:mm");
+            pacijentTermin.id = termin.idTermina;
+        }
+
         public List<PacijentTermin> prikazPacijentovihTermina()
         {
             List<PacijentTermin> terminiPacijenta = new List<PacijentTermin>();
@@ -160,45 +192,15 @@ namespace Bolnica_aplikacija.Servis
             {
                 if(termin.idPacijenta.Equals(pacijent.id))
                 {
-                    DateTime terminDatum = termin.datum;
-                    DateTime danasnjiDatum = DateTime.Today;
 
-                    int rezultat = DateTime.Compare(terminDatum, danasnjiDatum);
+                    int rezultat = DateTime.Compare(termin.datum, DateTime.Today);
 
                     if (rezultat > 0)
                     {
                         PacijentTermin pacijentTermin = new PacijentTermin();
-                        foreach (Prostorija prostorija in ProstorijaServis.getInstance().ucitajSve())
-                        {
-                            if (prostorija.id.Equals(termin.idProstorije))
-                            {
-                                pacijentTermin.lokacija = "Sprat " + prostorija.sprat + ", sala broj " + prostorija.broj;
-                                break;
-                            }
-                        }
 
-                        foreach (Lekar lekar in LekarServis.getInstance().ucitajSve())
-                        {
-                            if (lekar.id.Equals(termin.idLekara))
-                            {
-                                pacijentTermin.imeLekara = lekar.ime + " " + lekar.prezime;
-                                pacijentTermin.idSpecijalizacije = lekar.idSpecijalizacije;
-                                break;
-                            }
-                        }
-
-                        pacijentTermin.datum = termin.datum.Date.ToString("dd/MM/yyyy");
-                        switch(termin.tip)
-                        {
-                            case TipTermina.OPERACIJA:  pacijentTermin.napomena = "Operacija"; break;
-                            case TipTermina.PREGLED:    pacijentTermin.napomena = "Pregled"; break;
-                            default:                    break;
-                        }
-                        pacijentTermin.satnica = termin.satnica.ToString("HH:mm");
-                        pacijentTermin.id = termin.idTermina;
-
+                        radSaPacijentTerminomPrikazPacijentovihTermina(termin, pacijentTermin);
                         
-
                         terminiPacijenta.Add(pacijentTermin);
                     }
                 }
@@ -469,21 +471,17 @@ namespace Bolnica_aplikacija.Servis
             {
                 if (termin.idPacijenta.Equals(""))
                 {
-
                     int rezultat = DateTime.Compare(termin.datum, DateTime.Today);
-
                     int rezultatPretrage = DateTime.Compare(termin.datum, kriterijumPretrage);
 
                     if (rezultat > 0 && rezultatPretrage == 0)
                     {
                         PacijentTermin pacijentTermin = new PacijentTermin();
-
                         popuniPacijentTermin(termin, pacijentTermin, false);
 
                         if (!pacijentTermin.imeLekara.Equals("") && !pacijentTermin.lokacija.Equals(""))
                         {
                             dopuniPacijentTermin(termin, pacijentTermin);
-
                             terminiSlobodni.Add(pacijentTermin);
                         }
                     }
@@ -596,6 +594,9 @@ namespace Bolnica_aplikacija.Servis
 
             return alergije;
         }
+
+
+        //obavezno refaktorisati
         public List<PacijentTermin> prikazProslihTerminaPacijentaKodOcenjivanjaLekara(String idPacijenta)
         {
             List<PacijentTermin> terminiPacijenta = new List<PacijentTermin>();
