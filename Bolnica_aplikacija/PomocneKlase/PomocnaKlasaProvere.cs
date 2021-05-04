@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bolnica_aplikacija.Kontroler;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,6 +27,28 @@ namespace Bolnica_aplikacija.PomocneKlase
 
             return povratnaVrednost;
         }
+
+        public static void antiTrolMetoda(String idPacijenta)
+        {
+            if (LogovanjeKontroler.proveriPostojanjeLogovanja(idPacijenta))
+            {
+                if (LogovanjeKontroler.proveriVremePostojecegLogovanja(idPacijenta))
+                {
+                    LogovanjeKontroler.resetujLogovanje(idPacijenta);
+                }
+                else
+                    LogovanjeKontroler.uvecajBrojIzmena(idPacijenta);
+            }
+            else
+            {
+                //ako ne postoji kreira se
+                DateTime vremeIzmene = DateTime.Now;
+                int brojUzastopnihIzmena = 1;
+                LogovanjeKontroler.dodajLogovanje(new PomocneKlase.Logovanje(idPacijenta, vremeIzmene, brojUzastopnihIzmena));
+
+            }
+        }
+
 
     }
 }
