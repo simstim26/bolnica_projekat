@@ -302,7 +302,6 @@ namespace Model
          throw new NotImplementedException();
       }
       
-      public ZdravstveniKarton zdravstveniKarton;
       public System.Collections.ArrayList notifikacija;
       
       /// <summary>

@@ -251,7 +251,6 @@
     <Compile Include="Model\TipProstorije.cs" />
     <Compile Include="Model\TipTermina.cs" />
     <Compile Include="Model\Upravnik.cs" />
-    <Compile Include="Model\ZdravstveniKarton.cs" />
     <Compile Include="View\LekarStudent\PacijentInfo.xaml.cs">
       <DependentUpon>PacijentInfo.xaml</DependentUpon>
     </Compile>
