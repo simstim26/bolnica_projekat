@@ -294,10 +294,6 @@ namespace Bolnica_aplikacija.Servis
             return false;
         }
 
-        public void prebaciStatickuStavku(DateTime datumPocetka, DateTime datumKraja)
-        {
-
-        }
 
         public void premestiStavku(String prostorijaIzKojeSePrebacujeId, String prostorijaUKojuSePrebacujeId, String stavkaId)
         {
@@ -351,7 +347,7 @@ namespace Bolnica_aplikacija.Servis
 
         private void premestiStatickuStavku(Prostorija prostorijaIz, Prostorija prostorijaU, Stavka stavkaKojaSePrebacuje)
         {
-            if (MetodaProba(stavkaKojaSePrebacuje.id, prostorijaU, prostorijaIz))
+            if (ZakaziPremestanje(stavkaKojaSePrebacuje.id, prostorijaU, prostorijaIz))
             {
                 kopirajProstorijuIUpisi(prostorijaIz);
                 return;
@@ -443,7 +439,7 @@ namespace Bolnica_aplikacija.Servis
 
                 if (novaStavka.jeStaticka == true)
                 {
-                    if (MetodaProba(stavkaId, prostorijaUKojuSePrebacuje, prostorijaUKojuSePrebacuje))
+                    if (ZakaziPremestanje(stavkaId, prostorijaUKojuSePrebacuje, prostorijaUKojuSePrebacuje))
                     {
                         return;
                     }
@@ -486,7 +482,7 @@ namespace Bolnica_aplikacija.Servis
             return suma;
         }
 
-        private bool MetodaProba(string stavkaId, Prostorija prostorijaUKojuSePrebacuje, Prostorija prostorijaIzKojeSePrebacuje)
+        private bool ZakaziPremestanje(string stavkaId, Prostorija prostorijaUKojuSePrebacuje, Prostorija prostorijaIzKojeSePrebacuje)
         {
             UpravnikProzor upravnikProzor = UpravnikProzor.getInstance();
             var prostorijeZauzete = ProstorijaZauzetoKontroler.ucitajSve();
