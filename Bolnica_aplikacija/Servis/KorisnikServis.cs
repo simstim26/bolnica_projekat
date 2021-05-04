@@ -128,6 +128,5 @@ namespace Bolnica_aplikacija.Servis
 
             korisnikRepozitorijum.dodajKorisnika(korisnik);
         }
-
     }
 }

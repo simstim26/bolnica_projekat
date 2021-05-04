@@ -22,7 +22,6 @@ namespace Bolnica_aplikacija.Servis
             obavestenjeRepozitorijum.dodajObavestenje(new Obavestenje((svaObavestenja.Count + 1).ToString(), naslovObavestenja, sadrzajObavestenja, null));
          
         }
-
         public void napraviNotifikacije(String porukaNotifikacije)
         {
             List<Pacijent> sviPacijenti = pacijentRepozitorijum.ucitajSve();

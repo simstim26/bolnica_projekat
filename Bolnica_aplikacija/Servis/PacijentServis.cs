@@ -20,7 +20,6 @@ namespace Bolnica_aplikacija.Servis
         private Pacijent pacijent; //lekar -> cuva se izabrani pacijent
         private BolestTerapija bolestTerapija;
         private static PacijentServis instance;
-
         public static PacijentServis getInstance()
         {
             if(instance == null)

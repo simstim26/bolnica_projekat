@@ -21,7 +21,6 @@ namespace Bolnica_aplikacija.Servis
 
             return instance;
         }
-
         public List<OcenaLekara> ucitajSve()
         {
             return ocenaLekaraRepozitorijum.ucitajSve();

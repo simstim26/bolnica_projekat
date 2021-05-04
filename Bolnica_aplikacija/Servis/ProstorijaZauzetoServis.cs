@@ -13,6 +13,7 @@ namespace Bolnica_aplikacija.Servis
     class ProstorijaZauzetoServis
     {
         ProstorijaZauzetoRepozitorijum prostorijaZauzetoRepozitorijum = new ProstorijaZauzetoRepozitorijum();
+
         public List<ProstorijaZauzeto> ucitajSve()
         {
             return prostorijaZauzetoRepozitorijum.ucitajSve();

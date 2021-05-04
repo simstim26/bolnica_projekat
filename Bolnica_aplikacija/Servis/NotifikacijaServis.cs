@@ -22,8 +22,6 @@ namespace Bolnica_aplikacija.Servis
             List<Notifikacija> sveNotifikacije = notifikacijaRepozitorijum.ucitajSve();
             List<Notifikacija> pacijentoveNotifikacije = new List<Notifikacija>();
 
-            //Pacijent pacijent = pacijentServis.getPacijent();
-
             foreach(Notifikacija notifikacija in sveNotifikacije)
             {
                 if(notifikacija.idKorisnika.Equals(idKorisnika))

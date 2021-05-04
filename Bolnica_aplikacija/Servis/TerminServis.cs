@@ -22,7 +22,6 @@ namespace Bolnica_aplikacija.Servis
             return instance;
         }
         private TerminRepozitorijum terminRepozitorijum = new TerminRepozitorijum();
-        private ProstorijaRepozitorijum prostorijaRepozitorijum = new ProstorijaRepozitorijum();
         private Termin termin; //lekar -> cuvanje izabranog termina (promena termina ili promena prostorije za izabrani termin
 
         public void azurirajTermin(Termin terminZaAzuriranje) //da li ide u servis ??
@@ -124,7 +123,7 @@ namespace Bolnica_aplikacija.Servis
         public List<Prostorija> nadjiSlobodneProstorijeZaTermin(Lekar lekar, Termin termin)
         {
             List<Prostorija> prostorijeZaPrikaz = new List<Prostorija>();
-            foreach (Prostorija prostorija in prostorijaRepozitorijum.ucitajSve())
+            foreach (Prostorija prostorija in ProstorijaServis.getInstance().ucitajSve())
             {
                 if (!prostorija.logickiObrisana && prostorija.dostupnost)
                 {

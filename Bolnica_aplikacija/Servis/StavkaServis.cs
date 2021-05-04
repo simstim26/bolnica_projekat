@@ -13,8 +13,8 @@ namespace Bolnica_aplikacija.Servis
     class StavkaServis
     {
         StavkaRepozitorijum stavkaRepozitorijum = new StavkaRepozitorijum();
-        KorisnikKontroler korisnikKontroler = new KorisnikKontroler();
         UpravnikProzor upravnikProzor = UpravnikProzor.getInstance();
+
         public List<Stavka> UcitajSve()
         {
             return stavkaRepozitorijum.UcitajSve();

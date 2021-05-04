@@ -16,17 +16,6 @@ namespace Bolnica_aplikacija.Servis
 {
     class SekretarServis
     {
-
-        private SekretarRepozitorijum sekretarRepozitorijum = new SekretarRepozitorijum();
-        private static PacijentRepozitorijum pacijentRepozitorijum = new PacijentRepozitorijum();
-        private static KorisnikRepozitorijum korisnikRepozitorijum = new KorisnikRepozitorijum();
-        private static AlergijaRepozitorijum alergijaRepozitorijum = new AlergijaRepozitorijum();
-        private static TerminRepozitorijum terminRepozitorijum = new TerminRepozitorijum();
-        private static PacijentServis pacijentServis = new PacijentServis();
-
-        public String id { get; set; }
-        public String idBolnice { get; set; }
-
        
     }
 }

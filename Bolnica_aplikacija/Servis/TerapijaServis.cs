@@ -21,7 +21,6 @@ namespace Bolnica_aplikacija.Servis
             return instance;
         }
         private TerapijaRepozitorijum terapijaRepozitorijum = new TerapijaRepozitorijum();
-
         public String nadjiNazivLekaZaTerapiju(String idTerapije)
         {
             String povratnaVrednost = "";

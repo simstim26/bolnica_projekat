@@ -14,6 +14,7 @@ namespace Bolnica_aplikacija.Servis
     {
         private static LekarServis instance;
 
+
         public static LekarServis getInstance()
         {
             if(instance == null)
