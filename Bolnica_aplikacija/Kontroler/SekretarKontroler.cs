@@ -33,15 +33,6 @@ namespace Bolnica_aplikacija.Kontroler
         {
             sekretarServis.ObrisiPacijenta(idPacijenta);
         }
-
-        public static List<PacijentTermin> ucitajTermineZaHitanSlucaj(String tip, String idSpecijalizacije)
-        {
-            return sekretarServis.ucitajTermineZaHitanSlucaj(tip, idSpecijalizacije);
-        }
-
-        public static void pomeriTerminNaPrviSlobodan(String idPacijenta, String idTermina, String tip, String idSpecijalizacije)
-        {
-            sekretarServis.pomeriTerminNaPrviSlobodan(idPacijenta, idTermina, tip, idSpecijalizacije);
-        }
+    
     }
 }

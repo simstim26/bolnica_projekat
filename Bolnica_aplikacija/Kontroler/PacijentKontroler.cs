@@ -111,5 +111,10 @@ namespace Bolnica_aplikacija.Kontroler
             PacijentServis.getInstance().postaviStanjeAnkete(idPacijenta);
         }
 
+        public static void pomeriTerminNaPrviSlobodan(String idPacijenta, String idTermina, String tip, String idSpecijalizacije)
+        {
+            PacijentServis.getInstance().pomeriTerminNaPrviSlobodan(idPacijenta, idTermina, tip, idSpecijalizacije);
+        }
+
     }
 }

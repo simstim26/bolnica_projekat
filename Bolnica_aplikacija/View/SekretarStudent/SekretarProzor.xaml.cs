@@ -1155,7 +1155,7 @@ namespace Bolnica_aplikacija
         {
             List<PacijentTermin> termini = new List<PacijentTermin>();
             Console.WriteLine(tipHitanSlucaj);
-            termini = SekretarKontroler.ucitajTermineZaHitanSlucaj(tipHitanSlucaj, idSpecijalizacije);
+            termini = TerminKontroler.ucitajTermineZaHitanSlucaj(tipHitanSlucaj, idSpecijalizacije);
 
             if (termini.Count == 0)
             {
@@ -1222,7 +1222,7 @@ namespace Bolnica_aplikacija
             else
             {
                 String idPacijentaZaPomeranje = termin.idPacijenta;
-                SekretarKontroler.pomeriTerminNaPrviSlobodan(idPacijentaZaPomeranje, termin.idTermina, tipHitanSlucaj, tipSpecijalizacije);
+                PacijentKontroler.pomeriTerminNaPrviSlobodan(idPacijentaZaPomeranje, termin.idTermina, tipHitanSlucaj, tipSpecijalizacije);
                 PacijentKontroler.nadjiPacijenta(pacijent.id);
                 String idSelektovanog = izabraniTermin.id;
                 PacijentKontroler.zakaziTerminPacijentu(idSelektovanog);

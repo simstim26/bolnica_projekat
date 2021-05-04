@@ -651,5 +651,65 @@ namespace Bolnica_aplikacija.Servis
             pacijentRepozitorijum.upisi(sviPacijenti);
 
         }
+
+        public List<PacijentTermin> ucitajZauzeteTermine()
+
+        {
+            List<PacijentTermin> terminiZauzeti = new List<PacijentTermin>();
+
+            foreach (Termin termin in TerminServis.getInstance().ucitajSve())
+            {
+                if (!termin.idPacijenta.Equals(""))
+                {
+                    DateTime terminDatum = termin.datum;
+                    DateTime datumSatUnapred = DateTime.Now.AddHours(1);
+
+                    int rezultat1 = DateTime.Compare(terminDatum, datumSatUnapred);
+                    int rezultat2 = DateTime.Compare(terminDatum, DateTime.Now);
+
+                    if (rezultat1 <= 0 && rezultat2 > 0)
+                    {
+                        PacijentTermin pacijentTermin = new PacijentTermin();
+
+                        PacijentServis.getInstance().popuniPacijentTermin(termin, pacijentTermin, true);
+
+                        if (!pacijentTermin.imeLekara.Equals("") && !pacijentTermin.lokacija.Equals(""))
+                        {
+                            PacijentServis.getInstance().dopuniPacijentTermin(termin, pacijentTermin);
+                            terminiZauzeti.Add(pacijentTermin);
+                        }
+
+                    }
+                }
+            }
+            return terminiZauzeti;
+        }
+
+        public void pomeriTerminNaPrviSlobodan(String idPacijenta, String idTermina, String tip, String idSpecijalizacije)
+        {
+            List<PacijentTermin> sviTermini = ucitajSlobodneTermine(0, true);
+            bool pronadjenTermin = false;
+
+            foreach (PacijentTermin pacijentTermin in sviTermini)
+            {
+                if (pacijentTermin.napomena.Equals(tip) && pacijentTermin.idSpecijalizacije.Equals(idSpecijalizacije))
+                {
+                    PacijentKontroler.nadjiPacijenta(idPacijenta);
+                    PacijentKontroler.azurirajTerminPacijentu(idTermina, pacijentTermin.id);
+                    pronadjenTermin = true;
+
+                    NotifikacijaKontroler.napraviNotifikaciju("Pomeranje termina (Pacijent)", "Pomeren je termin (Pacijent)", idPacijenta, "pacijent");
+                    NotifikacijaKontroler.napraviNotifikaciju("Pomeranje termina (Lekar)", "Pomeren je termin (Lekar)", TerminKontroler.nadjiIdLekaraZaTermin(pacijentTermin.id), "lekar");
+                    break;
+                }
+            }
+
+            if (!pronadjenTermin)
+            {
+                NotifikacijaKontroler.napraviNotifikaciju("Otkazivanje termina (Pacijent)", "Otkazan je termin usled pomeranja (Pacijent)", idPacijenta, "pacijent");
+
+            }
+
+        }
     }
 }
