@@ -76,7 +76,7 @@ namespace Bolnica_aplikacija.PacijentStudent
                             if (LogovanjeKontroler.proveriVremePostojecegLogovanja(idPacijenta))
                             {
                                 LogovanjeKontroler.resetujLogovanje(idPacijenta);
-                                Console.WriteLine("USAO JE OVDE");
+                                //Console.WriteLine("USAO JE OVDE");
                             }
                             else
                                 LogovanjeKontroler.uvecajBrojIzmena(idPacijenta);
