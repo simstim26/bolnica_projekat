@@ -106,6 +106,7 @@
     "idBolnice": "1",
     "jeGost": true,
     "adresa": "",
+    "anketa": false,
     "jeLogickiObrisan": false,
     "Notifikacija": [],
     "korisnickoIme": "guest2",
@@ -116,5 +117,22 @@
     "email": "",
     "brojTelefona": "0649875567",
     "jmbg": "1123456766565"
+  },
+  {
+    "id": "8",
+    "idBolnice": "1",
+    "jeGost": true,
+    "adresa": "",
+    "anketa": false,
+    "jeLogickiObrisan": false,
+    "Notifikacija": [],
+    "korisnickoIme": "asdasd",
+    "lozinka": "adasd",
+    "ime": "asdasd",
+    "prezime": "asdsad",
+    "datumRodjenja": "1999-12-12T00:00:00",
+    "email": "",
+    "brojTelefona": "123213",
+    "jmbg": "1234567876567"
   }
 ]

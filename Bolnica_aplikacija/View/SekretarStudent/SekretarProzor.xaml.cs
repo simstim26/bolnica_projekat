@@ -174,7 +174,7 @@ namespace Bolnica_aplikacija
             {
                 Pacijent izabraniPacijent = (Pacijent)TabelaPacijenti.SelectedItem;
                 String idZaBrisanje = izabraniPacijent.id;
-                SekretarKontroler.ObrisiPacijenta(idZaBrisanje);
+                PacijentKontroler.ObrisiPacijenta(idZaBrisanje);
 
             }
 
@@ -259,13 +259,13 @@ namespace Bolnica_aplikacija
                     if (!pacGost)
                     {
                         alergije = (List<Alergija>)dataGridAlergije.ItemsSource;
-                        SekretarKontroler.NapraviPacijenta(pacIdBolnice, pacGost, pacKorisnickoIme, pacLozinka, pacJmbg, pacIme, pacPrezime, pacDatumRodjenja, pacAdresa, pacEmail, pacTelefon, alergije);
+                        PacijentKontroler.NapraviPacijenta(pacIdBolnice, pacGost, pacKorisnickoIme, pacLozinka, pacJmbg, pacIme, pacPrezime, pacDatumRodjenja, pacAdresa, pacEmail, pacTelefon, alergije);
                         ucitajPacijenteTabela();
                     }
                     else
                     {
                         alergije = (List<Alergija>)dataGridAlergije.ItemsSource;
-                        SekretarKontroler.NapraviPacijenta(pacIdBolnice, pacGost, pacKorisnickoIme, pacLozinka, pacJmbg, pacIme, pacPrezime, pacDatumRodjenja, "", "", pacTelefon, alergije);
+                        PacijentKontroler.NapraviPacijenta(pacIdBolnice, pacGost, pacKorisnickoIme, pacLozinka, pacJmbg, pacIme, pacPrezime, pacDatumRodjenja, "", "", pacTelefon, alergije);
                         ucitajPacijenteTabela();
                     }
 
@@ -277,8 +277,8 @@ namespace Bolnica_aplikacija
                     {
                         alergija.idPacijenta = idPacijenta;
                     }
-                    
-                    SekretarKontroler.AzurirajPacijenta(idPacijenta, pacIdBolnice, pacGost, pacKorisnickoIme, pacLozinka, pacJmbg, pacIme, pacPrezime, pacDatumRodjenja, pacAdresa, pacEmail, pacTelefon, alergije);
+
+                    PacijentKontroler.AzurirajPacijenta(idPacijenta, pacIdBolnice, pacGost, pacKorisnickoIme, pacLozinka, pacJmbg, pacIme, pacPrezime, pacDatumRodjenja, pacAdresa, pacEmail, pacTelefon, alergije);
                     ucitajPacijenteTabela();
                 }
 
@@ -318,7 +318,7 @@ namespace Bolnica_aplikacija
 
         private void ucitajPacijenteTabela()
         {
-            sviPacijenti = SekretarKontroler.ProcitajPacijente();
+            sviPacijenti = PacijentKontroler.ProcitajPacijente();
             TabelaPacijenti.ItemsSource = sviPacijenti;
             TabelaPacijenti.Items.Refresh();
 
@@ -619,7 +619,7 @@ namespace Bolnica_aplikacija
             this.PacijentGrid.Visibility = Visibility.Hidden;
             this.TerminiGrid.Visibility = Visibility.Visible;
 
-            sviPacijenti = SekretarKontroler.ProcitajPacijente();
+            sviPacijenti = PacijentKontroler.ProcitajPacijente();
             TabelaPacijentiTermini.ItemsSource = sviPacijenti;
             TabelaPacijentiTermini.Items.Refresh();
         }
@@ -1046,7 +1046,7 @@ namespace Bolnica_aplikacija
 
         private void ucitajPacijenteTabelaHitanSlucaj()
         {
-            sviPacijenti = SekretarKontroler.ProcitajPacijente();
+            sviPacijenti = PacijentKontroler.ProcitajPacijente();
             dataGridPacijentiHitanSlucaj.ItemsSource = sviPacijenti;
             dataGridPacijentiHitanSlucaj.Items.Refresh();
 

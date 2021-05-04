@@ -64,5 +64,11 @@
     "korisnickoIme": "guest2",
     "lozinka": "guest",
     "tip": "pacijent"
+  },
+  {
+    "id": "8",
+    "korisnickoIme": "asdasd",
+    "lozinka": "adasd",
+    "tip": "pacijent"
   }
 ]

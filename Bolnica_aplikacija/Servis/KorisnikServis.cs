@@ -118,5 +118,16 @@ namespace Bolnica_aplikacija.Servis
             return sekretar;
         }
 
+        public void dodajKorisnika(String id, String korisnickoIme, String lozinka, String tipKorisnika)
+        {
+            PomocnaKlasaKorisnici korisnik = new PomocnaKlasaKorisnici();
+            korisnik.id = id;
+            korisnik.korisnickoIme = korisnickoIme;
+            korisnik.lozinka = lozinka;
+            korisnik.tip = tipKorisnika;
+
+            korisnikRepozitorijum.dodajKorisnika(korisnik);
+        }
+
     }
 }
