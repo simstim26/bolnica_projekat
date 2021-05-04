@@ -201,6 +201,7 @@ namespace Bolnica_aplikacija.Servis
             {
                 if (s.id == stavkaId)
                 {
+                    stavka = s;
                     return stavka;
                 }
             }
@@ -217,5 +218,40 @@ namespace Bolnica_aplikacija.Servis
         {
             return stavkaRepozitorijum.ucitajDinamickeStavke();
         }
+
+        public List<Stavka> poredjajListuStavkiPoKoliciniRastuce(List<Stavka> stavke)
+        {
+            return stavke.OrderBy(o => o.kolicina).ToList();  
+        }
+
+        public List<Stavka> poredjajListuStavkiPoKoliciniOpadajuce(List<Stavka> stavke)
+        {
+            return stavke.OrderByDescending(o => o.kolicina).ToList();
+        }
+
+        public List<Stavka> poredjajListuStavkiPoNazivuOpadajuce(List<Stavka> stavke)
+        {
+            return stavke.OrderByDescending(o => o.naziv).ToList();
+        }
+
+        public List<Stavka> poredjajListuStavkiPoNazivuRastuce(List<Stavka> stavke)
+        {
+            return stavke.OrderBy(o => o.naziv).ToList();
+        }
+
+        public List<Stavka> pretraziStavku(String kriterijum, List<Stavka> stavke)
+        {
+            List<Stavka> stavkePretraga = new List<Stavka>();
+            foreach(Stavka s in stavke)
+            {
+                if (s.naziv.Contains(kriterijum))
+                {
+                    stavkePretraga.Add(s);
+                }
+                    
+            }
+            return stavkePretraga;
+        }
+
     }
 }

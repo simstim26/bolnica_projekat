@@ -1,8 +1,50 @@
 [
   {
     "idProstorije": "1",
-    "datumPocetka": "2021-05-03T00:00:00",
-    "datumKraja": "2021-05-04T00:00:00",
-    "razlogRenoviranja": "AGSOPHPHOAGOPHEAG"
+    "datumPocetka": "2021-05-04T00:00:00",
+    "datumKraja": "2021-05-05T00:00:00",
+    "razlogRenoviranja": "afsnksakfn"
+  },
+  {
+    "idProstorije": "9",
+    "datumPocetka": "2021-05-04T00:00:00",
+    "datumKraja": "2021-05-05T00:00:00",
+    "razlogRenoviranja": "afsnksakfn"
+  },
+  {
+    "idProstorije": "3",
+    "datumPocetka": "2021-05-04T00:00:00",
+    "datumKraja": "2021-05-05T00:00:00",
+    "razlogRenoviranja": "zauzeto"
+  },
+  {
+    "idProstorije": "13",
+    "datumPocetka": "2021-05-04T00:00:00",
+    "datumKraja": "2021-05-05T00:00:00",
+    "razlogRenoviranja": "plocice ali sutra"
+  },
+  {
+    "idProstorije": "15",
+    "datumPocetka": "2021-05-04T00:00:00",
+    "datumKraja": "2021-05-05T00:00:00",
+    "razlogRenoviranja": "plocice ali sutra"
+  },
+  {
+    "idProstorije": "20",
+    "datumPocetka": "2021-05-04T00:00:00",
+    "datumKraja": "2021-05-06T00:00:00",
+    "razlogRenoviranja": ""
+  },
+  {
+    "idProstorije": "16",
+    "datumPocetka": "2021-05-04T00:00:00",
+    "datumKraja": "2021-05-07T00:00:00",
+    "razlogRenoviranja": "ovo"
+  },
+  {
+    "idProstorije": "18",
+    "datumPocetka": "2021-05-04T00:00:00",
+    "datumKraja": "2021-05-06T00:00:00",
+    "razlogRenoviranja": ""
   }
 ]

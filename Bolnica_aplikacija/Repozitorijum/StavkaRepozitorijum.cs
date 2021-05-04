@@ -54,7 +54,7 @@ namespace Bolnica_aplikacija.Repozitorijum
 
         public List<Stavka> ucitajStatickeStavke()
         {
-            var sveStavke = UcitajSve();
+            var sveStavke = UcitajNeobrisaneStavke();
             List<Stavka> statickeStavke = new List<Stavka>();
 
             foreach(Stavka s in sveStavke)
@@ -69,7 +69,7 @@ namespace Bolnica_aplikacija.Repozitorijum
 
         public List<Stavka> ucitajDinamickeStavke()
         {
-            var sveStavke = UcitajSve();
+            var sveStavke = UcitajNeobrisaneStavke();
             List<Stavka> dinamickeStavke = new List<Stavka>();
 
             foreach (Stavka s in sveStavke)

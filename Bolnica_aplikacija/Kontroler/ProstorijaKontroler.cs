@@ -65,7 +65,20 @@ namespace Bolnica_aplikacija.Kontroler
 
         public static void zakaziRenoviranje(ProstorijaRenoviranje prostorija)
         {
+            Prostorija prostorijaKojaSeRenovira = nadjiProstorijuPoId(prostorija.idProstorije);
+            
             prostorijaServis.zakaziRenoviranje(prostorija);
+            
+        }
+
+        public static void pregledajProstorijeZaRenoviranje()
+        {
+            prostorijaServis.pregledajProstorijeZaRenoviranje();
+        }
+
+        public static bool postojeTerminiZaPeriodPremestanja(DateTime datumPocetka, DateTime datumKraja, Prostorija p)
+        {
+            return prostorijaServis.postojeTerminiZaPeriodPremestanja(datumPocetka, datumKraja, p);
         }
     }
 }

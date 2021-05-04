@@ -108,12 +108,14 @@ namespace Bolnica_aplikacija.Repozitorijum
         public List<ProstorijaRenoviranje> ucitajProstorijeZaRenoviranje()
         {
             List<ProstorijaRenoviranje> prostorijeZaRenoviranje;
+
             try
             {
                 prostorijeZaRenoviranje = JsonSerializer.Deserialize<List<ProstorijaRenoviranje>>(File.ReadAllText("Datoteke/ProstorijeRenoviranje.txt"));
             }
             catch (Exception e)
             {
+                Console.WriteLine(e);
                 prostorijeZaRenoviranje = new List<ProstorijaRenoviranje>();
             }
 

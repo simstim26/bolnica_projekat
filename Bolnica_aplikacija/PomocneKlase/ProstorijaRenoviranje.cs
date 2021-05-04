@@ -13,11 +13,16 @@ namespace Bolnica_aplikacija.PomocneKlase
         public DateTime datumKraja { get; set; }
         public String razlogRenoviranja { get; set; }
 
-        public ProstorijaRenoviranje(String id, DateTime pocetak, DateTime kraj, String razlogRenovirana)
+        public ProstorijaRenoviranje()
         {
-            this.idProstorije = id;
-            this.datumPocetka = pocetak;
-            this.datumKraja = kraj;
+
+        }
+
+        public ProstorijaRenoviranje(String idProstorije, DateTime datumPocetka, DateTime datumKraja, String razlogRenovirana)
+        {
+            this.idProstorije = idProstorije;
+            this.datumPocetka = datumPocetka;
+            this.datumKraja = datumKraja;
             this.razlogRenoviranja = razlogRenovirana;
         }
     }

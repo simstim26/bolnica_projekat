@@ -177,7 +177,7 @@
                     <ColumnDefinition Width="68*"/>
                     <ColumnDefinition Width="407*"/>
                 </Grid.ColumnDefinitions>
-                <DataGrid x:Name="dataGridInventar" CanUserAddRows="false" IsReadOnly ="True" HorizontalAlignment="Left" Height="466" Margin="37,138,0,0" VerticalAlignment="Top" Width="607" HeadersVisibility="All" AutoGenerateColumns="False" SelectionMode="Single" CanUserResizeRows="False" Grid.ColumnSpan="2">
+                <DataGrid x:Name="dataGridInventar" CanUserAddRows="false" IsReadOnly ="True" HorizontalAlignment="Left" Height="423" Margin="37,181,0,0" VerticalAlignment="Top" Width="607" HeadersVisibility="All" AutoGenerateColumns="False" SelectionMode="Single" CanUserResizeRows="False" Grid.ColumnSpan="2">
                     <DataGrid.Columns>
 
                         <DataGridTextColumn x:Name="stavkaNaziv" Binding ="{Binding naziv}" IsReadOnly="True" Header="naziv"  Width="143" CanUserResize="False"/>
@@ -186,20 +186,31 @@
                     </DataGrid.Columns>
                 </DataGrid>
                 <!--<Button x:Name="btnDodajStavku" Content="Dodaj stavku" HorizontalAlignment="Left" Margin="318,37,0,0" VerticalAlignment="Top" Width="110" Click="btnDodajStavku_Click"/>!-->
-                <Button x:Name="btnIzmeniStavku" Content="Izmeni stavku" HorizontalAlignment="Left" Margin="570.5,248,0,0" VerticalAlignment="Top" Width="164" Click="btnIzmeniStavku_Click" Grid.Column="1"/>
+                <Button x:Name="btnIzmeniStavku" Content="Izmeni stavku" HorizontalAlignment="Left" Margin="570,300,0,0" VerticalAlignment="Top" Width="164" Click="btnIzmeniStavku_Click" Grid.Column="1"/>
 
-                <Button x:Name="btnDodajStavku" Content="Dodaj stavku" Margin="570.5,141,79,467" BorderThickness="0" Click="btnDodajStavku_Click" Grid.Column="1" />
+                <Button x:Name="btnDodajStavku" Content="Dodaj stavku" Margin="570,181,79,427" BorderThickness="0" Click="btnDodajStavku_Click" Grid.Column="1" />
 
 
-                <Button x:Name="btnObrisiStavku" Content="Izbriši Stavku" HorizontalAlignment="Left" Margin="570.5,354,0,0" VerticalAlignment="Top" Width="164" Click="btnObrisiStavku_Click" Grid.Column="1"/>
-                <Button x:Name="btnPremestiUProstoriju" Content="Premesti u prostoriju" HorizontalAlignment="Left" Margin="570.5,462,0,0" VerticalAlignment="Top" Width="164" Click="btnPremestiUProstoriju_Click" Grid.Column="1"/>
+                <Button x:Name="btnObrisiStavku" Content="Izbriši Stavku" HorizontalAlignment="Left" Margin="570,404,0,0" VerticalAlignment="Top" Width="164" Click="btnObrisiStavku_Click" Grid.Column="1"/>
+                <Button x:Name="btnPremestiUProstoriju" Content="Premesti u prostoriju" HorizontalAlignment="Left" Margin="570,490,0,0" VerticalAlignment="Top" Width="164" Click="btnPremestiUProstoriju_Click" Grid.Column="1"/>
                 <Button x:Name="btnPogledajProstorije" Content="Prikazi Prostorije" HorizontalAlignment="Left" Margin="570.5,572,0,0" VerticalAlignment="Top" Width="164" Click="btnPogledajProstorije_Click" Grid.Column="1"/>
                 <TextBlock x:Name="textBlock2" FontSize="20" HorizontalAlignment="Left" Margin="37,28,0,0" TextWrapping="Wrap" Text="Prikazi samo: " VerticalAlignment="Top" Grid.ColumnSpan="2" Width="136"/>
-                <ComboBox x:Name="comboBoxFiltrirajStavku" Grid.Column="1" HorizontalAlignment="Left" Margin="61,30,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="comboBox_SelectionChanged">
+                <ComboBox x:Name="comboBoxFiltrirajStavku" Grid.Column="1" HorizontalAlignment="Left" Margin="69,30,0,0" VerticalAlignment="Top" Width="120">
                     <ComboBoxItem Content="Dinamičku opremu"/>
                     <ComboBoxItem Content="Statičku opremu"/>
+                    <ComboBoxItem Content="Prikazi sve"/>
                 </ComboBox>
-                <Button x:Name="btnPonistiFiltriranje" Content="Ponisti filtriranje" Grid.Column="1" HorizontalAlignment="Left" Margin="238,30,0,0" VerticalAlignment="Top" Width="75" Click="btnPonistiFiltriranje_Click"/>
+                <Button x:Name="btnPonistiFiltriranje" Content="Ponisti filtriranje" Grid.Column="1" HorizontalAlignment="Left" Margin="238,28,0,0" VerticalAlignment="Top" Width="158" Click="btnPonistiFiltriranje_Click"/>
+                <TextBlock x:Name="textBlock7" FontSize="20" HorizontalAlignment="Left" Margin="37,85,0,0" TextWrapping="Wrap" Text="Pretrazi stavku:" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="146"/>
+                <TextBox x:Name="textBoxPretraga" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="69,90,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                <Button x:Name="btnPretraziStavku" Content="Pretrazi" Grid.Column="1" HorizontalAlignment="Left" Margin="238,139,0,0" VerticalAlignment="Top" Width="158" Height="34" Click="btnPretraziStavku_Click"/>
+                <TextBlock x:Name="textBlock8" FontSize="20" HorizontalAlignment="Left" Margin="37,141,0,0" TextWrapping="Wrap" Text="Sortiraj po:" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="136" Height="35"/>
+                <ComboBox x:Name="comboBoxKolicinaFiltriranje" Grid.Column="1" HorizontalAlignment="Left" Margin="69,141,0,0" VerticalAlignment="Top" Width="120">
+                    <ComboBoxItem Content="kolicina - rastuce"/>
+                    <ComboBoxItem Content="kolicina - opadajuce"/>
+                    <ComboBoxItem Content="naziv - rastuce"/>
+                    <ComboBoxItem Content="naziv - opadajuce"/>
+                </ComboBox>
 
             </Grid>
 

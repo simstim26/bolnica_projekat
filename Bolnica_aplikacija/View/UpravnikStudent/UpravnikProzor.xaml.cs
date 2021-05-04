@@ -169,6 +169,7 @@ namespace Bolnica_aplikacija
             {
                 lblBrojPostoji.Visibility = Visibility.Hidden;
                 prostorija = (Prostorija)dataGridProstorija.SelectedItem;
+                ProstorijaKontroler.pregledajProstorijeZaRenoviranje();
 
                 lblId1 = lblId.Text;
                 gridIzmeniProstoriju.Visibility = Visibility.Visible;
@@ -500,13 +501,17 @@ namespace Bolnica_aplikacija
         private void btnPremestiU_Click(object sender, RoutedEventArgs e)
         {
             var prostorijaIz = (Prostorija)dataGridProstorija.SelectedItem;
+            var selektovaniIndeks = dataGridProstorija.SelectedIndex;
+
             var prostorijaU = (KeyValuePair<string, string>)comboBoxProstorijeZaPremestanjeU.SelectedItem;
             var stavka = (Stavka)dataGridInventarProstorije.SelectedItem;
             var stavke = ProstorijaKontroler.dobaviStavkeIzProstorije(prostorijaIz);
 
             ProstorijaKontroler.premestiStavku(prostorijaIz.id, prostorijaU.Key, stavka.id);
-
-            
+            var prostorije = ProstorijaKontroler.ucitajNeobrisane();
+            dataGridProstorija.ItemsSource = prostorije;
+            dataGridProstorija.SelectedIndex = selektovaniIndeks;
+            dataGridInventarProstorije.ItemsSource = ((Prostorija)dataGridProstorija.SelectedItem).Stavka;
             gridPremestiIzProstorije.Visibility = Visibility.Hidden;
             gridPogledajInventar.Visibility = Visibility.Visible;
 
@@ -818,37 +823,19 @@ namespace Bolnica_aplikacija
             }
         }
 
-        private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-            if (comboBoxFiltrirajStavku.SelectedIndex == -1)
-            {
-                dataGridInventar.ItemsSource = StavkaKontroler.UcitajNeobrisaneStavke();
-                dataGridInventar.Items.Refresh();
-            }
-            else if (comboBoxFiltrirajStavku.SelectedIndex == 0)
-            {
-                dataGridInventar.ItemsSource = StavkaKontroler.ucitajDinamickeStavke();
-                dataGridInventar.Items.Refresh();
-            }
-            else if (comboBoxFiltrirajStavku.SelectedIndex == 1)
-            {
-                dataGridInventar.ItemsSource = StavkaKontroler.ucitajStatickeStavke();
-                dataGridInventar.Items.Refresh();
-            }
-            
-        }
-
         private void btnPonistiFiltriranje_Click(object sender, RoutedEventArgs e)
         {
             comboBoxFiltrirajStavku.SelectedIndex = -1;
+            comboBoxKolicinaFiltriranje.SelectedIndex = -1;
+            
+            dataGridInventar.ItemsSource = StavkaKontroler.UcitajNeobrisaneStavke();
         }
 
         private void btnZakaziRenoviranje_Click(object sender, RoutedEventArgs e)
         {
             gridProstorija.Visibility = Visibility.Hidden;
             gridZakaziProstorijuZaRenoviranje.Visibility = Visibility.Visible;
-            dataGridProstorijeZaRenoviranje.ItemsSource = ProstorijaKontroler.ucitajSve();
+            dataGridProstorijeZaRenoviranje.ItemsSource = ProstorijaKontroler.ucitajNeobrisane();
         }
 
         private void btnZakaziRenoviranjeProstorije_Click(object sender, RoutedEventArgs e)
@@ -864,6 +851,7 @@ namespace Bolnica_aplikacija
                 }
             }
 
+            ProstorijaKontroler.pregledajProstorijeZaRenoviranje();
             gridZakaziProstorijuZaRenoviranje.Visibility = Visibility.Hidden;
             gridProstorija.Visibility = Visibility.Visible;
         }
@@ -872,6 +860,117 @@ namespace Bolnica_aplikacija
         {
             gridZakaziProstorijuZaRenoviranje.Visibility = Visibility.Hidden;
             gridProstorija.Visibility = Visibility.Visible;
+        }
+
+        private void button2_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnPretraziStavku_Click(object sender, RoutedEventArgs e)
+        {
+            if (comboBoxFiltrirajStavku.SelectedIndex == -1)
+            {
+                if (comboBoxKolicinaFiltriranje.SelectedIndex == 0)
+                {
+                    dataGridInventar.ItemsSource = StavkaKontroler.poredjajListuStavkiPoKoliciniRastuce((List<Stavka>)dataGridInventar.ItemsSource);
+                }
+                if (comboBoxKolicinaFiltriranje.SelectedIndex == 1)
+                {
+                    dataGridInventar.ItemsSource = StavkaKontroler.poredjajListuStavkiPoKoliciniOpadajuce((List<Stavka>)dataGridInventar.ItemsSource);
+                }
+                if (comboBoxKolicinaFiltriranje.SelectedIndex == 2)
+                {
+                    dataGridInventar.ItemsSource = StavkaKontroler.poredjajListuStavkiPoNazivuRastuce((List<Stavka>)dataGridInventar.ItemsSource);
+                }
+                if (comboBoxKolicinaFiltriranje.SelectedIndex == 3)
+                {
+                    dataGridInventar.ItemsSource = StavkaKontroler.poredjajListuStavkiPoNazivuOpadajuce((List<Stavka>)dataGridInventar.ItemsSource);
+                }
+
+                if (textBoxPretraga.Text.Length != 0)
+                {
+                    dataGridInventar.ItemsSource = StavkaKontroler.pretraziStavku(textBoxPretraga.Text, (List<Stavka>)dataGridInventar.ItemsSource);
+                }
+            }
+            else if (comboBoxFiltrirajStavku.SelectedIndex == 2)
+            {
+                dataGridInventar.ItemsSource = StavkaKontroler.UcitajNeobrisaneStavke();
+                dataGridInventar.Items.Refresh();
+                if (comboBoxKolicinaFiltriranje.SelectedIndex == 0)
+                {
+                    dataGridInventar.ItemsSource = StavkaKontroler.poredjajListuStavkiPoKoliciniRastuce((List<Stavka>)dataGridInventar.ItemsSource);
+                }
+                if (comboBoxKolicinaFiltriranje.SelectedIndex == 1)
+                {
+                    dataGridInventar.ItemsSource = StavkaKontroler.poredjajListuStavkiPoKoliciniOpadajuce((List<Stavka>)dataGridInventar.ItemsSource);
+                }
+                if (comboBoxKolicinaFiltriranje.SelectedIndex == 2)
+                {
+                    dataGridInventar.ItemsSource = StavkaKontroler.poredjajListuStavkiPoNazivuRastuce((List<Stavka>)dataGridInventar.ItemsSource);
+                }
+                if (comboBoxKolicinaFiltriranje.SelectedIndex == 3)
+                {
+                    dataGridInventar.ItemsSource = StavkaKontroler.poredjajListuStavkiPoNazivuOpadajuce((List<Stavka>)dataGridInventar.ItemsSource);
+                }
+                if (textBoxPretraga.Text.Length != 0)
+                {
+                    dataGridInventar.ItemsSource = StavkaKontroler.pretraziStavku(textBoxPretraga.Text, (List<Stavka>)dataGridInventar.ItemsSource);
+                }
+            }
+            else if (comboBoxFiltrirajStavku.SelectedIndex == 0)
+            {
+                dataGridInventar.ItemsSource = StavkaKontroler.ucitajDinamickeStavke();
+                dataGridInventar.Items.Refresh();
+                if (comboBoxKolicinaFiltriranje.SelectedIndex == 0)
+                {
+                    dataGridInventar.ItemsSource = StavkaKontroler.poredjajListuStavkiPoKoliciniRastuce((List<Stavka>)dataGridInventar.ItemsSource);
+                }
+                if (comboBoxKolicinaFiltriranje.SelectedIndex == 1)
+                {
+                    dataGridInventar.ItemsSource = StavkaKontroler.poredjajListuStavkiPoKoliciniOpadajuce((List<Stavka>)dataGridInventar.ItemsSource);
+                }
+                if (comboBoxKolicinaFiltriranje.SelectedIndex == 2)
+                {
+                    dataGridInventar.ItemsSource = StavkaKontroler.poredjajListuStavkiPoNazivuRastuce((List<Stavka>)dataGridInventar.ItemsSource);
+                }
+                if (comboBoxKolicinaFiltriranje.SelectedIndex == 3)
+                {
+                    dataGridInventar.ItemsSource = StavkaKontroler.poredjajListuStavkiPoNazivuOpadajuce((List<Stavka>)dataGridInventar.ItemsSource);
+                }
+                if (textBoxPretraga.Text.Length != 0)
+                {
+                    dataGridInventar.ItemsSource = StavkaKontroler.pretraziStavku(textBoxPretraga.Text, (List<Stavka>)dataGridInventar.ItemsSource);
+                }
+            }
+            else if (comboBoxFiltrirajStavku.SelectedIndex == 1)
+            {
+                dataGridInventar.ItemsSource = StavkaKontroler.ucitajStatickeStavke();
+                dataGridInventar.Items.Refresh();
+                if (comboBoxKolicinaFiltriranje.SelectedIndex == 0)
+                {
+                    dataGridInventar.ItemsSource = StavkaKontroler.poredjajListuStavkiPoKoliciniRastuce((List<Stavka>)dataGridInventar.ItemsSource);
+                }
+                if (comboBoxKolicinaFiltriranje.SelectedIndex == 1)
+                {
+                    dataGridInventar.ItemsSource = StavkaKontroler.poredjajListuStavkiPoKoliciniOpadajuce((List<Stavka>)dataGridInventar.ItemsSource);
+                }
+                if (comboBoxKolicinaFiltriranje.SelectedIndex == 2)
+                {
+                    dataGridInventar.ItemsSource = StavkaKontroler.poredjajListuStavkiPoNazivuRastuce((List<Stavka>)dataGridInventar.ItemsSource);
+                }
+                if (comboBoxKolicinaFiltriranje.SelectedIndex == 3)
+                {
+                    dataGridInventar.ItemsSource = StavkaKontroler.poredjajListuStavkiPoNazivuOpadajuce((List<Stavka>)dataGridInventar.ItemsSource);
+                }
+                if (textBoxPretraga.Text.Length != 0)
+                {
+                    dataGridInventar.ItemsSource = StavkaKontroler.pretraziStavku(textBoxPretraga.Text, (List<Stavka>)dataGridInventar.ItemsSource);
+                }
+            }
+            dataGridInventar.Items.Refresh();
+
+
         }
     }
 }
