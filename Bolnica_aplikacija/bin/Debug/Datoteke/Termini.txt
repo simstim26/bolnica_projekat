@@ -361,8 +361,8 @@
   },
 {
     "tip": 1,
-    "datum": "2021-05-04T13:31:00",
-    "satnica": "2021-05-04T13:31:00",
+    "datum": "2021-05-04T14:51:00",
+    "satnica": "2021-05-04T14:51:00",
     "jeZavrsen": true,
     "idTermina": "21",
     "idProstorije": "10",
@@ -379,8 +379,8 @@
   },
 {
     "tip": 1,
-    "datum": "2021-05-04T15:31:00",
-    "satnica": "2021-05-04T15:31:00",
+    "datum": "2021-05-04T16:31:00",
+    "satnica": "2021-05-04T16:31:00",
     "jeZavrsen": true,
     "idTermina": "22",
     "idProstorije": "10",
@@ -397,8 +397,8 @@
   },
 {
     "tip": 0,
-    "datum": "2021-05-04T13:32:00",
-    "satnica": "2021-05-04T13:32:00",
+    "datum": "2021-05-04T14:52:00",
+    "satnica": "2021-05-04T14:52:00",
     "jeZavrsen": true,
     "idTermina": "23",
     "idProstorije": "10",
@@ -415,8 +415,8 @@
   },
 {
     "tip": 0,
-    "datum": "2021-05-04T13:33:00",
-    "satnica": "2021-05-04T13:33:00",
+    "datum": "2021-05-04T14:53:00",
+    "satnica": "2021-05-04T14:53:00",
     "jeZavrsen": true,
     "idTermina": "24",
     "idProstorije": "10",

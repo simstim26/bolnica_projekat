@@ -5,5 +5,12 @@
     "sadrzajObavestenja": "Neki sadrzaj vesti izmena",
     "notifikacija": null,
     "jeLogickiObrisano": true
+  },
+  {
+    "id": "2",
+    "naslovObavestenja": "Neki naslov 2",
+    "sadrzajObavestenja": "Neki tekst",
+    "notifikacija": null,
+    "jeLogickiObrisano": false
   }
 ]

@@ -303,7 +303,7 @@ namespace Bolnica_aplikacija.Servis
             return filtriraniTermini;
         }
 
-        public List<PacijentTermin> pronadjiTermineZaSatVremena()
+        private List<PacijentTermin> pronadjiTermineZaSatVremena()
         {
             List<PacijentTermin> datumiUOpsegu = new List<PacijentTermin>();
             foreach (Termin termin in terminRepozitorijum.ucitajSve())

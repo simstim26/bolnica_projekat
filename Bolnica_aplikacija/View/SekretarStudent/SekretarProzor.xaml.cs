@@ -816,7 +816,7 @@ namespace Bolnica_aplikacija
             }
             else if (tipAkcijeTermini == 1)
             {
-                PacijentTermin izabraniTermin = (PacijentTermin)TabelaTerminiPacijenta.SelectedItem;
+                izabraniTermin = (PacijentTermin)TabelaTerminiPacijenta.SelectedItem;
                 PacijentTermin noviTermin = (PacijentTermin)TabelaSlobodnihTermina.SelectedItem;
                 TerminKontroler.sacuvajTermin(izabraniTermin.id);
                 PacijentKontroler.azurirajTerminPacijentu(izabraniTermin.id, noviTermin.id);
@@ -912,6 +912,7 @@ namespace Bolnica_aplikacija
             
         }
   
+        // OBAVESTENJA
 
         private void btnObavestenja_Click(object sender, RoutedEventArgs e)
         {
@@ -1029,7 +1030,7 @@ namespace Bolnica_aplikacija
             ocistiPoljaObavestenja();
         }
 
-        // OBAVESTENJA
+        // HITAN SLUCAJ
 
         private void btnHitanSlucaj_Click(object sender, RoutedEventArgs e)
         {
@@ -1039,6 +1040,7 @@ namespace Bolnica_aplikacija
             this.TerminiGrid.Visibility = Visibility.Hidden;
             this.ObavestenjaGrid.Visibility = Visibility.Hidden;
             this.HitanSlucajGrid.Visibility = Visibility.Visible;
+            this.dataGridSlobodniTerminiHitanSlucaj.Visibility = Visibility.Hidden;
 
             ucitajPacijenteTabelaHitanSlucaj();
 
@@ -1129,12 +1131,12 @@ namespace Bolnica_aplikacija
         {
             HitanSlucajGrid.Visibility = Visibility.Hidden;
             PocetniEkranGrid.Visibility = Visibility.Visible;
-            dataGridSlobodniTerminiHitanSlucaj.Items.Clear();
             lblUpozorenjeTermin.Visibility = Visibility.Hidden;
             
             btnZakaziHitanPregled.IsEnabled = false;
             btnPregled.IsChecked = false;
             btnOperacija.IsChecked = false;
+         
         }
 
         private void lstBoxItemOpstaPraksa_Selected(object sender, RoutedEventArgs e)
@@ -1162,6 +1164,7 @@ namespace Bolnica_aplikacija
                 lblUpozorenjeTermin.Visibility = Visibility.Visible;
             }
 
+            dataGridSlobodniTerminiHitanSlucaj.Visibility = Visibility.Visible;
             dataGridSlobodniTerminiHItanSlucaj.ItemsSource = termini;
             dataGridSlobodniTerminiHItanSlucaj.Items.Refresh();
         }
@@ -1218,6 +1221,7 @@ namespace Bolnica_aplikacija
                 dataGridSlobodniTerminiHitanSlucaj.Items.Refresh();
 
                 btnZakaziHitanPregled.IsEnabled = false;
+                dataGridSlobodniTerminiHitanSlucaj.Visibility = Visibility.Hidden;
             }
             else
             {
@@ -1234,6 +1238,7 @@ namespace Bolnica_aplikacija
                 dataGridSlobodniTerminiHitanSlucaj.Items.Refresh();
 
                 btnZakaziHitanPregled.IsEnabled = false;
+                dataGridSlobodniTerminiHitanSlucaj.Visibility = Visibility.Hidden;
 
             }
 
