@@ -2,6 +2,7 @@
 using Bolnica_aplikacija.PacijentModel;
 using Bolnica_aplikacija.PacijentStudent;
 using Bolnica_aplikacija.Servis;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,14 +53,16 @@ namespace Bolnica_aplikacija.View.PacijentStudent
         {
             Dictionary<string, string> lekari = new Dictionary<string, string>();
             var prosliTermini = PacijentKontroler.prikazProslihTerminaPacijentaKodOcenjivanjaLekara(idPacijenta);
-            foreach (PacijentTermin termin in prosliTermini)
+            foreach (PacijentTermin pacijentTermin in prosliTermini)
             {
-                lekari.Add(termin.id, termin.imeLekara);
+                Termin termin = TerminKontroler.nadjiTerminPoId(pacijentTermin.id);
+                if(!lekari.ContainsKey(termin.idLekara))
+                {
+                    lekari.Add(termin.idLekara, pacijentTermin.imeLekara);
+                }
             }
 
-            var listaLekara = lekari.Values.Distinct().ToList();
-
-            comboBoxLekar.ItemsSource = listaLekara;
+            comboBoxLekar.ItemsSource = lekari.Values;
             comboBoxLekar.SelectedIndex = 0;
          
         }

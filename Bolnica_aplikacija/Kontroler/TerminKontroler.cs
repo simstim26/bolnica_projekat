@@ -91,5 +91,10 @@ namespace Bolnica_aplikacija.Kontroler
             TerminServis.getInstance().veziTermin(idTerminUput);
         }
 
+        public static Termin nadjiTerminPoId(String idTermina)
+        {
+            return TerminServis.getInstance().nadjiTerminPoId(idTermina);
+        }
+
     }
 }
