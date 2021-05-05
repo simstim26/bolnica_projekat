@@ -306,6 +306,7 @@
                 </DataGrid>
                 <Button x:Name="btnDodajLek" Content="Dodaj Lek" HorizontalAlignment="Left" Margin="613,89,0,0" VerticalAlignment="Top" Width="273" Height="74" Click="btnDodajLek_Click"/>
                 <Button x:Name="btnOdbijeniZahtevi" Content="Odbijeni Zahtevi" HorizontalAlignment="Left" Margin="613,219,0,0" VerticalAlignment="Top" Width="273" Height="76" Click="btnOdbijeniZahtevi_Click"/>
+                <Button x:Name="btnIzmenaLeka" Content="Izmeni Lek" HorizontalAlignment="Left" Margin="613,341,0,0" VerticalAlignment="Top" Width="273" Height="68" Click="btnIzmenaLeka_Click"/>
             </Grid>
 
             <Grid x:Name="gridOdbijeniLekovi" Visibility="Hidden" Background="LightGray" HorizontalAlignment="Left" Height="640" Margin="69,59,-940,0" VerticalAlignment="Top" Width="949">
@@ -320,6 +321,23 @@
                 <Button x:Name="btnOtkaziOdbacenLek" Content="Otkazi" HorizontalAlignment="Left" Margin="706,479,0,0" VerticalAlignment="Top" Width="178" Height="58" Click="btnOtkaziOdbacenLek_Click"/>
             </Grid>
 
+            <Grid x:Name="gridLekoviIzmena" Visibility="Hidden" Background="LightGray" HorizontalAlignment="Left" Height="640" Margin="69,59,-940,0" VerticalAlignment="Top" Width="949">
+                <Label x:Name="lblNazivLekaUnosIzmena" Content="Naziv leka" HorizontalAlignment="Left" Margin="127,82,0,0" VerticalAlignment="Top"/>
+                <TextBox x:Name="textBoxNazivLekaUnosIzmena" HorizontalAlignment="Left" Height="23" Margin="389,83,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                <Label x:Name="lblTipLekaUnosIzmena" Content="Tip leka" HorizontalAlignment="Left" Margin="127,161,0,0" VerticalAlignment="Top"/>
+                <Label x:Name="lblTipLekaUnos_CopyIzmena" Content="Kolicina leka" HorizontalAlignment="Left" Margin="127,244,0,0" VerticalAlignment="Top"/>
+                <Label x:Name="lblTipLekaUnos_Copy1Izmena" Content="Proizvodjac" HorizontalAlignment="Left" Margin="127,309,0,0" VerticalAlignment="Top"/>
+                <TextBox x:Name="textBoxKolicinaLekaUnosIzmena" HorizontalAlignment="Left" Height="23" Margin="389,245,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                <TextBox x:Name="textBoxProizvodjacLekaUnosIzmena" HorizontalAlignment="Left" Height="23" Margin="389,310,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                <Label x:Name="lblTipLekaUnos_Copy2Izmena" Content="Nacin upotrebe" HorizontalAlignment="Left" Margin="127,393,0,0" VerticalAlignment="Top"/>
+                <ComboBox x:Name="comboBoxNacinUpotrebeIzmena" HorizontalAlignment="Left" Margin="389,393,0,0" VerticalAlignment="Top" Width="120"/>
+                <Button x:Name="btnDodajSastojkeIzmena" Content="Dodaj sastojke" HorizontalAlignment="Left" Margin="84,503,0,0" VerticalAlignment="Top" Width="236" Height="74" Click="btnDodajSastojkeIzmena_Click"/>
+                <Button x:Name="btnDodajZamenskeLekoveIzmena" Content="Dodaj zamenske lekove" HorizontalAlignment="Left" Margin="389,503,0,0" VerticalAlignment="Top" Width="225" Height="74" Click="btnDodajZamenskeLekoveIzmena_Click"/>
+                <Button x:Name="btnPotvrdiDodavanjeLekovaIzmena" Content="Potvrdi" HorizontalAlignment="Left" Margin="692,503,0,0" VerticalAlignment="Top" Width="214" Height="74" Click="btnPotvrdiDodavanjeLekovaIzmena_Click"/>
+                <ComboBox x:Name="cbTipLekaDodavanjeIzmena" HorizontalAlignment="Left" Margin="389,160,0,0" VerticalAlignment="Top" Width="120"/>
+                <Button x:Name="btnOtkaziDodavanjeLekaIzmena" Content="Otkazi!!!!!!!!!!" HorizontalAlignment="Left" Margin="692,139,0,0" VerticalAlignment="Top" Width="214" Height="80" Click="btnOtkaziDodavanjeLekaOdbijenog_Click"/>
+            </Grid>
+            
             <Grid x:Name="gridLekoviIzmenaOdbijenih" Visibility="Hidden" Background="LightGray" HorizontalAlignment="Left" Height="640" Margin="69,59,-940,0" VerticalAlignment="Top" Width="949">
                 <Label x:Name="lblNazivLekaUnosOdbijenog" Content="Naziv leka" HorizontalAlignment="Left" Margin="127,82,0,0" VerticalAlignment="Top"/>
                 <TextBox x:Name="textBoxNazivLekaUnosOdbijenog" HorizontalAlignment="Left" Height="23" Margin="389,83,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
@@ -335,6 +353,37 @@
                 <Button x:Name="btnPotvrdiDodavanjeLekovaOdbijenog" Content="Potvrdi" HorizontalAlignment="Left" Margin="692,503,0,0" VerticalAlignment="Top" Width="214" Height="74" Click="btnPotvrdiDodavanjeLekovaOdbijenog_Click"/>
                 <ComboBox x:Name="cbTipLekaDodavanjeOdbijenog" HorizontalAlignment="Left" Margin="389,160,0,0" VerticalAlignment="Top" Width="120"/>
                 <Button x:Name="btnOtkaziDodavanjeLekaOdbijenog" Content="Otkazi!!!!!!!!!!" HorizontalAlignment="Left" Margin="692,139,0,0" VerticalAlignment="Top" Width="214" Height="80" Click="btnOtkaziDodavanjeLekaOdbijenog_Click"/>
+            </Grid>
+
+            <Grid x:Name="gridLekoviIzmeniSastojke" Visibility="Hidden" Background="LightGray" HorizontalAlignment="Left" Height="640" Margin="69,59,-940,0" VerticalAlignment="Top" Width="949">
+                <DataGrid x:Name="dataGridDodajSastojkeIzmena" HorizontalAlignment="Left" Height="520" Margin="74,69,0,0" VerticalAlignment="Top" Width="302" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn x:Name="sastojakIzmenaLeka" Binding="{Binding}"  IsReadOnly="True" Header="Sastojak"  Width="auto" CanUserResize="False"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <TextBlock x:Name="textBlock3Izmena" FontSize="24" HorizontalAlignment="Left" Margin="488,69,0,0" TextWrapping="Wrap" Text="Unesite sastojak leka:" VerticalAlignment="Top"/>
+                <TextBox x:Name="textBoxUpisiSastojakIzmena" FontSize="24" HorizontalAlignment="Left" Height="45" Margin="488,153,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="225"/>
+                <Button x:Name="btnSastojakUnesiIzmena" Content="Dodaj Sastojak" HorizontalAlignment="Left" Margin="764,166,0,0" VerticalAlignment="Top" Width="139" Click="btnSastojakUnesiIzmena_Click"/>
+                <Button x:Name="btnPotvrdiSastojkeIzmena" Content="Potvrdi" HorizontalAlignment="Left" Margin="488,319,0,0" VerticalAlignment="Top" Width="415" Height="270" Click="btnPotvrdiSastojkeIzmena_Click"/>
+                <Button x:Name="btnIzbrisiSastojakIzmena" Content="Obrisi Sastojak" HorizontalAlignment="Left" Margin="488,243,0,0" VerticalAlignment="Top" Width="153" Click="btnIzbrisiSastojakIzmena_Click"/>
+            </Grid>
+
+            <Grid x:Name="gridLekoviIzmeniZamenskeLekove" Visibility="Hidden" Background="LightGray" HorizontalAlignment="Left" Height="640" Margin="69,59,-940,0" VerticalAlignment="Top" Width="949">
+                <DataGrid x:Name="dataGridSviLekoviZaZamenskiIzmena" CanUserAddRows="false" IsReadOnly ="True" HorizontalAlignment="Left" Height="515" Margin="37,89,0,0" VerticalAlignment="Top" Width="425" HeadersVisibility="All" AutoGenerateColumns="False" SelectionMode="Single" CanUserResizeRows="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn x:Name="nazivLekaZaZamenuIzmena" Binding ="{Binding naziv}" IsReadOnly="True" Header="Naziv"  Width="150" CanUserResize="True"/>
+                        <DataGridTextColumn x:Name="tipLekaZaZamenuIzmena" Binding="{Binding tip}" IsReadOnly="True" Header="Tip" Width="auto" CanUserResize="True"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Button x:Name="btnDodajZamenskiIzmena" Content="Dodaj Zamenski Lek" HorizontalAlignment="Left" Margin="533,386,0,0" VerticalAlignment="Top" Width="343" Height="59" Click="dodajZamenskiIzmena_Click"/>
+                <DataGrid x:Name="dataGridZamenskiUbaceniLekoviIzmena" CanUserAddRows="false" HorizontalAlignment="Left" Height="259" Margin="533,84,0,0" VerticalAlignment="Top" Width="343" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn x:Name="nazivLekaZaZamenuPremestenIzmena" Binding ="{Binding naziv}" IsReadOnly="True" Header="Naziv"  Width="150" CanUserResize="True"/>
+                        <DataGridTextColumn x:Name="tipLekaZaZamenuPremestenIzmena" Binding="{Binding tip}" IsReadOnly="True" Header="Tip" Width="auto" CanUserResize="True"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Button x:Name="btnPotvrdiZamenskeIzmena" Content="Potvrdi" HorizontalAlignment="Left" Margin="533,503,0,0" VerticalAlignment="Top" Width="343" Height="59" Click="btnPotvrdiZamenskeIzmena_Click"/>
+
             </Grid>
 
             <Grid x:Name="gridLekoviIzmeniSastojkeOdbijenog" Visibility="Hidden" Background="LightGray" HorizontalAlignment="Left" Height="640" Margin="69,59,-940,0" VerticalAlignment="Top" Width="949">
