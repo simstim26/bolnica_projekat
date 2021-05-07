@@ -124,7 +124,7 @@
     "jeGost": true,
     "adresa": "",
     "anketa": false,
-    "jeLogickiObrisan": false,
+    "jeLogickiObrisan": true,
     "Notifikacija": [],
     "korisnickoIme": "asdasd",
     "lozinka": "adasd",
@@ -134,5 +134,22 @@
     "email": "",
     "brojTelefona": "123213",
     "jmbg": "1234567876567"
+  },
+  {
+    "id": "9",
+    "idBolnice": "1",
+    "jeGost": true,
+    "adresa": "",
+    "anketa": false,
+    "jeLogickiObrisan": true,
+    "Notifikacija": [],
+    "korisnickoIme": "aaa",
+    "lozinka": "aaa",
+    "ime": "sdfdsf",
+    "prezime": "sdfsdf",
+    "datumRodjenja": "1998-01-01T00:00:00",
+    "email": "",
+    "brojTelefona": "123213",
+    "jmbg": "1234445656767"
   }
 ]

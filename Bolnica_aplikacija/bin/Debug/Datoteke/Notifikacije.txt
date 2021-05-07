@@ -1,1 +1,236 @@
-[]
+[
+  {
+    "id": "1",
+    "nazivNotifikacije": "Pomeranje termina (Pacijent)",
+    "vremeNotifikovanja": "2021-05-05T11:56:29.9046086+02:00",
+    "porukaNotifikacije": "Pomeren je termin (Pacijent)",
+    "idKorisnika": "1",
+    "datumNotifikovanja": "2021-05-05T11:56:29.9046086+02:00",
+    "jeProcitana": false
+  },
+  {
+    "id": "2",
+    "nazivNotifikacije": "Pomeranje termina (Lekar)",
+    "vremeNotifikovanja": "2021-05-05T11:56:29.9336122+02:00",
+    "porukaNotifikacije": "Pomeren je termin (Lekar)",
+    "idKorisnika": "1",
+    "datumNotifikovanja": "2021-05-05T11:56:29.9336122+02:00",
+    "jeProcitana": false
+  },
+  {
+    "id": "3",
+    "nazivNotifikacije": "Zakazivanje hitnog slucaja uz pomeranje (Pacijent)",
+    "vremeNotifikovanja": "2021-05-05T11:56:29.9426117+02:00",
+    "porukaNotifikacije": "Hitan Slucaj (Pacijent)",
+    "idKorisnika": "2",
+    "datumNotifikovanja": "2021-05-05T11:56:29.9426117+02:00",
+    "jeProcitana": false
+  },
+  {
+    "id": "4",
+    "nazivNotifikacije": "Zakazivanje hitnog slucaja uz pomeranje (Lekar)",
+    "vremeNotifikovanja": "2021-05-05T11:56:29.9536128+02:00",
+    "porukaNotifikacije": "Hitaj slucaj (Lekar)",
+    "idKorisnika": "1",
+    "datumNotifikovanja": "2021-05-05T11:56:29.9536128+02:00",
+    "jeProcitana": false
+  },
+  {
+    "id": "5",
+    "nazivNotifikacije": "Zakazivanje hitnog slucaja (Pacijent)",
+    "vremeNotifikovanja": "2021-05-05T11:57:13.2202217+02:00",
+    "porukaNotifikacije": "Hitan Slucaj (Pacijent)",
+    "idKorisnika": "2",
+    "datumNotifikovanja": "2021-05-05T11:57:13.2202217+02:00",
+    "jeProcitana": false
+  },
+  {
+    "id": "6",
+    "nazivNotifikacije": "Zakazivanje hitnog slucaja (Lekar)",
+    "vremeNotifikovanja": "2021-05-05T11:57:13.2462227+02:00",
+    "porukaNotifikacije": "Hitaj slucaj (Lekar)",
+    "idKorisnika": "2",
+    "datumNotifikovanja": "2021-05-05T11:57:13.2462227+02:00",
+    "jeProcitana": false
+  },
+  {
+    "id": "7",
+    "nazivNotifikacije": "Zakazivanje hitnog slucaja (Pacijent)",
+    "vremeNotifikovanja": "2021-05-05T11:57:23.656585+02:00",
+    "porukaNotifikacije": "Hitan Slucaj (Pacijent)",
+    "idKorisnika": "2",
+    "datumNotifikovanja": "2021-05-05T11:57:23.656585+02:00",
+    "jeProcitana": false
+  },
+  {
+    "id": "8",
+    "nazivNotifikacije": "Zakazivanje hitnog slucaja (Lekar)",
+    "vremeNotifikovanja": "2021-05-05T11:57:23.6685851+02:00",
+    "porukaNotifikacije": "Hitaj slucaj (Lekar)",
+    "idKorisnika": "1",
+    "datumNotifikovanja": "2021-05-05T11:57:23.6685851+02:00",
+    "jeProcitana": false
+  },
+  {
+    "id": "9",
+    "nazivNotifikacije": "Nova vest",
+    "vremeNotifikovanja": "2021-05-05T11:58:12.5793872+02:00",
+    "porukaNotifikacije": "Neki naslov 3",
+    "idKorisnika": "1",
+    "datumNotifikovanja": "2021-05-05T11:58:12.5793872+02:00",
+    "jeProcitana": false
+  },
+  {
+    "id": "10",
+    "nazivNotifikacije": "Nova vest",
+    "vremeNotifikovanja": "2021-05-05T11:58:12.5903885+02:00",
+    "porukaNotifikacije": "Neki naslov 3",
+    "idKorisnika": "2",
+    "datumNotifikovanja": "2021-05-05T11:58:12.5903885+02:00",
+    "jeProcitana": false
+  },
+  {
+    "id": "11",
+    "nazivNotifikacije": "Nova vest",
+    "vremeNotifikovanja": "2021-05-05T11:58:12.6153902+02:00",
+    "porukaNotifikacije": "Neki naslov 3",
+    "idKorisnika": "3",
+    "datumNotifikovanja": "2021-05-05T11:58:12.6153902+02:00",
+    "jeProcitana": false
+  },
+  {
+    "id": "12",
+    "nazivNotifikacije": "Nova vest",
+    "vremeNotifikovanja": "2021-05-05T11:58:12.6903968+02:00",
+    "porukaNotifikacije": "Neki naslov 3",
+    "idKorisnika": "4",
+    "datumNotifikovanja": "2021-05-05T11:58:12.6903968+02:00",
+    "jeProcitana": false
+  },
+  {
+    "id": "13",
+    "nazivNotifikacije": "Nova vest",
+    "vremeNotifikovanja": "2021-05-05T11:58:12.7013978+02:00",
+    "porukaNotifikacije": "Neki naslov 3",
+    "idKorisnika": "5",
+    "datumNotifikovanja": "2021-05-05T11:58:12.7013978+02:00",
+    "jeProcitana": false
+  },
+  {
+    "id": "14",
+    "nazivNotifikacije": "Nova vest",
+    "vremeNotifikovanja": "2021-05-05T11:58:12.7103969+02:00",
+    "porukaNotifikacije": "Neki naslov 3",
+    "idKorisnika": "6",
+    "datumNotifikovanja": "2021-05-05T11:58:12.7103969+02:00",
+    "jeProcitana": false
+  },
+  {
+    "id": "15",
+    "nazivNotifikacije": "Nova vest",
+    "vremeNotifikovanja": "2021-05-05T11:58:12.7203986+02:00",
+    "porukaNotifikacije": "Neki naslov 3",
+    "idKorisnika": "7",
+    "datumNotifikovanja": "2021-05-05T11:58:12.7203986+02:00",
+    "jeProcitana": false
+  },
+  {
+    "id": "16",
+    "nazivNotifikacije": "Nova vest",
+    "vremeNotifikovanja": "2021-05-05T11:58:12.7293987+02:00",
+    "porukaNotifikacije": "Neki naslov 3",
+    "idKorisnika": "8",
+    "datumNotifikovanja": "2021-05-05T11:58:12.7293987+02:00",
+    "jeProcitana": false
+  },
+  {
+    "id": "17",
+    "nazivNotifikacije": "Nova vest",
+    "vremeNotifikovanja": "2021-05-05T11:58:12.7374002+02:00",
+    "porukaNotifikacije": "Neki naslov 3",
+    "idKorisnika": "9",
+    "datumNotifikovanja": "2021-05-05T11:58:12.7374002+02:00",
+    "jeProcitana": false
+  },
+  {
+    "id": "18",
+    "nazivNotifikacije": "Nova vest",
+    "vremeNotifikovanja": "2021-05-06T13:04:23.1034135+02:00",
+    "porukaNotifikacije": "asdasdas",
+    "idKorisnika": "1",
+    "datumNotifikovanja": "2021-05-06T13:04:23.1034135+02:00",
+    "jeProcitana": false
+  },
+  {
+    "id": "19",
+    "nazivNotifikacije": "Nova vest",
+    "vremeNotifikovanja": "2021-05-06T13:04:23.5614502+02:00",
+    "porukaNotifikacije": "asdasdas",
+    "idKorisnika": "2",
+    "datumNotifikovanja": "2021-05-06T13:04:23.5614502+02:00",
+    "jeProcitana": false
+  },
+  {
+    "id": "20",
+    "nazivNotifikacije": "Nova vest",
+    "vremeNotifikovanja": "2021-05-06T13:04:23.5704497+02:00",
+    "porukaNotifikacije": "asdasdas",
+    "idKorisnika": "3",
+    "datumNotifikovanja": "2021-05-06T13:04:23.5704497+02:00",
+    "jeProcitana": false
+  },
+  {
+    "id": "21",
+    "nazivNotifikacije": "Nova vest",
+    "vremeNotifikovanja": "2021-05-06T13:04:23.5794505+02:00",
+    "porukaNotifikacije": "asdasdas",
+    "idKorisnika": "4",
+    "datumNotifikovanja": "2021-05-06T13:04:23.5794505+02:00",
+    "jeProcitana": false
+  },
+  {
+    "id": "22",
+    "nazivNotifikacije": "Nova vest",
+    "vremeNotifikovanja": "2021-05-06T13:04:23.5874527+02:00",
+    "porukaNotifikacije": "asdasdas",
+    "idKorisnika": "5",
+    "datumNotifikovanja": "2021-05-06T13:04:23.5874527+02:00",
+    "jeProcitana": false
+  },
+  {
+    "id": "23",
+    "nazivNotifikacije": "Nova vest",
+    "vremeNotifikovanja": "2021-05-06T13:04:23.6044523+02:00",
+    "porukaNotifikacije": "asdasdas",
+    "idKorisnika": "6",
+    "datumNotifikovanja": "2021-05-06T13:04:23.6044523+02:00",
+    "jeProcitana": false
+  },
+  {
+    "id": "24",
+    "nazivNotifikacije": "Nova vest",
+    "vremeNotifikovanja": "2021-05-06T13:04:23.6134537+02:00",
+    "porukaNotifikacije": "asdasdas",
+    "idKorisnika": "7",
+    "datumNotifikovanja": "2021-05-06T13:04:23.6134537+02:00",
+    "jeProcitana": false
+  },
+  {
+    "id": "25",
+    "nazivNotifikacije": "Nova vest",
+    "vremeNotifikovanja": "2021-05-06T13:04:23.6744595+02:00",
+    "porukaNotifikacije": "asdasdas",
+    "idKorisnika": "8",
+    "datumNotifikovanja": "2021-05-06T13:04:23.6744595+02:00",
+    "jeProcitana": false
+  },
+  {
+    "id": "26",
+    "nazivNotifikacije": "Nova vest",
+    "vremeNotifikovanja": "2021-05-06T13:04:23.6844602+02:00",
+    "porukaNotifikacije": "asdasdas",
+    "idKorisnika": "9",
+    "datumNotifikovanja": "2021-05-06T13:04:23.6844602+02:00",
+    "jeProcitana": false
+  }
+]

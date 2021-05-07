@@ -11,6 +11,20 @@
     "naslovObavestenja": "Neki naslov 2",
     "sadrzajObavestenja": "Neki tekst",
     "notifikacija": null,
+    "jeLogickiObrisano": true
+  },
+  {
+    "id": "3",
+    "naslovObavestenja": "Neki naslov 3 izmena",
+    "sadrzajObavestenja": "Neki sadrzaj izmena",
+    "notifikacija": null,
+    "jeLogickiObrisano": true
+  },
+  {
+    "id": "4",
+    "naslovObavestenja": "asdasdas",
+    "sadrzajObavestenja": "sadsadas",
+    "notifikacija": null,
     "jeLogickiObrisano": false
   }
 ]

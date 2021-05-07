@@ -70,5 +70,11 @@
     "korisnickoIme": "asdasd",
     "lozinka": "adasd",
     "tip": "pacijent"
+  },
+  {
+    "id": "9",
+    "korisnickoIme": "aaa",
+    "lozinka": "aaa",
+    "tip": "pacijent"
   }
 ]

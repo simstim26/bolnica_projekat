@@ -1040,7 +1040,7 @@ namespace Bolnica_aplikacija
             this.TerminiGrid.Visibility = Visibility.Hidden;
             this.ObavestenjaGrid.Visibility = Visibility.Hidden;
             this.HitanSlucajGrid.Visibility = Visibility.Visible;
-            this.dataGridSlobodniTerminiHitanSlucaj.Visibility = Visibility.Hidden;
+            this.dataGridSlobodniTerminiHItanSlucaj.Visibility = Visibility.Hidden;
 
             ucitajPacijenteTabelaHitanSlucaj();
 
@@ -1132,7 +1132,9 @@ namespace Bolnica_aplikacija
             HitanSlucajGrid.Visibility = Visibility.Hidden;
             PocetniEkranGrid.Visibility = Visibility.Visible;
             lblUpozorenjeTermin.Visibility = Visibility.Hidden;
-            
+            dataGridSlobodniTerminiHItanSlucaj.Visibility = Visibility.Hidden;
+            lblNajbliziTermini.Visibility = Visibility.Hidden;
+
             btnZakaziHitanPregled.IsEnabled = false;
             btnPregled.IsChecked = false;
             btnOperacija.IsChecked = false;
@@ -1164,7 +1166,8 @@ namespace Bolnica_aplikacija
                 lblUpozorenjeTermin.Visibility = Visibility.Visible;
             }
 
-            dataGridSlobodniTerminiHitanSlucaj.Visibility = Visibility.Visible;
+            dataGridSlobodniTerminiHItanSlucaj.Visibility = Visibility.Visible;
+            lblNajbliziTermini.Visibility = Visibility.Visible;
             dataGridSlobodniTerminiHItanSlucaj.ItemsSource = termini;
             dataGridSlobodniTerminiHItanSlucaj.Items.Refresh();
         }
@@ -1217,11 +1220,10 @@ namespace Bolnica_aplikacija
                 NotifikacijaKontroler.napraviNotifikaciju("Zakazivanje hitnog slucaja (Pacijent)", "Hitan Slucaj (Pacijent)", pacijent.id, "pacijent");
                 NotifikacijaKontroler.napraviNotifikaciju("Zakazivanje hitnog slucaja (Lekar)", "Hitaj slucaj (Lekar)", TerminKontroler.nadjiIdLekaraZaTermin(izabraniTermin.id), "lekar");
 
-                dataGridSlobodniTerminiHitanSlucaj.ItemsSource = null;
-                dataGridSlobodniTerminiHitanSlucaj.Items.Refresh();
+                dataGridSlobodniTerminiHItanSlucaj.ItemsSource = null;
+                dataGridSlobodniTerminiHItanSlucaj.Items.Refresh();
 
                 btnZakaziHitanPregled.IsEnabled = false;
-                dataGridSlobodniTerminiHitanSlucaj.Visibility = Visibility.Hidden;
             }
             else
             {
@@ -1234,12 +1236,11 @@ namespace Bolnica_aplikacija
                 NotifikacijaKontroler.napraviNotifikaciju("Zakazivanje hitnog slucaja uz pomeranje (Pacijent)", "Hitan Slucaj (Pacijent)", pacijent.id, "pacijent");
                 NotifikacijaKontroler.napraviNotifikaciju("Zakazivanje hitnog slucaja uz pomeranje (Lekar)", "Hitaj slucaj (Lekar)", TerminKontroler.nadjiIdLekaraZaTermin(izabraniTermin.id), "lekar");
 
-                dataGridSlobodniTerminiHitanSlucaj.ItemsSource = null;
-                dataGridSlobodniTerminiHitanSlucaj.Items.Refresh();
+                dataGridSlobodniTerminiHItanSlucaj.ItemsSource = null;
+                dataGridSlobodniTerminiHItanSlucaj.Items.Refresh();
 
                 btnZakaziHitanPregled.IsEnabled = false;
-                dataGridSlobodniTerminiHitanSlucaj.Visibility = Visibility.Hidden;
-
+ 
             }
 
            

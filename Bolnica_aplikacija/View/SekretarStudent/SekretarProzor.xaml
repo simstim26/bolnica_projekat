@@ -421,19 +421,6 @@
                     <DataGridTextColumn x:Name="kolonaPrezime2" Binding="{Binding prezime}" IsReadOnly="True" Header="PREZIME" Width="347" CanUserResize="False" Foreground="Black" FontSize="24"/>
                 </DataGrid.Columns>
             </DataGrid>
-            <DataGrid x:Name="dataGridSlobodniTerminiHitanSlucaj" HorizontalAlignment="left" Height="195" Margin="346,0,0,46" VerticalAlignment="Bottom" Width="996" FontSize="24" HeadersVisibility="All" AutoGenerateColumns="False" CanUserAddRows="false" Background="#FFDDD3F0" Visibility="Hidden" SelectionChanged="TabelaSlobodnihTermina_SelectionChanged">
-                <DataGrid.Resources>
-                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" 
-                        Color="#FF9D6EEE"/>
-                </DataGrid.Resources>
-                <DataGrid.Columns>
-                    <DataGridTextColumn x:Name="kolonaDatum3" Binding="{Binding datum}" IsReadOnly="True" Header="Datum održavanja" Width="216" CanUserResize="False" Foreground="Black" FontSize="24"/>
-                    <DataGridTextColumn x:Name="kolonaSatnica3" Binding="{Binding satnica}" IsReadOnly="True" Header="Satnica" Width="100" CanUserResize="False" Foreground="Black" FontSize="24" />
-                    <DataGridTextColumn x:Name="kolonaProstorija3" Binding="{Binding lokacija}" IsReadOnly="True" Header="Prostorija" Width="290" CanUserResize="False" Foreground="Black" FontSize="24"/>
-                    <DataGridTextColumn x:Name="kolonaNapomena3" Binding="{Binding napomena}" IsReadOnly="True" Header="Napomena" Width="195" CanUserResize="False" Foreground="Black" FontSize="24"/>
-                    <DataGridTextColumn x:Name="kolonaLekar3" Binding="{Binding imeLekara}" IsReadOnly="True" Header="Lekar" Width="195" CanUserResize="False" Foreground="Black" FontSize="24"/>
-                </DataGrid.Columns>
-            </DataGrid>
             <Button x:Name="btnDodajGosta" HorizontalAlignment="Left" Margin="346,288,0,0" VerticalAlignment="Top" Width="78" Height="79" Background="#FFDB2B42" BorderBrush="{x:Null}" ToolTip="Kreiraj nalog" Click="btnDodajGosta_Click">
                 <materialDesign:PackIcon x:Name="iconPacijent1" Kind="PersonAdd" Height="48" Width="48"/>
             </Button>
@@ -445,8 +432,8 @@
                 <ListBoxItem x:Name="lstBoxItemOpstaPraksa" Content="Opšta praksa" FontSize="22" Selected="lstBoxItemOpstaPraksa_Selected"/>
                 <ListBoxItem x:Name="lstBoxItemKardiohirurg" Content="Kardiohirurg" Selected="lstBoxItemKardiohirurg_Selected"/>
             </ListBox>
-            <Label x:Name="lblOdaberitePacijenta_Copy1" Content="Najbliži slobodni termini:" HorizontalAlignment="Left" Margin="346,477,0,0" VerticalAlignment="Top" FontSize="22" FontWeight="Bold" IsEnabled="False" Height="52" Width="294"/>
-            <DataGrid x:Name="dataGridSlobodniTerminiHItanSlucaj" HorizontalAlignment="left" Height="195" Margin="346,0,0,29" VerticalAlignment="Bottom" Width="996" FontSize="24" HeadersVisibility="All" AutoGenerateColumns="False" CanUserAddRows="false" Background="#FFF58C9A" SelectionChanged="dataGridSlobodniTerminiHItanSlucaj_SelectionChanged">
+            <Label x:Name="lblNajbliziTermini" Content="Najbliži slobodni termini:" HorizontalAlignment="Left" Margin="346,469,0,0" VerticalAlignment="Top" FontSize="22" FontWeight="Bold" IsEnabled="False" Height="33" Width="294" Visibility="Hidden"/>
+            <DataGrid x:Name="dataGridSlobodniTerminiHItanSlucaj" HorizontalAlignment="left" Height="197" Margin="346,0,0,20" VerticalAlignment="Bottom" Width="996" FontSize="24" HeadersVisibility="All" AutoGenerateColumns="False" CanUserAddRows="false" Background="#FFF58C9A" SelectionChanged="dataGridSlobodniTerminiHItanSlucaj_SelectionChanged">
                 <DataGrid.Resources>
                     <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" 
                         Color="#FF9D6EEE"/>
