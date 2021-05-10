@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -406,8 +407,19 @@ namespace Bolnica_aplikacija.LekarStudent
 
         private void txtVreme_TextChanged(object sender, TextChangedEventArgs e)
         {
-            omoguciDugme();
-            omoguciDugmeZaProstoriju();
+            Regex rx = new Regex("[0-9]{2}[:][0-9]{2}");
+            if (rx.IsMatch(txtVreme.Text))
+            {
+                omoguciDugme();
+                omoguciDugmeZaProstoriju();
+                lblGreska.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                btnPotvrdi.IsEnabled = false;
+                btnDodajProstoriju.IsEnabled = false;
+                lblGreska.Visibility = Visibility.Visible;
+            }
         }
 
         private void txtProstorija_TextChanged(object sender, TextChangedEventArgs e)
@@ -450,6 +462,16 @@ namespace Bolnica_aplikacija.LekarStudent
             }
         }
 
+        private void btnPonistiIzbor_Click(object sender, RoutedEventArgs e)
+        {
+            gridOdabirLekaraUput.Visibility = Visibility.Hidden;
+            LekarProzor.getGlavnaLabela().Content = "Izdavanje uputa"; 
+        }
 
+        private void btnPonisti_Click(object sender, RoutedEventArgs e)
+        {
+            gridZakazivanjeOperacije.Visibility = Visibility.Hidden;
+            LekarProzor.getGlavnaLabela().Content = "Odabir lekara";
+        }
     }
 }

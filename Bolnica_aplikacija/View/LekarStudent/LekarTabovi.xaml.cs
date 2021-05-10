@@ -132,6 +132,10 @@ namespace Bolnica_aplikacija
                 indikator = 1;
                 this.Content = new PacijentInfo();
             }
+            else
+            {
+                MessageBox.Show("Potrebno je izabrati termin!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
         private void btnInfo_Click(object sender, RoutedEventArgs e)
@@ -142,6 +146,10 @@ namespace Bolnica_aplikacija
                 TerminKontroler.sacuvajTermin(((PacijentTermin)dataRaspored.SelectedItem).id);
                 indikator = 0;
                 this.Content = new PacijentInfo();
+            }
+            else
+            {
+                MessageBox.Show("Potrebno je izabrati termin!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
     }

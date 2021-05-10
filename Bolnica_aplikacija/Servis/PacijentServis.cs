@@ -147,6 +147,8 @@ namespace Bolnica_aplikacija.Servis
                 {
                     pacijentTermin.imeLekara = lekar.ime + " " + lekar.prezime;
                     pacijentTermin.idSpecijalizacije = lekar.idSpecijalizacije;
+                    pacijentTermin.nazivSpecijalizacije = SpecijalizacijaKontroler.nadjiSpecijalizacijuPoId(lekar.idSpecijalizacije);
+
                     break;
                 }
             }
@@ -160,6 +162,7 @@ namespace Bolnica_aplikacija.Servis
             }
             pacijentTermin.satnica = termin.satnica.ToString("HH:mm");
             pacijentTermin.id = termin.idTermina;
+           
         }
 
         public List<PacijentTermin> prikazPacijentovihTermina()

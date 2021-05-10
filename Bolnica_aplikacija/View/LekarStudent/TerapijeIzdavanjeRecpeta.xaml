@@ -27,7 +27,7 @@
         <Button x:Name="btnPotvrdiRecept" HorizontalAlignment="Left" Margin="39,594,0,0" VerticalAlignment="Top" Width="75" Click="btnPotvrdiRecept_Click">
             <materialDesign:PackIcon Kind="CheckCircle" Height="24" Width="26"></materialDesign:PackIcon>
         </Button>
-        <Button x:Name="btnPonistiRecept" HorizontalAlignment="Left" Margin="306,594,0,0" VerticalAlignment="Top" Width="75">
+        <Button x:Name="btnPonistiRecept" HorizontalAlignment="Left" Margin="306,594,0,0" VerticalAlignment="Top" Width="75" Click="btnPonistiRecept_Click">
             <materialDesign:PackIcon Kind="CloseCircle" Height="24" Width="26"></materialDesign:PackIcon>
         </Button>
         <TextBox x:Name="txtDijagnoza" HorizontalAlignment="Left" Height="23" Margin="205,229,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="123"/>

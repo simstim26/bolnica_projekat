@@ -39,6 +39,10 @@ namespace Bolnica_aplikacija.LekarStudent
                 PacijentKontroler.sacuvajBolestTerapiju((BolestTerapija)dataGridTerapije.SelectedItem);
                 Content = new TerapijeIzdavanjeRecpeta();
             }
+            else
+            {
+                MessageBox.Show("Potrebno je izabrati lek!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
     }
 }

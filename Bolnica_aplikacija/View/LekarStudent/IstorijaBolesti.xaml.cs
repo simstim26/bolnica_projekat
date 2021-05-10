@@ -40,6 +40,10 @@ namespace Bolnica_aplikacija.LekarStudent
                 Content = new IzmenaBolesti();
                 aktivan = false;
             }
+            else
+            {
+                MessageBox.Show("Potrebno je izabrati bolest!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
     }
 }

@@ -17,6 +17,7 @@
         <Button x:Name="btnPotvrdi" HorizontalAlignment="Left" Margin="47,608,0,0" VerticalAlignment="Top" Width="84" Height="38" Click="btnPotvrdi_Click">
             <materialDesign:PackIcon Kind="CheckCircle" Height="21" Width="25"></materialDesign:PackIcon>
         </Button>
+        <Label x:Name="lblGreska" Visibility="Hidden" Content="*Ispravan format: HH:mm" HorizontalAlignment="Left" Margin="260,317,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <CheckBox x:Name="cBoxHitna" Content="Hitna" HorizontalAlignment="Left" Margin="57,479,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <Image HorizontalAlignment="Left" Height="26" Margin="57,45,0,0" VerticalAlignment="Top" Width="27" Source="patient-icon-3.jpg"/>
         <Image HorizontalAlignment="Left" Height="57" Margin="47,159,0,0" VerticalAlignment="Top" Width="43" Source="doc.png"/>
@@ -26,7 +27,7 @@
         <TextBox x:Name="txtVreme" HorizontalAlignment="Left" Height="23" Margin="150,318,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="90" TextChanged="txtVreme_TextChanged"/>
         <TextBox x:Name="txtProstorija" HorizontalAlignment="Left" Height="25" Margin="57,397,0,0" TextWrapping="Wrap" Text="Prostorija..." VerticalAlignment="Top" Width="120" Foreground="Gray" TextChanged="txtProstorija_TextChanged"/>
 
-        <Button x:Name="btnPonisti" HorizontalAlignment="Left" Margin="294,608,0,0" VerticalAlignment="Top" Width="84" Height="38">
+        <Button x:Name="btnPonisti" HorizontalAlignment="Left" Margin="294,608,0,0" VerticalAlignment="Top" Width="84" Height="38" Click="btnPonisti_Click">
             <materialDesign:PackIcon Kind="CloseCircle" Height="23" Width="24" RenderTransformOrigin="0.5,0.5"/>
         </Button>
         <Label x:Name="lblLekar" HorizontalAlignment="Left" Margin="150,169,0,0" VerticalAlignment="Top" Width="214" Height="27"/>
