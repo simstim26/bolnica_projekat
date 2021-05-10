@@ -144,7 +144,7 @@
 
         </Grid>
 
-        <Grid x:Name="gridOdabirLekaraUput" Background="White" Visibility="Hidden">
+        <Grid x:Name="gridOdabirLekaraUput" Background="White" Visibility="Visible">
             <DataGrid x:Name="dataGridLekari" HorizontalAlignment="Left" Height="436" AutoGenerateColumns="False" IsReadOnly="True" Margin="0,140,0,0" VerticalAlignment="Top" Width="430">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Lekar" Binding="{Binding imeLekara}"></DataGridTextColumn>
@@ -154,7 +154,9 @@
             <Button x:Name="btnPotvrdaIzbora" HorizontalAlignment="Left" Margin="40,601,0,0" VerticalAlignment="Top" Width="77" Height="38" Click="btnPotvrdaIzbora_Click">
                 <materialDesign:PackIcon Kind="CheckCircle" Height="25" Width="25"></materialDesign:PackIcon>
             </Button>
-            <Button Content="Button" HorizontalAlignment="Left" Margin="302,601,0,0" VerticalAlignment="Top" Width="79" Height="38"/>
+            <Button x:Name="btnPonistiIzbor" HorizontalAlignment="Left" Margin="302,601,0,0" VerticalAlignment="Top" Width="79" Height="38" Click="btnPonistiIzbor_Click">
+                <materialDesign:PackIcon Kind="CloseCircle" Height="29" Width="40"></materialDesign:PackIcon>
+            </Button>
             <Grid x:Name="gridPitanjeOZakazivanju" Visibility="Hidden">
                 <Grid.Background>
                     <SolidColorBrush Color="White" Opacity="0.5"/>

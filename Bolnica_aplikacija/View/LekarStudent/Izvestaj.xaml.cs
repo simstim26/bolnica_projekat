@@ -450,6 +450,10 @@ namespace Bolnica_aplikacija.LekarStudent
             }
         }
 
-
+        private void btnPonistiIzbor_Click(object sender, RoutedEventArgs e)
+        {
+            gridOdabirLekaraUput.Visibility = Visibility.Hidden;
+            LekarProzor.getGlavnaLabela().Content = "Izdavanje uputa"; 
+        }
     }
 }

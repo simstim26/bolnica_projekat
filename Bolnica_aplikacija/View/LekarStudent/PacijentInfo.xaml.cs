@@ -76,12 +76,6 @@ namespace Bolnica_aplikacija
             return dataTermini;
         }
 
-        private void btnNazad_Click(object sender, RoutedEventArgs e)
-        {
-            LekarProzor.getX().Content = new LekarTabovi();
-          //  LekarTabovi.getTab().SelectedIndex = 1;
-        }
-
         private void btnZakazi_Click(object sender, RoutedEventArgs e)
         {
             LekarProzor.getX().Content = new ZakaziTermin(0);
