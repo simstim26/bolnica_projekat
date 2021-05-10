@@ -1140,5 +1140,11 @@ namespace Bolnica_aplikacija
                 gridLekovi.Visibility = Visibility.Visible;
             }
         }
+
+        private void btnOtkaziStavku_Click(object sender, RoutedEventArgs e)
+        {
+            gridDodajStavku.Visibility = Visibility.Hidden;
+            gridInventar.Visibility = Visibility.Visible;
+        }
     }
 }

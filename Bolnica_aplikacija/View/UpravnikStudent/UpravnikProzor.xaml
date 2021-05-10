@@ -548,7 +548,7 @@
                         <TextBlock FontSize="15" Margin="0,0,0,0" Text="Dodaj stavku" Height="20" Width="116"/>
                     </StackPanel>
                 </Button>
-                <Button x:Name="btnOtkaziStavku" HorizontalAlignment="Left" Margin="764,358,-880,0" VerticalAlignment="Top" Width="194" Height="48"  Click="btnOtkazi_Click">
+                <Button x:Name="btnOtkaziStavku" HorizontalAlignment="Left" Margin="764,358,-880,0" VerticalAlignment="Top" Width="194" Height="48"  Click="btnOtkaziStavku_Click">
                     <StackPanel Orientation="Horizontal" Width="170">
                         <Image  RenderTransformOrigin="0.5,0.5" Source="forbidden.png" >
                             <Image.RenderTransform>
