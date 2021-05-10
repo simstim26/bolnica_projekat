@@ -144,7 +144,7 @@
 
         </Grid>
 
-        <Grid x:Name="gridOdabirLekaraUput" Background="White" Visibility="Visible">
+        <Grid x:Name="gridOdabirLekaraUput" Background="White" Visibility="Hidden">
             <DataGrid x:Name="dataGridLekari" HorizontalAlignment="Left" Height="436" AutoGenerateColumns="False" IsReadOnly="True" Margin="0,140,0,0" VerticalAlignment="Top" Width="430">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Lekar" Binding="{Binding imeLekara}"></DataGridTextColumn>
@@ -188,6 +188,8 @@
 
         </Grid>
         <Grid x:Name="gridZakazivanjeOperacije" Background="White" Visibility="Hidden">
+            <Label x:Name="lblGreska" Visibility="Hidden" Content="*Ispravan format: HH:mm" HorizontalAlignment="Left" Margin="257,317,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+
             <CheckBox x:Name="cBoxHitna" Content="Hitna" HorizontalAlignment="Left" Margin="57,478,0,0" VerticalAlignment="Top" Height="25" Width="93" FontWeight="Bold" FontSize="14"/>
 
             <Button x:Name="btnDodajProstoriju" HorizontalAlignment="Left" Margin="219,394,0,0" VerticalAlignment="Top" Width="49" Height="28" Click="btnDodajProstoriju_Click">
@@ -199,7 +201,9 @@
             <Button x:Name="btnPotvrdi" HorizontalAlignment="Left" Margin="47,608,0,0" VerticalAlignment="Top" Width="84" Height="38" Click="btnPotvrdi_Click">
                 <materialDesign:PackIcon Kind="CheckCircle" Height="21" Width="25"></materialDesign:PackIcon>
             </Button>
-            <Button x:Name="btnPonisti" Content="Button" HorizontalAlignment="Left" Margin="294,608,0,0" VerticalAlignment="Top" Width="84" Height="38"/>
+            <Button x:Name="btnPonisti" HorizontalAlignment="Left" Margin="294,608,0,0" VerticalAlignment="Top" Width="84" Height="38" Click="btnPonisti_Click">
+                <materialDesign:PackIcon Kind="CloseCircle" Height="29" Width="31"></materialDesign:PackIcon>
+            </Button>
 
             <Image HorizontalAlignment="Left" Height="26" Margin="57,45,0,0" VerticalAlignment="Top" Width="27" Source="patient-icon-3.jpg"/>
             <Image HorizontalAlignment="Left" Height="57" Margin="47,159,0,0" VerticalAlignment="Top" Width="43" Source="doc.png"/>
