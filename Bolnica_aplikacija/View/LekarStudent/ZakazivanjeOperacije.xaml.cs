@@ -69,6 +69,7 @@ namespace Bolnica_aplikacija.LekarStudent
             Termin termin = new Termin();
             termin.datum = (DateTime)datum.SelectedDate;
             String[] satnica = txtVreme.Text.Split(':');
+            termin.tip = TipTermina.OPERACIJA;
             termin.satnica = termin.datum + (new TimeSpan(Convert.ToInt32(satnica[0]), Convert.ToInt32(satnica[1]), 0));
             termin.idProstorije = "";
             dataGridProstorije.ItemsSource = TerminKontroler.nadjiSlobodneProstorijeZaTermin(KorisnikKontroler.getLekar(), termin);
