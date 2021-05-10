@@ -2,6 +2,6 @@
   {
     "idKorisnika": "1",
     "brojUzastopnihIzmena": 4,
-    "vremeIzmene": "2021-05-04T02:50:11.296655+02:00"
+    "vremeIzmene": "2021-05-10T14:03:18.1107888+02:00"
   }
 ]

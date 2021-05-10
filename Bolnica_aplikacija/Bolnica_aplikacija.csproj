@@ -127,6 +127,7 @@
     <Compile Include="Repozitorijum\LogovanjeRepozitorijum.cs" />
     <Compile Include="Repozitorijum\OcenaBolniceRepozitorijum.cs" />
     <Compile Include="Repozitorijum\OcenaLekaraRepozitorijum.cs" />
+    <Compile Include="Servis\GenerisanjeTerminaServis.cs" />
     <Compile Include="Servis\LogovanjeServis.cs" />
     <Compile Include="Servis\OcenaBolniceServis.cs" />
     <Compile Include="Servis\OcenaLekaraServis.cs" />

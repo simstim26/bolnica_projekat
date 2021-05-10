@@ -10,6 +10,7 @@ using Model;
 using Bolnica_aplikacija.PacijentStudent;
 using Bolnica_aplikacija.Kontroler;
 using Bolnica_aplikacija.Repozitorijum;
+using Bolnica_aplikacija.Servis;
 
 namespace Bolnica_aplikacija
 {
@@ -32,6 +33,7 @@ namespace Bolnica_aplikacija
             string korisnickoIme = txtKorisnickoIme.Text;
             string lozinka = txtLozinka.Password.ToString();
             String[] ulogovaniKorisnik = KorisnikKontroler.prijava(korisnickoIme, lozinka); // [0] - tip; // [1] - id
+            //(new GenerisanjeTerminaServis()).generisiTermine();
             
             switch (ulogovaniKorisnik[0])
             {

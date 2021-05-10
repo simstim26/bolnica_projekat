@@ -79,10 +79,10 @@ namespace Bolnica_aplikacija.Servis
         public List<PacijentTermin> prikaziSlobodneTermineZaLekara(Lekar ulogovaniLekar, int tipAkcije)
         {
             List<PacijentTermin> slobodniTermini = new List<PacijentTermin>();
-            foreach (Termin termin in TerminServis.getInstance().ucitajSve())
+            foreach (Termin termin in TerminServis.getInstance().ucitajSve().GroupBy(x => x.idPacijenta).ToDictionary(x=> x.Key, x=> x.ToList())[""].ToList())
             { 
-                if (termin.idPacijenta.Equals(""))
-                {
+                /*if (termin.idPacijenta.Equals(""))
+                {*/
                     DateTime trenutanDatum = DateTime.Now.AddDays(1);
 
                     int rezultat = DateTime.Compare(termin.datum, trenutanDatum);
@@ -118,7 +118,7 @@ namespace Bolnica_aplikacija.Servis
                             slobodniTermini.Add(pacijentTermin);
                         }
                     }
-                }
+                //}
             }
 
             return slobodniTermini;

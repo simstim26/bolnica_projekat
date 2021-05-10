@@ -27,6 +27,30 @@ namespace Model
         public TipTermina tipUput { get; set; }
         public bool jeHitan { get; set; }
 
+        public Termin() { }
+
+        public Termin(TipTermina tip, DateTime datum, DateTime satnica, bool jeZavrsen, string idTermina, string idProstorije, 
+            string idPacijenta, string idLekara, string idTerapije, string idBolesti, string izvestaj, string izvestajUputa,
+            string idUputLekara, string idUputTermin, TipTermina tipUput, bool jeHitan)
+        {
+            this.tip = tip;
+            this.datum = datum;
+            this.satnica = satnica;
+            this.jeZavrsen = jeZavrsen;
+            this.idTermina = idTermina;
+            this.idProstorije = idProstorije;
+            this.idPacijenta = idPacijenta;
+            this.idLekara = idLekara;
+            this.idTerapije = idTerapije;
+            this.idBolesti = idBolesti;
+            this.izvestaj = izvestaj;
+            this.izvestajUputa = izvestajUputa;
+            this.idUputLekara = idUputLekara;
+            this.idUputTermin = idUputTermin;
+            this.tipUput = tipUput;
+            this.jeHitan = jeHitan;
+        }
+
         public void kopiraj(Termin termin)
         {
             tip = termin.tip;

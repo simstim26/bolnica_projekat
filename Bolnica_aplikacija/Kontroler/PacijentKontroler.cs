@@ -17,84 +17,84 @@ namespace Bolnica_aplikacija.Kontroler
 
         public static void sacuvajBolestTerapiju(BolestTerapija bolestTerapija)
         {
-            pacijentServis.sacuvajBolestTerapiju(bolestTerapija);
+            PacijentServis.getInstance().sacuvajBolestTerapiju(bolestTerapija);
         }
 
         public static List<BolestTerapija> ucitajSveTerapijeZaPacijenta()
         {
-            return pacijentServis.ucitajSveTerapijeZaPacijenta();
+            return PacijentServis.getInstance().ucitajSveTerapijeZaPacijenta();
         }
 
         public static BolestTerapija getBolestTerapija()
         {
-            return pacijentServis.getBolestTerapija();
+            return PacijentServis.getInstance().getBolestTerapija();
         }
         public static List<BolestTerapija> nadjiIstorijuBolestiZaPacijenta()
         {
-            return pacijentServis.nadjiIstorijuBolestiZaPacijenta();
+            return PacijentServis.getInstance().nadjiIstorijuBolestiZaPacijenta();
         }
 
 
         public static List<Pacijent> prikazPacijenata() //prikaz pacijenata kod lekara
         {
-            return pacijentServis.prikazPacijenata();
+            return PacijentServis.getInstance().prikazPacijenata();
         }
 
         public static List<PacijentTermin> prikazPacijentovihTermina()
         {
-            return pacijentServis.prikazPacijentovihTermina();
+            return PacijentServis.getInstance().prikazPacijentovihTermina();
         }
 
         public static List<PacijentTermin> prikazBuducihTerminaPacijenta()
         {
-            return pacijentServis.prikazBuducihTerminaPacijenta();
+            return PacijentServis.getInstance().prikazBuducihTerminaPacijenta();
         }
         public static List<PacijentTermin> prikazProslihTerminaPacijenta()
         {
-            return pacijentServis.prikazProslihTerminaPacijenta();
+            return PacijentServis.getInstance().prikazProslihTerminaPacijenta();
         }
         public static void zakaziTerminPacijentu(String idTermina)
         {
-            pacijentServis.zakaziTerminPacijentu(idTermina);
+            PacijentServis.getInstance().zakaziTerminPacijentu(idTermina);
         }
 
         public static void azurirajTerminPacijentu(String idStarogTermina, String idNovogTermina)
         {
-            pacijentServis.azurirajTerminPacijentu(idStarogTermina, idNovogTermina);
+            PacijentServis.getInstance().azurirajTerminPacijentu(idStarogTermina, idNovogTermina);
         }
         public static void otkaziTerminPacijenta(String idTermina)
         {
-            pacijentServis.otkaziTerminPacijenta(idTermina);
+            PacijentServis.getInstance().otkaziTerminPacijenta(idTermina);
         }
         public static void nadjiPacijenta(String idPacijenta)
         {
-            pacijentServis.nadjiPacijenta(idPacijenta);
+            PacijentServis.getInstance().nadjiPacijenta(idPacijenta);
         }
 
         public static Pacijent getPacijent()
         {
-            return pacijentServis.getPacijent();
+            return PacijentServis.getInstance().getPacijent();
         }
 
         public static List<PacijentTermin> ucitajSlobodneTermine(int indikator, bool jeSekretar)
         {
-            return pacijentServis.ucitajSlobodneTermine(indikator, jeSekretar);
+            return PacijentServis.getInstance().ucitajSlobodneTermine(indikator, jeSekretar);
         }
 
         public static List<PacijentTermin> filtrirajTermine(int indikator, String kriterijum)
         {
-            return pacijentServis.filtrirajTermine(indikator, kriterijum);
+            return PacijentServis.getInstance().filtrirajTermine(indikator, kriterijum);
         }
 
         public static void napraviAlergiju(String idPacijenta, String nazivAlergije)
         {
-            pacijentServis.napraviAlergiju(idPacijenta, nazivAlergije);
+            PacijentServis.getInstance().napraviAlergiju(idPacijenta, nazivAlergije);
         }
 
         public static List<Alergija> procitajAlergije()
         {
            
-            return pacijentServis.procitajAlergije();
+            return PacijentServis.getInstance().procitajAlergije();
         }
         public static bool proveriStanjeAnkete(String idPacijenta)
         {

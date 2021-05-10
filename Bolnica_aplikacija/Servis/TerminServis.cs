@@ -46,7 +46,8 @@ namespace Bolnica_aplikacija.Servis
 
         public Termin nadjiTerminPoId(String idTermina)
         {
-            Termin povratnaVrednost = new Termin();
+            return terminRepozitorijum.ucitajSve().ToDictionary(x => x.idTermina)[idTermina]; 
+           /* Termin povratnaVrednost = new Termin();
             foreach(Termin termin in terminRepozitorijum.ucitajSve())
             {
                 if (idTermina != null && idTermina.Equals(termin.idTermina))
@@ -56,7 +57,7 @@ namespace Bolnica_aplikacija.Servis
                 }
             }
 
-            return povratnaVrednost;
+            return povratnaVrednost;*/
         }
 
         public void azuriranjeTerapijeZaTermin(String idTermina, String idTerapija)
@@ -96,28 +97,29 @@ namespace Bolnica_aplikacija.Servis
 
         public void nadjiPacijentaZaTermin(String idTermina)
         {
-            foreach(Termin termin in terminRepozitorijum.ucitajSve())
+           /* foreach(Termin termin in terminRepozitorijum.ucitajSve())
             {
                 if (idTermina.Equals(termin.idTermina))
-                {
-                    PacijentKontroler.nadjiPacijenta(termin.idPacijenta);
+                {*/
+                    PacijentServis.getInstance().nadjiPacijenta(nadjiTerminPoId(idTermina).idPacijenta);
                    
-                    break;
+              /*      break;
                 }
-            }
+            }*/
         }
 
         public void promeniProstorijuTermina(String idTermina, String idProstorije)
         {
-            foreach(Termin termin in terminRepozitorijum.ucitajSve())
+           /* foreach(Termin termin in terminRepozitorijum.ucitajSve())
             {
                 if (idTermina.Equals(termin.idTermina))
-                {
+                {*/
+                    Termin termin = nadjiTerminPoId(idTermina);
                     termin.idProstorije = idProstorije;
                     terminRepozitorijum.azurirajTermin(termin);
-                    break;
+              /*      break;
                 }
-            }
+            }*/
         }
 
         public List<Prostorija> nadjiSlobodneProstorijeZaTermin(Lekar lekar, Termin termin)
@@ -191,22 +193,24 @@ namespace Bolnica_aplikacija.Servis
         }
         public bool proveriTipTermina(Lekar lekar, String idTermina)
         {
-            foreach(Termin termin in terminRepozitorijum.ucitajSve())
+            /*foreach(Termin termin in terminRepozitorijum.ucitajSve())
             {
                 if (idTermina.Equals(termin.idTermina))
-                {
-                    if (termin.tip == TipTermina.OPERACIJA && lekar.idSpecijalizacije != "0")
+                {*/
+                    bool povratnaVrednost = false;
+                    Termin termin = nadjiTerminPoId(idTermina);
+                    if ((termin.tip == TipTermina.OPERACIJA && lekar.idSpecijalizacije != "0") || termin.tip == TipTermina.PREGLED)
+                    {
+                         povratnaVrednost = true;
+                    }
+                    /*if(termin.tip == TipTermina.PREGLED)
                     {
                         return true;
-                    }
-                    if(termin.tip == TipTermina.PREGLED)
-                    {
-                        return true;
-                    }
-                }
-            }
+                    }*/
+          /*      }
+            }*/
 
-                return false;
+                return povratnaVrednost;
         }
         public void sacuvajTermin(String idTermina)
         {
@@ -311,7 +315,7 @@ namespace Bolnica_aplikacija.Servis
                 {
                     if (pacijentTermin.id.Equals(termin.idTermina))
                     {
-                        DateTime terminDatum = termin.datum;
+                        DateTime terminDatum = termin.datum; 
                         DateTime datumSatUnapred = DateTime.Now.AddHours(1);
 
                         int rezultat1 = DateTime.Compare(terminDatum, datumSatUnapred);
