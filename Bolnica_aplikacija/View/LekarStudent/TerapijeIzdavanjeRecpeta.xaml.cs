@@ -73,6 +73,10 @@ namespace Bolnica_aplikacija.LekarStudent
                 LekarProzor.getGlavnaLabela().Content = "Izdavanje recepta";
 
             }
+            else
+            {
+                MessageBox.Show("Potrebno je izabrati lek!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
         private void btnPotvrdiRecept_Click(object sender, RoutedEventArgs e)
@@ -97,6 +101,12 @@ namespace Bolnica_aplikacija.LekarStudent
             gridDodavanjeLeka.Visibility = Visibility.Hidden;
             LekarProzor.getGlavnaLabela().Content = "Izdavanje recepta";
 
+        }
+
+        private void btnPonistiRecept_Click(object sender, RoutedEventArgs e)
+        {
+            aktivan = false;
+            Content = new UvidUTerapije();
         }
     }
 }

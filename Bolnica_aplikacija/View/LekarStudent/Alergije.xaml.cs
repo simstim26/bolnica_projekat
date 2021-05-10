@@ -51,6 +51,10 @@ namespace Bolnica_aplikacija.LekarStudent
                 AlergijaKontroler.obrisiAlergiju((Alergija)dataGridAlergije.SelectedItem);
                 ucitaj();
             }
+            else
+            {
+                MessageBox.Show("Potrebno je izabrati alergiju!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)

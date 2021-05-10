@@ -325,6 +325,10 @@ namespace Bolnica_aplikacija
                 listRUSastojci.ItemsSource = izabraniLek.sastojci;
 
             }
+            else
+            {
+                MessageBox.Show("Potrebno je izabrati lek!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
         private void btnRUZamenskiLekovi_Click(object sender, RoutedEventArgs e)

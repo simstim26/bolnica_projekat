@@ -125,28 +125,39 @@
                     </Button>
                 </Grid>
             </TabItem>
-            <TabItem x:Name="tabPregled" Header="Pregled termina" Width="143">
-                <Grid Background="White" Margin="-2,-2,-1.6,1.6">
-                    <Button x:Name = "btnZakazi" HorizontalAlignment="Left" Margin="32,114,0,0" VerticalAlignment="Top" Width="86" Click="btnZakazi_Click" Height="29" FontWeight="Bold">
-                        <materialDesign:PackIcon Kind="Plus" Width="32" Height="23"></materialDesign:PackIcon>
-                    </Button>
-                    <Button x:Name = "btnPromeni" HorizontalAlignment="Left" Margin="317,114,0,0" VerticalAlignment="Top" Width="85" Height="29" Click="btnPromeni_Click" FontWeight="Bold">
-                        <materialDesign:PackIcon Kind="Repeat" Height="22" Width="30"></materialDesign:PackIcon>
-                    </Button>
-                    <Button x:Name = "btnOtkazi" HorizontalAlignment="Left" Margin="175,114,0,0" VerticalAlignment="Top" Width="85" Height="29" Click="btnOtkazi_Click" FontWeight="Bold">
-                        <materialDesign:PackIcon Kind="TrashCan" Height="22" Width="34"></materialDesign:PackIcon>
-                    </Button>
-                    <DataGrid x:Name ="dataGridTerminiPacijenta" GridLinesVisibility="All" Background="White" AlternatingRowBackground="#FF9900" AlternationCount="2" RowHeight="33"  IsReadOnly ="True" SelectionMode="Single" Height="456" Margin="0,166,0.6,0" VerticalAlignment="Top" AutoGenerateColumns="False">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn x:Name ="kolonaDatumOdrzavanja" IsReadOnly="True" CanUserResize="False" Binding="{Binding datum}" Header="Datum" Width="96"></DataGridTextColumn>
-                            <DataGridTextColumn x:Name="kolonaSatnica" IsReadOnly="True" CanUserResize="False" Binding="{Binding satnica}" Header="Vreme" Width="71"></DataGridTextColumn>
-                            <DataGridTextColumn x:Name="kolonaLekar" IsReadOnly="True" CanUserResize="False" Binding="{Binding imeLekara}" Header="Lekar" Width="91"></DataGridTextColumn>
-                            <DataGridTextColumn x:Name="kolonaProstorija" IsReadOnly="True" CanUserResize="False" Binding="{Binding lokacija}" Header="Mesto" Width="82"></DataGridTextColumn>
-                            <DataGridTextColumn x:Name="kolonaTip" IsReadOnly="True" CanUserResize="False" Binding="{Binding napomena}" Header="Tip" Width="90"></DataGridTextColumn>
+            <TabItem x:Name="tabPregled" Width="143">
+                <TabItem.HeaderTemplate>
+                    <DataTemplate>
+                        <TextBlock Grid.ColumnSpan="2" Margin="-12,-5,-11,-3.8" IsEnabled="False">
+                                <Image Source="future-icon-png-19.jpg" Height="19" Width="55">
+                                    
+                                </Image>
+                        </TextBlock>
+                    </DataTemplate>
+                </TabItem.HeaderTemplate>
+                <Grid>
+                    <Grid Background="White" Margin="-2,-2,-1.6,1.6">
+                        <Button x:Name = "btnZakazi" HorizontalAlignment="Left" Margin="32,114,0,0" VerticalAlignment="Top" Width="86" Click="btnZakazi_Click" Height="29" FontWeight="Bold">
+                            <materialDesign:PackIcon Kind="Plus" Width="32" Height="23"></materialDesign:PackIcon>
+                        </Button>
+                        <Button x:Name = "btnPromeni" HorizontalAlignment="Left" Margin="317,114,0,0" VerticalAlignment="Top" Width="85" Height="29" Click="btnPromeni_Click" FontWeight="Bold">
+                            <materialDesign:PackIcon Kind="Repeat" Height="22" Width="30"></materialDesign:PackIcon>
+                        </Button>
+                        <Button x:Name = "btnOtkazi" HorizontalAlignment="Left" Margin="175,114,0,0" VerticalAlignment="Top" Width="85" Height="29" Click="btnOtkazi_Click" FontWeight="Bold">
+                            <materialDesign:PackIcon Kind="TrashCan" Height="22" Width="34"></materialDesign:PackIcon>
+                        </Button>
+                        <DataGrid x:Name ="dataGridTerminiPacijenta" GridLinesVisibility="All" Background="White" AlternatingRowBackground="#FF9900" AlternationCount="2" RowHeight="33"  IsReadOnly ="True" SelectionMode="Single" Height="456" Margin="0,166,0.6,0" VerticalAlignment="Top" AutoGenerateColumns="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn x:Name ="kolonaDatumOdrzavanja" IsReadOnly="True" CanUserResize="False" Binding="{Binding datum}" Header="Datum" Width="96"></DataGridTextColumn>
+                                <DataGridTextColumn x:Name="kolonaSatnica" IsReadOnly="True" CanUserResize="False" Binding="{Binding satnica}" Header="Vreme" Width="71"></DataGridTextColumn>
+                                <DataGridTextColumn x:Name="kolonaLekar" IsReadOnly="True" CanUserResize="False" Binding="{Binding imeLekara}" Header="Lekar" Width="91"></DataGridTextColumn>
+                                <DataGridTextColumn x:Name="kolonaProstorija" IsReadOnly="True" CanUserResize="False" Binding="{Binding lokacija}" Header="Mesto" Width="82"></DataGridTextColumn>
+                                <DataGridTextColumn x:Name="kolonaTip" IsReadOnly="True" CanUserResize="False" Binding="{Binding napomena}" Header="Tip" Width="90"></DataGridTextColumn>
 
-                        </DataGrid.Columns>
+                            </DataGrid.Columns>
 
-                    </DataGrid>
+                        </DataGrid>
+                    </Grid>
                 </Grid>
             </TabItem>
         </TabControl>

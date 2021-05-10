@@ -112,6 +112,10 @@ namespace Bolnica_aplikacija.LekarStudent
                 txtKol.Text = lek.kolicina.ToString();
                 txtDatum.Text = DateTime.Now.ToString("dd.MM.yyyy.");
             }
+            else
+            {
+                MessageBox.Show("Potrebno je izabrati lek!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
         private void btnPotvrdiRecept_Click(object sender, RoutedEventArgs e)
@@ -133,6 +137,12 @@ namespace Bolnica_aplikacija.LekarStudent
                 TerminKontroler.azuriranjeTerapijeZaTermin(PacijentKontroler.getBolestTerapija().idTermina, idTerapije);
                 BolestKontroler.azurirajTerapijuZaBolest(PacijentKontroler.getBolestTerapija().idBolesti, idTerapije);
             }
+        }
+
+        private void btnPonisti_Click(object sender, RoutedEventArgs e)
+        {
+            aktivan = false;
+            Content = new IstorijaBolesti();
         }
     }
 }

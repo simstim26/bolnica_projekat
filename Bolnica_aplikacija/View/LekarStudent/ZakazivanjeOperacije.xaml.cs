@@ -169,5 +169,11 @@ namespace Bolnica_aplikacija.LekarStudent
             txtProstorija.Text = "Prostorija...";
             dataGridProstorije.SelectedIndex = -1;
         }
+
+        private void btnPonisti_Click(object sender, RoutedEventArgs e)
+        {
+            aktivan = false;
+            Content = new ZakaziTermin(ZakaziTermin.getTipAkcije());
+        }
     }
 }
