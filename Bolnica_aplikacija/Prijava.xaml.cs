@@ -10,6 +10,7 @@ using Model;
 using Bolnica_aplikacija.PacijentStudent;
 using Bolnica_aplikacija.Kontroler;
 using Bolnica_aplikacija.Repozitorijum;
+using Bolnica_aplikacija.View.UpravnikStudent;
 
 namespace Bolnica_aplikacija
 {
@@ -64,6 +65,7 @@ namespace Bolnica_aplikacija
                     ProstorijaZauzetoKontroler.zauzmiProstorije();
                     ProstorijaKontroler.pregledajProstorijeZaRenoviranje();
                     UpravnikProzor upravnikProzor = UpravnikProzor.getInstance();
+                    //GlavniProzor upravnikProzor = new GlavniProzor();
                     this.Close();
                     upravnikProzor.ShowDialog();
                     break;

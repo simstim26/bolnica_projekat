@@ -130,7 +130,7 @@
     "idProstorijeUKojuSePrebacuje": null,
     "datumPocetka": "2021-05-04T00:00:00",
     "datumKraja": "2021-05-05T00:00:00",
-    "jeZavrseno": false,
+    "jeZavrseno": true,
     "idStavke": "7",
     "kolicinaStavke": 2
   },

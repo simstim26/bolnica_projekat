@@ -220,6 +220,18 @@
     <Compile Include="Servis\TerapijaServis.cs" />
     <Compile Include="Servis\TerminServis.cs" />
     <Compile Include="Servis\UpravnikServis.cs" />
+    <Compile Include="View\UpravnikStudent\DodajProstoriju.xaml.cs">
+      <DependentUpon>DodajProstoriju.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UpravnikStudent\GlavniProzor.xaml.cs">
+      <DependentUpon>GlavniProzor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UpravnikStudent\IzmeniProstoriju.xaml.cs">
+      <DependentUpon>IzmeniProstoriju.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UpravnikStudent\ProstorijePogled.xaml.cs">
+      <DependentUpon>ProstorijePogled.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\UpravnikStudent\UpravnikProzor.xaml.cs">
       <DependentUpon>UpravnikProzor.xaml</DependentUpon>
     </Compile>
@@ -372,6 +384,22 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\UpravnikStudent\DodajProstoriju.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\UpravnikStudent\GlavniProzor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\UpravnikStudent\IzmeniProstoriju.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\UpravnikStudent\ProstorijePogled.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\UpravnikStudent\UpravnikProzor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -451,6 +479,60 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="View\LekarStudent\future-icon-png-19.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\UpravnikStudent\add.png" />
+    <Resource Include="View\UpravnikStudent\forbidden.png" />
+    <Resource Include="View\UpravnikStudent\krsto.png" />
+    <Resource Include="View\UpravnikStudent\plus %281%29.png" />
+    <Resource Include="View\UpravnikStudent\plus.jpg" />
+    <Resource Include="View\UpravnikStudent\plus.png" />
+    <Resource Include="View\UpravnikStudent\plusCrni.png" />
+    <Resource Include="View\UpravnikStudent\plusSivi.png" />
+    <Resource Include="View\UpravnikStudent\prostorija.png" />
+    <Resource Include="View\UpravnikStudent\save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\UpravnikStudent\edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\UpravnikStudent\delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\UpravnikStudent\inventory.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\UpravnikStudent\clock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\UpravnikStudent\diagram.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\UpravnikStudent\back.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\UpravnikStudent\transfer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\UpravnikStudent\loupe.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\UpravnikStudent\drugs.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\UpravnikStudent\cancel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\UpravnikStudent\user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\UpravnikStudent\users.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\UpravnikStudent\praktikanti.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\UpravnikStudent\hel.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets" Condition="Exists('packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets')" />

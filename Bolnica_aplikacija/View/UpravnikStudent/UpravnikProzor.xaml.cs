@@ -53,7 +53,7 @@ namespace Bolnica_aplikacija
             dataGridProstorija.ItemsSource = ProstorijaKontroler.ucitajNeobrisane();
         }
 
-        private void tbProstorija_Click(object sender, RoutedEventArgs e)
+       /* private void tbProstorija_Click(object sender, RoutedEventArgs e)
         {
             if (tbProstorija.IsChecked == true)
             {
@@ -72,30 +72,30 @@ namespace Bolnica_aplikacija
         {
             tbInventar.IsChecked = false;
             tbProstorija.IsChecked = false;
-        }
+        }*/
 
 
-        private void tbProstorija_Checked(object sender, RoutedEventArgs e)
+        /*private void tbProstorija_Checked(object sender, RoutedEventArgs e)
         {
             gridProstorija.Visibility = Visibility.Visible;
             vodoravniPravougaonik.Visibility = Visibility.Visible;
-            horizontalniPravougaonik.Height = 33;
-            horizontalniPravougaonik.Margin = new System.Windows.Thickness(19, 697, 0, 0);
+            *//*horizontalniPravougaonik.Height = 33;
+            horizontalniPravougaonik.Margin = new System.Windows.Thickness(19, 697, 0, 0);*//*
 
 
             donjiPravougaonik.Visibility = Visibility.Visible;
-        }
+        }*/
 
-        private void tbProstorija_Unchecked(object sender, RoutedEventArgs e)
+       /* private void tbProstorija_Unchecked(object sender, RoutedEventArgs e)
         {
             if (tbLekovi.IsChecked == false && tbInventar.IsChecked == false)
             {
                 vodoravniPravougaonik.Visibility = Visibility.Hidden;
                 donjiPravougaonik.Visibility = Visibility.Hidden;
             }
-            horizontalniPravougaonik.Visibility = Visibility.Visible;
+            *//*horizontalniPravougaonik.Visibility = Visibility.Visible;
             horizontalniPravougaonik.Height = 679;
-            horizontalniPravougaonik.Margin = new System.Windows.Thickness(19, 60, 0, 0);
+            horizontalniPravougaonik.Margin = new System.Windows.Thickness(19, 60, 0, 0);*//*
             gridProstorija.Visibility = Visibility.Hidden;
         }
 
@@ -104,35 +104,35 @@ namespace Bolnica_aplikacija
             if (tbLekovi.IsChecked == false && tbProstorija.IsChecked == false)
             {
                 vodoravniPravougaonik.Visibility = Visibility.Hidden;
-                horizontalniPravougaonik.Visibility = Visibility.Visible;
+                //horizontalniPravougaonik.Visibility = Visibility.Visible;
             }
 
-            horizontalniPravougaonik.Visibility = Visibility.Visible;
+           *//* horizontalniPravougaonik.Visibility = Visibility.Visible;
             horizontalniPravougaonik.Height = 679;
-            horizontalniPravougaonik.Margin = new System.Windows.Thickness(19, 60, 0, 0);
+            horizontalniPravougaonik.Margin = new System.Windows.Thickness(19, 60, 0, 0);*//*
             gridInventar.Visibility = Visibility.Hidden;
-        }
+        }*/
 
-        private void tbLekovi_Unchecked(object sender, RoutedEventArgs e)
+        /*private void tbLekovi_Unchecked(object sender, RoutedEventArgs e)
         {
             if (tbProstorija.IsChecked == false && tbInventar.IsChecked == false)
             {
                 vodoravniPravougaonik.Visibility = Visibility.Hidden;
-                horizontalniPravougaonik.Visibility = Visibility.Visible;
+                //horizontalniPravougaonik.Visibility = Visibility.Visible;
             }
-            horizontalniPravougaonik.Visibility = Visibility.Visible;
+            *//*horizontalniPravougaonik.Visibility = Visibility.Visible;
             horizontalniPravougaonik.Height = 679;
-            horizontalniPravougaonik.Margin = new System.Windows.Thickness(19, 60, 0, 0);
+            horizontalniPravougaonik.Margin = new System.Windows.Thickness(19, 60, 0, 0);*//*
             gridLekovi.Visibility = Visibility.Hidden;
-        }
+        }*/
 
         private void tbLekovi_Checked(object sender, RoutedEventArgs e)
         {
             dataGridLekovi.ItemsSource = LekKontroler.ucitajSve();
             gridLekovi.Visibility = Visibility.Visible;
             vodoravniPravougaonik.Visibility = Visibility.Visible;
-            horizontalniPravougaonik.Height = 33;
-            horizontalniPravougaonik.Margin = new System.Windows.Thickness(19, 697, 0, 0);
+            /*horizontalniPravougaonik.Height = 33;
+            horizontalniPravougaonik.Margin = new System.Windows.Thickness(19, 697, 0, 0);*/
 
 
             donjiPravougaonik.Visibility = Visibility.Visible;
@@ -171,11 +171,11 @@ namespace Bolnica_aplikacija
                 prostorija = (Prostorija)dataGridProstorija.SelectedItem;
                 ProstorijaKontroler.pregledajProstorijeZaRenoviranje();
 
-                lblId1 = lblId.Text;
+                //lblId1 = lblId.Text;
                 gridIzmeniProstoriju.Visibility = Visibility.Visible;
 
 
-                lblId.Text += prostorija.id;
+                //lblId.Text += prostorija.id;
                 txtBrojProstorije.Text = prostorija.broj;
                 txtSpratProstorije.Text = prostorija.sprat.ToString();
 
@@ -210,14 +210,14 @@ namespace Bolnica_aplikacija
         {
 
             ProstorijaKontroler.AzurirajProstoriju(prostorija);
-            lblId.Text = lblId1;
+            //lblId.Text = lblId1;
         }
 
         private void btnOtkaziIzmeni_Click(object sender, RoutedEventArgs e)
         {
             gridIzmeniProstoriju.Visibility = Visibility.Hidden;
             gridProstorija.Visibility = Visibility.Visible;
-            lblId.Text = lblId1;
+            //lblId.Text = lblId1;
         }
 
         private void btnIzbrisiProstoriju_Click(object sender, RoutedEventArgs e)
@@ -237,11 +237,9 @@ namespace Bolnica_aplikacija
             Prostorija prostorija = new Prostorija();
             ProstorijaKontroler.NapraviProstoriju(prostorija);
             dataGridProstorija.ItemsSource = ProstorijaKontroler.ucitajNeobrisane();
-
-
         }
 
-        private void tbInventar_Checked(object sender, RoutedEventArgs e)
+        /*private void tbInventar_Checked(object sender, RoutedEventArgs e)
         {
             if (tbInventar.IsChecked == true)
             {
@@ -251,13 +249,13 @@ namespace Bolnica_aplikacija
 
             dataGridInventar.ItemsSource = StavkaKontroler.UcitajNeobrisaneStavke();
             vodoravniPravougaonik.Visibility = Visibility.Visible;
-            horizontalniPravougaonik.Height = 33;
-            horizontalniPravougaonik.Margin = new System.Windows.Thickness(19, 697, 0, 0);
+            *//*horizontalniPravougaonik.Height = 33;
+            horizontalniPravougaonik.Margin = new System.Windows.Thickness(19, 697, 0, 0);*//*
 
 
             donjiPravougaonik.Visibility = Visibility.Visible;
             gridInventar.Visibility = Visibility.Visible;
-        }
+        }*/
 
         private void btnIzmeniStavku_Click(object sender, RoutedEventArgs e)
         {
@@ -267,7 +265,7 @@ namespace Bolnica_aplikacija
                 var stavka = (Stavka)dataGridInventar.SelectedItem;
                 gridIzmeniStavku.Visibility = Visibility.Visible;
 
-                lblId1 = lblId.Text;
+                //lblId1 = lblId.Text;
                 gridIzmeniStavku.Visibility = Visibility.Visible;
 
 
@@ -1086,6 +1084,61 @@ namespace Bolnica_aplikacija
             gridLekoviIzmena.Visibility = Visibility.Hidden;
             gridLekovi.Visibility = Visibility.Visible;
             dataGridLekovi.Items.Refresh();
+        }
+
+        private void btnObrisiLek_Click(object sender, RoutedEventArgs e)
+        {
+            Lek lek = (Lek)dataGridLekovi.SelectedItem;
+            List<Lek> lekovi = (List<Lek>)dataGridLekovi.ItemsSource;
+            lekovi.Remove(lek);
+            dataGridLekovi.ItemsSource = lekovi;
+            dataGridLekovi.Items.Refresh();
+        }
+
+        private void ListViewItem_Selected(object sender, RoutedEventArgs e)
+        {
+            gridProstorija.Visibility = Visibility.Visible;
+            
+        }
+
+        /*private void listInventar_Selected(object sender, RoutedEventArgs e)
+        {
+            dataGridInventar.ItemsSource = StavkaKontroler.UcitajNeobrisaneStavke();
+            gridInventar.Visibility = Visibility.Visible;
+            
+        }
+
+        private void listLekovi_Selected(object sender, RoutedEventArgs e)
+        {
+            dataGridLekovi.ItemsSource = LekKontroler.ucitajSve();
+            
+            gridLekovi.Visibility = Visibility.Visible;
+        }
+
+        private void listLekovi_Unselected(object sender, RoutedEventArgs e)
+        {
+
+        }*/
+
+        private void listView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            gridProstorija.Visibility = Visibility.Hidden;
+            gridInventar.Visibility = Visibility.Hidden;
+            gridLekovi.Visibility = Visibility.Hidden;
+            if (listView.SelectedIndex == 1)
+            {
+                gridProstorija.Visibility = Visibility.Visible;
+            }
+            else if (listView.SelectedIndex == 2)
+            {
+                dataGridInventar.ItemsSource = StavkaKontroler.UcitajNeobrisaneStavke();
+                gridInventar.Visibility = Visibility.Visible;
+            }
+            else if (listView.SelectedIndex == 3)
+            {
+                dataGridLekovi.ItemsSource = LekKontroler.ucitajSve();
+                gridLekovi.Visibility = Visibility.Visible;
+            }
         }
     }
 }

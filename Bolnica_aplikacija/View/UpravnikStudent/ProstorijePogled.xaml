@@ -1,0 +1,52 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Bolnica_aplikacija.View.UpravnikStudent"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="Bolnica_aplikacija.View.UpravnikStudent.ProstorijePogled"
+             mc:Ignorable="d" 
+             d:DesignHeight="685" d:DesignWidth="913">
+    <Grid x:Name="gridProstorija" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.Column="2" Grid.RowSpan="3" Height="642">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="299*"/>
+            <ColumnDefinition Width="542*"/>
+        </Grid.ColumnDefinitions>
+        <DataGrid x:Name="dataGridProstorija" BorderThickness="1" CanUserAddRows="false" IsReadOnly ="True" HorizontalAlignment="Left" Height="498" Margin="50,114,0,0" VerticalAlignment="Top" Width="458" HeadersVisibility="All" AutoGenerateColumns="False" SelectionMode="Single" CanUserResizeRows="False" Grid.ColumnSpan="2">
+            <DataGrid.Columns>
+
+                <DataGridTextColumn x:Name="kolonaTip" Binding ="{Binding tipProstorije}" IsReadOnly="True" Header="tip"  Width="143" CanUserResize="False"/>
+                <DataGridTextColumn x:Name="Broj" Binding="{Binding broj}" IsReadOnly="True" Header="broj" Width="143" CanUserResize="False"/>
+                <DataGridTextColumn x:Name="Sprat" Binding="{Binding sprat}" IsReadOnly="True" Header="sprat" Width="143" CanUserResize="False"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Button x:Name="btnDodajProstoriju" HorizontalAlignment="Left" Margin="318,114,-65,0" VerticalAlignment="Top" Width="289" Height="49" Click="btnDodajProstoriju_Click" Grid.Column="1">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="add.png" RenderTransformOrigin="0.5,0.5">
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="0.8" ScaleY="0.8"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>
+                <TextBlock Text="Dodaj prostoriju" FontSize="20" Margin="20,0,0,0" Height="28" Width="176"/>
+            </StackPanel>
+        </Button>
+
+        <Button x:Name="btnIzmeniProstoriju"  Content="Izmeni Prostoriju" HorizontalAlignment="Left" Margin="318,204,-65,0" VerticalAlignment="Top" Width="289" Height="48"  IsEnabled="True" Click="btnIzmeniProstoriju_Click" Grid.Column="1"/>
+        <Button x:Name="btnIzbrisiProstoriju"  Content="Izbrisi Prostoriju" HorizontalAlignment="Left" Margin="318,294,-65,0" VerticalAlignment="Top" Width="289" Height="48" Click="btnIzbrisiProstoriju_Click" Grid.Column="1"/>
+        <Button x:Name="btnPogledajInventar"  Content="Pogledaj Inventar" HorizontalAlignment="Left" Margin="318,384,-65,0" VerticalAlignment="Top" Width="289" Height="48" Click="btnPogledajInventar_Click" Grid.Column="1"/>
+        <Button x:Name="btnZakaziRenoviranje" Content="Zakazi renoviranje" HorizontalAlignment="Left" Margin="318,474,-65,0" VerticalAlignment="Top" Width="289" Height="48" Click="btnZakaziRenoviranje_Click" Grid.Column="1"/>
+        <TextBlock x:Name="textBlock" FontSize="25" FontStyle="Italic" FontWeight="Bold" HorizontalAlignment="Left" Margin="50,19,0,0" TextWrapping="Wrap" Text="Prikaz prostorija" VerticalAlignment="Top" TextDecorations="Underline"/>
+        <TextBlock x:Name="textBlock1" FontSize="15" HorizontalAlignment="Left" Margin="50,74,0,0" TextWrapping="Wrap" Text="Unesite broj prostorije koju želite da pretražite:" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="133,71,0,0" TextWrapping="Wrap" Text=""  VerticalAlignment="Top" Width="130" Grid.Column="1"/>
+        <Button x:Name="btnZakaziRenoviranje_Copy" Content="Izveštaj o zauzetosti" HorizontalAlignment="Left" Margin="318,564,-65,0" VerticalAlignment="Top" Width="289" Height="48" Grid.Column="1"/>
+
+
+    </Grid>
+
+</UserControl>

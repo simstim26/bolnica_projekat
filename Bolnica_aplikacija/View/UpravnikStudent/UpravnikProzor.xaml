@@ -28,20 +28,14 @@
     </Window.Resources>
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="298*"/>
-            <RowDefinition Height="377*"/>
-            <RowDefinition Height="65*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="33*"/>
-            <ColumnDefinition Width="26*"/>
-            <ColumnDefinition Width="959*"/>
-        </Grid.ColumnDefinitions>
-        <TextBlock x:Name="lblIme" Margin="0,22,124,0" TextWrapping="Wrap" Text="Ime i Prezime" VerticalAlignment="Top" FontSize="30" Grid.Column="2" HorizontalAlignment="Right"/>
 
-        <Grid x:Name="gridProstorija" Visibility="Hidden" Background="LightGray" HorizontalAlignment="Left" Height="640" Margin="10,59,0,0" VerticalAlignment="Top" Width="949" Grid.Column="2" Grid.RowSpan="3">
-            <DataGrid x:Name="dataGridProstorija" CanUserAddRows="false" IsReadOnly ="True" HorizontalAlignment="Left" Height="472" Margin="37,138,0,0" VerticalAlignment="Top" Width="572" HeadersVisibility="All" AutoGenerateColumns="False" SelectionMode="Single" CanUserResizeRows="False">
+
+
+
+        <TextBlock x:Name="lblIme" Margin="0,6,425,0" TextWrapping="Wrap" Text="Ime i Prezime" VerticalAlignment="Top" FontSize="30" HorizontalAlignment="Right"/>
+
+        <Grid x:Name="gridProstorija" Visibility="Hidden" Background="LightGray" HorizontalAlignment="Left" Height="675" Margin="100,54,0,0" VerticalAlignment="Top" Width="918">
+            <DataGrid x:Name="dataGridProstorija" CanUserAddRows="false" IsReadOnly ="True" HorizontalAlignment="Left" Height="527" Margin="37,138,0,0" VerticalAlignment="Top" Width="505" HeadersVisibility="All" AutoGenerateColumns="False" SelectionMode="Single" CanUserResizeRows="False">
                 <DataGrid.Columns>
 
                     <DataGridTextColumn x:Name="kolonaTip" Binding ="{Binding tipProstorije}" IsReadOnly="True" Header="tip"  Width="143" CanUserResize="False"/>
@@ -49,36 +43,155 @@
                     <DataGridTextColumn x:Name="Sprat" Binding="{Binding sprat}" IsReadOnly="True" Header="sprat" Width="143" CanUserResize="False"/>
                 </DataGrid.Columns>
             </DataGrid>
-            <Button x:Name="btnDodajProstoriju"  Content="Dodaj Prostoriju" HorizontalAlignment="Left" Margin="680,138,0,0" VerticalAlignment="Top" Width="221" Height="49" Click="btnDodajProstoriju_Click"  />
-            <Button x:Name="btnIzmeniProstoriju"  Content="Izmeni Prostoriju" HorizontalAlignment="Left" Margin="680,224,0,0" VerticalAlignment="Top" Width="221" Height="48"  IsEnabled="True" Click="btnIzmeniProstoriju_Click"/>
-            <Button x:Name="btnIzbrisiProstoriju"  Content="Izbrisi Prostoriju" HorizontalAlignment="Left" Margin="680,312,0,0" VerticalAlignment="Top" Width="221" Height="48" Click="btnIzbrisiProstoriju_Click"/>
-            <Button x:Name="btnPogledajInventar"  Content="Pogledaj Inventar" HorizontalAlignment="Left" Margin="680,402,0,0" VerticalAlignment="Top" Width="221" Height="48" Click="btnPogledajInventar_Click"/>
-            <Button x:Name="btnZakaziRenoviranje" Content="Zakazi renoviranje" HorizontalAlignment="Left" Margin="680,494,0,0" VerticalAlignment="Top" Width="221" Height="48" Click="btnZakaziRenoviranje_Click"/>
+            <Button x:Name="btnDodajProstoriju" HorizontalAlignment="Left" Margin="619,138,0,0" VerticalAlignment="Top" Width="250" Height="48" Click="btnDodajProstoriju_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="add.png" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="0.8" ScaleY="0.8"/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <TextBlock Text="Dodaj prostoriju" FontSize="20" Margin="15,0,0,0" Height="28" Width="176"/>
+                </StackPanel>
+            </Button>
+            <Button x:Name="btnIzmeniProstoriju" HorizontalAlignment="Left" Margin="619,224,0,0" VerticalAlignment="Top" Width="250" Height="48"  IsEnabled="True" Click="btnIzmeniProstoriju_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Image RenderTransformOrigin="0.5,0.5" Source="edit.png">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="0.8" ScaleY="0.8"/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <TextBlock Text="Izmeni prostoriju" FontSize="18" Margin="15,0,0,0" Height="28" Width="178"/>
+                </StackPanel>
+            </Button>
+            <Button x:Name="btnIzbrisiProstoriju" HorizontalAlignment="Left" Margin="619,312,0,0" VerticalAlignment="Top" Width="250" Height="48" Click="btnIzbrisiProstoriju_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Image  RenderTransformOrigin="0.5,0.5" Source="delete.png">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="0.8" ScaleY="0.8"/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <TextBlock Text="Izbriši prostoriju" FontSize="18" Margin="15,0,0,0" Height="28" Width="176"/>
+                </StackPanel>
+            </Button>
+            <Button x:Name="btnPogledajInventar" HorizontalAlignment="Left" Margin="619,402,0,0" VerticalAlignment="Top" Width="250" Height="48" Click="btnPogledajInventar_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Image  RenderTransformOrigin="0.5,0.5" Source="inventory.png">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="0.8" ScaleY="0.8"/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <TextBlock Text="Pogledaj inventar" FontSize="18" Margin="15,0,0,0" Height="28" Width="176"/>
+                </StackPanel>
+            </Button>
+            <Button x:Name="btnZakaziRenoviranje" HorizontalAlignment="Left" Margin="619,494,0,0" VerticalAlignment="Top" Width="250" Height="48" Click="btnZakaziRenoviranje_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="clock.png" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="0.8" ScaleY="0.8"/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <TextBlock Text="Zakaži renoviranje" FontSize="18" Margin="15,0,0,0" Height="28" Width="176"/>
+                </StackPanel>
+            </Button>
+            <Button x:Name="btnIzvestaj" HorizontalAlignment="Left" Margin="619,585,0,0" VerticalAlignment="Top" Width="250" Height="48">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="diagram.png" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="0.8" ScaleY="0.8"/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <TextBlock Text="Izveštaj o zauzetosti" FontSize="18" Margin="15,0,0,0" Height="28" Width="176"/>
+                </StackPanel>
+            </Button>
+            <TextBlock x:Name="textBlock_Copy" FontSize="25" FontStyle="Italic" FontWeight="Bold" HorizontalAlignment="Left" Margin="37,37,0,0" TextWrapping="Wrap" Text="Prikaz prostorija" VerticalAlignment="Top" TextDecorations="Underline"/>
+            <TextBlock x:Name="textBlock1_Copy2" FontSize="15" HorizontalAlignment="Left" Margin="37,94,0,0" TextWrapping="Wrap" Text="Unesite broj prostorije koju želite da pretražite:" VerticalAlignment="Top"/>
+            <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="371,91,0,0" TextWrapping="Wrap" Text=""  VerticalAlignment="Top" Width="171"/>
 
         </Grid>
 
         <Grid x:Name="gridDodajProstoriju" Visibility="Hidden">
-            <Rectangle Fill="LightGray" HorizontalAlignment="Left" Height="638" Stroke="Black" VerticalAlignment="Top" Width="947" Margin="70,59,-984,-399"/>
-            <Button x:Name="btnPotvrdi" Content="Potvrdi" HorizontalAlignment="Left" Margin="243,515,-285,-245" VerticalAlignment="Top" Width="75" Height="28" Click="btnPotvrdi_Click"/>
-            <Button x:Name="btnOtkazi" Content="Otkazi" HorizontalAlignment="Left" Margin="731,515,-773,-245" VerticalAlignment="Top" Width="75" Height="28"  Click="btnOtkazi_Click"/>
-            <TextBlock x:Name="lblTipProstorije" HorizontalAlignment="Left" Margin="136,152,-233,0" TextWrapping="Wrap" Text="Izaberite tip prostorije: " VerticalAlignment="Top" Height="16" Width="130"/>
-            <TextBlock x:Name="lblBrojSobe" HorizontalAlignment="Left" Margin="136,195,-233,0" TextWrapping="Wrap" Text="Unesite broj prostorije: " VerticalAlignment="Top" Height="16" Width="130"/>
-            <TextBlock x:Name="lblSprat" HorizontalAlignment="Left" Margin="136,238,-233,0" TextWrapping="Wrap" Text="Sprat: " VerticalAlignment="Top" Height="16" Width="130"/>
-            <ComboBox x:Name="cbTipProstorije" HorizontalAlignment="Left" Margin="290,152,-377,0" VerticalAlignment="Top" Width="120">
+            <Rectangle Fill="LightGray" HorizontalAlignment="Left" Height="688" Stroke="Black" VerticalAlignment="Top" Width="918" Margin="100,51,0,0"/>
+            <Rectangle  HorizontalAlignment="Left" Height="500" Margin="118,142,0,0" Stroke="Black" VerticalAlignment="Top" Width="608"/>
+            <Button x:Name="btnPotvrdi" HorizontalAlignment="Left" Margin="780,308,0,0" VerticalAlignment="Top" Width="209" Height="53" Click="btnPotvrdi_Click" RenderTransformOrigin="0.5,0.5">
+
+                <StackPanel Orientation="Horizontal" Width="170">
+                    <Image Source="add.png" RenderTransformOrigin="0.5,0.5" >
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <TextBlock FontSize="13" Margin="0,0,0,0" Text="Dodaj prostoriju" Height="18" Width="116"/>
+                </StackPanel>
+            </Button>
+            <Button x:Name="btnOtkazi" HorizontalAlignment="Left" Margin="780,406,0,0" VerticalAlignment="Top" Width="209" Height="53"  Click="btnOtkazi_Click">
+                <StackPanel Orientation="Horizontal" Width="170">
+                    <Image  RenderTransformOrigin="0.5,0.5" Source="forbidden.png" >
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <TextBlock FontSize="13" Margin="0,0,0,0" Text="Otkaži dodavanje" Height="18" Width="116"/>
+                </StackPanel>
+            </Button>
+            <TextBlock x:Name="lblTipProstorije" FontSize="20" HorizontalAlignment="Left" Margin="176,528,0,0" TextWrapping="Wrap" Text="Izaberite tip nove prostorije: " VerticalAlignment="Top" Height="32" Width="269"/>
+            <TextBlock x:Name="lblBrojSobe" FontSize="20" HorizontalAlignment="Left" Margin="176,308,0,0" TextWrapping="Wrap" Text="Unesite broj nove prostorije: " VerticalAlignment="Top" Height="28" Width="269"/>
+            <TextBlock x:Name="lblSprat" FontSize="20" HorizontalAlignment="Left" Margin="176,418,0,0" TextWrapping="Wrap" Text="Unesite sprat nove prostorije: " VerticalAlignment="Top" Height="26" Width="269"/>
+            <ComboBox x:Name="cbTipProstorije" HorizontalAlignment="Left" Margin="501,528,0,0" VerticalAlignment="Top" Width="168" Height="32">
                 <ComboBoxItem Content="Bolnicka soba"/>
                 <ComboBoxItem Content="Operaciona sala"/>
                 <ComboBoxItem Content="Soba za pregled"/>
             </ComboBox>
-            <TextBox x:Name="unosBrojaProstorije" HorizontalAlignment="Left" Height="23" Margin="290,195,-377,0" TextWrapping="Wrap" Width="120" VerticalAlignment="Top"/>
-            <TextBox x:Name="unosSprata" HorizontalAlignment="Left" Height="23" Margin="290,238,-377,0" TextWrapping="Wrap" Width="120" VerticalAlignment="Top"/>
+            <TextBox x:Name="unosBrojaProstorije" HorizontalAlignment="Left" Height="28" Margin="496,308,0,0" TextWrapping="Wrap" Width="167" VerticalAlignment="Top"/>
+            <TextBox x:Name="unosSprata" HorizontalAlignment="Left" Height="26" Margin="496,418,0,0" TextWrapping="Wrap" Width="167" VerticalAlignment="Top"/>
             <TextBlock x:Name="lblBrojPostojiDodaj" Foreground="Red" Visibility="Hidden" HorizontalAlignment="Left" Margin="290,217,-569,0" TextWrapping="Wrap" Text="*prostorija sa ovim brojem vec postoji" VerticalAlignment="Top" Width="312" FontStyle="Italic"/>
             <TextBlock x:Name="lblNijePopunjenoDodaj" Foreground="Red" Visibility="Hidden" HorizontalAlignment="Left" Margin="136,285,-415,-3" TextWrapping="Wrap" Text="*sva polja moraju biti popunjena!" VerticalAlignment="Top" Width="312" FontStyle="Italic"/>
             <TextBlock x:Name="lblNijePopunjenoIspravnoDodaj" Foreground="Red" Visibility="Hidden" HorizontalAlignment="Left" Margin="136,285,-415,-3" TextWrapping="Wrap" Text="*sva polja moraju biti ispravno popunjena!" VerticalAlignment="Top" Width="312" FontStyle="Italic"/>
+            <TextBlock x:Name="textBlockA" FontSize="30" FontWeight="Bold" HorizontalAlignment="Left" Margin="176,188,0,0" TextWrapping="Wrap" Text="Dodajte novu prostoriju:" VerticalAlignment="Top"/>
         </Grid>
 
         <Grid x:Name="gridPogledajInventar" Visibility="Hidden">
-            <Rectangle Fill="LightGray" HorizontalAlignment="Left" Height="638" Stroke="Black" VerticalAlignment="Top" Width="947" Margin="70,59,-984,-399"/>
-            <DataGrid x:Name="dataGridInventarProstorije" HorizontalAlignment="Left" Height="474" Margin="135,186,-710,-362" VerticalAlignment="Top" HeadersVisibility="All" AutoGenerateColumns="False" SelectionMode="Single" CanUserResizeRows="False" CanUserAddRows="False">
+            <Rectangle Fill="LightGray" HorizontalAlignment="Left" Height="685" Stroke="Black" VerticalAlignment="Top" Width="919" Margin="98,54,0,0"/>
+            <DataGrid x:Name="dataGridInventarProstorije" HorizontalAlignment="Left" Height="474" Margin="173,204,0,0" VerticalAlignment="Top" HeadersVisibility="All" AutoGenerateColumns="False" SelectionMode="Single" CanUserResizeRows="False" CanUserAddRows="False">
                 <DataGrid.Columns>
 
                     <DataGridTextColumn x:Name="stavkaNazivProstorija" Binding ="{Binding naziv}" IsReadOnly="True" Header="naziv"  Width="143" CanUserResize="False"/>
@@ -86,45 +199,134 @@
                     <DataGridTextColumn x:Name="stavkaKolicinaProstorija" Binding="{Binding kolicina}" IsReadOnly="True" Header="kolicina" Width="143" CanUserResize="False"/>
                 </DataGrid.Columns>
             </DataGrid>
-            <Button x:Name="btnOtkaziPrikaz" Content="Otkaži" HorizontalAlignment="Left" Margin="744,580,-934,-314" VerticalAlignment="Top" Width="223" Click="btnOtkaziPrikaz_Click"/>
-            <Button x:Name="btnPremestiUDruguProstoriju" Content="Premesti u drugu prostoriju" HorizontalAlignment="Left" Margin="744,434,-934,-168" VerticalAlignment="Top" Width="223" Click="btnPremestiUDruguProstoriju_Click"/>
+            <Button x:Name="btnOtkaziPrikaz" HorizontalAlignment="Left" Margin="706,340,0,0" VerticalAlignment="Top" Width="261" Click="btnOtkaziPrikaz_Click" Height="48">
+                <StackPanel Orientation="Horizontal" Width="261">
+                    <Image Source="back.png" RenderTransformOrigin="0.5,0.5" >
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <TextBlock FontSize="15" Margin="50,0,0,0" Text="Povratak" Height="19" Width="116"/>
+                </StackPanel>
+            </Button>
+            <Button x:Name="btnPremestiUDruguProstoriju" HorizontalAlignment="Left" Margin="706,226,0,0" VerticalAlignment="Top" Width="261" Click="btnPremestiUDruguProstoriju_Click" Height="48">
+                <StackPanel Orientation="Horizontal" Width="261">
+                    <Image Source="transfer.png" RenderTransformOrigin="0.5,0.5" >
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <TextBlock FontSize="15" Margin="0,0,0,0" Text="Premesti u drugu prostoriju" Height="24" Width="202"/>
+                </StackPanel>
+            </Button>
+            <TextBlock x:Name="textBlock9" FontSize="25" FontWeight="Bold" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Prikaz inventara za prostoriju:" VerticalAlignment="Top" Margin="173,118,0,0"/>
         </Grid>
 
         <Grid x:Name="gridPremestiIzProstorije" Visibility="Hidden">
-            <Rectangle Fill="LightGray" HorizontalAlignment="Left" Height="638" Stroke="Black" VerticalAlignment="Top" Width="947" Margin="70,59,-984,-399"/>
-            <TextBlock x:Name="textNaslov" FontSize="24" HorizontalAlignment="Left" Margin="140,155,-459,0" TextWrapping="Wrap" Text="Premesti stavku u prostoriju:" VerticalAlignment="Top" Width="352"/>
-            <TextBlock x:Name="labelaStavka" FontSize="20" HorizontalAlignment="Left" Margin="140,250,-333,0" TextWrapping="Wrap" Text="Stavka koja se premešta:" VerticalAlignment="Top" Width="271"/>
-            <TextBlock x:Name="labelaKolicina" FontSize="20" HorizontalAlignment="Left" Margin="140,320,-378,-49" TextWrapping="Wrap" Text="Količina:" VerticalAlignment="Top" Width="271"/>
-            <TextBlock x:Name="labelaSobaU" FontSize="20" HorizontalAlignment="Left" Margin="140,396,-378,-125" TextWrapping="Wrap" Text="Premesti u sobu:" VerticalAlignment="Top" Width="271"/>
-            <Button x:Name="btnPremestiU" Content="Premesti" HorizontalAlignment="Left" Margin="160,594,-273,-328" VerticalAlignment="Top" Width="146" Click="btnPremestiU_Click"/>
-            <Button x:Name="btnOtkaziPremestanjeU" Content="Otkaži" HorizontalAlignment="Left" Margin="470,594,-581,-328" VerticalAlignment="Top" Width="144" Click="btnOtkaziPremestanjeU_Click"/>
-            <TextBox x:Name="textBoxStavkaZaPremestanjeU" HorizontalAlignment="Left" Height="24" Margin="409,251,-555,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="179"/>
-            <TextBox x:Name="textBoxKolicinaZaPremestanjeU" HorizontalAlignment="Left" Height="24" Margin="416,320,-555,-46" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="172"/>
-            <ComboBox x:Name="comboBoxProstorijeZaPremestanjeU" SelectedValuePath="Key" DisplayMemberPath="Value" HorizontalAlignment="Left" Margin="416,396,-555,-125" VerticalAlignment="Top" Width="172" Height="27"/>
-            <DatePicker x:Name="datumPocetkaU" HorizontalAlignment="Left" Margin="409,468,-510,-215" VerticalAlignment="Top" Width="134" Height="45"/>
-            <TextBlock x:Name="textStaticka1U" FontSize="20" HorizontalAlignment="Left" Margin="140,481,-328,-215" TextWrapping="Wrap" Text="Zauzmi prostoriju od:" VerticalAlignment="Top" Height="32" Width="221"/>
-            <TextBlock x:Name="textStaticka2U" FontSize="20" HorizontalAlignment="Left" Margin="579,481,-619,-210" TextWrapping="Wrap" Text="do" VerticalAlignment="Top" Width="73"/>
-            <DatePicker x:Name="datumKrajaU" HorizontalAlignment="Left" Margin="657,468,-758,-215" VerticalAlignment="Top" Width="134" Height="45"/>
+            <Rectangle Fill="LightGray" HorizontalAlignment="Left" Height="687" Stroke="Black" VerticalAlignment="Top" Width="922" Margin="96,52,0,0"/>
+            <TextBlock x:Name="textNaslov" FontSize="24" HorizontalAlignment="Left" Margin="195,153,0,0" TextWrapping="Wrap" Text="Premesti stavku u prostoriju:" VerticalAlignment="Top" Width="352"/>
+            <TextBlock x:Name="labelaStavka" FontSize="20" HorizontalAlignment="Left" Margin="195,250,0,0" TextWrapping="Wrap" Text="Stavka koja se premešta:" VerticalAlignment="Top" Width="271"/>
+            <TextBlock x:Name="labelaKolicina" FontSize="20" HorizontalAlignment="Left" Margin="195,320,0,0" TextWrapping="Wrap" Text="Količina:" VerticalAlignment="Top" Width="271"/>
+            <TextBlock x:Name="labelaSobaU" FontSize="20" HorizontalAlignment="Left" Margin="195,396,0,0" TextWrapping="Wrap" Text="Premesti u sobu:" VerticalAlignment="Top" Width="271"/>
+            <Button x:Name="btnPremestiU" HorizontalAlignment="Left" Margin="228,594,0,0" VerticalAlignment="Top" Width="212" Click="btnPremestiU_Click" Height="48">
+                <StackPanel Orientation="Horizontal" Width="212">
+                    <Image Source="transfer.png" RenderTransformOrigin="0.5,0.5" >
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <TextBlock FontSize="20" Margin="10,0,0,0" Text="Premesti" Height="28" Width="116"/>
+                </StackPanel>
+            </Button>
+
+            <Button x:Name="btnOtkaziPremestanjeU" HorizontalAlignment="Left" Margin="599,594,0,0" VerticalAlignment="Top" Width="212" Click="btnOtkaziPremestanjeU_Click" Height="48">
+                <StackPanel Orientation="Horizontal" Width="212">
+                    <Image Source="forbidden.png" RenderTransformOrigin="0.5,0.5" >
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <TextBlock FontSize="20" Margin="10,0,0,0" Text="Otkaži" Height="28" Width="116"/>
+                </StackPanel>
+            </Button>
+            <TextBox x:Name="textBoxStavkaZaPremestanjeU" HorizontalAlignment="Left" Height="24" Margin="464,251,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="179"/>
+            <TextBox x:Name="textBoxKolicinaZaPremestanjeU" HorizontalAlignment="Left" Height="24" Margin="471,320,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="172"/>
+            <ComboBox x:Name="comboBoxProstorijeZaPremestanjeU" SelectedValuePath="Key" DisplayMemberPath="Value" HorizontalAlignment="Left" Margin="471,396,0,0" VerticalAlignment="Top" Width="172" Height="27"/>
+            <DatePicker x:Name="datumPocetkaU" HorizontalAlignment="Left" Margin="464,468,0,0" VerticalAlignment="Top" Width="134" Height="45"/>
+            <TextBlock x:Name="textStaticka1U" FontSize="20" HorizontalAlignment="Left" Margin="195,481,0,0" TextWrapping="Wrap" Text="Zauzmi prostoriju od:" VerticalAlignment="Top" Height="32" Width="221"/>
+            <TextBlock x:Name="textStaticka2U" FontSize="20" HorizontalAlignment="Left" Margin="634,481,0,0" TextWrapping="Wrap" Text="do" VerticalAlignment="Top" Width="73"/>
+            <DatePicker x:Name="datumKrajaU" HorizontalAlignment="Left" Margin="712,468,0,0" VerticalAlignment="Top" Width="134" Height="45"/>
+            <Rectangle HorizontalAlignment="Left" Height="432" Margin="161,115,0,0" Stroke="Black" VerticalAlignment="Top" Width="780"/>
 
         </Grid>
 
         <Grid x:Name="gridIzmeniProstoriju" Visibility="Hidden">
-            <Rectangle Fill="LightGray" HorizontalAlignment="Left" Height="638" Stroke="Black" VerticalAlignment="Top" Width="947" Margin="70,59,-984,-399"/>
-            <TextBlock x:Name="lblId" HorizontalAlignment="Left" Margin="146,135,-567,0" TextWrapping="Wrap" Text="id prostorije: " VerticalAlignment="Top" Height="54" Width="454" FontSize="30"/>
-            <TextBlock x:Name="lblBrojProstorije" HorizontalAlignment="Left" Margin="146,194,-331,0" TextWrapping="Wrap" Text="broj prostorije: " VerticalAlignment="Top" Height="54" Width="218" FontSize="30"/>
-            <TextBlock x:Name="lblSpratSobe" HorizontalAlignment="Left" Margin="146,253,-285,-9" TextWrapping="Wrap" Text="sprat: " VerticalAlignment="Top" Height="54" Width="172" FontSize="30"/>
-            <TextBlock x:Name="lblDostupnost" HorizontalAlignment="Left" Margin="146,312,-313,-68" TextWrapping="Wrap" Text="dostupnost: " VerticalAlignment="Top" Height="54" Width="200" FontSize="30"/>
+            <Rectangle Fill="LightGray" HorizontalAlignment="Left" Height="688" Stroke="Black" VerticalAlignment="Top" Width="947" Margin="70,51,0,0"/>
+            <Rectangle  HorizontalAlignment="Left" Height="454" Margin="132,109,0,0" Stroke="Black" VerticalAlignment="Top" Width="608"/>
 
-            <Button x:Name="btnPotvrdiIzmenu" Content="Potvrdi" HorizontalAlignment="Left" Margin="243,515,-285,-245" VerticalAlignment="Top" Width="75" Height="28" Click="btnPotvrdiIzmenu_Click"/>
-            <Button x:Name="btnOtkaziIzmenu" Content="Otkazi" HorizontalAlignment="Left" Margin="731,515,-773,-245" VerticalAlignment="Top" Width="75" Height="28"  Click="btnOtkaziIzmeni_Click"/>
-            <TextBox x:Name="txtBrojProstorije" HorizontalAlignment="Center" Height="35" Margin="424,194,-547,0" TextWrapping="Wrap" Width="156" VerticalAlignment="Top"/>
-            <TextBox x:Name="txtSpratProstorije" HorizontalAlignment="Center" Height="36" Margin="424,253,-547,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="156"/>
-            <ComboBox x:Name="cbDostupnostProstorije" HorizontalAlignment="Left" Margin="424,324,-547,-54" VerticalAlignment="Top" Width="156" Height="28">
+            <TextBlock x:Name="lblBrojProstorije" HorizontalAlignment="Left" Margin="182,242,0,0" TextWrapping="Wrap" Text="Broj prostorije: " VerticalAlignment="Top" Height="41" Width="218" FontSize="30"/>
+            <TextBlock x:Name="lblSpratSobe" HorizontalAlignment="Left" Margin="182,312,0,0" TextWrapping="Wrap" Text="Sprat prostorije: " VerticalAlignment="Top" Height="39" Width="237" FontSize="30"/>
+            <TextBlock x:Name="lblDostupnost" HorizontalAlignment="Left" Margin="182,382,0,0" TextWrapping="Wrap" Text="Dostupnost prostorije: " VerticalAlignment="Top" Height="48" Width="305" FontSize="30"/>
+
+            <Button x:Name="btnPotvrdiIzmenu" HorizontalAlignment="Left" Margin="781,230,0,0" VerticalAlignment="Top" Width="185" Height="53" Click="btnPotvrdiIzmenu_Click" RenderTransformOrigin="0.5,0.5">
+
+                <StackPanel Orientation="Horizontal" Width="170">
+                    <Image  RenderTransformOrigin="0.5,0.5" Source="save.png" >
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <TextBlock FontSize="13" Margin="0,0,0,0" Text="Sačuvaj izmene" Height="18" Width="116"/>
+                </StackPanel>
+            </Button>
+            <Button x:Name="btnOtkaziIzmenu" HorizontalAlignment="Left" Margin="781,328,0,0" VerticalAlignment="Top" Width="185" Height="53"  Click="btnOtkaziIzmeni_Click">
+                <StackPanel Orientation="Horizontal" Width="170">
+                    <Image  RenderTransformOrigin="0.5,0.5" Source="forbidden.png" >
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <TextBlock FontSize="13" Margin="0,0,0,0" Text="Odbaci izmene" Height="18" Width="116"/>
+                </StackPanel>
+            </Button>
+            <TextBox x:Name="txtBrojProstorije" HorizontalAlignment="Center" FontSize="15" Height="38" Margin="494,245,319,0" TextWrapping="Wrap" Width="205" VerticalAlignment="Top" HorizontalContentAlignment="Center"/>
+            <TextBox x:Name="txtSpratProstorije" HorizontalContentAlignment="Center" FontSize="15" HorizontalAlignment="Center" Height="39" Margin="494,312,319,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="205"/>
+            <ComboBox x:Name="cbDostupnostProstorije" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="494,382,0,0" VerticalAlignment="Top" Width="205" Height="39">
                 <ComboBoxItem Content="Slobodna"/>
                 <ComboBoxItem Content="Zauzeta"/>
             </ComboBox>
-            <TextBlock x:Name="lblTipProstorijeIzmena" HorizontalAlignment="Left" Margin="146,371,-313,-127" TextWrapping="Wrap" Text="tip prostorije: " VerticalAlignment="Top" Height="54" Width="200" FontSize="30"/>
-            <ComboBox x:Name="cbTipProstorijeIzmena" HorizontalAlignment="Left" Margin="424,382,-547,-112" VerticalAlignment="Top" Width="156" Height="28">
+            <TextBlock x:Name="lblTipProstorijeIzmena" HorizontalAlignment="Left" Margin="182,452,0,0" TextWrapping="Wrap" Text="Tip prostorije: " VerticalAlignment="Top" Height="54" Width="200" FontSize="30"/>
+            <ComboBox x:Name="cbTipProstorijeIzmena" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="494,452,0,0" VerticalAlignment="Top" Width="205" Height="39">
                 <ComboBoxItem Content="Bolnicka soba"/>
                 <ComboBoxItem Content="Operaciona sala"/>
                 <ComboBoxItem Content="Soba za odmor"/>
@@ -132,11 +334,12 @@
             <TextBlock x:Name="lblBrojPostoji" Foreground="Red" Visibility="Hidden" HorizontalAlignment="Left" Margin="424,229,-703,0" TextWrapping="Wrap" Text="*prostorija sa ovim brojem vec postoji" VerticalAlignment="Top" Width="312" FontStyle="Italic"/>
             <TextBlock x:Name="lblNijePopunjenoIzmeni" Foreground="Red" Visibility="Hidden" HorizontalAlignment="Left" Margin="146,430,-425,-148" TextWrapping="Wrap" Text="*sva polja moraju biti popunjena!" VerticalAlignment="Top" Width="312" FontStyle="Italic"/>
             <TextBlock x:Name="lblNijePopunjenoIspravnoIzmeni" Foreground="Red" Visibility="Hidden" HorizontalAlignment="Left" Margin="146,430,-425,-148" TextWrapping="Wrap" Text="*sva polja moraju biti popunjena!" VerticalAlignment="Top" Width="312" FontStyle="Italic"/>
+            <TextBlock x:Name="textBlockI" FontSize="30" FontWeight="Bold" HorizontalAlignment="Left" Margin="182,147,0,0" TextWrapping="Wrap" Text="Izmenite prostoriju:" VerticalAlignment="Top"/>
         </Grid>
 
         <Grid x:Name="gridZakaziProstorijuZaRenoviranje" Visibility="Hidden">
-            <Rectangle Fill="LightGray" HorizontalAlignment="Left" Height="638" Stroke="Black" VerticalAlignment="Top" Width="947" Margin="70,59,-984,-399"/>
-            <DataGrid x:Name="dataGridProstorijeZaRenoviranje" HorizontalAlignment="Left" Height="486" Margin="113,180,-448,-368" VerticalAlignment="Top" Width="368" CanUserAddRows="False" SelectionMode="Extended" AutoGenerateColumns="False">
+            <Rectangle Fill="LightGray" HorizontalAlignment="Left" Height="689" Stroke="Black" VerticalAlignment="Top" Width="925" Margin="92,50,0,0"/>
+            <DataGrid x:Name="dataGridProstorijeZaRenoviranje" HorizontalAlignment="Left" Height="486" Margin="152,180,0,0" VerticalAlignment="Top" Width="368" CanUserAddRows="False" SelectionMode="Extended" AutoGenerateColumns="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn x:Name="brojRenoviranje" Binding="{Binding broj}" IsReadOnly="True" Header="broj" Width="143" CanUserResize="False"/>
                     <DataGridTextColumn x:Name="spratRenoviranje" Binding="{Binding sprat}" IsReadOnly="True" Header="sprat" Width="143" CanUserResize="False"/>
@@ -150,34 +353,17 @@
             <TextBox x:Name="textBoxRazlogRenoviranja" Background="White" HorizontalAlignment="Left" Height="128" Margin="573,406,-927,-236" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="387"/>
             <Button x:Name="btnZakaziRenoviranjeProstorije" Content="Zakazi" HorizontalAlignment="Left" Margin="573,601,-700,-368" VerticalAlignment="Top" Width="160" Height="65" Click="btnZakaziRenoviranjeProstorije_Click"/>
             <Button x:Name="btnOtkaziRenoviranjeProstorije" Content="Otkazi" HorizontalAlignment="Left" Margin="800,598,-927,-368" VerticalAlignment="Top" Width="160" Height="68" Click="btnOtkaziRenoviranjeProstorije_Click"/>
-            <TextBlock x:Name="textBlock4_Copy" FontSize="24" HorizontalAlignment="Left" Margin="113,118,-448,0" TextWrapping="Wrap" Text="Izaberite prostorije za renoviranje:" VerticalAlignment="Top" Height="36" Width="368"/>
+            <TextBlock x:Name="textBlock4_Copy" FontSize="24" HorizontalAlignment="Left" Margin="152,109,0,0" TextWrapping="Wrap" Text="Izaberite prostorije za renoviranje:" VerticalAlignment="Top" Height="36" Width="368"/>
         </Grid>
 
-        <Grid Background="LightGray" HorizontalAlignment="Left" Height="739" VerticalAlignment="Top" Width="78" Grid.ColumnSpan="3" Grid.RowSpan="3">
+        <Grid  Visibility="Visible" HorizontalAlignment="Left" Height="739" VerticalAlignment="Top" Width="78" Grid.ColumnSpan="3" Grid.RowSpan="3">
 
-            <ToggleButton x:Name = "tbProstorija"  
-              Margin = "0,173,14,467" Style="{StaticResource checkedToggle}"
-            Width = "64" Height="66" HorizontalAlignment = "Center" BorderThickness="0" Click="tbProstorija_Click" Checked="tbProstorija_Checked" Unchecked="tbProstorija_Unchecked">
-                <ToggleButton.Background>
-                    <ImageBrush ImageSource="patient_room.png"/>
-                </ToggleButton.Background>
-            </ToggleButton>
-
-
-            <ToggleButton x:Name = "tbInventar"   
-                Margin = "0,239,14,401"
-                Width = "64" Height="66" HorizontalAlignment = "Right" BorderThickness="0" Unchecked="tbInventar_Unchecked" Checked="tbInventar_Checked">
-                <ToggleButton.Background>
-                    <ImageBrush ImageSource="logo.png" />
-                </ToggleButton.Background>
-            </ToggleButton>
-
-            <Grid x:Name="gridInventar" Visibility="Hidden" Background="LightGray" HorizontalAlignment="Left" Height="640" Margin="64,59,-935,0" VerticalAlignment="Top" Width="949">
+            <Grid x:Name="gridInventar" Visibility="Hidden" Background="LightGray" HorizontalAlignment="Left" Height="685" Margin="98,54,-940,0" VerticalAlignment="Top" Width="920">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="68*"/>
                     <ColumnDefinition Width="407*"/>
                 </Grid.ColumnDefinitions>
-                <DataGrid x:Name="dataGridInventar" CanUserAddRows="false" IsReadOnly ="True" HorizontalAlignment="Left" Height="423" Margin="37,181,0,0" VerticalAlignment="Top" Width="607" HeadersVisibility="All" AutoGenerateColumns="False" SelectionMode="Single" CanUserResizeRows="False" Grid.ColumnSpan="2">
+                <DataGrid x:Name="dataGridInventar" CanUserAddRows="false" IsReadOnly ="True" HorizontalAlignment="Left" Height="420" Margin="85,226,0,0" VerticalAlignment="Top" Width="519" HeadersVisibility="All" AutoGenerateColumns="False" SelectionMode="Single" CanUserResizeRows="False" Grid.ColumnSpan="2">
                     <DataGrid.Columns>
 
                         <DataGridTextColumn x:Name="stavkaNaziv" Binding ="{Binding naziv}" IsReadOnly="True" Header="naziv"  Width="143" CanUserResize="False"/>
@@ -186,78 +372,250 @@
                     </DataGrid.Columns>
                 </DataGrid>
                 <!--<Button x:Name="btnDodajStavku" Content="Dodaj stavku" HorizontalAlignment="Left" Margin="318,37,0,0" VerticalAlignment="Top" Width="110" Click="btnDodajStavku_Click"/>!-->
-                <Button x:Name="btnIzmeniStavku" Content="Izmeni stavku" HorizontalAlignment="Left" Margin="570,300,0,0" VerticalAlignment="Top" Width="164" Click="btnIzmeniStavku_Click" Grid.Column="1"/>
+                <Button x:Name="btnIzmeniStavku" HorizontalAlignment="Left" Height="48" Margin="548,318,0,0" VerticalAlignment="Top" Width="201" Click="btnIzmeniStavku_Click" Grid.Column="1">
+                    <StackPanel Orientation="Horizontal" Width="169">
+                        <Image  RenderTransformOrigin="0.5,0.5" Source="edit.png" >
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                        <TextBlock FontSize="13" Margin="0,0,0,0" Text="Izmeni stavku" Height="18" Width="116"/>
+                    </StackPanel>
+                </Button>
 
-                <Button x:Name="btnDodajStavku" Content="Dodaj stavku" Margin="570,181,79,427" BorderThickness="0" Click="btnDodajStavku_Click" Grid.Column="1" />
+                <Button x:Name="btnDodajStavku" Margin="548,226,39,411"  Click="btnDodajStavku_Click" Grid.Column="1" Height="48">
+                    <StackPanel Orientation="Horizontal">
+                        <Image  RenderTransformOrigin="0.5,0.5" Source="add.png" >
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                        <TextBlock FontSize="13" Margin="0,0,0,0" Text="Dodaj stavku" Height="18" Width="116"/>
+                    </StackPanel>
+                </Button>
 
 
-                <Button x:Name="btnObrisiStavku" Content="Izbriši Stavku" HorizontalAlignment="Left" Margin="570,404,0,0" VerticalAlignment="Top" Width="164" Click="btnObrisiStavku_Click" Grid.Column="1"/>
-                <Button x:Name="btnPremestiUProstoriju" Content="Premesti u prostoriju" HorizontalAlignment="Left" Margin="570,490,0,0" VerticalAlignment="Top" Width="164" Click="btnPremestiUProstoriju_Click" Grid.Column="1"/>
-                <Button x:Name="btnPogledajProstorije" Content="Prikazi Prostorije" HorizontalAlignment="Left" Margin="570.5,572,0,0" VerticalAlignment="Top" Width="164" Click="btnPogledajProstorije_Click" Grid.Column="1"/>
-                <TextBlock x:Name="textBlock2" FontSize="20" HorizontalAlignment="Left" Margin="37,28,0,0" TextWrapping="Wrap" Text="Prikazi samo: " VerticalAlignment="Top" Grid.ColumnSpan="2" Width="136"/>
-                <ComboBox x:Name="comboBoxFiltrirajStavku" Grid.Column="1" HorizontalAlignment="Left" Margin="69,30,0,0" VerticalAlignment="Top" Width="120">
+                <Button x:Name="btnObrisiStavku" Height="48" HorizontalAlignment="Left" Margin="548,416,0,0" VerticalAlignment="Top" Width="201" Click="btnObrisiStavku_Click" Grid.Column="1">
+                    <StackPanel Orientation="Horizontal" Width="170">
+                        <Image  RenderTransformOrigin="0.5,0.5" Source="delete.png" >
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                        <TextBlock FontSize="13" Margin="0,0,0,0" Text="Izbriši Stavku" Height="18" Width="116"/>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="btnPremestiUProstoriju" Height="48" HorizontalAlignment="Left" Margin="548,506,0,0" VerticalAlignment="Top" Width="201" Click="btnPremestiUProstoriju_Click" Grid.Column="1">
+                    <StackPanel Orientation="Horizontal" Width="170">
+                        <Image  RenderTransformOrigin="0.5,0.5" Source="transfer.png" >
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                        <TextBlock FontSize="13" Margin="0,0,0,0" Text="Premesti u prostoriju" Height="18" Width="125"/>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="btnPogledajProstorije" Height="48" HorizontalAlignment="Left" Margin="548,594,0,0" VerticalAlignment="Top" Width="201" Click="btnPogledajProstorije_Click" Grid.Column="1">
+                    <StackPanel Orientation="Horizontal" Width="170">
+                        <Image  RenderTransformOrigin="0.5,0.5" Source="inventory.png" >
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                        <TextBlock FontSize="13" Margin="0,0,0,0" Text="Prikaži prostorije" Height="18" Width="116"/>
+                    </StackPanel>
+                </Button>
+                <TextBlock x:Name="textBlock2" FontSize="20" HorizontalAlignment="Left" Margin="85,85,0,0" TextWrapping="Wrap" Text="Prikaži samo: " VerticalAlignment="Top" Grid.ColumnSpan="2" Width="142"/>
+                <ComboBox x:Name="comboBoxFiltrirajStavku" Grid.Column="1" HorizontalAlignment="Left" Margin="124,87,0,0" VerticalAlignment="Top" Width="126">
                     <ComboBoxItem Content="Dinamičku opremu"/>
                     <ComboBoxItem Content="Statičku opremu"/>
                     <ComboBoxItem Content="Prikazi sve"/>
                 </ComboBox>
-                <Button x:Name="btnPonistiFiltriranje" Content="Ponisti filtriranje" Grid.Column="1" HorizontalAlignment="Left" Margin="238,28,0,0" VerticalAlignment="Top" Width="158" Click="btnPonistiFiltriranje_Click"/>
-                <TextBlock x:Name="textBlock7" FontSize="20" HorizontalAlignment="Left" Margin="37,85,0,0" TextWrapping="Wrap" Text="Pretrazi stavku:" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="146"/>
-                <TextBox x:Name="textBoxPretraga" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="69,90,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-                <Button x:Name="btnPretraziStavku" Content="Pretrazi" Grid.Column="1" HorizontalAlignment="Left" Margin="238,139,0,0" VerticalAlignment="Top" Width="158" Height="34" Click="btnPretraziStavku_Click"/>
-                <TextBlock x:Name="textBlock8" FontSize="20" HorizontalAlignment="Left" Margin="37,141,0,0" TextWrapping="Wrap" Text="Sortiraj po:" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="136" Height="35"/>
-                <ComboBox x:Name="comboBoxKolicinaFiltriranje" Grid.Column="1" HorizontalAlignment="Left" Margin="69,141,0,0" VerticalAlignment="Top" Width="120">
+                <Button x:Name="btnPonistiFiltriranje" Grid.Column="1" HorizontalAlignment="Left" Margin="301,127,0,0" VerticalAlignment="Top" Width="165" Click="btnPonistiFiltriranje_Click">
+                    <StackPanel Orientation="Horizontal" Width="170">
+                        <Image  RenderTransformOrigin="0.5,0.5" Source="forbidden.png" >
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                        <TextBlock FontSize="13" Margin="0,0,0,0" Text="Poništi filtriranje" Height="18" Width="116"/>
+                    </StackPanel>
+                </Button>
+                <TextBlock x:Name="textBlock7" FontSize="20" HorizontalAlignment="Left" Margin="85,132,0,0" TextWrapping="Wrap" Text="Pretraži stavku:" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="152"/>
+                <TextBox x:Name="textBoxPretraga" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="124,137,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="126"/>
+                <Button x:Name="btnPretraziStavku" Grid.Column="1" HorizontalAlignment="Left" Margin="301,176,0,0" VerticalAlignment="Top" Width="165" Height="34" Click="btnPretraziStavku_Click">
+                    <StackPanel Orientation="Horizontal" Width="170">
+                        <TextBlock FontSize="13" Margin="35,0,0,0" Text="Pretraži" Height="18" Width="82"/>
+                        <Image  RenderTransformOrigin="0.5,0.5" Source="loupe.png" Width="21" >
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                    </StackPanel>
+                </Button>
+                <TextBlock x:Name="textBlock8" FontSize="20" HorizontalAlignment="Left" Margin="85,178,0,0" TextWrapping="Wrap" Text="Sortiraj po:" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="142" Height="35"/>
+                <ComboBox x:Name="comboBoxKolicinaFiltriranje" Grid.Column="1" HorizontalAlignment="Left" Margin="124,178,0,0" VerticalAlignment="Top" Width="126">
                     <ComboBoxItem Content="kolicina - rastuce"/>
                     <ComboBoxItem Content="kolicina - opadajuce"/>
                     <ComboBoxItem Content="naziv - rastuce"/>
                     <ComboBoxItem Content="naziv - opadajuce"/>
                 </ComboBox>
+                <TextBlock x:Name="textBlock19" FontSize="28" HorizontalAlignment="Left" Margin="85,24,0,0" TextWrapping="Wrap" Text="Prikaz inventara bolnice" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="333" FontWeight="Bold" FontStyle="Italic" TextDecorations="Underline"/>
 
             </Grid>
 
-            <Grid x:Name="gridStavkaUProstoriama" Visibility="Hidden" Background="LightGray" HorizontalAlignment="Left" Height="640" Margin="64,59,-935,0" VerticalAlignment="Top" Width="949">
-                <DataGrid x:Name="dataGridStavkaUProstorijama" CanUserAddRows="false" IsReadOnly ="True" HorizontalAlignment="Left" Height="433" Margin="37,171,0,0" VerticalAlignment="Top" Width="607" HeadersVisibility="All" AutoGenerateColumns="False" SelectionMode="Single" CanUserResizeRows="False">
+            <Grid x:Name="gridStavkaUProstoriama" Visibility="Hidden" Background="LightGray" HorizontalAlignment="Left" Height="685" Margin="98,54,-940,0" VerticalAlignment="Top" Width="920">
+                <DataGrid x:Name="dataGridStavkaUProstorijama" CanUserAddRows="false" IsReadOnly ="True" HorizontalAlignment="Left" Height="433" Margin="37,171,0,0" VerticalAlignment="Top" Width="569" HeadersVisibility="All" AutoGenerateColumns="False" SelectionMode="Single" CanUserResizeRows="False">
                     <DataGrid.Columns>
                         <DataGridTextColumn x:Name="prostorijaBrojUprostorijama" Binding ="{Binding broj}" IsReadOnly="True" Header="broj"  Width="143" CanUserResize="False"/>
                         <DataGridTextColumn x:Name="prostorijaSptratUprostorijama" Binding="{Binding sprat}" IsReadOnly="True" Header="sprat" Width="143" CanUserResize="False"/>
                         <DataGridTextColumn x:Name="prostorijaKolicinaUprostorijama" Binding="{Binding kolicina}" IsReadOnly="True" Header="kolicina" Width="143" CanUserResize="False"/>
                     </DataGrid.Columns>
                 </DataGrid>
-                <TextBlock x:Name="textBlockNaziv" FontSize="15"  HorizontalAlignment="Left" Margin="37,40,0,0" TextWrapping="Wrap" Text="Naziv stavke:" VerticalAlignment="Top" Height="28" Width="93"/>
-                <TextBlock x:Name="textBlockProizvodjac" FontSize="15"  HorizontalAlignment="Left" Margin="37,73,0,0" TextWrapping="Wrap" Text="Proizvođač:" VerticalAlignment="Top" Height="28" Width="93"/>
-                <TextBlock x:Name="textBlockKolicina" FontSize="15"  HorizontalAlignment="Left" Margin="37,106,0,0" TextWrapping="Wrap" Text="Količina:" VerticalAlignment="Top" Height="28" Width="93"/>
-                <TextBox x:Name="textBoxNazivStavkePoProstorijama" HorizontalAlignment="Left" Height="23" Margin="184,40,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-                <TextBox x:Name="textBoxProizvodjacStavkePoProstorijama" HorizontalAlignment="Left" Height="23" Margin="184,68,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-                <TextBox x:Name="textBoxKolicinaStavkePoProstorijama" HorizontalAlignment="Left" Height="23" Margin="184,105,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-                <Button x:Name="btnOtkaziPrikazNeki" Content="Otkazi" HorizontalAlignment="Left" Margin="692,324,0,0" VerticalAlignment="Top" Width="228" Click="btnOtkaziPrikazNeki_Click"/>
+                <TextBlock x:Name="textBlockNaziv" FontSize="15"  HorizontalAlignment="Left" Margin="66,40,0,0" TextWrapping="Wrap" Text="Naziv stavke:" VerticalAlignment="Top" Height="28" Width="92"/>
+                <TextBlock x:Name="textBlockProizvodjac" FontSize="15"  HorizontalAlignment="Left" Margin="66,73,0,0" TextWrapping="Wrap" Text="Proizvođač:" VerticalAlignment="Top" Height="28" Width="92"/>
+                <TextBlock x:Name="textBlockKolicina" FontSize="15"  HorizontalAlignment="Left" Margin="66,106,0,0" TextWrapping="Wrap" Text="Količina:" VerticalAlignment="Top" Height="28" Width="92"/>
+                <TextBox x:Name="textBoxNazivStavkePoProstorijama" HorizontalAlignment="Left" Height="23" Margin="212,40,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                <TextBox x:Name="textBoxProizvodjacStavkePoProstorijama" HorizontalAlignment="Left" Height="23" Margin="212,68,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                <TextBox x:Name="textBoxKolicinaStavkePoProstorijama" HorizontalAlignment="Left" Height="23" Margin="212,105,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                <Button x:Name="btnOtkaziPrikazNeki" HorizontalAlignment="Left" Margin="656,324,0,0" VerticalAlignment="Top" Width="228" Click="btnOtkaziPrikazNeki_Click" Height="48">
+                    <StackPanel Orientation="Horizontal" Width="170">
+                        <Image  RenderTransformOrigin="0.5,0.5" Source="forbidden.png" >
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                        <TextBlock FontSize="18" Margin="20,0,0,0" Text="Otkaži" Height="25" Width="116"/>
+                    </StackPanel>
+                </Button>
+                <Rectangle  HorizontalAlignment="Left" Height="124" Margin="37,28,0,0" Stroke="Black" VerticalAlignment="Top" Width="367"/>
             </Grid>
 
             <Grid x:Name="gridDodajStavku" Visibility="Hidden">
-                <Rectangle Fill="LightGray" HorizontalAlignment="Left" Height="638" Stroke="Black" VerticalAlignment="Top" Width="947" Margin="70,59,-984,-399"/>
-                <Button x:Name="btnPotvrdiStavku" Content="Potvrdi" HorizontalAlignment="Left" Margin="243,515,-285,-245" VerticalAlignment="Top" Width="75" Height="28" Click="btnPotvrdiStavku_Click"/>
-                <Button x:Name="btnOtkaziStavku" Content="Otkazi" HorizontalAlignment="Left" Margin="731,515,-773,-245" VerticalAlignment="Top" Width="75" Height="28"  Click="btnOtkazi_Click"/>
-                <TextBlock x:Name="textNazivStavke" FontSize="24" HorizontalAlignment="Left" Margin="138,152,-218,0" TextWrapping="Wrap" Text="Naziv opreme" VerticalAlignment="Top" Width="158"/>
-                <TextBox x:Name="textBoxKolicina" HorizontalAlignment="Left" Height="30" Margin="350,223,-422,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150"/>
-                <TextBox x:Name="textBoxNaziv" HorizontalAlignment="Left" Height="30" Margin="350,148,-422,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150"/>
-                <TextBlock x:Name="textKolicinaStavke" FontSize="24" HorizontalAlignment="Left" Margin="138,221,-202,0" TextWrapping="Wrap" Text="Količina" VerticalAlignment="Top" Width="142"/>
-                <TextBlock x:Name="textProizvodjacStavke" FontSize="24" HorizontalAlignment="Left" Margin="138,294,-202,0" TextWrapping="Wrap" Text="Proizvođač" VerticalAlignment="Top" Width="142"/>
-                <TextBox x:Name="textBoxProizvodjac" HorizontalAlignment="Left" Height="30" Margin="350,296,-422,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150"/>
-                <TextBlock x:Name="textTipStavke" FontSize="24" HorizontalAlignment="Left" Margin="138,359,-202,0" TextWrapping="Wrap" Text="Tip opreme" VerticalAlignment="Top" Width="142"/>
-                <ComboBox x:Name="comboBoxTipOpreme" HorizontalAlignment="Left" Margin="356,363,-422,0" VerticalAlignment="Top" Width="144" Height="28">
+                <Rectangle Fill="LightGray" HorizontalAlignment="Left" Height="685" Stroke="Black" VerticalAlignment="Top" Width="917" Margin="100,54,-939,0"/>
+                <Button x:Name="btnPotvrdiStavku" HorizontalAlignment="Left" Margin="764,223,-880,0" VerticalAlignment="Top" Width="194" Height="48" Click="btnPotvrdiStavku_Click">
+                    <StackPanel Orientation="Horizontal" Width="170">
+                        <Image  RenderTransformOrigin="0.5,0.5" Source="add.png" >
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                        <TextBlock FontSize="15" Margin="0,0,0,0" Text="Dodaj stavku" Height="20" Width="116"/>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="btnOtkaziStavku" HorizontalAlignment="Left" Margin="764,358,-880,0" VerticalAlignment="Top" Width="194" Height="48"  Click="btnOtkazi_Click">
+                    <StackPanel Orientation="Horizontal" Width="170">
+                        <Image  RenderTransformOrigin="0.5,0.5" Source="forbidden.png" >
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                        <TextBlock FontSize="15" Margin="0,0,0,0" Text="Otkaži dodavanje" Height="18" Width="120"/>
+                    </StackPanel>
+                </Button>
+                <TextBlock x:Name="textNazivStavke" FontSize="24" HorizontalAlignment="Left" Margin="192,210,-272,0" TextWrapping="Wrap" Text="Naziv opreme" VerticalAlignment="Top" Width="158"/>
+                <TextBox x:Name="textBoxKolicina" HorizontalAlignment="Left" Height="30" Margin="404,285,-476,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150"/>
+                <TextBox x:Name="textBoxNaziv" HorizontalAlignment="Left" Height="30" Margin="404,206,-476,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150"/>
+                <TextBlock x:Name="textKolicinaStavke" FontSize="24" HorizontalAlignment="Left" Margin="192,283,-256,0" TextWrapping="Wrap" Text="Količina" VerticalAlignment="Top" Width="142"/>
+                <TextBlock x:Name="textProizvodjacStavke" FontSize="24" HorizontalAlignment="Left" Margin="192,358,-256,0" TextWrapping="Wrap" Text="Proizvođač" VerticalAlignment="Top" Width="142"/>
+                <TextBox x:Name="textBoxProizvodjac" HorizontalAlignment="Left" Height="30" Margin="404,360,-476,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150"/>
+                <TextBlock x:Name="textTipStavke" FontSize="24" HorizontalAlignment="Left" Margin="192,427,-256,0" TextWrapping="Wrap" Text="Tip opreme" VerticalAlignment="Top" Width="142"/>
+                <ComboBox x:Name="comboBoxTipOpreme" HorizontalAlignment="Left" Margin="410,431,-476,0" VerticalAlignment="Top" Width="144" Height="28">
                     <ComboBoxItem Content="Statička"/>
                     <ComboBoxItem Content="Dinamička"/>
                 </ComboBox>
-                <CheckBox x:Name="checkBoxPotrosna" FontSize="24" Content="Potrošna roba" HorizontalAlignment="Left" Margin="140,440,-232,0" VerticalAlignment="Top" />
+                <CheckBox x:Name="checkBoxPotrosna" FontSize="24" Content="Potrošna roba" HorizontalAlignment="Left" Margin="192,506,-284,0" VerticalAlignment="Top" />
                 <Label x:Name="labelNepravilnoUneseno" Content="*Polja nisu ispravno popunjena" Visibility="Hidden" HorizontalAlignment="Left" Margin="140,485,-240,0" VerticalAlignment="Top" Width="178"/>
+                <TextBlock x:Name="textBlock10" FontSize="28" FontWeight="Bold" HorizontalAlignment="Left" Margin="192,123,-424,0" TextWrapping="Wrap" Text="Dodajte novu stavku:" VerticalAlignment="Top" Width="310"/>
+                <Rectangle HorizontalAlignment="Left" Height="478" Margin="142,104,-554,0" Stroke="Black" VerticalAlignment="Top" Width="490"/>
             </Grid>
 
             <Grid x:Name="gridPremestiUProstoriju" Visibility="Hidden">
-                <Rectangle Fill="LightGray" HorizontalAlignment="Left" Height="638" Stroke="Black" VerticalAlignment="Top" Width="947" Margin="70,59,-984,-399"/>
+                <Rectangle Fill="LightGray" HorizontalAlignment="Left" Height="685" Stroke="Black" VerticalAlignment="Top" Width="920" Margin="100,54,-942,0"/>
                 <TextBlock x:Name="textBlock" FontSize="24" HorizontalAlignment="Left" Margin="140,155,-388,0" TextWrapping="Wrap" Text="Premesti stavku u prostoriju:" VerticalAlignment="Top" Width="326"/>
                 <TextBlock x:Name="textBlock1" FontSize="20" HorizontalAlignment="Left" Margin="140,250,-333,0" TextWrapping="Wrap" Text="Stavka koja se premešta:" VerticalAlignment="Top" Width="271"/>
                 <TextBlock x:Name="textBlock1_Copy" FontSize="20" HorizontalAlignment="Left" Margin="140,318,-333,0" TextWrapping="Wrap" Text="Količina:" VerticalAlignment="Top" Width="271"/>
                 <TextBlock x:Name="textBlock1_Copy1" FontSize="20" HorizontalAlignment="Left" Margin="140,394,-333,0" TextWrapping="Wrap" Text="Premesti u sobu:" VerticalAlignment="Top" Width="271"/>
-                <Button x:Name="btnPremesti" Content="Premesti" HorizontalAlignment="Left" Margin="152,586,-220,0" VerticalAlignment="Top" Width="146" Click="btnPremesti_Click"/>
-                <Button x:Name="btnOtkaziPremestanje" Content="Otkaži" HorizontalAlignment="Left" Margin="471,583,-537,0" VerticalAlignment="Top" Width="144" Click="btnOtkaziPremestanje_Click"/>
+                <Button x:Name="btnPremesti" HorizontalAlignment="Left" Margin="221,586,-319,0" VerticalAlignment="Top" Width="176" Click="btnPremesti_Click" Height="48">
+                    <StackPanel Orientation="Horizontal" Width="170">
+                        <Image  RenderTransformOrigin="0.5,0.5" Source="transfer.png" >
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                        <TextBlock FontSize="13" Margin="0,0,0,0" Text="Premesti stavku" Height="18" Width="116"/>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="btnOtkaziPremestanje" HorizontalAlignment="Left" Margin="548,586,-646,0" VerticalAlignment="Top" Width="176" Click="btnOtkaziPremestanje_Click" Height="48">
+                    <StackPanel Orientation="Horizontal" Width="170">
+                        <Image  RenderTransformOrigin="0.5,0.5" Source="forbidden.png" >
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                        <TextBlock FontSize="13" Margin="0,0,0,0" Text="Otkaži dodavanje" Height="18" Width="116"/>
+                    </StackPanel>
+                </Button>
                 <TextBox x:Name="textBoxStavkaZaPremestanje" HorizontalAlignment="Left" Height="24" Margin="409,251,-502,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="171"/>
                 <TextBox x:Name="textBoxKolicinaZaPremestanje" HorizontalAlignment="Left" Height="24" Margin="409,323,-503,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="172"/>
                 <ComboBox x:Name="comboBoxProstorijeZaPremestanje" SelectedValuePath="Key" DisplayMemberPath="Value" HorizontalAlignment="Left" Margin="416,396,-502,0" VerticalAlignment="Top" Width="164"/>
@@ -265,97 +623,340 @@
                 <TextBlock x:Name="textStaticka1" FontSize="20" HorizontalAlignment="Left" Margin="140,479,-283,0" TextWrapping="Wrap" Text="Zauzmi prostoriju od:" VerticalAlignment="Top" Height="32" Width="221"/>
                 <TextBlock x:Name="textStaticka2" FontSize="20" HorizontalAlignment="Left" Margin="560,481,-555,0" TextWrapping="Wrap" Text="do" VerticalAlignment="Top" Width="73"/>
                 <DatePicker x:Name="datumKraja" HorizontalAlignment="Left" Margin="652,466,-708,0" VerticalAlignment="Top" Width="134" Height="45"/>
+                <Rectangle  HorizontalAlignment="Left" Height="416" Margin="120,119,-808,0" Stroke="Black" VerticalAlignment="Top" Width="766"/>
 
             </Grid>
 
-            <Grid x:Name="gridIzmeniStavku" Visibility="Hidden">
-                <Rectangle Fill="LightGray" HorizontalAlignment="Left" Height="638" Stroke="Black" VerticalAlignment="Top" Width="947" Margin="70,59,-984,-399"/>
-                <TextBlock x:Name="txtNazivStavke" HorizontalAlignment="Left" Margin="123,135,-291,0" TextWrapping="Wrap" Text="Naziv Stavke:" VerticalAlignment="Top" Height="60" Width="246" FontSize="30"/>
-                <TextBlock x:Name="txtKolicinaStavke" HorizontalAlignment="Left" Margin="123,216,-291,0" TextWrapping="Wrap" Text="Količina Stavke:" VerticalAlignment="Top" Height="60" Width="246" FontSize="30"/>
-                <TextBlock x:Name="txtProizvodjacStavke" HorizontalAlignment="Left" Margin="123,302,-291,0" TextWrapping="Wrap" Text="Proizvođač Stavke:" VerticalAlignment="Top" Height="60" Width="246" FontSize="30"/>
-                <TextBlock x:Name="txtTipStavke" HorizontalAlignment="Left" Margin="123,390,-291,0" TextWrapping="Wrap" Text="Tip Stavke: " VerticalAlignment="Top" Height="60" Width="246" FontSize="30"/>
-                <ComboBox x:Name="cbTipStavke" Margin="412,390,-507,309" Height="40" >
+            <Grid x:Name="gridIzmeniStavku" Visibility="Hidden" Margin="0,0,-20,0">
+                <Rectangle Fill="LightGray" HorizontalAlignment="Left" Height="688" Stroke="Black" VerticalAlignment="Top" Width="922" Margin="99,53,-923,-2"/>
+                <Rectangle HorizontalAlignment="Left" Height="505" Margin="127,106,-619,0" Stroke="Black" VerticalAlignment="Top" Width="590"/>
+
+                <TextBlock x:Name="txtNazivStavke" HorizontalAlignment="Left" Margin="175,252,-323,0" TextWrapping="Wrap" Text="Naziv Stavke:" VerticalAlignment="Top" Height="66" Width="246" FontSize="30"/>
+                <TextBlock x:Name="txtKolicinaStavke" HorizontalAlignment="Left" Margin="177,323,-325,0" TextWrapping="Wrap" Text="Količina Stavke:" VerticalAlignment="Top" Height="66" Width="246" FontSize="30"/>
+                <TextBlock x:Name="txtProizvodjacStavke" HorizontalAlignment="Left" Margin="175,394,-323,0" TextWrapping="Wrap" Text="Proizvođač Stavke:" VerticalAlignment="Top" Height="66" Width="246" FontSize="30"/>
+                <TextBlock x:Name="txtTipStavke" HorizontalAlignment="Left" Margin="175,465,-323,0" TextWrapping="Wrap" Text="Tip Stavke: " VerticalAlignment="Top" Height="55" Width="246" FontSize="30"/>
+                <ComboBox x:Name="cbTipStavke" Margin="464,465,-559,230" Height="44" >
                     <ComboBoxItem Content="Statička"/>
                     <ComboBoxItem Content="Dinamička"/>
                 </ComboBox>
-                <Button x:Name="btnPotvrdiIzmenuStavke" Content="Potvrdi" HorizontalAlignment="Left" Margin="140,590,-199,0" VerticalAlignment="Top" Width="137" Click="btnPotvrdiIzmenuStavke_Click"/>
-                <Button x:Name="btnOtkaziIzmenuStavke" Content="Otkaži" HorizontalAlignment="Left" Margin="438,588,-498,0" VerticalAlignment="Top" Width="138" Click="btnOtkaziIzmenuStavke_Click" />
-                <TextBox x:Name="txtBoxNazivStavke" HorizontalAlignment="Left" Height="24" Margin="404,146,-500,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="174"/>
-                <TextBox x:Name="txtBoxKolicinaStavke" HorizontalAlignment="Left" Height="22" Margin="411,230,-507,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="174"/>
-                <TextBox x:Name="txtBoxProizvodjacStavke" HorizontalAlignment="Left" Height="22" Margin="412,316,-508,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="174"/>
-                <CheckBox x:Name="checkBoxPotrosnaIzmeni" FontSize="24" Content="Potrošna roba" HorizontalAlignment="Left" Margin="125,492,-217,0" VerticalAlignment="Top"/>
+                <Button x:Name="btnPotvrdiIzmenuStavke" HorizontalAlignment="Left" Margin="759,215,-885,0" VerticalAlignment="Top" Width="224" Click="btnPotvrdiIzmenuStavke_Click" Height="48">
+                    <StackPanel Orientation="Horizontal" Width="170">
+                        <Image  RenderTransformOrigin="0.5,0.5" Source="save.png" >
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                        <TextBlock FontSize="18" Margin="0,0,0,0" Text="Potvrdi izmenu" Height="24" Width="128"/>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="btnOtkaziIzmenuStavke" HorizontalAlignment="Left" Margin="759,355,-885,0" VerticalAlignment="Top" Width="224" Click="btnOtkaziIzmenuStavke_Click" Height="48">
+                    <StackPanel Orientation="Horizontal" Width="170">
+                        <Image  RenderTransformOrigin="0.5,0.5" Source="forbidden.png" >
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                        <TextBlock FontSize="18" Margin="0,0,0,0" Text="Otkaži izmenu" Height="24" Width="116"/>
+                    </StackPanel>
+                </Button>
+                <TextBox x:Name="txtBoxNazivStavke" HorizontalAlignment="Left" Height="26" Margin="464,273,-559,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="193"/>
+                <TextBox x:Name="txtBoxKolicinaStavke" HorizontalAlignment="Left" Height="24" Margin="464,343,-559,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="193"/>
+                <TextBox x:Name="txtBoxProizvodjacStavke" HorizontalAlignment="Left" Height="24" Margin="464,413,-559,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="193"/>
+                <CheckBox x:Name="checkBoxPotrosnaIzmeni" FontSize="24" Content="Potrošna roba" HorizontalAlignment="Left" Margin="177,546,-249,0" VerticalAlignment="Top" Height="37"/>
                 <Label x:Name="labelNepravilanUnosIzmena" Content="*Polja nisu ispravno popunjena" Visibility="Hidden" HorizontalAlignment="Left" Margin="123,524,-229,0" VerticalAlignment="Top" Width="184"/>
+                <TextBlock x:Name="textBlock11" FontSize="40" FontWeight="Bold" HorizontalAlignment="Left" Margin="177,136,-413,0" TextWrapping="Wrap" Text="Izmenite stavku:" VerticalAlignment="Top" Width="334"/>
 
             </Grid>
 
-            <ToggleButton x:Name = "tbLekovi"  
-            Margin = "0,305,14,335"
-            Width = "64" Height="66" HorizontalAlignment = "Center" BorderThickness="0" Click="tbLekovi_Click" Unchecked="tbLekovi_Unchecked" Checked="tbLekovi_Checked">
-                <ToggleButton.Background>
-                    <ImageBrush ImageSource="logo.png"/>
-                </ToggleButton.Background>
-            </ToggleButton>
-
-            <Grid x:Name="gridLekovi" Visibility="Hidden" Background="LightGray" HorizontalAlignment="Left" Height="640" Margin="69,59,-940,0" VerticalAlignment="Top" Width="949">
-                <DataGrid x:Name="dataGridLekovi" CanUserAddRows="False" IsReadOnly ="True" HorizontalAlignment="Left" Height="515" Margin="37,89,0,0" VerticalAlignment="Top" Width="495" HeadersVisibility="All" AutoGenerateColumns="False" SelectionMode="Single" CanUserResizeRows="False">
+            <Grid x:Name="gridLekovi" Visibility="Hidden" Background="LightGray" HorizontalAlignment="Left" Height="685" Margin="98,54,-940,0" VerticalAlignment="Top" Width="920">
+                <DataGrid x:Name="dataGridLekovi" CanUserAddRows="False" IsReadOnly ="True" HorizontalAlignment="Left" Height="473" Margin="33,150,0,0" VerticalAlignment="Top" Width="495" HeadersVisibility="All" AutoGenerateColumns="False" SelectionMode="Single" CanUserResizeRows="False">
                     <DataGrid.Columns>
                         <DataGridTextColumn x:Name="nazivLeka" Binding ="{Binding naziv}" IsReadOnly="True" Header="Naziv"  Width="143" CanUserResize="False"/>
                         <DataGridTextColumn x:Name="tipLeka" Binding="{Binding tip}" IsReadOnly="True" Header="Tip" Width="143" CanUserResize="False"/>
                         <DataGridTextColumn x:Name="nacinUpotrebe" Binding="{Binding nacinUpotrebe}" IsReadOnly="True" Header="Nacin Upotrebe" Width="143" CanUserResize="False"/>
                     </DataGrid.Columns>
                 </DataGrid>
-                <Button x:Name="btnDodajLek" Content="Dodaj Lek" HorizontalAlignment="Left" Margin="613,89,0,0" VerticalAlignment="Top" Width="273" Height="74" Click="btnDodajLek_Click"/>
-                <Button x:Name="btnOdbijeniZahtevi" Content="Odbijeni Zahtevi" HorizontalAlignment="Left" Margin="613,219,0,0" VerticalAlignment="Top" Width="273" Height="76" Click="btnOdbijeniZahtevi_Click"/>
-                <Button x:Name="btnIzmenaLeka" Content="Izmeni Lek" HorizontalAlignment="Left" Margin="613,341,0,0" VerticalAlignment="Top" Width="273" Height="68" Click="btnIzmenaLeka_Click"/>
+                <Button x:Name="btnDodajLek" HorizontalAlignment="Left" Margin="613,150,0,0" VerticalAlignment="Top" Width="273" Height="48" Click="btnDodajLek_Click">
+                    <StackPanel Orientation="Horizontal" Width="200">
+                        <Image  RenderTransformOrigin="0.5,0.5" Source="add.png" >
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                        <TextBlock FontSize="18" Margin="30,0,0,0" Text="Dodaj lek" Height="24" Width="116"/>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="btnOdbijeniZahtevi" HorizontalAlignment="Left" Margin="613,350,0,0" VerticalAlignment="Top" Width="273" Height="48" Click="btnOdbijeniZahtevi_Click">
+                    <StackPanel Orientation="Horizontal" Width="200">
+                        <Image  RenderTransformOrigin="0.5,0.5" Source="cancel.png" >
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                        <TextBlock FontSize="18" Margin="10,0,0,0" Text="Odbijeni zahtevi" Height="24" Width="137"/>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="btnIzmenaLeka"  HorizontalAlignment="Left" Margin="613,249,0,0" VerticalAlignment="Top" Width="273" Height="48" Click="btnIzmenaLeka_Click">
+                    <StackPanel Orientation="Horizontal" Width="200">
+                        <Image  RenderTransformOrigin="0.5,0.5" Source="edit.png" >
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                        <TextBlock FontSize="18" Margin="30,0,0,0" Text="Izmeni lek" Height="24" Width="116"/>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="btnObrisiLek" HorizontalAlignment="Left" Margin="613,450,0,0" VerticalAlignment="Top" Width="273" Height="48" Click="btnObrisiLek_Click">
+                    <StackPanel Orientation="Horizontal" Width="200">
+                        <Image  RenderTransformOrigin="0.5,0.5" Source="delete.png" >
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                        <TextBlock FontSize="18" Margin="30,0,0,0" Text="Obriši lek" Height="24" Width="116"/>
+                    </StackPanel>
+                </Button>
+                <TextBlock x:Name="textBlock12" FontSize="28" FontWeight="Bold"  HorizontalAlignment="Left" Margin="33,30,0,0" TextWrapping="Wrap" Text="Prikaz lekova" VerticalAlignment="Top" TextDecorations="Underline" FontStyle="Italic"/>
+                <TextBlock x:Name="textBlock13" FontSize="18" HorizontalAlignment="Left" Margin="33,94,0,0" TextWrapping="Wrap" Text="Unesite naziv leka koji želite da pretražite: " VerticalAlignment="Top"/>
+                <TextBox x:Name="textBox1" HorizontalAlignment="Left" Height="24" Margin="374,94,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="154"/>
             </Grid>
 
-            <Grid x:Name="gridOdbijeniLekovi" Visibility="Hidden" Background="LightGray" HorizontalAlignment="Left" Height="640" Margin="69,59,-940,0" VerticalAlignment="Top" Width="949">
+            <Grid x:Name="gridOdbijeniLekovi" Visibility="Hidden" Background="LightGray" HorizontalAlignment="Left" Height="685" Margin="98,54,-940,0" VerticalAlignment="Top" Width="920">
                 <DataGrid x:Name="dataGridOdbijeniLekovi" HorizontalAlignment="Left" Height="316" Margin="58,63,0,0" VerticalAlignment="Top" Width="826" AutoGenerateColumns="false" CanUserAddRows="False">
                     <DataGrid.Columns>
                         <DataGridTextColumn x:Name="nazivOdbijenogLeka" Binding ="{Binding Path=naziv}" IsReadOnly="True" Header="Naziv"  Width="auto" CanUserResize="False"/>
                         <DataGridTextColumn x:Name="razlogOdbijanja" Binding="{Binding Path=propratnaPoruka}" IsReadOnly="True" Header="Razlog Odbijanja" Width="auto" CanUserResize="False"/>
                     </DataGrid.Columns>
                 </DataGrid>
-                <Button x:Name="btnIzmeniLek" Content="Izmeni Odbacen Lek" HorizontalAlignment="Left" Margin="58,479,0,0" VerticalAlignment="Top" Width="225" Height="58" Click="btnIzmeniLek_Click"/>
-                <Button x:Name="btnObrisiOdbacenLek" Content="Obrisi Odbacen Lek" HorizontalAlignment="Left" Margin="400,479,0,0" VerticalAlignment="Top" Width="189" Height="58" Click="btnObrisiOdbacenLek_Click"/>
-                <Button x:Name="btnOtkaziOdbacenLek" Content="Otkazi" HorizontalAlignment="Left" Margin="706,479,0,0" VerticalAlignment="Top" Width="178" Height="58" Click="btnOtkaziOdbacenLek_Click"/>
+                <Button x:Name="btnIzmeniLek"  HorizontalAlignment="Left" Margin="58,479,0,0" VerticalAlignment="Top" Width="225" Height="58" Click="btnIzmeniLek_Click">
+                    <StackPanel Orientation="Horizontal" Width="230">
+                        <Image  RenderTransformOrigin="0.5,0.5" Source="edit.png" >
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                        <TextBlock FontSize="15" Margin="0,0,0,0" Text="Izmeni odbacen lek" Height="24" Width="148"/>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="btnObrisiOdbacenLek" HorizontalAlignment="Left" Margin="360,480,0,0" VerticalAlignment="Top" Width="225" Height="58" Click="btnObrisiOdbacenLek_Click">
+                    <StackPanel Orientation="Horizontal" Width="230">
+                        <Image  RenderTransformOrigin="0.5,0.5" Source="delete.png" >
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                        <TextBlock FontSize="15" Margin="0,0,0,0" Text="Obriši odbacen lek" Height="19" Width="154"/>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="btnOtkaziOdbacenLek" HorizontalAlignment="Left" Margin="659,480,0,0" VerticalAlignment="Top" Width="225" Height="58" Click="btnOtkaziOdbacenLek_Click">
+                    <StackPanel Orientation="Horizontal" Width="150">
+                        <Image  RenderTransformOrigin="0.5,0.5" Source="forbidden.png" >
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                        <TextBlock FontSize="15" Margin="0,0,0,0" Text="Otkaži" Height="18" Width="116"/>
+                    </StackPanel>
+                </Button>
             </Grid>
 
-            <Grid x:Name="gridLekoviIzmena" Visibility="Hidden" Background="LightGray" HorizontalAlignment="Left" Height="640" Margin="69,59,-940,0" VerticalAlignment="Top" Width="949">
-                <Label x:Name="lblNazivLekaUnosIzmena" Content="Naziv leka" HorizontalAlignment="Left" Margin="127,82,0,0" VerticalAlignment="Top"/>
-                <TextBox x:Name="textBoxNazivLekaUnosIzmena" HorizontalAlignment="Left" Height="23" Margin="389,83,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-                <Label x:Name="lblTipLekaUnosIzmena" Content="Tip leka" HorizontalAlignment="Left" Margin="127,161,0,0" VerticalAlignment="Top"/>
-                <Label x:Name="lblTipLekaUnos_CopyIzmena" Content="Kolicina leka" HorizontalAlignment="Left" Margin="127,244,0,0" VerticalAlignment="Top"/>
-                <Label x:Name="lblTipLekaUnos_Copy1Izmena" Content="Proizvodjac" HorizontalAlignment="Left" Margin="127,309,0,0" VerticalAlignment="Top"/>
-                <TextBox x:Name="textBoxKolicinaLekaUnosIzmena" HorizontalAlignment="Left" Height="23" Margin="389,245,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-                <TextBox x:Name="textBoxProizvodjacLekaUnosIzmena" HorizontalAlignment="Left" Height="23" Margin="389,310,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-                <Label x:Name="lblTipLekaUnos_Copy2Izmena" Content="Nacin upotrebe" HorizontalAlignment="Left" Margin="127,393,0,0" VerticalAlignment="Top"/>
-                <ComboBox x:Name="comboBoxNacinUpotrebeIzmena" HorizontalAlignment="Left" Margin="389,393,0,0" VerticalAlignment="Top" Width="120"/>
-                <Button x:Name="btnDodajSastojkeIzmena" Content="Dodaj sastojke" HorizontalAlignment="Left" Margin="84,503,0,0" VerticalAlignment="Top" Width="236" Height="74" Click="btnDodajSastojkeIzmena_Click"/>
-                <Button x:Name="btnDodajZamenskeLekoveIzmena" Content="Dodaj zamenske lekove" HorizontalAlignment="Left" Margin="389,503,0,0" VerticalAlignment="Top" Width="225" Height="74" Click="btnDodajZamenskeLekoveIzmena_Click"/>
-                <Button x:Name="btnPotvrdiDodavanjeLekovaIzmena" Content="Potvrdi" HorizontalAlignment="Left" Margin="692,503,0,0" VerticalAlignment="Top" Width="214" Height="74" Click="btnPotvrdiDodavanjeLekovaIzmena_Click"/>
-                <ComboBox x:Name="cbTipLekaDodavanjeIzmena" HorizontalAlignment="Left" Margin="389,160,0,0" VerticalAlignment="Top" Width="120"/>
-                <Button x:Name="btnOtkaziDodavanjeLekaIzmena" Content="Otkazi!!!!!!!!!!" HorizontalAlignment="Left" Margin="692,139,0,0" VerticalAlignment="Top" Width="214" Height="80" Click="btnOtkaziDodavanjeLekaOdbijenog_Click"/>
-            </Grid>
-            
-            <Grid x:Name="gridLekoviIzmenaOdbijenih" Visibility="Hidden" Background="LightGray" HorizontalAlignment="Left" Height="640" Margin="69,59,-940,0" VerticalAlignment="Top" Width="949">
-                <Label x:Name="lblNazivLekaUnosOdbijenog" Content="Naziv leka" HorizontalAlignment="Left" Margin="127,82,0,0" VerticalAlignment="Top"/>
-                <TextBox x:Name="textBoxNazivLekaUnosOdbijenog" HorizontalAlignment="Left" Height="23" Margin="389,83,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-                <Label x:Name="lblTipLekaUnosOdbijenog" Content="Tip leka" HorizontalAlignment="Left" Margin="127,161,0,0" VerticalAlignment="Top"/>
-                <Label x:Name="lblTipLekaUnos_CopyOdbijenog" Content="Kolicina leka" HorizontalAlignment="Left" Margin="127,244,0,0" VerticalAlignment="Top"/>
-                <Label x:Name="lblTipLekaUnos_Copy1Odbijenog" Content="Proizvodjac" HorizontalAlignment="Left" Margin="127,309,0,0" VerticalAlignment="Top"/>
-                <TextBox x:Name="textBoxKolicinaLekaUnosOdbijenog" HorizontalAlignment="Left" Height="23" Margin="389,245,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-                <TextBox x:Name="textBoxProizvodjacLekaUnosOdbijenog" HorizontalAlignment="Left" Height="23" Margin="389,310,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-                <Label x:Name="lblTipLekaUnos_Copy2Odbijenog" Content="Nacin upotrebe" HorizontalAlignment="Left" Margin="127,393,0,0" VerticalAlignment="Top"/>
-                <ComboBox x:Name="comboBoxNacinUpotrebeOdbijenog" HorizontalAlignment="Left" Margin="389,393,0,0" VerticalAlignment="Top" Width="120"/>
-                <Button x:Name="btnDodajSastojkeOdbijenog" Content="Dodaj sastojke" HorizontalAlignment="Left" Margin="84,503,0,0" VerticalAlignment="Top" Width="236" Height="74" Click="btnDodajSastojkeOdbijenog_Click"/>
-                <Button x:Name="btnDodajZamenskeLekoveOdbijenog" Content="Dodaj zamenske lekove" HorizontalAlignment="Left" Margin="389,503,0,0" VerticalAlignment="Top" Width="225" Height="74" Click="btnDodajZamenskeLekoveOdbijenog_Click"/>
-                <Button x:Name="btnPotvrdiDodavanjeLekovaOdbijenog" Content="Potvrdi" HorizontalAlignment="Left" Margin="692,503,0,0" VerticalAlignment="Top" Width="214" Height="74" Click="btnPotvrdiDodavanjeLekovaOdbijenog_Click"/>
-                <ComboBox x:Name="cbTipLekaDodavanjeOdbijenog" HorizontalAlignment="Left" Margin="389,160,0,0" VerticalAlignment="Top" Width="120"/>
-                <Button x:Name="btnOtkaziDodavanjeLekaOdbijenog" Content="Otkazi!!!!!!!!!!" HorizontalAlignment="Left" Margin="692,139,0,0" VerticalAlignment="Top" Width="214" Height="80" Click="btnOtkaziDodavanjeLekaOdbijenog_Click"/>
+            <Grid x:Name="gridLekoviIzmena" Visibility="Hidden" Background="LightGray" HorizontalAlignment="Left" Height="685" Margin="98,54,-940,0" VerticalAlignment="Top" Width="920">
+
+                <Label x:Name="lblNazivLekaUnosIzmena" FontSize="20" Content="Naziv leka" HorizontalAlignment="Left" Margin="127,220,0,0" VerticalAlignment="Top"/>
+                <TextBox x:Name="textBoxNazivLekaUnosIzmena" HorizontalAlignment="Left" Height="23" Margin="325,221,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                <Label x:Name="lblTipLekaUnosIzmena" FontSize="20" Content="Tip leka" HorizontalAlignment="Left" Margin="127,280,0,0" VerticalAlignment="Top"/>
+                <Label x:Name="lblTipLekaUnos_CopyIzmena" FontSize="20" Content="Kolicina leka" HorizontalAlignment="Left" Margin="127,346,0,0" VerticalAlignment="Top"/>
+                <Label x:Name="lblTipLekaUnos_Copy1Izmena" FontSize="20" Content="Proizvodjac" HorizontalAlignment="Left" Margin="127,416,0,0" VerticalAlignment="Top"/>
+                <TextBox x:Name="textBoxKolicinaLekaUnosIzmena" HorizontalAlignment="Left" Height="23" Margin="325,347,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                <TextBox x:Name="textBoxProizvodjacLekaUnosIzmena" HorizontalAlignment="Left" Height="23" Margin="325,417,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                <Label x:Name="lblTipLekaUnos_Copy2Izmena" FontSize="20" Content="Nacin upotrebe" HorizontalAlignment="Left" Margin="127,494,0,0" VerticalAlignment="Top"/>
+                <ComboBox x:Name="comboBoxNacinUpotrebeIzmena" HorizontalAlignment="Left" Margin="325,494,0,0" VerticalAlignment="Top" Width="120"/>
+                <Button x:Name="btnDodajSastojkeIzmena" HorizontalAlignment="Left" Margin="639,112,0,0" VerticalAlignment="Top" Width="236" Height="48" Click="btnDodajSastojkeIzmena_Click">
+                    <StackPanel Orientation="Horizontal" Width="230">
+                        <Image  RenderTransformOrigin="0.5,0.5" Source="add.png" >
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                        <TextBlock FontSize="15" Margin="20,0,0,0" Text="Dodaj sastojke" Height="21" Width="123"/>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="btnDodajZamenskeLekoveIzmena" HorizontalAlignment="Left" Margin="639,230,0,0" VerticalAlignment="Top" Width="236" Height="48" Click="btnDodajZamenskeLekoveIzmena_Click">
+                    <StackPanel Orientation="Horizontal" Width="230">
+                        <Image  RenderTransformOrigin="0.5,0.5" Source="add.png" >
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                        <TextBlock FontSize="15" Margin="0,0,0,0" Text="Dodaj zamenske lekove" Height="20" Width="164"/>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="btnPotvrdiDodavanjeLekovaIzmena" HorizontalAlignment="Left" Margin="639,347,0,0" VerticalAlignment="Top" Width="236" Height="48" Click="btnPotvrdiDodavanjeLekovaIzmena_Click">
+                    <StackPanel Orientation="Horizontal" Width="230">
+                        <Image  RenderTransformOrigin="0.5,0.5" Source="save.png" >
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                        <TextBlock FontSize="15" Margin="20,0,0,0" Text="Potvrdi izmenu" Height="19" Width="116"/>
+                    </StackPanel>
+                </Button>
+                <ComboBox x:Name="cbTipLekaDodavanjeIzmena" HorizontalAlignment="Left" Margin="325,279,0,0" VerticalAlignment="Top" Width="120"/>
+                <Button x:Name="btnOtkaziDodavanjeLekaIzmena" HorizontalAlignment="Left" Margin="639,465,0,0" VerticalAlignment="Top" Width="236" Height="48" Click="btnOtkaziDodavanjeLekaOdbijenog_Click">
+                    <StackPanel Orientation="Horizontal" Width="230">
+                        <Image  RenderTransformOrigin="0.5,0.5" Source="forbidden.png" >
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                        <TextBlock FontSize="15" Margin="20,0,0,0" Text="Otkaži izmenu" Height="20" Width="116"/>
+                    </StackPanel>
+                </Button>
+                <TextBlock x:Name="textBlock14" FontSize="25" FontWeight="Bold" HorizontalAlignment="Left" Margin="127,112,0,0" TextWrapping="Wrap" Text="Izmenite lek:" VerticalAlignment="Top"/>
+                <Rectangle HorizontalAlignment="Left" Height="530" Margin="75,68,0,0" Stroke="Black" VerticalAlignment="Top" Width="458"/>
             </Grid>
 
-            <Grid x:Name="gridLekoviIzmeniSastojke" Visibility="Hidden" Background="LightGray" HorizontalAlignment="Left" Height="640" Margin="69,59,-940,0" VerticalAlignment="Top" Width="949">
+            <Grid x:Name="gridLekoviIzmenaOdbijenih" Visibility="Hidden" Background="LightGray" HorizontalAlignment="Left" Height="685" Margin="98,54,-940,0" VerticalAlignment="Top" Width="920">
+                <Label x:Name="lblNazivLekaUnosOdbijenog" Content="Naziv leka" HorizontalAlignment="Left" Margin="107,184,0,0" VerticalAlignment="Top" FontSize="20"/>
+                <TextBox x:Name="textBoxNazivLekaUnosOdbijenog" HorizontalAlignment="Left" Height="23" Margin="347,196,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                <Label x:Name="lblTipLekaUnosOdbijenog" Content="Tip leka" HorizontalAlignment="Left" Margin="107,257,0,0" VerticalAlignment="Top" FontSize="20"/>
+                <Label x:Name="lblTipLekaUnos_CopyOdbijenog" Content="Kolicina leka" HorizontalAlignment="Left" Margin="107,331,0,0" VerticalAlignment="Top" FontSize="20"/>
+                <Label x:Name="lblTipLekaUnos_Copy1Odbijenog" Content="Proizvodjac" HorizontalAlignment="Left" Margin="107,415,0,0" VerticalAlignment="Top" FontSize="20"/>
+                <TextBox x:Name="textBoxKolicinaLekaUnosOdbijenog" HorizontalAlignment="Left" Height="23" Margin="347,343,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                <TextBox x:Name="textBoxProizvodjacLekaUnosOdbijenog" HorizontalAlignment="Left" Height="23" Margin="347,427,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                <Label x:Name="lblTipLekaUnos_Copy2Odbijenog" Content="Nacin upotrebe" HorizontalAlignment="Left" Margin="107,492,0,0" VerticalAlignment="Top" FontSize="20"/>
+                <ComboBox x:Name="comboBoxNacinUpotrebeOdbijenog" HorizontalAlignment="Left" Margin="347,503,0,0" VerticalAlignment="Top" Width="120"/>
+                <Button x:Name="btnDodajSastojkeOdbijenog" HorizontalAlignment="Left" Margin="639,112,0,0" VerticalAlignment="Top" Width="236" Height="48" Click="btnDodajSastojkeOdbijenog_Click">
+                    <StackPanel Orientation="Horizontal" Width="230">
+                        <Image  RenderTransformOrigin="0.5,0.5" Source="add.png" >
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                        <TextBlock FontSize="15" Margin="20,0,0,0" Text="Dodaj sastojke" Height="21" Width="123"/>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="btnDodajZamenskeLekoveOdbijenog" HorizontalAlignment="Left" Margin="639,230,0,0" VerticalAlignment="Top" Width="236" Height="48" Click="btnDodajZamenskeLekoveOdbijenog_Click">
+                    <StackPanel Orientation="Horizontal" Width="230">
+                        <Image  RenderTransformOrigin="0.5,0.5" Source="add.png" >
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                        <TextBlock FontSize="15" Margin="0,0,0,0" Text="Dodaj zamenske lekove" Height="20" Width="164"/>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="btnPotvrdiDodavanjeLekovaOdbijenog" HorizontalAlignment="Left" Margin="639,347,0,0" VerticalAlignment="Top" Width="236" Height="48" Click="btnPotvrdiDodavanjeLekovaOdbijenog_Click">
+                    <StackPanel Orientation="Horizontal" Width="230">
+                        <Image  RenderTransformOrigin="0.5,0.5" Source="save.png" >
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                        <TextBlock FontSize="15" Margin="20,0,0,0" Text="Potvrdi izmenu" Height="19" Width="116"/>
+                    </StackPanel>
+                </Button>
+                <ComboBox x:Name="cbTipLekaDodavanjeOdbijenog" HorizontalAlignment="Left" Margin="347,267,0,0" VerticalAlignment="Top" Width="120"/>
+                <Button x:Name="btnOtkaziDodavanjeLekaOdbijenog" HorizontalAlignment="Left" Margin="639,465,0,0" VerticalAlignment="Top" Width="236" Height="48" Click="btnOtkaziDodavanjeLekaOdbijenog_Click">
+                    <StackPanel Orientation="Horizontal" Width="230">
+                        <Image  RenderTransformOrigin="0.5,0.5" Source="forbidden.png" >
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                        <TextBlock FontSize="15" Margin="20,0,0,0" Text="Otkaži izmenu" Height="20" Width="116"/>
+                    </StackPanel>
+                </Button>
+                <TextBlock x:Name="textBlock15" FontSize="25" FontWeight="Bold" HorizontalAlignment="Left" Margin="107,112,0,0" TextWrapping="Wrap" Text="Izmenite lek:" VerticalAlignment="Top"/>
+                <Rectangle HorizontalAlignment="Left" Height="516" Margin="65,84,0,0" Stroke="Black" VerticalAlignment="Top" Width="462"/>
+            </Grid>
+
+            <Grid x:Name="gridLekoviIzmeniSastojke" Visibility="Hidden" Background="LightGray" HorizontalAlignment="Left" Height="680" Margin="98,59,-940,0" VerticalAlignment="Top" Width="920">
                 <DataGrid x:Name="dataGridDodajSastojkeIzmena" HorizontalAlignment="Left" Height="520" Margin="74,69,0,0" VerticalAlignment="Top" Width="302" AutoGenerateColumns="False">
                     <DataGrid.Columns>
                         <DataGridTextColumn x:Name="sastojakIzmenaLeka" Binding="{Binding}"  IsReadOnly="True" Header="Sastojak"  Width="auto" CanUserResize="False"/>
@@ -363,7 +964,7 @@
                 </DataGrid>
                 <TextBlock x:Name="textBlock3Izmena" FontSize="24" HorizontalAlignment="Left" Margin="488,69,0,0" TextWrapping="Wrap" Text="Unesite sastojak leka:" VerticalAlignment="Top"/>
                 <TextBox x:Name="textBoxUpisiSastojakIzmena" FontSize="24" HorizontalAlignment="Left" Height="45" Margin="488,153,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="225"/>
-                <Button x:Name="btnSastojakUnesiIzmena" Content="Dodaj Sastojak" HorizontalAlignment="Left" Margin="764,166,0,0" VerticalAlignment="Top" Width="139" Click="btnSastojakUnesiIzmena_Click"/>
+                <Button x:Name="btnSastojakUnesiIzmena" Content="Dodaj Sastojak" HorizontalAlignment="Left" Margin="748,166,0,0" VerticalAlignment="Top" Width="155" Click="btnSastojakUnesiIzmena_Click"/>
                 <Button x:Name="btnPotvrdiSastojkeIzmena" Content="Potvrdi" HorizontalAlignment="Left" Margin="488,319,0,0" VerticalAlignment="Top" Width="415" Height="270" Click="btnPotvrdiSastojkeIzmena_Click"/>
                 <Button x:Name="btnIzbrisiSastojakIzmena" Content="Obrisi Sastojak" HorizontalAlignment="Left" Margin="488,243,0,0" VerticalAlignment="Top" Width="153" Click="btnIzbrisiSastojakIzmena_Click"/>
             </Grid>
@@ -417,22 +1018,94 @@
 
             </Grid>
 
-            <Grid x:Name="gridLekoviDodaj" Visibility="Hidden" Background="LightGray" HorizontalAlignment="Left" Height="640" Margin="69,59,-940,0" VerticalAlignment="Top" Width="949">
-                <Label x:Name="lblNazivLekaUnos" Content="Naziv leka" HorizontalAlignment="Left" Margin="127,82,0,0" VerticalAlignment="Top"/>
-                <TextBox x:Name="textBoxNazivLekaUnos" HorizontalAlignment="Left" Height="23" Margin="389,83,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-                <Label x:Name="lblTipLekaUnos" Content="Tip leka" HorizontalAlignment="Left" Margin="127,161,0,0" VerticalAlignment="Top"/>
-                <Label x:Name="lblTipLekaUnos_Copy" Content="Kolicina leka" HorizontalAlignment="Left" Margin="127,244,0,0" VerticalAlignment="Top"/>
-                <Label x:Name="lblTipLekaUnos_Copy1" Content="Proizvodjac" HorizontalAlignment="Left" Margin="127,309,0,0" VerticalAlignment="Top"/>
-                <TextBox x:Name="textBoxKolicinaLekaUnos" HorizontalAlignment="Left" Height="23" Margin="389,245,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-                <TextBox x:Name="textBoxProizvodjacLekaUnos" HorizontalAlignment="Left" Height="23" Margin="389,310,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-                <Label x:Name="lblTipLekaUnos_Copy2" Content="Nacin upotrebe" HorizontalAlignment="Left" Margin="127,393,0,0" VerticalAlignment="Top"/>
-                <ComboBox x:Name="comboBoxNacinUpotrebe" HorizontalAlignment="Left" Margin="389,393,0,0" VerticalAlignment="Top" Width="120"/>
-                <Button x:Name="btnDodajSastojke" Content="Dodaj sastojke" HorizontalAlignment="Left" Margin="84,503,0,0" VerticalAlignment="Top" Width="236" Height="74" Click="btnDodajSastojke_Click"/>
-                <Button x:Name="btnDodajZamenskeLekove" Content="Dodaj zamenske lekove" HorizontalAlignment="Left" Margin="389,503,0,0" VerticalAlignment="Top" Width="225" Height="74" Click="btnDodajZamenskeLekove_Click"/>
-                <Button x:Name="btnPotvrdiDodavanjeLekova" Content="Potvrdi" HorizontalAlignment="Left" Margin="692,503,0,0" VerticalAlignment="Top" Width="214" Height="74" Click="btnPotvrdiDodavanjeLekova_Click"/>
-                <ComboBox x:Name="cbTipLekaDodavanje" HorizontalAlignment="Left" Margin="389,160,0,0" VerticalAlignment="Top" Width="120"/>
-                <Button x:Name="btnIzaberiLekare" Content="IzaberiLekare" HorizontalAlignment="Left" Margin="692,310,0,0" VerticalAlignment="Top" Width="214" Height="78" Click="btnIzaberiLekare_Click"/>
-                <Button x:Name="btnOtkaziDodavanjeLeka" Content="Otkazi!!!!!!!!!!" HorizontalAlignment="Left" Margin="692,139,0,0" VerticalAlignment="Top" Width="214" Height="80" Click="btnOtkaziDodavanjeLeka_Click"/>
+            <Grid x:Name="gridLekoviDodaj" Visibility="Hidden" Background="LightGray" HorizontalAlignment="Left" Height="685" Margin="98,54,-940,0" VerticalAlignment="Top" Width="920">
+                <Label x:Name="lblNazivLekaUnos" Content="Naziv leka" HorizontalAlignment="Left" Margin="115,180,0,0" VerticalAlignment="Top" FontSize="20"/>
+                <TextBox x:Name="textBoxNazivLekaUnos" HorizontalAlignment="Left" Height="23" Margin="327,186,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                <Label x:Name="lblTipLekaUnos" Content="Tip leka" HorizontalAlignment="Left" Margin="115,247,0,0" VerticalAlignment="Top" FontSize="20"/>
+                <Label x:Name="lblTipLekaUnos_Copy" Content="Kolicina leka" HorizontalAlignment="Left" Margin="115,319,0,0" VerticalAlignment="Top" FontSize="20"/>
+                <Label x:Name="lblTipLekaUnos_Copy1" Content="Proizvodjac" HorizontalAlignment="Left" Margin="115,390,0,0" VerticalAlignment="Top" FontSize="20"/>
+                <TextBox x:Name="textBoxKolicinaLekaUnos" HorizontalAlignment="Left" Height="23" Margin="327,326,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                <TextBox x:Name="textBoxProizvodjacLekaUnos" HorizontalAlignment="Left" Height="23" Margin="327,397,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                <Label x:Name="lblTipLekaUnos_Copy2" Content="Nacin upotrebe" HorizontalAlignment="Left" Margin="115,460,0,0" VerticalAlignment="Top" FontSize="20"/>
+                <ComboBox x:Name="comboBoxNacinUpotrebe" HorizontalAlignment="Left" Margin="327,470,0,0" VerticalAlignment="Top" Width="120"/>
+                <Button x:Name="btnDodajSastojke" HorizontalAlignment="Left" Margin="621,109,0,0" VerticalAlignment="Top" Width="236" Height="48" Click="btnDodajSastojke_Click">
+                    <StackPanel Orientation="Horizontal" Width="230">
+                        <Image  RenderTransformOrigin="0.5,0.5" Source="add.png" >
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                        <TextBlock FontSize="15" Margin="20,0,0,0" Text="Dodaj sastojke" Height="21" Width="123"/>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="btnDodajZamenskeLekove" HorizontalAlignment="Left" Margin="621,217,0,0" VerticalAlignment="Top" Width="236" Height="48" Click="btnDodajZamenskeLekove_Click">
+                    <StackPanel Orientation="Horizontal" Width="230">
+                        <Image  RenderTransformOrigin="0.5,0.5" Source="add.png" >
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                        <TextBlock FontSize="15" Margin="0,0,0,0" Text="Dodaj zamenske lekove" Height="20" Width="164"/>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="btnPotvrdiDodavanjeLekova" HorizontalAlignment="Left" Margin="621,529,0,0" VerticalAlignment="Top" Width="236" Height="48" Click="btnPotvrdiDodavanjeLekova_Click">
+                    <StackPanel Orientation="Horizontal" Width="230">
+                        <Image  RenderTransformOrigin="0.5,0.5" Source="save.png" >
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                        <TextBlock FontSize="15" Margin="20,0,0,0" Text="Potvrdi dodavanje" Height="19" Width="116"/>
+                    </StackPanel>
+                </Button>
+                <ComboBox x:Name="cbTipLekaDodavanje" HorizontalAlignment="Left" Margin="327,257,0,0" VerticalAlignment="Top" Width="120"/>
+                <Button x:Name="btnIzaberiLekare" HorizontalAlignment="Left" Margin="621,320,0,0" VerticalAlignment="Top" Width="236" Height="48" Click="btnIzaberiLekare_Click">
+                    <StackPanel Orientation="Horizontal" Width="230">
+                        <Image  RenderTransformOrigin="0.5,0.5" Source="add.png" >
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                        <TextBlock FontSize="15" Margin="20,0,0,0" Text="Izaberi lekare" Height="20" Width="116"/>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="btnOtkaziDodavanjeLeka" HorizontalAlignment="Left" Margin="621,430,0,0" VerticalAlignment="Top" Width="236" Height="48" Click="btnOtkaziDodavanjeLeka_Click">
+                    <StackPanel Orientation="Horizontal" Width="230">
+                        <Image  RenderTransformOrigin="0.5,0.5" Source="forbidden.png" >
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                        <TextBlock FontSize="15" Margin="20,0,0,0" Text="Otkaži izmenu" Height="20" Width="116"/>
+                    </StackPanel>
+                </Button>
+                <TextBlock x:Name="textBlock16" HorizontalAlignment="Left" Margin="115,109,0,0" TextWrapping="Wrap" Text="Dodajte novi lek:" FontSize="28" FontWeight="Bold" VerticalAlignment="Top"/>
+                <Rectangle HorizontalAlignment="Left" Height="497" Margin="83,80,0,0" Stroke="Black" VerticalAlignment="Top" Width="436"/>
             </Grid>
 
             <Grid x:Name="gridLekoviDodajSastojke" Visibility="Hidden" Background="LightGray" HorizontalAlignment="Left" Height="640" Margin="69,59,-940,0" VerticalAlignment="Top" Width="949">
@@ -443,26 +1116,55 @@
                 <Button x:Name="button1" Content="Potvrdi" HorizontalAlignment="Left" Margin="488,319,0,0" VerticalAlignment="Top" Width="351" Height="270" Click="button1_Click"/>
             </Grid>
 
-            <Grid x:Name="gridLekoviDodajZamenskeLekove" Visibility="Hidden" Background="LightGray" HorizontalAlignment="Left" Height="640" Margin="69,59,-940,0" VerticalAlignment="Top" Width="949">
-                <DataGrid x:Name="dataGridSviLekoviZaZamenski" CanUserAddRows="false" IsReadOnly ="True" HorizontalAlignment="Left" Height="515" Margin="37,89,0,0" VerticalAlignment="Top" Width="425" HeadersVisibility="All" AutoGenerateColumns="False" SelectionMode="Single" CanUserResizeRows="False">
+            <Grid x:Name="gridLekoviDodajZamenskeLekove" Visibility="Hidden" Background="LightGray" HorizontalAlignment="Left" Height="685" Margin="98,54,-940,0" VerticalAlignment="Top" Width="920">
+                <DataGrid x:Name="dataGridSviLekoviZaZamenski" CanUserAddRows="false" IsReadOnly ="True" HorizontalAlignment="Left" Height="488" Margin="59,111,0,0" VerticalAlignment="Top" Width="425" HeadersVisibility="All" AutoGenerateColumns="False" SelectionMode="Single" CanUserResizeRows="False">
                     <DataGrid.Columns>
                         <DataGridTextColumn x:Name="nazivLekaZaZamenu" Binding ="{Binding naziv}" IsReadOnly="True" Header="Naziv"  Width="150" CanUserResize="True"/>
                         <DataGridTextColumn x:Name="tipLekaZaZamenu" Binding="{Binding tip}" IsReadOnly="True" Header="Tip" Width="auto" CanUserResize="True"/>
                     </DataGrid.Columns>
                 </DataGrid>
-                <Button x:Name="button" Content="Dodaj Zamenski Lek" HorizontalAlignment="Left" Margin="533,386,0,0" VerticalAlignment="Top" Width="343" Height="59" Click="button_Click"/>
-                <DataGrid x:Name="dataGridZamenskiUbaceniLekovi" CanUserAddRows="false" HorizontalAlignment="Left" Height="259" Margin="533,84,0,0" VerticalAlignment="Top" Width="343">
+                <Button x:Name="button" HorizontalAlignment="Left" Margin="533,386,0,0" VerticalAlignment="Top" Width="343" Height="59" Click="button_Click">
+                    <StackPanel Orientation="Horizontal" Width="230">
+                        <Image  RenderTransformOrigin="0.5,0.5" Source="add.png" >
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                        <TextBlock FontSize="15" Margin="20,0,0,0" Text="Dodaj zamenski lek" Height="20" Width="145"/>
+                    </StackPanel>
+                </Button>
+                <DataGrid x:Name="dataGridZamenskiUbaceniLekovi" CanUserAddRows="false" HorizontalAlignment="Left" Height="232" Margin="533,111,0,0" VerticalAlignment="Top" Width="343">
                     <DataGrid.Columns>
                         <DataGridTextColumn x:Name="nazivLekaZaZamenuPremesten" Binding ="{Binding naziv}" IsReadOnly="True" Header="Naziv"  Width="150" CanUserResize="True"/>
                         <DataGridTextColumn x:Name="tipLekaZaZamenuPremesten" Binding="{Binding tip}" IsReadOnly="True" Header="Tip" Width="auto" CanUserResize="True"/>
                     </DataGrid.Columns>
                 </DataGrid>
-                <Button x:Name="btnPotvrdiZamenske" Content="Potvrdi" HorizontalAlignment="Left" Margin="533,503,0,0" VerticalAlignment="Top" Width="343" Height="59" Click="btnPotvrdiZamenske_Click"/>
+                <Button x:Name="btnPotvrdiZamenske" HorizontalAlignment="Left" Margin="533,503,0,0" VerticalAlignment="Top" Width="343" Height="59" Click="btnPotvrdiZamenske_Click">
+                    <StackPanel Orientation="Horizontal" Width="230">
+                        <Image  RenderTransformOrigin="0.5,0.5" Source="save.png" >
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                        <TextBlock FontSize="15" Margin="20,0,0,0" Text="Potvrdi dodavanje" Height="20" Width="143"/>
+                    </StackPanel>
+                </Button>
+                <TextBlock x:Name="textBlock17" FontSize="20" HorizontalAlignment="Left" Margin="59,60,0,0" TextWrapping="Wrap" Text="Izaberite lek koji želite da dodate:" VerticalAlignment="Top"/>
 
             </Grid>
 
-            <Grid x:Name="gridIzaberiLekareZaSlanje" Visibility="Hidden" Background="LightGray" HorizontalAlignment="Left" Height="640" Margin="69,59,-940,0" VerticalAlignment="Top" Width="949">
-                <DataGrid x:Name="dataGridLekariZaSlanje" CanUserAddRows="false" IsReadOnly ="True" HorizontalAlignment="Left" Height="515" Margin="37,89,0,0" VerticalAlignment="Top" Width="425" HeadersVisibility="All" AutoGenerateColumns="False" SelectionMode="Extended" CanUserResizeRows="False">
+            <Grid x:Name="gridIzaberiLekareZaSlanje" Visibility="Hidden" Background="LightGray" HorizontalAlignment="Left" Height="680" Margin="98,59,-940,0" VerticalAlignment="Top" Width="920">
+                <DataGrid x:Name="dataGridLekariZaSlanje" CanUserAddRows="false" IsReadOnly ="True" HorizontalAlignment="Left" Height="477" Margin="37,127,0,0" VerticalAlignment="Top" Width="425" HeadersVisibility="All" AutoGenerateColumns="False" SelectionMode="Extended" CanUserResizeRows="False">
                     <DataGrid.Columns>
                         <DataGridTextColumn x:Name="imeLekara" Binding ="{Binding ime}" IsReadOnly="True" Header="Ime"  Width="auto" CanUserResize="True"/>
                         <DataGridTextColumn x:Name="prezimeLekara" Binding="{Binding prezime}" IsReadOnly="True" Header="Prezime" Width="auto" CanUserResize="True"/>
@@ -476,18 +1178,119 @@
                         </DataGridCheckBoxColumn>
                     </DataGrid.Columns>
                 </DataGrid>
-                <Button x:Name="btnPotvrdiLekare" Content="Dodaj Lekare" HorizontalAlignment="Left" Margin="556,92,0,0" VerticalAlignment="Top" Width="351" Height="118" Click="btnPotvrdiLekare_Click"/>
-                <Button x:Name="btnOtkaziLekare" Content="[X] Otkazi" HorizontalAlignment="Left" Margin="556,280,0,0" VerticalAlignment="Top" Width="351" Height="118" Click="btnOtkaziLekare_Click"/>
+                <Button x:Name="btnPotvrdiLekare" HorizontalAlignment="Left" Margin="556,205,0,0" VerticalAlignment="Top" Width="351" Height="48" Click="btnPotvrdiLekare_Click">
+                    <StackPanel Orientation="Horizontal" Width="230">
+                        <Image  RenderTransformOrigin="0.5,0.5" Source="save.png" >
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                        <TextBlock FontSize="15" Margin="20,0,0,0" Text="Potvrdi izbor lekara" Height="20" Width="136"/>
+                    </StackPanel>
+                </Button>
+
+                <Button x:Name="btnOtkaziLekare" HorizontalAlignment="Left" Margin="556,346,0,0" VerticalAlignment="Top" Width="351" Height="48" Click="btnOtkaziLekare_Click">
+                    <StackPanel Orientation="Horizontal" Width="230">
+                        <Image  RenderTransformOrigin="0.5,0.5" Source="forbidden.png" >
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                        <TextBlock FontSize="15" Margin="20,0,0,0" Text="Otkaži izbor" Height="20" Width="116"/>
+                    </StackPanel>
+                </Button>
+                <TextBlock x:Name="textBlock18" FontSize="18" HorizontalAlignment="Left" Margin="37,73,0,0" TextWrapping="Wrap" Text="Izaberite lekare kojima želite da pošaljete zahtev:" VerticalAlignment="Top"/>
 
             </Grid>
 
         </Grid>
         <Rectangle x:Name="vodoravniPravougaonik" Fill="Black" Visibility="Hidden" HorizontalAlignment="Left" Height="2" Margin="19,60,0,0" Stroke="Black" VerticalAlignment="Top" Width="940" Grid.Column="2"/>
-        <Rectangle x:Name="horizontalniPravougaonik" Fill="Black" HorizontalAlignment="Left" Height="679" Margin="19,60,0,0" Stroke="Black" VerticalAlignment="Top" Width="2" Grid.Column="2" Grid.RowSpan="3"/>
-        <Rectangle Fill="Black" HorizontalAlignment="Left" Height="60" Margin="19,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="2" Grid.Column="2"/>
         <Rectangle x:Name="donjiPravougaonik"  Fill="Black" HorizontalAlignment="Left" Height="2" Margin="20,31,-78,0" Stroke="Black" VerticalAlignment="Top" Width="1016" Grid.Column="2" Visibility="Hidden" Grid.Row="2"/>
-        <Button x:Name="btnOdjava" Content="Odjavite se" Grid.Column="2" HorizontalAlignment="Left" Margin="862,27,0,0" VerticalAlignment="Top" Width="74" Click="btnOdjava_Click" />
+        <Button x:Name="btnOdjava" HorizontalAlignment="Left" Margin="851,0,0,0" VerticalAlignment="Top" Width="167" Click="btnOdjava_Click" Height="51">
+            <StackPanel Orientation="Horizontal" Width="230">
+                <Image  RenderTransformOrigin="0.5,0.5" Source="logout.png" >
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>
+                <TextBlock FontSize="15" Margin="10,0,0,0" Text="Odjavite se" Height="20" Width="116"/>
+            </StackPanel>
+        </Button>
 
+        <Rectangle Fill="White" HorizontalAlignment="Left" Height="3" Stroke="Black" StrokeThickness="3" VerticalAlignment="Top" Width="1018" Margin="0,51,0,0"/>
+        <Image Source="logo.png" Margin="0,-9,963,677"/>
+        <TextBlock  HorizontalAlignment="Left" Margin="60,20,0,0" TextWrapping="Wrap" Text="Zdravo korporacija" VerticalAlignment="Top" Foreground="Green"/>
+        <Rectangle Fill="White" HorizontalAlignment="Left" Height="51" Margin="175,0,0,0" Stroke="Black" StrokeThickness="3" VerticalAlignment="Top" Width="3"/>
+        <ListView x:Name="listView"  HorizontalAlignment="Left" Height="685" Margin="0,54,0,0" VerticalAlignment="Top" Width="100" Grid.RowSpan="2" SelectionChanged="listView_SelectionChanged">
+
+            <ListViewItem Width="100" Height="95" Background="#FF2196F3" BorderThickness="0,0,1,1" BorderBrush="Black">
+                <Grid>
+                    <Image Source="user.png" Margin="13,0,-19,15"/>
+                    <TextBlock Text="Moj profil" HorizontalAlignment="Center" FontSize="15" Margin="-1,58,-37,-4"/>
+                </Grid>
+            </ListViewItem>
+            <ListViewItem x:Name="listProstorije" Width="100" Height="98" Background="#FF2196F3" BorderBrush="Black" BorderThickness="0,0,1,1">
+                <Grid>
+                    <Image Source="prostorija.png" Margin="13,0,-19,15"/>
+                    <TextBlock Text="Prostorije" HorizontalAlignment="Center" FontSize="15" Margin="-1,58,-37,-4"/>
+                </Grid>
+            </ListViewItem>
+            <ListViewItem x:Name="listInventar" Width="100" Height="98" Background="#FF2196F3" BorderThickness="0,0,1,1" BorderBrush="Black">
+                <Grid>
+                    <Image Source="inventory.png" Margin="13,0,-19,15"/>
+                    <TextBlock Text="Inventar" HorizontalAlignment="Center" FontSize="15" Margin="-1,67,-37,-4"/>
+                </Grid>
+            </ListViewItem>
+            <ListViewItem x:Name="listLekovi" Width="100" Height="98" Background="#FF2196F3" BorderThickness="0,0,1,1" BorderBrush="Black">
+                <Grid>
+                    <Image Source="drugs.png" Margin="13,0,-19,15"/>
+                    <TextBlock Text="Lekovi" HorizontalAlignment="Center" FontSize="15" Margin="-1,67,-37,-4"/>
+                </Grid>
+            </ListViewItem>
+            <ListViewItem Width="100" Height="98" Background="#FF2196F3" BorderThickness="0,0,1,1" BorderBrush="Black">
+                <Grid>
+                    <Image Source="users.png" Margin="13,0,-19,15"/>
+                    <TextBlock Text="Osoblje" HorizontalAlignment="Center" FontSize="15" Margin="-1,67,-37,-4"/>
+                </Grid>
+            </ListViewItem>
+            <ListViewItem Width="100" Height="98" Background="#FF2196F3" BorderThickness="0,0,1,1" BorderBrush="Black">
+                <Grid>
+                    <Image Source="praktikanti.png" Margin="13,0,-19,15"/>
+                    <TextBlock Text="Praktikanti" HorizontalAlignment="Center" FontSize="15" Margin="-1,67,-37,-4"/>
+                </Grid>
+            </ListViewItem>
+            <ListViewItem Width="100" Height="99" Background="#FF2196F3" BorderThickness="0,0,1,1" BorderBrush="Black">
+                <Grid>
+                    <Image Source="hel.png" Margin="13,0,-19,15" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="0.9" ScaleY="0.9"/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <TextBlock Text="Pomoć" HorizontalAlignment="Center" FontSize="15" Margin="-1,65,-37,-4"/>
+                </Grid>
+            </ListViewItem>
+
+        </ListView>
 
 
     </Grid>

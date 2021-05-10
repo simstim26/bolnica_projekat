@@ -64,5 +64,16 @@
     "jeStaticka": true,
     "jeLogickiObrisana": false,
     "jePotrosnaRoba": false
+  },
+  {
+    "id": "7",
+    "naziv": "proba",
+    "kolicina": 21,
+    "proizvodjac": "test",
+    "idProstorije": null,
+    "idBolnice": "1",
+    "jeStaticka": false,
+    "jeLogickiObrisana": false,
+    "jePotrosnaRoba": true
   }
 ]
