@@ -51,20 +51,8 @@ namespace Bolnica_aplikacija.View.PacijentStudent
 
         private void popuniLekara()
         {
-            Dictionary<string, string> lekari = new Dictionary<string, string>();
-            PacijentKontroler.nadjiPacijenta(idPacijenta);
-            var prosliTermini = PacijentKontroler.prikazProslihTerminaPacijenta();
-            foreach (PacijentTermin pacijentTermin in prosliTermini)
-            {
-                Termin termin = TerminKontroler.nadjiTerminPoId(pacijentTermin.id);
-                Lekar lekar = LekarKontroler.nadjiLekaraPoId(termin.idLekara);
-                if(!lekari.ContainsKey(termin.idLekara))
-                {
-                    lekari.Add(termin.idLekara, lekar.ime + " "+ lekar.prezime);
-                }
-            }
 
-            comboBoxLekar.ItemsSource = lekari.Values;
+            comboBoxLekar.ItemsSource = LekarKontroler.popuniLekarComboBox(idPacijenta);
             comboBoxLekar.SelectedIndex = 0;
          
         }

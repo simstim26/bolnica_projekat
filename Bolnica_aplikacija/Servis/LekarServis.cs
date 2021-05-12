@@ -199,5 +199,29 @@ namespace Bolnica_aplikacija.Servis
 
             return null;
         }
+
+        public Dictionary<String, String> popuniLekarComboBox(String idPacijenta)
+        {
+            Dictionary<string, string> lekari = new Dictionary<string, string>();
+            PacijentServis.getInstance().nadjiPacijenta(idPacijenta);
+            var prosliTermini = PacijentServis.getInstance().prikazProslihTerminaPacijenta();
+
+            popuniLekarDictionary(prosliTermini, lekari);
+
+            return lekari;
+        }
+
+        private void popuniLekarDictionary(List<PacijentTermin> prosliTermini, Dictionary<String,String> lekari)
+        {
+            foreach (PacijentTermin pacijentTermin in prosliTermini)
+            {
+                Termin termin = TerminServis.getInstance().nadjiTerminPoId(pacijentTermin.id);
+                Lekar lekar = LekarServis.getInstance().nadjiLekaraPoId(termin.idLekara);
+                if (!lekari.ContainsKey(termin.idLekara))
+                {
+                    lekari.Add(termin.idLekara, lekar.ime + " " + lekar.prezime);
+                }
+            }
+        }
     }
 }

@@ -38,5 +38,10 @@ namespace Bolnica_aplikacija.Kontroler
         {
             return LekarServis.getInstance().nadjiLekaraPoId(idLekara);
         }
+
+        public static Dictionary<String, String> popuniLekarComboBox(String idPacijenta)
+        {
+            return LekarServis.getInstance().popuniLekarComboBox(idPacijenta);
+        }
     }
 }
