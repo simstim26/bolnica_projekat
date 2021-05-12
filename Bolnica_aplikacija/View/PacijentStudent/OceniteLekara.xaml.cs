@@ -1,4 +1,5 @@
 ﻿using Bolnica_aplikacija.Kontroler;
+using Bolnica_aplikacija.Model;
 using Bolnica_aplikacija.PacijentModel;
 using Bolnica_aplikacija.PacijentStudent;
 using Bolnica_aplikacija.Servis;
@@ -80,7 +81,7 @@ namespace Bolnica_aplikacija.View.PacijentStudent
 
                 int brojOcena = OcenaLekaraKontroler.ucitajSve().Count + 1;
 
-                OcenaLekaraKontroler.dodajOcenu(new Model.OcenaLekara("OL " + brojOcena.ToString(), comboBoxLekar.SelectedItem.ToString(), ocena, txtKomentar.Text));
+                OcenaLekaraKontroler.dodajOcenu(new OcenaLekaraDTO("OL " + brojOcena.ToString(), comboBoxLekar.SelectedItem.ToString(), ocena, txtKomentar.Text));
 
                 this.Close();
             }
