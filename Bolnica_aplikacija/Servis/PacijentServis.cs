@@ -132,37 +132,35 @@ namespace Bolnica_aplikacija.Servis
 
         private void radSaPacijentTerminomPrikazPacijentovihTermina(Termin termin, PacijentTermin pacijentTermin)
         {
-            foreach (Prostorija prostorija in ProstorijaServis.getInstance().ucitajSve())
-            {
-                if (prostorija.id.Equals(termin.idProstorije))
-                {
-                    pacijentTermin.lokacija = "Sprat " + prostorija.sprat + ", sala broj " + prostorija.broj;
-                    break;
-                }
-            }
+            popuniProstoriju(termin, pacijentTermin);
+            popuniLekara(termin, pacijentTermin);
+            dopuniPacijentTermin(termin, pacijentTermin);
 
+        }
+
+        private void popuniLekara(Termin termin, PacijentTermin pacijentTermin)
+        {
             foreach (Lekar lekar in LekarServis.getInstance().ucitajSve())
             {
+                pacijentTermin.imeLekara = "";
+
                 if (lekar.id.Equals(termin.idLekara))
                 {
+                    /*if (lekar.idSpecijalizacije.Equals("0") || jeSekretar && lekar.idSpecijalizacije.Equals("0"))
+                     {
+                         pacijentTermin.imeLekara = lekar.ime + " " + lekar.prezime;
+                         pacijentTermin.idSpecijalizacije = lekar.idSpecijalizacije;
+                         break;
+                     }
+                    else*/
+
                     pacijentTermin.imeLekara = lekar.ime + " " + lekar.prezime;
                     pacijentTermin.idSpecijalizacije = lekar.idSpecijalizacije;
                     pacijentTermin.nazivSpecijalizacije = SpecijalizacijaKontroler.nadjiSpecijalizacijuPoId(lekar.idSpecijalizacije);
-
                     break;
+
                 }
             }
-
-            pacijentTermin.datum = termin.datum.Date.ToString("dd/MM/yyyy");
-            switch (termin.tip)
-            {
-                case TipTermina.OPERACIJA: pacijentTermin.napomena = "Operacija"; break;
-                case TipTermina.PREGLED: pacijentTermin.napomena = "Pregled"; break;
-                default: break;
-            }
-            pacijentTermin.satnica = termin.satnica.ToString("HH:mm");
-            pacijentTermin.id = termin.idTermina;
-           
         }
 
         public List<PacijentTermin> prikazPacijentovihTermina()
@@ -385,34 +383,10 @@ namespace Bolnica_aplikacija.Servis
             }
         }
 
-        private void popuniLekara(Termin termin, PacijentTermin pacijentTermin)
-        {
-            foreach (Lekar lekar in LekarServis.getInstance().ucitajSve())
-            {
-                pacijentTermin.imeLekara = "";
-
-                if (lekar.id.Equals(termin.idLekara))
-                {
-                    /*if (lekar.idSpecijalizacije.Equals("0") || jeSekretar && lekar.idSpecijalizacije.Equals("0"))
-                     {
-                         pacijentTermin.imeLekara = lekar.ime + " " + lekar.prezime;
-                         pacijentTermin.idSpecijalizacije = lekar.idSpecijalizacije;
-                         break;
-                     }
-                    else*/
-
-                    pacijentTermin.imeLekara = lekar.ime + " " + lekar.prezime;
-                    pacijentTermin.idSpecijalizacije = lekar.idSpecijalizacije;
-                    break;
-
-                }
-            }
-        }
-
         public void dopuniPacijentTermin(Termin termin, PacijentTermin pacijentTermin)
         {
             pacijentTermin.datum = termin.datum.Date.ToString("dd/MM/yyyy");
-            pacijentTermin.napomena = termin.tip.ToString();
+            pacijentTermin.napomena = termin.getTipString();
             pacijentTermin.satnica = termin.satnica.ToString("HH:mm");
             pacijentTermin.id = termin.idTermina;
         }

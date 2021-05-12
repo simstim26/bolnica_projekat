@@ -121,7 +121,6 @@ namespace Bolnica_aplikacija.PacijentStudent
                             if (izabraniTermin.idSpecijalizacije.Equals("0"))
                             {
                                 PacijentKontroler.otkaziTerminPacijenta(izabraniTermin.id);
-
                                 //ANTI TROL
                                 PomocnaKlasaProvere.antiTrolMetoda(idPacijenta);
                             }
@@ -258,7 +257,7 @@ namespace Bolnica_aplikacija.PacijentStudent
                 }
                 else
                 {
-                    Console.WriteLine("SAD JE VALJDA PRAZNO");
+                    //Console.WriteLine("SAD JE VALJDA PRAZNO");
                 }
             }
 
@@ -301,9 +300,7 @@ namespace Bolnica_aplikacija.PacijentStudent
 
         private void btnPlacanje_Click(object sender, RoutedEventArgs e)
         {
-            OceniteBolnicu oceniteBolnicu = new OceniteBolnicu(idPacijenta);
-            oceniteBolnicu.Owner = this;
-            oceniteBolnicu.ShowDialog();
+            
         }
 
         private void proveraAnkete()
