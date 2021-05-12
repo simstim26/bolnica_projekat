@@ -102,19 +102,7 @@ namespace Bolnica_aplikacija.Servis
         }
         public Lek nadjiLekPoId(String idLeka)
         {
-            Lek povratnaVrednost = new Lek();
-
-            foreach (Lek lek in ucitajSve())
-            {
-                if (idLeka != null && idLeka.Equals(lek.id))
-                {
-                    povratnaVrednost.kopiraj(lek);
-
-                    break;
-                }
-            }
-
-            return povratnaVrednost;
+            return ucitajSve().ToDictionary(l => l.id)[idLeka];
         }
 
         public List<Lek> ucitajSve()

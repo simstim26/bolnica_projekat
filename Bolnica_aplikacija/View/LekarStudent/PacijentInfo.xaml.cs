@@ -39,8 +39,8 @@ namespace Bolnica_aplikacija
             lblDatumRodjenja.Content = PacijentKontroler.getPacijent().datumRodjenja.ToString("dd.MM.yyyy.");
             lblAdresa.Content = PacijentKontroler.getPacijent().adresa;
             lblKontakt.Content = PacijentKontroler.getPacijent().brojTelefona;
-
-            if(LekarTabovi.getIndikator() == 1)
+            
+            /*if(LekarTabovi.getIndikator() == 1)
             {
                 btnIzvestaj.IsEnabled = false;
             }
@@ -61,7 +61,7 @@ namespace Bolnica_aplikacija
                 {
                     btnIzvestaj.IsEnabled = false;
                 }
-            }
+            }*/
            
             dataTermini = this.dataGridTerminiPacijenta;
             ucitajPodatke();

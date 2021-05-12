@@ -32,17 +32,8 @@ namespace Bolnica_aplikacija.Servis
 
         public String nadjiBrojISprat(String idProstorije)
         {
-            String povratnaVrednost = "";
-            foreach (Prostorija prostorija in prostorijaRepozitorijum.ucitajSve())
-            {
-                if (idProstorije.Equals(prostorija.id))
-                {
-                    povratnaVrednost = prostorija.broj + " " + prostorija.sprat;
-                    break;
-                }
-            }
-
-            return povratnaVrednost;
+            Prostorija prostorija = nadjiProstorijuPoId(idProstorije);
+            return prostorija.broj + " " + prostorija.sprat;
         }
 
         public List<Prostorija> ucitajSve()
