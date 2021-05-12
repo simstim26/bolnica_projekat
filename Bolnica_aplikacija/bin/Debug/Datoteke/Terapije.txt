@@ -45,8 +45,8 @@
     "idPacijenta": "1",
     "idBolesti": "3",
     "idTermina": "9",
-    "datumPocetka": "2021-05-12T11:05:14.5649308+02:00",
-    "trajanje": 2,
+    "datumPocetka": "2021-05-12T11:27:40.8378687+02:00",
+    "trajanje": 1,
     "nacinUpotrebe": "Rektalno"
   },
   {

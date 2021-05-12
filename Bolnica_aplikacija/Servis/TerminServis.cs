@@ -1,4 +1,5 @@
 ﻿using Bolnica_aplikacija.Kontroler;
+using Bolnica_aplikacija.Model;
 using Bolnica_aplikacija.PacijentModel;
 using Bolnica_aplikacija.Repozitorijum;
 using Model;
@@ -80,7 +81,7 @@ namespace Bolnica_aplikacija.Servis
                 termin.idTerapije = terapija.id;
             }
             
-            termin.idBolesti = bolestServis.napraviBolest(nazivBolesti, termin.idPacijenta, termin.idTerapije);
+            termin.idBolesti = bolestServis.napraviBolest(new Bolest("",nazivBolesti, termin.idTerapije, termin.idPacijenta));
            
             if(terapija != null)
             {

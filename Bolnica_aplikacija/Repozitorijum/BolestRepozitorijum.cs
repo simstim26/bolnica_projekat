@@ -26,6 +26,20 @@ namespace Bolnica_aplikacija.Repozitorijum
             return sveBolesti;
         }
 
+        public void azurirajBolest(Bolest bolestZaAzuriranje)
+        {
+            List<Bolest> sveBolesti = ucitajSve();
+            foreach(Bolest bolest in sveBolesti)
+            {
+                if(bolest.id.Equals(bolestZaAzuriranje.id))
+                {
+                    bolest.kopiraj(bolestZaAzuriranje);
+                    break;
+                }
+            }
+            upisi(sveBolesti);
+        }
+
 
         public void upisi(List<Bolest> sveBolesti)
         {

@@ -136,7 +136,7 @@
     "idLekara": "1",
     "idTerapije": "5",
     "idBolesti": "1",
-    "izvestaj": "dsfnapdsnfapksdnf;aksnd;fkladfa",
+    "izvestaj": "sd",
     "izvestajUputa": null,
     "idUputLekara": null,
     "idUputTermin": null,
