@@ -24,16 +24,10 @@ namespace Bolnica_aplikacija.Servis
 
         public Bolest nadjiBolestPoId(String id)
         {
-            Bolest povratnaVrednost = null;
-            foreach(Bolest bolest in bolestRepozitorijum.ucitajSve())
-            {
-                if (id.Equals(bolest.id))
-                {
-                    povratnaVrednost = bolest;
-                    break;
-                }
-            }
-            return povratnaVrednost;
+            if (id == null)
+                return new Bolest();
+
+            return bolestRepozitorijum.ucitajSve().ToDictionary(b => b.id)[id];
         }
 
         public List<Bolest> ucitajSve()
@@ -42,25 +36,14 @@ namespace Bolnica_aplikacija.Servis
         }
         public void azurirajTerapijuZaBolest(String idBolesti, String idTerapije)
         {
-            List<Bolest> bolesti = bolestRepozitorijum.ucitajSve();
-            foreach (Bolest bolest in bolesti)
-            {
-                if (idBolesti.Equals(bolest.id))
-                {
-                    bolest.idTerapije = idTerapije;
-                    break;
-                }
-            }
-            bolestRepozitorijum.upisi(bolesti);
+            Bolest bolest = nadjiBolestPoId(idBolesti);
+            bolest.idTerapije = idTerapije;
+            bolestRepozitorijum.azurirajBolest(bolest);
         }
-        public String napraviBolest(String nazivBolesti, String idPacijenta, String idTerapije)
+        public String napraviBolest(Bolest bolest)
         {
             var sveBolesti = bolestRepozitorijum.ucitajSve();
-            Bolest bolest = new Bolest();
             bolest.id = (sveBolesti.Count + 1).ToString();
-            bolest.naziv = nazivBolesti;
-            bolest.idPacijenta = idPacijenta;
-            bolest.idTerapije = idTerapije;
             sveBolesti.Add(bolest);
             bolestRepozitorijum.upisi(sveBolesti);
 
