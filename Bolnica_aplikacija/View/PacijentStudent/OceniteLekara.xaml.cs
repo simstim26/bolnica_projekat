@@ -25,11 +25,11 @@ namespace Bolnica_aplikacija.View.PacijentStudent
     /// </summary>
     public partial class OceniteLekara : Window
     {
-        private String idPacijenta;
+        //private String idPacijenta;
         public OceniteLekara(String idPacijenta)
         {
             InitializeComponent();
-            this.idPacijenta = idPacijenta;
+            //this.idPacijenta = idPacijenta;
             popuniPolja();
 
         }
@@ -53,7 +53,7 @@ namespace Bolnica_aplikacija.View.PacijentStudent
         private void popuniLekara()
         {
 
-            comboBoxLekar.ItemsSource = LekarKontroler.popuniLekarComboBox(idPacijenta);
+            comboBoxLekar.ItemsSource = LekarKontroler.popuniLekarComboBox(KorisnikKontroler.GetPacijent().id);
             comboBoxLekar.SelectedIndex = 0;
          
         }
