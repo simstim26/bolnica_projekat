@@ -94,14 +94,7 @@ namespace Bolnica_aplikacija.Servis
 
         public void nadjiLekara(String idLekara) //da li ide u repozitorijum nova metoda nadjiPoId?
         {
-            foreach(Lekar lekar in lekarRepozitorijum.ucitajSve())
-            {
-                if (lekar.id.Equals(idLekara))
-                {
-                    this.lekar = lekar;
-                    break;
-                }
-            }
+            this.lekar = LekarServis.getInstance().nadjiLekaraPoId(idLekara);
         }
         public Lekar getLekar()
         {

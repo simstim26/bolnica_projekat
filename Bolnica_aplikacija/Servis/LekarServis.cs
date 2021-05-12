@@ -33,47 +33,18 @@ namespace Bolnica_aplikacija.Servis
         }
         public String pronadjiImeLekara(String idLekara)
         {
-            String povratnaVrednost = "";
-
-            foreach(Lekar lekar in lekarRepozitorijum.ucitajSve())
-            {
-                if (idLekara.Equals(lekar.id))
-                {
-                    povratnaVrednost = lekar.prezime;
-                }
-            }
-
-            return povratnaVrednost;
+            return nadjiLekaraPoId(idLekara).prezime;
         }
 
         public String pronadjiPunoImeLekara(String idLekara)
         {
-            String povratnaVrednost = "";
-            foreach(Lekar lekar in lekarRepozitorijum.ucitajSve())
-            {
-                if(idLekara.Equals(lekar.id))
-                {
-                    povratnaVrednost = lekar.ime + " " + lekar.prezime;
-                    break;
-                }
-            }
-
-            return povratnaVrednost;
+            Lekar lekar = nadjiLekaraPoId(idLekara);
+            return  lekar.ime + " " + lekar.prezime;
         }
 
         public String pronadjiNazivSpecijalizacijeLekara(String idLekara)
         {
-            String povratnaVrednost = "";
-
-            foreach(Lekar lekar in lekarRepozitorijum.ucitajSve())
-            {
-                if (idLekara.Equals(lekar.id))
-                {
-                    povratnaVrednost = SpecijalizacijaServis.getInstance().nadjiSpecijalizacijuPoId(lekar.idSpecijalizacije);
-                }
-            }
-
-            return povratnaVrednost;
+            return SpecijalizacijaServis.getInstance().nadjiSpecijalizacijuPoId(nadjiLekaraPoId(idLekara).idSpecijalizacije);
         }
 
         public List<PacijentTermin> prikaziSlobodneTermineZaLekara(Lekar ulogovaniLekar, int tipAkcije)
@@ -189,15 +160,10 @@ namespace Bolnica_aplikacija.Servis
         }
         public Lekar nadjiLekaraPoId(String idLekara)
         {
-            foreach(Lekar lekar in ucitajSve())
-            {
-                if (idLekara.Equals(lekar.id))
-                {
-                    return lekar;
-                }
-            }
+            if(idLekara == null) 
+                return new Lekar();
 
-            return null;
+            return ucitajSve().ToDictionary(l => l.id)[idLekara];
         }
 
         public Dictionary<String, String> popuniLekarComboBox(String idPacijenta)
