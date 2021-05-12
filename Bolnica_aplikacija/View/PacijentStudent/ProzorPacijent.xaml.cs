@@ -42,6 +42,7 @@ namespace Bolnica_aplikacija.PacijentStudent
             PopuniTermine();
             setujTajmer();
             proveraAnkete();
+
         }
 
         private void PopuniTermine()
