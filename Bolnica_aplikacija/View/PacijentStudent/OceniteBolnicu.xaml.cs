@@ -1,4 +1,5 @@
 ﻿using Bolnica_aplikacija.Kontroler;
+using Bolnica_aplikacija.Model;
 using Bolnica_aplikacija.PacijentStudent;
 using Model;
 using System;
@@ -64,7 +65,7 @@ namespace Bolnica_aplikacija.View.PacijentStudent
                     default: ocena = -1; break;
                 }
 
-                OcenaBolniceKontroler.dodajOcenu(new Model.OcenaBolnice("BO "+brojOcena,ocena, txtKomentar.Text, new Pacijent(idPacijenta)));
+                OcenaBolniceKontroler.dodajOcenu(new OcenaBolniceDTO("BO "+brojOcena,ocena, txtKomentar.Text, new PacijentDTO(idPacijenta)));
                 PacijentKontroler.postaviStanjeAnkete(idPacijenta);
                 this.Close();
             
