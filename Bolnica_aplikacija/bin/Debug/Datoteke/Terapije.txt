@@ -41,13 +41,13 @@
   },
   {
     "id": "5",
-    "idLeka": "1",
+    "idLeka": "5",
     "idPacijenta": "1",
     "idBolesti": "3",
     "idTermina": "9",
-    "datumPocetka": "2021-05-02T22:28:31.8832995+02:00",
+    "datumPocetka": "2021-05-12T11:05:14.5649308+02:00",
     "trajanje": 2,
-    "nacinUpotrebe": "Sublingvalno"
+    "nacinUpotrebe": "Rektalno"
   },
   {
     "id": "6",
@@ -108,5 +108,15 @@
     "datumPocetka": "2021-05-04T01:51:10.2823744+02:00",
     "trajanje": 2,
     "nacinUpotrebe": "Sublingvalno"
+  },
+  {
+    "id": "12",
+    "idLeka": "5",
+    "idPacijenta": "1",
+    "idBolesti": "1",
+    "idTermina": null,
+    "datumPocetka": "2021-05-12T11:07:23.9462675+02:00",
+    "trajanje": 7,
+    "nacinUpotrebe": "Rektalno"
   }
 ]
