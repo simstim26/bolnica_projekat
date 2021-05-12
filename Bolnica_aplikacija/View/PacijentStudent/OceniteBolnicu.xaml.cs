@@ -23,12 +23,12 @@ namespace Bolnica_aplikacija.View.PacijentStudent
     /// </summary>
     public partial class OceniteBolnicu : Window
     {
-        private String idPacijenta;
+        //private String idPacijenta;
 
         public OceniteBolnicu(String idPacijenta)
         {
             InitializeComponent();
-            this.idPacijenta = idPacijenta;
+            //this.idPacijenta = idPacijenta;
             popuniPolja();
         }
 
@@ -65,8 +65,8 @@ namespace Bolnica_aplikacija.View.PacijentStudent
                     default: ocena = -1; break;
                 }
 
-                OcenaBolniceKontroler.dodajOcenu(new OcenaBolniceDTO("BO "+brojOcena,ocena, txtKomentar.Text, new PacijentDTO(idPacijenta)));
-                PacijentKontroler.postaviStanjeAnkete(idPacijenta);
+                OcenaBolniceKontroler.dodajOcenu(new OcenaBolniceDTO("BO "+brojOcena,ocena, txtKomentar.Text, new PacijentDTO(KorisnikKontroler.GetPacijent().id)));
+                PacijentKontroler.postaviStanjeAnkete(KorisnikKontroler.GetPacijent().id);
                 this.Close();
             
             }

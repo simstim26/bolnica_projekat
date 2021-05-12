@@ -25,13 +25,13 @@ namespace Bolnica_aplikacija.PacijentStudent
     public partial class ProzorPacijent : Window
     {
 
-        private String idPacijenta;
+        //private String idPacijenta;
         private DispatcherTimer tajmer;
 
         public ProzorPacijent()
         {
             InitializeComponent();
-            this.idPacijenta = KorisnikKontroler.GetPacijent().id;
+            //this.idPacijenta = KorisnikKontroler.GetPacijent().id;
             this.DataContext = this;
 
             SetScreenSize();
@@ -46,7 +46,7 @@ namespace Bolnica_aplikacija.PacijentStudent
 
         private void PopuniTermine()
         {
-            PacijentKontroler.nadjiPacijenta(this.idPacijenta);
+            PacijentKontroler.nadjiPacijenta(KorisnikKontroler.GetPacijent().id);
             dataGridTermin.ItemsSource = PacijentKontroler.prikazPacijentovihTermina();
         }
 
@@ -122,7 +122,7 @@ namespace Bolnica_aplikacija.PacijentStudent
                             {
                                 PacijentKontroler.otkaziTerminPacijenta(izabraniTermin.id);
                                 //ANTI TROL
-                                PomocnaKlasaProvere.antiTrolMetoda(idPacijenta);
+                                PomocnaKlasaProvere.antiTrolMetoda(KorisnikKontroler.GetPacijent().id);
                             }
                             else
                             {
@@ -168,7 +168,7 @@ namespace Bolnica_aplikacija.PacijentStudent
                             if (izabraniTermin.idSpecijalizacije.Equals("0"))
                             {
                                 TerminKontroler.sacuvajTermin(izabraniTermin.id);
-                                IzmenaTerminaPacijent izmenaTermina = new IzmenaTerminaPacijent(dataGridTermin, this.idPacijenta);
+                                IzmenaTerminaPacijent izmenaTermina = new IzmenaTerminaPacijent(dataGridTermin, KorisnikKontroler.GetPacijent().id);
                                 izmenaTermina.Owner = this;
                                 izmenaTermina.ShowDialog();
                             }
@@ -200,7 +200,7 @@ namespace Bolnica_aplikacija.PacijentStudent
         {
             if(proveraUzastopnihIzmena())
             {
-                PacijentZakaziTermin zakaziTermin = new PacijentZakaziTermin(dataGridTermin, idPacijenta);
+                PacijentZakaziTermin zakaziTermin = new PacijentZakaziTermin(dataGridTermin, KorisnikKontroler.GetPacijent().id);
                 zakaziTermin.Owner = this;
                 zakaziTermin.ShowDialog();
             }
@@ -237,13 +237,13 @@ namespace Bolnica_aplikacija.PacijentStudent
             String trenutnoVreme = trenutnoVremeiDatum.ToString("HH:mm");
             String trenutanDatum = trenutnoVremeiDatum.ToString("dd.MM.yyyy.");
 
-            bool proveraDatumaIVremena = NotifikacijaKontroler.proveriVreme(trenutnoVreme, trenutanDatum, idPacijenta);
+            bool proveraDatumaIVremena = NotifikacijaKontroler.proveriVreme(trenutnoVreme, trenutanDatum, KorisnikKontroler.GetPacijent().id);
 
             if(!proveraDatumaIVremena)
             {
                 //Console.WriteLine("NESTO JE USPELO");
 
-                var zaProveriti = NotifikacijaKontroler.getNoveNotifikacijeKorisnika(idPacijenta);
+                var zaProveriti = NotifikacijaKontroler.getNoveNotifikacijeKorisnika(KorisnikKontroler.GetPacijent().id);
 
                 if(zaProveriti.Count > 1)
                 {
@@ -251,7 +251,7 @@ namespace Bolnica_aplikacija.PacijentStudent
                 }
                 else if (zaProveriti.Count == 1)
                 {
-                    NotifikacijaProzor notifikacijaProzor = new NotifikacijaProzor(zaProveriti.ElementAt(0).id, idPacijenta);
+                    NotifikacijaProzor notifikacijaProzor = new NotifikacijaProzor(zaProveriti.ElementAt(0).id, KorisnikKontroler.GetPacijent().id);
                     notifikacijaProzor.ShowDialog();
 
                 }
@@ -266,14 +266,14 @@ namespace Bolnica_aplikacija.PacijentStudent
         bool proveraUzastopnihIzmena()
         {
             bool povratnaVrednost = false;
-            int brojPonavljanja = LogovanjeKontroler.getBrojUzastopnihPonavljanja(idPacijenta);
-            bool proveraDatuma = PomocnaKlasaProvere.uporediDatumSaDanasnjim(LogovanjeKontroler.getVremeIzmene(idPacijenta));
+            int brojPonavljanja = LogovanjeKontroler.getBrojUzastopnihPonavljanja(KorisnikKontroler.GetPacijent().id);
+            bool proveraDatuma = PomocnaKlasaProvere.uporediDatumSaDanasnjim(LogovanjeKontroler.getVremeIzmene(KorisnikKontroler.GetPacijent().id));
 
             if(brojPonavljanja > 3 )
             {
                 if(proveraDatuma)
                 {
-                    LogovanjeKontroler.resetujLogovanje(idPacijenta);
+                    LogovanjeKontroler.resetujLogovanje(KorisnikKontroler.GetPacijent().id);
                     povratnaVrednost = true;
                 }
                 else
@@ -291,7 +291,7 @@ namespace Bolnica_aplikacija.PacijentStudent
 
         private void btnOceniLekara_Click(object sender, RoutedEventArgs e)
         {
-            OceniteLekara oceniteLekara = new OceniteLekara(idPacijenta);
+            OceniteLekara oceniteLekara = new OceniteLekara(KorisnikKontroler.GetPacijent().id);
             oceniteLekara.Owner = this;
             oceniteLekara.ShowDialog();
         }
@@ -320,9 +320,9 @@ namespace Bolnica_aplikacija.PacijentStudent
             {
                 //proveriti stanje anketa polja u pacijentu
 
-                if(!PacijentKontroler.proveriStanjeAnkete(idPacijenta))
+                if(!PacijentKontroler.proveriStanjeAnkete(KorisnikKontroler.GetPacijent().id))
                 {
-                    OceniteBolnicu oceniteBolnicu = new OceniteBolnicu(idPacijenta);
+                    OceniteBolnicu oceniteBolnicu = new OceniteBolnicu(KorisnikKontroler.GetPacijent().id);
                     oceniteBolnicu.ShowDialog();
 
                 }
