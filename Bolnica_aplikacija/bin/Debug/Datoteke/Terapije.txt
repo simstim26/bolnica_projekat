@@ -85,8 +85,8 @@
     "idPacijenta": "2",
     "idBolesti": "6",
     "idTermina": "18",
-    "datumPocetka": "2021-05-02T23:53:03.2944119+02:00",
-    "trajanje": 1,
+    "datumPocetka": "2021-05-15T23:36:36.9777028+02:00",
+    "trajanje": 12,
     "nacinUpotrebe": "Rektalno, od klinca napravis princa za kajanje"
   },
   {
@@ -117,6 +117,16 @@
     "idTermina": null,
     "datumPocetka": "2021-05-12T11:07:23.9462675+02:00",
     "trajanje": 7,
+    "nacinUpotrebe": "Rektalno"
+  },
+  {
+    "id": "13",
+    "idLeka": "4",
+    "idPacijenta": "2",
+    "idBolesti": "6",
+    "idTermina": null,
+    "datumPocetka": "2021-05-15T23:36:44.0481729+02:00",
+    "trajanje": 12,
     "nacinUpotrebe": "Rektalno"
   }
 ]

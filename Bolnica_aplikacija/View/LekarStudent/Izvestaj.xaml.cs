@@ -36,23 +36,30 @@ namespace Bolnica_aplikacija.LekarStudent
         private static Grid odabirProstorije;
         private static Grid prikazInventaraProstorije;
         private static Grid pitanjeOZakazivanju;
-        public Izvestaj()
+        private static FrameworkElement fm = new FrameworkElement();
+        public Izvestaj(String idPacijenta, String idTermina)
         {
             InitializeComponent();
             LekarProzor.getGlavnaLabela().Content = "Pisanje izveštaja";
             PacijentInfo.aktivanPacijentInfo = false;
             LekarProzor.getPretraga().Visibility = Visibility.Hidden;
+            String[] id = { idPacijenta, idTermina };
+            this.DataContext = id;
+            fm.DataContext = this.DataContext;
             aktivan = true;
-            lblJmbg.Content = PacijentKontroler.getPacijent().jmbg;
-            lblImePrezime.Content = PacijentKontroler.getPacijent().ime + " " + PacijentKontroler.getPacijent().prezime;
+            Pacijent pacijent = PacijentKontroler.nadjiPacijenta(idPacijenta);
+            lblJmbg.Content = pacijent.jmbg;
+            lblImePrezime.Content = pacijent.ime + " " + pacijent.prezime;
+
             lblUpucuje.Content = KorisnikKontroler.getLekar().ime + " " + KorisnikKontroler.getLekar().prezime + ", "
                 + SpecijalizacijaKontroler.nadjiSpecijalizacijuPoId(KorisnikKontroler.getLekar().idSpecijalizacije);     
             lblLekar.Content = KorisnikKontroler.getLekar().ime + " " + KorisnikKontroler.getLekar().prezime + ", " 
                 + SpecijalizacijaKontroler.nadjiSpecijalizacijuPoId(KorisnikKontroler.getLekar().idSpecijalizacije);
             txtDatum.Text = DateTime.Now.ToString("dd.MM.yyyy.");
-            lblRJmbg.Content = PacijentKontroler.getPacijent().jmbg;
-            lblRImePrezime.Content = PacijentKontroler.getPacijent().ime + " " + PacijentKontroler.getPacijent().prezime;
-            lblRDatumR.Content = PacijentKontroler.getPacijent().datumRodjenja.ToString("dd.MM.yyyy");
+
+            lblRJmbg.Content = pacijent.jmbg;
+            lblRImePrezime.Content = pacijent.ime + " " + pacijent.prezime;
+            lblRDatumR.Content = pacijent.datumRodjenja.ToString("dd.MM.yyyy");
 
             podesiStaticGridPolja();
 
@@ -63,6 +70,11 @@ namespace Bolnica_aplikacija.LekarStudent
             dataGridLekovi.ItemsSource = LekKontroler.ucitajSve();
             radioBtnPregled.IsChecked = true;
 
+        }
+
+        public static FrameworkElement getFM()
+        {
+            return fm;
         }
 
         private void podesiStaticGridPolja()
@@ -141,7 +153,8 @@ namespace Bolnica_aplikacija.LekarStudent
             }
             else
             {
-                LekarProzor.getX().Content = new PacijentInfo();
+                LekarProzor.getX().Content = new PacijentInfo(((String[])PacijentInfo.getFM().DataContext)[0],
+                    ((String[])PacijentInfo.getFM().DataContext)[1]);
                 aktivan = false;
             }
         }
@@ -180,14 +193,16 @@ namespace Bolnica_aplikacija.LekarStudent
 
             TerminKontroler.dodavanjeIzvestajaZaTermin(nazivBolesti, izvestajSaTermina);
             aktivan = false;
-            LekarProzor.getX().Content = new PacijentInfo();
+            LekarProzor.getX().Content = new PacijentInfo(((String[])PacijentInfo.getFM().DataContext)[0],
+                    ((String[])PacijentInfo.getFM().DataContext)[1]);
 
         }
 
         private void btnPonistiIzvestaj_Click(object sender, RoutedEventArgs e)
         {
             aktivan = false;
-            LekarProzor.getX().Content = new PacijentInfo();
+            LekarProzor.getX().Content = new PacijentInfo(((String[])PacijentInfo.getFM().DataContext)[0],
+                    ((String[])PacijentInfo.getFM().DataContext)[1]);
         }
 
         private void gridRecept_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
@@ -211,7 +226,7 @@ namespace Bolnica_aplikacija.LekarStudent
         private void btnPotvrdiRecept_Click(object sender, RoutedEventArgs e)
         {
             TerapijaKontroler.dodajTerapiju(new Terapija("", ((Lek)dataGridLekovi.SelectedItem).id, PacijentKontroler.getPacijent().id, "",
-                TerminKontroler.getTermin().idTermina, DateTime.Now, Convert.ToInt32(txtTrajanje.Text), txtNacinUpotrebe.Text));
+                ((String[])fm.DataContext)[1], DateTime.Now, Convert.ToInt32(txtTrajanje.Text), txtNacinUpotrebe.Text));
             this.gridRecept.Visibility = Visibility.Hidden;
             LekarProzor.getGlavnaLabela().Content = "Izdavanje recepta";
         }
@@ -261,12 +276,15 @@ namespace Bolnica_aplikacija.LekarStudent
             gridPitanjeOZakazivanju.Visibility = Visibility.Hidden;
             gridOdabirLekaraUput.Visibility = Visibility.Hidden;
             gridUput.Visibility = Visibility.Visible;
+
             txtLekarUput.Text = LekarKontroler.nadjiLekaraPoId(((LekarSpecijalizacija)dataGridLekari.SelectedItem).idLekara).ime + " " +
                 LekarKontroler.nadjiLekaraPoId(((LekarSpecijalizacija)dataGridLekari.SelectedItem).idLekara).prezime + ", "
                 + ((LekarSpecijalizacija)dataGridLekari.SelectedItem).nazivSpecijalizacije;
             LekarProzor.getGlavnaLabela().Content = "Izdavanje uputa";
-            TerminKontroler.getTermin().idUputLekara = ((LekarSpecijalizacija)dataGridLekari.SelectedItem).idLekara;
-            TerminKontroler.azurirajTermin(TerminKontroler.getTermin());
+
+            Termin termin = TerminKontroler.nadjiTerminPoId(((String [])fm.DataContext)[1]);
+            termin.idUputLekara = ((LekarSpecijalizacija)dataGridLekari.SelectedItem).idLekara;
+            TerminKontroler.azurirajTermin(termin);
         }
 
         private void btnZakaziOperaciju_Click(object sender, RoutedEventArgs e)
@@ -321,7 +339,7 @@ namespace Bolnica_aplikacija.LekarStudent
         {
             if (dataGridSlobodniTerminiLekara.SelectedIndex != -1)
             {
-                PacijentKontroler.zakaziTerminPacijentu(((PacijentTermin)dataGridSlobodniTerminiLekara.SelectedItem).id);
+                //PacijentKontroler.zakaziTerminPacijentu(((PacijentTermin)dataGridSlobodniTerminiLekara.SelectedItem).id);
                 txtLekarUput.Text = LekarKontroler.nadjiLekaraPoId(((LekarSpecijalizacija)dataGridLekari.SelectedItem).idLekara).ime + " " +
                     LekarKontroler.nadjiLekaraPoId(((LekarSpecijalizacija)dataGridLekari.SelectedItem).idLekara).prezime + ", "
                     + ((LekarSpecijalizacija)dataGridLekari.SelectedItem).nazivSpecijalizacije;
@@ -346,7 +364,7 @@ namespace Bolnica_aplikacija.LekarStudent
         {
             Termin termin = new Termin();
             termin.idTermina = "";
-            termin.idPacijenta = PacijentKontroler.getPacijent().id;
+            termin.idPacijenta = ((String[])fm.DataContext)[0];
             termin.datum = (DateTime)datum.SelectedDate;
             termin.idLekara = ((LekarSpecijalizacija)dataGridLekari.SelectedItem).idLekara;
             termin.idProstorije = ((Prostorija)dataGridProstorije.SelectedItem).id;
@@ -390,17 +408,20 @@ namespace Bolnica_aplikacija.LekarStudent
 
         private void btnPotvrdiUput_Click(object sender, RoutedEventArgs e)
         {
+            Termin termin = TerminKontroler.nadjiTerminPoId(((String[])fm.DataContext)[1]);
+
             if ((bool)radioBtnPregled.IsChecked)
             {
-                TerminKontroler.getTermin().tipUput = TipTermina.PREGLED;
+                termin.tipUput = TipTermina.PREGLED;
             }
             else
             {
-                TerminKontroler.getTermin().tipUput = TipTermina.OPERACIJA;
+                termin.tipUput = TipTermina.OPERACIJA;
 
             }
-            TerminKontroler.getTermin().izvestajUputa = txtUputIzvestaj.Text;
-            TerminKontroler.azurirajTermin(TerminKontroler.getTermin());
+
+            termin.izvestajUputa = txtUputIzvestaj.Text;
+            TerminKontroler.azurirajTermin(termin);
             gridUput.Visibility = Visibility.Hidden;
             LekarProzor.getGlavnaLabela().Content = "Izdavanje uputa";
         }

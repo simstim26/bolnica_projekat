@@ -102,6 +102,9 @@ namespace Bolnica_aplikacija.Servis
         }
         public Lek nadjiLekPoId(String idLeka)
         {
+            if (idLeka == null)
+                return new Lek();
+
             return ucitajSve().ToDictionary(l => l.id)[idLeka];
         }
 

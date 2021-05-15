@@ -15,23 +15,14 @@ namespace Bolnica_aplikacija.Kontroler
     {
         private static PacijentServis pacijentServis = new PacijentServis();
 
-        public static void sacuvajBolestTerapiju(BolestTerapija bolestTerapija)
+        public static List<BolestTerapija> ucitajSveTerapijeZaPacijenta(String idPacijenta)
         {
-            pacijentServis.sacuvajBolestTerapiju(bolestTerapija);
+            return pacijentServis.ucitajSveTerapijeZaPacijenta(idPacijenta);
         }
 
-        public static List<BolestTerapija> ucitajSveTerapijeZaPacijenta()
+        public static List<BolestTerapija> nadjiIstorijuBolestiZaPacijenta(String idPacijenta)
         {
-            return pacijentServis.ucitajSveTerapijeZaPacijenta();
-        }
-
-        public static BolestTerapija getBolestTerapija()
-        {
-            return pacijentServis.getBolestTerapija();
-        }
-        public static List<BolestTerapija> nadjiIstorijuBolestiZaPacijenta()
-        {
-            return pacijentServis.nadjiIstorijuBolestiZaPacijenta();
+            return pacijentServis.nadjiIstorijuBolestiZaPacijenta(idPacijenta);
         }
 
 
@@ -53,9 +44,9 @@ namespace Bolnica_aplikacija.Kontroler
         {
             return pacijentServis.prikazProslihTerminaPacijenta();
         }
-        public static void zakaziTerminPacijentu(String idTermina)
+        public static void zakaziTerminPacijentu(String idPacijenta, String idTermina)
         {
-            pacijentServis.zakaziTerminPacijentu(idTermina);
+            pacijentServis.zakaziTerminPacijentu(idPacijenta, idTermina);
         }
 
         public static void azurirajTerminPacijentu(String idStarogTermina, String idNovogTermina)
@@ -66,9 +57,9 @@ namespace Bolnica_aplikacija.Kontroler
         {
             pacijentServis.otkaziTerminPacijenta(idTermina);
         }
-        public static void nadjiPacijenta(String idPacijenta)
+        public static Pacijent nadjiPacijenta(String idPacijenta)
         {
-            pacijentServis.nadjiPacijenta(idPacijenta);
+           return pacijentServis.nadjiPacijenta(idPacijenta);
         }
 
         public static Pacijent getPacijent()

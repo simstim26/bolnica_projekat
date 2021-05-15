@@ -27,18 +27,25 @@ namespace Bolnica_aplikacija
         public static TabControl tab;
         private static DataGrid dataTermini;
         public static bool aktivanPacijentInfo { get; set; }
-        public PacijentInfo()
+
+        private static FrameworkElement fm = new FrameworkElement();
+        public PacijentInfo(String idPacijenta, String idTermina)
         {
             InitializeComponent();
             LekarProzor.getNazad().Visibility = Visibility.Visible;
             LekarProzor.getGlavnaLabela().Content = "Rad sa pacijentima";
             aktivanPacijentInfo = true;
             tab = this.tabInfo;
-            lblJmbg.Content = PacijentKontroler.getPacijent().jmbg;
-            lblImePrezime.Content = PacijentKontroler.getPacijent().ime + " " + PacijentKontroler.getPacijent().prezime;
-            lblDatumRodjenja.Content = PacijentKontroler.getPacijent().datumRodjenja.ToString("dd.MM.yyyy.");
-            lblAdresa.Content = PacijentKontroler.getPacijent().adresa;
-            lblKontakt.Content = PacijentKontroler.getPacijent().brojTelefona;
+            Pacijent pacijent = PacijentKontroler.nadjiPacijenta(idPacijenta);
+            lblJmbg.Content = pacijent.jmbg;
+            lblImePrezime.Content = pacijent.ime + " " + pacijent.prezime;
+            lblDatumRodjenja.Content = pacijent.datumRodjenja.ToString("dd.MM.yyyy.");
+            lblAdresa.Content = pacijent.adresa;
+            lblKontakt.Content = pacijent.brojTelefona;
+            String[] id = { idPacijenta, idTermina};
+            this.DataContext = id;
+            fm.DataContext = this.DataContext;
+
             
             /*if(LekarTabovi.getIndikator() == 1)
             {
@@ -67,6 +74,11 @@ namespace Bolnica_aplikacija
             ucitajPodatke();
         }
 
+        public static FrameworkElement getFM()
+        {
+            return fm;
+        }
+
         public static TabControl getTab()
         {
             return tab;
@@ -78,7 +90,7 @@ namespace Bolnica_aplikacija
 
         private void btnZakazi_Click(object sender, RoutedEventArgs e)
         {
-            LekarProzor.getX().Content = new ZakaziTermin(0);
+            LekarProzor.getX().Content = new ZakaziTermin(0, ((String[])DataContext)[0]);
         }
 
         public static TabControl getPregledTab()
@@ -100,7 +112,6 @@ namespace Bolnica_aplikacija
                     else
                     {
                         PacijentKontroler.otkaziTerminPacijenta(izabraniTermin.id);
-                        //LekarTabovi.getRaspored().ItemsSource = LekarKontroler.prikaziZauzeteTermineZaLekara(KorisnikKontroler.getLekar());
                     }
                 }
                 else
@@ -138,7 +149,7 @@ namespace Bolnica_aplikacija
                     else
                     {
                         TerminKontroler.sacuvajTermin(izabraniTermin.id);
-                        LekarProzor.getX().Content = new ZakaziTermin(1);
+                        LekarProzor.getX().Content = new ZakaziTermin(1, ((String[])DataContext)[0]);
 
                     }
                 }
@@ -174,17 +185,17 @@ namespace Bolnica_aplikacija
 
         private void btnIzvestaj_Click(object sender, RoutedEventArgs e)
         {
-            Content = new Izvestaj();
+            Content = new Izvestaj(((String[])fm.DataContext)[0], ((String[])fm.DataContext)[1]);
         }
 
         private void btnBolesti_Click(object sender, RoutedEventArgs e)
         {
-            Content = new IstorijaBolesti();
+            Content = new IstorijaBolesti(((String[])fm.DataContext)[0]);
         }
 
         private void btnTerapije_Click(object sender, RoutedEventArgs e)
         {
-            Content = new UvidUTerapije();
+            Content = new UvidUTerapije(((String[])fm.DataContext)[0]);
         }
 
         private void btnAlergije_Click(object sender, RoutedEventArgs e)

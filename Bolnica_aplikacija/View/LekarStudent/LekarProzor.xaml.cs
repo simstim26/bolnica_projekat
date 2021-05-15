@@ -18,6 +18,7 @@ using Model;
 using Bolnica_aplikacija.Kontroler;
 using Bolnica_aplikacija.LekarStudent;
 using Bolnica_aplikacija.Model;
+using Bolnica_aplikacija.PomocneKlase;
 
 namespace Bolnica_aplikacija
 {
@@ -95,14 +96,15 @@ namespace Bolnica_aplikacija
             }
             else if (ZakaziTermin.aktivan)
             {
-                LekarProzor.getX().Content = new PacijentInfo();
+                LekarProzor.getX().Content = new PacijentInfo(((String[])PacijentInfo.getFM().DataContext)[0],
+                    ((String[])PacijentInfo.getFM().DataContext)[1]);
                 PacijentInfo.getTab().SelectedIndex = 2;
                 PacijentInfo.aktivanPacijentInfo = true;
                 ZakaziTermin.aktivan = false;
             }
             else if (PrikazProstorija.aktivan)
             {
-                LekarProzor.getX().Content = new ZakaziTermin(ZakaziTermin.getTipAkcije());
+                LekarProzor.getX().Content = new ZakaziTermin(ZakaziTermin.getTipAkcije(),(String)ZakaziTermin.getFM().DataContext);
                 PrikazProstorija.aktivan = false;
             }
             else if (Izvestaj.aktivan)
@@ -111,7 +113,8 @@ namespace Bolnica_aplikacija
             }
             else if (IstorijaBolesti.aktivan)
             {
-                LekarProzor.getX().Content = new PacijentInfo();
+                LekarProzor.getX().Content = new PacijentInfo(((String[])PacijentInfo.getFM().DataContext)[0],
+                                   ((String[])PacijentInfo.getFM().DataContext)[1]);
                 IstorijaBolesti.aktivan = false;
             }
             else if (IzmenaBolesti.aktivan)
@@ -120,13 +123,15 @@ namespace Bolnica_aplikacija
             }
             else if (Alergije.aktivan)
             {
-                LekarProzor.getX().Content = new PacijentInfo();
+                LekarProzor.getX().Content = new PacijentInfo(((String[])PacijentInfo.getFM().DataContext)[0],
+                                   ((String[])PacijentInfo.getFM().DataContext)[1]);
                 Alergije.aktivan = false;
 
             }
             else if (UvidUTerapije.aktivan)
             {
-                LekarProzor.getX().Content = new PacijentInfo();
+                LekarProzor.getX().Content = new PacijentInfo(((String[])PacijentInfo.getFM().DataContext)[0],
+                   ((String[])PacijentInfo.getFM().DataContext)[1]);
                 UvidUTerapije.aktivan = false;
             }
             else if (TerapijeIzdavanjeRecpeta.aktivan)
@@ -138,7 +143,7 @@ namespace Bolnica_aplikacija
                 }
                 else
                 {
-                    LekarProzor.getX().Content = new UvidUTerapije();
+                    LekarProzor.getX().Content = new UvidUTerapije(((BolestTerapija)TerapijeIzdavanjeRecpeta.getFM().DataContext).idPacijenta);
                     TerapijeIzdavanjeRecpeta.aktivan = false;
                 }
             }

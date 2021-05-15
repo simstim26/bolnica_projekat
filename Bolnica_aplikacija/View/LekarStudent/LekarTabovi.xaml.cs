@@ -130,7 +130,8 @@ namespace Bolnica_aplikacija
             {
                 PacijentKontroler.nadjiPacijenta(((Pacijent)lstPacijenti.SelectedItem).id);
                 indikator = 1;
-                this.Content = new PacijentInfo();
+                Pacijent p = PacijentKontroler.nadjiPacijenta(((Pacijent)lstPacijenti.SelectedItem).id);
+                this.Content = new PacijentInfo(p.id, "");
             }
             else
             {
@@ -145,7 +146,8 @@ namespace Bolnica_aplikacija
                 TerminKontroler.nadjiPacijentaZaTermin(((PacijentTermin)dataRaspored.SelectedItem).id);
                 TerminKontroler.sacuvajTermin(((PacijentTermin)dataRaspored.SelectedItem).id);
                 indikator = 0;
-                this.Content = new PacijentInfo();
+                this.Content = new PacijentInfo(TerminKontroler.nadjiPacijentaZaTermin(((PacijentTermin)dataRaspored.SelectedItem).id).id,
+                    ((PacijentTermin)dataRaspored.SelectedItem).id);
             }
             else
             {

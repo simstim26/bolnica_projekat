@@ -430,5 +430,41 @@
     "idUputTermin": null,
     "tipUput": 0,
     "jeHitan": false
+  },
+  {
+    "tip": 1,
+    "datum": "2021-05-31T00:00:00",
+    "satnica": "2021-05-31T12:00:00",
+    "jeZavrsen": false,
+    "idTermina": "25",
+    "idProstorije": "15",
+    "idPacijenta": "5",
+    "idLekara": "1",
+    "idTerapije": null,
+    "idBolesti": null,
+    "izvestaj": null,
+    "izvestajUputa": null,
+    "idUputLekara": null,
+    "idUputTermin": null,
+    "tipUput": 0,
+    "jeHitan": false
+  },
+  {
+    "tip": 1,
+    "datum": "2021-05-31T00:00:00",
+    "satnica": "2021-05-31T11:00:00",
+    "jeZavrsen": false,
+    "idTermina": "26",
+    "idProstorije": "15",
+    "idPacijenta": "7",
+    "idLekara": "1",
+    "idTerapije": null,
+    "idBolesti": null,
+    "izvestaj": null,
+    "izvestajUputa": null,
+    "idUputLekara": null,
+    "idUputTermin": null,
+    "tipUput": 0,
+    "jeHitan": true
   }
 ]

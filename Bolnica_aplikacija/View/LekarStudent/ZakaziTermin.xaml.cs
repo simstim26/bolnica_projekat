@@ -28,7 +28,8 @@ namespace Bolnica_aplikacija
     {
         private static int tipAkcije; //0-zakazivanje; 1-promena (zahteva zakazivanje i otkazivanje)
         public static bool aktivan { get; set; }
-        public ZakaziTermin(int tip)
+        private static FrameworkElement fm = new FrameworkElement();
+        public ZakaziTermin(int tip, String idPacijenta)
         {
             InitializeComponent();
             tipAkcije = tip;
@@ -36,6 +37,8 @@ namespace Bolnica_aplikacija
             PrikazProstorija.aktivan = false;
             aktivan = true;
             LekarProzor.getPretraga().Visibility = Visibility.Visible;
+            this.DataContext = idPacijenta;
+            fm.DataContext = this.DataContext;
 
             if (tipAkcije == 1)
             {
@@ -62,6 +65,11 @@ namespace Bolnica_aplikacija
 
         }
 
+        public static FrameworkElement getFM()
+        {
+            return fm;
+        }
+
         public static int getTipAkcije()
         {
             return tipAkcije;
@@ -69,7 +77,8 @@ namespace Bolnica_aplikacija
 
         private void btnPonisti_Click(object sender, RoutedEventArgs e)
         {
-            LekarProzor.getX().Content = new PacijentInfo();
+            LekarProzor.getX().Content = new PacijentInfo(((String[])PacijentInfo.getFM().DataContext)[0],
+                    ((String[])PacijentInfo.getFM().DataContext)[1]);
             PacijentInfo.getPregledTab().SelectedIndex = 2;
         }
 
@@ -81,14 +90,15 @@ namespace Bolnica_aplikacija
 
                 if (tipAkcije == 0)
                 {
-                    PacijentKontroler.zakaziTerminPacijentu(pacijentTermin.id);
+                    PacijentKontroler.zakaziTerminPacijentu((String)this.DataContext, pacijentTermin.id);
                 }
                 else
                 {
                     PacijentKontroler.azurirajTerminPacijentu(TerminKontroler.getTermin().idTermina, pacijentTermin.id);
                 }
 
-                LekarProzor.getX().Content = new PacijentInfo();
+                LekarProzor.getX().Content = new PacijentInfo(((String[])PacijentInfo.getFM().DataContext)[0],
+                    ((String[])PacijentInfo.getFM().DataContext)[1]);
                 PacijentInfo.getPregledTab().SelectedIndex = 2;
             }
             else
@@ -113,7 +123,7 @@ namespace Bolnica_aplikacija
 
         private void btnZakaziOperaciju_Click(object sender, RoutedEventArgs e)
         {
-            Content = new ZakazivanjeOperacije();
+            Content = new ZakazivanjeOperacije((String)this.DataContext);
         }
     }
 }

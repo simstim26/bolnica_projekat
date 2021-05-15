@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace Bolnica_aplikacija.PomocneKlase
 {
-    class BolestTerapija
+    public class BolestTerapija
     {
         public String idBolesti { get; set; }
+
+        public String idPacijenta { get; set; }
 
         public String nazivBolesti { get; set; }
 
@@ -27,7 +29,7 @@ namespace Bolnica_aplikacija.PomocneKlase
         public BolestTerapija() { }
 
         public BolestTerapija(String idBolesti, String nazivBolesti, String idTerapije, String idLeka, String kolicina, String aktivnost,
-            String nazivTerapije, String idTermina, String izvestaj)
+            String nazivTerapije, String idTermina, String izvestaj, String idPacijenta)
         {
             this.idBolesti = idBolesti;
             this.nazivBolesti = nazivBolesti;
@@ -38,6 +40,7 @@ namespace Bolnica_aplikacija.PomocneKlase
             this.nazivTerapije = nazivTerapije;
             this.idTermina = idTermina;
             this.izvestaj = izvestaj;
+            this.idPacijenta = idPacijenta;
         }
     }
 }

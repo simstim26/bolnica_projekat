@@ -26,20 +26,29 @@ namespace Bolnica_aplikacija.LekarStudent
         public static bool aktivan { get; set; }
         private static Grid odabirProstorije;
         private static Grid prikazInventara;
-        public ZakazivanjeOperacije()
+        private static FrameworkElement fm = new FrameworkElement();
+        public ZakazivanjeOperacije(String idPacijenta)
         {
             InitializeComponent();
-            lblPacijent.Content = PacijentKontroler.getPacijent().ime + " " + PacijentKontroler.getPacijent().prezime;
+            lblPacijent.Content = PacijentKontroler.nadjiPacijenta(idPacijenta).ime + " " + PacijentKontroler.nadjiPacijenta(idPacijenta).prezime;
             lblLekar.Content = KorisnikKontroler.getLekar().ime + " " + KorisnikKontroler.getLekar().prezime + " " 
                 + SpecijalizacijaKontroler.nadjiSpecijalizacijuPoId(KorisnikKontroler.getLekar().idSpecijalizacije);
             aktivan = true;
             ZakaziTermin.aktivan = false;
             LekarProzor.getPretraga().Visibility = Visibility.Hidden;
             LekarProzor.getGlavnaLabela().Content = "Zakazivanje operacije";
+            this.DataContext = idPacijenta;
+            fm.DataContext = this.DataContext;
+
             odabirProstorije = gridOdabirProstorija;
             prikazInventara = gridPrikazInventara;
             btnPotvrdi.IsEnabled = false;
             btnDodajProstoriju.IsEnabled = false;
+        }
+
+        public static FrameworkElement getFM()
+        {
+            return fm;
         }
 
         public static void podesiKretanjeZaNazad()
@@ -59,7 +68,7 @@ namespace Bolnica_aplikacija.LekarStudent
             }
             else
             {
-                LekarProzor.getX().Content = new ZakaziTermin(ZakaziTermin.getTipAkcije());
+                LekarProzor.getX().Content = new ZakaziTermin(ZakaziTermin.getTipAkcije(), (String)ZakaziTermin.getFM().DataContext);
                 aktivan = false;
             }
         }
@@ -101,7 +110,7 @@ namespace Bolnica_aplikacija.LekarStudent
             termin.idTermina = "";
             termin.idLekara = KorisnikKontroler.getLekar().id;
             termin.idProstorije = ((Prostorija)dataGridProstorije.SelectedItem).id;
-            termin.idPacijenta = PacijentKontroler.getPacijent().id;
+            termin.idPacijenta = (String)fm.DataContext;
             termin.tip = TipTermina.OPERACIJA;
             termin.jeHitan = (bool)cBoxHitna.IsChecked;
             TerminKontroler.napraviTermin(termin);
@@ -187,7 +196,7 @@ namespace Bolnica_aplikacija.LekarStudent
         private void btnPonisti_Click(object sender, RoutedEventArgs e)
         {
             aktivan = false;
-            Content = new ZakaziTermin(ZakaziTermin.getTipAkcije());
+            Content = new ZakaziTermin(ZakaziTermin.getTipAkcije(), (String)ZakaziTermin.getFM().DataContext);
         }
     }
 }

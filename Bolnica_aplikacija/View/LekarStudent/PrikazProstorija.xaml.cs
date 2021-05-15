@@ -44,7 +44,7 @@ namespace Bolnica_aplikacija.LekarStudent
 
         private void btnPonisti_Click(object sender, RoutedEventArgs e)
         {
-            Content = new ZakaziTermin(ZakaziTermin.getTipAkcije()); 
+            Content = new ZakaziTermin(ZakaziTermin.getTipAkcije(), (String)ZakaziTermin.getFM().DataContext);
         }
 
         private void btnPotvrdi_Click(object sender, RoutedEventArgs e)
@@ -53,7 +53,8 @@ namespace Bolnica_aplikacija.LekarStudent
             {
                 Prostorija prostorija = (Prostorija)dataProstorije.SelectedItem;
                 TerminKontroler.promeniProstorijuTermina(TerminKontroler.getTermin().idTermina, prostorija.id);
-                LekarProzor.getX().Content = new PacijentInfo();
+                LekarProzor.getX().Content = new PacijentInfo(((String[])PacijentInfo.getFM().DataContext)[0],
+                    ((String[])PacijentInfo.getFM().DataContext)[1]);
                 PacijentInfo.getPregledTab().SelectedIndex = 2;
             }
             else

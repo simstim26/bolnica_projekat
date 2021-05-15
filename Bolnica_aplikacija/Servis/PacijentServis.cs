@@ -18,7 +18,6 @@ namespace Bolnica_aplikacija.Servis
     {
         private PacijentRepozitorijum pacijentRepozitorijum = new PacijentRepozitorijum();
         private Pacijent pacijent; //lekar -> cuva se izabrani pacijent
-        private BolestTerapija bolestTerapija;
         private static PacijentServis instance;
         public static PacijentServis getInstance()
         {
@@ -31,33 +30,33 @@ namespace Bolnica_aplikacija.Servis
         }
 
 
-        public List<BolestTerapija> nadjiIstorijuBolestiZaPacijenta()
+        public List<BolestTerapija> nadjiIstorijuBolestiZaPacijenta(String idPacijenta)
         {
             List<BolestTerapija> istorijaBolesti = new List<BolestTerapija>();
 
             foreach(Bolest bolest in BolestServis.getInstance().ucitajSve())
             {
-                if (bolest.idPacijenta.Equals(pacijent.id))
+                if (bolest.idPacijenta.Equals(idPacijenta))
                 {
                     Termin termin = TerminServis.getInstance().nadjiTerminZaBolest(bolest.id);
                     Terapija terapija = TerapijaServis.getInstance().nadjiTerapijuPoId(termin.idTerapije);
                     Lek lek = LekServis.getInstance().nadjiLekPoId(terapija.idLeka);
 
                     istorijaBolesti.Add(new BolestTerapija(bolest.id, bolest.naziv, terapija.id, lek.id, lek.kolicina.ToString(),
-                            null, lek.naziv, termin.idTermina, termin.izvestaj));              
+                            null, lek.naziv, termin.idTermina, termin.izvestaj, idPacijenta));              
                 }
             }
 
             return istorijaBolesti;
         }
 
-        public List<BolestTerapija> ucitajSveTerapijeZaPacijenta()
+        public List<BolestTerapija> ucitajSveTerapijeZaPacijenta(String idPacijenta)
         {
             List<BolestTerapija> povratnaVrednost = new List<BolestTerapija>();
 
             foreach (Terapija terapija in TerapijaServis.getInstance().ucitajSve())
             {
-                if (terapija.idPacijenta.Equals(pacijent.id))
+                if (terapija.idPacijenta.Equals(idPacijenta))
                 {
                     Bolest bolest = BolestServis.getInstance().nadjiBolestPoId(terapija.idBolesti);
                     Lek lek = LekServis.getInstance().nadjiLekPoId(terapija.idLeka);
@@ -65,7 +64,7 @@ namespace Bolnica_aplikacija.Servis
                     if (lek != null)
                     {
                         povratnaVrednost.Add(new BolestTerapija(bolest.id, bolest.naziv, terapija.id, lek.id, lek.kolicina.ToString(),
-                            proveriAktivnostTerapije(terapija), lek.naziv, termin.idTermina, termin.izvestaj));
+                            proveriAktivnostTerapije(terapija), lek.naziv, termin.idTermina, termin.izvestaj, idPacijenta));
                     }
                 }
             }
@@ -86,15 +85,6 @@ namespace Bolnica_aplikacija.Servis
             return povratnaVrednost;
         }
 
-        public void sacuvajBolestTerapiju(BolestTerapija bolestTerapija)
-        {
-            this.bolestTerapija = bolestTerapija;
-        }
-
-        public BolestTerapija getBolestTerapija()
-        {
-            return bolestTerapija;
-        }
         public List<Pacijent> prikazPacijenata() //prikaz pacijenata kod lekara
         {
             List<Pacijent> sviPacijenti = pacijentRepozitorijum.ucitajSve();
@@ -246,13 +236,13 @@ namespace Bolnica_aplikacija.Servis
             return terminiPacijenta;
         }
 
-        public void zakaziTerminPacijentu(String idTermina)
+        public void zakaziTerminPacijentu(String idPacijenta, String idTermina)
         {
             foreach(Termin termin in TerminServis.getInstance().ucitajSve())
             {
                 if (idTermina.Equals(termin.idTermina))
                 {
-                    termin.idPacijenta = pacijent.id;
+                    termin.idPacijenta = idPacijenta;
                     TerminServis.getInstance().azurirajTermin(termin);
                     break;
                 }
@@ -270,7 +260,7 @@ namespace Bolnica_aplikacija.Servis
                 }
             }
         }
-        public void nadjiPacijenta(String idPacijenta)
+        public Pacijent nadjiPacijenta(String idPacijenta)
         {
             var sviPacijenti = pacijentRepozitorijum.ucitajSve();
 
@@ -282,6 +272,7 @@ namespace Bolnica_aplikacija.Servis
                     break;
                 }
             }
+            return pacijent;
         }
 
         public Pacijent getPacijent()

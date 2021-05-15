@@ -11,9 +11,9 @@ namespace Bolnica_aplikacija.Kontroler
 {
     class TerminKontroler
     {
-        public static void nadjiPacijentaZaTermin(String idTermina)
+        public static Pacijent nadjiPacijentaZaTermin(String idTermina)
         {
-            TerminServis.getInstance().nadjiPacijentaZaTermin(idTermina);
+           return TerminServis.getInstance().nadjiPacijentaZaTermin(idTermina);
         }
 
         public static void azurirajTermin(Termin terminZaAzuriranje)

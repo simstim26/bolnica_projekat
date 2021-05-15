@@ -91,10 +91,10 @@ namespace Bolnica_aplikacija.Servis
             terminRepozitorijum.azurirajTermin(termin);
         }
 
-        public void nadjiPacijentaZaTermin(String idTermina)
+        public Pacijent nadjiPacijentaZaTermin(String idTermina)
         {
             Termin termin = nadjiTerminPoId(idTermina);
-            PacijentKontroler.nadjiPacijenta(termin.idPacijenta);
+            return PacijentKontroler.nadjiPacijenta(termin.idPacijenta);
         }
 
         public void promeniProstorijuTermina(String idTermina, String idProstorije)
