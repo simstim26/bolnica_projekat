@@ -191,7 +191,7 @@ namespace Bolnica_aplikacija.LekarStudent
             String nazivBolesti = this.txtDijagnozaIzvestaj.Text;
             String izvestajSaTermina = this.txtIzvestaj.Text;
 
-            TerminKontroler.dodavanjeIzvestajaZaTermin(nazivBolesti, izvestajSaTermina);
+            TerminKontroler.dodavanjeIzvestajaZaTermin(((String[])PacijentInfo.getFM().DataContext)[1], nazivBolesti, izvestajSaTermina);
             aktivan = false;
             LekarProzor.getX().Content = new PacijentInfo(((String[])PacijentInfo.getFM().DataContext)[0],
                     ((String[])PacijentInfo.getFM().DataContext)[1]);
@@ -225,7 +225,7 @@ namespace Bolnica_aplikacija.LekarStudent
 
         private void btnPotvrdiRecept_Click(object sender, RoutedEventArgs e)
         {
-            TerapijaKontroler.dodajTerapiju(new Terapija("", ((Lek)dataGridLekovi.SelectedItem).id, PacijentKontroler.getPacijent().id, "",
+            TerapijaKontroler.dodajTerapiju(new Terapija("", ((Lek)dataGridLekovi.SelectedItem).id, ((String[])fm.DataContext)[0], "",
                 ((String[])fm.DataContext)[1], DateTime.Now, Convert.ToInt32(txtTrajanje.Text), txtNacinUpotrebe.Text));
             this.gridRecept.Visibility = Visibility.Hidden;
             LekarProzor.getGlavnaLabela().Content = "Izdavanje recepta";
@@ -343,8 +343,10 @@ namespace Bolnica_aplikacija.LekarStudent
                 txtLekarUput.Text = LekarKontroler.nadjiLekaraPoId(((LekarSpecijalizacija)dataGridLekari.SelectedItem).idLekara).ime + " " +
                     LekarKontroler.nadjiLekaraPoId(((LekarSpecijalizacija)dataGridLekari.SelectedItem).idLekara).prezime + ", "
                     + ((LekarSpecijalizacija)dataGridLekari.SelectedItem).nazivSpecijalizacije;
-                TerminKontroler.getTermin().tipUput = TipTermina.PREGLED;
-                TerminKontroler.veziTermin(((PacijentTermin)dataGridSlobodniTerminiLekara.SelectedItem).id);
+                Termin t = TerminKontroler.nadjiTerminPoId(((String[])fm.DataContext)[1]);
+                t.tipUput = TipTermina.PREGLED;
+                TerminKontroler.azurirajTermin(t);
+                TerminKontroler.veziTermin(((String[])fm.DataContext)[1],((PacijentTermin)dataGridSlobodniTerminiLekara.SelectedItem).id);
 
                 gridZakazivanje.Visibility = Visibility.Hidden;
                 gridPitanjeOZakazivanju.Visibility = Visibility.Hidden;
@@ -376,8 +378,10 @@ namespace Bolnica_aplikacija.LekarStudent
             termin.jeHitan = (bool)cBoxHitna.IsChecked;
 
             String idNovog = TerminKontroler.napraviTermin(termin);
-            TerminKontroler.getTermin().tipUput = TipTermina.OPERACIJA;
-            TerminKontroler.veziTermin(idNovog);
+            Termin t = TerminKontroler.nadjiTerminPoId(((String[])fm.DataContext)[1]);
+            t.tipUput = TipTermina.OPERACIJA;
+            TerminKontroler.azurirajTermin(t);
+            TerminKontroler.veziTermin(((String [])fm.DataContext)[1], idNovog);
 
             radioBtnOperacija.IsChecked = true;
             radioBtnPregled.IsEnabled = false;

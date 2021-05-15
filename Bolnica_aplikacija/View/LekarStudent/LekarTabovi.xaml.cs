@@ -143,8 +143,6 @@ namespace Bolnica_aplikacija
         {
             if(dataRaspored.SelectedIndex != -1)
             {
-                TerminKontroler.nadjiPacijentaZaTermin(((PacijentTermin)dataRaspored.SelectedItem).id);
-                TerminKontroler.sacuvajTermin(((PacijentTermin)dataRaspored.SelectedItem).id);
                 indikator = 0;
                 this.Content = new PacijentInfo(TerminKontroler.nadjiPacijentaZaTermin(((PacijentTermin)dataRaspored.SelectedItem).id).id,
                     ((PacijentTermin)dataRaspored.SelectedItem).id);

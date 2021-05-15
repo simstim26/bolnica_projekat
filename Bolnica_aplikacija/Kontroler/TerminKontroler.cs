@@ -31,9 +31,9 @@ namespace Bolnica_aplikacija.Kontroler
             TerminServis.getInstance().azuriranjeIzvestajaZaTermin(azuriraniIzvestaj, idTermina);
         }
 
-        public static void dodavanjeIzvestajaZaTermin(String nazivBolesti,String izvestajSaTermina)
+        public static void dodavanjeIzvestajaZaTermin(String idTermina, String nazivBolesti,String izvestajSaTermina)
         {
-            TerminServis.getInstance().dodavanjeIzvestajaZaTermin(nazivBolesti, izvestajSaTermina);
+            TerminServis.getInstance().dodavanjeIzvestajaZaTermin(idTermina, nazivBolesti, izvestajSaTermina);
         }
 
         public static List<Prostorija> nadjiSlobodneProstorijeZaTermin(Lekar lekar, Termin termin)
@@ -54,15 +54,6 @@ namespace Bolnica_aplikacija.Kontroler
         public static bool proveriTipTermina(Lekar ulogovaniLekar, String idTermina)
         {
             return TerminServis.getInstance().proveriTipTermina(ulogovaniLekar, idTermina);
-        }
-        public static void sacuvajTermin(String idTermina)
-        {
-            TerminServis.getInstance().sacuvajTermin(idTermina);
-        }
-
-        public static Termin getTermin()
-        {
-            return TerminServis.getInstance().getTermin();
         }
 
         public static String nadjiIdLekaraZaTermin(String idTermina)
@@ -86,9 +77,9 @@ namespace Bolnica_aplikacija.Kontroler
             return TerminServis.getInstance().napraviTermin(termin);
         }
 
-        public static void veziTermin(String idTerminUput)
+        public static void veziTermin(String idTermina, String idTerminUput)
         {
-            TerminServis.getInstance().veziTermin(idTerminUput);
+            TerminServis.getInstance().veziTermin(idTermina, idTerminUput);
         }
 
         public static Termin nadjiTerminPoId(String idTermina)

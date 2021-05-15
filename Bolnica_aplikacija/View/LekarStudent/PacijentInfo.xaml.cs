@@ -90,7 +90,7 @@ namespace Bolnica_aplikacija
 
         private void btnZakazi_Click(object sender, RoutedEventArgs e)
         {
-            LekarProzor.getX().Content = new ZakaziTermin(0, ((String[])DataContext)[0]);
+            LekarProzor.getX().Content = new ZakaziTermin(0, ((String[])fm.DataContext)[0], "");
         }
 
         public static TabControl getPregledTab()
@@ -130,8 +130,8 @@ namespace Bolnica_aplikacija
 
         private void ucitajPodatke()
         {
-            dataGridTerminiPacijenta.ItemsSource = PacijentKontroler.prikazBuducihTerminaPacijenta();
-            dataGridProsliTermini.ItemsSource = PacijentKontroler.prikazProslihTerminaPacijenta();
+            dataGridTerminiPacijenta.ItemsSource = PacijentKontroler.prikazBuducihTerminaPacijenta(((String[])fm.DataContext)[0]);
+            dataGridProsliTermini.ItemsSource = PacijentKontroler.prikazProslihTerminaPacijenta(((String[])fm.DataContext)[0]);
         }
 
         private void btnPromeni_Click(object sender, RoutedEventArgs e)
@@ -148,8 +148,7 @@ namespace Bolnica_aplikacija
                     }
                     else
                     {
-                        TerminKontroler.sacuvajTermin(izabraniTermin.id);
-                        LekarProzor.getX().Content = new ZakaziTermin(1, ((String[])DataContext)[0]);
+                        LekarProzor.getX().Content = new ZakaziTermin(1, ((String[])DataContext)[0], izabraniTermin.id);
 
                     }
                 }
@@ -200,7 +199,7 @@ namespace Bolnica_aplikacija
 
         private void btnAlergije_Click(object sender, RoutedEventArgs e)
         {
-            Content = new Alergije();
+            Content = new Alergije(((String[])fm.DataContext)[0]);
         }
     }
 }

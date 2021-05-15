@@ -69,7 +69,7 @@ namespace Bolnica_aplikacija.PacijentStudent
                         PacijentTermin selektovanTermin = (PacijentTermin)dataGridSlobodniTermini.SelectedItem;
                         String idSelektovanog = selektovanTermin.id;
                         //PacijentKontroler.zakaziTerminPacijentu(idSelektovanog);
-                        dataGrid.ItemsSource = PacijentKontroler.prikazPacijentovihTermina();
+                        //dataGrid.ItemsSource = PacijentKontroler.prikazPacijentovihTermina();
 
                         //ANTI TROL SISTEM
 

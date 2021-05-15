@@ -124,7 +124,7 @@ namespace Bolnica_aplikacija
 
                 pacijent = (Pacijent)TabelaPacijenti.SelectedItem;
                 PacijentKontroler.nadjiPacijenta(pacijent.id);
-                dataGridAlergije.ItemsSource = PacijentKontroler.procitajAlergije();
+                //dataGridAlergije.ItemsSource = PacijentKontroler.procitajAlergije();
 
                 buttonOdustaniDodavanje.Visibility = Visibility.Visible;
                 buttonPotvrdiDodavanje.Visibility = Visibility.Visible;
@@ -207,7 +207,7 @@ namespace Bolnica_aplikacija
                 lozinka.Password = pacijent.lozinka;
 
                 PacijentKontroler.nadjiPacijenta(pacijent.id);
-                alergije = PacijentKontroler.procitajAlergije();
+               // alergije = PacijentKontroler.procitajAlergije();
                 dataGridAlergije.ItemsSource = alergije;
 
                 if (pacijent.jeGost)
@@ -607,7 +607,7 @@ namespace Bolnica_aplikacija
             idPacijenta = pacijent.id;
             imePrezimePacijenta = pacijent.ime + " " + pacijent.prezime;
             PacijentKontroler.nadjiPacijenta(pacijent.id);
-            TabelaTerminiPacijenta.ItemsSource = PacijentKontroler.prikazPacijentovihTermina();
+            //TabelaTerminiPacijenta.ItemsSource = PacijentKontroler.prikazPacijentovihTermina();
 
             lblUpozorenje.Visibility = Visibility.Hidden;
 
@@ -818,7 +818,7 @@ namespace Bolnica_aplikacija
             {
                 izabraniTermin = (PacijentTermin)TabelaTerminiPacijenta.SelectedItem;
                 PacijentTermin noviTermin = (PacijentTermin)TabelaSlobodnihTermina.SelectedItem;
-                TerminKontroler.sacuvajTermin(izabraniTermin.id);
+                //TerminKontroler.sacuvajTermin(izabraniTermin.id);
                 PacijentKontroler.azurirajTerminPacijentu(izabraniTermin.id, noviTermin.id);
                 
                 NotifikacijaKontroler.napraviNotifikaciju("Izmena termina (Pacijent)", "Izmenjen je teremin (Pacijent)", idPacijenta, "pacijent");

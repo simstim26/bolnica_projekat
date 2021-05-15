@@ -31,18 +31,18 @@ namespace Bolnica_aplikacija.Kontroler
             return pacijentServis.prikazPacijenata();
         }
 
-        public static List<PacijentTermin> prikazPacijentovihTermina()
+        public static List<PacijentTermin> prikazPacijentovihTermina(String idPacijenta)
         {
-            return pacijentServis.prikazPacijentovihTermina();
+            return pacijentServis.prikazPacijentovihTermina(idPacijenta);
         }
 
-        public static List<PacijentTermin> prikazBuducihTerminaPacijenta()
+        public static List<PacijentTermin> prikazBuducihTerminaPacijenta(String idPacijenta)
         {
-            return pacijentServis.prikazBuducihTerminaPacijenta();
+            return pacijentServis.prikazBuducihTerminaPacijenta(idPacijenta);
         }
-        public static List<PacijentTermin> prikazProslihTerminaPacijenta()
+        public static List<PacijentTermin> prikazProslihTerminaPacijenta(String idPacijenta)
         {
-            return pacijentServis.prikazProslihTerminaPacijenta();
+            return pacijentServis.prikazProslihTerminaPacijenta(idPacijenta);
         }
         public static void zakaziTerminPacijentu(String idPacijenta, String idTermina)
         {
@@ -62,11 +62,6 @@ namespace Bolnica_aplikacija.Kontroler
            return pacijentServis.nadjiPacijenta(idPacijenta);
         }
 
-        public static Pacijent getPacijent()
-        {
-            return pacijentServis.getPacijent();
-        }
-
         public static List<PacijentTermin> ucitajSlobodneTermine(int indikator, bool jeSekretar)
         {
             return pacijentServis.ucitajSlobodneTermine(indikator, jeSekretar);
@@ -82,10 +77,10 @@ namespace Bolnica_aplikacija.Kontroler
             pacijentServis.napraviAlergiju(idPacijenta, nazivAlergije);
         }
 
-        public static List<Alergija> procitajAlergije()
+        public static List<Alergija> procitajAlergije(String idPacijenta)
         {
            
-            return pacijentServis.procitajAlergije();
+            return pacijentServis.procitajAlergije(idPacijenta);
         }
         public static bool proveriStanjeAnkete(String idPacijenta)
         {

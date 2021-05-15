@@ -68,7 +68,8 @@ namespace Bolnica_aplikacija.LekarStudent
             }
             else
             {
-                LekarProzor.getX().Content = new ZakaziTermin(ZakaziTermin.getTipAkcije(), (String)ZakaziTermin.getFM().DataContext);
+                LekarProzor.getX().Content = new ZakaziTermin(ZakaziTermin.getTipAkcije(), ((String[])ZakaziTermin.getFM().DataContext)[0]
+                    , ((String[])ZakaziTermin.getFM().DataContext)[1]); ;
                 aktivan = false;
             }
         }
@@ -196,7 +197,8 @@ namespace Bolnica_aplikacija.LekarStudent
         private void btnPonisti_Click(object sender, RoutedEventArgs e)
         {
             aktivan = false;
-            Content = new ZakaziTermin(ZakaziTermin.getTipAkcije(), (String)ZakaziTermin.getFM().DataContext);
+            Content = new ZakaziTermin(ZakaziTermin.getTipAkcije(), ((String[])ZakaziTermin.getFM().DataContext)[0]
+                    , ((String[])ZakaziTermin.getFM().DataContext)[1]);
         }
     }
 }

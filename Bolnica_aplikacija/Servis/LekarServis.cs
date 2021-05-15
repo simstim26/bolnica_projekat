@@ -170,7 +170,7 @@ namespace Bolnica_aplikacija.Servis
         {
             Dictionary<string, string> lekari = new Dictionary<string, string>();
             PacijentServis.getInstance().nadjiPacijenta(idPacijenta);
-            var prosliTermini = PacijentServis.getInstance().prikazProslihTerminaPacijenta();
+            var prosliTermini = PacijentServis.getInstance().prikazProslihTerminaPacijenta(idPacijenta);
 
             popuniLekarDictionary(prosliTermini, lekari);
 

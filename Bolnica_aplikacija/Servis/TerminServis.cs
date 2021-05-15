@@ -23,7 +23,6 @@ namespace Bolnica_aplikacija.Servis
             return instance;
         }
         private TerminRepozitorijum terminRepozitorijum = new TerminRepozitorijum();
-        private Termin termin; //lekar -> cuvanje izabranog termina (promena termina ili promena prostorije za izabrani termin
 
         public void azurirajTermin(Termin terminZaAzuriranje) //da li ide u servis ??
         {
@@ -69,10 +68,11 @@ namespace Bolnica_aplikacija.Servis
             terminRepozitorijum.azurirajTermin(termin);
         }
 
-        public void dodavanjeIzvestajaZaTermin(String nazivBolesti,String izvestajSaTermina)
+        public void dodavanjeIzvestajaZaTermin(String idTermina,String nazivBolesti,String izvestajSaTermina)
         {
             BolestServis bolestServis = new BolestServis();
             TerapijaServis terapijaServis = new TerapijaServis();
+            Termin termin = nadjiTerminPoId(idTermina);
             termin.izvestaj = izvestajSaTermina;
             termin.jeZavrsen = true;
             Terapija terapija = terapijaServis.nadjiTerapijuZaTermin(termin.idTermina);
@@ -178,15 +178,6 @@ namespace Bolnica_aplikacija.Servis
             Termin termin = nadjiTerminPoId(idTermina);
             return (termin.tip == TipTermina.OPERACIJA && lekar.idSpecijalizacije != "0") || termin.tip == TipTermina.PREGLED;
         }
-        public void sacuvajTermin(String idTermina)
-        {
-            termin = nadjiTerminPoId(idTermina);
-        }
-
-        public Termin getTermin()
-        {
-            return termin;
-        }
 
         public String nadjiIdLekaraZaTermin(String idTermina)
         {
@@ -230,9 +221,10 @@ namespace Bolnica_aplikacija.Servis
             return termin.idTermina;
         }
 
-        public void veziTermin(String idTerminUput)
+        public void veziTermin(String idTermina, String idTerminUput)
         {
             Termin terminUput = nadjiTerminPoId(idTerminUput);
+            Termin termin = nadjiTerminPoId(idTermina);
             termin.idUputLekara = terminUput.idLekara;
             termin.idUputTermin = terminUput.idTermina;
             termin.jeZavrsen = true;

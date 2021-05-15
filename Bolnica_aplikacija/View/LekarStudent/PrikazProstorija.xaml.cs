@@ -26,25 +26,33 @@ namespace Bolnica_aplikacija.LekarStudent
     public partial class PrikazProstorija : UserControl
     {
         public static bool aktivan;
-        public PrikazProstorija()
+        private static FrameworkElement fm = new FrameworkElement();
+        public PrikazProstorija(String idTermina)
         {
             InitializeComponent();
             aktivan = true;
+            fm.DataContext = idTermina;
             ZakaziTermin.aktivan = false;
             LekarProzor.getGlavnaLabela().Content = "Promena prostorije";
             LekarProzor.getPretraga().Visibility = Visibility.Hidden;
             ucitajPodatke();
         }
 
+        public static FrameworkElement getFM()
+        {
+            return fm;
+        }
+
         private void ucitajPodatke()
         {
 
-            dataProstorije.ItemsSource = TerminKontroler.nadjiSlobodneProstorijeZaTermin(KorisnikKontroler.getLekar(), TerminKontroler.getTermin());
+            dataProstorije.ItemsSource = TerminKontroler.nadjiSlobodneProstorijeZaTermin(KorisnikKontroler.getLekar(), TerminKontroler.nadjiTerminPoId((String)fm.DataContext));
         }
 
         private void btnPonisti_Click(object sender, RoutedEventArgs e)
         {
-            Content = new ZakaziTermin(ZakaziTermin.getTipAkcije(), (String)ZakaziTermin.getFM().DataContext);
+            Content = new ZakaziTermin(ZakaziTermin.getTipAkcije(), ((String[])ZakaziTermin.getFM().DataContext)[0]
+                    , ((String[])ZakaziTermin.getFM().DataContext)[1]);
         }
 
         private void btnPotvrdi_Click(object sender, RoutedEventArgs e)
@@ -52,7 +60,7 @@ namespace Bolnica_aplikacija.LekarStudent
             if(dataProstorije.SelectedIndex != -1)
             {
                 Prostorija prostorija = (Prostorija)dataProstorije.SelectedItem;
-                TerminKontroler.promeniProstorijuTermina(TerminKontroler.getTermin().idTermina, prostorija.id);
+                TerminKontroler.promeniProstorijuTermina((String)fm.DataContext, prostorija.id);
                 LekarProzor.getX().Content = new PacijentInfo(((String[])PacijentInfo.getFM().DataContext)[0],
                     ((String[])PacijentInfo.getFM().DataContext)[1]);
                 PacijentInfo.getPregledTab().SelectedIndex = 2;

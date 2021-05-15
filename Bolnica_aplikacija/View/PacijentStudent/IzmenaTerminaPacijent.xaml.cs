@@ -67,8 +67,8 @@ namespace Bolnica_aplikacija.PacijentStudent
                     {
                         PacijentTermin noviTermin = (PacijentTermin)dataGridSlobodniTermini.SelectedItem;
 
-                        PacijentKontroler.azurirajTerminPacijentu(TerminKontroler.getTermin().idTermina,noviTermin.id);
-                        dataGrid.ItemsSource = PacijentKontroler.prikazPacijentovihTermina();
+                        //PacijentKontroler.azurirajTerminPacijentu(TerminKontroler.getTermin().idTermina,noviTermin.id);
+                       // dataGrid.ItemsSource = PacijentKontroler.prikazPacijentovihTermina();
 
                         //ANTI TROL
                         PomocnaKlasaProvere.antiTrolMetoda(KorisnikKontroler.GetPacijent().id);

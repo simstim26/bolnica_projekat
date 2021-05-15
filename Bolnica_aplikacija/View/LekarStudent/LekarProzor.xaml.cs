@@ -104,7 +104,8 @@ namespace Bolnica_aplikacija
             }
             else if (PrikazProstorija.aktivan)
             {
-                LekarProzor.getX().Content = new ZakaziTermin(ZakaziTermin.getTipAkcije(),(String)ZakaziTermin.getFM().DataContext);
+                LekarProzor.getX().Content = new ZakaziTermin(ZakaziTermin.getTipAkcije(), ((String[])ZakaziTermin.getFM().DataContext)[0]
+                    , ((String[])ZakaziTermin.getFM().DataContext)[1]);
                 PrikazProstorija.aktivan = false;
             }
             else if (Izvestaj.aktivan)

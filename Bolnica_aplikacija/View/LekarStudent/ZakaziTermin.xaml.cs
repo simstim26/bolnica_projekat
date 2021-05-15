@@ -29,7 +29,7 @@ namespace Bolnica_aplikacija
         private static int tipAkcije; //0-zakazivanje; 1-promena (zahteva zakazivanje i otkazivanje)
         public static bool aktivan { get; set; }
         private static FrameworkElement fm = new FrameworkElement();
-        public ZakaziTermin(int tip, String idPacijenta)
+        public ZakaziTermin(int tip, String idPacijenta, String idTermina)
         {
             InitializeComponent();
             tipAkcije = tip;
@@ -37,7 +37,8 @@ namespace Bolnica_aplikacija
             PrikazProstorija.aktivan = false;
             aktivan = true;
             LekarProzor.getPretraga().Visibility = Visibility.Visible;
-            this.DataContext = idPacijenta;
+            String[] id = { idPacijenta, idTermina };
+            this.DataContext = id;
             fm.DataContext = this.DataContext;
 
             if (tipAkcije == 1)
@@ -90,11 +91,11 @@ namespace Bolnica_aplikacija
 
                 if (tipAkcije == 0)
                 {
-                    PacijentKontroler.zakaziTerminPacijentu((String)this.DataContext, pacijentTermin.id);
+                    PacijentKontroler.zakaziTerminPacijentu(((String[])fm.DataContext)[0], pacijentTermin.id);
                 }
                 else
                 {
-                    PacijentKontroler.azurirajTerminPacijentu(TerminKontroler.getTermin().idTermina, pacijentTermin.id);
+                    PacijentKontroler.azurirajTerminPacijentu(((String[])fm.DataContext)[1], pacijentTermin.id);
                 }
 
                 LekarProzor.getX().Content = new PacijentInfo(((String[])PacijentInfo.getFM().DataContext)[0],
@@ -111,9 +112,9 @@ namespace Bolnica_aplikacija
 
         private void btnOdabirProstorije_Click(object sender, RoutedEventArgs e)
         {
-            if (TerminKontroler.getTermin().idLekara.Equals(KorisnikKontroler.getLekar().id))
+            if (TerminKontroler.nadjiTerminPoId(((String[])fm.DataContext)[1]).idLekara.Equals(KorisnikKontroler.getLekar().id))
             {
-                Content = new PrikazProstorija();
+                Content = new PrikazProstorija(((String[])fm.DataContext)[1]);
             }
             else
             {
