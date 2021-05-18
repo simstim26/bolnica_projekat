@@ -127,37 +127,43 @@ namespace Bolnica_aplikacija.Servis
         public void napraviNotifikaciju(String nazivNotifikacije, String porukaNotifikacije, String idKorisnika, String tipKorisnika)
         {
             List<Notifikacija> notifikacije = notifikacijaRepozitorijum.ucitajSve();
-            List<Pacijent> pacijenti = pacijentRepozitorijum.ucitajSve();
-            List<Lekar> lekari = lekarRepozitorijum.ucitajSve();
-
             Notifikacija novaNotifikacija = new Notifikacija((notifikacije.Count() + 1).ToString(), nazivNotifikacije, DateTime.Now, porukaNotifikacije, idKorisnika, DateTime.Now, false);
            
-
             if (tipKorisnika.Equals("pacijent"))
             {
-                foreach(Pacijent pacijent in pacijenti)
-                {
-                    if (pacijent.id.Equals(idKorisnika))
-                    {
-                      
-                        pacijent.Notifikacija.Add(novaNotifikacija);
-                        notifikacijaRepozitorijum.dodajNotifikaciju(novaNotifikacija);
-                        
-                    }
-                }              
+                dodajNotifikacijuPacijentu(idKorisnika, novaNotifikacija);
             }
-            else //lekar
+            else 
             {
-                foreach (Lekar lekar in lekari)
+                dodajNotifikacijuLekaru(idKorisnika, novaNotifikacija);
+            }         
+        }
+        
+        private void dodajNotifikacijuPacijentu(String idKorisnika, Notifikacija notifikacija)
+        {
+            foreach (Pacijent pacijent in pacijentRepozitorijum.ucitajSve())
+            {
+                if (pacijent.id.Equals(idKorisnika))
                 {
-                    if (lekar.id.Equals(idKorisnika))
-                    {
-                        lekar.notifikacije.Add(novaNotifikacija);
-                        notifikacijaRepozitorijum.dodajNotifikaciju(novaNotifikacija);
-                    }
-                }
 
+                    pacijent.Notifikacija.Add(notifikacija);
+                    notifikacijaRepozitorijum.dodajNotifikaciju(notifikacija);
+
+                }
             }
+        }
+
+        private void dodajNotifikacijuLekaru(String idKorisnika, Notifikacija notifikacija)
+        {
+            foreach (Lekar lekar in lekarRepozitorijum.ucitajSve())
+            {
+                if (lekar.id.Equals(idKorisnika))
+                {
+                    lekar.notifikacije.Add(notifikacija);
+                    notifikacijaRepozitorijum.dodajNotifikaciju(notifikacija);
+                }
+            }
+
         }
     }
 }

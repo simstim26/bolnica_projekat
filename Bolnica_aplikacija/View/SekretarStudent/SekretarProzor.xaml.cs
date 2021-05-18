@@ -1175,14 +1175,14 @@ namespace Bolnica_aplikacija
        
         private void btnPregled_Checked(object sender, RoutedEventArgs e)
         {
-            tipHitanSlucaj = "Pregled";
+            tipHitanSlucaj = "PREGLED";
             lstBoxItemOpstaPraksa.IsEnabled = true;
             lblUpozorenjeTermin.Visibility = Visibility.Hidden;
         }
 
         private void btnOperacija_Checked(object sender, RoutedEventArgs e)
         {
-            tipHitanSlucaj = "Operacija";
+            tipHitanSlucaj = "OPERACIJA";
             lstBoxItemOpstaPraksa.IsEnabled = false;
             lblUpozorenjeTermin.Visibility = Visibility.Hidden;
         }
