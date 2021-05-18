@@ -1,4 +1,5 @@
 ﻿using Bolnica_aplikacija.PacijentModel;
+using Bolnica_aplikacija.PomocneKlase;
 using Bolnica_aplikacija.Servis;
 using Model;
 using System;
@@ -14,6 +15,21 @@ namespace Bolnica_aplikacija.Kontroler
         public static Pacijent nadjiPacijentaZaTermin(String idTermina)
         {
            return TerminServis.getInstance().nadjiPacijentaZaTermin(idTermina);
+        }
+
+        public static void azurirajUputTermina(String idTermina, String idUputTermina)
+        {
+            TerminServis.getInstance().azurirajUputTermina(idTermina, idUputTermina);
+        }
+
+        public static void azurirajIzvestajUputa(String idTermina, TipTermina tip, String izvestajUputa)
+        {
+            TerminServis.getInstance().azurirajIzvestajUputa(idTermina, tip, izvestajUputa);
+        }
+
+        public static void azurirajLekaraZaUput(String idTermina, String idUputLekara)
+        {
+            TerminServis.getInstance().azurirajLekaraZaUput(idTermina, idUputLekara);
         }
 
         public static void azurirajTermin(Termin terminZaAzuriranje)
@@ -36,9 +52,9 @@ namespace Bolnica_aplikacija.Kontroler
             TerminServis.getInstance().dodavanjeIzvestajaZaTermin(idTermina, nazivBolesti, izvestajSaTermina);
         }
 
-        public static List<Prostorija> nadjiSlobodneProstorijeZaTermin(Lekar lekar, Termin termin)
+        public static List<Prostorija> nadjiSlobodneProstorijeZaTermin(Lekar lekar, TerminDTO termin)
         {
-            return TerminServis.getInstance().nadjiSlobodneProstorijeZaTermin(lekar, termin);
+            return TerminServis.getInstance().nadjiSlobodneProstorijeZaTermin(lekar, new Termin(termin));
         }
         public static int proveriDatumTermina(String idTermina)
         {
@@ -72,9 +88,9 @@ namespace Bolnica_aplikacija.Kontroler
             return TerminServis.getInstance().ucitajPregledaZaIzabranogLekara(idLekara);
         }
 
-        public static String napraviTermin(Termin termin)
+        public static String napraviTermin(TerminDTO termin)
         {
-            return TerminServis.getInstance().napraviTermin(termin);
+            return TerminServis.getInstance().napraviTermin(new Termin(termin));
         }
 
         public static void veziTermin(String idTermina, String idTerminUput)

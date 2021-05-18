@@ -24,6 +24,37 @@ namespace Bolnica_aplikacija.Servis
         }
         private TerminRepozitorijum terminRepozitorijum = new TerminRepozitorijum();
 
+        public  void azurirajUputTermina(String idTermina, String idUputTermina)
+        {
+            Termin termin = nadjiTerminPoId(idTermina);
+            Termin terminUput = nadjiTerminPoId(idUputTermina);
+            termin.tipUput = terminUput.tip;
+            termin.idUputTermin = terminUput.idTermina;
+            termin.idUputLekara = terminUput.idLekara;
+            termin.jeZavrsen = true;
+
+            azurirajTermin(termin);
+
+        }
+
+        public void azurirajIzvestajUputa(String idTermina, TipTermina tip, String izvestajUputa)
+        {
+            Termin termin = nadjiTerminPoId(idTermina);
+            termin.tipUput = tip;
+            termin.izvestajUputa = izvestajUputa;
+
+            azurirajTermin(termin);
+        }
+
+        public void azurirajLekaraZaUput(String idTermina, String idUputLekara)
+        {
+            Termin termin = nadjiTerminPoId(idTermina);
+            termin.idUputLekara = idUputLekara;
+            termin.jeZavrsen = true;
+
+            azurirajTermin(termin);
+        }
+
         public void azurirajTermin(Termin terminZaAzuriranje) //da li ide u servis ??
         {
             terminRepozitorijum.azurirajTermin(terminZaAzuriranje);

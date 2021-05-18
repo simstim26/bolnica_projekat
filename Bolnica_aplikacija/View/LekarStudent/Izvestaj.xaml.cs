@@ -47,6 +47,7 @@ namespace Bolnica_aplikacija.LekarStudent
             this.DataContext = id;
             fm.DataContext = this.DataContext;
             aktivan = true;
+
             Pacijent pacijent = PacijentKontroler.nadjiPacijenta(idPacijenta);
             lblJmbg.Content = pacijent.jmbg;
             lblImePrezime.Content = pacijent.ime + " " + pacijent.prezime;
@@ -188,11 +189,12 @@ namespace Bolnica_aplikacija.LekarStudent
 
         private void btnPotvrdaIzvestaj_Click(object sender, RoutedEventArgs e)
         {
-            String nazivBolesti = this.txtDijagnozaIzvestaj.Text;
-            String izvestajSaTermina = this.txtIzvestaj.Text;
 
-            TerminKontroler.dodavanjeIzvestajaZaTermin(((String[])PacijentInfo.getFM().DataContext)[1], nazivBolesti, izvestajSaTermina);
+            TerminKontroler.dodavanjeIzvestajaZaTermin(((String[])PacijentInfo.getFM().DataContext)[1], this.txtDijagnozaIzvestaj.Text,
+               this.txtIzvestaj.Text);
+
             aktivan = false;
+
             LekarProzor.getX().Content = new PacijentInfo(((String[])PacijentInfo.getFM().DataContext)[0],
                     ((String[])PacijentInfo.getFM().DataContext)[1]);
 
@@ -227,6 +229,7 @@ namespace Bolnica_aplikacija.LekarStudent
         {
             TerapijaKontroler.dodajTerapiju(new Terapija("", ((Lek)dataGridLekovi.SelectedItem).id, ((String[])fm.DataContext)[0], "",
                 ((String[])fm.DataContext)[1], DateTime.Now, Convert.ToInt32(txtTrajanje.Text), txtNacinUpotrebe.Text));
+
             this.gridRecept.Visibility = Visibility.Hidden;
             LekarProzor.getGlavnaLabela().Content = "Izdavanje recepta";
         }
@@ -251,14 +254,7 @@ namespace Bolnica_aplikacija.LekarStudent
         private void btnPotvrdaIzbora_Click(object sender, RoutedEventArgs e)
         {
             gridPitanjeOZakazivanju.Visibility = Visibility.Visible;
-            if(((LekarSpecijalizacija)dataGridLekari.SelectedItem).nazivSpecijalizacije.Equals("Opšta praksa"))
-            {
-                btnZakaziOperaciju.IsEnabled = false;
-            }
-            else
-            {
-                btnZakaziOperaciju.IsEnabled = true;
-            }
+            btnZakaziOperaciju.IsEnabled = !((LekarSpecijalizacija)dataGridLekari.SelectedItem).nazivSpecijalizacije.Equals("Opšta praksa");
         }
 
         private void btnZakaziPregled_Click(object sender, RoutedEventArgs e)
@@ -268,6 +264,7 @@ namespace Bolnica_aplikacija.LekarStudent
             gridPitanjeOZakazivanju.Visibility = Visibility.Hidden;
             gridUput.Visibility = Visibility.Hidden;
             LekarProzor.getGlavnaLabela().Content = "Zakazivanje pregleda";
+
             dataGridSlobodniTerminiLekara.ItemsSource = TerminKontroler.ucitajPregledaZaIzabranogLekara(((LekarSpecijalizacija)dataGridLekari.SelectedItem).idLekara);
         }
 
@@ -282,9 +279,7 @@ namespace Bolnica_aplikacija.LekarStudent
                 + ((LekarSpecijalizacija)dataGridLekari.SelectedItem).nazivSpecijalizacije;
             LekarProzor.getGlavnaLabela().Content = "Izdavanje uputa";
 
-            Termin termin = TerminKontroler.nadjiTerminPoId(((String [])fm.DataContext)[1]);
-            termin.idUputLekara = ((LekarSpecijalizacija)dataGridLekari.SelectedItem).idLekara;
-            TerminKontroler.azurirajTermin(termin);
+            TerminKontroler.azurirajLekaraZaUput(((String[])fm.DataContext)[1], ((LekarSpecijalizacija)dataGridLekari.SelectedItem).idLekara);
         }
 
         private void btnZakaziOperaciju_Click(object sender, RoutedEventArgs e)
@@ -300,14 +295,12 @@ namespace Bolnica_aplikacija.LekarStudent
         {
             gridOdabirProstorija.Visibility = Visibility.Visible;
             LekarProzor.getGlavnaLabela().Content = "Odabir prostorije";
-            Termin termin = new Termin();
-            termin.datum = (DateTime)datum.SelectedDate;
-            termin.idLekara = ((LekarSpecijalizacija)dataGridLekari.SelectedItem).idLekara;
+
             String[] satnica = txtVreme.Text.Split(':');
-            termin.satnica = termin.datum + (new TimeSpan(Convert.ToInt32(satnica[0]), Convert.ToInt32(satnica[1]), 0));
-            termin.tip = TipTermina.OPERACIJA;
-            termin.idProstorije = "";
-            dataGridProstorije.ItemsSource = TerminKontroler.nadjiSlobodneProstorijeZaTermin(LekarKontroler.nadjiLekaraPoId(((LekarSpecijalizacija)dataGridLekari.SelectedItem).idLekara), termin);
+            /*DateTime datum, DateTime satnica, String idLekara, String idProstorije, TipTermina tip*/
+            dataGridProstorije.ItemsSource = TerminKontroler.nadjiSlobodneProstorijeZaTermin(LekarKontroler.nadjiLekaraPoId(((LekarSpecijalizacija)dataGridLekari.SelectedItem).idLekara), 
+                new TerminDTO((DateTime)datum.SelectedDate, (DateTime)datum.SelectedDate + (new TimeSpan(Convert.ToInt32(satnica[0]), Convert.ToInt32(satnica[1]), 0)),
+                ((LekarSpecijalizacija)dataGridLekari.SelectedItem).idLekara, "", TipTermina.OPERACIJA));
         }
 
         private void btnUkloniProstoriju_Click(object sender, RoutedEventArgs e)
@@ -339,14 +332,12 @@ namespace Bolnica_aplikacija.LekarStudent
         {
             if (dataGridSlobodniTerminiLekara.SelectedIndex != -1)
             {
-                //PacijentKontroler.zakaziTerminPacijentu(((PacijentTermin)dataGridSlobodniTerminiLekara.SelectedItem).id);
+                PacijentKontroler.zakaziTerminPacijentu(((String[])fm.DataContext)[0], ((PacijentTermin)dataGridSlobodniTerminiLekara.SelectedItem).id);
                 txtLekarUput.Text = LekarKontroler.nadjiLekaraPoId(((LekarSpecijalizacija)dataGridLekari.SelectedItem).idLekara).ime + " " +
                     LekarKontroler.nadjiLekaraPoId(((LekarSpecijalizacija)dataGridLekari.SelectedItem).idLekara).prezime + ", "
                     + ((LekarSpecijalizacija)dataGridLekari.SelectedItem).nazivSpecijalizacije;
-                Termin t = TerminKontroler.nadjiTerminPoId(((String[])fm.DataContext)[1]);
-                t.tipUput = TipTermina.PREGLED;
-                TerminKontroler.azurirajTermin(t);
-                TerminKontroler.veziTermin(((String[])fm.DataContext)[1],((PacijentTermin)dataGridSlobodniTerminiLekara.SelectedItem).id);
+
+                TerminKontroler.azurirajUputTermina(((String[])fm.DataContext)[1], ((PacijentTermin)dataGridSlobodniTerminiLekara.SelectedItem).id);
 
                 gridZakazivanje.Visibility = Visibility.Hidden;
                 gridPitanjeOZakazivanju.Visibility = Visibility.Hidden;
@@ -364,24 +355,13 @@ namespace Bolnica_aplikacija.LekarStudent
 
         private void btnPotvrdi_Click(object sender, RoutedEventArgs e)
         {
-            Termin termin = new Termin();
-            termin.idTermina = "";
-            termin.idPacijenta = ((String[])fm.DataContext)[0];
-            termin.datum = (DateTime)datum.SelectedDate;
-            termin.idLekara = ((LekarSpecijalizacija)dataGridLekari.SelectedItem).idLekara;
-            termin.idProstorije = ((Prostorija)dataGridProstorije.SelectedItem).id;
-            termin.jeZavrsen = false;
-            String[] satnica = txtVreme.Text.Split(':');
-            DateTime sat = DateTime.Now.Add(new TimeSpan(Convert.ToInt32(satnica[0]), Convert.ToInt32(satnica[1]), 0));
-            termin.satnica = termin.datum + (new TimeSpan(Convert.ToInt32(satnica[0]), Convert.ToInt32(satnica[1]), 0));
-            termin.tip = TipTermina.OPERACIJA;
-            termin.jeHitan = (bool)cBoxHitna.IsChecked;
 
-            String idNovog = TerminKontroler.napraviTermin(termin);
-            Termin t = TerminKontroler.nadjiTerminPoId(((String[])fm.DataContext)[1]);
-            t.tipUput = TipTermina.OPERACIJA;
-            TerminKontroler.azurirajTermin(t);
-            TerminKontroler.veziTermin(((String [])fm.DataContext)[1], idNovog);
+            String[] satnica = txtVreme.Text.Split(':');
+            DateTime sat = (DateTime)datum.SelectedDate + (new TimeSpan(Convert.ToInt32(satnica[0]), Convert.ToInt32(satnica[1]), 0));
+
+            TerminKontroler.azurirajUputTermina(((String[])fm.DataContext)[1], TerminKontroler.napraviTermin(new TerminDTO(TipTermina.OPERACIJA,
+                (DateTime)datum.SelectedDate, sat, false, "", ((Prostorija)dataGridProstorije.SelectedItem).id, ((String[])fm.DataContext)[0], ((LekarSpecijalizacija)dataGridLekari.SelectedItem).idLekara,
+                null, null, null, null, null, null, TipTermina.PREGLED, (bool)cBoxHitna.IsChecked)));
 
             radioBtnOperacija.IsChecked = true;
             radioBtnPregled.IsEnabled = false;
@@ -412,22 +392,15 @@ namespace Bolnica_aplikacija.LekarStudent
 
         private void btnPotvrdiUput_Click(object sender, RoutedEventArgs e)
         {
-            Termin termin = TerminKontroler.nadjiTerminPoId(((String[])fm.DataContext)[1]);
+            TerminKontroler.azurirajIzvestajUputa(((String[])fm.DataContext)[1], proveriOznaceniRadioButton(),txtUputIzvestaj.Text);
 
-            if ((bool)radioBtnPregled.IsChecked)
-            {
-                termin.tipUput = TipTermina.PREGLED;
-            }
-            else
-            {
-                termin.tipUput = TipTermina.OPERACIJA;
-
-            }
-
-            termin.izvestajUputa = txtUputIzvestaj.Text;
-            TerminKontroler.azurirajTermin(termin);
             gridUput.Visibility = Visibility.Hidden;
             LekarProzor.getGlavnaLabela().Content = "Izdavanje uputa";
+        }
+
+        private TipTermina proveriOznaceniRadioButton()
+        {
+            return (bool)radioBtnPregled.IsChecked ? TipTermina.PREGLED : TipTermina.OPERACIJA;
         }
 
         private void txtVreme_TextChanged(object sender, TextChangedEventArgs e)

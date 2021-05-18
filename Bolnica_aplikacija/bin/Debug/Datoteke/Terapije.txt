@@ -128,5 +128,15 @@
     "datumPocetka": "2021-05-15T23:36:44.0481729+02:00",
     "trajanje": 12,
     "nacinUpotrebe": "Rektalno"
+  },
+  {
+    "id": "14",
+    "idLeka": "2",
+    "idPacijenta": "2",
+    "idBolesti": "9",
+    "idTermina": "16",
+    "datumPocetka": "2021-05-18T16:47:10.5198104+02:00",
+    "trajanje": 12,
+    "nacinUpotrebe": "ASFRektalno"
   }
 ]

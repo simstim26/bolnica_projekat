@@ -1,4 +1,5 @@
 ﻿using Bolnica_aplikacija.Kontroler;
+using Bolnica_aplikacija.PomocneKlase;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -76,13 +77,11 @@ namespace Bolnica_aplikacija.LekarStudent
         private void btnDodajProstoriju_Click(object sender, RoutedEventArgs e)
         {
             gridOdabirProstorija.Visibility = Visibility.Visible;
-            Termin termin = new Termin();
-            termin.datum = (DateTime)datum.SelectedDate;
+
             String[] satnica = txtVreme.Text.Split(':');
-            termin.tip = TipTermina.OPERACIJA;
-            termin.satnica = termin.datum + (new TimeSpan(Convert.ToInt32(satnica[0]), Convert.ToInt32(satnica[1]), 0));
-            termin.idProstorije = "";
-            dataGridProstorije.ItemsSource = TerminKontroler.nadjiSlobodneProstorijeZaTermin(KorisnikKontroler.getLekar(), termin);
+
+            dataGridProstorije.ItemsSource = TerminKontroler.nadjiSlobodneProstorijeZaTermin(KorisnikKontroler.getLekar(), new TerminDTO((DateTime)datum.SelectedDate,
+             (DateTime)datum.SelectedDate + (new TimeSpan(Convert.ToInt32(satnica[0]), Convert.ToInt32(satnica[1]), 0)),"", "", TipTermina.OPERACIJA));
             LekarProzor.getGlavnaLabela().Content = "Odabir prostorije";
 
         }
@@ -104,19 +103,13 @@ namespace Bolnica_aplikacija.LekarStudent
 
         private void btnPotvrdi_Click(object sender, RoutedEventArgs e)
         {
-            Termin termin = new Termin();
-            termin.datum = (DateTime)datum.SelectedDate;
             String[] satnica = txtVreme.Text.Split(':');
-            termin.satnica = termin.datum + (new TimeSpan(Convert.ToInt32(satnica[0]), Convert.ToInt32(satnica[1]), 0));
-            termin.idTermina = "";
-            termin.idLekara = KorisnikKontroler.getLekar().id;
-            termin.idProstorije = ((Prostorija)dataGridProstorije.SelectedItem).id;
-            termin.idPacijenta = (String)fm.DataContext;
-            termin.tip = TipTermina.OPERACIJA;
-            termin.jeHitan = (bool)cBoxHitna.IsChecked;
-            TerminKontroler.napraviTermin(termin);
-        }
 
+            TerminKontroler.napraviTermin(new TerminDTO(TipTermina.OPERACIJA, (DateTime)datum.SelectedDate, (DateTime)datum.SelectedDate
+                + (new TimeSpan(Convert.ToInt32(satnica[0]), Convert.ToInt32(satnica[1]), 0)), false, "", ((Prostorija)dataGridProstorije.SelectedItem).id,
+                 ((String)fm.DataContext), KorisnikKontroler.getLekar().id, null, null, null, null, null, null, TipTermina.PREGLED, (bool)cBoxHitna.IsChecked));
+        }
+       
         private void txtVreme_TextChanged(object sender, TextChangedEventArgs e)
         {
 
