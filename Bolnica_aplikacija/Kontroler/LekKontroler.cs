@@ -53,13 +53,6 @@ namespace Bolnica_aplikacija.Kontroler
             LekServis.getInstance().napraviLek(lek);
         }
 
-        public static void napraviLek(String naziv, TipLeka tipLeka, int kolicina, String proizvodjac, NacinUpotrebe nacinUpotrebe,
-            LekZaOdobravanje lek)
-        {
-            lek = new LekZaOdobravanje(naziv, tipLeka, kolicina, proizvodjac, nacinUpotrebe);
-            LekServis.getInstance().napraviLek(lek);
-        }
-
         public static void napraviCeoLek(LekZaOdobravanje lek)
         {
             LekServis.getInstance().napraviLek(lek);

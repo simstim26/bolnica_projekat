@@ -3,6 +3,7 @@
 // Created: Wednesday, March 24, 2021 1:23:21 PM
 // Purpose: Definition of Class Terapija
 
+using Bolnica_aplikacija.PomocneKlase;
 using System;
 
 namespace Model
@@ -31,6 +32,18 @@ namespace Model
             this.trajanje = trajanje;
             this.nacinUpotrebe = nacinUpotrebe;
       }
+
+      public Terapija(TerapijaDTO dto)
+        {
+            id = dto.id;
+            idLeka = dto.idLeka;
+            idPacijenta = dto.idPacijenta;
+            idBolesti = dto.idBolesti;
+            idTermina = dto.idTermina;
+            datumPocetka = dto.datumPocetka;
+            trajanje = dto.trajanje;
+            nacinUpotrebe = dto.nacinUpotrebe;
+        }
 
       public void kopiraj(Terapija terapija)
       {

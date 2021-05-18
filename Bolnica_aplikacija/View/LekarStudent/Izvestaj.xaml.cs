@@ -227,7 +227,7 @@ namespace Bolnica_aplikacija.LekarStudent
 
         private void btnPotvrdiRecept_Click(object sender, RoutedEventArgs e)
         {
-            TerapijaKontroler.dodajTerapiju(new Terapija("", ((Lek)dataGridLekovi.SelectedItem).id, ((String[])fm.DataContext)[0], "",
+            TerapijaKontroler.dodajTerapiju(new TerapijaDTO("", ((Lek)dataGridLekovi.SelectedItem).id, ((String[])fm.DataContext)[0], "",
                 ((String[])fm.DataContext)[1], DateTime.Now, Convert.ToInt32(txtTrajanje.Text), txtNacinUpotrebe.Text));
 
             this.gridRecept.Visibility = Visibility.Hidden;

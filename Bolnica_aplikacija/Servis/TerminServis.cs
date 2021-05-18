@@ -160,6 +160,11 @@ namespace Bolnica_aplikacija.Servis
                 }
             }
 
+            return obradiSlobodneProstorijeZaPrikaz(termin, prostorijeZaPrikaz);
+        }
+
+        private List<Prostorija> obradiSlobodneProstorijeZaPrikaz(Termin termin, List<Prostorija> prostorijeZaPrikaz)
+        {
             List<String> nePrikazati = proveriProstorijeZaPrikaz(termin, prostorijeZaPrikaz);
             List<Prostorija> povratnaVrednost = new List<Prostorija>();
             bool zastavica;
@@ -250,16 +255,6 @@ namespace Bolnica_aplikacija.Servis
             termin.idTermina = (ucitajSve().Count + 1).ToString();
             terminRepozitorijum.dodajTermin(termin);
             return termin.idTermina;
-        }
-
-        public void veziTermin(String idTermina, String idTerminUput)
-        {
-            Termin terminUput = nadjiTerminPoId(idTerminUput);
-            Termin termin = nadjiTerminPoId(idTermina);
-            termin.idUputLekara = terminUput.idLekara;
-            termin.idUputTermin = terminUput.idTermina;
-            termin.jeZavrsen = true;
-            terminRepozitorijum.azurirajTermin(termin);
         }
 
         public List<PacijentTermin> ucitajTermineZaHitanSlucaj(String tip, String idSpecijalizacije)

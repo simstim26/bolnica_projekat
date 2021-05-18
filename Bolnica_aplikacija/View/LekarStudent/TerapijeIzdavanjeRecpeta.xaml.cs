@@ -94,13 +94,13 @@ namespace Bolnica_aplikacija.LekarStudent
         {
             if(((BolestTerapija)fm.DataContext).idTermina == null)
             {
-                TerapijaKontroler.dodajTerapiju(new Terapija("", ((BolestTerapija)fm.DataContext).idLeka, ((BolestTerapija)fm.DataContext).idPacijenta,
+                TerapijaKontroler.dodajTerapiju(new TerapijaDTO("", ((BolestTerapija)fm.DataContext).idLeka, ((BolestTerapija)fm.DataContext).idPacijenta,
                     ((BolestTerapija)fm.DataContext).idBolesti, null, DateTime.Now, Convert.ToInt32(txtTrajanje.Text), txtNacinUpotrebe.Text));
             }
             else
             {
                 Terapija terapija = TerapijaKontroler.nadjiTerapijuPoId(((BolestTerapija)fm.DataContext).idTerapije);
-                TerapijaKontroler.azurirajTerapiju(new Terapija(terapija.id, ((BolestTerapija)fm.DataContext).idLeka, terapija.idPacijenta,
+                TerapijaKontroler.azurirajTerapiju(new TerapijaDTO(terapija.id, ((BolestTerapija)fm.DataContext).idLeka, terapija.idPacijenta,
                    terapija.idBolesti, terapija.idTermina, DateTime.Now, Convert.ToInt32(txtTrajanje.Text), txtNacinUpotrebe.Text));
             }
 
