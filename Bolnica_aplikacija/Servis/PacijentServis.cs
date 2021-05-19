@@ -38,7 +38,7 @@ namespace Bolnica_aplikacija.Servis
 
             foreach (String sastojak in sastojci)
             {
-                foreach(Alergija alergija in AlergijaServis.getInstance().ucitajAlergijeZaPacijenta(idPacijenta))
+                foreach(Alergija alergija in alergije)
                 {
                     if (sastojak.Equals(alergija.nazivAlergije))
                     {
