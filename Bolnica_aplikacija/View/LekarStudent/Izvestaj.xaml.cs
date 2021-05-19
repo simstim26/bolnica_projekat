@@ -236,6 +236,29 @@ namespace Bolnica_aplikacija.LekarStudent
 
         private void btnPotvdiOdabirLeka_Click(object sender, RoutedEventArgs e)
         {
+            if (dataGridLekovi.SelectedIndex != -1)
+            {
+                if (PacijentKontroler.proveriAlergijuNaLekZaPacijenta(((BolestTerapija)fm.DataContext).idPacijenta, ((Lek)dataGridLekovi.SelectedItem).id))
+                {
+                    System.Windows.Forms.DialogResult dialogResult = System.Windows.Forms.MessageBox.Show("Pacijent je alergičan na dati lek.\n Da li ste sigurni da želite da izdate lek?", "Upozorenje", System.Windows.Forms.MessageBoxButtons.YesNo, System.Windows.Forms.MessageBoxIcon.Warning);
+                    if (dialogResult == System.Windows.Forms.DialogResult.Yes)
+                    {
+                        azurirajPrikazZaRecept();
+                    }
+                }
+                else
+                {
+                    azurirajPrikazZaRecept();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Potrebno je izabrati lek!", "Upozorenje.", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+        private void azurirajPrikazZaRecept()
+        {
             this.gridOdabirLeka.Visibility = Visibility.Hidden;
             LekarProzor.getGlavnaLabela().Content = "Izdavanje recepta";
             this.gridRecept.Visibility = Visibility.Visible;

@@ -24,6 +24,14 @@ namespace Bolnica_aplikacija.Servis
             return instance;
         }
 
+        public List<Alergija> ucitajAlergijeZaPacijenta(String idPacijenta)
+        {
+            if (idPacijenta == null)
+                return new List<Alergija>();
+
+            return (ucitajSve().GroupBy(a => a.idPacijenta).ToDictionary(a1 => a1.Key, a1 => a1.ToList()))[idPacijenta];
+        }
+
         public List<Alergija> ucitajSve()
         {
             return alergijaRepozitorijum.ucitajSve();

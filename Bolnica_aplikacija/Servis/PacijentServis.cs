@@ -29,6 +29,26 @@ namespace Bolnica_aplikacija.Servis
             return instance;
         }
 
+        public bool proveriAlergijuNaLekZaPacijenta(String idPacijenta, String idIzabraniLek)
+        {
+            List<String> sastojci = LekServis.getInstance().nadjiLekPoId(idIzabraniLek).sastojci;
+            List<Alergija> alergije = AlergijaServis.getInstance().ucitajAlergijeZaPacijenta(idPacijenta);
+            if (sastojci == null || alergije == null)
+                return false;
+
+            foreach (String sastojak in sastojci)
+            {
+                foreach(Alergija alergija in AlergijaServis.getInstance().ucitajAlergijeZaPacijenta(idPacijenta))
+                {
+                    if (sastojak.Equals(alergija.nazivAlergije))
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
 
         public List<BolestTerapija> nadjiIstorijuBolestiZaPacijenta(String idPacijenta)
         {

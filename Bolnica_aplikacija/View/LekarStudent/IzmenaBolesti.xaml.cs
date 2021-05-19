@@ -11,6 +11,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -22,7 +23,7 @@ namespace Bolnica_aplikacija.LekarStudent
     /// <summary>
     /// Interaction logic for IzmenaBolesti.xaml
     /// </summary>
-    public partial class IzmenaBolesti : UserControl
+    public partial class IzmenaBolesti : System.Windows.Controls.UserControl
     {
         public static bool aktivan;
         private static Grid gridRecept;
@@ -114,27 +115,42 @@ namespace Bolnica_aplikacija.LekarStudent
         {
             if (dataGridLekovi.SelectedIndex != -1)
             {
-                Lek lek = (Lek)dataGridLekovi.SelectedItem;
-                LekarProzor.getGlavnaLabela().Content = "Izdavanje recepta";
-
-                ((BolestTerapija)fm.DataContext).idLeka = lek.id;
-                ((BolestTerapija)fm.DataContext).nazivTerapije = lek.naziv;
-                
-                this.txtTerapija.Text = ((BolestTerapija)fm.DataContext).nazivTerapije;
-                this.gridIzmenaTerapije.Visibility = Visibility.Visible;
-                this.gridOdabirLeka.Visibility = Visibility.Hidden;
-                
-                txtNazivLeka.Text = ((BolestTerapija)fm.DataContext).nazivTerapije;
-                txtNacinUpotrebe.Text = lek.getNacinUpotrebeString();
-                txtKol.Text = lek.kolicina.ToString();
-                txtDatum.Text = DateTime.Now.ToString("dd.MM.yyyy.");
+                if (PacijentKontroler.proveriAlergijuNaLekZaPacijenta(((BolestTerapija)fm.DataContext).idPacijenta, ((Lek)dataGridLekovi.SelectedItem).id))
+                {
+                    DialogResult dialogResult = System.Windows.Forms.MessageBox.Show("Pacijent je alergičan na dati lek.\n Da li ste sigurni da želite da izdate lek?", "Upozorenje", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        promeniTerapiju();
+                    }
+                }
+                else
+                {
+                    promeniTerapiju();
+                }
             }
             else
             {
-                MessageBox.Show("Potrebno je izabrati lek!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+                System.Windows.MessageBox.Show("Potrebno je izabrati lek!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
+        private void promeniTerapiju()
+        {
+            Lek lek = (Lek)dataGridLekovi.SelectedItem;
+            LekarProzor.getGlavnaLabela().Content = "Izdavanje recepta";
+
+            ((BolestTerapija)fm.DataContext).idLeka = lek.id;
+            ((BolestTerapija)fm.DataContext).nazivTerapije = lek.naziv;
+
+            this.txtTerapija.Text = ((BolestTerapija)fm.DataContext).nazivTerapije;
+            this.gridIzmenaTerapije.Visibility = Visibility.Visible;
+            this.gridOdabirLeka.Visibility = Visibility.Hidden;
+
+            txtNazivLeka.Text = ((BolestTerapija)fm.DataContext).nazivTerapije;
+            txtNacinUpotrebe.Text = lek.getNacinUpotrebeString();
+            txtKol.Text = lek.kolicina.ToString();
+            txtDatum.Text = DateTime.Now.ToString("dd.MM.yyyy.");
+        }
         private void btnPotvrdiRecept_Click(object sender, RoutedEventArgs e)
         {
             this.gridIzmenaTerapije.Visibility = Visibility.Hidden;
