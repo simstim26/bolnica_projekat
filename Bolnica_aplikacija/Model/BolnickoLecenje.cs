@@ -18,9 +18,11 @@ namespace Bolnica_aplikacija.Model
         public Pacijent pacijent { get; set; }
         public Prostorija bolnickaSoba { get; set; }
 
+        public Termin termin { get; set; }
+
         public BolnickoLecenje() { }
 
-        public BolnickoLecenje(string id, DateTime datumPocetka, int trajanje, bool jeZavrsen, Pacijent pacijent, Prostorija bolnickaSoba)
+        public BolnickoLecenje(string id, DateTime datumPocetka, int trajanje, bool jeZavrsen, Pacijent pacijent, Prostorija bolnickaSoba, Termin termin)
         {
             this.id = id;
             this.datumPocetka = datumPocetka;
@@ -28,16 +30,22 @@ namespace Bolnica_aplikacija.Model
             this.jeZavrsen = jeZavrsen;
             this.pacijent = pacijent;
             this.bolnickaSoba = bolnickaSoba;
+            this.termin = termin;
         }
 
         public BolnickoLecenje(BolnickoLecenjeDTO dto)
         {
+            pacijent = new Pacijent();
+            bolnickaSoba = new Prostorija();
+            termin = new Termin();
+
             id = dto.id;
             datumPocetka = dto.datumPocetka;
             trajanje = dto.trajanje;
             jeZavrsen = dto.jeZavrsen;
             pacijent.id = dto.idPacijenta;
             bolnickaSoba.id = dto.idProstorije;
+            termin.idTermina = dto.idTermina;
         }
     }
 }

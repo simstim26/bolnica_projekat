@@ -521,6 +521,7 @@ namespace Bolnica_aplikacija.LekarStudent
         {
             gridBolnickoLecenje.Visibility = Visibility.Visible;
             gridPitanjeOUputu.Visibility = Visibility.Hidden;
+            dataGridBolnickeSobe.ItemsSource = ProstorijaKontroler.pronadjiSlobodneBolnickeSobe();
             LekarProzor.getGlavnaLabela().Content = "Izdavanje uputa";
         }
 
@@ -531,7 +532,10 @@ namespace Bolnica_aplikacija.LekarStudent
             if(dataGridBolnickeSobe.SelectedIndex != -1)
             {
                 BolnickoLecenjeKontroler.napraviUputZaBolnickoLecenje(new BolnickoLecenjeDTO("", (DateTime)datumBLecenje.SelectedDate, Convert.ToInt32(txtTrajanjeBLecenje.Text),
-                    false, ((String[])fm.DataContext)[0], ((Prostorija)dataGridBolnickeSobe.SelectedItem).id));
+                    false, ((String[])fm.DataContext)[0], ((Prostorija)dataGridBolnickeSobe.SelectedItem).id, ((String[])fm.DataContext)[1]));
+                ProstorijaKontroler.azurirajBrojZauzetihKreveta(((Prostorija)dataGridBolnickeSobe.SelectedItem).id);
+                gridBolnickoLecenje.Visibility = Visibility.Hidden;
+                LekarProzor.getGlavnaLabela().Content = "Pisanje izveštaja";
             }
             else
             {

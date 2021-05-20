@@ -63,8 +63,8 @@
             <TextBox x:Name="txtTrajanjeBLecenje" HorizontalAlignment="Left" Height="23" Margin="144,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="98" RenderTransformOrigin="0.247,0.67"/>
             <DataGrid x:Name="dataGridBolnickeSobe" HorizontalAlignment="Left" AutoGenerateColumns="False" IsReadOnly="True" AlternationCount="2" AlternatingRowBackground="#FF9900"  Height="257" Margin="0,252,0,0" VerticalAlignment="Top" Width="430">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Sprat"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Broj"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Sprat" Binding="{Binding sprat}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Broj" Binding="{Binding broj}"></DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
             <Label Content="Odabir bolničke sobe:" HorizontalAlignment="Left" Margin="25,223,0,0" VerticalAlignment="Top"/>

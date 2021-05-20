@@ -17,6 +17,8 @@ namespace Model
       public int sprat { get; set; }
       public bool dostupnost { get; set; }
       public bool logickiObrisana { get; set; }
+
+      public int brojZauzetihKreveta { get; set; }
       
       public System.Collections.ArrayList stavka;
 

@@ -52,6 +52,9 @@ namespace Bolnica_aplikacija.PomocneKlase
 					case nameof(BolnickoLecenje.bolnickaSoba):
 						bLecenje.bolnickaSoba = new Prostorija { id = reader.GetString()};
 						break;
+					case nameof(BolnickoLecenje.termin):
+						bLecenje.termin = new Termin { idTermina = reader.GetString() };
+						break;
 				}
 			}
 
@@ -70,6 +73,7 @@ namespace Bolnica_aplikacija.PomocneKlase
 
             writer.WriteString(nameof(value.pacijent), value.pacijent.id);
             writer.WriteString(nameof(value.bolnickaSoba), value.bolnickaSoba.id);
+			writer.WriteString(nameof(value.termin), value.termin.idTermina);
 
             writer.WriteEndObject();
         }

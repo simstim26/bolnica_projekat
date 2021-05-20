@@ -18,6 +18,12 @@ namespace Bolnica_aplikacija.Kontroler
             return prostorijaServis.ucitajSve();
         }
 
+        public static List<Prostorija> pronadjiSlobodneBolnickeSobe()
+        {
+            return prostorijaServis.pronadjiSlobodneBolnickeSobe();
+        }
+
+
         public static List<Prostorija> ucitajNeobrisane()
         {
             return prostorijaServis.ucitajNeobrisane();
@@ -79,6 +85,11 @@ namespace Bolnica_aplikacija.Kontroler
         public static bool postojeTerminiZaPeriodPremestanja(DateTime datumPocetka, DateTime datumKraja, Prostorija p)
         {
             return prostorijaServis.postojeTerminiZaPeriodPremestanja(datumPocetka, datumKraja, p);
+        }
+
+        public static void azurirajBrojZauzetihKreveta(string id)
+        {
+            prostorijaServis.azurirajBrojZauzetihKreveta(id);
         }
     }
 }

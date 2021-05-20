@@ -7,6 +7,7 @@
     "sprat": 1,
     "dostupnost": true,
     "logickiObrisana": false,
+    "brojZauzetihKreveta": 0,
     "Stavka": [
       {
         "id": "5",
@@ -18,18 +19,19 @@
         "jeStaticka": false,
         "jeLogickiObrisana": false,
         "jePotrosnaRoba": true
+      },
+      {
+        "id": "2",
+        "naziv": "Krevet",
+        "kolicina": 5,
+        "proizvodjac": "KrevetKrevet",
+        "idProstorije": null,
+        "idBolnice": "1",
+        "jeStaticka": true,
+        "jeLogickiObrisana": false,
+        "jePotrosnaRoba": false
       }
     ]
-  },
-  {
-    "id": "2",
-    "idBolnice": "1",
-    "tipProstorije": 1,
-    "broj": "220",
-    "sprat": 2,
-    "dostupnost": true,
-    "logickiObrisana": true,
-    "Stavka": []
   },
   {
     "id": "3",
@@ -39,6 +41,7 @@
     "sprat": 10,
     "dostupnost": true,
     "logickiObrisana": false,
+    "brojZauzetihKreveta": 0,
     "Stavka": [
       {
         "id": "1",
@@ -87,56 +90,6 @@
     ]
   },
   {
-    "id": "4",
-    "idBolnice": "1",
-    "tipProstorije": 0,
-    "broj": "201",
-    "sprat": 2,
-    "dostupnost": true,
-    "logickiObrisana": true,
-    "Stavka": []
-  },
-  {
-    "id": "5",
-    "idBolnice": "1",
-    "tipProstorije": 0,
-    "broj": "110",
-    "sprat": 10,
-    "dostupnost": false,
-    "logickiObrisana": true,
-    "Stavka": []
-  },
-  {
-    "id": "6",
-    "idBolnice": "1",
-    "tipProstorije": 0,
-    "broj": "203",
-    "sprat": 2,
-    "dostupnost": false,
-    "logickiObrisana": true,
-    "Stavka": []
-  },
-  {
-    "id": "7",
-    "idBolnice": "3",
-    "tipProstorije": 0,
-    "broj": "11111",
-    "sprat": 10,
-    "dostupnost": false,
-    "logickiObrisana": true,
-    "Stavka": []
-  },
-  {
-    "id": "8",
-    "idBolnice": "3",
-    "tipProstorije": 1,
-    "broj": "800",
-    "sprat": 8,
-    "dostupnost": true,
-    "logickiObrisana": true,
-    "Stavka": []
-  },
-  {
     "id": "9",
     "idBolnice": "3",
     "tipProstorije": 2,
@@ -144,11 +97,12 @@
     "sprat": 100,
     "dostupnost": true,
     "logickiObrisana": false,
+    "brojZauzetihKreveta": 0,
     "Stavka": [
       {
         "id": "2",
         "naziv": "Krevet",
-        "kolicina": 57,
+        "kolicina": 52,
         "proizvodjac": "KrevetKrevet",
         "idProstorije": null,
         "idBolnice": "1",
@@ -188,6 +142,7 @@
     "sprat": 1,
     "dostupnost": true,
     "logickiObrisana": false,
+    "brojZauzetihKreveta": 0,
     "Stavka": [
       {
         "id": "1",
@@ -225,26 +180,6 @@
     ]
   },
   {
-    "id": "11",
-    "idBolnice": null,
-    "tipProstorije": 2,
-    "broj": "2e2e",
-    "sprat": 2,
-    "dostupnost": true,
-    "logickiObrisana": true,
-    "Stavka": []
-  },
-  {
-    "id": "12",
-    "idBolnice": null,
-    "tipProstorije": 2,
-    "broj": "2121",
-    "sprat": 21,
-    "dostupnost": true,
-    "logickiObrisana": true,
-    "Stavka": []
-  },
-  {
     "id": "13",
     "idBolnice": null,
     "tipProstorije": 2,
@@ -252,6 +187,7 @@
     "sprat": 4,
     "dostupnost": true,
     "logickiObrisana": false,
+    "brojZauzetihKreveta": 0,
     "Stavka": [
       {
         "id": "4",
@@ -296,6 +232,7 @@
     "sprat": 11,
     "dostupnost": true,
     "logickiObrisana": false,
+    "brojZauzetihKreveta": 0,
     "Stavka": [
       {
         "id": "4",
@@ -362,6 +299,7 @@
     "sprat": 3,
     "dostupnost": true,
     "logickiObrisana": false,
+    "brojZauzetihKreveta": 0,
     "Stavka": []
   },
   {
@@ -372,6 +310,7 @@
     "sprat": 124,
     "dostupnost": true,
     "logickiObrisana": false,
+    "brojZauzetihKreveta": 0,
     "Stavka": [
       {
         "id": "2",
@@ -416,6 +355,7 @@
     "sprat": 1,
     "dostupnost": true,
     "logickiObrisana": false,
+    "brojZauzetihKreveta": 0,
     "Stavka": []
   },
   {
@@ -426,6 +366,7 @@
     "sprat": 155,
     "dostupnost": true,
     "logickiObrisana": false,
+    "brojZauzetihKreveta": 0,
     "Stavka": [
       {
         "id": "5",
@@ -470,6 +411,7 @@
     "sprat": 12,
     "dostupnost": true,
     "logickiObrisana": false,
+    "brojZauzetihKreveta": 0,
     "Stavka": [
       {
         "id": "2",
@@ -503,6 +445,7 @@
     "sprat": 12333,
     "dostupnost": true,
     "logickiObrisana": false,
+    "brojZauzetihKreveta": 0,
     "Stavka": [
       {
         "id": "2",
@@ -536,6 +479,7 @@
     "sprat": 41,
     "dostupnost": true,
     "logickiObrisana": false,
+    "brojZauzetihKreveta": 0,
     "Stavka": null
   }
 ]

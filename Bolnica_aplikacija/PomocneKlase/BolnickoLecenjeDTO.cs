@@ -17,7 +17,9 @@ namespace Bolnica_aplikacija.PomocneKlase
         public String idPacijenta { get; set; }
         public String idProstorije { get; set; }
 
-        public BolnickoLecenjeDTO(string id, DateTime datumPocetka, int trajanje, bool jeZavrsen, string idPacijenta, string idProstorije)
+        public String idTermina { get; set; }
+
+        public BolnickoLecenjeDTO(string id, DateTime datumPocetka, int trajanje, bool jeZavrsen, string idPacijenta, string idProstorije, String idTermina)
         {
             this.id = id;
             this.datumPocetka = datumPocetka;
@@ -25,6 +27,7 @@ namespace Bolnica_aplikacija.PomocneKlase
             this.jeZavrsen = jeZavrsen;
             this.idPacijenta = idPacijenta;
             this.idProstorije = idProstorije;
+            this.idTermina = idTermina;
         }
     }
 }
