@@ -36,6 +36,8 @@ namespace Bolnica_aplikacija.LekarStudent
         private static Grid odabirProstorije;
         private static Grid prikazInventaraProstorije;
         private static Grid pitanjeOZakazivanju;
+        private static Grid pitanjeOUputu;
+        private static Grid bolnickoLecenje;
         private static FrameworkElement fm = new FrameworkElement();
         public Izvestaj(String idPacijenta, String idTermina)
         {
@@ -90,6 +92,8 @@ namespace Bolnica_aplikacija.LekarStudent
             odabirProstorije = this.gridOdabirProstorija;
             prikazInventaraProstorije = this.gridPrikazInventara;
             pitanjeOZakazivanju = this.gridPitanjeOZakazivanju;
+            pitanjeOUputu = this.gridPitanjeOUputu;
+            bolnickoLecenje = this.gridBolnickoLecenje;
         }
 
         public static void podesiKretanjeZaDugmeNazad()
@@ -97,6 +101,15 @@ namespace Bolnica_aplikacija.LekarStudent
             if(pitanjeOZakazivanju.Visibility == Visibility.Visible)
             {
                 pitanjeOZakazivanju.Visibility = Visibility.Hidden;
+            }
+            else if(pitanjeOUputu.Visibility == Visibility.Visible)
+            {
+                pitanjeOUputu.Visibility = Visibility.Hidden;
+            }
+            else if(bolnickoLecenje.Visibility == Visibility.Visible)
+            {
+                bolnickoLecenje.Visibility = Visibility.Hidden;
+                LekarProzor.getGlavnaLabela().Content = "Pisanje izveštaja"; 
             }
             else if (uput.Visibility == Visibility.Visible)
             {
@@ -162,9 +175,10 @@ namespace Bolnica_aplikacija.LekarStudent
 
         private void btnUput_Click(object sender, RoutedEventArgs e)
         {
-            this.gridUput.Visibility = Visibility.Visible;
-            dataGridLekari.ItemsSource = LekarKontroler.ucitajLekareSaSpecijalizacijom();
-            LekarProzor.getGlavnaLabela().Content = "Izdavanje uputa";
+            //this.gridUput.Visibility = Visibility.Visible;
+            this.gridPitanjeOUputu.Visibility = Visibility.Visible;
+           // dataGridLekari.ItemsSource = LekarKontroler.ucitajLekareSaSpecijalizacijom();
+           // LekarProzor.getGlavnaLabela().Content = "Izdavanje uputa";
 
         }
 
@@ -493,6 +507,21 @@ namespace Bolnica_aplikacija.LekarStudent
         {
             gridZakazivanjeOperacije.Visibility = Visibility.Hidden;
             LekarProzor.getGlavnaLabela().Content = "Odabir lekara";
+        }
+
+        private void btnIzdavanjeUputaPregledOperacija_Click(object sender, RoutedEventArgs e)
+        {
+            this.gridUput.Visibility = Visibility.Visible;
+            this.gridPitanjeOUputu.Visibility = Visibility.Hidden;
+            dataGridLekari.ItemsSource = LekarKontroler.ucitajLekareSaSpecijalizacijom();
+            LekarProzor.getGlavnaLabela().Content = "Izdavanje uputa";
+        }
+
+        private void btnIzdavanjeUputaBolnickoLecenje_Click(object sender, RoutedEventArgs e)
+        {
+            gridBolnickoLecenje.Visibility = Visibility.Visible;
+            gridPitanjeOUputu.Visibility = Visibility.Hidden;
+            LekarProzor.getGlavnaLabela().Content = "Izdavanje uputa";
         }
     }
 }

@@ -43,6 +43,40 @@
         <Label Content="Dijagnoza:" HorizontalAlignment="Left" Margin="35,268,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtDijagnozaIzvestaj" HorizontalAlignment="Left" Height="23" Margin="142,269,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="154"/>
 
+        <Grid x:Name="gridPitanjeOUputu" Visibility="Hidden">
+            <Grid.Background>
+                <SolidColorBrush Color="White" Opacity="0.8"/>
+            </Grid.Background>
+            <Grid Background="White" Margin="0,185,0.4,184.4">
+                <Label Content="Izdavanje uputa za:" Margin="32,56,125,219" FontWeight="Bold" FontSize="14">
+                </Label>
+                <Button x:Name="btnIzdavanjeUputaPregledOperacija" Height="Auto" Content="Pregled/operaciju" Margin="89,108,89,160" Click="btnIzdavanjeUputaPregledOperacija_Click"/>
+                <Button x:Name="btnIzdavanjeUputaBolnickoLecenje" Height="Auto" Content="Bolničko lečenje" Margin="89,180,89,88" Click="btnIzdavanjeUputaBolnickoLecenje_Click" />
+
+            </Grid>
+        </Grid>
+
+        <Grid x:Name="gridBolnickoLecenje" Background="White" Visibility="Hidden">
+            <DatePicker x:Name="datumBLecenje" HorizontalAlignment="Left" Margin="144,114,0,0" VerticalAlignment="Top" Width="98"/>
+            <Label Content="Datum početka:" HorizontalAlignment="Left" Margin="25,115,0,0" VerticalAlignment="Top"/>
+            <Label Content="Trajanje:" HorizontalAlignment="Left" Margin="25,153,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="txtTrajanjeBLecenje" HorizontalAlignment="Left" Height="23" Margin="144,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="98" RenderTransformOrigin="0.247,0.67"/>
+            <DataGrid HorizontalAlignment="Left" AutoGenerateColumns="False" IsReadOnly="True" AlternationCount="2" AlternatingRowBackground="#FF9900"  Height="257" Margin="0,252,0,0" VerticalAlignment="Top" Width="430">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Sprat"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Broj"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Label Content="Odabir bolničke sobe:" HorizontalAlignment="Left" Margin="25,223,0,0" VerticalAlignment="Top"/>
+            <Button x:Name="btnPotvrdiBLecenje" HorizontalAlignment="Left" Margin="42,569,0,0" VerticalAlignment="Top" Width="85" Height="50">
+                <materialDesign:PackIcon Kind="CheckCircle" Height="31" Width="37"></materialDesign:PackIcon>
+            </Button>
+            <Button x:Name="btnPonistiBLecenje" HorizontalAlignment="Left" Margin="303,569,0,0" VerticalAlignment="Top" Width="85" Height="50">
+                <materialDesign:PackIcon Kind="CloseCircle" Height="37" Width="34"></materialDesign:PackIcon>
+            </Button>
+
+        </Grid>
+
         <Grid x:Name="gridUput" Background="White" Visibility="Hidden">
             <Label Content="Upućuje:" HorizontalAlignment="Left" Margin="50,56,0,0" VerticalAlignment="Top" Height="26" Width="74"/>
             <Label x:Name="lblUpucuje" HorizontalAlignment="Left" Margin="148,56,0,0" VerticalAlignment="Top" Height="26" Width="155"/>
