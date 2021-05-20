@@ -101,6 +101,7 @@
     </Compile>
     <Compile Include="Kontroler\AlergijaKontroler.cs" />
     <Compile Include="Kontroler\BolestKontroler.cs" />
+    <Compile Include="Kontroler\BolnickoLecenjeKontroler.cs" />
     <Compile Include="Kontroler\KorisnikKontroler.cs" />
     <Compile Include="Kontroler\LekarKontroler.cs" />
     <Compile Include="Kontroler\LekKontroler.cs" />
@@ -119,6 +120,7 @@
     <Compile Include="Kontroler\TerminKontroler.cs" />
     <Compile Include="Model\BolnickoLecenje.cs" />
     <Compile Include="Model\LekZaOdobravanje.cs" />
+    <Compile Include="PomocneKlase\BolnickoLecenjeDTO.cs" />
     <Compile Include="PomocneKlase\KonverterBolnickoLecenje.cs" />
     <Compile Include="PomocneKlase\OcenaBolniceDTO.cs" />
     <Compile Include="PomocneKlase\OcenaLekaraDTO.cs" />
@@ -135,6 +137,7 @@
     <Compile Include="Repozitorijum\LogovanjeRepozitorijum.cs" />
     <Compile Include="Repozitorijum\OcenaBolniceRepozitorijum.cs" />
     <Compile Include="Repozitorijum\OcenaLekaraRepozitorijum.cs" />
+    <Compile Include="Servis\BolnickoLecenjeServis.cs" />
     <Compile Include="Servis\LogovanjeServis.cs" />
     <Compile Include="Servis\OcenaBolniceServis.cs" />
     <Compile Include="Servis\OcenaLekaraServis.cs" />

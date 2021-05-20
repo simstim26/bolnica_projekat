@@ -61,17 +61,17 @@
             <Label Content="Datum početka:" HorizontalAlignment="Left" Margin="25,115,0,0" VerticalAlignment="Top"/>
             <Label Content="Trajanje:" HorizontalAlignment="Left" Margin="25,153,0,0" VerticalAlignment="Top"/>
             <TextBox x:Name="txtTrajanjeBLecenje" HorizontalAlignment="Left" Height="23" Margin="144,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="98" RenderTransformOrigin="0.247,0.67"/>
-            <DataGrid HorizontalAlignment="Left" AutoGenerateColumns="False" IsReadOnly="True" AlternationCount="2" AlternatingRowBackground="#FF9900"  Height="257" Margin="0,252,0,0" VerticalAlignment="Top" Width="430">
+            <DataGrid x:Name="dataGridBolnickeSobe" HorizontalAlignment="Left" AutoGenerateColumns="False" IsReadOnly="True" AlternationCount="2" AlternatingRowBackground="#FF9900"  Height="257" Margin="0,252,0,0" VerticalAlignment="Top" Width="430">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Sprat"></DataGridTextColumn>
                     <DataGridTextColumn Header="Broj"></DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
             <Label Content="Odabir bolničke sobe:" HorizontalAlignment="Left" Margin="25,223,0,0" VerticalAlignment="Top"/>
-            <Button x:Name="btnPotvrdiBLecenje" HorizontalAlignment="Left" Margin="42,569,0,0" VerticalAlignment="Top" Width="85" Height="50">
+            <Button x:Name="btnPotvrdiBLecenje" HorizontalAlignment="Left" Margin="42,569,0,0" VerticalAlignment="Top" Width="85" Height="50" Click="btnPotvrdiBLecenje_Click">
                 <materialDesign:PackIcon Kind="CheckCircle" Height="31" Width="37"></materialDesign:PackIcon>
             </Button>
-            <Button x:Name="btnPonistiBLecenje" HorizontalAlignment="Left" Margin="303,569,0,0" VerticalAlignment="Top" Width="85" Height="50">
+            <Button x:Name="btnPonistiBLecenje" HorizontalAlignment="Left" Margin="303,569,0,0" VerticalAlignment="Top" Width="85" Height="50" Click="btnPonistiBLecenje_Click">
                 <materialDesign:PackIcon Kind="CloseCircle" Height="37" Width="34"></materialDesign:PackIcon>
             </Button>
 

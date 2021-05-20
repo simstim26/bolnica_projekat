@@ -43,8 +43,11 @@ namespace Bolnica_aplikacija.PomocneKlase
 					case nameof(BolnickoLecenje.trajanje):
 						bLecenje.trajanje = reader.GetInt32();
 						break;
+					case nameof(BolnickoLecenje.jeZavrsen):
+						bLecenje.jeZavrsen = reader.GetBoolean();
+						break;
 					case nameof(BolnickoLecenje.pacijent):
-						bLecenje.pacijent = new Pacijent { id = reader.GetString() };//DateTime.Parse(reader.GetString());
+						bLecenje.pacijent = new Pacijent { id = reader.GetString() };
 						break;
 					case nameof(BolnickoLecenje.bolnickaSoba):
 						bLecenje.bolnickaSoba = new Prostorija { id = reader.GetString()};
@@ -62,7 +65,9 @@ namespace Bolnica_aplikacija.PomocneKlase
             writer.WriteString(nameof(value.datumPocetka), value.datumPocetka);
 
             writer.WriteNumber(nameof(value.trajanje), value.trajanje);
-   
+
+			writer.WriteBoolean(nameof(value.jeZavrsen), value.jeZavrsen);
+
             writer.WriteString(nameof(value.pacijent), value.pacijent.id);
             writer.WriteString(nameof(value.bolnickaSoba), value.bolnickaSoba.id);
 

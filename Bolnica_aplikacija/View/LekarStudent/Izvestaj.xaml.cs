@@ -523,5 +523,27 @@ namespace Bolnica_aplikacija.LekarStudent
             gridPitanjeOUputu.Visibility = Visibility.Hidden;
             LekarProzor.getGlavnaLabela().Content = "Izdavanje uputa";
         }
+
+        private void btnPotvrdiBLecenje_Click(object sender, RoutedEventArgs e)
+        {
+            /*string id, DateTime datumPocetka, int trajanje, bool jeZavrsen, string idPacijenta, string idProstorije*/
+
+            if(dataGridBolnickeSobe.SelectedIndex != -1)
+            {
+                BolnickoLecenjeKontroler.napraviUputZaBolnickoLecenje(new BolnickoLecenjeDTO("", (DateTime)datumBLecenje.SelectedDate, Convert.ToInt32(txtTrajanjeBLecenje.Text),
+                    false, ((String[])fm.DataContext)[0], ((Prostorija)dataGridBolnickeSobe.SelectedItem).id));
+            }
+            else
+            {
+                MessageBox.Show("Potrebno je izabrati bolničku sobu!", "Upozorenje!", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+        private void btnPonistiBLecenje_Click(object sender, RoutedEventArgs e)
+        {
+            gridBolnickoLecenje.Visibility = Visibility.Hidden;
+            LekarProzor.getGlavnaLabela().Content = "Pisanje izveštaja";
+
+        }
     }
 }
