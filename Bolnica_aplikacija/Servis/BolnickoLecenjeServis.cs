@@ -15,7 +15,7 @@ namespace Bolnica_aplikacija.Servis
 
         public static BolnickoLecenjeServis getInstance()
         {
-            if(instance == null)
+            if (instance == null)
             {
                 instance = new BolnickoLecenjeServis();
             }
@@ -29,12 +29,12 @@ namespace Bolnica_aplikacija.Servis
             bolnickoLecenje.id = (sviUputi.Count + 1).ToString();
             sviUputi.Add(bolnickoLecenje);
             bolnickoLecenjeRepozitorijum.upisi(sviUputi);
-            
+
         }
 
         public BolnickoLecenje nadjiBolnickoLecenjeZaPacijenta(String idPacijenta)
         {
-            foreach(BolnickoLecenje bolnickoLecenje in bolnickoLecenjeRepozitorijum.ucitajSve())
+            foreach (BolnickoLecenje bolnickoLecenje in bolnickoLecenjeRepozitorijum.ucitajSve())
             {
                 if (!bolnickoLecenje.jeZavrsen && bolnickoLecenje.pacijent.id.Equals(idPacijenta))
                 {
@@ -54,7 +54,7 @@ namespace Bolnica_aplikacija.Servis
 
         private bool proveriDatum(DateTime datumPocetka)
         {
-            return DateTime.Compare(datumPocetka.Date, DateTime.Now.Date) == 0;
+            return DateTime.Compare(datumPocetka.Date, DateTime.Now.Date) <= 0;
         }
 
         public void zavrsiBolnickoLecenje(String idPacijenta)
@@ -76,6 +76,17 @@ namespace Bolnica_aplikacija.Servis
             BolnickoLecenje bolnickoLecenje = nadjiBolnickoLecenjeZaPacijenta(idPacijenta);
             bolnickoLecenje.trajanje = trajanje;
             bolnickoLecenjeRepozitorijum.azurirajBolnickoLecenje(bolnickoLecenje);
+        }
+
+        public bool proveriKrajBolnickogLecenje(String idPacijenta)
+        {
+            BolnickoLecenje bolnickoLecenje = nadjiBolnickoLecenjeZaPacijenta(idPacijenta);
+            return proveriKrajnjiDatum(bolnickoLecenje.datumPocetka.AddDays(bolnickoLecenje.trajanje));
+        }
+
+        private bool proveriKrajnjiDatum(DateTime datumKraja)
+        {
+            return DateTime.Compare(datumKraja.Date, DateTime.Now.Date) == 0;
         }
 
     }

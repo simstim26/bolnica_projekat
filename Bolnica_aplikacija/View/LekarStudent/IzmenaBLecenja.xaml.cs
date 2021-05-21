@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -67,6 +68,33 @@ namespace Bolnica_aplikacija.View.LekarStudent
             aktivan = false;
             Content = new PacijentInfo(((String[])PacijentInfo.getFM().DataContext)[0],
                    ((String[])PacijentInfo.getFM().DataContext)[1]);
+        }
+
+        private void txtTrajanje_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Regex rx = new Regex("[^0-9]+");
+            if (rx.IsMatch(txtTrajanje.Text) || String.IsNullOrWhiteSpace(txtTrajanje.Text))
+            {
+                btnPotvrdi.IsEnabled = false;
+                lblGreska.Content = "*U unosu moraju biti samo brojevi!";
+                lblGreska.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                if (Convert.ToInt32(txtTrajanje.Text) < BolnickoLecenjeKontroler.nadjiBolnickoLecenjeZaPacijenta((String)fm.DataContext).trajanje)
+                {
+                    btnPotvrdi.IsEnabled = false;
+                    lblGreska.Content = "*Broj mora biti veći od " + BolnickoLecenjeKontroler.nadjiBolnickoLecenjeZaPacijenta((String)fm.DataContext).trajanje + " !";
+                    lblGreska.Visibility = Visibility.Visible;
+
+                }
+                else
+                {
+                    btnPotvrdi.IsEnabled = true;
+                    lblGreska.Visibility = Visibility.Hidden;
+
+                }
+            }
         }
     }
 }

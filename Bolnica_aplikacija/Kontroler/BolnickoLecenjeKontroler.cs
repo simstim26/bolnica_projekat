@@ -40,5 +40,11 @@ namespace Bolnica_aplikacija.Kontroler
         {
             BolnickoLecenjeServis.getInstance().azurirajTrajanje(idProstorije, trajanje);
         }
+
+        public static bool proveriKrajBolnickogLecenje(String idPacijenta)
+        {
+            return BolnickoLecenjeServis.getInstance().proveriKrajBolnickogLecenje(idPacijenta);
+        }
+
     }
 }

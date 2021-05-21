@@ -47,6 +47,7 @@ namespace Bolnica_aplikacija
             this.DataContext = id;
             fm.DataContext = this.DataContext;
 
+            zavrsiBolnickoLecenje();
             prikaziBolnickoLecenje();
             
             /*if(LekarTabovi.getIndikator() == 1)
@@ -86,6 +87,13 @@ namespace Bolnica_aplikacija
             }
         }
 
+        private void zavrsiBolnickoLecenje()
+        {
+            if (BolnickoLecenjeKontroler.proveriKrajBolnickogLecenje(((String[])fm.DataContext)[0]))
+            {
+                BolnickoLecenjeKontroler.zavrsiBolnickoLecenje(((String[])fm.DataContext)[0]);
+            }
+        }
         public static FrameworkElement getFM()
         {
             return fm;
