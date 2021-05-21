@@ -32,5 +32,51 @@ namespace Bolnica_aplikacija.Servis
             
         }
 
+        public BolnickoLecenje nadjiBolnickoLecenjeZaPacijenta(String idPacijenta)
+        {
+            foreach(BolnickoLecenje bolnickoLecenje in bolnickoLecenjeRepozitorijum.ucitajSve())
+            {
+                if (!bolnickoLecenje.jeZavrsen && bolnickoLecenje.pacijent.id.Equals(idPacijenta))
+                {
+                    bolnickoLecenje.bolnickaSoba = ProstorijaServis.getInstance().nadjiProstorijuPoId(bolnickoLecenje.bolnickaSoba.id);
+                    bolnickoLecenje.pacijent = PacijentServis.getInstance().nadjiPacijenta(bolnickoLecenje.pacijent.id);
+                    return bolnickoLecenje;
+                }
+            }
+
+            return new BolnickoLecenje();
+        }
+
+        public bool proveriBolnickoLecenjeZaPacijenta(String idPacijenta)
+        {
+            return proveriDatum(nadjiBolnickoLecenjeZaPacijenta(idPacijenta).datumPocetka);
+        }
+
+        private bool proveriDatum(DateTime datumPocetka)
+        {
+            return DateTime.Compare(datumPocetka.Date, DateTime.Now.Date) == 0;
+        }
+
+        public void zavrsiBolnickoLecenje(String idPacijenta)
+        {
+            BolnickoLecenje bolnickoLecenje = nadjiBolnickoLecenjeZaPacijenta(idPacijenta);
+            bolnickoLecenje.jeZavrsen = true;
+            bolnickoLecenjeRepozitorijum.azurirajBolnickoLecenje(bolnickoLecenje);
+        }
+
+        public void azurirajProstoriju(String idPacijenta, String idProstorije)
+        {
+            BolnickoLecenje bolnickoLecenje = nadjiBolnickoLecenjeZaPacijenta(idPacijenta);
+            bolnickoLecenje.bolnickaSoba = ProstorijaServis.getInstance().nadjiProstorijuPoId(idProstorije);
+            bolnickoLecenjeRepozitorijum.azurirajBolnickoLecenje(bolnickoLecenje);
+        }
+
+        public void azurirajTrajanje(String idPacijenta, int trajanje)
+        {
+            BolnickoLecenje bolnickoLecenje = nadjiBolnickoLecenjeZaPacijenta(idPacijenta);
+            bolnickoLecenje.trajanje = trajanje;
+            bolnickoLecenjeRepozitorijum.azurirajBolnickoLecenje(bolnickoLecenje);
+        }
+
     }
 }

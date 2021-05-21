@@ -7,7 +7,7 @@
     "sprat": 1,
     "dostupnost": true,
     "logickiObrisana": false,
-    "brojZauzetihKreveta": 0,
+    "brojZauzetihKreveta": 1,
     "Stavka": [
       {
         "id": "5",

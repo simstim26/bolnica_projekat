@@ -19,6 +19,7 @@ using Model;
 using Bolnica_aplikacija.PacijentModel;
 using Bolnica_aplikacija.Kontroler;
 using Bolnica_aplikacija.LekarStudent;
+using Bolnica_aplikacija.View.LekarStudent;
 
 namespace Bolnica_aplikacija
 {
@@ -46,6 +47,7 @@ namespace Bolnica_aplikacija
             this.DataContext = id;
             fm.DataContext = this.DataContext;
 
+            prikaziBolnickoLecenje();
             
             /*if(LekarTabovi.getIndikator() == 1)
             {
@@ -72,6 +74,16 @@ namespace Bolnica_aplikacija
            
             dataTermini = this.dataGridTerminiPacijenta;
             ucitajPodatke();
+        }
+
+        private void prikaziBolnickoLecenje()
+        {
+            gridNaBLecenju.Visibility = BolnickoLecenjeKontroler.proveriBolnickoLecenjeZaPacijenta(((String[])fm.DataContext)[0]) ? Visibility.Visible : Visibility.Hidden;
+            if (BolnickoLecenjeKontroler.proveriBolnickoLecenjeZaPacijenta(((String[])fm.DataContext)[0]))
+            {
+                lblBLecenjeSoba.Content = BolnickoLecenjeKontroler.nadjiBolnickoLecenjeZaPacijenta(((String[])fm.DataContext)[0]).bolnickaSoba.sprat + " " + BolnickoLecenjeKontroler.nadjiBolnickoLecenjeZaPacijenta(((String[])fm.DataContext)[0]).bolnickaSoba.broj;
+                lblBLecenjeDatum.Content = (BolnickoLecenjeKontroler.nadjiBolnickoLecenjeZaPacijenta(((String[])fm.DataContext)[0]).datumPocetka.AddDays(BolnickoLecenjeKontroler.nadjiBolnickoLecenjeZaPacijenta(((String[])fm.DataContext)[0]).trajanje)).ToString("dd.MM.yyyy");
+            }
         }
 
         public static FrameworkElement getFM()
@@ -200,6 +212,11 @@ namespace Bolnica_aplikacija
         private void btnAlergije_Click(object sender, RoutedEventArgs e)
         {
             Content = new Alergije(((String[])fm.DataContext)[0]);
+        }
+
+        private void btnIzmeniBLecenje_Click(object sender, RoutedEventArgs e)
+        {
+            Content = new IzmenaBLecenja(((String[])fm.DataContext)[0]);
         }
     }
 }

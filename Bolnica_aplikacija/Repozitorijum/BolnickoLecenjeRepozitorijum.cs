@@ -31,6 +31,21 @@ namespace Bolnica_aplikacija.Repozitorijum
             return povratnaVrednost;
         }
 
+        public void azurirajBolnickoLecenje(BolnickoLecenje bolnickoLecenjeZaAzuriranje)
+        {
+            List<BolnickoLecenje> sviUputi = ucitajSve();
+            foreach(BolnickoLecenje bolnickoLecenje in sviUputi)
+            {
+                if (bolnickoLecenje.id.Equals(bolnickoLecenjeZaAzuriranje.id))
+                {
+                    bolnickoLecenje.kopiraj(bolnickoLecenjeZaAzuriranje);
+                    break;
+                }
+            }
+
+            upisi(sviUputi);
+        }
+
         public void upisi(List<BolnickoLecenje> sviUputi)
         {
             var formatiranje = new JsonSerializerOptions

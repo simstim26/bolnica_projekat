@@ -19,6 +19,7 @@ using Bolnica_aplikacija.Kontroler;
 using Bolnica_aplikacija.LekarStudent;
 using Bolnica_aplikacija.Model;
 using Bolnica_aplikacija.PomocneKlase;
+using Bolnica_aplikacija.View.LekarStudent;
 
 namespace Bolnica_aplikacija
 {
@@ -151,6 +152,12 @@ namespace Bolnica_aplikacija
             else if (ZakazivanjeOperacije.aktivan)
             {
                 ZakazivanjeOperacije.podesiKretanjeZaNazad();
+            }
+            else if (IzmenaBLecenja.aktivan)
+            {
+                LekarProzor.getX().Content = new PacijentInfo(((String[])PacijentInfo.getFM().DataContext)[0],
+                   ((String[])PacijentInfo.getFM().DataContext)[1]);
+                IzmenaBLecenja.aktivan = false;
             }
         }
 

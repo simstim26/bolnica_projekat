@@ -16,5 +16,29 @@ namespace Bolnica_aplikacija.Kontroler
         {
             BolnickoLecenjeServis.getInstance().napraviUputZaBolnickoLecenje(new BolnickoLecenje(dto));
         }
+
+        public static bool proveriBolnickoLecenjeZaPacijenta(String idPacijenta)
+        {
+            return BolnickoLecenjeServis.getInstance().proveriBolnickoLecenjeZaPacijenta(idPacijenta);
+        }
+
+        public static BolnickoLecenje nadjiBolnickoLecenjeZaPacijenta(String idPacijenta)
+        {
+            return BolnickoLecenjeServis.getInstance().nadjiBolnickoLecenjeZaPacijenta(idPacijenta);
+        }
+        public static void zavrsiBolnickoLecenje(String idPacijenta)
+        {
+            BolnickoLecenjeServis.getInstance().zavrsiBolnickoLecenje(idPacijenta);
+        }
+
+        public static void azurirajProstoriju(String idPacijenta, String idProstorije)
+        {
+            BolnickoLecenjeServis.getInstance().azurirajProstoriju(idPacijenta, idProstorije);
+        }
+
+        public static void azurirajTrajanje(String idProstorije, int trajanje)
+        {
+            BolnickoLecenjeServis.getInstance().azurirajTrajanje(idProstorije, trajanje);
+        }
     }
 }

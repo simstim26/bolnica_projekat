@@ -47,5 +47,16 @@ namespace Bolnica_aplikacija.Model
             bolnickaSoba.id = dto.idProstorije;
             termin.idTermina = dto.idTermina;
         }
+
+        public void kopiraj(BolnickoLecenje bolnickoLecenje)
+        {
+            id = bolnickoLecenje.id;
+            datumPocetka = bolnickoLecenje.datumPocetka;
+            trajanje = bolnickoLecenje.trajanje;
+            jeZavrsen = bolnickoLecenje.jeZavrsen;
+            pacijent = bolnickoLecenje.pacijent;
+            bolnickaSoba = bolnickoLecenje.bolnickaSoba;
+            termin = bolnickoLecenje.termin;
+        }
     }
 }
