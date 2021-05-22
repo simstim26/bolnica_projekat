@@ -18,6 +18,17 @@
         "jeStaticka": false,
         "jeLogickiObrisana": false,
         "jePotrosnaRoba": true
+      },
+      {
+        "id": "2",
+        "naziv": "Krevet",
+        "kolicina": 3,
+        "proizvodjac": "KrevetKrevet",
+        "idProstorije": null,
+        "idBolnice": "1",
+        "jeStaticka": true,
+        "jeLogickiObrisana": false,
+        "jePotrosnaRoba": false
       }
     ]
   },
@@ -78,6 +89,17 @@
         "naziv": "Igla",
         "kolicina": 24,
         "proizvodjac": "IgloLand",
+        "idProstorije": null,
+        "idBolnice": "1",
+        "jeStaticka": false,
+        "jeLogickiObrisana": false,
+        "jePotrosnaRoba": true
+      },
+      {
+        "id": "8",
+        "naziv": "spric",
+        "kolicina": 31,
+        "proizvodjac": "firma",
         "idProstorije": null,
         "idBolnice": "1",
         "jeStaticka": false,

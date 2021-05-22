@@ -295,78 +295,99 @@ namespace Bolnica_aplikacija.Servis
         }
 
 
-        public void premestiStavku(String prostorijaIzKojeSePrebacujeId, String prostorijaUKojuSePrebacujeId, String stavkaId)
+        public void premestiStavku(ProstorijaPrebacivanjeDTO prebacivanje)
         {
-            var prostorijaIz = nadjiProstorijuPoId(prostorijaIzKojeSePrebacujeId);
-            var prostorijaU = nadjiProstorijuPoId(prostorijaUKojuSePrebacujeId);
+            var prostorijaIz = nadjiProstorijuPoId(prebacivanje.idProstorijeIzKojeSePrebacuje);
+            var prostorijaU = nadjiProstorijuPoId(prebacivanje.idProstorijeUKojuSePrebacuje);
+            int kolicina = prebacivanje.kolicinaStavke;
+            var stavkaId = prebacivanje.idStavke;
 
-            if (Int32.Parse(UpravnikProzor.getInstance().textBoxKolicinaZaPremestanjeU.Text) <= StavkaKontroler.pronadjiStavkuIzProstorijePoId(prostorijaIz, stavkaId).kolicina)
+            if (kolicina <= StavkaServis.getInstance().pronadjiStavkuIzProstorijePoId(prostorijaIz, prebacivanje.idStavke).kolicina)
             {
-                manipulisanjeStavkamaProstorijeIzKojeSePrebacuje(stavkaId, prostorijaIz, StavkaKontroler.pronadjiStavkuIzProstorijePoId(prostorijaIz, stavkaId));
-
-                if (StavkaKontroler.pronadjiStavkuPoId(stavkaId).jeStaticka)
+                manipulisanjeStavkamaProstorijeIzKojeSePrebacuje(kolicina, prostorijaIz, StavkaServis.getInstance().pronadjiStavkuIzProstorijePoId(prostorijaIz, stavkaId));
+                if (StavkaServis.getInstance().pronadjiStavkuPoId(stavkaId).jeStaticka)
                 {
-                    premestiStatickuStavku(prostorijaIz, prostorijaU, StavkaKontroler.pronadjiStavkuPoId(stavkaId));
+                    premestiStatickuStavku(prebacivanje);
                 }
                 else
                 {
-                    premestiDinamickuStavku(prostorijaIz, prostorijaU, stavkaId);
-
+                    premestiDinamickuStavku(prebacivanje);
                 }
                 return;
             }
         }
 
-        private void premestiDinamickuStavku(Prostorija prostorijaIz, Prostorija prostorijaU, String stavkaId)
+        private void premestiDinamickuStavku(ProstorijaPrebacivanjeDTO prebacivanje)
         {
-            Stavka stavkaKojaSePrebacuje = StavkaKontroler.pronadjiStavkuPoId(stavkaId);
-            var stavka = StavkaKontroler.pronadjiStavkuIzProstorijePoId(prostorijaU, stavkaId);
+            Stavka stavkaKojaSePrebacuje = StavkaServis.getInstance().pronadjiStavkuPoId(prebacivanje.idStavke);
+            var prostorijaU = nadjiProstorijuPoId(prebacivanje.idProstorijeUKojuSePrebacuje);
+            var prostorijaIz = nadjiProstorijuPoId(prebacivanje.idProstorijeIzKojeSePrebacuje);
+            var stavka = StavkaServis.getInstance().pronadjiStavkuIzProstorijePoId(prostorijaU, prebacivanje.idStavke);
 
             if (stavka != null)
             {
-                dodavanjeKolicineStavke(prostorijaIz, prostorijaU, stavka);
+                dodavanjeKolicineStavke(prebacivanje, stavka);
                 return;
             }
             else
             {
-                stavka = dodavanjeNoveStavke(prostorijaIz, prostorijaU, stavkaKojaSePrebacuje);
+                stavka = dodavanjeNoveStavke(prebacivanje);
             }
         }
 
-        private void manipulisanjeStavkamaProstorijeIzKojeSePrebacuje(string stavkaId, Prostorija prostorijaIz, Stavka stavkaIz)
+        private void manipulisanjeStavkamaProstorijeIzKojeSePrebacuje(int kolicina, Prostorija prostorijaIz, Stavka stavkaIz)
         {
-            if (stavkaIz.kolicina - Int32.Parse(UpravnikProzor.getInstance().textBoxKolicinaZaPremestanjeU.Text) == 0)
+            if (stavkaIz.kolicina - kolicina == 0)
             {
-                obrisiStavkuIzProstorije(stavkaId, prostorijaIz);
+                obrisiStavkuIzProstorije(stavkaIz.id, prostorijaIz);
             }
             else
             {
-                smanjiKolicinuStavkeIzProstorije(prostorijaIz, stavkaIz);
+                smanjiKolicinuStavkeIzProstorije(prostorijaIz, stavkaIz, kolicina);
             }
         }
 
-        private void premestiStatickuStavku(Prostorija prostorijaIz, Prostorija prostorijaU, Stavka stavkaKojaSePrebacuje)
+        private void premestiStatickuStavku(ProstorijaPrebacivanjeDTO prebacivanje)
         {
-            if (ZakaziPremestanje(stavkaKojaSePrebacuje.id, prostorijaU, prostorijaIz))
+            var prostorijaIz = nadjiProstorijuPoId(prebacivanje.idProstorijeIzKojeSePrebacuje);
+            if (ZakaziPremestanje(prebacivanje))
             {
                 kopirajProstorijuIUpisi(prostorijaIz);
                 return;
             }
         }
 
-        private void dodavanjeKolicineStavke(Prostorija prostorijaIz, Prostorija prostorijaU, Stavka stavka)
+        private void dodavanjeKolicineStavke(ProstorijaPrebacivanjeDTO prebacivanje, Stavka stavka)
         {
-            stavka.kolicina += Int32.Parse(UpravnikProzor.getInstance().textBoxKolicinaZaPremestanjeU.Text);
+            stavka.kolicina += prebacivanje.kolicinaStavke;
+            var prostorijaU = nadjiProstorijuPoId(prebacivanje.idProstorijeUKojuSePrebacuje);
+            var prostorijaUIzmenjena = dodajKolicinuStavkeUProstoriju(prostorijaU, stavka);
+            var prostorijaIz = nadjiProstorijuPoId(prebacivanje.idProstorijeIzKojeSePrebacuje);
             kopirajStavke(prostorijaU);
             kopirajProstorijuIUpisi(prostorijaIz);
             UpravnikProzor.getInstance().dataGridInventarProstorije.ItemsSource = prostorijaIz.Stavka;
             return;
         }
 
-        private Stavka dodavanjeNoveStavke(Prostorija prostorijaIz, Prostorija prostorijaU, Stavka stavkaKojaSePrebacuje)
+        private Prostorija dodajKolicinuStavkeUProstoriju(Prostorija prostorija, Stavka stavka)
         {
-            Stavka stavka = stavkaKojaSePrebacuje;
-            stavka.kolicina = Int32.Parse(UpravnikProzor.getInstance().textBoxKolicinaZaPremestanjeU.Text);
+            foreach (Stavka s in prostorija.Stavka)
+            {
+                if (s.id == stavka.id)
+                {
+                    s.kolicina = stavka.kolicina;
+                }
+            }
+
+            return prostorija;
+        }
+
+        private Stavka dodavanjeNoveStavke(ProstorijaPrebacivanjeDTO prebacivanje)
+        {
+            Stavka stavka = StavkaServis.getInstance().pronadjiStavkuPoId(prebacivanje.idStavke);
+            stavka.kolicina = prebacivanje.kolicinaStavke;
+            var prostorijaU = nadjiProstorijuPoId(prebacivanje.idProstorijeUKojuSePrebacuje);
+            var prostorijaIz = nadjiProstorijuPoId(prebacivanje.idProstorijeIzKojeSePrebacuje);
             prostorijaU.Stavka.Add(stavka);
             kopirajStavke(prostorijaU);
             kopirajProstorijuIUpisi(prostorijaIz);
@@ -374,20 +395,20 @@ namespace Bolnica_aplikacija.Servis
             return stavka;
         }
 
-        private void smanjiKolicinuStavkeIzProstorije(Prostorija prostorijaIz, Stavka stavkaIz)
+        private void smanjiKolicinuStavkeIzProstorije(Prostorija prostorijaIz, Stavka stavkaIz, int kolicina)
         {
             foreach (Stavka s in prostorijaIz.Stavka)
             {
                 if (s.id == stavkaIz.id)
                 {
-                    s.kolicina -= Int32.Parse(UpravnikProzor.getInstance().textBoxKolicinaZaPremestanjeU.Text);
+                    s.kolicina -= kolicina;
                     break;
                 }
             }
             kopirajProstorijuIUpisi(prostorijaIz);
         }
 
-        private static void obrisiStavkuIzProstorije(string stavkaId, Prostorija prostorijaIz)
+        private void obrisiStavkuIzProstorije(string stavkaId, Prostorija prostorijaIz)
         {
             foreach (Stavka stavka in prostorijaIz.Stavka)
             {
@@ -397,7 +418,8 @@ namespace Bolnica_aplikacija.Servis
                     break;
                 }
             }
-        }
+            kopirajProstorijuIUpisi(prostorijaIz);
+        }   
 
         /*private static Stavka NewMethod(string stavkaId, Prostorija prostorijaIz, Stavka stavkaIz)
         {
@@ -427,19 +449,20 @@ namespace Bolnica_aplikacija.Servis
             prostorijaRepozitorijum.upisi(prostorije);
         }
 
-        public void dodajStavku(String prostorijaId, String stavkaId)
+        public void dodajStavku(ProstorijaPrebacivanjeDTO prebacivanje)
         {
-            var prostorijaUKojuSePrebacuje = nadjiProstorijuPoId(prostorijaId);
+            var prostorijaUKojuSePrebacuje = nadjiProstorijuPoId(prebacivanje.idProstorijeUKojuSePrebacuje);
+            var novaStavka = StavkaServis.getInstance().pronadjiStavkuPoId(prebacivanje.idStavke);
+            var stavkaId = prebacivanje.idStavke;
+            var kolicina = prebacivanje.kolicinaStavke;
 
-            var novaStavka = StavkaKontroler.pronadjiStavkuPoId(stavkaId);
-
-            if (saberiKolicinuStavkeUSvimProstorijama(stavkaId) + Int32.Parse(UpravnikProzor.getInstance().textBoxKolicinaZaPremestanje.Text) <= novaStavka.kolicina)
+            if (saberiKolicinuStavkeUSvimProstorijama(stavkaId) + kolicina <= novaStavka.kolicina)
             {
-                var stavka = StavkaKontroler.pronadjiStavkuIzProstorijePoId(prostorijaUKojuSePrebacuje, stavkaId);
+                var stavka = StavkaServis.getInstance().pronadjiStavkuIzProstorijePoId(prostorijaUKojuSePrebacuje, stavkaId);
 
                 if (novaStavka.jeStaticka == true)
                 {
-                    if (ZakaziPremestanje(stavkaId, prostorijaUKojuSePrebacuje, prostorijaUKojuSePrebacuje))
+                    if (ZakaziPremestanje(prebacivanje))
                     {
                         return;
                     }
@@ -448,13 +471,13 @@ namespace Bolnica_aplikacija.Servis
                 {
                     if (stavka == null)
                     {
-                        novaStavka.kolicina = Int32.Parse(UpravnikProzor.getInstance().textBoxKolicinaZaPremestanje.Text);
+                        novaStavka.kolicina = kolicina;
                         prostorijaUKojuSePrebacuje.Stavka.Add(novaStavka);
                         kopirajStavke(prostorijaUKojuSePrebacuje);
                     }
                     else
                     {
-                        stavka.kolicina += Int32.Parse(UpravnikProzor.getInstance().textBoxKolicinaZaPremestanje.Text);
+                        stavka.kolicina += kolicina;
                         kopirajStavke(prostorijaUKojuSePrebacuje);
                     }
 
@@ -468,7 +491,7 @@ namespace Bolnica_aplikacija.Servis
             int suma = 0;
             foreach (Prostorija p in prostorijaRepozitorijum.ucitajSve())
             {
-                if (p.Stavka.Count != 0)
+                if (p.Stavka != null)
                 {
                     foreach (Stavka s in p.Stavka)
                     {
@@ -482,28 +505,42 @@ namespace Bolnica_aplikacija.Servis
             return suma;
         }
 
-        private bool ZakaziPremestanje(string stavkaId, Prostorija prostorijaUKojuSePrebacuje, Prostorija prostorijaIzKojeSePrebacuje)
+        private bool ZakaziPremestanjeU(ProstorijaPrebacivanjeDTO prebacivanje)
         {
-            UpravnikProzor upravnikProzor = UpravnikProzor.getInstance();
             var prostorijeZauzete = ProstorijaZauzetoKontroler.ucitajSve();
 
-            int kolicina;
-            DateTime datumPocetka;
-            DateTime datumKraja;
+            int kolicina = prebacivanje.kolicinaStavke;
+            DateTime datumPocetka = prebacivanje.datumPocetka;
+            DateTime datumKraja = prebacivanje.datumKraja;
+            Prostorija prostorijaIz = nadjiProstorijuPoId(prebacivanje.idProstorijeIzKojeSePrebacuje);
+            Prostorija prostorijaU = nadjiProstorijuPoId(prebacivanje.idProstorijeUKojuSePrebacuje);
 
-            if (upravnikProzor.textBoxKolicinaZaPremestanje.Text == "")
+            if (datumKraja >= datumPocetka)
             {
-                kolicina = Int32.Parse(upravnikProzor.textBoxKolicinaZaPremestanjeU.Text);
-                datumPocetka = upravnikProzor.datumPocetkaU.SelectedDate.Value;
-                datumKraja = upravnikProzor.datumKrajaU.SelectedDate.Value;
+                if (!postojeTerminiZaPeriodPremestanja(datumPocetka, datumKraja, prostorijaIz))
+                {
+                    if (!postojeTerminiZaPeriodPremestanja(datumPocetka, datumKraja, prostorijaU))
+                    {
+                        ProstorijaZauzeto prostorijaZaZauzimanje = new ProstorijaZauzeto(prostorijaIz.id, prostorijaU.id, datumPocetka, datumKraja,
+                        false, prebacivanje.idStavke, kolicina);
+                        prostorijeZauzete.Add(prostorijaZaZauzimanje);
+                        ProstorijaZauzetoKontroler.upisi(prostorijeZauzete);
+                    }
+                }
+
+                return true;
             }
-            else
-            {
-                kolicina = Int32.Parse(upravnikProzor.textBoxKolicinaZaPremestanje.Text);
-                datumPocetka = upravnikProzor.datumPocetka.SelectedDate.Value;
-                datumKraja = upravnikProzor.datumKraja.SelectedDate.Value;
-            }
-            
+            return false;
+        }
+
+        private bool ZakaziPremestanje(ProstorijaPrebacivanjeDTO prebacivanje)
+        {
+            var prostorijeZauzete = ProstorijaZauzetoKontroler.ucitajSve();
+            int kolicina = prebacivanje.kolicinaStavke;
+            DateTime datumPocetka = prebacivanje.datumPocetka;
+            DateTime datumKraja = prebacivanje.datumKraja;
+            var prostorijaIzKojeSePrebacuje = nadjiProstorijuPoId(prebacivanje.idProstorijeIzKojeSePrebacuje);
+            var prostorijaUKojuSePrebacuje = nadjiProstorijuPoId(prebacivanje.idProstorijeUKojuSePrebacuje);
             
             if (datumKraja >= datumPocetka)
             {
@@ -512,7 +549,7 @@ namespace Bolnica_aplikacija.Servis
                     if (!postojeTerminiZaPeriodPremestanja(datumPocetka, datumKraja, prostorijaUKojuSePrebacuje))
                     {
                         ProstorijaZauzeto prostorijaZaZauzimanje = new ProstorijaZauzeto(prostorijaIzKojeSePrebacuje.id, prostorijaUKojuSePrebacuje.id, datumPocetka, datumKraja,
-                        false, stavkaId, kolicina);
+                        false, prebacivanje.idStavke, kolicina);
                         prostorijeZauzete.Add(prostorijaZaZauzimanje);
                         ProstorijaZauzetoKontroler.upisi(prostorijeZauzete);
                     }

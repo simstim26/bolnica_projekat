@@ -406,10 +406,24 @@ namespace Bolnica_aplikacija
             gridPremestiUProstoriju.Visibility = Visibility.Hidden;
            
             var prostorijaId = (KeyValuePair<string, string>)comboBoxProstorijeZaPremestanje.SelectedItem;
-            
-
             var stavka = (Stavka)dataGridInventar.SelectedItem;
-            ProstorijaKontroler.dodajStavku(prostorijaId.Key, stavka.id);
+            DateTime datumPocetkaPremestanja;
+            DateTime datumKrajaPremestanja;
+
+            if (datumPocetka.SelectedDate != null && datumKraja.SelectedDate != null)
+            {
+                datumPocetkaPremestanja = datumPocetka.SelectedDate.Value;
+                datumKrajaPremestanja = datumKraja.SelectedDate.Value;
+            }
+            else
+            {
+                datumPocetkaPremestanja = System.DateTime.MinValue;
+                datumKrajaPremestanja = System.DateTime.MinValue;
+            }
+
+            ProstorijaPrebacivanjeDTO prebacivanje = new ProstorijaPrebacivanjeDTO(stavka.id, null, prostorijaId.Key, Int32.Parse(textBoxKolicinaZaPremestanje.Text),
+                datumPocetkaPremestanja, datumKrajaPremestanja);
+            ProstorijaKontroler.dodajStavku(prebacivanje);
             dataGridInventar.ItemsSource = StavkaKontroler.UcitajNeobrisaneStavke();
             gridInventar.Visibility = Visibility.Visible;
 
@@ -504,8 +518,23 @@ namespace Bolnica_aplikacija
             var prostorijaU = (KeyValuePair<string, string>)comboBoxProstorijeZaPremestanjeU.SelectedItem;
             var stavka = (Stavka)dataGridInventarProstorije.SelectedItem;
             var stavke = ProstorijaKontroler.dobaviStavkeIzProstorije(prostorijaIz);
+            DateTime datumPocetkaPremestanja;
+            DateTime datumKrajaPremestanja;
 
-            ProstorijaKontroler.premestiStavku(prostorijaIz.id, prostorijaU.Key, stavka.id);
+            if (datumPocetkaU.SelectedDate != null && datumKrajaU.SelectedDate != null)
+            {
+                datumPocetkaPremestanja = datumPocetkaU.SelectedDate.Value;
+                datumKrajaPremestanja = datumKrajaU.SelectedDate.Value;
+            }
+            else
+            {
+                datumPocetkaPremestanja = System.DateTime.MinValue;
+                datumKrajaPremestanja = System.DateTime.MinValue;
+            }
+
+            ProstorijaPrebacivanjeDTO prebacivanje = new ProstorijaPrebacivanjeDTO(stavka.id, prostorijaIz.id, prostorijaU.Key, Int32.Parse(textBoxKolicinaZaPremestanjeU.Text), datumPocetkaPremestanja, datumKrajaPremestanja);
+
+            ProstorijaKontroler.premestiStavku(prebacivanje);
             var prostorije = ProstorijaKontroler.ucitajNeobrisane();
             dataGridProstorija.ItemsSource = prostorije;
             dataGridProstorija.SelectedIndex = selektovaniIndeks;
@@ -528,17 +557,21 @@ namespace Bolnica_aplikacija
 
             foreach(Prostorija p in prostorije)
             {
-                foreach(Stavka s in p.Stavka)
+                if (p.Stavka != null)
                 {
-                    if (s.id == stavka.id)
+                    foreach (Stavka s in p.Stavka)
                     {
-                        ProstorijaKolicina prostorija = new ProstorijaKolicina();
-                        prostorija.broj = p.broj;
-                        prostorija.sprat = p.sprat;
-                        prostorija.kolicina = s.kolicina;
-                        prostorijeTreba.Add(prostorija);
+
+                        if (s.id == stavka.id)
+                        {
+                            ProstorijaKolicina prostorija = new ProstorijaKolicina();
+                            prostorija.broj = p.broj;
+                            prostorija.sprat = p.sprat;
+                            prostorija.kolicina = s.kolicina;
+                            prostorijeTreba.Add(prostorija);
+                        }
                     }
-                }
+                } 
             }
 
             textBoxNazivStavkePoProstorijama.Text = stavka.naziv;

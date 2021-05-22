@@ -118,6 +118,12 @@
     <Compile Include="Kontroler\TerapijaKontroler.cs" />
     <Compile Include="Kontroler\TerminKontroler.cs" />
     <Compile Include="Model\LekZaOdobravanje.cs" />
+    <Compile Include="PomocneKlase\BolnickoLecenjeDTO.cs" />
+    <Compile Include="PomocneKlase\KonverterBolnickoLecenje.cs" />
+    <Compile Include="PomocneKlase\OcenaBolniceDTO.cs" />
+    <Compile Include="PomocneKlase\OcenaLekaraDTO.cs" />
+    <Compile Include="PomocneKlase\PacijentDTO.cs" />
+    <Compile Include="PomocneKlase\ProstorijaPrebacivanjeDTO.cs" />
     <Compile Include="PomocneKlase\ProstorijaRenoviranje.cs" />
     <Compile Include="PomocneKlase\LekarSpecijalizacija.cs" />
     <Compile Include="Model\OcenaBolnice.cs" />

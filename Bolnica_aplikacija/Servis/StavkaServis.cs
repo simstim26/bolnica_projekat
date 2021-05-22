@@ -15,6 +15,17 @@ namespace Bolnica_aplikacija.Servis
         StavkaRepozitorijum stavkaRepozitorijum = new StavkaRepozitorijum();
         UpravnikProzor upravnikProzor = UpravnikProzor.getInstance();
 
+        private static StavkaServis instance;
+        public static StavkaServis getInstance()
+        {
+            if (instance == null)
+            {
+                instance = new StavkaServis();
+            }
+
+            return instance;
+        }
+
         public List<Stavka> UcitajSve()
         {
             return stavkaRepozitorijum.UcitajSve();

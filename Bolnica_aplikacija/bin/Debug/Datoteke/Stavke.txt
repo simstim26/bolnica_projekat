@@ -75,5 +75,27 @@
     "jeStaticka": false,
     "jeLogickiObrisana": false,
     "jePotrosnaRoba": true
+  },
+  {
+    "id": "8",
+    "naziv": "spric",
+    "kolicina": 200,
+    "proizvodjac": "firma",
+    "idProstorije": null,
+    "idBolnice": "1",
+    "jeStaticka": false,
+    "jeLogickiObrisana": false,
+    "jePotrosnaRoba": true
+  },
+  {
+    "id": "9",
+    "naziv": "stat",
+    "kolicina": 100,
+    "proizvodjac": "saf",
+    "idProstorije": null,
+    "idBolnice": "1",
+    "jeStaticka": true,
+    "jeLogickiObrisana": false,
+    "jePotrosnaRoba": false
   }
 ]

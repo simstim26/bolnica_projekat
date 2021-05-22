@@ -14,75 +14,75 @@ namespace Bolnica_aplikacija.Kontroler
 
         public static List<Stavka> UcitajSve()
         {
-            return stavkaServis.UcitajSve();
+            return StavkaServis.getInstance().UcitajSve();
         }
 
         public static List<Stavka> UcitajNeobrisaneStavke()
         {
-            return stavkaServis.UcitajNeobrisaneStavke();
+            return StavkaServis.getInstance().UcitajNeobrisaneStavke();
         }
 
         public static void IzbrisiStavku(Stavka stavka)
         {
-            stavkaServis.IzbrisiStavku(stavka);
+            StavkaServis.getInstance().IzbrisiStavku(stavka);
         }
         public static void Upisi(List<Stavka> sveStavke)
         {
-            stavkaServis.Upisi(sveStavke);
+            StavkaServis.getInstance().Upisi(sveStavke);
         }
 
         public static bool DodajStavku()
         {
-            return stavkaServis.DodajStavku();
+            return StavkaServis.getInstance().DodajStavku();
         }
 
         public static bool IzmeniStavku(Stavka stavka)
         {
-            return stavkaServis.IzmeniStavku(stavka);
+            return StavkaServis.getInstance().IzmeniStavku(stavka);
         }
 
         public static Stavka pronadjiStavkuPoId(String id)
         {
-            return stavkaServis.pronadjiStavkuPoId(id);
+            return StavkaServis.getInstance().pronadjiStavkuPoId(id);
         }
 
         public static Stavka pronadjiStavkuIzProstorijePoId(Prostorija prostorija, String stavkaId)
         {
-            return stavkaServis.pronadjiStavkuIzProstorijePoId(prostorija, stavkaId);
+            return StavkaServis.getInstance().pronadjiStavkuIzProstorijePoId(prostorija, stavkaId);
         }
 
         public static List<Stavka> ucitajStatickeStavke()
         {
-            return stavkaServis.ucitajStatickeStavke();
+            return StavkaServis.getInstance().ucitajStatickeStavke();
         }
 
         public static List<Stavka> ucitajDinamickeStavke()
         {
-            return stavkaServis.ucitajDinamickeStavke();
+            return StavkaServis.getInstance().ucitajDinamickeStavke();
         }
 
         public static List<Stavka> poredjajListuStavkiPoKoliciniRastuce(List<Stavka> stavke)
         {
-            return stavkaServis.poredjajListuStavkiPoKoliciniRastuce(stavke);
+            return StavkaServis.getInstance().poredjajListuStavkiPoKoliciniRastuce(stavke);
         }
 
         public static List<Stavka> poredjajListuStavkiPoKoliciniOpadajuce(List<Stavka> stavke)
         {
-            return stavkaServis.poredjajListuStavkiPoKoliciniOpadajuce(stavke);
+            return StavkaServis.getInstance().poredjajListuStavkiPoKoliciniOpadajuce(stavke);
         }
 
         public static List<Stavka> poredjajListuStavkiPoNazivuOpadajuce(List<Stavka> stavke)
         {
-            return stavkaServis.poredjajListuStavkiPoNazivuOpadajuce(stavke);
+            return StavkaServis.getInstance().poredjajListuStavkiPoNazivuOpadajuce(stavke);
         }
 
         public static List<Stavka> poredjajListuStavkiPoNazivuRastuce(List<Stavka> stavke)
         {
-            return stavkaServis.poredjajListuStavkiPoNazivuRastuce(stavke);
+            return StavkaServis.getInstance().poredjajListuStavkiPoNazivuRastuce(stavke);
         }
         public static List<Stavka> pretraziStavku(String kriterijum, List<Stavka> stavke)
         {
-            return stavkaServis.pretraziStavku(kriterijum, stavke);
+            return StavkaServis.getInstance().pretraziStavku(kriterijum, stavke);
         }
 
     }
