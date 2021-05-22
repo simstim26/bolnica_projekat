@@ -41,11 +41,11 @@
   },
   {
     "id": "5",
-    "idLeka": "1",
+    "idLeka": "4",
     "idPacijenta": "1",
     "idBolesti": "3",
     "idTermina": "9",
-    "datumPocetka": "2021-05-19T17:35:29.916891+02:00",
+    "datumPocetka": "2021-05-22T20:24:31.2581135+02:00",
     "trajanje": 1,
     "nacinUpotrebe": "Rektalno"
   },
@@ -138,5 +138,15 @@
     "datumPocetka": "2021-05-18T16:47:10.5198104+02:00",
     "trajanje": 12,
     "nacinUpotrebe": "ASFRektalno"
+  },
+  {
+    "id": "15",
+    "idLeka": "5",
+    "idPacijenta": "2",
+    "idBolesti": "7",
+    "idTermina": "19",
+    "datumPocetka": "2021-05-22T20:30:30.8744189+02:00",
+    "trajanje": 0,
+    "nacinUpotrebe": "Rektalno"
   }
 ]

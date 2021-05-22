@@ -49,7 +49,12 @@ namespace Bolnica_aplikacija.Servis
 
         public bool proveriBolnickoLecenjeZaPacijenta(String idPacijenta)
         {
-            return proveriDatum(nadjiBolnickoLecenjeZaPacijenta(idPacijenta).datumPocetka);
+            BolnickoLecenje bolnickoLecenje = nadjiBolnickoLecenjeZaPacijenta(idPacijenta);
+
+            if (bolnickoLecenje.id == null)
+                return false;
+
+            return proveriDatum(bolnickoLecenje.datumPocetka);
         }
 
         private bool proveriDatum(DateTime datumPocetka)
