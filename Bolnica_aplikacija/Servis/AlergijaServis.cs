@@ -26,10 +26,17 @@ namespace Bolnica_aplikacija.Servis
 
         public List<Alergija> ucitajAlergijeZaPacijenta(String idPacijenta)
         {
-            if (idPacijenta == null)
-                return new List<Alergija>();
-
-            return (ucitajSve().GroupBy(a => a.idPacijenta).ToDictionary(a1 => a1.Key, a1 => a1.ToList()))[idPacijenta];
+            List<Alergija> povratnaVrednost;
+            try
+            {
+                povratnaVrednost = (ucitajSve().GroupBy(a => a.idPacijenta).ToDictionary(a1 => a1.Key, a1 => a1.ToList()))[idPacijenta];
+            }
+            catch(Exception e)
+            {
+                povratnaVrednost = new List<Alergija>();
+            }
+            
+            return povratnaVrednost;
         }
 
         public List<Alergija> ucitajSve()

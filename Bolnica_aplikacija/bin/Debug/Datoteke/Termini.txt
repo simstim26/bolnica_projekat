@@ -332,7 +332,7 @@
     "idProstorije": "16",
     "idPacijenta": "2",
     "idLekara": "1",
-    "idTerapije": null,
+    "idTerapije": "15",
     "idBolesti": "7",
     "izvestaj": "aaaaaaaaaaaaaaaaaaaaaa",
     "izvestajUputa": null,
