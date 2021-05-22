@@ -23,23 +23,29 @@ namespace Bolnica_aplikacija.LekarStudent
     public partial class Alergije : UserControl
     {
         public static bool aktivan;
-        public Alergije()
+        private static FrameworkElement fm = new FrameworkElement();
+        public Alergije(String idPacijenta)
         {
             InitializeComponent();
             LekarProzor.getGlavnaLabela().Content = "Alergije";
             PacijentInfo.aktivanPacijentInfo = false;
             aktivan = true;
+            fm.DataContext = idPacijenta;
             ucitaj();
         }
 
+        public static FrameworkElement getFM()
+        {
+            return fm;
+        }
         private void ucitaj()
         {
-            dataGridAlergije.ItemsSource = PacijentKontroler.procitajAlergije();
+            dataGridAlergije.ItemsSource = PacijentKontroler.procitajAlergije((String)fm.DataContext);
 
         }
         private void btnDodaj_Click(object sender, RoutedEventArgs e)
         {
-            PacijentKontroler.napraviAlergiju(PacijentKontroler.getPacijent().id, txtDodavanjeAlergije.Text);
+            PacijentKontroler.napraviAlergiju((String)fm.DataContext, txtDodavanjeAlergije.Text);
             ucitaj();
             txtDodavanjeAlergije.Text = "";
         }

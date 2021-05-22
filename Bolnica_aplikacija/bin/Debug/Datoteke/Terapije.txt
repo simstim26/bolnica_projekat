@@ -11,11 +11,11 @@
   },
   {
     "id": "2",
-    "idLeka": "4",
+    "idLeka": "2",
     "idPacijenta": "1",
     "idBolesti": "2",
     "idTermina": "1",
-    "datumPocetka": "2021-05-03T22:11:36.8911875+02:00",
+    "datumPocetka": "2021-05-19T17:42:30.5346411+02:00",
     "trajanje": 23,
     "nacinUpotrebe": "Rektalno"
   },
@@ -45,9 +45,9 @@
     "idPacijenta": "1",
     "idBolesti": "3",
     "idTermina": "9",
-    "datumPocetka": "2021-05-02T22:28:31.8832995+02:00",
-    "trajanje": 2,
-    "nacinUpotrebe": "Sublingvalno"
+    "datumPocetka": "2021-05-19T17:35:29.916891+02:00",
+    "trajanje": 1,
+    "nacinUpotrebe": "Rektalno"
   },
   {
     "id": "6",
@@ -85,8 +85,8 @@
     "idPacijenta": "2",
     "idBolesti": "6",
     "idTermina": "18",
-    "datumPocetka": "2021-05-02T23:53:03.2944119+02:00",
-    "trajanje": 1,
+    "datumPocetka": "2021-05-15T23:36:36.9777028+02:00",
+    "trajanje": 12,
     "nacinUpotrebe": "Rektalno, od klinca napravis princa za kajanje"
   },
   {
@@ -108,5 +108,35 @@
     "datumPocetka": "2021-05-04T01:51:10.2823744+02:00",
     "trajanje": 2,
     "nacinUpotrebe": "Sublingvalno"
+  },
+  {
+    "id": "12",
+    "idLeka": "5",
+    "idPacijenta": "1",
+    "idBolesti": "1",
+    "idTermina": null,
+    "datumPocetka": "2021-05-12T11:07:23.9462675+02:00",
+    "trajanje": 7,
+    "nacinUpotrebe": "Rektalno"
+  },
+  {
+    "id": "13",
+    "idLeka": "4",
+    "idPacijenta": "2",
+    "idBolesti": "6",
+    "idTermina": null,
+    "datumPocetka": "2021-05-15T23:36:44.0481729+02:00",
+    "trajanje": 12,
+    "nacinUpotrebe": "Rektalno"
+  },
+  {
+    "id": "14",
+    "idLeka": "2",
+    "idPacijenta": "2",
+    "idBolesti": "9",
+    "idTermina": "16",
+    "datumPocetka": "2021-05-18T16:47:10.5198104+02:00",
+    "trajanje": 12,
+    "nacinUpotrebe": "ASFRektalno"
   }
 ]

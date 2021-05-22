@@ -46,5 +46,11 @@
     "naziv": "proba",
     "idTerapije": "10",
     "idPacijenta": "3"
+  },
+  {
+    "id": "9",
+    "naziv": "ASDFG",
+    "idTerapije": "14",
+    "idPacijenta": "2"
   }
 ]

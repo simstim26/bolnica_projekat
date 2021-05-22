@@ -23,6 +23,12 @@ namespace Bolnica_aplikacija.Kontroler
             return ProstorijaServis.getInstance().pronadjiSlobodneBolnickeSobe();
         }
 
+        public static List<Prostorija> pronadjiSlobodneBolnickeSobe()
+        {
+            return prostorijaServis.pronadjiSlobodneBolnickeSobe();
+        }
+
+
         public static List<Prostorija> ucitajNeobrisane()
         {
             return ProstorijaServis.getInstance().ucitajNeobrisane();
@@ -89,6 +95,11 @@ namespace Bolnica_aplikacija.Kontroler
         public static void azurirajBrojZauzetihKreveta(string id)
         {
             ProstorijaServis.getInstance().azurirajBrojZauzetihKreveta(id);
+        }
+
+        public static void azurirajBrojZauzetihKreveta(string id)
+        {
+            prostorijaServis.azurirajBrojZauzetihKreveta(id);
         }
     }
 }

@@ -45,7 +45,7 @@ namespace Bolnica_aplikacija.PacijentStudent
         private void PopuniTermine()
         {
             PacijentKontroler.nadjiPacijenta(this.idPacijenta);
-            dataGridTermin.ItemsSource = PacijentKontroler.prikazPacijentovihTermina();
+            //dataGridTermin.ItemsSource = PacijentKontroler.prikazPacijentovihTermina();
         }
 
         private void SetLabelPacijentContent()
@@ -170,7 +170,7 @@ namespace Bolnica_aplikacija.PacijentStudent
                     {
                         if(izabraniTermin.idSpecijalizacije.Equals("0"))
                         {
-                            TerminKontroler.sacuvajTermin(izabraniTermin.id);
+                            //TerminKontroler.sacuvajTermin(izabraniTermin.id);
                             IzmenaTerminaPacijent izmenaTermina = new IzmenaTerminaPacijent(dataGridTermin, this.idPacijenta);
                             izmenaTermina.Owner = this;
                             izmenaTermina.ShowDialog();

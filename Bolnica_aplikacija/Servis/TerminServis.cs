@@ -1,4 +1,5 @@
 ﻿using Bolnica_aplikacija.Kontroler;
+using Bolnica_aplikacija.Model;
 using Bolnica_aplikacija.PacijentModel;
 using Bolnica_aplikacija.Repozitorijum;
 using Model;
@@ -22,7 +23,37 @@ namespace Bolnica_aplikacija.Servis
             return instance;
         }
         private TerminRepozitorijum terminRepozitorijum = new TerminRepozitorijum();
-        private Termin termin; //lekar -> cuvanje izabranog termina (promena termina ili promena prostorije za izabrani termin
+
+        public  void azurirajUputTermina(String idTermina, String idUputTermina)
+        {
+            Termin termin = nadjiTerminPoId(idTermina);
+            Termin terminUput = nadjiTerminPoId(idUputTermina);
+            termin.tipUput = terminUput.tip;
+            termin.idUputTermin = terminUput.idTermina;
+            termin.idUputLekara = terminUput.idLekara;
+            termin.jeZavrsen = true;
+
+            azurirajTermin(termin);
+
+        }
+
+        public void azurirajIzvestajUputa(String idTermina, TipTermina tip, String izvestajUputa)
+        {
+            Termin termin = nadjiTerminPoId(idTermina);
+            termin.tipUput = tip;
+            termin.izvestajUputa = izvestajUputa;
+
+            azurirajTermin(termin);
+        }
+
+        public void azurirajLekaraZaUput(String idTermina, String idUputLekara)
+        {
+            Termin termin = nadjiTerminPoId(idTermina);
+            termin.idUputLekara = idUputLekara;
+            termin.jeZavrsen = true;
+
+            azurirajTermin(termin);
+        }
 
         public void azurirajTermin(Termin terminZaAzuriranje) //da li ide u servis ??
         {
@@ -40,23 +71,19 @@ namespace Bolnica_aplikacija.Servis
                     break;
                 }
             }
+           return povratnaVrednost;
+            /*if (idBolesti == null)
+                return new Termin();
 
-            return povratnaVrednost;
+            return terminRepozitorijum.ucitajSve().GroupBy(t => t.jeZavrsen).ToDictionary(t => t.idBolesti)[idBolesti];*/
         }
 
         public Termin nadjiTerminPoId(String idTermina)
         {
-            Termin povratnaVrednost = new Termin();
-            foreach(Termin termin in terminRepozitorijum.ucitajSve())
-            {
-                if (idTermina != null && idTermina.Equals(termin.idTermina))
-                {
-                    povratnaVrednost.kopiraj(termin);
-                    break;
-                }
-            }
+            if (idTermina == null)
+                return new Termin();
 
-            return povratnaVrednost;
+            return terminRepozitorijum.ucitajSve().ToDictionary(t => t.idTermina)[idTermina];
         }
 
         public void azuriranjeTerapijeZaTermin(String idTermina, String idTerapija)
@@ -72,10 +99,11 @@ namespace Bolnica_aplikacija.Servis
             terminRepozitorijum.azurirajTermin(termin);
         }
 
-        public void dodavanjeIzvestajaZaTermin(String nazivBolesti,String izvestajSaTermina)
+        public void dodavanjeIzvestajaZaTermin(String idTermina,String nazivBolesti,String izvestajSaTermina)
         {
             BolestServis bolestServis = new BolestServis();
             TerapijaServis terapijaServis = new TerapijaServis();
+            Termin termin = nadjiTerminPoId(idTermina);
             termin.izvestaj = izvestajSaTermina;
             termin.jeZavrsen = true;
             Terapija terapija = terapijaServis.nadjiTerapijuZaTermin(termin.idTermina);
@@ -84,7 +112,7 @@ namespace Bolnica_aplikacija.Servis
                 termin.idTerapije = terapija.id;
             }
             
-            termin.idBolesti = bolestServis.napraviBolest(nazivBolesti, termin.idPacijenta, termin.idTerapije);
+            termin.idBolesti = bolestServis.napraviBolest(new Bolest("",nazivBolesti, termin.idTerapije, termin.idPacijenta));
            
             if(terapija != null)
             {
@@ -94,30 +122,17 @@ namespace Bolnica_aplikacija.Servis
             terminRepozitorijum.azurirajTermin(termin);
         }
 
-        public void nadjiPacijentaZaTermin(String idTermina)
+        public Pacijent nadjiPacijentaZaTermin(String idTermina)
         {
-            foreach(Termin termin in terminRepozitorijum.ucitajSve())
-            {
-                if (idTermina.Equals(termin.idTermina))
-                {
-                    PacijentKontroler.nadjiPacijenta(termin.idPacijenta);
-                   
-                    break;
-                }
-            }
+            Termin termin = nadjiTerminPoId(idTermina);
+            return PacijentKontroler.nadjiPacijenta(termin.idPacijenta);
         }
 
         public void promeniProstorijuTermina(String idTermina, String idProstorije)
         {
-            foreach(Termin termin in terminRepozitorijum.ucitajSve())
-            {
-                if (idTermina.Equals(termin.idTermina))
-                {
-                    termin.idProstorije = idProstorije;
-                    terminRepozitorijum.azurirajTermin(termin);
-                    break;
-                }
-            }
+            Termin termin = nadjiTerminPoId(idTermina);
+            termin.idProstorije = idProstorije;
+            terminRepozitorijum.azurirajTermin(termin);
         }
 
         public List<Prostorija> nadjiSlobodneProstorijeZaTermin(Lekar lekar, Termin termin)
@@ -145,6 +160,11 @@ namespace Bolnica_aplikacija.Servis
                 }
             }
 
+            return obradiSlobodneProstorijeZaPrikaz(termin, prostorijeZaPrikaz);
+        }
+
+        private List<Prostorija> obradiSlobodneProstorijeZaPrikaz(Termin termin, List<Prostorija> prostorijeZaPrikaz)
+        {
             List<String> nePrikazati = proveriProstorijeZaPrikaz(termin, prostorijeZaPrikaz);
             List<Prostorija> povratnaVrednost = new List<Prostorija>();
             bool zastavica;
@@ -191,33 +211,9 @@ namespace Bolnica_aplikacija.Servis
         }
         public bool proveriTipTermina(Lekar lekar, String idTermina)
         {
-            foreach(Termin termin in terminRepozitorijum.ucitajSve())
-            {
-                if (idTermina.Equals(termin.idTermina))
-                {
-                    if (termin.tip == TipTermina.OPERACIJA && lekar.idSpecijalizacije != "0")
-                    {
-                        return true;
-                    }
-                    if(termin.tip == TipTermina.PREGLED)
-                    {
-                        return true;
-                    }
-                }
-            }
-
-                return false;
+            Termin termin = nadjiTerminPoId(idTermina);
+            return (termin.tip == TipTermina.OPERACIJA && lekar.idSpecijalizacije != "0") || termin.tip == TipTermina.PREGLED;
         }
-        public void sacuvajTermin(String idTermina)
-        {
-            termin = nadjiTerminPoId(idTermina);
-        }
-
-        public Termin getTermin()
-        {
-            return termin;
-        }
-
 
         public String nadjiIdLekaraZaTermin(String idTermina)
         {
@@ -259,15 +255,6 @@ namespace Bolnica_aplikacija.Servis
             termin.idTermina = (ucitajSve().Count + 1).ToString();
             terminRepozitorijum.dodajTermin(termin);
             return termin.idTermina;
-        }
-
-        public void veziTermin(String idTerminUput)
-        {
-            Termin terminUput = nadjiTerminPoId(idTerminUput);
-            termin.idUputLekara = terminUput.idLekara;
-            termin.idUputTermin = terminUput.idTermina;
-            termin.jeZavrsen = true;
-            terminRepozitorijum.azurirajTermin(termin);
         }
 
         public List<PacijentTermin> ucitajTermineZaHitanSlucaj(String tip, String idSpecijalizacije)

@@ -101,6 +101,7 @@
     </Compile>
     <Compile Include="Kontroler\AlergijaKontroler.cs" />
     <Compile Include="Kontroler\BolestKontroler.cs" />
+    <Compile Include="Kontroler\BolnickoLecenjeKontroler.cs" />
     <Compile Include="Kontroler\KorisnikKontroler.cs" />
     <Compile Include="Kontroler\LekarKontroler.cs" />
     <Compile Include="Kontroler\LekKontroler.cs" />
@@ -117,6 +118,7 @@
     <Compile Include="Kontroler\StavkaKontroler.cs" />
     <Compile Include="Kontroler\TerapijaKontroler.cs" />
     <Compile Include="Kontroler\TerminKontroler.cs" />
+    <Compile Include="Model\BolnickoLecenje.cs" />
     <Compile Include="Model\LekZaOdobravanje.cs" />
     <Compile Include="PomocneKlase\BolnickoLecenjeDTO.cs" />
     <Compile Include="PomocneKlase\KonverterBolnickoLecenje.cs" />
@@ -130,9 +132,13 @@
     <Compile Include="Model\OcenaLekara.cs" />
     <Compile Include="PomocneKlase\Logovanje.cs" />
     <Compile Include="PomocneKlase\PomocnaKlasaProvere.cs" />
+    <Compile Include="PomocneKlase\TerapijaDTO.cs" />
+    <Compile Include="PomocneKlase\TerminDTO.cs" />
+    <Compile Include="Repozitorijum\BolnickoLecenjeRepozitorijum.cs" />
     <Compile Include="Repozitorijum\LogovanjeRepozitorijum.cs" />
     <Compile Include="Repozitorijum\OcenaBolniceRepozitorijum.cs" />
     <Compile Include="Repozitorijum\OcenaLekaraRepozitorijum.cs" />
+    <Compile Include="Servis\BolnickoLecenjeServis.cs" />
     <Compile Include="Servis\LogovanjeServis.cs" />
     <Compile Include="Servis\OcenaBolniceServis.cs" />
     <Compile Include="Servis\OcenaLekaraServis.cs" />
@@ -141,6 +147,9 @@
     </Compile>
     <Compile Include="View\LekarStudent\IstorijaBolesti.xaml.cs">
       <DependentUpon>IstorijaBolesti.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\LekarStudent\IzmenaBLecenja.xaml.cs">
+      <DependentUpon>IzmenaBLecenja.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\LekarStudent\IzmenaBolesti.xaml.cs">
       <DependentUpon>IzmenaBolesti.xaml</DependentUpon>
@@ -311,6 +320,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\LekarStudent\IstorijaBolesti.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\LekarStudent\IzmenaBLecenja.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

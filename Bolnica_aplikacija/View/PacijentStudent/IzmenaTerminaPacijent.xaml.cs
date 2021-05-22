@@ -25,14 +25,14 @@ namespace Bolnica_aplikacija.PacijentStudent
     /// </summary>
     public partial class IzmenaTerminaPacijent : Window
     {
-        private string idPacijenta;
+        //private string idPacijenta;
         private DataGrid dataGrid;
 
         public IzmenaTerminaPacijent(DataGrid dataGrid, string idPacijenta)
         {
             InitializeComponent();
 
-            this.idPacijenta = idPacijenta;
+            //this.idPacijenta = idPacijenta;
             this.dataGrid = dataGrid;
             dataGridSlobodniTermini.Loaded += SetMinSirina;
 
@@ -67,11 +67,11 @@ namespace Bolnica_aplikacija.PacijentStudent
                     {
                         PacijentTermin noviTermin = (PacijentTermin)dataGridSlobodniTermini.SelectedItem;
 
-                        PacijentKontroler.azurirajTerminPacijentu(TerminKontroler.getTermin().idTermina,noviTermin.id);
-                        dataGrid.ItemsSource = PacijentKontroler.prikazPacijentovihTermina();
+                        //PacijentKontroler.azurirajTerminPacijentu(TerminKontroler.getTermin().idTermina,noviTermin.id);
+                       // dataGrid.ItemsSource = PacijentKontroler.prikazPacijentovihTermina();
 
                         //ANTI TROL
-                        PomocnaKlasaProvere.antiTrolMetoda(idPacijenta);
+                        PomocnaKlasaProvere.antiTrolMetoda(KorisnikKontroler.GetPacijent().id);
 
                         this.Close();
                     }

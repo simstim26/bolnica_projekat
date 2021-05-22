@@ -3,6 +3,7 @@
 // Created: Monday, March 22, 2021 8:52:17 PM
 // Purpose: Definition of Class Termin
 
+using Bolnica_aplikacija.PomocneKlase;
 using System;
 
 namespace Model
@@ -26,6 +27,28 @@ namespace Model
 
         public TipTermina tipUput { get; set; }
         public bool jeHitan { get; set; }
+
+        public Termin() { }
+
+        public Termin(TerminDTO dto)
+        {
+            tip = dto.tip;
+            datum = dto.datum;
+            satnica = dto.satnica;
+            jeZavrsen = dto.jeZavrsen;
+            idTermina = dto.idTermina;
+            idProstorije = dto.idProstorije;
+            idPacijenta = dto.idPacijenta;
+            idLekara = dto.idLekara;
+            idTerapije = dto.idTerapije;
+            idBolesti = dto.idBolesti;
+            izvestaj = dto.izvestaj;
+            izvestajUputa = dto.izvestajUputa;
+            idUputLekara = dto.idUputLekara;
+            idUputTermin = dto.idUputTermin;
+            tipUput = dto.tipUput;
+            jeHitan = dto.jeHitan;
+        }
 
         public void kopiraj(Termin termin)
         {

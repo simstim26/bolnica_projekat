@@ -1,4 +1,5 @@
 ﻿using Bolnica_aplikacija.PacijentModel;
+using Bolnica_aplikacija.PomocneKlase;
 using Bolnica_aplikacija.Servis;
 using Model;
 using System;
@@ -11,9 +12,24 @@ namespace Bolnica_aplikacija.Kontroler
 {
     class TerminKontroler
     {
-        public static void nadjiPacijentaZaTermin(String idTermina)
+        public static Pacijent nadjiPacijentaZaTermin(String idTermina)
         {
-            TerminServis.getInstance().nadjiPacijentaZaTermin(idTermina);
+           return TerminServis.getInstance().nadjiPacijentaZaTermin(idTermina);
+        }
+
+        public static void azurirajUputTermina(String idTermina, String idUputTermina)
+        {
+            TerminServis.getInstance().azurirajUputTermina(idTermina, idUputTermina);
+        }
+
+        public static void azurirajIzvestajUputa(String idTermina, TipTermina tip, String izvestajUputa)
+        {
+            TerminServis.getInstance().azurirajIzvestajUputa(idTermina, tip, izvestajUputa);
+        }
+
+        public static void azurirajLekaraZaUput(String idTermina, String idUputLekara)
+        {
+            TerminServis.getInstance().azurirajLekaraZaUput(idTermina, idUputLekara);
         }
 
         public static void azurirajTermin(Termin terminZaAzuriranje)
@@ -31,14 +47,14 @@ namespace Bolnica_aplikacija.Kontroler
             TerminServis.getInstance().azuriranjeIzvestajaZaTermin(azuriraniIzvestaj, idTermina);
         }
 
-        public static void dodavanjeIzvestajaZaTermin(String nazivBolesti,String izvestajSaTermina)
+        public static void dodavanjeIzvestajaZaTermin(String idTermina, String nazivBolesti,String izvestajSaTermina)
         {
-            TerminServis.getInstance().dodavanjeIzvestajaZaTermin(nazivBolesti, izvestajSaTermina);
+            TerminServis.getInstance().dodavanjeIzvestajaZaTermin(idTermina, nazivBolesti, izvestajSaTermina);
         }
 
-        public static List<Prostorija> nadjiSlobodneProstorijeZaTermin(Lekar lekar, Termin termin)
+        public static List<Prostorija> nadjiSlobodneProstorijeZaTermin(Lekar lekar, TerminDTO termin)
         {
-            return TerminServis.getInstance().nadjiSlobodneProstorijeZaTermin(lekar, termin);
+            return TerminServis.getInstance().nadjiSlobodneProstorijeZaTermin(lekar, new Termin(termin));
         }
         public static int proveriDatumTermina(String idTermina)
         {
@@ -54,15 +70,6 @@ namespace Bolnica_aplikacija.Kontroler
         public static bool proveriTipTermina(Lekar ulogovaniLekar, String idTermina)
         {
             return TerminServis.getInstance().proveriTipTermina(ulogovaniLekar, idTermina);
-        }
-        public static void sacuvajTermin(String idTermina)
-        {
-            TerminServis.getInstance().sacuvajTermin(idTermina);
-        }
-
-        public static Termin getTermin()
-        {
-            return TerminServis.getInstance().getTermin();
         }
 
         public static String nadjiIdLekaraZaTermin(String idTermina)
@@ -81,14 +88,9 @@ namespace Bolnica_aplikacija.Kontroler
             return TerminServis.getInstance().ucitajPregledaZaIzabranogLekara(idLekara);
         }
 
-        public static String napraviTermin(Termin termin)
+        public static String napraviTermin(TerminDTO termin)
         {
-            return TerminServis.getInstance().napraviTermin(termin);
-        }
-
-        public static void veziTermin(String idTerminUput)
-        {
-            TerminServis.getInstance().veziTermin(idTerminUput);
+            return TerminServis.getInstance().napraviTermin(new Termin(termin));
         }
 
         public static Termin nadjiTerminPoId(String idTermina)

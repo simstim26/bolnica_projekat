@@ -23,21 +23,20 @@ namespace Bolnica_aplikacija.LekarStudent
     public partial class UvidUTerapije : UserControl
     {
         public static bool aktivan;
-        public UvidUTerapije()
+        public UvidUTerapije(String idPacijenta)
         {
             InitializeComponent();
             LekarProzor.getGlavnaLabela().Content = "Uvid u terapije";
             PacijentInfo.aktivanPacijentInfo = false;
             aktivan = true;
-            this.dataGridTerapije.ItemsSource = PacijentKontroler.ucitajSveTerapijeZaPacijenta();
+            this.dataGridTerapije.ItemsSource = PacijentKontroler.ucitajSveTerapijeZaPacijenta(idPacijenta);
         }
 
         private void btnIzdavanjeRecepta_Click(object sender, RoutedEventArgs e)
         {
             if (dataGridTerapije.SelectedIndex != -1)
             {
-                PacijentKontroler.sacuvajBolestTerapiju((BolestTerapija)dataGridTerapije.SelectedItem);
-                Content = new TerapijeIzdavanjeRecpeta();
+                Content = new TerapijeIzdavanjeRecpeta((BolestTerapija)dataGridTerapije.SelectedItem);
             }
             else
             {

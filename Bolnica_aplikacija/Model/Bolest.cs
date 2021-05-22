@@ -13,5 +13,23 @@ namespace Bolnica_aplikacija.Model
         public String idTerapije { get; set; }
         public String idPacijenta { get; set; }
 
+        public Bolest() { }
+
+        public Bolest(string id, string naziv, string idTerapije, string idPacijenta)
+        {
+            this.id = id;
+            this.naziv = naziv;
+            this.idTerapije = idTerapije;
+            this.idPacijenta = idPacijenta;
+        }
+
+        public void kopiraj(Bolest bolest)
+        {
+            id = bolest.id;
+            naziv = bolest.naziv;
+            idTerapije = bolest.idTerapije;
+            idPacijenta = bolest.idPacijenta;
+        }
+
     }
 }

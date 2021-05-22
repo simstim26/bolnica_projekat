@@ -1,4 +1,5 @@
 ﻿using Bolnica_aplikacija.Kontroler;
+using Bolnica_aplikacija.Model;
 using Bolnica_aplikacija.PacijentModel;
 using Bolnica_aplikacija.PacijentStudent;
 using Bolnica_aplikacija.Servis;
@@ -24,11 +25,11 @@ namespace Bolnica_aplikacija.View.PacijentStudent
     /// </summary>
     public partial class OceniteLekara : Window
     {
-        private String idPacijenta;
+        //private String idPacijenta;
         public OceniteLekara(String idPacijenta)
         {
             InitializeComponent();
-            this.idPacijenta = idPacijenta;
+            //this.idPacijenta = idPacijenta;
             popuniPolja();
 
         }
@@ -51,20 +52,8 @@ namespace Bolnica_aplikacija.View.PacijentStudent
 
         private void popuniLekara()
         {
-            Dictionary<string, string> lekari = new Dictionary<string, string>();
-            PacijentKontroler.nadjiPacijenta(idPacijenta);
-            var prosliTermini = PacijentKontroler.prikazProslihTerminaPacijenta();
-            foreach (PacijentTermin pacijentTermin in prosliTermini)
-            {
-                Termin termin = TerminKontroler.nadjiTerminPoId(pacijentTermin.id);
-                Lekar lekar = LekarKontroler.nadjiLekaraPoId(termin.idLekara);
-                if(!lekari.ContainsKey(termin.idLekara))
-                {
-                    lekari.Add(termin.idLekara, lekar.ime + " "+ lekar.prezime);
-                }
-            }
 
-            comboBoxLekar.ItemsSource = lekari.Values;
+            comboBoxLekar.ItemsSource = LekarKontroler.popuniLekarComboBox(KorisnikKontroler.GetPacijent().id);
             comboBoxLekar.SelectedIndex = 0;
          
         }
@@ -92,7 +81,7 @@ namespace Bolnica_aplikacija.View.PacijentStudent
 
                 int brojOcena = OcenaLekaraKontroler.ucitajSve().Count + 1;
 
-                OcenaLekaraKontroler.dodajOcenu(new Model.OcenaLekara("OL " + brojOcena.ToString(), comboBoxLekar.SelectedItem.ToString(), ocena, txtKomentar.Text));
+                OcenaLekaraKontroler.dodajOcenu(new OcenaLekaraDTO("OL " + brojOcena.ToString(), comboBoxLekar.SelectedItem.ToString(), ocena, txtKomentar.Text));
 
                 this.Close();
             }

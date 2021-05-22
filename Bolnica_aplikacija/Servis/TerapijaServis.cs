@@ -23,16 +23,8 @@ namespace Bolnica_aplikacija.Servis
         private TerapijaRepozitorijum terapijaRepozitorijum = new TerapijaRepozitorijum();
         public String nadjiNazivLekaZaTerapiju(String idTerapije)
         {
-            String povratnaVrednost = "";
-            foreach(Terapija terapija in terapijaRepozitorijum.ucitajSve())
-            {
-                if (idTerapije != null && idTerapije.Equals(terapija.id))
-                {
-                    povratnaVrednost = LekServis.getInstance().nadjiLekPoId(terapija.idLeka).naziv;
-                }
-            }
-
-            return povratnaVrednost;
+            Terapija terapija = nadjiTerapijuPoId(idTerapije);
+            return LekServis.getInstance().nadjiLekPoId(terapija.idLeka).naziv;
         }
 
         public List<Terapija> ucitajSve()
@@ -46,24 +38,10 @@ namespace Bolnica_aplikacija.Servis
 
         public Terapija nadjiTerapijuPoId(String idTerapije)
         {
-            Terapija povratnaVrednost = new Terapija();
+            if (idTerapije == null)
+                return new Terapija();
 
-            foreach(Terapija terapija in terapijaRepozitorijum.ucitajSve())
-            {
-                if (idTerapije != null  && idTerapije.Equals(terapija.id))
-                {
-                    povratnaVrednost.id = terapija.id;
-                    povratnaVrednost.idBolesti = terapija.idBolesti;
-                    povratnaVrednost.idPacijenta = terapija.idPacijenta;
-                    povratnaVrednost.idLeka = terapija.idLeka;
-                    povratnaVrednost.idTermina = terapija.idTermina;
-                    povratnaVrednost.nacinUpotrebe = terapija.nacinUpotrebe;
-                    povratnaVrednost.trajanje = terapija.trajanje;
-                    povratnaVrednost.datumPocetka = terapija.datumPocetka;
-                }
-            }
-
-            return povratnaVrednost;
+            return terapijaRepozitorijum.ucitajSve().ToDictionary(t => t.id)[idTerapije];
         }
 
         public String dodajTerapiju(Terapija terapija)
@@ -90,14 +68,9 @@ namespace Bolnica_aplikacija.Servis
 
         public void dodajIdBolestiZaTerapiju(String idTerapije, String idBolesti)
         {
-            foreach(Terapija t in terapijaRepozitorijum.ucitajSve())
-            {
-                if (idTerapije.Equals(t.id))
-                {
-                    t.idBolesti = idBolesti;
-                    terapijaRepozitorijum.azurirajTerapiju(t);
-                }
-            }
+            Terapija terapija = nadjiTerapijuPoId(idTerapije);
+            terapija.idBolesti = idBolesti;
+            terapijaRepozitorijum.azurirajTerapiju(terapija);
         }
     }
 }

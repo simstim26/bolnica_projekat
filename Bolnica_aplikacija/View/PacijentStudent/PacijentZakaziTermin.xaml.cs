@@ -27,13 +27,13 @@ namespace Bolnica_aplikacija.PacijentStudent
     public partial class PacijentZakaziTermin : Window
     {
         private DataGrid dataGrid;
-        private String idPacijenta;
+        //private String idPacijenta;
 
         public PacijentZakaziTermin(DataGrid dataGrid, String idPacijenta)
         {
             InitializeComponent();
 
-            this.idPacijenta = idPacijenta;
+            //this.idPacijenta = idPacijenta;
             this.dataGrid = dataGrid;
             dataGridSlobodniTermini.Loaded += SetMinSirina;
 
@@ -68,12 +68,12 @@ namespace Bolnica_aplikacija.PacijentStudent
                     {
                         PacijentTermin selektovanTermin = (PacijentTermin)dataGridSlobodniTermini.SelectedItem;
                         String idSelektovanog = selektovanTermin.id;
-                        PacijentKontroler.zakaziTerminPacijentu(idSelektovanog);
-                        dataGrid.ItemsSource = PacijentKontroler.prikazPacijentovihTermina();
+                        //PacijentKontroler.zakaziTerminPacijentu(idSelektovanog);
+                        //dataGrid.ItemsSource = PacijentKontroler.prikazPacijentovihTermina();
 
                         //ANTI TROL SISTEM
 
-                        PomocnaKlasaProvere.antiTrolMetoda(idPacijenta);
+                        PomocnaKlasaProvere.antiTrolMetoda(KorisnikKontroler.GetPacijent().id);
 
                         this.Close();
 
@@ -91,29 +91,11 @@ namespace Bolnica_aplikacija.PacijentStudent
             int indikator = -1;
             if (rbtnLekar.IsChecked == true)
             {
-
-                if (!Regex.IsMatch(txtPretraga.Text, @"^[\p{L}\p{M}' \.\-]+$"))
-                {
-                    indikator = -2;
-                }
-                else
-                    indikator = 0;
-
+                PomocnaKlasaProvere.rbtnLekarCekiran(txtPretraga.Text, indikator);
             }
             if (rbtnTermin.IsChecked == true)
             {
-                indikator = 1;
-
-                var formati = new[] { "dd/MM/yyyy", "d/M/yyyy", "dd.MM.yyyy", "dd.MM.yyyy.", "d.M.yyyy.", "d.M.yyyy" };
-                DateTime dt;
-                if (DateTime.TryParseExact(txtPretraga.Text, formati, null, System.Globalization.DateTimeStyles.None, out dt))
-                {
-                    indikator = 1;
-                }
-                else
-                    indikator = -3;
-
-
+                PomocnaKlasaProvere.rbtnTerminCekiran(txtPretraga.Text, indikator);
             }
 
             if(!PomocnaKlasaProvere.proveraPretrage(indikator))
@@ -122,9 +104,8 @@ namespace Bolnica_aplikacija.PacijentStudent
             }
             else
             {
-                String kriterijum = txtPretraga.Text;
 
-                dataGridSlobodniTermini.ItemsSource = PacijentKontroler.filtrirajTermine(indikator, kriterijum);
+                dataGridSlobodniTermini.ItemsSource = PacijentKontroler.filtrirajTermine(indikator, txtPretraga.Text);
 
                 if (txtPretraga.Text == "")
                 {

@@ -17,9 +17,8 @@ namespace Bolnica_aplikacija.Servis
     class PacijentServis
     {
         private PacijentRepozitorijum pacijentRepozitorijum = new PacijentRepozitorijum();
-        private Pacijent pacijent; //lekar -> cuva se izabrani pacijent
-        private BolestTerapija bolestTerapija;
         private static PacijentServis instance;
+
         public static PacijentServis getInstance()
         {
             if(instance == null)
@@ -30,34 +29,54 @@ namespace Bolnica_aplikacija.Servis
             return instance;
         }
 
+        public bool proveriAlergijuNaLekZaPacijenta(String idPacijenta, String idIzabraniLek)
+        {
+            List<String> sastojci = LekServis.getInstance().nadjiLekPoId(idIzabraniLek).sastojci;
+            List<Alergija> alergije = AlergijaServis.getInstance().ucitajAlergijeZaPacijenta(idPacijenta);
+            if (sastojci == null || alergije == null)
+                return false;
 
-        public List<BolestTerapija> nadjiIstorijuBolestiZaPacijenta()
+            foreach (String sastojak in sastojci)
+            {
+                foreach(Alergija alergija in alergije)
+                {
+                    if (sastojak.Equals(alergija.nazivAlergije))
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        public List<BolestTerapija> nadjiIstorijuBolestiZaPacijenta(String idPacijenta)
         {
             List<BolestTerapija> istorijaBolesti = new List<BolestTerapija>();
 
             foreach(Bolest bolest in BolestServis.getInstance().ucitajSve())
             {
-                if (bolest.idPacijenta.Equals(pacijent.id))
+                if (bolest.idPacijenta.Equals(idPacijenta))
                 {
                     Termin termin = TerminServis.getInstance().nadjiTerminZaBolest(bolest.id);
                     Terapija terapija = TerapijaServis.getInstance().nadjiTerapijuPoId(termin.idTerapije);
                     Lek lek = LekServis.getInstance().nadjiLekPoId(terapija.idLeka);
 
                     istorijaBolesti.Add(new BolestTerapija(bolest.id, bolest.naziv, terapija.id, lek.id, lek.kolicina.ToString(),
-                            null, lek.naziv, termin.idTermina, termin.izvestaj));              
+                            null, lek.naziv, termin.idTermina, termin.izvestaj, idPacijenta));              
                 }
             }
 
             return istorijaBolesti;
         }
 
-        public List<BolestTerapija> ucitajSveTerapijeZaPacijenta()
+        public List<BolestTerapija> ucitajSveTerapijeZaPacijenta(String idPacijenta)
         {
             List<BolestTerapija> povratnaVrednost = new List<BolestTerapija>();
 
             foreach (Terapija terapija in TerapijaServis.getInstance().ucitajSve())
             {
-                if (terapija.idPacijenta.Equals(pacijent.id))
+                if (terapija.idPacijenta.Equals(idPacijenta))
                 {
                     Bolest bolest = BolestServis.getInstance().nadjiBolestPoId(terapija.idBolesti);
                     Lek lek = LekServis.getInstance().nadjiLekPoId(terapija.idLeka);
@@ -65,7 +84,7 @@ namespace Bolnica_aplikacija.Servis
                     if (lek != null)
                     {
                         povratnaVrednost.Add(new BolestTerapija(bolest.id, bolest.naziv, terapija.id, lek.id, lek.kolicina.ToString(),
-                            proveriAktivnostTerapije(terapija), lek.naziv, termin.idTermina, termin.izvestaj));
+                            proveriAktivnostTerapije(terapija), lek.naziv, termin.idTermina, termin.izvestaj, idPacijenta));
                     }
                 }
             }
@@ -86,15 +105,6 @@ namespace Bolnica_aplikacija.Servis
             return povratnaVrednost;
         }
 
-        public void sacuvajBolestTerapiju(BolestTerapija bolestTerapija)
-        {
-            this.bolestTerapija = bolestTerapija;
-        }
-
-        public BolestTerapija getBolestTerapija()
-        {
-            return bolestTerapija;
-        }
         public List<Pacijent> prikazPacijenata() //prikaz pacijenata kod lekara
         {
             List<Pacijent> sviPacijenti = pacijentRepozitorijum.ucitajSve();
@@ -113,64 +123,55 @@ namespace Bolnica_aplikacija.Servis
 
         public void azurirajTerminPacijentu(String idStarogTermina, String idNovogTermina)
         {
-            foreach (Termin termin in TerminServis.getInstance().ucitajSve())
-            {
-                if (idStarogTermina.Equals(termin.idTermina)) //otkazivanje starog termina
-                {
-                    termin.idPacijenta = "";
-                    TerminServis.getInstance().azurirajTermin(termin);
-                }
+            Termin stariTermin = TerminServis.getInstance().nadjiTerminPoId(idStarogTermina);
+            Termin noviTermin = TerminServis.getInstance().nadjiTerminPoId(idNovogTermina);
 
-                if (idNovogTermina.Equals(termin.idTermina))
-                {
-                    termin.idPacijenta = pacijent.id;
-                    TerminServis.getInstance().azurirajTermin(termin); 
-                }
-            }
+            noviTermin.idPacijenta = stariTermin.idPacijenta;
+            TerminServis.getInstance().azurirajTermin(noviTermin);
 
+            stariTermin.idPacijenta = "";
+            TerminServis.getInstance().azurirajTermin(stariTermin);
         }
 
         private void radSaPacijentTerminomPrikazPacijentovihTermina(Termin termin, PacijentTermin pacijentTermin)
         {
-            foreach (Prostorija prostorija in ProstorijaServis.getInstance().ucitajSve())
-            {
-                if (prostorija.id.Equals(termin.idProstorije))
-                {
-                    pacijentTermin.lokacija = "Sprat " + prostorija.sprat + ", sala broj " + prostorija.broj;
-                    break;
-                }
-            }
+            popuniProstoriju(termin, pacijentTermin);
+            popuniLekara(termin, pacijentTermin);
+            dopuniPacijentTermin(termin, pacijentTermin);
 
+        }
+
+        private void popuniLekara(Termin termin, PacijentTermin pacijentTermin)
+        {
             foreach (Lekar lekar in LekarServis.getInstance().ucitajSve())
             {
+                pacijentTermin.imeLekara = "";
+
                 if (lekar.id.Equals(termin.idLekara))
                 {
+                    /*if (lekar.idSpecijalizacije.Equals("0") || jeSekretar && lekar.idSpecijalizacije.Equals("0"))
+                     {
+                         pacijentTermin.imeLekara = lekar.ime + " " + lekar.prezime;
+                         pacijentTermin.idSpecijalizacije = lekar.idSpecijalizacije;
+                         break;
+                     }
+                    else*/
+
                     pacijentTermin.imeLekara = lekar.ime + " " + lekar.prezime;
                     pacijentTermin.idSpecijalizacije = lekar.idSpecijalizacije;
                     pacijentTermin.nazivSpecijalizacije = SpecijalizacijaKontroler.nadjiSpecijalizacijuPoId(lekar.idSpecijalizacije);
-
                     break;
+
                 }
             }
-
-            pacijentTermin.datum = termin.datum.Date.ToString("dd/MM/yyyy");
-            switch (termin.tip)
-            {
-                case TipTermina.OPERACIJA: pacijentTermin.napomena = "Operacija"; break;
-                case TipTermina.PREGLED: pacijentTermin.napomena = "Pregled"; break;
-                default: break;
-            }
-            pacijentTermin.satnica = termin.satnica.ToString("HH:mm");
-            pacijentTermin.id = termin.idTermina;
-           
         }
 
-        public List<PacijentTermin> prikazPacijentovihTermina()
+        public List<PacijentTermin> prikazPacijentovihTermina(String idPacijenta)
         {
             List<PacijentTermin> terminiPacijenta = new List<PacijentTermin>();
             foreach(Termin termin in TerminServis.getInstance().ucitajSve())
             {
-                if(termin.idPacijenta.Equals(pacijent.id))
+                if(termin.idPacijenta.Equals(idPacijenta))
                 {
 
                     int rezultat = DateTime.Compare(termin.datum, DateTime.Today);
@@ -189,58 +190,35 @@ namespace Bolnica_aplikacija.Servis
             return terminiPacijenta;
         }
 
-        public List<PacijentTermin> prikazBuducihTerminaPacijenta()
+        public List<PacijentTermin> prikazBuducihTerminaPacijenta(String idPacijenta)
         {
             List<PacijentTermin> terminiPacijenta = new List<PacijentTermin>();
 
             foreach(Termin termin in TerminServis.getInstance().ucitajSve())
             {
-                if (termin.idPacijenta.Equals(pacijent.id))
+                if (termin.idPacijenta.Equals(idPacijenta) && DateTime.Compare(termin.datum, DateTime.Today) >= 0)
                 {
-                    DateTime terminDatum = termin.datum;
-                    DateTime danasnjiDatum = DateTime.Today;
-
-                    int rezultat = DateTime.Compare(terminDatum, danasnjiDatum);
-
-                    if (rezultat >= 0)
-                    {
-                        PacijentTermin pacijentTermin = new PacijentTermin();
-                        pacijentTermin.id = termin.idTermina;
-                        pacijentTermin.napomena = termin.getTipString();
-                        pacijentTermin.datum = termin.datum.Date.ToString("dd.MM.yyyy.");
-                        pacijentTermin.satnica = termin.satnica.ToString("HH:mm");
-                        pacijentTermin.imeLekara = LekarServis.getInstance().pronadjiImeLekara(termin.idLekara);
-                        pacijentTermin.lokacija = ProstorijaServis.getInstance().nadjiBrojISprat(termin.idProstorije);
-                        terminiPacijenta.Add(pacijentTermin);
-                    }
+                    terminiPacijenta.Add(new PacijentTermin(termin.idTermina, termin.datum.Date.ToString("dd.MM.yyyy."), termin.satnica.ToString("HH:mm"), ProstorijaServis.getInstance().nadjiBrojISprat(termin.idProstorije),
+                        termin.getTipString(), termin.idLekara, LekarServis.getInstance().pronadjiImeLekara(termin.idLekara), LekarServis.getInstance().pronadjiNazivSpecijalizacijeLekara(termin.idLekara),
+                        LekarServis.getInstance().nadjiLekaraPoId(termin.idLekara).idSpecijalizacije, null));
+                 
                 }
             }
 
             return terminiPacijenta;
         }
 
-        public List<PacijentTermin> prikazProslihTerminaPacijenta()
+        public List<PacijentTermin> prikazProslihTerminaPacijenta(String idPacijenta)
         {
             List<PacijentTermin> terminiPacijenta = new List<PacijentTermin>();
 
             foreach(Termin termin in TerminServis.getInstance().ucitajSve())
             {
-                if (termin.idPacijenta.Equals(pacijent.id))
-                {
-                    if (termin.jeZavrsen)
-                    {
-                        PacijentTermin pacijentTermin = new PacijentTermin();
-                        pacijentTermin.id = termin.idTermina;
-                        pacijentTermin.napomena = termin.getTipString();
-                        pacijentTermin.datum = termin.datum.Date.ToString("dd.MM.yyyy.");
-                        pacijentTermin.satnica = termin.satnica.ToString("HH:mm");
-                        pacijentTermin.imeLekara = LekarServis.getInstance().pronadjiImeLekara(termin.idLekara);
-                        pacijentTermin.nazivSpecijalizacije = LekarServis.getInstance().pronadjiNazivSpecijalizacijeLekara(termin.idLekara);
-                        pacijentTermin.lokacija = ProstorijaServis.getInstance().nadjiBrojISprat(termin.idProstorije);
-                        pacijentTermin.nazivTerapije = TerapijaServis.getInstance().nadjiNazivLekaZaTerapiju(termin.idTerapije);
-
-                        terminiPacijenta.Add(pacijentTermin);
-                    }
+                if (termin.idPacijenta.Equals(idPacijenta) && termin.jeZavrsen)
+                {                   
+                    terminiPacijenta.Add(new PacijentTermin(termin.idTermina, termin.datum.Date.ToString("dd.MM.yyyy."), termin.satnica.ToString("HH:mm"), ProstorijaServis.getInstance().nadjiBrojISprat(termin.idProstorije),
+                        termin.getTipString(), termin.idLekara, LekarServis.getInstance().pronadjiImeLekara(termin.idLekara), LekarServis.getInstance().pronadjiNazivSpecijalizacijeLekara(termin.idLekara),
+                        LekarServis.getInstance().nadjiLekaraPoId(termin.idLekara).idSpecijalizacije, TerapijaServis.getInstance().nadjiNazivLekaZaTerapiju(termin.idTerapije)));  
                     
                 }
             }
@@ -248,47 +226,35 @@ namespace Bolnica_aplikacija.Servis
             return terminiPacijenta;
         }
 
-        public void zakaziTerminPacijentu(String idTermina)
+        public void zakaziTerminPacijentu(String idPacijenta, String idTermina)
         {
-            foreach(Termin termin in TerminServis.getInstance().ucitajSve())
-            {
-                if (idTermina.Equals(termin.idTermina))
-                {
-                    termin.idPacijenta = pacijent.id;
-                    TerminServis.getInstance().azurirajTermin(termin);
-                    break;
-                }
-            }
+            Termin termin = TerminServis.getInstance().nadjiTerminPoId(idTermina);
+            termin.idPacijenta = idPacijenta;
+            TerminServis.getInstance().azurirajTermin(termin);
         }
         public void otkaziTerminPacijenta(String idTermina)
         {
-            foreach (Termin termin in TerminServis.getInstance().ucitajSve())
-            {
-                if (idTermina.Equals(termin.idTermina))
-                {
-                    termin.idPacijenta = "";
-                    TerminServis.getInstance().azurirajTermin(termin);
-                    break;
-                }
-            }
+            Termin termin = TerminServis.getInstance().nadjiTerminPoId(idTermina);
+            termin.idPacijenta = "";
+            TerminServis.getInstance().azurirajTermin(termin);
         }
-        public void nadjiPacijenta(String idPacijenta)
+        public Pacijent nadjiPacijenta(String idPacijenta)
         {
+            //OBAVEZNO IZMENITI!!!!!
             var sviPacijenti = pacijentRepozitorijum.ucitajSve();
 
             foreach(Pacijent pacijent in sviPacijenti)
             {
                 if (pacijent.id.Equals(idPacijenta))
                 {
-                    this.pacijent = pacijent;
-                    break;
+                    return pacijent;
+
+                    /*this.pacijent = pacijent;
+                    break;*/
                 }
             }
-        }
-
-        public Pacijent getPacijent()
-        {
-            return pacijent;
+            
+            return new Pacijent();
         }
 
 
@@ -385,34 +351,10 @@ namespace Bolnica_aplikacija.Servis
             }
         }
 
-        private void popuniLekara(Termin termin, PacijentTermin pacijentTermin)
-        {
-            foreach (Lekar lekar in LekarServis.getInstance().ucitajSve())
-            {
-                pacijentTermin.imeLekara = "";
-
-                if (lekar.id.Equals(termin.idLekara))
-                {
-                    /*if (lekar.idSpecijalizacije.Equals("0") || jeSekretar && lekar.idSpecijalizacije.Equals("0"))
-                     {
-                         pacijentTermin.imeLekara = lekar.ime + " " + lekar.prezime;
-                         pacijentTermin.idSpecijalizacije = lekar.idSpecijalizacije;
-                         break;
-                     }
-                    else*/
-
-                    pacijentTermin.imeLekara = lekar.ime + " " + lekar.prezime;
-                    pacijentTermin.idSpecijalizacije = lekar.idSpecijalizacije;
-                    break;
-
-                }
-            }
-        }
-
         public void dopuniPacijentTermin(Termin termin, PacijentTermin pacijentTermin)
         {
             pacijentTermin.datum = termin.datum.Date.ToString("dd/MM/yyyy");
-            pacijentTermin.napomena = termin.tip.ToString();
+            pacijentTermin.napomena = termin.getTipString();
             pacijentTermin.satnica = termin.satnica.ToString("HH:mm");
             pacijentTermin.id = termin.idTermina;
         }
@@ -560,13 +502,13 @@ namespace Bolnica_aplikacija.Servis
             AlergijaServis.getInstance().dodajAlergiju(alergija);
         }
 
-        public List<Alergija> procitajAlergije()
+        public List<Alergija> procitajAlergije(String idPacijenta)
         {
             List<Alergija> alergije = new List<Alergija>();
 
             foreach (Alergija alergija in AlergijaServis.getInstance().ucitajSve())
             {
-                if (alergija.idPacijenta.Equals(pacijent.id))
+                if (alergija.idPacijenta.Equals(idPacijenta))
                 {
                     alergije.Add(alergija);
                 }

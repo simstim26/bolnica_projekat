@@ -25,7 +25,7 @@ namespace Bolnica_aplikacija.PacijentModel
 
         public PacijentTermin() { }
 
-        public PacijentTermin(String id, String datum, String satnica, String lokacija, String napomena, String imeLekara,
+        public PacijentTermin(String id, String datum, String satnica, String lokacija, String napomena,String idLekara, String imeLekara,
             String nazivSpecijalizacije, String idSpecijalizacije, String nazivTerapije)
         {
             this.id = id;
@@ -33,6 +33,7 @@ namespace Bolnica_aplikacija.PacijentModel
             this.satnica = satnica;
             this.lokacija = lokacija;
             this.napomena = napomena;
+            this.idLekara = idLekara;
             this.imeLekara = imeLekara;
             this.nazivSpecijalizacije = nazivSpecijalizacije;
             this.idSpecijalizacije = idSpecijalizacije;

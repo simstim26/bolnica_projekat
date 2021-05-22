@@ -1,5 +1,6 @@
 ﻿using Bolnica_aplikacija.Model;
 using Bolnica_aplikacija.Servis;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,8 +16,10 @@ namespace Bolnica_aplikacija.Kontroler
             return OcenaBolniceServis.getInstance().ucitajSve();
         }
 
-        public static void dodajOcenu(OcenaBolnice ocena)
+        public static void dodajOcenu(OcenaBolniceDTO ocenaDTO)
         {
+            Pacijent pacijent = new Pacijent(ocenaDTO.pacijent.id);
+            OcenaBolnice ocena = new OcenaBolnice(ocenaDTO.idOcene, ocenaDTO.ocena, ocenaDTO.komentar, pacijent);
             OcenaBolniceServis.getInstance().dodajOcenu(ocena);
         }
 

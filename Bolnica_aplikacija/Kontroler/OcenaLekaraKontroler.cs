@@ -15,8 +15,9 @@ namespace Bolnica_aplikacija.Kontroler
             return OcenaLekaraServis.getInstance().ucitajSve();
         }
 
-        public static void dodajOcenu(OcenaLekara ocena)
+        public static void dodajOcenu(OcenaLekaraDTO ocenaDTO)
         {
+            OcenaLekara ocena = new OcenaLekara(ocenaDTO.idOcene, ocenaDTO.imeLekara, ocenaDTO.ocena, ocenaDTO.komentar);
             OcenaLekaraServis.getInstance().dodajOcenu(ocena);
         }
     }
