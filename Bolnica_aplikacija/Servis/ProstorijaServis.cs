@@ -32,50 +32,16 @@ namespace Bolnica_aplikacija.Servis
 
         public String nadjiBrojISprat(String idProstorije)
         {
-            Prostorija prostorija = nadjiProstorijuPoId(idProstorije);
-            return prostorija.broj + " " + prostorija.sprat;
-        }
-
-        public List<Prostorija> pronadjiSlobodneBolnickeSobe()
-        {
-            List<Prostorija> povratnaVrednost = new List<Prostorija>();
-
-            foreach(Prostorija prostorija in pronadjiBolnickeSobe())
+            String povratnaVrednost = "";
+            foreach (Prostorija prostorija in prostorijaRepozitorijum.ucitajSve())
             {
-                if (proveriBrojKreveta(prostorija) > 0)
-                    povratnaVrednost.Add(prostorija);
-            }
-
-            return povratnaVrednost;
-        }
-
-        private int proveriBrojKreveta(Prostorija prostorija)
-        {
-            if (prostorija.Stavka == null || prostorija.Stavka.Count == 0)
-                return 0;
-
-            foreach(Stavka stavka in prostorija.Stavka)
-            {
-                if (stavka.naziv.ToLower().Equals("krevet"))
+                if (idProstorije.Equals(prostorija.id))
                 {
-                    return stavka.kolicina - prostorija.brojZauzetihKreveta;
+                    povratnaVrednost = prostorija.broj + " " + prostorija.sprat;
+                    break;
                 }
             }
 
-            return 0;
-        }
-
-        public List<Prostorija> pronadjiBolnickeSobe()
-        {
-            List<Prostorija> povratnaVrednost = new List<Prostorija>();
-
-            foreach(Prostorija prostorija in ucitajNeobrisane())
-            {
-                if(prostorija.dostupnost && prostorija.tipProstorije == TipProstorije.BOLNICKA_SOBA)
-                {
-                    povratnaVrednost.Add(prostorija);
-                }
-            }
             return povratnaVrednost;
         }
 
@@ -210,6 +176,9 @@ namespace Bolnica_aplikacija.Servis
 
         }
 
+<<<<<<< Updated upstream
+        public void NapraviProstoriju(Prostorija prostorija)
+=======
         public void azurirajBrojZauzetihKreveta(string id)
         {
             List<Prostorija> prostorije = ucitajNeobrisane();
@@ -224,86 +193,66 @@ namespace Bolnica_aplikacija.Servis
             upisi(prostorije);
         }
 
-        public void NapraviProstoriju(Prostorija prostorija)
+        public bool ProveriProstoriju(ProstorijaDTO prostorija)
+>>>>>>> Stashed changes
         {
-            var prostorije = ProstorijaKontroler.ucitajSve(); //.GetInstance().ucitajSve();
-                                                              // Prostorija prostorija = new Prostorija();
-
-            Bolnica_aplikacija.UpravnikProzor upravnikProzor = Bolnica_aplikacija.UpravnikProzor.getInstance();
-
             bool pronadjenBroj = false;
             bool pronadjenSprat = false;
-            bool istiBroj = false;
 
-            String pat = @"^[0-9]+$";
-            Regex r = new Regex(pat);
-            Match m = r.Match(upravnikProzor.unosBrojaProstorije.Text.Replace(" ", ""));
-            Match m1 = r.Match(upravnikProzor.unosSprata.Text.Replace(" ", ""));
-
-            /*if (prostorija.broj == upravnikProzor.txtBrojProstorije.Text && prostorija.sprat.ToString() == upravnikProzor.txtSpratProstorije.Text)
-            {
-                istiBroj = true;
-            }*/
-
-            //provera da li broj prostorije vec postoji
-            foreach (Prostorija p in prostorije)
-            {
-                if (p.broj == upravnikProzor.unosBrojaProstorije.Text)
-                {
-                    pronadjenBroj = true;
-                    break;
-                }
-            }
-
-            foreach (Prostorija p in prostorije)
-            {
-                if (p.sprat == Int32.Parse(upravnikProzor.unosSprata.Text))
-                {
-                    pronadjenSprat = true;
-                    break;
-                }
-            }
+            pronadjenBroj = proveriBrojProstorije(prostorija.broj);
+            pronadjenSprat = proveriSpratProstorije(prostorija.sprat);
 
             if (pronadjenBroj && pronadjenSprat)// && !istiBroj)
             {
-                upravnikProzor.lblBrojPostojiDodaj.Visibility = Visibility.Visible;
-            }
-            else if (String.IsNullOrEmpty(upravnikProzor.unosBrojaProstorije.Text) || String.IsNullOrEmpty(upravnikProzor.unosSprata.Text) || upravnikProzor.cbTipProstorije.SelectedIndex == -1)
-            {
-                upravnikProzor.lblNijePopunjenoDodaj.Visibility = Visibility.Visible;
-            }
-            else if (!m.Success || !m1.Success)
-            {
-                upravnikProzor.lblNijePopunjenoIspravnoDodaj.Visibility = Visibility.Visible;
+                return false;
             }
             else
             {
-                Console.WriteLine(prostorije.Count);
-                prostorija.id = (prostorije.Count + 1).ToString();
-                prostorija.broj = upravnikProzor.unosBrojaProstorije.Text;
-                prostorija.sprat = Int32.Parse(upravnikProzor.unosSprata.Text);
-                prostorija.logickiObrisana = false;
-                prostorija.dostupnost = true;
-
-                if (upravnikProzor.cbTipProstorije.SelectedIndex == 0)
-                {
-                    prostorija.tipProstorije = TipProstorije.BOLNICKA_SOBA;
-                }
-                else if (upravnikProzor.cbTipProstorije.SelectedIndex == 1)
-                {
-                    prostorija.tipProstorije = TipProstorije.OPERACIONA_SALA;
-                }
-                else if (upravnikProzor.cbTipProstorije.SelectedIndex == 2)
-                {
-                    prostorija.tipProstorije = TipProstorije.SOBA_ZA_PREGLED;
-                }
-
-                prostorije.Add(prostorija);
-                prostorijaRepozitorijum.upisi(prostorije);
-                upravnikProzor.gridDodajProstoriju.Visibility = Visibility.Hidden;
-                upravnikProzor.gridProstorija.Visibility = Visibility.Visible;
-
+                napraviProstoriju(prostorija);
+                return true;
             }
+        }
+
+        private bool proveriBrojProstorije(String brojProstorije)
+        {
+            var prostorije = ProstorijaKontroler.ucitajSve();
+            foreach (Prostorija p in prostorije)
+            {
+                if (p.broj == brojProstorije)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private bool proveriSpratProstorije(int spratProstorije)
+        {
+            var prostorije = ProstorijaKontroler.ucitajSve();
+            foreach (Prostorija p in prostorije)
+            {
+                if (p.sprat == spratProstorije)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private void napraviProstoriju(ProstorijaDTO prostorijaDTO)
+        {
+            var prostorije = prostorijaRepozitorijum.ucitajSve();
+            Prostorija prostorija = new Prostorija();
+
+            prostorija.id = (prostorije.Count + 1).ToString();
+            prostorija.broj = prostorijaDTO.broj;
+            prostorija.sprat = prostorijaDTO.sprat;
+            prostorija.logickiObrisana = false;
+            prostorija.dostupnost = true;
+            prostorija.tipProstorije = prostorijaDTO.tipProstorije;
+           
+            prostorije.Add(prostorija);
+            prostorijaRepozitorijum.upisi(prostorije);
         }
 
         public void ObrisiProstoriju(String idProstorija)
@@ -468,19 +417,6 @@ namespace Bolnica_aplikacija.Servis
             }
             kopirajProstorijuIUpisi(prostorijaIz);
         }   
-
-        /*private static Stavka NewMethod(string stavkaId, Prostorija prostorijaIz, Stavka stavkaIz)
-        {
-            foreach (Stavka stavka in prostorijaIz.Stavka)
-            {
-                if (stavka.id == stavkaId)
-                {
-                    stavkaIz = stavka;
-                }
-            }
-
-            return stavkaIz;
-        }*/
 
         public void kopirajStavke(Prostorija prostorijaIzKojeSeKopira)
         {

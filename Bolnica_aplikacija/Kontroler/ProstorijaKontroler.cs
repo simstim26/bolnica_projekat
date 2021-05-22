@@ -23,12 +23,10 @@ namespace Bolnica_aplikacija.Kontroler
             return ProstorijaServis.getInstance().pronadjiSlobodneBolnickeSobe();
         }
 
-        public static List<Prostorija> pronadjiSlobodneBolnickeSobe()
-        {
-            return prostorijaServis.pronadjiSlobodneBolnickeSobe();
-        }
+<<<<<<< Updated upstream
+=======
 
-
+>>>>>>> Stashed changes
         public static List<Prostorija> ucitajNeobrisane()
         {
             return ProstorijaServis.getInstance().ucitajNeobrisane();
@@ -39,9 +37,9 @@ namespace Bolnica_aplikacija.Kontroler
             ProstorijaServis.getInstance().upisi(sveProstorije);
         }
 
-        public static void NapraviProstoriju(Prostorija prostorija)
+        public static bool NapraviProstoriju(ProstorijaDTO prostorija)
         {
-            ProstorijaServis.getInstance().NapraviProstoriju(prostorija);
+            return ProstorijaServis.getInstance().ProveriProstoriju(prostorija);
         }
 
         public static void AzurirajProstoriju(Prostorija prostorija)
@@ -95,11 +93,6 @@ namespace Bolnica_aplikacija.Kontroler
         public static void azurirajBrojZauzetihKreveta(string id)
         {
             ProstorijaServis.getInstance().azurirajBrojZauzetihKreveta(id);
-        }
-
-        public static void azurirajBrojZauzetihKreveta(string id)
-        {
-            prostorijaServis.azurirajBrojZauzetihKreveta(id);
         }
     }
 }
