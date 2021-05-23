@@ -534,6 +534,15 @@
   <ItemGroup>
     <Resource Include="View\UpravnikStudent\hel.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\SekretarStudent\dodajLekara.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\SekretarStudent\izmeniLekara.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\SekretarStudent\izbrisiLekara.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets" Condition="Exists('packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
