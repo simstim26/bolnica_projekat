@@ -413,7 +413,6 @@ namespace Bolnica_aplikacija.Servis
             var prostorijaIz = nadjiProstorijuPoId(prebacivanje.idProstorijeIzKojeSePrebacuje);
             kopirajStavke(prostorijaU);
             kopirajProstorijuIUpisi(prostorijaIz);
-            UpravnikProzor.getInstance().dataGridInventarProstorije.ItemsSource = prostorijaIz.Stavka;
             return;
         }
 
@@ -439,7 +438,6 @@ namespace Bolnica_aplikacija.Servis
             prostorijaU.Stavka.Add(stavka);
             kopirajStavke(prostorijaU);
             kopirajProstorijuIUpisi(prostorijaIz);
-            UpravnikProzor.getInstance().dataGridInventarProstorije.ItemsSource = prostorijaIz.Stavka;
             return stavka;
         }
 
