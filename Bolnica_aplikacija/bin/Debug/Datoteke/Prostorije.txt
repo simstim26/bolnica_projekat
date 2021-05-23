@@ -75,6 +75,17 @@
         "jeStaticka": true,
         "jeLogickiObrisana": false,
         "jePotrosnaRoba": false
+      },
+      {
+        "id": "9",
+        "naziv": "stat",
+        "kolicina": 1,
+        "proizvodjac": "saf",
+        "idProstorije": null,
+        "idBolnice": "1",
+        "jeStaticka": true,
+        "jeLogickiObrisana": false,
+        "jePotrosnaRoba": false
       }
     ]
   },

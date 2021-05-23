@@ -321,7 +321,7 @@ namespace Bolnica_aplikacija.Servis
         private void premestiStatickuStavku(ProstorijaPrebacivanjeDTO prebacivanje)
         {
             var prostorijaIz = nadjiProstorijuPoId(prebacivanje.idProstorijeIzKojeSePrebacuje);
-            if (ZakaziPremestanje(prebacivanje))
+            if (ZakaziPremestanjeU(prebacivanje))
             {
                 kopirajProstorijuIUpisi(prostorijaIz);
                 return;
