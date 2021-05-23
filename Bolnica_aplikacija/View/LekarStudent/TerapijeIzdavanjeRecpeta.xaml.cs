@@ -1,4 +1,5 @@
 ﻿using Bolnica_aplikacija.Kontroler;
+using Bolnica_aplikacija.PomocneKlase;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -24,24 +25,34 @@ namespace Bolnica_aplikacija.LekarStudent
     {
         private static Grid gridLekovi;
         public static bool aktivan;
-        public TerapijeIzdavanjeRecpeta()
+        private static FrameworkElement fm = new FrameworkElement();
+        public TerapijeIzdavanjeRecpeta(BolestTerapija bolestTerapija)
         {
             InitializeComponent();
-            LekarProzor.getGlavnaLabela().Content = "Izdavanje recepta";
-            lblRDatumR.Content = PacijentKontroler.getPacijent().datumRodjenja;
-            lblRImePrezime.Content = PacijentKontroler.getPacijent().ime + " " + PacijentKontroler.getPacijent().prezime;
-            lblRJmbg.Content = PacijentKontroler.getPacijent().jmbg;
+            this.DataContext = bolestTerapija;
+            fm.DataContext = this.DataContext;
 
-            txtDijagnoza.Text = PacijentKontroler.getBolestTerapija().nazivBolesti;
-            txtKol.Text = PacijentKontroler.getBolestTerapija().kolicina;
-            txtNacinUpotrebe.Text = TerapijaKontroler.nadjiTerapijuPoId(PacijentKontroler.getBolestTerapija().idTerapije).nacinUpotrebe;
-            txtNazivLeka.Text = PacijentKontroler.getBolestTerapija().nazivTerapije;
-            txtTrajanje.Text = TerapijaKontroler.nadjiTerapijuPoId(PacijentKontroler.getBolestTerapija().idTerapije).trajanje.ToString();
+            LekarProzor.getGlavnaLabela().Content = "Izdavanje recepta";
+            Pacijent pacijent = PacijentKontroler.nadjiPacijenta(bolestTerapija.idPacijenta);
+            lblRDatumR.Content = pacijent.datumRodjenja;
+            lblRImePrezime.Content = pacijent.ime + " " + pacijent.prezime;
+            lblRJmbg.Content = pacijent.jmbg;
+
+            txtDijagnoza.Text = bolestTerapija.nazivBolesti;
+            txtKol.Text = bolestTerapija.kolicina;
+            txtNacinUpotrebe.Text = TerapijaKontroler.nadjiTerapijuPoId(bolestTerapija.idTerapije).nacinUpotrebe;
+            txtNazivLeka.Text = bolestTerapija.nazivTerapije;
+            txtTrajanje.Text = TerapijaKontroler.nadjiTerapijuPoId(bolestTerapija.idTerapije).trajanje.ToString();
             txtDatum.Text = DateTime.Now.ToString("dd.MM.yyyy.");
-            dataGridLekovi.ItemsSource = LekKontroler.ucitajSveSemTrenutnogNaTerapiji(PacijentKontroler.getBolestTerapija().idLeka);
+            dataGridLekovi.ItemsSource = LekKontroler.ucitajSveSemTrenutnogNaTerapiji(bolestTerapija.idLeka);
             gridLekovi = gridDodavanjeLeka;
             aktivan = true;
             UvidUTerapije.aktivan = false;
+        }
+
+        public static FrameworkElement getFM()
+        {
+            return fm;
         }
 
         public static Grid getGridLekovi()
@@ -59,19 +70,18 @@ namespace Bolnica_aplikacija.LekarStudent
         {
             if(dataGridLekovi.SelectedIndex != -1)
             {
-                Lek lek = (Lek)dataGridLekovi.SelectedItem;
-                PacijentKontroler.getBolestTerapija().idLeka = lek.id;
-                PacijentKontroler.getBolestTerapija().idTermina = null;
-                PacijentKontroler.getBolestTerapija().izvestaj = null;
-                PacijentKontroler.getBolestTerapija().kolicina = lek.kolicina.ToString();
-                PacijentKontroler.getBolestTerapija().nazivTerapije = lek.naziv;
-                txtKol.Text = PacijentKontroler.getBolestTerapija().kolicina;
-                txtNacinUpotrebe.Text = lek.getNacinUpotrebeString();
-                txtNazivLeka.Text = PacijentKontroler.getBolestTerapija().nazivTerapije;
-                txtTrajanje.Text = TerapijaKontroler.nadjiTerapijuPoId(PacijentKontroler.getBolestTerapija().idTerapije).trajanje.ToString();
-                gridDodavanjeLeka.Visibility = Visibility.Hidden;
-                LekarProzor.getGlavnaLabela().Content = "Izdavanje recepta";
-
+                if(PacijentKontroler.proveriAlergijuNaLekZaPacijenta(((BolestTerapija)fm.DataContext).idPacijenta, ((Lek)dataGridLekovi.SelectedItem).id))
+                {
+                    System.Windows.Forms.DialogResult dialogResult = System.Windows.Forms.MessageBox.Show("Pacijent je alergičan na dati lek.\n Da li ste sigurni da želite da izdate lek?", "Upozorenje", System.Windows.Forms.MessageBoxButtons.YesNo, System.Windows.Forms.MessageBoxIcon.Warning);
+                    if(dialogResult == System.Windows.Forms.DialogResult.Yes)
+                    {
+                        promeniTerapiju();
+                    }
+                }
+                else
+                {
+                    promeniTerapiju();
+                }
             }
             else
             {
@@ -79,21 +89,37 @@ namespace Bolnica_aplikacija.LekarStudent
             }
         }
 
+        private void promeniTerapiju()
+        {
+            Lek lek = (Lek)dataGridLekovi.SelectedItem;
+            ((BolestTerapija)fm.DataContext).idLeka = lek.id;
+            ((BolestTerapija)fm.DataContext).idTermina = null;
+            ((BolestTerapija)fm.DataContext).izvestaj = null;
+            ((BolestTerapija)fm.DataContext).kolicina = lek.kolicina.ToString();
+            ((BolestTerapija)fm.DataContext).nazivTerapije = lek.naziv;
+            txtKol.Text = ((BolestTerapija)fm.DataContext).kolicina;
+            txtNacinUpotrebe.Text = lek.getNacinUpotrebeString();
+            txtNazivLeka.Text = ((BolestTerapija)fm.DataContext).nazivTerapije;
+            txtTrajanje.Text = TerapijaKontroler.nadjiTerapijuPoId(((BolestTerapija)fm.DataContext).idTerapije).trajanje.ToString();
+            gridDodavanjeLeka.Visibility = Visibility.Hidden;
+            LekarProzor.getGlavnaLabela().Content = "Izdavanje recepta";
+        }
+
         private void btnPotvrdiRecept_Click(object sender, RoutedEventArgs e)
         {
-            if(PacijentKontroler.getBolestTerapija().idTermina == null)
+            if(((BolestTerapija)fm.DataContext).idTermina == null)
             {
-                TerapijaKontroler.dodajTerapiju(new Terapija("", PacijentKontroler.getBolestTerapija().idLeka, PacijentKontroler.getPacijent().id,
-                    PacijentKontroler.getBolestTerapija().idBolesti, null, DateTime.Now, Convert.ToInt32(txtTrajanje.Text), txtNacinUpotrebe.Text));
+                TerapijaKontroler.dodajTerapiju(new TerapijaDTO("", ((BolestTerapija)fm.DataContext).idLeka, ((BolestTerapija)fm.DataContext).idPacijenta,
+                    ((BolestTerapija)fm.DataContext).idBolesti, null, DateTime.Now, Convert.ToInt32(txtTrajanje.Text), txtNacinUpotrebe.Text));
             }
             else
             {
-                Terapija terapija = TerapijaKontroler.nadjiTerapijuPoId(PacijentKontroler.getBolestTerapija().idTerapije);
-                TerapijaKontroler.azurirajTerapiju(new Terapija(terapija.id, PacijentKontroler.getBolestTerapija().idLeka, terapija.idPacijenta,
+                Terapija terapija = TerapijaKontroler.nadjiTerapijuPoId(((BolestTerapija)fm.DataContext).idTerapije);
+                TerapijaKontroler.azurirajTerapiju(new TerapijaDTO(terapija.id, ((BolestTerapija)fm.DataContext).idLeka, terapija.idPacijenta,
                    terapija.idBolesti, terapija.idTermina, DateTime.Now, Convert.ToInt32(txtTrajanje.Text), txtNacinUpotrebe.Text));
             }
 
-            Content = new UvidUTerapije();
+            Content = new UvidUTerapije(((BolestTerapija)fm.DataContext).idPacijenta);
         }
 
         private void btnPonistiOdaberLeka_Click(object sender, RoutedEventArgs e)
@@ -106,7 +132,7 @@ namespace Bolnica_aplikacija.LekarStudent
         private void btnPonistiRecept_Click(object sender, RoutedEventArgs e)
         {
             aktivan = false;
-            Content = new UvidUTerapije();
+            Content = new UvidUTerapije(((BolestTerapija)fm.DataContext).idPacijenta);
         }
     }
 }

@@ -124,7 +124,7 @@ namespace Bolnica_aplikacija
 
                 pacijent = (Pacijent)TabelaPacijenti.SelectedItem;
                 PacijentKontroler.nadjiPacijenta(pacijent.id);
-                dataGridAlergije.ItemsSource = PacijentKontroler.procitajAlergije();
+                //dataGridAlergije.ItemsSource = PacijentKontroler.procitajAlergije();
 
                 buttonOdustaniDodavanje.Visibility = Visibility.Visible;
                 buttonPotvrdiDodavanje.Visibility = Visibility.Visible;
@@ -207,7 +207,7 @@ namespace Bolnica_aplikacija
                 lozinka.Password = pacijent.lozinka;
 
                 PacijentKontroler.nadjiPacijenta(pacijent.id);
-                alergije = PacijentKontroler.procitajAlergije();
+               // alergije = PacijentKontroler.procitajAlergije();
                 dataGridAlergije.ItemsSource = alergije;
 
                 if (pacijent.jeGost)
@@ -607,7 +607,7 @@ namespace Bolnica_aplikacija
             idPacijenta = pacijent.id;
             imePrezimePacijenta = pacijent.ime + " " + pacijent.prezime;
             PacijentKontroler.nadjiPacijenta(pacijent.id);
-            TabelaTerminiPacijenta.ItemsSource = PacijentKontroler.prikazPacijentovihTermina();
+            //TabelaTerminiPacijenta.ItemsSource = PacijentKontroler.prikazPacijentovihTermina();
 
             lblUpozorenje.Visibility = Visibility.Hidden;
 
@@ -805,7 +805,7 @@ namespace Bolnica_aplikacija
                 izabraniTermin = (PacijentTermin)TabelaSlobodnihTermina.SelectedItem;
                 PacijentKontroler.nadjiPacijenta(idPacijenta);
                 String idSelektovanog = izabraniTermin.id;
-                PacijentKontroler.zakaziTerminPacijentu(idSelektovanog);
+               // PacijentKontroler.zakaziTerminPacijentu(idSelektovanog);
                 
                 NotifikacijaKontroler.napraviNotifikaciju("Zakazivanje termina (Pacijent)", "Zakazan je teremin (Pacijent)", idPacijenta, "pacijent");
                 NotifikacijaKontroler.napraviNotifikaciju("Zakazivanje termina (Lekar)", "Zakazan je teremin (Lekar)", TerminKontroler.nadjiIdLekaraZaTermin(izabraniTermin.id), "lekar");
@@ -818,7 +818,7 @@ namespace Bolnica_aplikacija
             {
                 izabraniTermin = (PacijentTermin)TabelaTerminiPacijenta.SelectedItem;
                 PacijentTermin noviTermin = (PacijentTermin)TabelaSlobodnihTermina.SelectedItem;
-                TerminKontroler.sacuvajTermin(izabraniTermin.id);
+                //TerminKontroler.sacuvajTermin(izabraniTermin.id);
                 PacijentKontroler.azurirajTerminPacijentu(izabraniTermin.id, noviTermin.id);
                 
                 NotifikacijaKontroler.napraviNotifikaciju("Izmena termina (Pacijent)", "Izmenjen je teremin (Pacijent)", idPacijenta, "pacijent");
@@ -1215,7 +1215,7 @@ namespace Bolnica_aplikacija
             {
                 PacijentKontroler.nadjiPacijenta(pacijent.id);
                 String idSelektovanog = izabraniTermin.id;
-                PacijentKontroler.zakaziTerminPacijentu(idSelektovanog);
+               // PacijentKontroler.zakaziTerminPacijentu(idSelektovanog);
 
                 NotifikacijaKontroler.napraviNotifikaciju("Zakazivanje hitnog slucaja (Pacijent)", "Hitan Slucaj (Pacijent)", pacijent.id, "pacijent");
                 NotifikacijaKontroler.napraviNotifikaciju("Zakazivanje hitnog slucaja (Lekar)", "Hitaj slucaj (Lekar)", TerminKontroler.nadjiIdLekaraZaTermin(izabraniTermin.id), "lekar");
@@ -1231,7 +1231,7 @@ namespace Bolnica_aplikacija
                 PacijentKontroler.pomeriTerminNaPrviSlobodan(idPacijentaZaPomeranje, termin.idTermina, tipHitanSlucaj, tipSpecijalizacije);
                 PacijentKontroler.nadjiPacijenta(pacijent.id);
                 String idSelektovanog = izabraniTermin.id;
-                PacijentKontroler.zakaziTerminPacijentu(idSelektovanog);
+                //PacijentKontroler.zakaziTerminPacijentu(idSelektovanog);
 
                 NotifikacijaKontroler.napraviNotifikaciju("Zakazivanje hitnog slucaja uz pomeranje (Pacijent)", "Hitan Slucaj (Pacijent)", pacijent.id, "pacijent");
                 NotifikacijaKontroler.napraviNotifikaciju("Zakazivanje hitnog slucaja uz pomeranje (Lekar)", "Hitaj slucaj (Lekar)", TerminKontroler.nadjiIdLekaraZaTermin(izabraniTermin.id), "lekar");

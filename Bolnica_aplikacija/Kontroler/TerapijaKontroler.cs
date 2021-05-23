@@ -1,4 +1,5 @@
-﻿using Bolnica_aplikacija.Servis;
+﻿using Bolnica_aplikacija.PomocneKlase;
+using Bolnica_aplikacija.Servis;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -10,9 +11,9 @@ namespace Bolnica_aplikacija.Kontroler
 {
     class TerapijaKontroler
     {
-        public static void azurirajTerapiju(Terapija terapijaZaAzuriranje)
+        public static void azurirajTerapiju(TerapijaDTO terapijaZaAzuriranje)
         {
-            TerapijaServis.getInstance().azurirajTerapiju(terapijaZaAzuriranje);
+            TerapijaServis.getInstance().azurirajTerapiju(new Terapija(terapijaZaAzuriranje));
         }
 
         public static Terapija nadjiTerapijuPoId(String idTerapije)
@@ -20,9 +21,9 @@ namespace Bolnica_aplikacija.Kontroler
             return TerapijaServis.getInstance().nadjiTerapijuPoId(idTerapije);
         }
 
-        public static String dodajTerapiju(Terapija terapija)
+        public static String dodajTerapiju(TerapijaDTO terapija)
         {
-            return TerapijaServis.getInstance().dodajTerapiju(terapija);
+            return TerapijaServis.getInstance().dodajTerapiju(new Terapija(terapija));
         }
     }
 }

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -71,6 +72,28 @@ namespace Bolnica_aplikacija.PomocneKlase
             else
                 return true;
             
+        }
+
+        public static void rbtnLekarCekiran(String tekst, int indikator)
+        {
+            if (!Regex.IsMatch(tekst, @"^[\p{L}\p{M}' \.\-]+$"))
+            {
+                indikator = -2;
+            }
+            else
+                indikator = 0;
+        }
+
+        public static void rbtnTerminCekiran(String tekst, int indikator)
+        {
+            var formati = new[] { "dd/MM/yyyy", "d/M/yyyy", "dd.MM.yyyy", "dd.MM.yyyy.", "d.M.yyyy.", "d.M.yyyy" };
+            DateTime dt;
+            if (DateTime.TryParseExact(tekst, formati, null, System.Globalization.DateTimeStyles.None, out dt))
+            {
+                indikator = 1;
+            }
+            else
+                indikator = -3;
         }
 
     }

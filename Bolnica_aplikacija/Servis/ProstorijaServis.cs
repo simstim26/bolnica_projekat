@@ -32,16 +32,50 @@ namespace Bolnica_aplikacija.Servis
 
         public String nadjiBrojISprat(String idProstorije)
         {
-            String povratnaVrednost = "";
-            foreach (Prostorija prostorija in prostorijaRepozitorijum.ucitajSve())
+            Prostorija prostorija = nadjiProstorijuPoId(idProstorije);
+            return prostorija.broj + " " + prostorija.sprat;
+        }
+
+        public List<Prostorija> pronadjiSlobodneBolnickeSobe()
+        {
+            List<Prostorija> povratnaVrednost = new List<Prostorija>();
+
+            foreach(Prostorija prostorija in pronadjiBolnickeSobe())
             {
-                if (idProstorije.Equals(prostorija.id))
+                if (proveriBrojKreveta(prostorija) > 0)
+                    povratnaVrednost.Add(prostorija);
+            }
+
+            return povratnaVrednost;
+        }
+
+        private int proveriBrojKreveta(Prostorija prostorija)
+        {
+            if (prostorija.Stavka == null || prostorija.Stavka.Count == 0)
+                return 0;
+
+            foreach(Stavka stavka in prostorija.Stavka)
+            {
+                if (stavka.naziv.ToLower().Equals("krevet"))
                 {
-                    povratnaVrednost = prostorija.broj + " " + prostorija.sprat;
-                    break;
+                    return stavka.kolicina - prostorija.brojZauzetihKreveta;
                 }
             }
 
+            return 0;
+        }
+
+        public List<Prostorija> pronadjiBolnickeSobe()
+        {
+            List<Prostorija> povratnaVrednost = new List<Prostorija>();
+
+            foreach(Prostorija prostorija in ucitajNeobrisane())
+            {
+                if(prostorija.dostupnost && prostorija.tipProstorije == TipProstorije.BOLNICKA_SOBA)
+                {
+                    povratnaVrednost.Add(prostorija);
+                }
+            }
             return povratnaVrednost;
         }
 
@@ -174,6 +208,20 @@ namespace Bolnica_aplikacija.Servis
                 upravnikProzor.dataGridProstorija.ItemsSource = prostorijaRepozitorijum.ucitajNeobrisane();
             }
 
+        }
+
+        public void azurirajBrojZauzetihKreveta(string id)
+        {
+            List<Prostorija> prostorije = ucitajNeobrisane();
+            foreach(Prostorija prostorija in prostorije)
+            {
+                if (id.Equals(prostorija.id))
+                {
+                    ++prostorija.brojZauzetihKreveta;
+                    break;
+                }
+            }
+            upisi(prostorije);
         }
 
         public void NapraviProstoriju(Prostorija prostorija)

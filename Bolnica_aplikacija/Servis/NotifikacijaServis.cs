@@ -104,24 +104,21 @@ namespace Bolnica_aplikacija.Servis
 
         public void procitajNotifikaciju(String idNotifikacije, String idKorisnika)
         {
-            Notifikacija procitanaNotifikacija = new Notifikacija();
 
             foreach(Notifikacija notifikacija in prikazPacijentovihNotifikacija(idKorisnika))
             {
                 if(notifikacija.id.Equals(idNotifikacije))
                 {
-                    procitanaNotifikacija.id = idNotifikacije;
-                    procitanaNotifikacija.idKorisnika = notifikacija.idKorisnika;
-                    procitanaNotifikacija.jeProcitana = true;
-                    procitanaNotifikacija.nazivNotifikacije = notifikacija.nazivNotifikacije;
-                    procitanaNotifikacija.porukaNotifikacije = notifikacija.porukaNotifikacije;
-
+                    oznaciKaoProcitano(notifikacija);
+                    azurirajNotifikaciju(notifikacija);
                     break;
                 }
             }
+        }
 
-            azurirajNotifikaciju(procitanaNotifikacija);
-
+        private void oznaciKaoProcitano(Notifikacija notifikacija)
+        {
+            notifikacija.jeProcitana = true;
         }
 
         public void napraviNotifikaciju(String nazivNotifikacije, String porukaNotifikacije, String idKorisnika, String tipKorisnika)
@@ -132,6 +129,7 @@ namespace Bolnica_aplikacija.Servis
             if (tipKorisnika.Equals("pacijent"))
             {
                 dodajNotifikacijuPacijentu(idKorisnika, novaNotifikacija);
+                notifikacijaZaPacijenta(pacijenti, idKorisnika, novaNotifikacija);             
             }
             else 
             {
@@ -142,16 +140,25 @@ namespace Bolnica_aplikacija.Servis
         private void dodajNotifikacijuPacijentu(String idKorisnika, Notifikacija notifikacija)
         {
             foreach (Pacijent pacijent in pacijentRepozitorijum.ucitajSve())
+
+                notifikacijaZaLekara(lekari, idKorisnika, novaNotifikacija);
+            }
+        }
+
+        private void notifikacijaZaPacijenta(List<Pacijent> pacijenti, String idKorisnika, Notifikacija novaNotifikacija)
+        {
+            foreach (Pacijent pacijent in pacijenti)
             {
                 if (pacijent.id.Equals(idKorisnika))
                 {
+                    pacijent.Notifikacija.Add(novaNotifikacija);
+                    notifikacijaRepozitorijum.dodajNotifikaciju(novaNotifikacija);
 
-                    pacijent.Notifikacija.Add(notifikacija);
-                    notifikacijaRepozitorijum.dodajNotifikaciju(notifikacija);
 
                 }
             }
         }
+
 
         private void dodajNotifikacijuLekaru(String idKorisnika, Notifikacija notifikacija)
         {
@@ -161,6 +168,18 @@ namespace Bolnica_aplikacija.Servis
                 {
                     lekar.notifikacije.Add(notifikacija);
                     notifikacijaRepozitorijum.dodajNotifikaciju(notifikacija);
+				}
+			}
+		}
+
+        private void notifikacijaZaLekara(List<Lekar> lekari, String idKorisnika, Notifikacija novaNotifikacija)
+        {
+            foreach (Lekar lekar in lekari)
+            {
+                if (lekar.id.Equals(idKorisnika))
+                {
+                    lekar.notifikacije.Add(novaNotifikacija);
+                    notifikacijaRepozitorijum.dodajNotifikaciju(novaNotifikacija);
                 }
             }
 

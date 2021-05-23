@@ -113,15 +113,17 @@ namespace Bolnica_aplikacija.Servis
         public int getBrojUzastopnihIzmena(String idKorisnika)
         {
             var svaLogovanja = ucitajSve();
+            int povratnaVrednost = -1;
             foreach(Logovanje logovanje in svaLogovanja)
             {
                 if(logovanje.idKorisnika.Equals(idKorisnika))
                 {
-                    return logovanje.brojUzastopnihIzmena;
+                    povratnaVrednost = logovanje.brojUzastopnihIzmena;
+                    break;
                 }
             }
 
-            return -1;
+            return povratnaVrednost;
         }
 
         public DateTime getVremeIzmene(String idKorisnika)

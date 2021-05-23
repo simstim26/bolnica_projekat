@@ -23,21 +23,24 @@ namespace Bolnica_aplikacija.LekarStudent
     public partial class IstorijaBolesti : UserControl
     {
         public static bool aktivan;
-        public IstorijaBolesti()
+        private static FrameworkElement fm = new FrameworkElement();
+        public IstorijaBolesti(String idPacijenta)
         {
             InitializeComponent();
+            this.DataContext = idPacijenta;
+            fm.DataContext = this.DataContext;
             LekarProzor.getGlavnaLabela().Content = "Istorija bolesti";
             aktivan = true;
             PacijentInfo.aktivanPacijentInfo = false;
-            this.dataGridIstorijaBolesti.ItemsSource = PacijentKontroler.nadjiIstorijuBolestiZaPacijenta();
+            this.dataGridIstorijaBolesti.ItemsSource = PacijentKontroler.nadjiIstorijuBolestiZaPacijenta(idPacijenta);
         }
 
         private void btnIzmeni_Click(object sender, RoutedEventArgs e)
         {
             if (dataGridIstorijaBolesti.SelectedIndex != -1)
             {
-                PacijentKontroler.sacuvajBolestTerapiju((BolestTerapija)dataGridIstorijaBolesti.SelectedItem);
-                Content = new IzmenaBolesti();
+                //PacijentKontroler.sacuvajBolestTerapiju((BolestTerapija)dataGridIstorijaBolesti.SelectedItem);
+                Content = new IzmenaBolesti((BolestTerapija)dataGridIstorijaBolesti.SelectedItem);
                 aktivan = false;
             }
             else
