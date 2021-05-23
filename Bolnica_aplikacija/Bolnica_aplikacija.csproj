@@ -125,6 +125,7 @@
     <Compile Include="PomocneKlase\OcenaBolniceDTO.cs" />
     <Compile Include="PomocneKlase\OcenaLekaraDTO.cs" />
     <Compile Include="PomocneKlase\PacijentDTO.cs" />
+    <Compile Include="PomocneKlase\ProstorijaDTO.cs" />
     <Compile Include="PomocneKlase\ProstorijaPrebacivanjeDTO.cs" />
     <Compile Include="PomocneKlase\ProstorijaRenoviranje.cs" />
     <Compile Include="PomocneKlase\LekarSpecijalizacija.cs" />

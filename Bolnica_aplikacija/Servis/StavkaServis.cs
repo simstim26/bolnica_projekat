@@ -208,14 +208,18 @@ namespace Bolnica_aplikacija.Servis
         {
             Stavka stavka = null;
 
-            foreach (Stavka s in prostorija.Stavka)
+            if(prostorija.Stavka != null)
             {
-                if (s.id == stavkaId)
+                foreach (Stavka s in prostorija.Stavka)
                 {
-                    stavka = s;
-                    return stavka;
+                    if (s.id == stavkaId)
+                    {
+                        stavka = s;
+                        return stavka;
+                    }
                 }
             }
+            
 
             return stavka;
         }

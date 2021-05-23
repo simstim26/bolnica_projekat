@@ -35,7 +35,7 @@ namespace Bolnica_aplikacija.View.UpravnikStudent
         private void btnPotvrdi_Click(object sender, RoutedEventArgs e)
         {
             Prostorija prostorija = new Prostorija();
-            ProstorijaKontroler.NapraviProstoriju(prostorija);
+            //prostorijaKontroler.NapraviProstoriju(prostorija);
         }
 
         private void btnOtkazi_Click(object sender, RoutedEventArgs e)
