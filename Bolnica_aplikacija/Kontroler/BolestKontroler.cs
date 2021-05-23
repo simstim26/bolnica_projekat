@@ -1,4 +1,5 @@
-﻿using Bolnica_aplikacija.Servis;
+﻿using Bolnica_aplikacija.Model;
+using Bolnica_aplikacija.Servis;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +10,14 @@ namespace Bolnica_aplikacija.Kontroler
 {
     class BolestKontroler
     {
-        private static BolestServis bolestServis = new BolestServis();
         public static void azurirajTerapijuZaBolest(String idBolesti, String idTerapije)
         {
-            bolestServis.azurirajTerapijuZaBolest(idBolesti, idTerapije);
+            BolestServis.getInstance().azurirajTerapijuZaBolest(idBolesti, idTerapije);
+        }
+
+        public static Bolest nadjiBolestPoId(String idBolesti)
+        {
+            return BolestServis.getInstance().nadjiBolestPoId(idBolesti);
         }
 
     }

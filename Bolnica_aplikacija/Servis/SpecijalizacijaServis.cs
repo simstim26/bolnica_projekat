@@ -25,6 +25,9 @@ namespace Bolnica_aplikacija.Servis
 
         public String nadjiSpecijalizacijuPoId(String id)
         {
+            if (id == null)
+                return "";
+
             String povratnaVrednost = "";
 
             foreach(Specijalizacija specijalizacija in specijalizacijaRepozitorijum.ucitajSve())

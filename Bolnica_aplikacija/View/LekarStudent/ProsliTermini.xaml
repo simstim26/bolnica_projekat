@@ -5,8 +5,28 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Bolnica_aplikacija.View.LekarStudent"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
+              d:DesignHeight="750" d:DesignWidth="430">
+    <Grid Background="White">
+        <Image HorizontalAlignment="Left" Height="37" Margin="39,39,0,0" VerticalAlignment="Top" Width="38" Source="patient-icon-3.jpg"/>
+        <Label Content="JMBG:" HorizontalAlignment="Left" Margin="108,70,0,0" VerticalAlignment="Top"/>
+        <Label Content="Ime i prezime:" HorizontalAlignment="Left" Margin="108,99,0,0" VerticalAlignment="Top"/>
+        <Label Content="Datum rođenja:" HorizontalAlignment="Left" Margin="108,128,0,0" VerticalAlignment="Top"/>
+        <Label Content="Pol:" HorizontalAlignment="Left" Margin="108,157,0,0" VerticalAlignment="Top"/>
+        <Image HorizontalAlignment="Left" Height="63" Margin="25,194,0,0" VerticalAlignment="Top" Width="63" Source="doc.png" />
+        <Label x:Name="lblLekar" HorizontalAlignment="Left" Margin="93,213,0,0" VerticalAlignment="Top" Width="275" Height="30"/>
+        <Label x:Name="lblJmbg" HorizontalAlignment="Left" Margin="205,70,0,0" VerticalAlignment="Top" Width="163" Height="24"/>
+        <Label x:Name="lblImePrezime" HorizontalAlignment="Left" Margin="205,99,0,0" VerticalAlignment="Top" Width="163" Height="24"/>
+        <Label x:Name="lblDatumRodjenja" HorizontalAlignment="Left" Margin="205,128,0,0" VerticalAlignment="Top" Width="163" Height="24"/>
+        <Label x:Name="lblPol" HorizontalAlignment="Left" Margin="205,157,0,0" VerticalAlignment="Top" Width="163" Height="24"/>
+        <Label Content="Dijagnoza:" HorizontalAlignment="Left" Margin="39,297,0,0" VerticalAlignment="Top" Width="70"/>
+        <TextBox x:Name="txtDijagnoza" IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="161,297,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="207" RenderTransformOrigin="0.49,-0.113"/>
+        <Label Content="Prepisana terapija:" HorizontalAlignment="Left" Margin="39,338,0,0" VerticalAlignment="Top" Width="110"/>
+        <TextBox x:Name="txtTerapija" IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="161,339,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="207" RenderTransformOrigin="0.49,-0.113"/>
+        <Label Content="Izdat uput:" HorizontalAlignment="Left" Margin="39,380,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtUputLekar" IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="161,380,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="207" RenderTransformOrigin="0.49,-0.113"/>
+        <Label Content="Izveštaj sa pregleda:" HorizontalAlignment="Left" Margin="11,433,0,0" VerticalAlignment="Top" Width="124"/>
+        <TextBox x:Name="txtIzvestaj" HorizontalAlignment="Left" Height="288" Margin="0,462,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="430"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="1" Margin="0,462,0,0" Stroke="Black" VerticalAlignment="Top" Width="430"/>
+
     </Grid>
 </UserControl>

@@ -132,7 +132,7 @@
                             <DataGridTextColumn Header="Terapija" Binding="{Binding nazivTerapije}"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Button HorizontalAlignment="Left" Margin="330,72,0,0" VerticalAlignment="Top" Width="77" Height="49">
+                    <Button HorizontalAlignment="Left" Margin="330,72,0,0" VerticalAlignment="Top" Width="77" Height="49" Click="Button_Click">
                         <materialDesign:PackIcon Kind="InfoCircle" Height="33" Width="38"></materialDesign:PackIcon>
                     </Button>
                 </Grid>

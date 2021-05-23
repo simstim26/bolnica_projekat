@@ -226,5 +226,17 @@ namespace Bolnica_aplikacija
         {
             Content = new IzmenaBLecenja(((String[])fm.DataContext)[0]);
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if(dataGridProsliTermini.SelectedIndex != -1)
+            {
+                Content = new ProsliTermini(((PacijentTermin)dataGridProsliTermini.SelectedItem).id);
+            }
+            else
+            {
+                MessageBox.Show("Potrebno je izabrati termin!",  "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
     }
 }
