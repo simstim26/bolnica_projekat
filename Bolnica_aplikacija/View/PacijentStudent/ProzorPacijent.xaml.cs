@@ -73,6 +73,10 @@ namespace Bolnica_aplikacija.PacijentStudent
         {
             dataGridTermin.Loaded += SetMinWidths;
             dataGridTermin.Height = System.Windows.SystemParameters.PrimaryScreenHeight - 370;
+
+            //dataGridTerapije.Loaded += SetMinWidths;
+            //dataGridTerapije.Height = System.Windows.SystemParameters.PrimaryScreenHeight - 370;
+
         }
 
         private void CenterWindow()
@@ -94,12 +98,20 @@ namespace Bolnica_aplikacija.PacijentStudent
                 column.MinWidth = column.ActualWidth;
                 column.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
             }
+
+            foreach (var column in dataGridTerapije.Columns)
+            {
+                column.MinWidth = column.ActualWidth;
+                column.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
+            }
+
         }
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             double newHeight = e.NewSize.Height;
             dataGridTermin.Height = newHeight - 370;
+            dataGridTerapije.Height = newHeight - 370;
             double newWidth = e.NewSize.Width;
         }
 
@@ -301,6 +313,11 @@ namespace Bolnica_aplikacija.PacijentStudent
         private void btnPlacanje_Click(object sender, RoutedEventArgs e)
         {
             
+        }
+
+        private void btnPodsetnik_Click(object sender, RoutedEventArgs e)
+        {
+
         }
 
         private void proveraAnkete()

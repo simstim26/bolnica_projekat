@@ -61,7 +61,7 @@
                         <RowDefinition Name="pretraga" Height="Auto"/>
                         <RowDefinition Name="datagrid"  Height="Auto"/>
                         <RowDefinition Name="dugmad" Height="*"/>
-                        
+
                     </Grid.RowDefinitions>
 
                     <Grid Grid.Row="0">
@@ -69,7 +69,7 @@
                             <ColumnDefinition Width="12*"/>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
-                            
+
                         </Grid.ColumnDefinitions>
 
                         <TextBox x:Name="txtPretraga" HorizontalAlignment="Right"  Text="" VerticalAlignment="Top" Width="427" Grid.Column="1" FontSize="24" Margin="10,10,10,10"/>
@@ -105,7 +105,7 @@
                         <Button x:Name="btnOtkaziPregled" Margin="0,10,0,10" Content="Otkaži termin"  Width="201" Height="55" FontSize="22"  MinWidth="201" MinHeight="55"  Grid.Column="5" Click="btnOtkaziPregled_Click"/>
                         <Button x:Name="btnIzmeniTermin" Margin="0,10,0,10" Content="Pomeri termin"  Width="201" Height="55" FontSize="22" MinWidth="201" MinHeight="55"  Grid.Column="3" Click="btnIzmeniTermin_Click"/>
                         <Button x:Name="btnZakaziPregled" Margin="0,10,0,10" Content="Zakaži termin" Width="201" Height="55" FontSize="22" MinWidth="201" MinHeight="55"  Grid.Column="1" Click="btnZakaziPregled_Click_1"/>
-                        
+
                     </Grid>
 
                 </Grid>
@@ -115,7 +115,37 @@
                 <Label>TO DO: implementirati zdravstveni karton</Label>
             </TabItem>
             <TabItem Header="Aktivne terapije" FontSize="20">
-                <Label>TO DO: implementirati aktivne terapije</Label>
+                <Grid Margin="0,0,0,-6">
+                    <Label x:Name="lblDatum" Content="Današnji datum: " HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="28"/>
+                    <Label x:Name="label" Content="Vaše terapije za ovu sedmicu su prikazane ispod." HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top" FontSize="28"/>
+                    <DataGrid x:Name="dataGridTerapije" Margin="10,110,10,143" Height="661" IsReadOnly="True" SelectionMode="Single" AutoGenerateColumns="False" VerticalAlignment="Top" FontSize="18">
+
+                        <DataGrid.Columns>
+                            <DataGridTextColumn x:Name="kolonaNazivOboljenja" Header="Naziv oboljenja" Binding="{Binding nazivOboljenja}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Lek koji se primenjuje" x:Name="kolonaLek" Binding="{Binding lek}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Kratak opis terapije" x:Name="kolonaOpis" Binding="{Binding opis}"></DataGridTextColumn>
+                            
+                            <DataGridTemplateColumn Header="Opširnije informacije">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button >Info</Button>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <DataGridTemplateColumn Header="Postavi podsetnik">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Click="btnPodsetnik_Click">Podsetnik</Button>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            
+                        </DataGrid.Columns>
+                        
+                    </DataGrid>
+                    
+                </Grid>
             </TabItem>
             <TabItem Header="Obaveštenja" FontSize="20">
                 <Label>TO DO: implementirati spisak obavestenja i kreiranje personalnih obavestenja</Label>
@@ -148,6 +178,7 @@
 
             </StatusBar>
         </DockPanel>
+        <Grid HorizontalAlignment="Left" Height="100" Grid.RowSpan="2" VerticalAlignment="Top" Width="100"/>
 
     </Grid>
 </Window>
