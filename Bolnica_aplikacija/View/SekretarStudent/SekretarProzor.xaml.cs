@@ -607,7 +607,7 @@ namespace Bolnica_aplikacija
             idPacijenta = pacijent.id;
             imePrezimePacijenta = pacijent.ime + " " + pacijent.prezime;
             PacijentKontroler.nadjiPacijenta(pacijent.id);
-            //TabelaTerminiPacijenta.ItemsSource = PacijentKontroler.prikazPacijentovihTermina();
+            TabelaTerminiPacijenta.ItemsSource = PacijentKontroler.prikazPacijentovihTermina(idPacijenta);
 
             lblUpozorenje.Visibility = Visibility.Hidden;
 
@@ -803,9 +803,8 @@ namespace Bolnica_aplikacija
             if (tipAkcijeTermini == 0)
             {
                 izabraniTermin = (PacijentTermin)TabelaSlobodnihTermina.SelectedItem;
-                PacijentKontroler.nadjiPacijenta(idPacijenta);
                 String idSelektovanog = izabraniTermin.id;
-               // PacijentKontroler.zakaziTerminPacijentu(idSelektovanog);
+                PacijentKontroler.zakaziTerminPacijentu(idPacijenta, idSelektovanog);
                 
                 NotifikacijaKontroler.napraviNotifikaciju("Zakazivanje termina (Pacijent)", "Zakazan je teremin (Pacijent)", idPacijenta, "pacijent");
                 NotifikacijaKontroler.napraviNotifikaciju("Zakazivanje termina (Lekar)", "Zakazan je teremin (Lekar)", TerminKontroler.nadjiIdLekaraZaTermin(izabraniTermin.id), "lekar");
@@ -1175,14 +1174,14 @@ namespace Bolnica_aplikacija
        
         private void btnPregled_Checked(object sender, RoutedEventArgs e)
         {
-            tipHitanSlucaj = "PREGLED";
+            tipHitanSlucaj = "Pregled";
             lstBoxItemOpstaPraksa.IsEnabled = true;
             lblUpozorenjeTermin.Visibility = Visibility.Hidden;
         }
 
         private void btnOperacija_Checked(object sender, RoutedEventArgs e)
         {
-            tipHitanSlucaj = "OPERACIJA";
+            tipHitanSlucaj = "Operacija";
             lstBoxItemOpstaPraksa.IsEnabled = false;
             lblUpozorenjeTermin.Visibility = Visibility.Hidden;
         }
@@ -1207,6 +1206,7 @@ namespace Bolnica_aplikacija
         private void btnZakaziHitanPregled_Click(object sender, RoutedEventArgs e)
         {
             pacijent = (Pacijent)dataGridPacijentiHitanSlucaj.SelectedItem;
+            idPacijenta = pacijent.id;
             izabraniTermin = (PacijentTermin)dataGridSlobodniTerminiHItanSlucaj.SelectedItem;
 
             Termin termin = TerminKontroler.nadjiTerminPoId(izabraniTermin.id);
@@ -1214,8 +1214,8 @@ namespace Bolnica_aplikacija
             if (termin.idPacijenta.Equals(""))
             {
                 PacijentKontroler.nadjiPacijenta(pacijent.id);
-                String idSelektovanog = izabraniTermin.id;
-               // PacijentKontroler.zakaziTerminPacijentu(idSelektovanog);
+                String idSelektovanogTermina = izabraniTermin.id;
+                PacijentKontroler.zakaziTerminPacijentu(idPacijenta, idSelektovanogTermina);
 
                 NotifikacijaKontroler.napraviNotifikaciju("Zakazivanje hitnog slucaja (Pacijent)", "Hitan Slucaj (Pacijent)", pacijent.id, "pacijent");
                 NotifikacijaKontroler.napraviNotifikaciju("Zakazivanje hitnog slucaja (Lekar)", "Hitaj slucaj (Lekar)", TerminKontroler.nadjiIdLekaraZaTermin(izabraniTermin.id), "lekar");
@@ -1230,8 +1230,8 @@ namespace Bolnica_aplikacija
                 String idPacijentaZaPomeranje = termin.idPacijenta;
                 PacijentKontroler.pomeriTerminNaPrviSlobodan(idPacijentaZaPomeranje, termin.idTermina, tipHitanSlucaj, tipSpecijalizacije);
                 PacijentKontroler.nadjiPacijenta(pacijent.id);
-                String idSelektovanog = izabraniTermin.id;
-                //PacijentKontroler.zakaziTerminPacijentu(idSelektovanog);
+                String idSelektovanogTermina = izabraniTermin.id;
+                PacijentKontroler.zakaziTerminPacijentu(idPacijenta, idSelektovanogTermina);
 
                 NotifikacijaKontroler.napraviNotifikaciju("Zakazivanje hitnog slucaja uz pomeranje (Pacijent)", "Hitan Slucaj (Pacijent)", pacijent.id, "pacijent");
                 NotifikacijaKontroler.napraviNotifikaciju("Zakazivanje hitnog slucaja uz pomeranje (Lekar)", "Hitaj slucaj (Lekar)", TerminKontroler.nadjiIdLekaraZaTermin(izabraniTermin.id), "lekar");

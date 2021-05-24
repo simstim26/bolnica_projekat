@@ -9,7 +9,7 @@
         Title="Sekretar" Height="768" Width="1366" Visibility="Visible" ResizeMode="CanMinimize"
         >
     <Grid x:Name="Grid" HorizontalAlignment="Left" Height="748" Margin="-4,-17,0,0" VerticalAlignment="Top" Width="1356">
-        <Grid x:Name="PocetniEkranGrid" Margin="0,18,-8,-9" HorizontalAlignment="Left" Width="1364" Background="#FFF7FFF4" d:IsHidden="True">
+        <Grid x:Name="PocetniEkranGrid" Margin="0,18,-8,-9" HorizontalAlignment="Left" Width="1364" Background="#FFF7FFF4">
             <Button x:Name="pacijentiButton" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Height="200" FontSize="36" FontWeight="Bold" Click="pacijenti_Click" Margin="428,140,0,0" BorderBrush="#FF67B6D5" >
                 <Button.Effect>
                     <DropShadowEffect BlurRadius="10" Direction="314" Opacity="0.35"/>
@@ -448,7 +448,7 @@
             </DataGrid>
             <Label x:Name="lblUpozorenjeTermin" Content="* Nema slobodnih termina" HorizontalAlignment="Left" Margin="800,393,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold" IsEnabled="False" Height="39" Width="502" Foreground="#FFE00000" Visibility="Hidden"/>
         </Grid>
-        <Grid x:Name="LekariGrid" HorizontalAlignment="Left" Height="739" Margin="0,18,-8,-9" VerticalAlignment="Top" Width="1364">
+        <Grid x:Name="LekariGrid" HorizontalAlignment="Left" Height="739" Margin="0,18,-8,-9" VerticalAlignment="Top" Width="1364" Visibility="Hidden">
             <Grid.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FFA5EAA1" Offset="0"/>
