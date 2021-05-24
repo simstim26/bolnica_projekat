@@ -24,12 +24,23 @@ namespace Model
 
       public bool jeLogickiObrisan { get; set; }
 
-        public PacijentDTO (String jmbg, String ime, String prezime)
+        public PacijentDTO (String idBolnice, bool gost, String korisnickoIme, String lozinka, String jmbg, String ime, String prezime, DateTime datumRodj, String adresa, String email, String telefon)
         {
             this.jmbg = jmbg;
             this.ime = ime;
             this.prezime = prezime;
+            this.idBolnice = idBolnice;
+            this.jeGost = gost;
+            this.korisnickoIme = korisnickoIme;
+            this.lozinka = lozinka;
+            this.jmbg = jmbg;
+            this.ime = ime;
+            this.prezime = prezime;
+            this.datumRodjenja = datumRodj;
+            this.adresa = adresa;
+            this.brojTelefona = brojTelefona;
         }
+
         public PacijentDTO() { }
 
         public PacijentDTO(String idPacijenta)

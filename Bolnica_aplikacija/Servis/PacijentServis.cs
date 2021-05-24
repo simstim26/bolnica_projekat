@@ -616,24 +616,11 @@ namespace Bolnica_aplikacija.Servis
 
         }
 
-        public void NapraviPacijenta(String idBolnice, bool gost, String korisnickoIme, String lozinka, String jmbg, String ime, String prezime, DateTime datumRodj, string adresa, string email, string telefon, List<Alergija> alergije)
+        public void NapraviPacijenta(Pacijent pacijent, List<Alergija> alergije)
         {
-            Pacijent pacijent = new Pacijent();
+            
             List<Pacijent> sviPacijenti = pacijentRepozitorijum.ucitajSve();
-
             pacijent.id = (sviPacijenti.Count() + 1).ToString();
-            pacijent.idBolnice = idBolnice;
-            pacijent.jeGost = gost;
-            pacijent.korisnickoIme = korisnickoIme;
-            pacijent.lozinka = lozinka;
-            pacijent.jmbg = jmbg;
-            pacijent.ime = ime;
-            pacijent.prezime = prezime;
-            pacijent.datumRodjenja = datumRodj;
-            pacijent.adresa = adresa;
-            pacijent.email = email;
-            pacijent.brojTelefona = telefon;
-
             foreach (Alergija alergija in alergije)
             {
                 AlergijaServis.getInstance().dodajAlergiju(new Alergija(pacijent.id, alergija.nazivAlergije));

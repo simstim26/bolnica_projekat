@@ -100,9 +100,10 @@ namespace Bolnica_aplikacija.Kontroler
             PacijentServis.getInstance().pomeriTerminNaPrviSlobodan(idPacijenta, idTermina, tip, idSpecijalizacije);
         }
 
-        public static void NapraviPacijenta(String idBolnice, bool gost, String korisnickoIme, String lozinka, String jmbg, String ime, String prezime, DateTime datumRodj, string adresa, string email, string telefon, List<Alergija> alergije)
+        public static void NapraviPacijenta(PacijentDTO pacijentDTO, List<Alergija> alergije)
         {
-            PacijentServis.getInstance().NapraviPacijenta(idBolnice, gost, korisnickoIme, lozinka, jmbg, ime, prezime, datumRodj, adresa, email, telefon, alergije);
+            Pacijent pacijent = new Pacijent(pacijentDTO.idBolnice, pacijentDTO.jeGost, pacijentDTO.korisnickoIme, pacijentDTO.lozinka, pacijentDTO.jmbg, pacijentDTO.ime, pacijentDTO.prezime, pacijentDTO.datumRodjenja, pacijentDTO.adresa, pacijentDTO.email, pacijentDTO.brojTelefona);
+            PacijentServis.getInstance().NapraviPacijenta(pacijent,alergije);
         }
 
         public static List<Pacijent> ProcitajPacijente()
