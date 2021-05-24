@@ -124,7 +124,7 @@ namespace Bolnica_aplikacija
 
                 pacijent = (Pacijent)TabelaPacijenti.SelectedItem;
                 PacijentKontroler.nadjiPacijenta(pacijent.id);
-                //dataGridAlergije.ItemsSource = PacijentKontroler.procitajAlergije();
+                dataGridAlergije.ItemsSource = PacijentKontroler.procitajAlergije(pacijent.id);
 
                 buttonOdustaniDodavanje.Visibility = Visibility.Visible;
                 buttonPotvrdiDodavanje.Visibility = Visibility.Visible;
@@ -207,7 +207,7 @@ namespace Bolnica_aplikacija
                 lozinka.Password = pacijent.lozinka;
 
                 PacijentKontroler.nadjiPacijenta(pacijent.id);
-               // alergije = PacijentKontroler.procitajAlergije();
+                alergije = PacijentKontroler.procitajAlergije(pacijent.id);
                 dataGridAlergije.ItemsSource = alergije;
 
                 if (pacijent.jeGost)
@@ -227,10 +227,11 @@ namespace Bolnica_aplikacija
 
         private void buttonPotvrdiDodavanje_Click(object sender, RoutedEventArgs e)
         {
+            Sekretar sekretar = KorisnikKontroler.GetSekretar();
             bool pacGost;
             String pacKorisnickoIme = textKorisnickoIme.Text;
             String pacLozinka = lozinka.Password.ToString();
-            String pacIdBolnice = "1";
+            String pacIdBolnice = sekretar.idBolnice;
             String pacJmbg = textJMBG.Text;
             String pacIme = textIme.Text;
             String pacPrezime = textPrezime.Text;

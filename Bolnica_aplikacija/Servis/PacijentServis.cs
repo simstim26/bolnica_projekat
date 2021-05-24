@@ -621,6 +621,7 @@ namespace Bolnica_aplikacija.Servis
             
             List<Pacijent> sviPacijenti = pacijentRepozitorijum.ucitajSve();
             pacijent.id = (sviPacijenti.Count() + 1).ToString();
+            
             foreach (Alergija alergija in alergije)
             {
                 AlergijaServis.getInstance().dodajAlergiju(new Alergija(pacijent.id, alergija.nazivAlergije));

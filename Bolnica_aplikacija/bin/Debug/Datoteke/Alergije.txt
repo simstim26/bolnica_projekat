@@ -34,5 +34,17 @@
   {
     "idPacijenta": "1",
     "nazivAlergije": "eeee"
+  },
+  {
+    "idPacijenta": "10",
+    "nazivAlergije": "Umm"
+  },
+  {
+    "idPacijenta": "10",
+    "nazivAlergije": "Obimne funkcije"
+  },
+  {
+    "idPacijenta": "11",
+    "nazivAlergije": "obiman foreach"
   }
 ]

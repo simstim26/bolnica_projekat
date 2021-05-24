@@ -151,5 +151,39 @@
     "email": "",
     "brojTelefona": "123213",
     "jmbg": "1234445656767"
+  },
+  {
+    "id": "10",
+    "idBolnice": "1",
+    "jeGost": false,
+    "adresa": "Neka adresa 22",
+    "anketa": false,
+    "jeLogickiObrisan": false,
+    "Notifikacija": [],
+    "korisnickoIme": "refaktor",
+    "lozinka": "refaktor",
+    "ime": "Refakto",
+    "prezime": "Refaktorovic",
+    "datumRodjenja": "1977-01-01T00:00:00",
+    "email": null,
+    "brojTelefona": null,
+    "jmbg": "1234445456765"
+  },
+  {
+    "id": "11",
+    "idBolnice": "1",
+    "jeGost": false,
+    "adresa": "Neka adresa",
+    "anketa": false,
+    "jeLogickiObrisan": false,
+    "Notifikacija": [],
+    "korisnickoIme": "ref",
+    "lozinka": "ref",
+    "ime": "Novirefaktor",
+    "prezime": "Refaktic",
+    "datumRodjenja": "1978-02-02T00:00:00",
+    "email": "ref2@mail.com",
+    "brojTelefona": "0554341",
+    "jmbg": "1234567877777"
   }
 ]

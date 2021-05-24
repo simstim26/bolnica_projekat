@@ -38,7 +38,8 @@ namespace Model
             this.prezime = prezime;
             this.datumRodjenja = datumRodj;
             this.adresa = adresa;
-            this.brojTelefona = brojTelefona;
+            this.email = email;
+            this.brojTelefona = telefon;
         }
 
         public PacijentDTO() { }
