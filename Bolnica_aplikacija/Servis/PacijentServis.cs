@@ -557,18 +557,11 @@ namespace Bolnica_aplikacija.Servis
 
             foreach (Termin termin in TerminServis.getInstance().ucitajSve())
             {
-                if (!termin.idPacijenta.Equals(""))
+                if (!termin.idPacijenta.Equals("") && !termin.jeHitan)
                 {
-                    DateTime terminDatum = termin.datum;
-                    DateTime datumSatUnapred = DateTime.Now.AddHours(1);
-
-                    int rezultat1 = DateTime.Compare(terminDatum, datumSatUnapred);
-                    int rezultat2 = DateTime.Compare(terminDatum, DateTime.Now);
-
-                    if (rezultat1 <= 0 && rezultat2 > 0)
+                    if (terminJeUNarednihSatVremena(termin))
                     {
                         PacijentTermin pacijentTermin = new PacijentTermin();
-
                         PacijentServis.getInstance().popuniPacijentTermin(termin, pacijentTermin, true);
 
                         if (!pacijentTermin.imeLekara.Equals("") && !pacijentTermin.lokacija.Equals(""))
@@ -583,19 +576,32 @@ namespace Bolnica_aplikacija.Servis
             return terminiZauzeti;
         }
 
+        private bool terminJeUNarednihSatVremena(Termin termin)
+        {
+            DateTime terminDatum = termin.datum;
+            DateTime datumSatUnapred = DateTime.Now.AddHours(1);
+            bool jeUSatVremena = false;
+
+            int rezultat1 = DateTime.Compare(terminDatum, datumSatUnapred);
+            int rezultat2 = DateTime.Compare(terminDatum, DateTime.Now);
+            
+            if (rezultat1 <= 0 && rezultat2 > 0)
+            {
+                jeUSatVremena = true;
+            }
+            
+            return jeUSatVremena;
+        }
+
         public void pomeriTerminNaPrviSlobodan(String idPacijenta, String idTermina, String tip, String idSpecijalizacije)
         {
-            List<PacijentTermin> sviTermini = ucitajSlobodneTermine(0, true);
             bool pronadjenTermin = false;
-
-            foreach (PacijentTermin pacijentTermin in sviTermini)
+            foreach (PacijentTermin pacijentTermin in ucitajSlobodneTermine(0, true))
             {
                 if (pacijentTermin.napomena.Equals(tip) && pacijentTermin.idSpecijalizacije.Equals(idSpecijalizacije))
-                {
-                    PacijentKontroler.nadjiPacijenta(idPacijenta);
+                {                   
                     PacijentKontroler.azurirajTerminPacijentu(idTermina, pacijentTermin.id);
                     pronadjenTermin = true;
-
                     NotifikacijaKontroler.napraviNotifikaciju("Pomeranje termina (Pacijent)", "Pomeren je termin (Pacijent)", idPacijenta, "pacijent");
                     NotifikacijaKontroler.napraviNotifikaciju("Pomeranje termina (Lekar)", "Pomeren je termin (Lekar)", TerminKontroler.nadjiIdLekaraZaTermin(pacijentTermin.id), "lekar");
                     break;

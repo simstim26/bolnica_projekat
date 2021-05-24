@@ -266,7 +266,8 @@ namespace Bolnica_aplikacija.Servis
             if (filtriraniTermini.Count == 0)
             {
                 List<PacijentTermin> sviTermini = PacijentServis.getInstance().ucitajZauzeteTermine();
-                pretraziTerminePoTipuISpecijalizaciji(sviTermini, tip, idSpecijalizacije);
+                Console.WriteLine("LISTA ZAUZETI: " + sviTermini.Count);
+                filtriraniTermini = pretraziTerminePoTipuISpecijalizaciji(sviTermini, tip, idSpecijalizacije);
             }
 
             return filtriraniTermini;
@@ -281,6 +282,7 @@ namespace Bolnica_aplikacija.Servis
                 if (pacijentTermin.napomena.Equals(tip) && pacijentTermin.idSpecijalizacije.Equals(idSpecijalizacije))
                 {
                     filtriraniTermini.Add(pacijentTermin);
+
                 }
             }
 
@@ -309,6 +311,13 @@ namespace Bolnica_aplikacija.Servis
             }
            
             return datumiUOpsegu;
+        }
+
+        public void oznaciHitanTermin(String idTermina)
+        {
+            Termin termin = nadjiTerminPoId(idTermina);
+            termin.jeHitan = true;
+            azurirajTermin(termin);
         }
 
 

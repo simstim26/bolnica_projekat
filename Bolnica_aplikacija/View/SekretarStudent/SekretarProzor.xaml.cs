@@ -1216,7 +1216,7 @@ namespace Bolnica_aplikacija
                 PacijentKontroler.nadjiPacijenta(pacijent.id);
                 String idSelektovanogTermina = izabraniTermin.id;
                 PacijentKontroler.zakaziTerminPacijentu(idPacijenta, idSelektovanogTermina);
-
+                TerminKontroler.oznaciHitanSlucaj(idSelektovanogTermina);
                 NotifikacijaKontroler.napraviNotifikaciju("Zakazivanje hitnog slucaja (Pacijent)", "Hitan Slucaj (Pacijent)", pacijent.id, "pacijent");
                 NotifikacijaKontroler.napraviNotifikaciju("Zakazivanje hitnog slucaja (Lekar)", "Hitaj slucaj (Lekar)", TerminKontroler.nadjiIdLekaraZaTermin(izabraniTermin.id), "lekar");
 
@@ -1232,6 +1232,7 @@ namespace Bolnica_aplikacija
                 PacijentKontroler.nadjiPacijenta(pacijent.id);
                 String idSelektovanogTermina = izabraniTermin.id;
                 PacijentKontroler.zakaziTerminPacijentu(idPacijenta, idSelektovanogTermina);
+                TerminKontroler.oznaciHitanSlucaj(idSelektovanogTermina);
 
                 NotifikacijaKontroler.napraviNotifikaciju("Zakazivanje hitnog slucaja uz pomeranje (Pacijent)", "Hitan Slucaj (Pacijent)", pacijent.id, "pacijent");
                 NotifikacijaKontroler.napraviNotifikaciju("Zakazivanje hitnog slucaja uz pomeranje (Lekar)", "Hitaj slucaj (Lekar)", TerminKontroler.nadjiIdLekaraZaTermin(izabraniTermin.id), "lekar");

@@ -394,5 +394,59 @@
     "idKorisnika": "2",
     "datumNotifikovanja": "2021-05-24T00:15:58.1444901+02:00",
     "jeProcitana": false
+  },
+  {
+    "id": "45",
+    "nazivNotifikacije": "Zakazivanje hitnog slucaja (Pacijent)",
+    "vremeNotifikovanja": "2021-05-24T12:30:05.9835301+02:00",
+    "porukaNotifikacije": "Hitan Slucaj (Pacijent)",
+    "idKorisnika": "2",
+    "datumNotifikovanja": "2021-05-24T12:30:05.9835301+02:00",
+    "jeProcitana": false
+  },
+  {
+    "id": "46",
+    "nazivNotifikacije": "Zakazivanje hitnog slucaja (Lekar)",
+    "vremeNotifikovanja": "2021-05-24T12:30:05.9955309+02:00",
+    "porukaNotifikacije": "Hitaj slucaj (Lekar)",
+    "idKorisnika": "1",
+    "datumNotifikovanja": "2021-05-24T12:30:05.9955309+02:00",
+    "jeProcitana": false
+  },
+  {
+    "id": "47",
+    "nazivNotifikacije": "Pomeranje termina (Pacijent)",
+    "vremeNotifikovanja": "2021-05-24T15:39:03.2355067+02:00",
+    "porukaNotifikacije": "Pomeren je termin (Pacijent)",
+    "idKorisnika": "3",
+    "datumNotifikovanja": "2021-05-24T15:39:03.2355067+02:00",
+    "jeProcitana": false
+  },
+  {
+    "id": "48",
+    "nazivNotifikacije": "Pomeranje termina (Lekar)",
+    "vremeNotifikovanja": "2021-05-24T15:39:03.2495085+02:00",
+    "porukaNotifikacije": "Pomeren je termin (Lekar)",
+    "idKorisnika": "1",
+    "datumNotifikovanja": "2021-05-24T15:39:03.2495085+02:00",
+    "jeProcitana": false
+  },
+  {
+    "id": "49",
+    "nazivNotifikacije": "Zakazivanje hitnog slucaja uz pomeranje (Pacijent)",
+    "vremeNotifikovanja": "2021-05-24T15:39:03.2655092+02:00",
+    "porukaNotifikacije": "Hitan Slucaj (Pacijent)",
+    "idKorisnika": "1",
+    "datumNotifikovanja": "2021-05-24T15:39:03.2655092+02:00",
+    "jeProcitana": false
+  },
+  {
+    "id": "50",
+    "nazivNotifikacije": "Zakazivanje hitnog slucaja uz pomeranje (Lekar)",
+    "vremeNotifikovanja": "2021-05-24T15:39:03.2745094+02:00",
+    "porukaNotifikacije": "Hitaj slucaj (Lekar)",
+    "idKorisnika": "1",
+    "datumNotifikovanja": "2021-05-24T15:39:03.2745094+02:00",
+    "jeProcitana": false
   }
 ]
