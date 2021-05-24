@@ -122,5 +122,11 @@ namespace Bolnica_aplikacija.Kontroler
         {
             return LekServis.getInstance().ucitajLekoveZaOdobravanje();
         }
+    
+        public static String pronadjiImeLekaPoId(String idLeka)
+        {
+            return LekServis.getInstance().nadjiLekPoId(idLeka).naziv;
+        }
+    
     }
 }

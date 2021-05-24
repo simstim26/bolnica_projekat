@@ -122,8 +122,8 @@
 
                         <DataGrid.Columns>
                             <DataGridTextColumn x:Name="kolonaNazivOboljenja" Header="Naziv oboljenja" Binding="{Binding nazivOboljenja}"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Lek koji se primenjuje" x:Name="kolonaLek" Binding="{Binding lek}"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Kratak opis terapije" x:Name="kolonaOpis" Binding="{Binding opis}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Lek koji se primenjuje" x:Name="kolonaLek" Binding="{Binding nazivLeka}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Kratak opis terapije" x:Name="kolonaOpis" Binding="{Binding opisTerapije}"></DataGridTextColumn>
                             
                             <DataGridTemplateColumn Header="Opširnije informacije">
                                     <DataGridTemplateColumn.CellTemplate>

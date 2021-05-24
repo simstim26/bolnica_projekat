@@ -15,5 +15,10 @@ namespace Bolnica_aplikacija.Kontroler
             bolestServis.azurirajTerapijuZaBolest(idBolesti, idTerapije);
         }
 
+        public static string pronadjiNazivBolestiPoId(String idBolesti)
+        {
+            return BolestServis.getInstance().nadjiBolestPoId(idBolesti).naziv;
+        }
+
     }
 }

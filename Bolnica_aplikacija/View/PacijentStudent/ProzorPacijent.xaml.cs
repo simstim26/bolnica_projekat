@@ -40,6 +40,7 @@ namespace Bolnica_aplikacija.PacijentStudent
             SetLabelPacijentContent();
 
             PopuniTermine();
+            popuniTerapije();
             setujTajmer();
             proveraAnkete();
 
@@ -49,6 +50,11 @@ namespace Bolnica_aplikacija.PacijentStudent
         {
             //PacijentKontroler.nadjiPacijenta(KorisnikKontroler.GetPacijent().id);
             dataGridTermin.ItemsSource = PacijentKontroler.prikazPacijentovihTermina(KorisnikKontroler.GetPacijent().id);
+        }
+
+        private void popuniTerapije()
+        {
+            dataGridTerapije.ItemsSource = PacijentKontroler.ucitajAktivneTerapije(KorisnikKontroler.GetPacijent().id);
         }
 
         private void SetLabelPacijentContent()
