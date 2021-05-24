@@ -159,6 +159,13 @@ namespace Bolnica_aplikacija
                    ((String[])PacijentInfo.getFM().DataContext)[1]);
                 IzmenaBLecenja.aktivan = false;
             }
+            else if (ProsliTermini.aktivan)
+            {
+                LekarProzor.getX().Content = new PacijentInfo(((String[])PacijentInfo.getFM().DataContext)[0],
+                                  ((String[])PacijentInfo.getFM().DataContext)[1]);
+                PacijentInfo.getTab().SelectedIndex = 1;
+                ProsliTermini.aktivan = false;
+            }
         }
 
         private void btnPretraga_Click(object sender, RoutedEventArgs e)

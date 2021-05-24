@@ -21,9 +21,15 @@ namespace Bolnica_aplikacija.View.LekarStudent
     /// </summary>
     public partial class ProsliTermini : UserControl
     {
+        public static bool aktivan;
+        private static FrameworkElement fm = new FrameworkElement();
         public ProsliTermini(String idTermina)
         {
             InitializeComponent();
+            LekarProzor.getGlavnaLabela().Content = "Izveštaj sa termina";
+            fm.DataContext = idTermina;
+            PacijentInfo.aktivanPacijentInfo = false;
+            aktivan = true;
 
             lblJmbg.Content = TerminKontroler.nadjiPacijentaZaTermin(idTermina).jmbg;
             lblImePrezime.Content = TerminKontroler.nadjiPacijentaZaTermin(idTermina).ime + " " + TerminKontroler.nadjiPacijentaZaTermin(idTermina).prezime;
@@ -31,11 +37,109 @@ namespace Bolnica_aplikacija.View.LekarStudent
 
             lblLekar.Content = LekarKontroler.nadjiLekaraPoId(TerminKontroler.nadjiTerminPoId(idTermina).idLekara).ime + " " + LekarKontroler.nadjiLekaraPoId(TerminKontroler.nadjiTerminPoId(idTermina).idLekara).prezime + ", " + SpecijalizacijaKontroler.nadjiSpecijalizacijuPoId(LekarKontroler.nadjiLekaraPoId(TerminKontroler.nadjiTerminPoId(idTermina).idLekara).idSpecijalizacije);
 
-            txtDijagnoza.Text = BolestKontroler.nadjiBolestPoId(TerminKontroler.nadjiTerminPoId(idTermina).idBolesti).naziv;
-            txtTerapija.Text = LekKontroler.nadjiLekPoId(TerapijaKontroler.nadjiTerapijuPoId((TerminKontroler.nadjiTerminPoId(idTermina).idTerapije)).idLeka).naziv;
-            txtIzvestaj.Text = TerminKontroler.nadjiTerminPoId(idTermina).izvestaj + "\n\nIzveštaj sa uputa:\n" + TerminKontroler.nadjiTerminPoId(idTermina).izvestajUputa;
-            txtUputLekar.Text = LekarKontroler.nadjiLekaraPoId(TerminKontroler.nadjiTerminPoId(idTermina).idUputLekara).ime + " " + LekarKontroler.nadjiLekaraPoId(TerminKontroler.nadjiTerminPoId(idTermina).idUputLekara).prezime + ", " + SpecijalizacijaKontroler.nadjiSpecijalizacijuPoId(LekarKontroler.nadjiLekaraPoId(TerminKontroler.nadjiTerminPoId(idTermina).idUputLekara).idSpecijalizacije);
+            txtDijagnoza.Text = dijagnoza();
+            txtTerapija.Text = terapija();
+            txtIzvestaj.Text = izvestaj();
+            txtUputLekar.Text = lekarUput();
+        }
 
+        public static FrameworkElement getFM()
+        {
+            return fm;
+        }
+
+        private String izvestaj()
+        {
+            String povratnaVrednost = "";
+
+            if(String.IsNullOrWhiteSpace(TerminKontroler.nadjiTerminPoId((String)fm.DataContext).izvestaj))
+            {
+                povratnaVrednost = "Nema izveštaja sa termina.";
+            }
+            else
+            {
+                povratnaVrednost = TerminKontroler.nadjiTerminPoId((String)fm.DataContext).izvestaj;
+
+                if (!String.IsNullOrWhiteSpace(TerminKontroler.nadjiTerminPoId((String)fm.DataContext).idUputLekara))
+                {
+                    povratnaVrednost += "\n\nIzveštaj sa uputa:\n";
+                    if (String.IsNullOrWhiteSpace(TerminKontroler.nadjiTerminPoId((String)fm.DataContext).izvestajUputa))
+                    {
+                        povratnaVrednost += "Nema podataka";
+                    }
+                    else
+                    {
+                        povratnaVrednost += TerminKontroler.nadjiTerminPoId((String)fm.DataContext).izvestajUputa;
+                    }
+                }
+
+
+                if (!String.IsNullOrWhiteSpace(TerminKontroler.nadjiTerminPoId((String)fm.DataContext).idTerapije))
+                {
+                    povratnaVrednost += "\n\nRecept (način upotrebe):\n";
+
+                    if (String.IsNullOrWhiteSpace(TerapijaKontroler.nadjiTerapijuPoId(TerminKontroler.nadjiTerminPoId((String)fm.DataContext).idTerapije).nacinUpotrebe))
+                    {
+                        povratnaVrednost += "Nema podataka";
+                    }
+                    else
+                    {
+                        povratnaVrednost += TerapijaKontroler.nadjiTerapijuPoId(TerminKontroler.nadjiTerminPoId((String)fm.DataContext).idTerapije).nacinUpotrebe;
+                    }
+                }
+                else
+                {
+                    povratnaVrednost += "Nema načina upotrebe";
+                }
+            }
+
+            return povratnaVrednost;
+        }
+
+        private String lekarUput()
+        {
+            String povratnaVrednost;
+            if (String.IsNullOrWhiteSpace(TerminKontroler.nadjiTerminPoId((String)fm.DataContext).idUputLekara))
+            {
+                povratnaVrednost = "Nema podataka";
+            }
+            else
+            {
+                povratnaVrednost = LekarKontroler.nadjiLekaraPoId(TerminKontroler.nadjiTerminPoId((String)fm.DataContext).idUputLekara).ime + " " + LekarKontroler.nadjiLekaraPoId(TerminKontroler.nadjiTerminPoId((String)fm.DataContext).idUputLekara).prezime + ", " + SpecijalizacijaKontroler.nadjiSpecijalizacijuPoId(LekarKontroler.nadjiLekaraPoId(TerminKontroler.nadjiTerminPoId((String)fm.DataContext).idUputLekara).idSpecijalizacije);
+
+            }
+
+            return povratnaVrednost;
+        }
+
+        private String dijagnoza()
+        {
+            String povratnaVrednost;
+            if (String.IsNullOrWhiteSpace(TerminKontroler.nadjiTerminPoId((String)fm.DataContext).idBolesti))
+            {
+                povratnaVrednost = "Nema podataka";
+            }
+            else
+            {
+                povratnaVrednost = BolestKontroler.nadjiBolestPoId(TerminKontroler.nadjiTerminPoId((String)fm.DataContext).idBolesti).naziv;
+            }
+
+            return povratnaVrednost;
+        }
+
+        private String terapija()
+        {
+            String povratnaVrednost;
+            if (String.IsNullOrWhiteSpace(TerminKontroler.nadjiTerminPoId((String)fm.DataContext).idTerapije))
+            {
+                povratnaVrednost = "Nema podataka";
+            }
+            else
+            {
+                povratnaVrednost = LekKontroler.nadjiLekPoId(TerapijaKontroler.nadjiTerapijuPoId((TerminKontroler.nadjiTerminPoId((String)fm.DataContext).idTerapije)).idLeka).naziv; 
+            }
+
+            return povratnaVrednost;
         }
     }
 }
