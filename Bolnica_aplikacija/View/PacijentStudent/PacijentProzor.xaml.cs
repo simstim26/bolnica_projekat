@@ -102,7 +102,7 @@ namespace Bolnica_aplikacija.PacijentStudent
 
         private void btnZakaziPregled_Click_1(object sender, RoutedEventArgs e)
         {
-            PacijentZakaziTermin zakaziTermin = new PacijentZakaziTermin(dataGridTermin, idPacijenta);
+            PacijentZakaziTermin zakaziTermin = new PacijentZakaziTermin(dataGridTermin);
             zakaziTermin.Owner = this;
             zakaziTermin.ShowDialog();
         }
@@ -171,7 +171,7 @@ namespace Bolnica_aplikacija.PacijentStudent
                         if(izabraniTermin.idSpecijalizacije.Equals("0"))
                         {
                             //TerminKontroler.sacuvajTermin(izabraniTermin.id);
-                            IzmenaTerminaPacijent izmenaTermina = new IzmenaTerminaPacijent(dataGridTermin, this.idPacijenta);
+                            IzmenaTerminaPacijent izmenaTermina = new IzmenaTerminaPacijent(dataGridTermin);
                             izmenaTermina.Owner = this;
                             izmenaTermina.ShowDialog();
                         }
