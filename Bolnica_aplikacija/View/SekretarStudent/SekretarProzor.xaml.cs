@@ -2,6 +2,7 @@
 using Bolnica_aplikacija.Model;
 using Bolnica_aplikacija.PacijentModel;
 using Bolnica_aplikacija.PacijentStudent;
+using Bolnica_aplikacija.PomocneKlase;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -53,6 +54,7 @@ namespace Bolnica_aplikacija
             this.TerminiGrid.Visibility = Visibility.Hidden;
             this.ObavestenjaGrid.Visibility = Visibility.Hidden;
             this.HitanSlucajGrid.Visibility = Visibility.Hidden;
+            this.LekariGrid.Visibility = Visibility.Hidden;
 
         }
         private void CenterWindow()
@@ -903,11 +905,7 @@ namespace Bolnica_aplikacija
             lblUpozorenje.Content = "* Nema slobodnih termina!";
         }
 
-        private void lekariButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
+   
         private void PacijentGrid_TargetUpdated(object sender, DataTransferEventArgs e)
         {
             Alergija alergija = (Alergija)dataGridAlergije.Items.GetItemAt(dataGridAlergije.SelectedIndex);
@@ -1244,11 +1242,35 @@ namespace Bolnica_aplikacija
                 dataGridSlobodniTerminiHItanSlucaj.Items.Refresh();
 
                 btnZakaziHitanPregled.IsEnabled = false;
- 
-            }
 
+            }
+        }
+
+        // LEKARI CRUD
+
+        private void lekariButton_Click(object sender, RoutedEventArgs e)
+        {
+            PocetniEkranGrid.Visibility = Visibility.Hidden;
+            PacijentGrid.Visibility = Visibility.Hidden;
+            TerminiGrid.Visibility = Visibility.Hidden;
+            ObavestenjaGrid.Visibility = Visibility.Hidden;
+            HitanSlucajGrid.Visibility = Visibility.Hidden;
+            LekariGrid.Visibility = Visibility.Visible;
+
+            //Ucitavanje podataka
+            List<LekarSpecijalizacija> lekari = LekarKontroler.ucitajLekareSaSpecijalizacijom();
+            dataGridLekari.ItemsSource = lekari;
+
+            
            
         }
+
+        private void btnPovratakLekari_Click(object sender, RoutedEventArgs e)
+        {
+            PocetniEkranGrid.Visibility = Visibility.Visible;
+            LekariGrid.Visibility = Visibility.Hidden;
+        }
+
     }
 }
 

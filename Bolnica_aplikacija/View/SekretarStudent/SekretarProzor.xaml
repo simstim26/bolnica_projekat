@@ -9,7 +9,7 @@
         Title="Sekretar" Height="768" Width="1366" Visibility="Visible" ResizeMode="CanMinimize"
         >
     <Grid x:Name="Grid" HorizontalAlignment="Left" Height="748" Margin="-4,-17,0,0" VerticalAlignment="Top" Width="1356">
-        <Grid x:Name="PocetniEkranGrid" Margin="0,18,-8,-9" HorizontalAlignment="Left" Width="1364" Background="#FFF7FFF4">
+        <Grid x:Name="PocetniEkranGrid" Margin="0,18,-8,-9" HorizontalAlignment="Left" Width="1364" Background="#FFF7FFF4" d:IsHidden="True">
             <Button x:Name="pacijentiButton" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Height="200" FontSize="36" FontWeight="Bold" Click="pacijenti_Click" Margin="428,140,0,0" BorderBrush="#FF67B6D5" >
                 <Button.Effect>
                     <DropShadowEffect BlurRadius="10" Direction="314" Opacity="0.35"/>
@@ -448,7 +448,7 @@
             </DataGrid>
             <Label x:Name="lblUpozorenjeTermin" Content="* Nema slobodnih termina" HorizontalAlignment="Left" Margin="800,393,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold" IsEnabled="False" Height="39" Width="502" Foreground="#FFE00000" Visibility="Hidden"/>
         </Grid>
-        <Grid x:Name="LekariGrid" HorizontalAlignment="Left" Height="739" Margin="0,18,-8,-9" VerticalAlignment="Top" Width="1364" Visibility="Hidden">
+        <Grid x:Name="LekariGrid" HorizontalAlignment="Left" Height="739" Margin="0,18,-8,-9" VerticalAlignment="Top" Width="1364">
             <Grid.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FFA5EAA1" Offset="0"/>
@@ -474,6 +474,64 @@
                 </Button.Background>
             </Button>
             <materialDesign:PackIcon x:Name="iconLekari" Kind="Doctor" HorizontalAlignment="Left" Margin="62,111,0,0" VerticalAlignment="Top" Height="180" Width="180" Foreground="#FF44C155"/>
+            <Button x:Name="btnPovratakLekari" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="80" Height="80" Click="btnPovratakLekari_Click" Background="{x:Null}" BorderBrush="{x:Null}">
+                <materialDesign:PackIcon x:Name="iconPovratakLekari" Kind="PagePrevious" Height="80" Width="48" Foreground="White"/>
+            </Button>
+            <DataGrid x:Name="dataGridLekari" HorizontalAlignment="Left" Height="197" Margin="331,17,0,0" VerticalAlignment="Top" Width="1008" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn x:Name="columnImeLekara" Binding="{Binding imeLekara}" IsReadOnly="True" Header="IME" Width="336" CanUserResize="False" Foreground="Black" FontSize="24"/>
+                    <DataGridTextColumn x:Name="columnPrezimeLekara" Binding="{Binding prezimeLekara}" IsReadOnly="True" Header="PREZIME" Width="336" CanUserResize="False" Foreground="Black" FontSize="24"/>
+                    <DataGridTextColumn x:Name="columnSpecijalizacija" Binding="{Binding nazivSpecijalizacije}" IsReadOnly="True" Header="SPECIJALIZACIJA" Width="336" CanUserResize="False" Foreground="Black" FontSize="24"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Label x:Name="lblImeLekara" Content="IME:" HorizontalAlignment="Left" Margin="331,254,0,0" VerticalAlignment="Top" Width="241" FontSize="22"/>
+            <Label x:Name="lblPrezimeLekara" Content="PREZIME:" HorizontalAlignment="Left" Margin="331,296,0,0" VerticalAlignment="Top" Width="241" FontSize="22"/>
+            <Label x:Name="lblJMBG" Content="JMBG:" HorizontalAlignment="Left" Margin="331,338,0,0" VerticalAlignment="Top" Width="241" FontSize="22"/>
+            <Label x:Name="lblDatumRodjenja" Content="DATUM ROĐENJA:" HorizontalAlignment="Left" Margin="331,379,0,0" VerticalAlignment="Top" Width="241" FontSize="22"/>
+            <Label x:Name="lblMestoRodjenja" Content="MESTO ROĐENJA:" HorizontalAlignment="Left" Margin="331,421,0,0" VerticalAlignment="Top" Width="241" FontSize="22"/>
+            <Label x:Name="lblDrzavaRodjenja" Content="DRŽAVA ROĐENJA:" HorizontalAlignment="Left" Margin="331,463,0,0" VerticalAlignment="Top" Width="241" FontSize="22"/>
+            <Label x:Name="lblAdresa" Content="ADRESA STANOVANJA:" HorizontalAlignment="Left" Margin="331,545,0,0" VerticalAlignment="Top" Width="241" FontSize="22"/>
+            <Label x:Name="lblEmail" Content="E-MAIL ADRESA:" HorizontalAlignment="Left" Margin="331,587,0,0" VerticalAlignment="Top" Width="241" FontSize="22"/>
+            <Label x:Name="lblTelefon" Content="TELEFON:" HorizontalAlignment="Left" Margin="331,629,0,0" VerticalAlignment="Top" Width="241" FontSize="22"/>
+            <TextBox x:Name="txtBoxImeLekara" HorizontalAlignment="Left" Height="37" Margin="577,254,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" FontSize="22" Background="#FF84D386" TextChanged="txtBoxImeLekara_TextChanged"/>
+            <TextBox x:Name="txtBoxPrezimeLekara" HorizontalAlignment="Left" Height="37" Margin="577,296,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" FontSize="22" Background="#FF84D386" TextChanged="txtBoxPrezimeLekara_TextChanged"/>
+            <TextBox x:Name="txtBoxPrezimeLekara_Copy" HorizontalAlignment="Left" Height="37" Margin="577,338,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" FontSize="22" Background="#FF84D386"/>
+            <TextBox x:Name="txtBoxJMBG" HorizontalAlignment="Left" Height="37" Margin="577,380,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" FontSize="22" Background="#FF84D386"/>
+            <TextBox x:Name="txtBoxMestoRodjenja" HorizontalAlignment="Left" Height="37" Margin="577,422,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" FontSize="22" Background="#FF84D386"/>
+            <TextBox x:Name="txtBoxDrzavaRodjenja" HorizontalAlignment="Left" Height="37" Margin="577,464,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" FontSize="22" Background="#FF84D386"/>
+            <TextBox x:Name="txtBoxAdresaS" HorizontalAlignment="Left" Height="36" Margin="577,547,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" FontSize="22" Background="#FF84D386"/>
+            <TextBox x:Name="txtBoxEmail" HorizontalAlignment="Left" Height="36" Margin="577,589,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" FontSize="22" Background="#FF84D386"/>
+            <TextBox x:Name="txtBoxTelefon" HorizontalAlignment="Left" Height="36" Margin="577,631,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" FontSize="22" Background="#FF84D386"/>
+            <Button x:Name="btnOdustani" Content="                     " HorizontalAlignment="Left" Height="43" Margin="331,686,0,0" VerticalAlignment="Top" Width="41" RenderTransformOrigin="0.325,0.75" BorderThickness="0" ToolTip="Napravi obaveštenje" BorderBrush="#FF9C5353" Foreground="#FF2A83A4" IsEnabled="False">
+                <Button.Background>
+                    <ImageBrush  Stretch="Uniform" ImageSource="odustanilekar.png"/>
+                </Button.Background>
+            </Button>
+            <Label x:Name="lblPol" Content="POL:" HorizontalAlignment="Left" Margin="331,505,0,0" VerticalAlignment="Top" Width="241" FontSize="22"/>
+            <RadioButton x:Name="radioBtnMusko" Content="MUŠKO" HorizontalAlignment="Left" Margin="577,518,0,0" VerticalAlignment="Top"/>
+            <RadioButton x:Name="radioBtnZensko" Content="ŽENSKO" HorizontalAlignment="Left" Margin="649,518,0,0" VerticalAlignment="Top"/>
+            <RadioButton x:Name="radioBtnOstalo" Content="OSTALO" HorizontalAlignment="Left" Margin="725,518,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="lblBrojZdravKnjizice" Content="BROJ ZDRAV. KNJIŽICE" HorizontalAlignment="Left" Margin="832,379,0,0" VerticalAlignment="Top" Width="284" FontSize="22"/>
+            <TextBox x:Name="txtBoxBrojZdravKnjizice" HorizontalAlignment="Left" Height="37" Margin="1122,379,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" FontSize="22" Background="#FF84D386"/>
+            <Label x:Name="lblPrezimeLekara_Copy" Content="ZANIMANJE:" HorizontalAlignment="Left" Margin="832,422,0,0" VerticalAlignment="Top" Width="240" FontSize="22"/>
+            <TextBox x:Name="txtBoxZanimanje" HorizontalAlignment="Left" Height="37" Margin="1122,421,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" FontSize="22" Background="#FF84D386"/>
+            <Label x:Name="lblBracnoStanje" Content="BRAČNO STANJE:" HorizontalAlignment="Left" Margin="832,463,0,0" VerticalAlignment="Top" Width="240" FontSize="22"/>
+            <RadioButton x:Name="radioBtnUBraku" Content="U BRAKU" HorizontalAlignment="Left" Margin="835,518,0,0" VerticalAlignment="Top"/>
+            <RadioButton x:Name="radioBtnNijeUBraku" Content="NIJE U BRAKU" HorizontalAlignment="Left" Margin="913,518,0,0" VerticalAlignment="Top"/>
+            <RadioButton x:Name="radioBtnRazveden" Content="RAZVEDEN/A" HorizontalAlignment="Left" Margin="1013,518,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="lblKorisnickoIme" Content="KORISNIČKO IME:" HorizontalAlignment="Left" Margin="832,254,0,0" VerticalAlignment="Top" Width="284" FontSize="22"/>
+            <Label x:Name="lblKorisnickoIme_Copy" Content="LOZINKA:" HorizontalAlignment="Left" Margin="832,297,0,0" VerticalAlignment="Top" Width="284" FontSize="22"/>
+            <TextBox x:Name="txtBoxKorisnickoIme" HorizontalAlignment="Left" Height="37" Margin="1121,255,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" FontSize="22" Background="#FF84D386"/>
+            <PasswordBox HorizontalAlignment="Left" Margin="1121,298,0,0" VerticalAlignment="Top" Width="218" Height="36" Background="#FF84D386"/>
+            <Label x:Name="lblRadnoVreme" Content="RADNO VREME:" HorizontalAlignment="Left" Margin="832,545,0,0" VerticalAlignment="Top" Width="240" FontSize="22"/>
+            <TextBox x:Name="lblPocetakRadnogVremena" HorizontalAlignment="Left" Height="37" Margin="1121,545,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" FontSize="22" Background="#FF84D386"/>
+            <Label x:Name="lblOpseg" Content="-" HorizontalAlignment="Left" Margin="1192,545,0,0" VerticalAlignment="Top" Width="14" FontSize="22"/>
+            <TextBox x:Name="lblKrajRadnogVremena" HorizontalAlignment="Left" Height="37" Margin="1219,545,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" FontSize="22" Background="#FF84D386"/>
+            <Label x:Name="lblBrojSlobodnihDana" Content="BR. SLOBODNIH DANA:" HorizontalAlignment="Left" Margin="832,587,0,0" VerticalAlignment="Top" Width="240" FontSize="22"/>
+            <Label x:Name="lblBrojDana" Content="" HorizontalAlignment="Left" Margin="1122,589,0,0" VerticalAlignment="Top" Width="59" FontSize="22" IsEnabled="False"/>
+            <CheckBox x:Name="checkBoxGodisnjiOdmor" Content="GODIŠNJI ODMOR" HorizontalAlignment="Left" Margin="1216,600,0,0" VerticalAlignment="Top" Width="127"/>
+            <Label x:Name="lblDatumPocetkaGodOdmora" Content="DATUM POČETKA ODMORA:" HorizontalAlignment="Left" Margin="832,631,0,0" VerticalAlignment="Top" Width="284" FontSize="22" Height="36"/>
+            <TextBox x:Name="txtBoxPocetakGodOdmora" HorizontalAlignment="Left" Height="37" Margin="1121,629,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" FontSize="22" Background="#FF84D386"/>
         </Grid>
     </Grid>
 

@@ -17,7 +17,7 @@ namespace Model
       public String id { get; set;}
       public String idBolnice { get; set; }
       public bool jeGost { get; set; }
-      public String adresa { get; set; }
+      
       public Termin[] termin;
 
         public bool anketa { get; set; }

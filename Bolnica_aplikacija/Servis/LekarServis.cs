@@ -152,8 +152,8 @@ namespace Bolnica_aplikacija.Servis
             List<LekarSpecijalizacija> povratnaVrednost = new List<LekarSpecijalizacija>();
             foreach(Lekar lekar in ucitajSve())
             {
-                povratnaVrednost.Add(new LekarSpecijalizacija(lekar.id, lekar.prezime,
-                    SpecijalizacijaServis.getInstance().nadjiSpecijalizacijuPoId(lekar.idSpecijalizacije)));
+                povratnaVrednost.Add(new LekarSpecijalizacija(lekar.id, lekar.prezime, lekar.ime,
+                    SpecijalizacijaServis.getInstance().nadjiSpecijalizacijuPoId(lekar.idSpecijalizacije))) ;
             }
 
             return povratnaVrednost;

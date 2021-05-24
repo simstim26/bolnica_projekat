@@ -14,7 +14,10 @@ namespace Model
       public double prosecnaOcena { get; set; }
       public String idBolnice { get; set; }
       public String idSpecijalizacije { get; set; }
-      
+      public DateTime pocetakGodisnjegOdmora { get; set; }
+      public DateTime pocetakRadnogVremena { get; set; }
+      public DateTime krajRadnogVremena { get; set; }
+      public bool jeNaGodisnjemOdmoru { get; set; }
       public List<Notifikacija> notifikacije { get; set; }
       public void NapraviTermin(String idTermina)
       {
