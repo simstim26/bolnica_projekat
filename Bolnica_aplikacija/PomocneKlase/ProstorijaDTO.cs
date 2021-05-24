@@ -18,5 +18,22 @@ namespace Bolnica_aplikacija.PomocneKlase
         public bool logickiObrisana { get; set; }
         public int brojZauzetihKreveta { get; set; }
         public List<Stavka> Stavka { get; set; }
+
+        public ProstorijaDTO()
+        {
+        }
+
+        public ProstorijaDTO(string id, string idBolnice, TipProstorije tipProstorije, string broj, int sprat, bool dostupnost, bool logickiObrisana, int brojZauzetihKreveta, List<Stavka> stavka)
+        {
+            this.id = id;
+            this.idBolnice = idBolnice;
+            this.tipProstorije = tipProstorije;
+            this.broj = broj;
+            this.sprat = sprat;
+            this.dostupnost = dostupnost;
+            this.logickiObrisana = logickiObrisana;
+            this.brojZauzetihKreveta = brojZauzetihKreveta;
+            Stavka = stavka;
+        }
     }
 }

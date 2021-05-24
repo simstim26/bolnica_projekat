@@ -5,7 +5,7 @@
     "tipProstorije": 0,
     "broj": "120",
     "sprat": 1,
-    "dostupnost": true,
+    "dostupnost": false,
     "logickiObrisana": false,
     "brojZauzetihKreveta": 1,
     "Stavka": [
@@ -23,12 +23,23 @@
     ]
   },
   {
+    "id": "2",
+    "idBolnice": null,
+    "tipProstorije": 1,
+    "broj": "223",
+    "sprat": 3,
+    "dostupnost": true,
+    "logickiObrisana": true,
+    "brojZauzetihKreveta": 0,
+    "Stavka": []
+  },
+  {
     "id": "3",
     "idBolnice": "1",
     "tipProstorije": 0,
     "broj": "100",
     "sprat": 10,
-    "dostupnost": true,
+    "dostupnost": false,
     "logickiObrisana": false,
     "brojZauzetihKreveta": 0,
     "Stavka": [
@@ -90,6 +101,61 @@
     ]
   },
   {
+    "id": "4",
+    "idBolnice": null,
+    "tipProstorije": 1,
+    "broj": "223",
+    "sprat": 3,
+    "dostupnost": true,
+    "logickiObrisana": true,
+    "brojZauzetihKreveta": 0,
+    "Stavka": []
+  },
+  {
+    "id": "5",
+    "idBolnice": null,
+    "tipProstorije": 1,
+    "broj": "223",
+    "sprat": 3,
+    "dostupnost": true,
+    "logickiObrisana": true,
+    "brojZauzetihKreveta": 0,
+    "Stavka": []
+  },
+  {
+    "id": "6",
+    "idBolnice": null,
+    "tipProstorije": 1,
+    "broj": "223",
+    "sprat": 3,
+    "dostupnost": true,
+    "logickiObrisana": true,
+    "brojZauzetihKreveta": 0,
+    "Stavka": []
+  },
+  {
+    "id": "7",
+    "idBolnice": null,
+    "tipProstorije": 1,
+    "broj": "223",
+    "sprat": 3,
+    "dostupnost": true,
+    "logickiObrisana": true,
+    "brojZauzetihKreveta": 0,
+    "Stavka": []
+  },
+  {
+    "id": "8",
+    "idBolnice": null,
+    "tipProstorije": 1,
+    "broj": "223",
+    "sprat": 3,
+    "dostupnost": true,
+    "logickiObrisana": true,
+    "brojZauzetihKreveta": 0,
+    "Stavka": []
+  },
+  {
     "id": "9",
     "idBolnice": "3",
     "tipProstorije": 2,
@@ -102,7 +168,7 @@
       {
         "id": "2",
         "naziv": "Krevet",
-        "kolicina": 52,
+        "kolicina": 49,
         "proizvodjac": "KrevetKrevet",
         "idProstorije": null,
         "idBolnice": "1",
@@ -144,6 +210,28 @@
     "logickiObrisana": false,
     "brojZauzetihKreveta": 0,
     "Stavka": null
+  },
+  {
+    "id": "11",
+    "idBolnice": null,
+    "tipProstorije": 1,
+    "broj": "223",
+    "sprat": 3,
+    "dostupnost": true,
+    "logickiObrisana": true,
+    "brojZauzetihKreveta": 0,
+    "Stavka": []
+  },
+  {
+    "id": "12",
+    "idBolnice": null,
+    "tipProstorije": 1,
+    "broj": "223",
+    "sprat": 3,
+    "dostupnost": true,
+    "logickiObrisana": true,
+    "brojZauzetihKreveta": 0,
+    "Stavka": []
   },
   {
     "id": "13",
@@ -449,11 +537,55 @@
     "Stavka": null
   },
   {
-    "id": "14",
+    "id": "22",
     "idBolnice": null,
     "tipProstorije": 2,
     "broj": "11",
     "sprat": 2,
+    "dostupnost": true,
+    "logickiObrisana": true,
+    "brojZauzetihKreveta": 0,
+    "Stavka": null
+  },
+  {
+    "id": "23",
+    "idBolnice": null,
+    "tipProstorije": 2,
+    "broj": "100-a",
+    "sprat": 100,
+    "dostupnost": true,
+    "logickiObrisana": false,
+    "brojZauzetihKreveta": 0,
+    "Stavka": []
+  },
+  {
+    "id": "24",
+    "idBolnice": null,
+    "tipProstorije": 0,
+    "broj": "2-a",
+    "sprat": 1,
+    "dostupnost": true,
+    "logickiObrisana": true,
+    "brojZauzetihKreveta": 0,
+    "Stavka": null
+  },
+  {
+    "id": "25",
+    "idBolnice": null,
+    "tipProstorije": 0,
+    "broj": "2-61",
+    "sprat": 1,
+    "dostupnost": true,
+    "logickiObrisana": true,
+    "brojZauzetihKreveta": 0,
+    "Stavka": null
+  },
+  {
+    "id": "26",
+    "idBolnice": null,
+    "tipProstorije": 0,
+    "broj": "100-11",
+    "sprat": 10,
     "dostupnost": true,
     "logickiObrisana": true,
     "brojZauzetihKreveta": 0,

@@ -67,7 +67,7 @@ namespace Bolnica_aplikacija.Servis
                                     p.dostupnost = true;
                                     pz.jeZavrseno = true;
 
-                                    if (p.Stavka.Count != 0)
+                                    if (p.Stavka != null)
                                     {
                                         foreach (Stavka s in p.Stavka)
                                         {
@@ -89,6 +89,7 @@ namespace Bolnica_aplikacija.Servis
                                     {
                                         var stavka = StavkaKontroler.pronadjiStavkuPoId(pz.idStavke);
                                         stavka.kolicina = pz.kolicinaStavke;
+                                        p.Stavka = new List<Stavka>();
                                         p.Stavka.Add(stavka);
                                     }
 

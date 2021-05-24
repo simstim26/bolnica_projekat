@@ -128,6 +128,21 @@ namespace Bolnica_aplikacija.Servis
             return p;
         }
 
+        public ProstorijaDTO kopirajProstorijuuProstorijuDTO(Prostorija prostorija)
+        {
+            ProstorijaDTO p = new ProstorijaDTO();
+            p.id = prostorija.id;
+            p.idBolnice = prostorija.idBolnice;
+            p.logickiObrisana = false;
+            p.sprat = prostorija.sprat;
+            p.tipProstorije = prostorija.tipProstorije;
+            p.broj = prostorija.broj;
+            p.dostupnost = prostorija.dostupnost;
+            p.Stavka = prostorija.Stavka;
+            return p;
+        }
+
+
         public bool proveriIstiBroj(Prostorija prostorija, ProstorijaDTO prostorijaDTO)
         {
             if (prostorija.broj == prostorijaDTO.broj && prostorija.sprat == prostorijaDTO.sprat)
@@ -564,29 +579,81 @@ namespace Bolnica_aplikacija.Servis
             prostorijaRepozitorijum.upisiProstorijeZaRenoviranje(prostorijeZaRenoviranje);
         }
 
+        /*public void zakaziRenoviranjeProsirivanje(ProstorijaRenoviranje prostorija)
+        {
+            var prostorijeZaRenoviranje = prostorijaRepozitorijum.ucitajProstorijeZaRenoviranje();
+            prostorijeZaRenoviranje.Add(prostorija);
+            prostorijaRepozitorijum.upisiProstorijeZaRenoviranje(prostorijeZaRenoviranje);
+        }*/
+
         public void pregledajProstorijeZaRenoviranje()
         {
             var prostorijeZaRenoviranje = prostorijaRepozitorijum.ucitajProstorijeZaRenoviranje();
-            var prostorijeZaRenoviranjeIzmena = prostorijaRepozitorijum.ucitajProstorijeZaRenoviranje();
+
             foreach (ProstorijaRenoviranje p in prostorijeZaRenoviranje)
             {
                 if (DateTime.Now >= p.datumPocetka && DateTime.Now < p.datumKraja)
                 {
-                    var prostorija = nadjiProstorijuPoId(p.idProstorije);
-                    prostorija.dostupnost = false;
-                    kopirajProstorijuIUpisi(prostorija);
+                    zauzmiProstorijuZaRenoviranje(nadjiProstorijuPoId(p.idProstorije));
                 }
 
                 if (p.datumKraja <= DateTime.Now)
                 {
-                    var prostorija = nadjiProstorijuPoId(p.idProstorije);
-                    prostorijeZaRenoviranjeIzmena = obrisiRenoviranuIzListe(p, prostorijeZaRenoviranjeIzmena);
-                    prostorija.dostupnost = true;
-                    kopirajProstorijuIUpisi(prostorija);
-                    prostorijaRepozitorijum.upisiProstorijeZaRenoviranje(prostorijeZaRenoviranjeIzmena);
+                    if (p.tipRenoviranja == 1)
+                    {
+                        Prostorija prostorija = nadjiProstorijuPoId(p.idProstorije);
+                        ProstorijaDTO prostorijaNova = new ProstorijaDTO(postaviIDProstorija(), prostorija.idBolnice, prostorija.tipProstorije,
+                            prostorija.broj + "-a", prostorija.sprat, true, false, 0, null);
+                        noviBrojSobe(prostorijaNova, prostorija);
+                    }
+                    else if (p.tipRenoviranja == 2)
+                    {
+                        spojProstorije(p);
+                    }
+                    oslobodiProstorijuPosleRenoviranja(nadjiProstorijuPoId(p.idProstorije), p);
                 }  
-                
             }
+        }
+
+        public void spojProstorije(ProstorijaRenoviranje p)
+        {
+            Prostorija prostorija = nadjiProstorijuPoId(p.idProstorije);
+            Prostorija prostorijaDruga = nadjiProstorijuPoId(p.idProstorijeKojaSeSpaja);
+            ObrisiProstoriju(prostorijaDruga.id);
+            prostorija.Stavka = new List<Stavka>();
+            kopirajProstorijuIUpisi(prostorija);
+        }
+
+        public void noviBrojSobe(ProstorijaDTO prostorijaNova, Prostorija prostorija)
+        {
+            bool provera = ProveriProstoriju(prostorijaNova);
+            if (!provera)
+            {
+                Random random = new Random();
+                prostorijaNova.broj = prostorija.broj + "-" + (new Random()).Next(0, 100).ToString();
+                noviBrojSobe(prostorijaNova, prostorija);
+            }
+        }
+
+        public String postaviIDProstorija()
+        {
+            var prostorije = prostorijaRepozitorijum.ucitajSve();
+            return (prostorije.Count + 1).ToString();
+        }
+
+        public void zauzmiProstorijuZaRenoviranje(Prostorija prostorija)
+        {
+            prostorija.dostupnost = false;
+            kopirajProstorijuIUpisi(prostorija);
+        }
+
+        public void oslobodiProstorijuPosleRenoviranja(Prostorija prostorija, ProstorijaRenoviranje prostorijaRenoviranje)
+        {
+            var prostorijeZaRenoviranjeIzmena = prostorijaRepozitorijum.ucitajProstorijeZaRenoviranje();
+            prostorijeZaRenoviranjeIzmena = obrisiRenoviranuIzListe(prostorijaRenoviranje, prostorijeZaRenoviranjeIzmena);
+            prostorija.dostupnost = true;
+            kopirajProstorijuIUpisi(prostorija);
+            prostorijaRepozitorijum.upisiProstorijeZaRenoviranje(prostorijeZaRenoviranjeIzmena);
         }
 
         public void kopirajProstorijuIUpisi(Prostorija p)

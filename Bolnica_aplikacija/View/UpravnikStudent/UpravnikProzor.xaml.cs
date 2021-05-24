@@ -950,13 +950,28 @@ namespace Bolnica_aplikacija
         {
             if(dataGridProstorijeZaRenoviranje.SelectedItems.Count != 0)
             {
+                List<ProstorijaRenoviranje> prostorijeZaRenoviranje = new List<ProstorijaRenoviranje>();
                 foreach (var selektovan in dataGridProstorijeZaRenoviranje.SelectedItems)
                 {
                     Prostorija selektovanaProstorija = (Prostorija)selektovan;
-                    ProstorijaRenoviranje prostorijaZaRenoviranje = new ProstorijaRenoviranje(selektovanaProstorija.id, (DateTime)datumRenoviranjaOd.SelectedDate, 
-                                                                    (DateTime)datumRenoviranjaDo.SelectedDate, textBoxRazlogRenoviranja.Text);
+                    ProstorijaRenoviranje prostorijaZaRenoviranje = new ProstorijaRenoviranje(selektovanaProstorija.id, (DateTime)datumRenoviranjaOd.SelectedDate,
+                                                                    (DateTime)datumRenoviranjaDo.SelectedDate, textBoxRazlogRenoviranja.Text, cbTipRenoviranja.SelectedIndex);
+                    prostorijeZaRenoviranje.Add(prostorijaZaRenoviranje);
+                    //ProstorijaKontroler.zakaziRenoviranje(prostorijaZaRenoviranje);
+                }
+                if (cbTipRenoviranja.SelectedIndex == 2)
+                {
+                    ProstorijaRenoviranje prostorijaZaRenoviranje = prostorijeZaRenoviranje[0];
+                    prostorijaZaRenoviranje.idProstorijeKojaSeSpaja = prostorijeZaRenoviranje[1].idProstorije;
                     ProstorijaKontroler.zakaziRenoviranje(prostorijaZaRenoviranje);
                 }
+                else
+                {
+                    foreach (var prostorijaZaRenoviranje in prostorijeZaRenoviranje)
+                    {
+                        ProstorijaKontroler.zakaziRenoviranje(prostorijaZaRenoviranje);
+                    }
+                }  
             }
 
             ProstorijaKontroler.pregledajProstorijeZaRenoviranje();
