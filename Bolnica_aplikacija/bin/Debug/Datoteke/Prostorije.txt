@@ -35,7 +35,7 @@
       {
         "id": "1",
         "naziv": "rukavice",
-        "kolicina": 1005,
+        "kolicina": 10,
         "proizvodjac": "Mipex",
         "idProstorije": "1",
         "idBolnice": "1",
@@ -124,7 +124,7 @@
       {
         "id": "1",
         "naziv": "rukavice",
-        "kolicina": 100,
+        "kolicina": 300,
         "proizvodjac": "Mipex",
         "idProstorije": "1",
         "idBolnice": "1",
@@ -169,7 +169,7 @@
       {
         "id": "1",
         "naziv": "rukavice",
-        "kolicina": 10,
+        "kolicina": 30,
         "proizvodjac": "Mipex",
         "idProstorije": "1",
         "idBolnice": "1",
@@ -214,7 +214,7 @@
       {
         "id": "1",
         "naziv": "rukavice",
-        "kolicina": 15,
+        "kolicina": 2,
         "proizvodjac": "Mipex",
         "idProstorije": "1",
         "idBolnice": "1",
@@ -292,7 +292,7 @@
       {
         "id": "1",
         "naziv": "rukavice",
-        "kolicina": 18,
+        "kolicina": 330,
         "proizvodjac": "Mipex",
         "idProstorije": "1",
         "idBolnice": "1",

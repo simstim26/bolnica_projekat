@@ -1,4 +1,5 @@
 ﻿using Bolnica_aplikacija.Kontroler;
+using Bolnica_aplikacija.PomocneKlase;
 using Bolnica_aplikacija.Repozitorijum;
 using Model;
 using System;
@@ -13,8 +14,6 @@ namespace Bolnica_aplikacija.Servis
     class StavkaServis
     {
         StavkaRepozitorijum stavkaRepozitorijum = new StavkaRepozitorijum();
-        UpravnikProzor upravnikProzor = UpravnikProzor.getInstance();
-
         private static StavkaServis instance;
         public static StavkaServis getInstance()
         {
@@ -41,152 +40,122 @@ namespace Bolnica_aplikacija.Servis
             return stavkaRepozitorijum.UcitajNeobrisaneStavke();
         }
 
-        public bool DodajStavku() //Da li ovo sve da stavim u UpravnikProzor?
+        public void DodajStavku(StavkaDTO stavkaDTO)
         {
             var sveStavke = stavkaRepozitorijum.UcitajSve();
-            Stavka stavka = new Stavka();
+            Stavka stavka = new Stavka(dodajIDStavke(), stavkaDTO.naziv, stavkaDTO.kolicina, 
+                stavkaDTO.proizvodjac, null, stavkaDTO.jeStaticka, false, stavkaDTO.jePotrosnaRoba);
+            sveStavke.Add(stavka);
+            stavkaRepozitorijum.Upisi(sveStavke);
+        }
 
-            String pat = @"^[0-9]+$";
-            Regex r = new Regex(pat);
-            Match m = r.Match(upravnikProzor.textBoxKolicina.Text.Replace(" ", ""));
-
-            if (!String.IsNullOrEmpty(upravnikProzor.textBoxNaziv.Text) && !String.IsNullOrEmpty(upravnikProzor.textBoxProizvodjac.Text) && m.Success && upravnikProzor.comboBoxTipOpreme.SelectedIndex != -1)
-            {
-                stavka.id = (sveStavke.Count() + 1).ToString();
-                stavka.idBolnice = KorisnikKontroler.GetUpravnik().idBolnice;
-                stavka.kolicina = Int32.Parse(upravnikProzor.textBoxKolicina.Text);
-                stavka.naziv = upravnikProzor.textBoxNaziv.Text;
-                stavka.proizvodjac = upravnikProzor.textBoxProizvodjac.Text;
-                stavka.jeLogickiObrisana = false;
-                stavka.idProstorije = null;
-
-
-                if (upravnikProzor.comboBoxTipOpreme.SelectedIndex == 0)
-                {
-                    stavka.jeStaticka = true;
-                }
-                else if (upravnikProzor.comboBoxTipOpreme.SelectedIndex == 1)
-                {
-                    stavka.jeStaticka = false;
-                }
-
-                if (upravnikProzor.checkBoxPotrosna.IsChecked == true)
-                {
-                    stavka.jePotrosnaRoba = true;
-                }
-                else if (upravnikProzor.checkBoxPotrosna.IsChecked == false)
-                {
-                    stavka.jePotrosnaRoba = false;
-                }
-
-                sveStavke.Add(stavka);
-                stavkaRepozitorijum.Upisi(sveStavke);
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-
-
+        public String dodajIDStavke()
+        {
+            var sveStavke = stavkaRepozitorijum.UcitajSve();
+            return (sveStavke.Count() + 1).ToString();
         }
 
         public void IzbrisiStavku(Stavka stavkaZaBrisanje)
         {
             var stavke = stavkaRepozitorijum.UcitajNeobrisaneStavke();
-
             var prostorije = ProstorijaKontroler.ucitajSve();
-
             foreach (Stavka stavka in stavke)
             {
                 if (stavka.id == stavkaZaBrisanje.id)
                 {
                     foreach (Prostorija p in prostorije)
                     {
-                        if (p.Stavka.Count != 0)
-                        {
-                            foreach (Stavka s in p.Stavka)
-                            {
-                                if (s.id == stavka.id)
-                                {
-                                    p.Stavka.Remove(s);
-                                    break;
-                                }
-                            }
-                        }
+                        obrisiStavkuIzProstorije(stavka, p);
                     }
                     stavka.jeLogickiObrisana = true;
                 }
             }
-
             ProstorijaKontroler.upisi(prostorije);
             stavkaRepozitorijum.Upisi(stavke);
         }
 
-
-        public bool IzmeniStavku(Stavka stavkaZaIzmenu)
+        public void obrisiStavkuIzProstorije(Stavka stavka, Prostorija p)
         {
-            UpravnikProzor upravnikProzor = UpravnikProzor.getInstance();
-
-
-            String pat = @"^[0-9]+$";
-            Regex r = new Regex(pat);
-            Match m = r.Match(upravnikProzor.txtBoxKolicinaStavke.Text.Replace(" ", ""));
-
-            if (!String.IsNullOrEmpty(upravnikProzor.txtBoxNazivStavke.Text) && !String.IsNullOrEmpty(upravnikProzor.txtBoxProizvodjacStavke.Text) && m.Success && upravnikProzor.cbTipStavke.SelectedIndex != -1)
+            if (p.Stavka != null)
             {
-                var stavke = stavkaRepozitorijum.UcitajSve();
-                var stavkaKopija = new Stavka();
-
-                foreach (Stavka stavka in stavke)
+                foreach (Stavka s in p.Stavka)
                 {
-                    if (stavka.id == stavkaZaIzmenu.id)
+                    if (s.id == stavka.id)
                     {
-                        stavkaKopija = stavka;
+                        p.Stavka.Remove(s);
+                        break;
                     }
                 }
-
-                stavkaKopija.naziv = upravnikProzor.txtBoxNazivStavke.Text;
-                stavkaKopija.proizvodjac = upravnikProzor.txtBoxProizvodjacStavke.Text;
-                stavkaKopija.kolicina = Int32.Parse(upravnikProzor.txtBoxKolicinaStavke.Text);
-
-                if (upravnikProzor.cbTipStavke.SelectedIndex == 0)
-                {
-                    stavkaKopija.jeStaticka = true;
-                }
-                else if (upravnikProzor.cbTipStavke.SelectedIndex == 1)
-                {
-                    stavkaKopija.jeStaticka = false;
-                }
+            }
+        }
 
 
-                if (upravnikProzor.checkBoxPotrosnaIzmeni.IsChecked == true)
-                {
-                    stavkaKopija.jePotrosnaRoba = true;
-                }
-                else if (upravnikProzor.checkBoxPotrosnaIzmeni.IsChecked == false)
-                {
-                    stavkaKopija.jePotrosnaRoba = false;
-                }
+        public void IzmeniStavku(StavkaDTO stavkaZaIzmenu)
+        {
+            var stavka = pronadjiStavkuPoId(stavkaZaIzmenu.id);
+            stavka = kopirajStavkuDTOuStavku(stavkaZaIzmenu, stavka);
+            kopirajStavkuIUpisi(stavka);
+            IzmeniStavkuUProstorijama(stavka);
+        }
 
-                foreach (Stavka stavka in stavke)
+        public void IzmeniStavkuUProstorijama(Stavka stavka)
+        {
+            var prostorije = ProstorijaServis.getInstance().ucitajSve();
+            foreach(Prostorija p in prostorije)
+            {
+                if(p.Stavka != null)
                 {
-                    if (stavkaKopija.id == stavka.id)
+                    foreach (Stavka s in p.Stavka)
                     {
-                        stavka.kolicina = stavkaKopija.kolicina;
-                        stavka.naziv = stavkaKopija.naziv;
-                        stavka.proizvodjac = stavkaKopija.proizvodjac;
-                        stavka.jeStaticka = stavkaKopija.jeStaticka;
+                        if (s.id == stavka.id)
+                        {
+                            kopirajStavkuUProstoriju(s, stavka);
+                            break;
+                        }
                     }
                 }
+            }
+            ProstorijaServis.getInstance().upisi(prostorije);
+        }
 
-                stavkaRepozitorijum.Upisi(stavke);
-                return true;
-            }
-            else
+        public Stavka kopirajStavkuDTOuStavku(StavkaDTO stavkaDTO, Stavka stavka)
+        {
+            stavka.naziv = stavkaDTO.naziv;
+            stavka.kolicina = stavkaDTO.kolicina;
+            stavka.proizvodjac = stavkaDTO.proizvodjac;
+            stavka.jeStaticka = stavkaDTO.jeStaticka;
+            stavka.jePotrosnaRoba = stavkaDTO.jePotrosnaRoba;
+            return stavka;
+        }
+
+        public void kopirajStavkuUProstoriju(Stavka staraStavka, Stavka novaStavka)
+        {
+            staraStavka.naziv = novaStavka.naziv;
+            staraStavka.proizvodjac = novaStavka.proizvodjac;
+            staraStavka.jeStaticka = novaStavka.jeStaticka;
+            staraStavka.jePotrosnaRoba = novaStavka.jePotrosnaRoba;
+        }
+
+        public void kopirajStavkuIUpisi(Stavka stavka)
+        {
+            var stavke = stavkaRepozitorijum.UcitajSve();
+            foreach (Stavka s in stavke)
             {
-                return false;
+                if (s.id.Equals(stavka.id))
+                {
+                    s.id = stavka.id;
+                    s.naziv = stavka.naziv;
+                    s.kolicina = stavka.kolicina;
+                    s.proizvodjac = stavka.proizvodjac;
+                    s.idProstorije = stavka.idProstorije;
+                    s.idBolnice = stavka.idBolnice;
+                    s.jeStaticka = stavka.jeStaticka;
+                    s.jeLogickiObrisana = stavka.jeLogickiObrisana;
+                    s.jePotrosnaRoba = stavka.jePotrosnaRoba;
+                    break;
+                }
             }
+            stavkaRepozitorijum.Upisi(stavke);
         }
 
         public Stavka pronadjiStavkuPoId(String id)

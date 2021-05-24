@@ -311,16 +311,43 @@ namespace Bolnica_aplikacija
         private void btnPotvrdiStavku_Click(object sender, RoutedEventArgs e)
         {
             labelNepravilnoUneseno.Visibility = Visibility.Hidden;
-            if (StavkaKontroler.DodajStavku())
+
+            String pat = @"^[0-9]+$";
+            Regex r = new Regex(pat);
+            Match m = r.Match(textBoxKolicina.Text.Replace(" ", ""));
+
+            if(!String.IsNullOrEmpty(textBoxNaziv.Text) && !String.IsNullOrEmpty(textBoxProizvodjac.Text) && m.Success && comboBoxTipOpreme.SelectedIndex != -1)
             {
+                StavkaDTO stavka = new StavkaDTO();
+                stavka.kolicina = Int32.Parse(textBoxKolicina.Text);
+                stavka.naziv = textBoxNaziv.Text;
+                stavka.proizvodjac = textBoxProizvodjac.Text;
+                if (comboBoxTipOpreme.SelectedIndex == 0)
+                {
+                    stavka.jeStaticka = true;
+                }
+                else if (comboBoxTipOpreme.SelectedIndex == 1)
+                {
+                    stavka.jeStaticka = false;
+                }
+
+                if (checkBoxPotrosna.IsChecked == true)
+                {
+                    stavka.jePotrosnaRoba = true;
+                }
+                else if (checkBoxPotrosna.IsChecked == false)
+                {
+                    stavka.jePotrosnaRoba = false;
+                }
+                StavkaKontroler.DodajStavku(stavka);
                 dataGridInventar.ItemsSource = StavkaKontroler.UcitajNeobrisaneStavke();
                 gridDodajStavku.Visibility = Visibility.Hidden;
                 gridInventar.Visibility = Visibility.Visible;
             }
-            else if(!StavkaKontroler.DodajStavku())
+            else
             {
                 labelNepravilnoUneseno.Visibility = Visibility.Visible;
-            }    
+            }  
         }
 
         private void btnDodajStavku_Click(object sender, RoutedEventArgs e)
@@ -341,7 +368,45 @@ namespace Bolnica_aplikacija
             labelNepravilanUnosIzmena.Visibility = Visibility.Hidden;
             var stavka = (Stavka)dataGridInventar.SelectedItem;
 
-            if(StavkaKontroler.IzmeniStavku(stavka))
+            String pat = @"^[0-9]+$";
+            Regex r = new Regex(pat);
+            Match m = r.Match(txtBoxKolicinaStavke.Text.Replace(" ", ""));
+
+            if (!String.IsNullOrEmpty(txtBoxNazivStavke.Text) && !String.IsNullOrEmpty(txtBoxProizvodjacStavke.Text) && m.Success && cbTipStavke.SelectedIndex != -1)
+            {
+                StavkaDTO stavkaZaIzmenu = new StavkaDTO();
+                stavkaZaIzmenu.naziv = txtBoxNazivStavke.Text;
+                stavkaZaIzmenu.proizvodjac = txtBoxProizvodjacStavke.Text;
+                stavkaZaIzmenu.kolicina = Int32.Parse(txtBoxKolicinaStavke.Text);
+                if (cbTipStavke.SelectedIndex == 0)
+                {
+                    stavkaZaIzmenu.jeStaticka = true;
+                }
+                else if (cbTipStavke.SelectedIndex == 1)
+                {
+                    stavkaZaIzmenu.jeStaticka = false;
+                }
+                if (checkBoxPotrosnaIzmeni.IsChecked == true)
+                {
+                    stavkaZaIzmenu.jePotrosnaRoba = true;
+                }
+                else if (checkBoxPotrosnaIzmeni.IsChecked == false)
+                {
+                    stavkaZaIzmenu.jePotrosnaRoba = false;
+                }
+                stavkaZaIzmenu.id = ((Stavka)dataGridInventar.SelectedItem).id;
+                StavkaKontroler.IzmeniStavku(stavkaZaIzmenu);
+
+                gridIzmeniStavku.Visibility = Visibility.Hidden;
+                dataGridInventar.ItemsSource = StavkaKontroler.UcitajNeobrisaneStavke();
+                gridInventar.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                labelNepravilanUnosIzmena.Visibility = Visibility.Visible;
+            }
+
+                /*if (StavkaKontroler.IzmeniStavku(stavka))
             {
                 gridIzmeniStavku.Visibility = Visibility.Hidden;
                 dataGridInventar.ItemsSource = StavkaKontroler.UcitajNeobrisaneStavke();
@@ -350,7 +415,7 @@ namespace Bolnica_aplikacija
             else if(!StavkaKontroler.IzmeniStavku(stavka))
             {
                 labelNepravilanUnosIzmena.Visibility = Visibility.Visible;
-            }
+            }*/
             
         }
 

@@ -2,7 +2,7 @@
   {
     "id": "1",
     "naziv": "rukavice",
-    "kolicina": 1150,
+    "kolicina": 3000,
     "proizvodjac": "Mipex",
     "idProstorije": "1",
     "idBolnice": "1",
@@ -41,17 +41,6 @@
     "idBolnice": "1",
     "jeStaticka": false,
     "jeLogickiObrisana": false,
-    "jePotrosnaRoba": true
-  },
-  {
-    "id": "6",
-    "naziv": "stavka",
-    "kolicina": 10,
-    "proizvodjac": "st",
-    "idProstorije": null,
-    "idBolnice": "1",
-    "jeStaticka": false,
-    "jeLogickiObrisana": true,
     "jePotrosnaRoba": true
   },
   {
@@ -96,6 +85,17 @@
     "idBolnice": "1",
     "jeStaticka": true,
     "jeLogickiObrisana": false,
+    "jePotrosnaRoba": false
+  },
+  {
+    "id": "10",
+    "naziv": "proba",
+    "kolicina": 120,
+    "proizvodjac": "proizvodjac",
+    "idProstorije": null,
+    "idBolnice": null,
+    "jeStaticka": false,
+    "jeLogickiObrisana": true,
     "jePotrosnaRoba": false
   }
 ]

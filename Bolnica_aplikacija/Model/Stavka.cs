@@ -19,5 +19,20 @@ namespace Model
         public bool jeLogickiObrisana { get; set; }
         public bool jePotrosnaRoba { get; set; }
 
+        public Stavka()
+        {
+        }
+
+        public Stavka(string id, string naziv, int kolicina, string proizvodjac, string idProstorije, bool jeStaticka, bool jeLogickiObrisana, bool jePotrosnaRoba)
+        {
+            this.id = id;
+            this.naziv = naziv;
+            this.kolicina = kolicina;
+            this.proizvodjac = proizvodjac;
+            this.idProstorije = idProstorije;
+            this.jeStaticka = jeStaticka;
+            this.jeLogickiObrisana = jeLogickiObrisana;
+            this.jePotrosnaRoba = jePotrosnaRoba;
+        }
     }
 }
