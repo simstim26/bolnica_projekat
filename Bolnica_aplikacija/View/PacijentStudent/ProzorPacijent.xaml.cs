@@ -47,8 +47,8 @@ namespace Bolnica_aplikacija.PacijentStudent
 
         private void PopuniTermine()
         {
-            PacijentKontroler.nadjiPacijenta(KorisnikKontroler.GetPacijent().id);
-           // dataGridTermin.ItemsSource = PacijentKontroler.prikazPacijentovihTermina();
+            //PacijentKontroler.nadjiPacijenta(KorisnikKontroler.GetPacijent().id);
+            dataGridTermin.ItemsSource = PacijentKontroler.prikazPacijentovihTermina(KorisnikKontroler.GetPacijent().id);
         }
 
         private void SetLabelPacijentContent()
@@ -168,8 +168,7 @@ namespace Bolnica_aplikacija.PacijentStudent
                         {
                             if (izabraniTermin.idSpecijalizacije.Equals("0"))
                             {
-                              //  TerminKontroler.sacuvajTermin(izabraniTermin.id);
-                                IzmenaTerminaPacijent izmenaTermina = new IzmenaTerminaPacijent(dataGridTermin, KorisnikKontroler.GetPacijent().id);
+                                IzmenaTerminaPacijent izmenaTermina = new IzmenaTerminaPacijent(dataGridTermin);
                                 izmenaTermina.Owner = this;
                                 izmenaTermina.ShowDialog();
                             }
@@ -201,7 +200,7 @@ namespace Bolnica_aplikacija.PacijentStudent
         {
             if(proveraUzastopnihIzmena())
             {
-                PacijentZakaziTermin zakaziTermin = new PacijentZakaziTermin(dataGridTermin, KorisnikKontroler.GetPacijent().id);
+                PacijentZakaziTermin zakaziTermin = new PacijentZakaziTermin(dataGridTermin);
                 zakaziTermin.Owner = this;
                 zakaziTermin.ShowDialog();
             }
