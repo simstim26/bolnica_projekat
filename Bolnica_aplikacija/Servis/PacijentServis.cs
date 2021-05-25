@@ -703,11 +703,12 @@ namespace Bolnica_aplikacija.Servis
             {
                 String bolest = BolestKontroler.pronadjiNazivBolestiPoId(terapija.idBolesti);
                 String lek = LekKontroler.pronadjiImeLekaPoId(terapija.idLeka);
-                TerapijaPacijent terapijaPacijent = new TerapijaPacijent(bolest, lek, terapija.nacinUpotrebe);
+                TerapijaPacijent terapijaPacijent = new TerapijaPacijent(bolest, lek, terapija.nacinUpotrebe, terapija.id);
 
                 terapijaPacijent.nazivLeka = lek;
                 terapijaPacijent.nazivOboljenja = bolest;
                 terapijaPacijent.opisTerapije = terapija.nacinUpotrebe;
+                terapijaPacijent.idTerapije = terapija.id;
 
                 aktivneTerapije.Add(terapijaPacijent);
 

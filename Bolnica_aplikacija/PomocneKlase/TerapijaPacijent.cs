@@ -8,15 +8,17 @@ namespace Bolnica_aplikacija.PomocneKlase
 {
     class TerapijaPacijent
     {
+        public string idTerapije { get; set; }
         public string nazivOboljenja { get; set; }
         public string nazivLeka { get; set; }
         public string opisTerapije { get; set; }
 
-        public TerapijaPacijent(String nazivOboljenja, string nazivLeka, string opisTerapije)
+        public TerapijaPacijent(String nazivOboljenja, string nazivLeka, string opisTerapije, string idTerapije)
         {
             this.nazivLeka = nazivLeka;
             this.nazivOboljenja = nazivOboljenja;
             this.opisTerapije = opisTerapije;
+            this.idTerapije = idTerapije;
         }
 
     }

@@ -121,6 +121,8 @@
     <Compile Include="Model\BolnickoLecenje.cs" />
     <Compile Include="Model\LekZaOdobravanje.cs" />
     <Compile Include="PomocneKlase\BolnickoLecenjeDTO.cs" />
+    <Compile Include="PomocneKlase\NotifikacijaDTO.cs" />
+    <Compile Include="PomocneKlase\Ponavljanje.cs" />
     <Compile Include="PomocneKlase\KonverterBolnickoLecenje.cs" />
     <Compile Include="PomocneKlase\OcenaBolniceDTO.cs" />
     <Compile Include="PomocneKlase\OcenaLekaraDTO.cs" />
@@ -170,6 +172,9 @@
     <Compile Include="Model\Obavestenje.cs" />
     <Compile Include="View\PacijentStudent\NotifikacijaProzor.xaml.cs">
       <DependentUpon>NotifikacijaProzor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PacijentStudent\Obavestenje.xaml.cs">
+      <DependentUpon>Obavestenje.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\PacijentStudent\OceniteBolnicu.xaml.cs">
       <DependentUpon>OceniteBolnicu.xaml</DependentUpon>
@@ -368,6 +373,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\PacijentStudent\NotifikacijaProzor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PacijentStudent\Obavestenje.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

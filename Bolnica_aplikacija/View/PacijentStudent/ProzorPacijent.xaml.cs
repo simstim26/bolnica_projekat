@@ -323,7 +323,8 @@ namespace Bolnica_aplikacija.PacijentStudent
 
         private void btnPodsetnik_Click(object sender, RoutedEventArgs e)
         {
-
+            Obavestenje obavestenje = new Obavestenje();
+            obavestenje.ShowDialog();
         }
 
         private void proveraAnkete()
