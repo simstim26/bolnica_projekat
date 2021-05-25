@@ -94,5 +94,11 @@
     "korisnickoIme": "laza",
     "lozinka": "lazic",
     "tip": "lekar"
+  },
+  {
+    "id": "4",
+    "korisnickoIme": "simo",
+    "lozinka": "simic",
+    "tip": "lekar"
   }
 ]
