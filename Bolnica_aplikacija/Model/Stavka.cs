@@ -13,7 +13,7 @@ namespace Model
         public String naziv { get; set; }
         public int kolicina { get; set; }
         public String proizvodjac { get; set; }
-        public String idProstorije { get; set; }
+        public Prostorija prostorija { get; set; }
         public String idBolnice { get; set; }
         public bool jeStaticka { get; set; }
         public bool jeLogickiObrisana { get; set; }
@@ -23,13 +23,13 @@ namespace Model
         {
         }
 
-        public Stavka(string id, string naziv, int kolicina, string proizvodjac, string idProstorije, bool jeStaticka, bool jeLogickiObrisana, bool jePotrosnaRoba)
+        public Stavka(string id, string naziv, int kolicina, string proizvodjac, Prostorija prostorija, bool jeStaticka, bool jeLogickiObrisana, bool jePotrosnaRoba)
         {
             this.id = id;
             this.naziv = naziv;
             this.kolicina = kolicina;
             this.proizvodjac = proizvodjac;
-            this.idProstorije = idProstorije;
+            this.prostorija = prostorija;
             this.jeStaticka = jeStaticka;
             this.jeLogickiObrisana = jeLogickiObrisana;
             this.jePotrosnaRoba = jePotrosnaRoba;

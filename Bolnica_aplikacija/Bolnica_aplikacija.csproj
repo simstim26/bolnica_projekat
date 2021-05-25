@@ -123,6 +123,7 @@
     <Compile Include="PomocneKlase\BolnickoLecenjeDTO.cs" />
     <Compile Include="PomocneKlase\KonvertBolest.cs" />
     <Compile Include="PomocneKlase\KonverterBolnickoLecenje.cs" />
+    <Compile Include="PomocneKlase\KonvertStavka.cs" />
     <Compile Include="PomocneKlase\OcenaBolniceDTO.cs" />
     <Compile Include="PomocneKlase\OcenaLekaraDTO.cs" />
     <Compile Include="PomocneKlase\PacijentDTO.cs" />

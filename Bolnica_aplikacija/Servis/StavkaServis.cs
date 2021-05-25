@@ -147,7 +147,7 @@ namespace Bolnica_aplikacija.Servis
                     s.naziv = stavka.naziv;
                     s.kolicina = stavka.kolicina;
                     s.proizvodjac = stavka.proizvodjac;
-                    s.idProstorije = stavka.idProstorije;
+                    s.prostorija = stavka.prostorija;
                     s.idBolnice = stavka.idBolnice;
                     s.jeStaticka = stavka.jeStaticka;
                     s.jeLogickiObrisana = stavka.jeLogickiObrisana;
