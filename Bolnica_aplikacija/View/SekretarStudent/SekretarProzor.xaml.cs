@@ -1272,7 +1272,7 @@ namespace Bolnica_aplikacija
 
         // DODAJ LEKARA
 
-        private void btnDodajLekara_Click(object sender, RoutedEventArgs e)
+        private LekarDTO ucitajUnetePodatkeULekara()
         {
             Sekretar sekretar = KorisnikKontroler.GetSekretar();
             String idBolnice = sekretar.idBolnice;
@@ -1294,11 +1294,34 @@ namespace Bolnica_aplikacija
             DateTime krajRadnogVremena = DateTime.ParseExact(txtBoxKrajRadnogVremena.Text, "HH:mm", null);
             String idSpecijalizacije = specijalizacija.SelectedIndex.ToString();
 
-            LekarDTO lekarDTO = new LekarDTO(idBolnice, ime, prezime, jmbg, lekarDatumRodjenja, mestoRodjenja, drzavaRodjenja,
-                                             pol, adresa, email, telefon, korisnickoIme, lozinka, brojZdravstveneKnjizice,
-                                             "lekar", bracnoStatus, pocetakRadnogVremena, krajRadnogVremena, idSpecijalizacije);
-           
-            LekarKontroler.napraviLekara(lekarDTO);
+            LekarDTO lekarDTO = new LekarDTO();
+            if (!flagIzmeni)
+            {
+                lekarDTO = new LekarDTO(idBolnice, ime, prezime, jmbg, lekarDatumRodjenja, mestoRodjenja, drzavaRodjenja,
+                                                 pol, adresa, email, telefon, korisnickoIme, lozinka, brojZdravstveneKnjizice,
+                                                 "lekar", bracnoStatus, pocetakRadnogVremena, krajRadnogVremena, idSpecijalizacije,
+                                                 0.0, false, new List<Notifikacija>(), 30, new DateTime(), false);
+            }
+            else
+            {
+                LekarSpecijalizacija selektovanLekar = (LekarSpecijalizacija)dataGridLekari.SelectedItem;
+                String idLekara = selektovanLekar.idLekara;
+                Lekar lekar = LekarKontroler.nadjiLekaraPoId(idLekara);
+
+                lekarDTO = new LekarDTO(idBolnice, ime, prezime, jmbg, lekarDatumRodjenja, mestoRodjenja, drzavaRodjenja,
+                                        pol, adresa, email, telefon, korisnickoIme, lozinka, brojZdravstveneKnjizice,
+                                        "lekar", bracnoStatus, pocetakRadnogVremena, krajRadnogVremena, idSpecijalizacije,
+                                         lekar.prosecnaOcena, lekar.jeNaGodisnjemOdmoru, lekar.notifikacije, lekar.brojSlobodnihDana, lekar.pocetakGodisnjegOdmora, lekar.jeLogickiObrisan);
+                lekarDTO.id = lekar.id;
+            }
+            
+            return lekarDTO;
+        }
+
+        private void btnDodajLekara_Click(object sender, RoutedEventArgs e)
+        {
+            LekarDTO noviLekar = ucitajUnetePodatkeULekara();
+            LekarKontroler.napraviLekara(noviLekar);
 
             ocistiPoljaLekara();
             ucitajLekareUTabelu();
@@ -1307,6 +1330,26 @@ namespace Bolnica_aplikacija
 
 
         // IZMENI LEKARA
+
+        private void btnIzmeniLekara_Click(object sender, RoutedEventArgs e)
+        {
+            LekarSpecijalizacija selektovanLekar = (LekarSpecijalizacija)dataGridLekari.SelectedItem;
+            String idLekara = selektovanLekar.idLekara;
+
+            if (!imaGodisnjiOdmor)
+            {
+                LekarDTO izmeniLekarDTO = ucitajUnetePodatkeULekara();
+                LekarKontroler.izmeniLekara(izmeniLekarDTO);
+               
+            }
+            else
+            {
+
+            }
+
+            ocistiPoljaLekara();
+            ucitajLekareUTabelu();
+        }
 
         // IZBRISI LEKARA
 
@@ -1409,7 +1452,7 @@ namespace Bolnica_aplikacija
                 if (imaGodisnjiOdmor)
                 {
                     this.btnIzmeniLekara.IsEnabled =    !string.IsNullOrWhiteSpace(this.txtBoxBrojSlobodnihDana.Text) &&
-                                                        !string.IsNullOrWhiteSpace(this.txtBoxPocetakGodOdmora.Text) &&
+                                                        !string.IsNullOrWhiteSpace(this.txtBoxPocetakGodisnjegOdmora.Text) &&
                                                         !string.IsNullOrWhiteSpace(this.txtBoxImeLekara.Text) &&
                                                         !string.IsNullOrWhiteSpace(this.txtBoxPrezimeLekara.Text) &&
                                                         !string.IsNullOrWhiteSpace(this.txtBoxJMBG.Text) &&
@@ -1531,20 +1574,19 @@ namespace Bolnica_aplikacija
         private void checkBoxGodisnjiOdmor_Checked(object sender, RoutedEventArgs e)
         {
             txtBoxBrojSlobodnihDana.IsEnabled = true;
-            txtBoxPocetakGodOdmora.IsEnabled = true;
+            txtBoxPocetakGodisnjegOdmora.IsEnabled = true;
             imaGodisnjiOdmor = true;
 
-            this.btnIzmeniLekara.IsEnabled = !string.IsNullOrWhiteSpace(this.txtBoxBrojSlobodnihDana.Text) &&
-                                             !string.IsNullOrWhiteSpace(this.txtBoxPocetakGodOdmora.Text);
+            this.btnIzmeniLekara.IsEnabled = false;
         }
         private void checkBoxGodisnjiOdmor_Unchecked(object sender, RoutedEventArgs e)
         {
             txtBoxBrojSlobodnihDana.IsEnabled = false;
-            txtBoxPocetakGodOdmora.IsEnabled = false;
+            txtBoxPocetakGodisnjegOdmora.IsEnabled = false;
             imaGodisnjiOdmor = false;
 
             txtBoxBrojSlobodnihDana.Clear();
-            txtBoxPocetakGodOdmora.Clear();
+            txtBoxPocetakGodisnjegOdmora.Clear();
         }
 
         private void dataGridLekari_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -1581,7 +1623,7 @@ namespace Bolnica_aplikacija
         {
             gridDodatnaPoljaLekar.Visibility = Visibility.Hidden;
             checkBoxGodisnjiOdmor.IsChecked = false;
-            txtBoxPocetakGodOdmora.Clear();
+            txtBoxPocetakGodisnjegOdmora.Clear();
 
         }
 
@@ -1659,7 +1701,6 @@ namespace Bolnica_aplikacija
             txtBoxKorisnickoIme.IsEnabled = true;
             passwordBoxLozinkaLekar.IsEnabled = true;
         }
-
 
        
     }

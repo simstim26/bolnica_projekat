@@ -463,7 +463,7 @@
                     <ImageBrush  Stretch="Uniform" ImageSource="dodajLekara.png"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="btnIzmeniLekara" Content="                     " HorizontalAlignment="Left" Height="80" Margin="110,420,0,0" VerticalAlignment="Top" Width="80" RenderTransformOrigin="0.325,0.75" BorderThickness="0" ToolTip="Izmeni obaveštenje" IsEnabled="False">
+            <Button x:Name="btnIzmeniLekara" Content="                     " HorizontalAlignment="Left" Height="80" Margin="110,420,0,0" VerticalAlignment="Top" Width="80" RenderTransformOrigin="0.325,0.75" BorderThickness="0" ToolTip="Izmeni obaveštenje" IsEnabled="False" Click="btnIzmeniLekara_Click">
                 <Button.Background>
                     <ImageBrush  Stretch="Uniform" ImageSource="izmeniLekara.png"/>
                 </Button.Background>
@@ -505,16 +505,16 @@
             <Label x:Name="lblPol" Content="POL* :" HorizontalAlignment="Left" Margin="331,505,0,0" VerticalAlignment="Top" Width="241" FontSize="22"/>
             <Grid x:Name="gridPol" Margin="577,518,574,203">
                 <RadioButton x:Name="radioBtnMusko" Content="MUŠKO" HorizontalAlignment="Left" VerticalAlignment="Top" IsChecked="True" Background="#FF44C155"/>
-                <RadioButton x:Name="radioBtnZensko" Content="ŽENSKO" HorizontalAlignment="Left" Margin="72,0,0,0" VerticalAlignment="Top"/>
-                <RadioButton x:Name="radioBtnOstalo" Content="OSTALO" HorizontalAlignment="Left" Margin="148,0,0,0" VerticalAlignment="Top"/>
+                <RadioButton x:Name="radioBtnZensko" Content="ŽENSKO" HorizontalAlignment="Left" Margin="72,0,0,0" VerticalAlignment="Top" Background="#FF44C155"/>
+                <RadioButton x:Name="radioBtnOstalo" Content="OSTALO" HorizontalAlignment="Left" Margin="148,0,0,0" VerticalAlignment="Top" Background="#FF44C155"/>
             </Grid>
             <Label x:Name="lblBrojZdravKnjizice" Content="BROJ KNJIŽICE* :" HorizontalAlignment="Left" Margin="331,678,0,0" VerticalAlignment="Top" Width="241" FontSize="22"/>
             <TextBox x:Name="txtBoxBrojZdravKnjizice" HorizontalAlignment="Left" Height="37" Margin="577,678,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" FontSize="22" Background="#FF84D386" TextChanged="txtBoxBrojZdravKnjizice_TextChanged"/>
             <Label x:Name="lblBracnoStanje" Content="BRAČNO STANJE:" HorizontalAlignment="Left" Margin="834,377,0,0" VerticalAlignment="Top" Width="240" FontSize="22"/>
             <Grid x:Name="ridBracnoStanje" Margin="834,422,262,299">
                 <RadioButton x:Name="radioBtnUBraku" Content="U BRAKU" HorizontalAlignment="Left" VerticalAlignment="Top" IsChecked="True" Background="#FF44C155"/>
-                <RadioButton x:Name="radioBtnNijeUBraku" Content="NIJE U BRAKU" HorizontalAlignment="Left" Margin="74,0,0,0" VerticalAlignment="Top"/>
-                <RadioButton x:Name="radioBtnRazveden" Content="RAZVEDEN/A" HorizontalAlignment="Left" Margin="174,0,0,0" VerticalAlignment="Top"/>
+                <RadioButton x:Name="radioBtnNijeUBraku" Content="NIJE U BRAKU" HorizontalAlignment="Left" Margin="74,0,0,0" VerticalAlignment="Top" Background="#FF44C155"/>
+                <RadioButton x:Name="radioBtnRazveden" Content="RAZVEDEN/A" HorizontalAlignment="Left" Margin="174,0,0,0" VerticalAlignment="Top" Background="#FF44C155"/>
             </Grid>
             <Label x:Name="lblKorisnickoIme" Content="KORISNIČKO IME* :" HorizontalAlignment="Left" Margin="832,254,0,0" VerticalAlignment="Top" Width="284" FontSize="22"/>
             <Label x:Name="lblKorisnickoIme_Copy" Content="LOZINKA* :" HorizontalAlignment="Left" Margin="832,297,0,0" VerticalAlignment="Top" Width="284" FontSize="22"/>
@@ -529,7 +529,7 @@
                 <Label x:Name="lblBrojDana" Content="" HorizontalAlignment="Left" Margin="289,0,0,0" VerticalAlignment="Top" Width="59" FontSize="22" IsEnabled="False"/>
                 <CheckBox x:Name="checkBoxGodisnjiOdmor" Content="GODIŠNJI ODMOR" HorizontalAlignment="Left" Margin="380,56,0,0" VerticalAlignment="Top" Width="127" Checked="checkBoxGodisnjiOdmor_Checked" Unchecked="checkBoxGodisnjiOdmor_Unchecked"/>
                 <Label x:Name="lblDatumPocetkaGodOdmora" Content="DATUM POČETKA ODMORA:" HorizontalAlignment="Left" Margin="0,89,0,0" VerticalAlignment="Top" Width="284" FontSize="22" Height="36"/>
-                <TextBox x:Name="txtBoxPocetakGodOdmora" HorizontalAlignment="Left" Height="37" Margin="289,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" FontSize="22" Background="#FF84D386" IsEnabled="False" TextChanged="txtBoxPocetakGodOdmora_TextChanged"/>
+                <TextBox x:Name="txtBoxPocetakGodisnjegOdmora" HorizontalAlignment="Left" Height="37" Margin="289,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" FontSize="22" Background="#FF84D386" IsEnabled="False" TextChanged="txtBoxPocetakGodOdmora_TextChanged"/>
                 <Label x:Name="lblBrojDostupnihDana" Content="DOSTUPAN BROJ DANA:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="255" FontSize="22"/>
                 <TextBox x:Name="txtBoxBrojSlobodnihDana" HorizontalAlignment="Left" Height="37" Margin="289,42,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="59" FontSize="22" Background="#FF84D386" IsEnabled="False" TextChanged="txtBoxBrojSlobodnihDana_TextChanged"/>
             </Grid>

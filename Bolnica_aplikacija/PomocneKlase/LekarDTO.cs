@@ -8,17 +8,13 @@ using System.Threading.Tasks;
 namespace Bolnica_aplikacija.PomocneKlase
 {
     class LekarDTO : Lekar
-    {
-   
+    { 
         public LekarDTO(String idBolnice, String ime, String prezime, String jmbg, DateTime datumRodjenja, String mestoRodjenja, String drzavaRodjenja, String pol,
                         String adresa, String email, String telefon, String korisnickoIme, String lozinka, String brojZdravKnjizice, String zanimanje,
-                        String bracnoStanje, DateTime pocetakRadnogVremena, DateTime krajRadnogVremena, String idSpecijalizacije)
+                        String bracnoStanje, DateTime pocetakRadnogVremena, DateTime krajRadnogVremena, String idSpecijalizacije, double ocena, bool jeNaGodisnjemOdmoru,
+                        List<Notifikacija> notifikacije, int brojSlobodnihDana, DateTime pocetakGodisnjegOdmora, bool jeLogickiObrisan)
         {
-            this.prosecnaOcena = 0.0;
-            this.jeNaGodisnjemOdmoru = false;
-            this.notifikacije = new List<Notifikacija>();
-            this.jeLogickiObrisan = false;
-
+                  
             this.idBolnice = idBolnice;
             this.ime = ime;
             this.prezime = prezime;
@@ -38,7 +34,20 @@ namespace Bolnica_aplikacija.PomocneKlase
             this.pocetakRadnogVremena = pocetakRadnogVremena;
             this.krajRadnogVremena = krajRadnogVremena;
             this.idSpecijalizacije = idSpecijalizacije;
-            
+           
+            this.prosecnaOcena = ocena;
+            this.jeNaGodisnjemOdmoru = jeNaGodisnjemOdmoru;
+            this.notifikacije = notifikacije;
+            this.brojSlobodnihDana = brojSlobodnihDana;
+            this.pocetakGodisnjegOdmora = pocetakGodisnjegOdmora;
+            this.jeLogickiObrisan = jeLogickiObrisan;
+
+
+        }
+
+        public LekarDTO()
+        {
+
         }
     }
 }

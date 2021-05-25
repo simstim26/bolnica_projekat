@@ -22,14 +22,10 @@ namespace Model
       public List<Notifikacija> notifikacije { get; set; }
 
         public Lekar(String idBolnice, String ime, String prezime, String jmbg, DateTime datumRodjenja, String mestoRodjenja, String drzavaRodjenja, String pol,
-                     String adresa, String email, String telefon, String korisnickoIme, String lozinka, String brojZdravKnjizice, String zanimanje,
-                     String bracnoStanje, DateTime pocetakRadnogVremena, DateTime krajRadnogVrmena, String idSpecijalizacije)
+                        String adresa, String email, String telefon, String korisnickoIme, String lozinka, String brojZdravKnjizice, String zanimanje,
+                        String bracnoStanje, DateTime pocetakRadnogVremena, DateTime krajRadnogVremena, String idSpecijalizacije, double ocena, bool jeNaGodisnjemOdmoru,
+                        List<Notifikacija> notifikacije, int brojSlobodnihDana, DateTime pocetakGodisnjegOdmora, bool jeLogickiObrisan)
         {
-            this.prosecnaOcena = 0.0;
-            this.jeNaGodisnjemOdmoru = false;
-            this.notifikacije = new List<Notifikacija>();
-            this.brojSlobodnihDana = 30;
-            this.jeLogickiObrisan = false;
 
             this.idBolnice = idBolnice;
             this.ime = ime;
@@ -44,12 +40,20 @@ namespace Model
             this.brojTelefona = telefon;
             this.korisnickoIme = korisnickoIme;
             this.lozinka = lozinka;
-            this.brojZdravstveneKnjizice = brojZdravstveneKnjizice;
+            this.brojZdravstveneKnjizice = brojZdravKnjizice;
             this.zanimanje = zanimanje;
             this.bracniStatus = bracnoStanje;
             this.pocetakRadnogVremena = pocetakRadnogVremena;
             this.krajRadnogVremena = krajRadnogVremena;
             this.idSpecijalizacije = idSpecijalizacije;
+
+            this.prosecnaOcena = ocena;
+            this.jeNaGodisnjemOdmoru = jeNaGodisnjemOdmoru;
+            this.notifikacije = notifikacije;
+            this.brojSlobodnihDana = brojSlobodnihDana;
+            this.pocetakGodisnjegOdmora = pocetakGodisnjegOdmora;
+            this.jeLogickiObrisan = jeLogickiObrisan;
+
 
         }
 

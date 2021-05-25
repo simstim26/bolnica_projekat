@@ -221,6 +221,13 @@ namespace Bolnica_aplikacija.Servis
         }
         */
 
+        public void izmeniLekara(Lekar izmeniLekar)
+        {
+
+            lekarRepozitorijum.azurirajLekara(izmeniLekar);
+            
+        }
+
         public void obrisiLekara(String idLekara)
         {
             List<Lekar> sviLekari = lekarRepozitorijum.ucitajSve();
