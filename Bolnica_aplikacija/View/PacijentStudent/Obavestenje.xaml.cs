@@ -22,9 +22,12 @@ namespace Bolnica_aplikacija.View.PacijentStudent
     /// </summary>
     public partial class Obavestenje : Window
     {
-        public Obavestenje()
+        DataGrid dataGrid;
+
+        public Obavestenje(DataGrid dataGrid)
         {
             InitializeComponent();
+            this.dataGrid = dataGrid;
 
             popuniPonavljanje();
 
@@ -54,6 +57,8 @@ namespace Bolnica_aplikacija.View.PacijentStudent
             NotifikacijaKontroler.pacijentNapraviNotifikaciju(new NotifikacijaDTO(Convert.ToString(NotifikacijaKontroler.ucitajSve().Count + 1), txtNaziv.Text, vreme, txtPoruka.Text, KorisnikKontroler.GetPacijent().id, DateTime.Now, false), ponavljanje);
 
             MessageBox.Show("Podsetnik je uspešno kreiran.", "Kreiranje uspešno", MessageBoxButton.OK, MessageBoxImage.Information);
+
+            dataGrid.ItemsSource = NotifikacijaKontroler.getNoveNotifikacijeKorisnika(KorisnikKontroler.GetPacijent().id);
 
             this.Close();
         }

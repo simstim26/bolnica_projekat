@@ -43,6 +43,7 @@ namespace Bolnica_aplikacija.PacijentStudent
             popuniTerapije();
             setujTajmer();
             proveraAnkete();
+            popuniObavestenja();
 
         }
 
@@ -55,6 +56,11 @@ namespace Bolnica_aplikacija.PacijentStudent
         private void popuniTerapije()
         {
             dataGridTerapije.ItemsSource = PacijentKontroler.ucitajAktivneTerapije(KorisnikKontroler.GetPacijent().id);
+        }
+
+        private void popuniObavestenja()
+        {
+            dataGridObavestenja.ItemsSource = NotifikacijaKontroler.getNoveNotifikacijeKorisnika(KorisnikKontroler.GetPacijent().id);
         }
 
         private void SetLabelPacijentContent()
@@ -106,6 +112,12 @@ namespace Bolnica_aplikacija.PacijentStudent
             }
 
             foreach (var column in dataGridTerapije.Columns)
+            {
+                column.MinWidth = column.ActualWidth;
+                column.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
+            }
+
+            foreach (var column in dataGridObavestenja.Columns)
             {
                 column.MinWidth = column.ActualWidth;
                 column.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
@@ -323,7 +335,7 @@ namespace Bolnica_aplikacija.PacijentStudent
 
         private void btnPodsetnik_Click(object sender, RoutedEventArgs e)
         {
-            Obavestenje obavestenje = new Obavestenje();
+            Obavestenje obavestenje = new Obavestenje(dataGridObavestenja);
             obavestenje.ShowDialog();
         }
 
@@ -351,6 +363,12 @@ namespace Bolnica_aplikacija.PacijentStudent
 
                 }
             }
+        }
+
+        private void btnKreirajObavestenje_Click(object sender, RoutedEventArgs e)
+        {
+            Obavestenje obavestenje = new Obavestenje(dataGridObavestenja);
+            obavestenje.ShowDialog();
         }
     }
 }

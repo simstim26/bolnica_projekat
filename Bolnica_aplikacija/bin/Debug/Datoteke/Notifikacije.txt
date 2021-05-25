@@ -268,5 +268,35 @@
     "datumNotifikovanja": "2021-05-25T08:34:10.4069452+02:00",
     "jeProcitana": false,
     "ponavljanje": 0
+  },
+  {
+    "id": "28",
+    "nazivNotifikacije": "f",
+    "vremeNotifikovanja": "2021-05-25T19:00:00",
+    "porukaNotifikacije": "",
+    "idKorisnika": "1",
+    "datumNotifikovanja": "2021-05-25T23:43:26.2250366+02:00",
+    "jeProcitana": false,
+    "ponavljanje": 1
+  },
+  {
+    "id": "29",
+    "nazivNotifikacije": "podsetnik",
+    "vremeNotifikovanja": "2021-05-25T10:00:00",
+    "porukaNotifikacije": "OVO JE PODSETNIK PLS RADI",
+    "idKorisnika": "1",
+    "datumNotifikovanja": "2021-05-25T23:45:58.2025886+02:00",
+    "jeProcitana": false,
+    "ponavljanje": 0
+  },
+  {
+    "id": "30",
+    "nazivNotifikacije": "podsetnik",
+    "vremeNotifikovanja": "2021-05-25T11:00:00",
+    "porukaNotifikacije": "sdfsdf",
+    "idKorisnika": "1",
+    "datumNotifikovanja": "2021-05-25T23:49:27.3545792+02:00",
+    "jeProcitana": false,
+    "ponavljanje": 0
   }
 ]
