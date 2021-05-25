@@ -266,7 +266,6 @@ namespace Bolnica_aplikacija.Servis
             if (filtriraniTermini.Count == 0)
             {
                 List<PacijentTermin> sviTermini = PacijentServis.getInstance().ucitajZauzeteTermine();
-                Console.WriteLine("LISTA ZAUZETI: " + sviTermini.Count);
                 filtriraniTermini = pretraziTerminePoTipuISpecijalizaciji(sviTermini, tip, idSpecijalizacije);
             }
 
