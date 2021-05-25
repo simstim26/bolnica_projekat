@@ -121,6 +121,7 @@
     <Compile Include="Model\BolnickoLecenje.cs" />
     <Compile Include="Model\LekZaOdobravanje.cs" />
     <Compile Include="PomocneKlase\BolnickoLecenjeDTO.cs" />
+    <Compile Include="PomocneKlase\KonvertBolest.cs" />
     <Compile Include="PomocneKlase\KonverterBolnickoLecenje.cs" />
     <Compile Include="PomocneKlase\OcenaBolniceDTO.cs" />
     <Compile Include="PomocneKlase\OcenaLekaraDTO.cs" />
