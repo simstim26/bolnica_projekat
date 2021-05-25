@@ -22,9 +22,9 @@
     "jmbg": "1234567891012",
     "mestoRodjenja": null,
     "drzavaRodjenja": null,
-    "pol": null,
+    "pol": "Musko",
     "brojZdravstveneKnjizice": null,
-    "bracniStatus": null,
+    "bracniStatus": "U braku",
     "zanimanje": null
   },
   {
@@ -50,14 +50,14 @@
     "jmbg": "1231231111111",
     "mestoRodjenja": null,
     "drzavaRodjenja": null,
-    "pol": null,
+    "pol": "Zensko",
     "brojZdravstveneKnjizice": null,
-    "bracniStatus": null,
+    "bracniStatus": "Nije u braku",
     "zanimanje": null
   },
   {
     "id": "3",
-    "brojSlobodnihDana": 0,
+    "brojSlobodnihDana": 30,
     "prosecnaOcena": 0,
     "idBolnice": "1",
     "idSpecijalizacije": "1",
@@ -78,8 +78,8 @@
     "jmbg": "1234567898772",
     "mestoRodjenja": "Beograd",
     "drzavaRodjenja": "Republika Srbija",
-    "pol": "Ostalo",
-    "brojZdravstveneKnjizice": null,
+    "pol": "Musko",
+    "brojZdravstveneKnjizice": "111111",
     "bracniStatus": "Nije u braku",
     "zanimanje": "lekar"
   }

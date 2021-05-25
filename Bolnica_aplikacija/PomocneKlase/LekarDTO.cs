@@ -7,23 +7,12 @@ using System.Threading.Tasks;
 
 namespace Bolnica_aplikacija.PomocneKlase
 {
-    class LekarDTO : Korisnik
+    class LekarDTO : Lekar
     {
-        public String id { get; set; }
-        public int brojSlobodnihDana { get; set; }
-        public double prosecnaOcena { get; set; }
-        public String idBolnice { get; set; }
-        public String idSpecijalizacije { get; set; }
-        public DateTime pocetakGodisnjegOdmora { get; set; }
-        public DateTime pocetakRadnogVremena { get; set; }
-        public DateTime krajRadnogVremena { get; set; }
-        public bool jeNaGodisnjemOdmoru { get; set; }
-        public bool jeLogickiObrisan { get; set; }
-        public List<Notifikacija> notifikacije { get; set; }
-
+   
         public LekarDTO(String idBolnice, String ime, String prezime, String jmbg, DateTime datumRodjenja, String mestoRodjenja, String drzavaRodjenja, String pol,
                         String adresa, String email, String telefon, String korisnickoIme, String lozinka, String brojZdravKnjizice, String zanimanje,
-                        String bracnoStanje, DateTime pocetakRadnogVremena, DateTime krajRadnogVrmena, String idSpecijalizacije)
+                        String bracnoStanje, DateTime pocetakRadnogVremena, DateTime krajRadnogVremena, String idSpecijalizacije)
         {
             this.prosecnaOcena = 0.0;
             this.jeNaGodisnjemOdmoru = false;
@@ -43,7 +32,7 @@ namespace Bolnica_aplikacija.PomocneKlase
             this.brojTelefona = telefon;
             this.korisnickoIme = korisnickoIme;
             this.lozinka = lozinka;
-            this.brojZdravstveneKnjizice = brojZdravstveneKnjizice;
+            this.brojZdravstveneKnjizice = brojZdravKnjizice;
             this.zanimanje = zanimanje;
             this.bracniStatus = bracnoStanje;
             this.pocetakRadnogVremena = pocetakRadnogVremena;
