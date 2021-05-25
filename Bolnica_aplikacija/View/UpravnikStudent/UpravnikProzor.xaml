@@ -348,12 +348,18 @@
             <TextBlock x:Name="textBlock4" FontSize="24" HorizontalAlignment="Left" Margin="573,180,-771,0" TextWrapping="Wrap" Text="Renoviranje traje od:" VerticalAlignment="Top" Height="36" Width="231"/>
             <DatePicker x:Name="datumRenoviranjaOd" HorizontalAlignment="Left" Margin="573,258,-670,0" VerticalAlignment="Top" Width="130"/>
             <TextBlock x:Name="textBlock5" FontSize="24" HorizontalAlignment="Left" Margin="754,257,-755,0" TextWrapping="Wrap" Text="do:" VerticalAlignment="Top"/>
-            <DatePicker x:Name="datumRenoviranjaDo" HorizontalAlignment="Left" Margin="840,264,-927,0" VerticalAlignment="Top" Width="120"/>
-            <TextBlock x:Name="textBlock6" FontSize="24" HorizontalAlignment="Left" Margin="573,332,-776,-80" TextWrapping="Wrap" Text="Razlog renoviranja: " VerticalAlignment="Top" Width="236" Height="46"/>
-            <TextBox x:Name="textBoxRazlogRenoviranja" Background="White" HorizontalAlignment="Left" Height="128" Margin="573,406,-927,-236" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="387"/>
+            <DatePicker x:Name="datumRenoviranjaDo" HorizontalAlignment="Left" Margin="840,258,0,0" VerticalAlignment="Top" Width="120"/>
+            <TextBlock x:Name="textBlock6" FontSize="24" HorizontalAlignment="Left" Margin="573,316,0,0" TextWrapping="Wrap" Text="Razlog renoviranja: " VerticalAlignment="Top" Width="236" Height="46"/>
+            <TextBox x:Name="textBoxRazlogRenoviranja" Background="White" HorizontalAlignment="Left" Height="128" Margin="573,362,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="387"/>
             <Button x:Name="btnZakaziRenoviranjeProstorije" Content="Zakazi" HorizontalAlignment="Left" Margin="573,601,-700,-368" VerticalAlignment="Top" Width="160" Height="65" Click="btnZakaziRenoviranjeProstorije_Click"/>
-            <Button x:Name="btnOtkaziRenoviranjeProstorije" Content="Otkazi" HorizontalAlignment="Left" Margin="800,598,-927,-368" VerticalAlignment="Top" Width="160" Height="68" Click="btnOtkaziRenoviranjeProstorije_Click"/>
+            <Button x:Name="btnOtkaziRenoviranjeProstorije" Content="Otkazi" HorizontalAlignment="Left" Margin="800,601,0,0" VerticalAlignment="Top" Width="160" Height="65" Click="btnOtkaziRenoviranjeProstorije_Click"/>
             <TextBlock x:Name="textBlock4_Copy" FontSize="24" HorizontalAlignment="Left" Margin="152,109,0,0" TextWrapping="Wrap" Text="Izaberite prostorije za renoviranje:" VerticalAlignment="Top" Height="36" Width="368"/>
+            <TextBlock x:Name="textBlock6_Copy" FontSize="24" HorizontalAlignment="Left" Margin="573,513,0,0" TextWrapping="Wrap" Text="Tip renoviranja: " VerticalAlignment="Top" Width="182" Height="46"/>
+            <ComboBox x:Name="cbTipRenoviranja" HorizontalAlignment="Left" Margin="781,519,0,0" VerticalAlignment="Top" Width="179">
+                <ComboBoxItem Content="Obično"/>
+                <ComboBoxItem Content="Proširivanje"/>
+                <ComboBoxItem Content="Spajanje"/>
+            </ComboBox>
         </Grid>
 
         <Grid  Visibility="Visible" HorizontalAlignment="Left" Height="739" VerticalAlignment="Top" Width="78" Grid.ColumnSpan="3" Grid.RowSpan="3">

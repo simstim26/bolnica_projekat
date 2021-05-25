@@ -15,81 +15,81 @@ namespace Bolnica_aplikacija.Kontroler
         private static ProstorijaServis prostorijaServis = new ProstorijaServis();
         public static List<Prostorija> ucitajSve()
         {
-            return prostorijaServis.ucitajSve();
+            return ProstorijaServis.getInstance().ucitajSve();
         }
 
         public static List<Prostorija> pronadjiSlobodneBolnickeSobe()
         {
-            return prostorijaServis.pronadjiSlobodneBolnickeSobe();
+            return ProstorijaServis.getInstance().pronadjiSlobodneBolnickeSobe();
         }
-
 
         public static List<Prostorija> ucitajNeobrisane()
         {
-            return prostorijaServis.ucitajNeobrisane();
+            return ProstorijaServis.getInstance().ucitajNeobrisane();
         }
 
         public static void upisi(List<Prostorija> sveProstorije)
         {
-            prostorijaServis.upisi(sveProstorije);
+            ProstorijaServis.getInstance().upisi(sveProstorije);
         }
 
-        public static void NapraviProstoriju(Prostorija prostorija)
+        public static bool NapraviProstoriju(ProstorijaDTO prostorija)
         {
-            prostorijaServis.NapraviProstoriju(prostorija);
+            return ProstorijaServis.getInstance().ProveriProstoriju(prostorija);
         }
 
-        public static void AzurirajProstoriju(Prostorija prostorija)
+        public static bool AzurirajProstoriju(ProstorijaDTO prostorija)
         {
-            prostorijaServis.AzurirajProstoriju(prostorija);
+            return ProstorijaServis.getInstance().AzurirajProstoriju(prostorija);
         }
 
         public static void ObrisiProstoriju(String idProstorija)
         {
-            prostorijaServis.ObrisiProstoriju(idProstorija);
+            ProstorijaServis.getInstance().ObrisiProstoriju(idProstorija);
         }
 
-        public static void dodajStavku(String prostorijaId, String stavkaId)
+        public static void dodajStavku(ProstorijaPrebacivanjeDTO prebacivanje)
         {
-            prostorijaServis.dodajStavku(prostorijaId, stavkaId);
+            ProstorijaServis.getInstance().dodajStavku(prebacivanje);
         }
 
         public static List<Stavka> dobaviStavkeIzProstorije(Prostorija prostorija)
         {
-            return prostorijaServis.dobaviStavkeIzProstorije(prostorija);
+            return ProstorijaServis.getInstance().dobaviStavkeIzProstorije(prostorija);
         }
 
-        public static void premestiStavku(String prostorijaIzKojeSePrebacujeId, String prostorijaUKojuSePrebacujeId, String stavkaId)
+        public static void premestiStavku(ProstorijaPrebacivanjeDTO prebacivanje)
         {
-            prostorijaServis.premestiStavku(prostorijaIzKojeSePrebacujeId, prostorijaUKojuSePrebacujeId, stavkaId);
+            ProstorijaServis.getInstance().premestiStavku(prebacivanje);
         }
 
         public static Prostorija nadjiProstorijuPoId(String id)
         {
-            return prostorijaServis.nadjiProstorijuPoId(id);
+            return ProstorijaServis.getInstance().nadjiProstorijuPoId(id);
         }
 
         public static void zakaziRenoviranje(ProstorijaRenoviranje prostorija)
         {
             Prostorija prostorijaKojaSeRenovira = nadjiProstorijuPoId(prostorija.idProstorije);
-            
-            prostorijaServis.zakaziRenoviranje(prostorija);
+
+            ProstorijaServis.getInstance().zakaziRenoviranje(prostorija);
             
         }
 
         public static void pregledajProstorijeZaRenoviranje()
         {
-            prostorijaServis.pregledajProstorijeZaRenoviranje();
+            ProstorijaServis.getInstance().pregledajProstorijeZaRenoviranje();
         }
 
         public static bool postojeTerminiZaPeriodPremestanja(DateTime datumPocetka, DateTime datumKraja, Prostorija p)
         {
-            return prostorijaServis.postojeTerminiZaPeriodPremestanja(datumPocetka, datumKraja, p);
+            return ProstorijaServis.getInstance().postojeTerminiZaPeriodPremestanja(datumPocetka, datumKraja, p);
         }
 
         public static void azurirajBrojZauzetihKreveta(string id)
         {
-            prostorijaServis.azurirajBrojZauzetihKreveta(id);
+            ProstorijaServis.getInstance().azurirajBrojZauzetihKreveta(id);
         }
+
     }
 }

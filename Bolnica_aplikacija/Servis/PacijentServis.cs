@@ -56,7 +56,7 @@ namespace Bolnica_aplikacija.Servis
 
             foreach(Bolest bolest in BolestServis.getInstance().ucitajSve())
             {
-                if (bolest.idPacijenta.Equals(idPacijenta))
+                if (bolest.pacijent.id.Equals(idPacijenta))
                 {
                     Termin termin = TerminServis.getInstance().nadjiTerminZaBolest(bolest.id);
                     Terapija terapija = TerapijaServis.getInstance().nadjiTerapijuPoId(termin.idTerapije);

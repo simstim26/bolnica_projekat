@@ -121,17 +121,22 @@
     <Compile Include="Model\BolnickoLecenje.cs" />
     <Compile Include="Model\LekZaOdobravanje.cs" />
     <Compile Include="PomocneKlase\BolnickoLecenjeDTO.cs" />
+    <Compile Include="PomocneKlase\KonvertBolest.cs" />
     <Compile Include="PomocneKlase\KonverterBolnickoLecenje.cs" />
     <Compile Include="PomocneKlase\LekarDTO.cs" />
+    <Compile Include="PomocneKlase\KonvertStavka.cs" />
     <Compile Include="PomocneKlase\OcenaBolniceDTO.cs" />
     <Compile Include="PomocneKlase\OcenaLekaraDTO.cs" />
     <Compile Include="PomocneKlase\PacijentDTO.cs" />
+    <Compile Include="PomocneKlase\ProstorijaDTO.cs" />
+    <Compile Include="PomocneKlase\ProstorijaPrebacivanjeDTO.cs" />
     <Compile Include="PomocneKlase\ProstorijaRenoviranje.cs" />
     <Compile Include="PomocneKlase\LekarSpecijalizacija.cs" />
     <Compile Include="Model\OcenaBolnice.cs" />
     <Compile Include="Model\OcenaLekara.cs" />
     <Compile Include="PomocneKlase\Logovanje.cs" />
     <Compile Include="PomocneKlase\PomocnaKlasaProvere.cs" />
+    <Compile Include="PomocneKlase\StavkaDTO.cs" />
     <Compile Include="PomocneKlase\TerapijaDTO.cs" />
     <Compile Include="PomocneKlase\TerminDTO.cs" />
     <Compile Include="Repozitorijum\BolnickoLecenjeRepozitorijum.cs" />
@@ -567,6 +572,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="View\SekretarStudent\odustanilekar2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\UpravnikStudent\logout.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets" Condition="Exists('packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets')" />

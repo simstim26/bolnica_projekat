@@ -112,7 +112,7 @@ namespace Bolnica_aplikacija.Servis
                 termin.idTerapije = terapija.id;
             }
             
-            termin.idBolesti = bolestServis.napraviBolest(new Bolest("",nazivBolesti, termin.idTerapije, termin.idPacijenta));
+            termin.idBolesti = bolestServis.napraviBolest(new Bolest("",nazivBolesti, TerapijaServis.getInstance().nadjiTerapijuPoId(termin.idTerapije), PacijentServis.getInstance().nadjiPacijenta(termin.idPacijenta)));
            
             if(terapija != null)
             {

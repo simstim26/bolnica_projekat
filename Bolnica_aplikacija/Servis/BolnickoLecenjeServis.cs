@@ -91,7 +91,7 @@ namespace Bolnica_aplikacija.Servis
 
         private bool proveriKrajnjiDatum(DateTime datumKraja)
         {
-            return DateTime.Compare(datumKraja.Date, DateTime.Now.Date) == 0;
+            return DateTime.Compare(datumKraja.Date, DateTime.Now.Date) <= 0;
         }
 
     }
