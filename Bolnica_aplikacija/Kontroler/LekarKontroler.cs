@@ -52,5 +52,10 @@ namespace Bolnica_aplikacija.Kontroler
             
             LekarServis.getInstance().napraviLekara(lekar);
         }
+
+        public static void obrisiLekara(String idLekara)
+        {
+            LekarServis.getInstance().obrisiLekara(idLekara);
+        }
     }
 }

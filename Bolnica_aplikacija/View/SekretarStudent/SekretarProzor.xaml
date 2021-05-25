@@ -468,7 +468,7 @@
                     <ImageBrush  Stretch="Uniform" ImageSource="izmeniLekara.png"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="btnIzbrisiLekara" Content=" " HorizontalAlignment="Left" Height="80" Margin="110,520,0,0" VerticalAlignment="Top" Width="80" RenderTransformOrigin="0.325,0.75" BorderThickness="0" ToolTip="Obriši obaveštenje" IsEnabled="False" >
+            <Button x:Name="btnIzbrisiLekara" Content=" " HorizontalAlignment="Left" Height="80" Margin="110,520,0,0" VerticalAlignment="Top" Width="80" RenderTransformOrigin="0.325,0.75" BorderThickness="0" ToolTip="Obriši obaveštenje" IsEnabled="False" Click="btnIzbrisiLekara_Click" >
                 <Button.Background>
                     <ImageBrush  Stretch="Uniform" ImageSource="izbrisiLekara.png"/>
                 </Button.Background>
@@ -477,7 +477,7 @@
             <Button x:Name="btnPovratakLekari" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="80" Height="80" Click="btnPovratakLekari_Click" Background="{x:Null}" BorderBrush="{x:Null}">
                 <materialDesign:PackIcon x:Name="iconPovratakLekari" Kind="PagePrevious" Height="80" Width="48" Foreground="White"/>
             </Button>
-            <DataGrid x:Name="dataGridLekari" HorizontalAlignment="Left" Height="197" Margin="331,17,0,0" VerticalAlignment="Top" Width="1008" AutoGenerateColumns="False" Background="#FFB2E6B3">
+            <DataGrid x:Name="dataGridLekari" HorizontalAlignment="Left" Height="197" Margin="331,17,0,0" VerticalAlignment="Top" Width="1008" AutoGenerateColumns="False" Background="#FFB2E6B3" SelectionChanged="dataGridLekari_SelectionChanged">
                 <DataGrid.Columns>
                     <DataGridTextColumn x:Name="columnImeLekara" Binding="{Binding imeLekara}" IsReadOnly="True" Header="IME" Width="336" CanUserResize="False" Foreground="Black" FontSize="24"/>
                     <DataGridTextColumn x:Name="columnPrezimeLekara" Binding="{Binding prezimeLekara}" IsReadOnly="True" Header="PREZIME" Width="336" CanUserResize="False" Foreground="Black" FontSize="24"/>

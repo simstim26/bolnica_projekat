@@ -18,6 +18,7 @@ namespace Model
       public DateTime pocetakRadnogVremena { get; set; }
       public DateTime krajRadnogVremena { get; set; }
       public bool jeNaGodisnjemOdmoru { get; set; }
+      public bool jeLogickiObrisan { get; set; }
       public List<Notifikacija> notifikacije { get; set; }
 
         public Lekar(String idBolnice, String ime, String prezime, String jmbg, DateTime datumRodjenja, String mestoRodjenja, String drzavaRodjenja, String pol,
@@ -27,6 +28,8 @@ namespace Model
             this.prosecnaOcena = 0.0;
             this.jeNaGodisnjemOdmoru = false;
             this.notifikacije = new List<Notifikacija>();
+            this.brojSlobodnihDana = 30;
+            this.jeLogickiObrisan = false;
 
             this.idBolnice = idBolnice;
             this.ime = ime;

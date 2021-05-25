@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Bolnica_aplikacija.PomocneKlase
 {
-    class LekarDTO : Lekar
+    class LekarDTO : Korisnik
     {
         public String id { get; set; }
         public int brojSlobodnihDana { get; set; }
@@ -18,6 +18,7 @@ namespace Bolnica_aplikacija.PomocneKlase
         public DateTime pocetakRadnogVremena { get; set; }
         public DateTime krajRadnogVremena { get; set; }
         public bool jeNaGodisnjemOdmoru { get; set; }
+        public bool jeLogickiObrisan { get; set; }
         public List<Notifikacija> notifikacije { get; set; }
 
         public LekarDTO(String idBolnice, String ime, String prezime, String jmbg, DateTime datumRodjenja, String mestoRodjenja, String drzavaRodjenja, String pol,
@@ -27,6 +28,7 @@ namespace Bolnica_aplikacija.PomocneKlase
             this.prosecnaOcena = 0.0;
             this.jeNaGodisnjemOdmoru = false;
             this.notifikacije = new List<Notifikacija>();
+            this.jeLogickiObrisan = false;
 
             this.idBolnice = idBolnice;
             this.ime = ime;

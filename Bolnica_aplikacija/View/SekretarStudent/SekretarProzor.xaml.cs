@@ -1267,12 +1267,7 @@ namespace Bolnica_aplikacija
             LekariGrid.Visibility = Visibility.Hidden;
         }
 
-        private void ucitajLekareUTabelu()
-        {
-            List<LekarSpecijalizacija> lekari = LekarKontroler.ucitajLekareSaSpecijalizacijom();
-            dataGridLekari.ItemsSource = lekari;
-            dataGridLekari.Items.Refresh();
-        }
+      
 
         // DODAJ LEKARA
 
@@ -1303,9 +1298,27 @@ namespace Bolnica_aplikacija
                                              "lekar", bracnoStatus, pocetakRadnogVremena, krajRadnogVremena, idSpecijalizacije);
            
             LekarKontroler.napraviLekara(lekarDTO);
+
+            ocistiPoljaLekara();
             ucitajLekareUTabelu();
 
         }
+
+
+        // IZMENI LEKARA
+
+        // UKLONI LEKARA
+
+        private void btnIzbrisiLekara_Click(object sender, RoutedEventArgs e)
+        {
+            LekarSpecijalizacija selektovanLekar = (LekarSpecijalizacija)dataGridLekari.SelectedItem;
+            String idLekara = selektovanLekar.idLekara;
+            LekarKontroler.obrisiLekara(idLekara);
+            ucitajLekareUTabelu();
+            
+        }
+
+        //POMOCNE FUNKCIJE
 
         private String selektovanPol()
         {
@@ -1344,10 +1357,36 @@ namespace Bolnica_aplikacija
 
             return bracniStatus;
         }
+        private void ucitajLekareUTabelu()
+        {
+            List<LekarSpecijalizacija> lekari = LekarKontroler.ucitajLekareSaSpecijalizacijom();
+            dataGridLekari.ItemsSource = lekari;
+            dataGridLekari.Items.Refresh();
+        }
 
-        // IZMENI LEKARA
+        private void ocistiPoljaLekara()
+        {
 
-        // UKLONI LEKARA
+            txtBoxImeLekara.Clear();
+            txtBoxPrezimeLekara.Clear();
+            txtBoxJMBG.Clear();
+            txtBoxDatumRodjenja.Clear();
+            txtBoxMestoRodjenja.Clear();
+            txtBoxDrzavaRodjenja.Clear();
+            //buttoni
+            txtBoxAdresaS.Clear();
+            txtBoxEmail.Clear();
+            txtBoxTelefon.Clear();
+            txtBoxKorisnickoIme.Clear();
+            passwordBoxLozinkaLekar.Clear();
+            txtBoxBrojZdravKnjizice.Clear();
+            //status
+            txtBoxPocetakRadnogVremena.Clear();
+            txtBoxKrajRadnogVremena.Clear();
+
+            btnOdustaniLekar.IsEnabled = false;
+
+        }
 
         // LISTENERI ZA PROVERE POPUNJENOSTI
         private void txtBoxImeLekara_TextChanged(object sender, TextChangedEventArgs e)
@@ -1430,7 +1469,19 @@ namespace Bolnica_aplikacija
 
         }
 
-      
+        private void dataGridLekari_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(dataGridLekari.SelectedIndex != -1)
+            {
+                btnIzbrisiLekara.IsEnabled = true;
+                btnIzmeniLekara.IsEnabled = true;
+            }
+            else
+            {
+                btnIzbrisiLekara.IsEnabled = false;
+                btnIzmeniLekara.IsEnabled = false;
+            }
+        }
     }
 }
 

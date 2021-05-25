@@ -152,8 +152,12 @@ namespace Bolnica_aplikacija.Servis
             List<LekarSpecijalizacija> povratnaVrednost = new List<LekarSpecijalizacija>();
             foreach(Lekar lekar in ucitajSve())
             {
-                povratnaVrednost.Add(new LekarSpecijalizacija(lekar.id, lekar.prezime, lekar.ime,
-                    SpecijalizacijaServis.getInstance().nadjiSpecijalizacijuPoId(lekar.idSpecijalizacije))) ;
+                if (!lekar.jeLogickiObrisan)
+                {
+                    povratnaVrednost.Add(new LekarSpecijalizacija(lekar.id, lekar.prezime, lekar.ime,
+                    SpecijalizacijaServis.getInstance().nadjiSpecijalizacijuPoId(lekar.idSpecijalizacije)));
+                }
+                
             }
 
             return povratnaVrednost;
@@ -199,6 +203,36 @@ namespace Bolnica_aplikacija.Servis
    
             lekarRepozitorijum.dodajLekara(lekar);
             KorisnikServis.getInstance().dodajKorisnika(lekar.id, lekar.korisnickoIme, lekar.lozinka, "lekar");
+        }
+        /*
+        public List<Lekar> procitajLekare()
+        {
+            List<Lekar> ucitaniLekari = lekarRepozitorijum.ucitajSve();
+            List<Lekar> neobrisaniLekari = new List<Lekar>();
+
+            foreach (Lekar lekar in ucitaniLekari)
+            {
+                if (!lekar.jeLogickiObrisan)
+                {
+                    neobrisaniLekari.Add(lekar);
+                }
+            }
+            return neobrisaniLekari;
+        }
+        */
+
+        public void obrisiLekara(String idLekara)
+        {
+            List<Lekar> sviLekari = lekarRepozitorijum.ucitajSve();
+            foreach (Lekar lekar in sviLekari)
+            {
+                if (lekar.id.Equals(idLekara))
+                {
+                    lekar.jeLogickiObrisan = true;
+                }
+            }
+
+            lekarRepozitorijum.upisi(sviLekari);
         }
     }
 }
