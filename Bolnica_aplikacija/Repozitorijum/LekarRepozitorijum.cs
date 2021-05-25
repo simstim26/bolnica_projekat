@@ -36,5 +36,13 @@ namespace Bolnica_aplikacija.Repozitorijum
             string jsonString = JsonSerializer.Serialize(sviLekari, formatiranje);
             File.WriteAllText("Datoteke/Lekari.txt", jsonString);
         }
+
+        public void dodajLekara(Lekar lekar)
+        {
+            List<Lekar> sviLekari = ucitajSve();
+            sviLekari.Add(lekar);
+            upisi(sviLekari);
+        }
+     
     }
 }

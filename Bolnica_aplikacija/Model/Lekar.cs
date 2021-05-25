@@ -19,7 +19,42 @@ namespace Model
       public DateTime krajRadnogVremena { get; set; }
       public bool jeNaGodisnjemOdmoru { get; set; }
       public List<Notifikacija> notifikacije { get; set; }
-      public void NapraviTermin(String idTermina)
+
+        public Lekar(String idBolnice, String ime, String prezime, String jmbg, DateTime datumRodjenja, String mestoRodjenja, String drzavaRodjenja, String pol,
+                     String adresa, String email, String telefon, String korisnickoIme, String lozinka, String brojZdravKnjizice, String zanimanje,
+                     String bracnoStanje, DateTime pocetakRadnogVremena, DateTime krajRadnogVrmena)
+        {
+            this.prosecnaOcena = 0.0;
+            this.jeNaGodisnjemOdmoru = false;
+            this.notifikacije = new List<Notifikacija>();
+
+            this.idBolnice = idBolnice;
+            this.ime = ime;
+            this.prezime = prezime;
+            this.jmbg = jmbg;
+            this.datumRodjenja = datumRodjenja;
+            this.mestoRodjenja = mestoRodjenja;
+            this.drzavaRodjenja = drzavaRodjenja;
+            this.pol = pol;
+            this.adresa = adresa;
+            this.email = email;
+            this.brojTelefona = telefon;
+            this.korisnickoIme = korisnickoIme;
+            this.lozinka = lozinka;
+            this.brojZdravstveneKnjizice = brojZdravstveneKnjizice;
+            this.zanimanje = zanimanje;
+            this.bracniStatus = bracnoStanje;
+            this.pocetakRadnogVremena = pocetakRadnogVremena;
+            this.krajRadnogVremena = krajRadnogVremena;
+
+        }
+
+        public Lekar()
+        {
+
+        }
+
+        public void NapraviTermin(String idTermina)
       {
           /*  var sviTermini = JsonSerializer.Deserialize<List<Termin>>(File.ReadAllText("Datoteke/Termini.txt"));
 

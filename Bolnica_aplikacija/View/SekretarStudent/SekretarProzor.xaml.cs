@@ -1271,6 +1271,87 @@ namespace Bolnica_aplikacija
             LekariGrid.Visibility = Visibility.Hidden;
         }
 
+        // LISTENERI ZA PROVERE POPUNJENOSTI
+        private void txtBoxImeLekara_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void txtBoxPrezimeLekara_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void txtBoxJMBG_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void txtBoxDatumRodjenja_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void txtBoxMestoRodjenja_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void txtBoxDrzavaRodjenja_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void txtBoxAdresaS_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void txtBoxEmail_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void txtBoxTelefon_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void txtBoxKorisnickoIme_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void txtBoxBrojZdravKnjizice_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void txtBoxZanimanje_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void txtBoxPocetakRadnogVremena_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void txtBoxKrajRadnogVremena_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void txtBoxPocetakGodOdmora_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
     }
 }
 

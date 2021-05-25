@@ -1,4 +1,5 @@
 ﻿using Bolnica_aplikacija.Model;
+using Bolnica_aplikacija.PomocneKlase;
 using Bolnica_aplikacija.Servis;
 using Model;
 using System;
@@ -121,6 +122,16 @@ namespace Bolnica_aplikacija.Kontroler
         public static List<LekZaOdobravanje> ucitajLekoveZaOdobravanje()
         {
             return LekServis.getInstance().ucitajLekoveZaOdobravanje();
+        }
+
+        public static void napraviLekara(LekarDTO lekarDTO)
+        {
+            Lekar lekar = new Lekar(lekarDTO.idBolnice, lekarDTO.ime, lekarDTO.prezime, lekarDTO.jmbg, lekarDTO.datumRodjenja,
+                                    lekarDTO.mestoRodjenja, lekarDTO.drzavaRodjenja, lekarDTO.pol, lekarDTO.adresa, lekarDTO.email,
+                                    lekarDTO.brojTelefona, lekarDTO.korisnickoIme, lekarDTO.lozinka, lekarDTO.brojZdravstveneKnjizice,
+                                    lekarDTO.zanimanje, lekarDTO.bracniStatus, lekarDTO.pocetakRadnogVremena, lekarDTO.krajRadnogVremena);
+            
+            LekarServis.getInstance().napraviLekara(lekar);
         }
     }
 }

@@ -28,6 +28,7 @@ namespace Model
       public String pol { get; set; }
       public String brojZdravstveneKnjizice { get; set; }
       public String bracniStatus { get; set; }
+      public String zanimanje { get; set; }
 
         public static String[] Prijava(String korisnickoIme, String lozinka)
         {
