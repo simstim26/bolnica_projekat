@@ -100,5 +100,11 @@
     "korisnickoIme": "imence",
     "lozinka": "prezimence",
     "tip": "lekar"
+  },
+  {
+    "id": "5",
+    "korisnickoIme": "test",
+    "lozinka": "test",
+    "tip": "lekar"
   }
 ]

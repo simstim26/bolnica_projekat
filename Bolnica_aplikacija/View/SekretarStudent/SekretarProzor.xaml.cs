@@ -44,6 +44,7 @@ namespace Bolnica_aplikacija
         private String tipHitanSlucaj;
         private String tipSpecijalizacije;
         private bool imaGodisnjiOdmor;
+        private int brojSlobodnihDana;
 
         public SekretarProzor()
         {
@@ -1293,6 +1294,13 @@ namespace Bolnica_aplikacija
             DateTime pocetakRadnogVremena = DateTime.ParseExact(txtBoxPocetakRadnogVremena.Text, "HH:mm", null);
             DateTime krajRadnogVremena = DateTime.ParseExact(txtBoxKrajRadnogVremena.Text, "HH:mm", null);
             String idSpecijalizacije = specijalizacija.SelectedIndex.ToString();
+            DateTime pocetakGodisnjegOdmora = new DateTime();
+           
+            if (imaGodisnjiOdmor)
+            {
+                pocetakGodisnjegOdmora = Convert.ToDateTime(txtBoxPocetakGodisnjegOdmora);
+            }
+
 
             LekarDTO lekarDTO = new LekarDTO();
             if (!flagIzmeni)
@@ -1313,6 +1321,13 @@ namespace Bolnica_aplikacija
                                         "lekar", bracnoStatus, pocetakRadnogVremena, krajRadnogVremena, idSpecijalizacije,
                                          lekar.prosecnaOcena, lekar.jeNaGodisnjemOdmoru, lekar.notifikacije, lekar.brojSlobodnihDana, lekar.pocetakGodisnjegOdmora, lekar.jeLogickiObrisan);
                 lekarDTO.id = lekar.id;
+
+                if (imaGodisnjiOdmor)
+                {
+                    lekarDTO.pocetakGodisnjegOdmora = pocetakGodisnjegOdmora;
+                    lekarDTO.jeNaGodisnjemOdmoru = true;
+                    lekarDTO.brojSlobodnihDana -= brojSlobodnihDana;
+                }
             }
             
             return lekarDTO;
@@ -1335,7 +1350,8 @@ namespace Bolnica_aplikacija
         {
             LekarSpecijalizacija selektovanLekar = (LekarSpecijalizacija)dataGridLekari.SelectedItem;
             String idLekara = selektovanLekar.idLekara;
-
+            Lekar lekar = LekarKontroler.nadjiLekaraPoId(idLekara);
+          
             if (!imaGodisnjiOdmor)
             {
                 LekarDTO izmeniLekarDTO = ucitajUnetePodatkeULekara();
@@ -1344,7 +1360,16 @@ namespace Bolnica_aplikacija
             }
             else
             {
-
+                brojSlobodnihDana = Int32.Parse(txtBoxBrojSlobodnihDana.Text);
+                if (brojSlobodnihDana > lekar.brojSlobodnihDana)
+                {
+                    Console.WriteLine("NEMA DOVOLJNO SLOBODNIH DANA");
+                }
+                else
+                {
+                   LekarDTO izmeniLekarDTO = ucitajUnetePodatkeULekara();
+                   LekarKontroler.izmeniLekara(izmeniLekarDTO);
+                }
             }
 
             ocistiPoljaLekara();
@@ -1642,21 +1667,19 @@ namespace Bolnica_aplikacija
             txtBoxAdresaS.Text = lekar.adresa;
             txtBoxEmail.Text = lekar.email;
             txtBoxTelefon.Text = lekar.brojTelefona;
-            txtBoxBrojZdravKnjizice.Text = lekar.brojZdravstveneKnjizice;
-            
+            txtBoxBrojZdravKnjizice.Text = lekar.brojZdravstveneKnjizice;            
             txtBoxKorisnickoIme.Text = lekar.korisnickoIme;
             txtBoxKorisnickoIme.IsEnabled = false;
             passwordBoxLozinkaLekar.Password = lekar.lozinka.ToString();
             passwordBoxLozinkaLekar.IsEnabled = false;
-
             specijalizacija.SelectedIndex = Int32.Parse(lekar.idSpecijalizacije);
             postaviBracnoStanjeLekara(lekar);
             txtBoxPocetakRadnogVremena.Text = lekar.pocetakRadnogVremena.ToString("hh:mm");
             txtBoxKrajRadnogVremena.Text = lekar.krajRadnogVremena.ToString("hh:mm");
 
             lblBrojDana.Content = lekar.brojSlobodnihDana.ToString();
-
-            
+            txtBoxBrojSlobodnihDana.Text = lekar.brojSlobodnihDana.ToString();
+            txtBoxPocetakGodisnjegOdmora.Text = lekar.pocetakGodisnjegOdmora.ToString("MM/dd/yyyy");
         }
 
         private void postaviPolLekara(Lekar lekar)
