@@ -122,6 +122,7 @@
     <Compile Include="Model\LekZaOdobravanje.cs" />
     <Compile Include="PomocneKlase\BolnickoLecenjeDTO.cs" />
     <Compile Include="PomocneKlase\KonverterBolnickoLecenje.cs" />
+    <Compile Include="PomocneKlase\LekarDTO.cs" />
     <Compile Include="PomocneKlase\OcenaBolniceDTO.cs" />
     <Compile Include="PomocneKlase\OcenaLekaraDTO.cs" />
     <Compile Include="PomocneKlase\PacijentDTO.cs" />
@@ -563,6 +564,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="View\SekretarStudent\odustanilekar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\SekretarStudent\odustanilekar2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets" Condition="Exists('packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets')" />

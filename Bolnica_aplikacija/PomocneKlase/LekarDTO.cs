@@ -22,7 +22,7 @@ namespace Bolnica_aplikacija.PomocneKlase
 
         public LekarDTO(String idBolnice, String ime, String prezime, String jmbg, DateTime datumRodjenja, String mestoRodjenja, String drzavaRodjenja, String pol,
                         String adresa, String email, String telefon, String korisnickoIme, String lozinka, String brojZdravKnjizice, String zanimanje,
-                        String bracnoStanje, DateTime pocetakRadnogVremena, DateTime krajRadnogVrmena)
+                        String bracnoStanje, DateTime pocetakRadnogVremena, DateTime krajRadnogVrmena, String idSpecijalizacije)
         {
             this.prosecnaOcena = 0.0;
             this.jeNaGodisnjemOdmoru = false;
@@ -46,6 +46,7 @@ namespace Bolnica_aplikacija.PomocneKlase
             this.bracniStatus = bracnoStanje;
             this.pocetakRadnogVremena = pocetakRadnogVremena;
             this.krajRadnogVremena = krajRadnogVremena;
+            this.idSpecijalizacije = idSpecijalizacije;
             
         }
     }

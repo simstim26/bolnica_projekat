@@ -88,5 +88,11 @@
     "korisnickoIme": "ref",
     "lozinka": "ref",
     "tip": "pacijent"
+  },
+  {
+    "id": "3",
+    "korisnickoIme": "laza",
+    "lozinka": "lazic",
+    "tip": "lekar"
   }
 ]

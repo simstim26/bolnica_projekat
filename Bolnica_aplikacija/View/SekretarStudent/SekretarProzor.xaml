@@ -515,7 +515,7 @@
             <Label x:Name="lblKorisnickoIme" Content="KORISNIČKO IME* :" HorizontalAlignment="Left" Margin="832,254,0,0" VerticalAlignment="Top" Width="284" FontSize="22"/>
             <Label x:Name="lblKorisnickoIme_Copy" Content="LOZINKA* :" HorizontalAlignment="Left" Margin="832,297,0,0" VerticalAlignment="Top" Width="284" FontSize="22"/>
             <TextBox x:Name="txtBoxKorisnickoIme" HorizontalAlignment="Left" Height="37" Margin="1121,255,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" FontSize="22" Background="#FF84D386" TextChanged="txtBoxKorisnickoIme_TextChanged"/>
-            <PasswordBox HorizontalAlignment="Left" Margin="1121,298,0,0" VerticalAlignment="Top" Width="218" Height="36" Background="#FF84D386" PasswordChanged="PasswordBox_PasswordChanged"/>
+            <PasswordBox x:Name="passwordBoxLozinkaLekar" HorizontalAlignment="Left" Margin="1121,298,0,0" VerticalAlignment="Top" Width="218" Height="36" Background="#FF84D386" PasswordChanged="PasswordBox_PasswordChanged"/>
             <Label x:Name="lblRadnoVreme" Content="RADNO VREME* :" HorizontalAlignment="Left" Margin="832,505,0,0" VerticalAlignment="Top" Width="240" FontSize="22"/>
             <TextBox x:Name="txtBoxPocetakRadnogVremena" HorizontalAlignment="Left" Height="37" Margin="1121,505,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" FontSize="22" Background="#FF84D386" TextChanged="txtBoxPocetakRadnogVremena_TextChanged"/>
             <Label x:Name="lblOpseg" Content="-" HorizontalAlignment="Left" Margin="1223,505,0,0" VerticalAlignment="Top" Width="14" FontSize="22"/>

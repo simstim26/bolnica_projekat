@@ -129,7 +129,7 @@ namespace Bolnica_aplikacija.Kontroler
             Lekar lekar = new Lekar(lekarDTO.idBolnice, lekarDTO.ime, lekarDTO.prezime, lekarDTO.jmbg, lekarDTO.datumRodjenja,
                                     lekarDTO.mestoRodjenja, lekarDTO.drzavaRodjenja, lekarDTO.pol, lekarDTO.adresa, lekarDTO.email,
                                     lekarDTO.brojTelefona, lekarDTO.korisnickoIme, lekarDTO.lozinka, lekarDTO.brojZdravstveneKnjizice,
-                                    lekarDTO.zanimanje, lekarDTO.bracniStatus, lekarDTO.pocetakRadnogVremena, lekarDTO.krajRadnogVremena);
+                                    lekarDTO.zanimanje, lekarDTO.bracniStatus, lekarDTO.pocetakRadnogVremena, lekarDTO.krajRadnogVremena, lekarDTO.idSpecijalizacije);
             
             LekarServis.getInstance().napraviLekara(lekar);
         }

@@ -1258,11 +1258,7 @@ namespace Bolnica_aplikacija
             LekariGrid.Visibility = Visibility.Visible;
 
             //Ucitavanje podataka
-            List<LekarSpecijalizacija> lekari = LekarKontroler.ucitajLekareSaSpecijalizacijom();
-            dataGridLekari.ItemsSource = lekari;
-
-            
-           
+            ucitajLekareUTabelu();
         }
 
         private void btnPovratakLekari_Click(object sender, RoutedEventArgs e)
@@ -1270,6 +1266,88 @@ namespace Bolnica_aplikacija
             PocetniEkranGrid.Visibility = Visibility.Visible;
             LekariGrid.Visibility = Visibility.Hidden;
         }
+
+        private void ucitajLekareUTabelu()
+        {
+            List<LekarSpecijalizacija> lekari = LekarKontroler.ucitajLekareSaSpecijalizacijom();
+            dataGridLekari.ItemsSource = lekari;
+            dataGridLekari.Items.Refresh();
+        }
+
+        // DODAJ LEKARA
+
+        private void btnDodajLekara_Click(object sender, RoutedEventArgs e)
+        {
+            Sekretar sekretar = KorisnikKontroler.GetSekretar();
+            String idBolnice = sekretar.idBolnice;
+            String ime = txtBoxImeLekara.Text;
+            String prezime = txtBoxPrezimeLekara.Text;
+            String jmbg = txtBoxJMBG.Text;
+            DateTime lekarDatumRodjenja = Convert.ToDateTime(txtBoxDatumRodjenja.Text);
+            String mestoRodjenja = txtBoxMestoRodjenja.Text;
+            String drzavaRodjenja = txtBoxDrzavaRodjenja.Text;
+            String pol = selektovanPol();
+            String adresa = txtBoxAdresaS.Text;
+            String email = txtBoxEmail.Text;
+            String telefon = txtBoxTelefon.Text;
+            String korisnickoIme = txtBoxKorisnickoIme.Text;
+            String lozinka = passwordBoxLozinkaLekar.Password;
+            String brojZdravstveneKnjizice = txtBoxBrojZdravKnjizice.Text;
+            String bracnoStatus = selektovanBracniStatus();
+            DateTime pocetakRadnogVremena = DateTime.ParseExact(txtBoxPocetakRadnogVremena.Text, "HH:mm", null);
+            DateTime krajRadnogVremena = DateTime.ParseExact(txtBoxKrajRadnogVremena.Text, "HH:mm", null);
+            String idSpecijalizacije = "1";
+
+            LekarDTO lekarDTO = new LekarDTO(idBolnice, ime, prezime, jmbg, lekarDatumRodjenja, mestoRodjenja, drzavaRodjenja,
+                                             pol, adresa, email, telefon, korisnickoIme, lozinka, brojZdravstveneKnjizice,
+                                             "lekar", bracnoStatus, pocetakRadnogVremena, krajRadnogVremena, idSpecijalizacije);
+           
+            LekarKontroler.napraviLekara(lekarDTO);
+            ucitajLekareUTabelu();
+
+        }
+
+        private String selektovanPol()
+        {
+            String pol = "";
+            if ((bool)radioBtnMusko.IsChecked)
+            {
+                pol = "Muško";
+            }
+            else if ((bool)radioBtnZensko.IsChecked)
+            {
+                pol = "Žensko";
+            }
+            else
+            {
+                pol = "Ostalo";
+            }
+
+            return pol;
+        }
+
+        private String selektovanBracniStatus()
+        {
+            String bracniStatus = "";
+            if ((bool)radioBtnUBraku.IsChecked)
+            {
+                bracniStatus = "U braku";
+            }
+            else if ((bool)radioBtnNijeUBraku.IsChecked)
+            {
+                bracniStatus = "Nije u braku";
+            }
+            else
+            {
+                bracniStatus = "Razveden/a";
+            }
+
+            return bracniStatus;
+        }
+
+        // IZMENI LEKARA
+
+        // UKLONI LEKARA
 
         // LISTENERI ZA PROVERE POPUNJENOSTI
         private void txtBoxImeLekara_TextChanged(object sender, TextChangedEventArgs e)
@@ -1352,6 +1430,7 @@ namespace Bolnica_aplikacija
 
         }
 
+      
     }
 }
 
