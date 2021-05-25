@@ -648,31 +648,10 @@ namespace Bolnica_aplikacija.Servis
             return neobrisaniPacijenti;
         }
 
-        public void AzurirajPacijenta(String id, String idBolnice, bool gost, String korisnickoIme, String lozinka, String jmbg, String ime, String prezime, DateTime datumRodj, string adresa, string email, string telefon, List<Alergija> alergije)
+        public void AzurirajPacijenta(Pacijent izmeniPacijent, List<Alergija> alergije)
         {
-            List<Pacijent> sviPacijenti = pacijentRepozitorijum.ucitajSve();
-            foreach (Pacijent izmeniP in sviPacijenti)
-            {
-                if (izmeniP.id.Equals(id))
-                {
-
-                    izmeniP.id = id;
-                    izmeniP.idBolnice = idBolnice;
-                    izmeniP.jeGost = gost;
-                    izmeniP.korisnickoIme = korisnickoIme;
-                    izmeniP.lozinka = lozinka;
-                    izmeniP.jmbg = jmbg;
-                    izmeniP.ime = ime;
-                    izmeniP.prezime = prezime;
-                    izmeniP.datumRodjenja = datumRodj;
-                    izmeniP.adresa = adresa;
-                    izmeniP.email = email;
-                    izmeniP.brojTelefona = telefon;
-
-                    AlergijaServis.getInstance().azurirajAlergije(alergije, izmeniP.id);
-                    pacijentRepozitorijum.azurirajPacijenta(izmeniP);
-                }
-            }
+            AlergijaServis.getInstance().azurirajAlergije(alergije, izmeniPacijent.id);
+            pacijentRepozitorijum.azurirajPacijenta(izmeniPacijent);
 
         }
 

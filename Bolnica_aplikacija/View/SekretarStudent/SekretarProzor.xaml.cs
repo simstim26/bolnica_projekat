@@ -286,7 +286,9 @@ namespace Bolnica_aplikacija
                         alergija.idPacijenta = idPacijenta;
                     }
 
-                    PacijentKontroler.AzurirajPacijenta(idPacijenta, pacIdBolnice, pacGost, pacKorisnickoIme, pacLozinka, pacJmbg, pacIme, pacPrezime, pacDatumRodjenja, pacAdresa, pacEmail, pacTelefon, alergije);
+                    PacijentDTO pacijentDTO = new PacijentDTO(pacIdBolnice, pacGost, pacKorisnickoIme, pacLozinka, pacJmbg, pacIme, pacPrezime, pacDatumRodjenja, pacAdresa, pacEmail, pacTelefon);
+                    pacijentDTO.id = idPacijenta;
+                    PacijentKontroler.AzurirajPacijenta(pacijentDTO,alergije);
                     ucitajPacijenteTabela();
                 }
 

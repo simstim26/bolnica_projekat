@@ -12,8 +12,23 @@ using System.Windows.Controls;
 
 namespace Model
 {
-   public class PacijentDTO : Korisnik
+   public class PacijentDTO 
    {
+      public String korisnickoIme { get; set; }
+      public String lozinka { get; set; }
+      public String ime { get; set; }
+      public String prezime { get; set; }
+      public DateTime datumRodjenja { get; set; }
+      public String adresa { get; set; }
+      public String email { get; set; }
+      public String brojTelefona { get; set; }
+      public String jmbg { get; set; }
+      public String mestoRodjenja { get; set; }
+      public String drzavaRodjenja { get; set; }
+      public String pol { get; set; }
+      public String brojZdravstveneKnjizice { get; set; }
+      public String bracniStatus { get; set; }
+      public String zanimanje { get; set; }
       public String id { get; set;}
       public String idBolnice { get; set; }
       public bool jeGost { get; set; }
