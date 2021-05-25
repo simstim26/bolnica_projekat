@@ -475,7 +475,7 @@
             </Button>
             <materialDesign:PackIcon x:Name="iconLekari" Kind="Doctor" HorizontalAlignment="Left" Margin="62,111,0,0" VerticalAlignment="Top" Height="180" Width="180" Foreground="#FF44C155"/>
             <Button x:Name="btnPovratakLekari" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="80" Height="80" Click="btnPovratakLekari_Click" Background="{x:Null}" BorderBrush="{x:Null}">
-                <materialDesign:PackIcon x:Name="iconPovratakLekari" Kind="PagePrevious" Height="80" Width="48" Foreground="White"/>
+                <materialDesign:PackIcon x:Name="iconPovratakLekari" Kind="PagePrevious" Height="80" Width="48" Foreground="#FF44C155"/>
             </Button>
             <DataGrid x:Name="dataGridLekari" HorizontalAlignment="Left" Height="197" Margin="331,17,0,0" VerticalAlignment="Top" Width="1008" AutoGenerateColumns="False" Background="#FFB2E6B3" SelectionChanged="dataGridLekari_SelectionChanged">
                 <DataGrid.Columns>

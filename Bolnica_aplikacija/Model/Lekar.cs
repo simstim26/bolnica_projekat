@@ -16,6 +16,7 @@ namespace Model
       public String idBolnice { get; set; }
       public String idSpecijalizacije { get; set; }
       public DateTime pocetakGodisnjegOdmora { get; set; }
+      public DateTime krajGodisnjegOdmora { get; set; }
       public DateTime pocetakRadnogVremena { get; set; }
       public DateTime krajRadnogVremena { get; set; }
       public bool jeNaGodisnjemOdmoru { get; set; }
@@ -55,6 +56,8 @@ namespace Model
             this.brojZauzetihDana = brojZauzetihDana;
             this.pocetakGodisnjegOdmora = pocetakGodisnjegOdmora;
             this.jeLogickiObrisan = jeLogickiObrisan;
+
+            this.krajGodisnjegOdmora = pocetakGodisnjegOdmora.AddDays(brojZauzetihDana);
 
 
         }

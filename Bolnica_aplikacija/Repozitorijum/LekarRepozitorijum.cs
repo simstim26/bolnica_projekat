@@ -78,6 +78,7 @@ namespace Bolnica_aplikacija.Repozitorijum
                     lekar.brojSlobodnihDana = izmeniLekar.brojSlobodnihDana;
                     lekar.brojZauzetihDana = izmeniLekar.brojZauzetihDana;
                     lekar.pocetakGodisnjegOdmora = izmeniLekar.pocetakGodisnjegOdmora;
+                    lekar.krajGodisnjegOdmora = izmeniLekar.krajGodisnjegOdmora;
                     lekar.jeLogickiObrisan = izmeniLekar.jeLogickiObrisan;
                     break;
                 }              

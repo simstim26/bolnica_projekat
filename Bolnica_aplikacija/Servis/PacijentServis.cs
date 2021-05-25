@@ -275,8 +275,9 @@ namespace Bolnica_aplikacija.Servis
             List<PacijentTermin> terminiSlobodni = new List<PacijentTermin>();
 
             foreach (Termin termin in TerminServis.getInstance().ucitajSve())
-            {
-                if (termin.idPacijenta.Equals(""))
+            {           
+                bool terminJeTokomGodisnjegOdmora = TerminServis.getInstance().terminJeTokomGodisnjegOdmoraLekara(termin);
+                if (termin.idPacijenta.Equals("") && !terminJeTokomGodisnjegOdmora)
                 {
                     int rezultat = DateTime.Compare(termin.datum, DateTime.Today);
                     if (rezultat > 0)
@@ -299,6 +300,7 @@ namespace Bolnica_aplikacija.Servis
         private List<PacijentTermin> prikazSlobodnihTerminaPomeranje(bool jeSekretar)
         {
             List<PacijentTermin> terminiSlobodni = new List<PacijentTermin>();
+            
 
             foreach (Termin termin in TerminServis.getInstance().ucitajSve())
             {

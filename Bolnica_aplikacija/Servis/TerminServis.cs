@@ -320,6 +320,33 @@ namespace Bolnica_aplikacija.Servis
             azurirajTermin(termin);
         }
 
+        public bool terminJeTokomGodisnjegOdmoraLekara(Termin termin)
+        {
+            bool rezultat = false;
+            Lekar lekar = LekarServis.getInstance().nadjiLekaraPoId(termin.idLekara);
+
+            if (lekar.jeNaGodisnjemOdmoru)
+            {
+                DateTime terminDatum = termin.datum;
+                DateTime datumPocetkaGodisnjeg = lekar.pocetakGodisnjegOdmora;
+                DateTime datumKrajaGodisnjeg = lekar.krajGodisnjegOdmora;
+
+                int rezultat1 = DateTime.Compare(terminDatum, datumPocetkaGodisnjeg);
+                int rezultat2 = DateTime.Compare(terminDatum, datumKrajaGodisnjeg);
+
+                if (rezultat1 > 0 && rezultat2 < 0)
+                {
+                    rezultat = true;
+                }
+            }
+            else
+            {
+                rezultat = false;
+            }
+            
+            return rezultat;
+        }
+
 
     }
 }
