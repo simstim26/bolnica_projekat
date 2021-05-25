@@ -579,13 +579,6 @@ namespace Bolnica_aplikacija.Servis
             prostorijaRepozitorijum.upisiProstorijeZaRenoviranje(prostorijeZaRenoviranje);
         }
 
-        /*public void zakaziRenoviranjeProsirivanje(ProstorijaRenoviranje prostorija)
-        {
-            var prostorijeZaRenoviranje = prostorijaRepozitorijum.ucitajProstorijeZaRenoviranje();
-            prostorijeZaRenoviranje.Add(prostorija);
-            prostorijaRepozitorijum.upisiProstorijeZaRenoviranje(prostorijeZaRenoviranje);
-        }*/
-
         public void pregledajProstorijeZaRenoviranje()
         {
             var prostorijeZaRenoviranje = prostorijaRepozitorijum.ucitajProstorijeZaRenoviranje();
@@ -599,20 +592,30 @@ namespace Bolnica_aplikacija.Servis
 
                 if (p.datumKraja <= DateTime.Now)
                 {
-                    if (p.tipRenoviranja == 1)
-                    {
-                        Prostorija prostorija = nadjiProstorijuPoId(p.idProstorije);
-                        ProstorijaDTO prostorijaNova = new ProstorijaDTO(postaviIDProstorija(), prostorija.idBolnice, prostorija.tipProstorije,
-                            prostorija.broj + "-a", prostorija.sprat, true, false, 0, null);
-                        noviBrojSobe(prostorijaNova, prostorija);
-                    }
-                    else if (p.tipRenoviranja == 2)
-                    {
-                        spojProstorije(p);
-                    }
+                    daLijeProsirivanjeIliSpajanje(p);
                     oslobodiProstorijuPosleRenoviranja(nadjiProstorijuPoId(p.idProstorije), p);
                 }  
             }
+        }
+
+        public void daLijeProsirivanjeIliSpajanje(ProstorijaRenoviranje p)
+        {
+            if (p.tipRenoviranja == 1)
+            {
+                prosiriProstorije(p);
+            }
+            else if (p.tipRenoviranja == 2)
+            {
+                spojProstorije(p);
+            }
+        }
+
+        public void prosiriProstorije(ProstorijaRenoviranje p)
+        {
+            Prostorija prostorija = nadjiProstorijuPoId(p.idProstorije);
+            ProstorijaDTO prostorijaNova = new ProstorijaDTO(postaviIDProstorija(), prostorija.idBolnice, prostorija.tipProstorije,
+                prostorija.broj + "-a", prostorija.sprat, true, false, 0, null);
+            noviBrojSobe(prostorijaNova, prostorija);
         }
 
         public void spojProstorije(ProstorijaRenoviranje p)

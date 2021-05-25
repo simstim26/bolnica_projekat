@@ -13,7 +13,7 @@
   {
     "id": "2",
     "naziv": "Krevet",
-    "kolicina": 50,
+    "kolicina": 500,
     "proizvodjac": "KrevetKrevet",
     "idProstorije": null,
     "idBolnice": "1",

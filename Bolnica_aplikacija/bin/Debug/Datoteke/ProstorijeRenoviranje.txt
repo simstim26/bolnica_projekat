@@ -1,18 +1,1 @@
-[
-  {
-    "idProstorije": "1",
-    "datumPocetka": "2021-05-24T00:00:00",
-    "datumKraja": "2021-05-25T00:00:00",
-    "razlogRenoviranja": "zato",
-    "tipRenoviranja": 1,
-    "idProstorijeKojaSeSpaja": null
-  },
-  {
-    "idProstorije": "3",
-    "datumPocetka": "2021-05-24T00:00:00",
-    "datumKraja": "2021-05-25T00:00:00",
-    "razlogRenoviranja": "zato",
-    "tipRenoviranja": 1,
-    "idProstorijeKojaSeSpaja": null
-  }
-]
+[]
