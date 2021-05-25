@@ -11,6 +11,7 @@ namespace Model
    {
       public String id { get; set; }
       public int brojSlobodnihDana { get; set; }
+      public int brojZauzetihDana { get; set; }
       public double prosecnaOcena { get; set; }
       public String idBolnice { get; set; }
       public String idSpecijalizacije { get; set; }
@@ -24,7 +25,7 @@ namespace Model
         public Lekar(String idBolnice, String ime, String prezime, String jmbg, DateTime datumRodjenja, String mestoRodjenja, String drzavaRodjenja, String pol,
                         String adresa, String email, String telefon, String korisnickoIme, String lozinka, String brojZdravKnjizice, String zanimanje,
                         String bracnoStanje, DateTime pocetakRadnogVremena, DateTime krajRadnogVremena, String idSpecijalizacije, double ocena, bool jeNaGodisnjemOdmoru,
-                        List<Notifikacija> notifikacije, int brojSlobodnihDana, DateTime pocetakGodisnjegOdmora, bool jeLogickiObrisan)
+                        List<Notifikacija> notifikacije, int brojSlobodnihDana, int brojZauzetihDana, DateTime pocetakGodisnjegOdmora, bool jeLogickiObrisan)
         {
 
             this.idBolnice = idBolnice;
@@ -51,6 +52,7 @@ namespace Model
             this.jeNaGodisnjemOdmoru = jeNaGodisnjemOdmoru;
             this.notifikacije = notifikacije;
             this.brojSlobodnihDana = brojSlobodnihDana;
+            this.brojZauzetihDana = brojZauzetihDana;
             this.pocetakGodisnjegOdmora = pocetakGodisnjegOdmora;
             this.jeLogickiObrisan = jeLogickiObrisan;
 

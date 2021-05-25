@@ -525,13 +525,13 @@
             <Label x:Name="lblOpseg" Content="-" HorizontalAlignment="Left" Margin="1223,505,0,0" VerticalAlignment="Top" Width="14" FontSize="22"/>
             <TextBox x:Name="txtBoxKrajRadnogVremena" HorizontalAlignment="Left" Height="37" Margin="1249,505,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" FontSize="22" Background="#FF84D386" TextChanged="txtBoxKrajRadnogVremena_TextChanged"/>
             <Grid x:Name="gridDodatnaPoljaLekar" Margin="832,587,25,24">
-                <Label x:Name="lblBrojSlobodnihDana" Content="BR. SLOBODNIH DANA:" HorizontalAlignment="Left" Margin="0,42,0,0" VerticalAlignment="Top" Width="240" FontSize="22"/>
+                <Label x:Name="lblBrojSlobodnihDana" Content="BR. ZAUZETIH DANA:" HorizontalAlignment="Left" Margin="0,42,0,0" VerticalAlignment="Top" Width="240" FontSize="22"/>
                 <Label x:Name="lblBrojDana" Content="" HorizontalAlignment="Left" Margin="289,0,0,0" VerticalAlignment="Top" Width="59" FontSize="22" IsEnabled="False"/>
                 <CheckBox x:Name="checkBoxGodisnjiOdmor" Content="GODIŠNJI ODMOR" HorizontalAlignment="Left" Margin="380,56,0,0" VerticalAlignment="Top" Width="127" Checked="checkBoxGodisnjiOdmor_Checked" Unchecked="checkBoxGodisnjiOdmor_Unchecked"/>
                 <Label x:Name="lblDatumPocetkaGodOdmora" Content="DATUM POČETKA ODMORA:" HorizontalAlignment="Left" Margin="0,89,0,0" VerticalAlignment="Top" Width="284" FontSize="22" Height="36"/>
                 <TextBox x:Name="txtBoxPocetakGodisnjegOdmora" HorizontalAlignment="Left" Height="37" Margin="289,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" FontSize="22" Background="#FF84D386" IsEnabled="False" TextChanged="txtBoxPocetakGodOdmora_TextChanged"/>
                 <Label x:Name="lblBrojDostupnihDana" Content="DOSTUPAN BROJ DANA:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="255" FontSize="22"/>
-                <TextBox x:Name="txtBoxBrojSlobodnihDana" HorizontalAlignment="Left" Height="37" Margin="289,42,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="59" FontSize="22" Background="#FF84D386" IsEnabled="False" TextChanged="txtBoxBrojSlobodnihDana_TextChanged"/>
+                <TextBox x:Name="txtBoxBrojZauzetihDana" HorizontalAlignment="Left" Height="37" Margin="289,42,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="59" FontSize="22" Background="#FF84D386" IsEnabled="False" TextChanged="txtBoxBrojSlobodnihDana_TextChanged"/>
             </Grid>
             <Button x:Name="btnOdustaniLekar" Content="                     " HorizontalAlignment="Left" Height="46" Margin="126,652,0,0" VerticalAlignment="Top" Width="44" RenderTransformOrigin="0.325,0.75" BorderThickness="0" ToolTip="Napravi obaveštenje" BorderBrush="#FF9C5353" Foreground="#FF2A83A4" Click="btnOdustaniLekar_Click" IsEnabled="False">
                 <Button.Background>

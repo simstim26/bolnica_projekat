@@ -94,17 +94,5 @@
     "korisnickoIme": "laza",
     "lozinka": "lazic",
     "tip": "lekar"
-  },
-  {
-    "id": "4",
-    "korisnickoIme": "imence",
-    "lozinka": "prezimence",
-    "tip": "lekar"
-  },
-  {
-    "id": "5",
-    "korisnickoIme": "test",
-    "lozinka": "test",
-    "tip": "lekar"
   }
 ]
