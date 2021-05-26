@@ -13,6 +13,5 @@ namespace Bolnica_aplikacija.Kontroler
         {
             return SpecijalizacijaServis.getInstance().nadjiSpecijalizacijuPoId(id);
         }
-
     }
 }

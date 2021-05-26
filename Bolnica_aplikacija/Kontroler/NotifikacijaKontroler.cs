@@ -1,4 +1,5 @@
-﻿using Bolnica_aplikacija.Servis;
+﻿using Bolnica_aplikacija.PomocneKlase;
+using Bolnica_aplikacija.Servis;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,22 @@ namespace Bolnica_aplikacija.Kontroler
 
         public  static void azurirajNotifikaciju(Notifikacija notifikacija)
         {
+            notifikacijaServis.azurirajNotifikaciju(notifikacija);
+        }
+
+        public static void azurirajNotifikacijuDTO(NotifikacijaDTO notifikacijaDTO, Ponavljanje ponavljanje)
+        {
+            Notifikacija notifikacija = new Notifikacija();
+
+            notifikacija.id = notifikacijaDTO.id;
+            notifikacija.idKorisnika = notifikacijaDTO.idKorisnika;
+            notifikacija.jeProcitana = notifikacijaDTO.jeProcitana;
+            notifikacija.nazivNotifikacije = notifikacijaDTO.nazivNotifikacije;
+            notifikacija.ponavljanje = ponavljanje;
+            notifikacija.porukaNotifikacije = notifikacijaDTO.porukaNotifikacije;
+            notifikacija.vremeNotifikovanja = notifikacijaDTO.vremeNotifikovanja;
+            notifikacija.datumNotifikovanja = notifikacijaDTO.datumNotifikovanja;
+
             notifikacijaServis.azurirajNotifikaciju(notifikacija);
         }
 
@@ -45,6 +62,22 @@ namespace Bolnica_aplikacija.Kontroler
         public static void napraviNotifikaciju(String nazivNotifikacije, String porukaNotifikacije, String idKorisnika, String tipKorisnika)
         {
             notifikacijaServis.napraviNotifikaciju(nazivNotifikacije, porukaNotifikacije, idKorisnika, tipKorisnika);
+        }
+
+        public static void pacijentNapraviNotifikaciju(NotifikacijaDTO notifikacijaDTO, Ponavljanje ponavljanje)
+        {
+            Notifikacija notifikacija = new Notifikacija(notifikacijaDTO.id, notifikacijaDTO.nazivNotifikacije, notifikacijaDTO.vremeNotifikovanja,
+                notifikacijaDTO.porukaNotifikacije, notifikacijaDTO.idKorisnika, notifikacijaDTO.datumNotifikovanja, notifikacijaDTO.jeProcitana);
+
+            notifikacija.ponavljanje = ponavljanje;
+
+            notifikacijaServis.pacijentNapraviNotifikaciju(notifikacija);
+
+        }
+
+        public static List<Notifikacija> ucitajSve()
+        {
+            return notifikacijaServis.ucitajSve();
         }
     }
 }

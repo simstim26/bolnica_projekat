@@ -50,6 +50,7 @@ namespace Bolnica_aplikacija.Repozitorijum
                     notifikacija.porukaNotifikacije = notifikacijaZaAzuriranje.porukaNotifikacije;
                     notifikacija.vremeNotifikovanja = notifikacijaZaAzuriranje.vremeNotifikovanja;
                     notifikacija.datumNotifikovanja = notifikacijaZaAzuriranje.datumNotifikovanja;
+                    notifikacija.ponavljanje = notifikacijaZaAzuriranje.ponavljanje;
 
                     break;
                 }

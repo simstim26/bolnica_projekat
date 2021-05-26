@@ -1,4 +1,5 @@
 ﻿using Bolnica_aplikacija.Model;
+using Bolnica_aplikacija.PomocneKlase;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -16,7 +17,9 @@ namespace Bolnica_aplikacija.Repozitorijum
             List<Bolest> sveBolesti;
             try
             {
-                sveBolesti = JsonSerializer.Deserialize<List<Bolest>>(File.ReadAllText("Datoteke/Bolesti.txt"));
+                JsonSerializerOptions option = new JsonSerializerOptions();
+                option.Converters.Add(new KonvertBolest());
+                sveBolesti = JsonSerializer.Deserialize<List<Bolest>>(File.ReadAllText("Datoteke/Bolesti.txt"), option);
             }
             catch (Exception e)
             {
@@ -47,6 +50,8 @@ namespace Bolnica_aplikacija.Repozitorijum
             {
                 WriteIndented = true,
             };
+            formatiranje.Converters.Add(new KonvertBolest());
+
             string jsonString = JsonSerializer.Serialize(sveBolesti, formatiranje);
             File.WriteAllText("Datoteke/Bolesti.txt", jsonString);
         }

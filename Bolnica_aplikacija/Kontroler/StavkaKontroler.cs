@@ -1,4 +1,5 @@
-﻿using Bolnica_aplikacija.Servis;
+﻿using Bolnica_aplikacija.PomocneKlase;
+using Bolnica_aplikacija.Servis;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -31,14 +32,14 @@ namespace Bolnica_aplikacija.Kontroler
             StavkaServis.getInstance().Upisi(sveStavke);
         }
 
-        public static bool DodajStavku()
+        public static void DodajStavku(StavkaDTO stavkaDTO)
         {
-            return StavkaServis.getInstance().DodajStavku();
+            StavkaServis.getInstance().DodajStavku(stavkaDTO);
         }
 
-        public static bool IzmeniStavku(Stavka stavka)
+        public static void IzmeniStavku(StavkaDTO stavka)
         {
-            return StavkaServis.getInstance().IzmeniStavku(stavka);
+            StavkaServis.getInstance().IzmeniStavku(stavka);
         }
 
         public static Stavka pronadjiStavkuPoId(String id)

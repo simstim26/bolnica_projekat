@@ -102,5 +102,10 @@ namespace Bolnica_aplikacija.Kontroler
         {
             return TerminServis.getInstance().ucitajTermineZaHitanSlucaj(tip, idSpecijalizacije);
         }
+
+        public static void oznaciHitanSlucaj(String idTermina)
+        {
+            TerminServis.getInstance().oznaciHitanTermin(idTermina);
+        }
     }
 }

@@ -43,5 +43,30 @@ namespace Bolnica_aplikacija.Kontroler
         {
             return LekarServis.getInstance().popuniLekarComboBox(idPacijenta);
         }
+
+        public static void napraviLekara(LekarDTO lekarDTO)
+        {
+            Lekar lekar = new Lekar(lekarDTO.idBolnice, lekarDTO.ime, lekarDTO.prezime, lekarDTO.jmbg, lekarDTO.datumRodjenja, lekarDTO.mestoRodjenja, lekarDTO.drzavaRodjenja,
+                                             lekarDTO.pol, lekarDTO.adresa, lekarDTO.email, lekarDTO.brojTelefona, lekarDTO.korisnickoIme, lekarDTO.lozinka, lekarDTO.brojZdravstveneKnjizice,
+                                             lekarDTO.zanimanje, lekarDTO.bracniStatus, lekarDTO.pocetakRadnogVremena, lekarDTO.krajRadnogVremena, lekarDTO.idSpecijalizacije, lekarDTO.prosecnaOcena,
+                                             lekarDTO.jeNaGodisnjemOdmoru, lekarDTO.notifikacije, lekarDTO.brojSlobodnihDana, lekarDTO.brojZauzetihDana, lekarDTO.pocetakGodisnjegOdmora, lekarDTO.jeLogickiObrisan);
+            
+            LekarServis.getInstance().napraviLekara(lekar);
+        }
+
+        public static void izmeniLekara(LekarDTO lekarDTO)
+        {
+            Lekar lekar = new Lekar(lekarDTO.idBolnice, lekarDTO.ime, lekarDTO.prezime, lekarDTO.jmbg, lekarDTO.datumRodjenja, lekarDTO.mestoRodjenja, lekarDTO.drzavaRodjenja,
+                                            lekarDTO.pol, lekarDTO.adresa, lekarDTO.email, lekarDTO.brojTelefona, lekarDTO.korisnickoIme, lekarDTO.lozinka, lekarDTO.brojZdravstveneKnjizice,
+                                            lekarDTO.zanimanje, lekarDTO.bracniStatus, lekarDTO.pocetakRadnogVremena, lekarDTO.krajRadnogVremena, lekarDTO.idSpecijalizacije, lekarDTO.prosecnaOcena,
+                                            lekarDTO.jeNaGodisnjemOdmoru, lekarDTO.notifikacije, lekarDTO.brojSlobodnihDana, lekarDTO.brojZauzetihDana, lekarDTO.pocetakGodisnjegOdmora, lekarDTO.jeLogickiObrisan);
+            lekar.id = lekarDTO.id;
+            LekarServis.getInstance().izmeniLekara(lekar);
+        }
+
+        public static void obrisiLekara(String idLekara)
+        {
+            LekarServis.getInstance().obrisiLekara(idLekara);
+        }
     }
 }
