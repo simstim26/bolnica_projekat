@@ -199,8 +199,7 @@ namespace Bolnica_aplikacija.Servis
 
             List<Lekar> sviLekari = lekarRepozitorijum.ucitajSve();
             lekar.id = (sviLekari.Count() + 1).ToString();
-
-   
+ 
             lekarRepozitorijum.dodajLekara(lekar);
             KorisnikServis.getInstance().dodajKorisnika(lekar.id, lekar.korisnickoIme, lekar.lozinka, "lekar");
         }

@@ -1338,10 +1338,7 @@ namespace Bolnica_aplikacija
                     lekarDTO.brojZauzetihDana = brojZauzetihDana;
                     lekarDTO.brojSlobodnihDana -= brojZauzetihDana;
                 }
-                else
-                {
-                    lekarDTO.brojSlobodnihDana += brojZauzetihDana;
-                }
+              
             }
 
             return lekarDTO;
@@ -1372,9 +1369,7 @@ namespace Bolnica_aplikacija
             {
 
                 LekarSpecijalizacija selektovanLekar = (LekarSpecijalizacija)dataGridLekari.SelectedItem;
-                String idLekara = selektovanLekar.idLekara;
-                Lekar lekar = LekarKontroler.nadjiLekaraPoId(idLekara);
-
+                              
                 if (!imaGodisnjiOdmor)
                 {
                     checkBoxGodisnjiOdmor.IsEnabled = true;
@@ -1388,16 +1383,8 @@ namespace Bolnica_aplikacija
                 }
                 else
                 {
-                    checkBoxGodisnjiOdmor.IsEnabled = false;
-                    if (brojZauzetihDana > lekar.brojSlobodnihDana)
-                    {
-                        Console.WriteLine("NEMA DOVOLJNO SLOBODNIH DANA");
-                    }
-                    else
-                    {
-                        LekarDTO izmeniLekarDTO = ucitajUnetePodatkeULekara();
-                        LekarKontroler.izmeniLekara(izmeniLekarDTO);
-                    }
+                    LekarDTO izmeniLekarDTO = ucitajUnetePodatkeULekara();
+                    LekarKontroler.izmeniLekara(izmeniLekarDTO);
                 }
 
                 ocistiPoljaLekara();
@@ -1794,6 +1781,15 @@ namespace Bolnica_aplikacija
                         return false;
                     }
                 }
+
+                int brZauzetihDana = Int32.Parse(txtBoxBrojZauzetihDana.Text);
+                int brSlobodnihDana = Int32.Parse(lblBrojDana.Content.ToString());
+
+                if (brZauzetihDana > brSlobodnihDana)
+                {
+                    txtBoxBrojZauzetihDana.Clear();
+                    return false;
+                }
             }
 
             return true;
@@ -1902,7 +1898,6 @@ namespace Bolnica_aplikacija
 
             return true;
         }
-
 
     }
 
