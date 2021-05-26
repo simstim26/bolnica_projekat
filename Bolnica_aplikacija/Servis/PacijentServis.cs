@@ -674,7 +674,15 @@ namespace Bolnica_aplikacija.Servis
             List<Terapija> trenutneTerapijePacijenta = TerapijaServis.getInstance().ucitajTrenutneTerapijePacijenta(idPacijenta);
             List<TerapijaPacijent> aktivneTerapije = new List<TerapijaPacijent>();
 
-            foreach(Terapija terapija in trenutneTerapijePacijenta)
+            popuniTerapije(trenutneTerapijePacijenta, aktivneTerapije);
+
+            return aktivneTerapije;
+
+        }
+
+        private void popuniTerapije(List<Terapija> trenutneTerapijePacijenta, List<TerapijaPacijent> aktivneTerapije)
+        {
+            foreach (Terapija terapija in trenutneTerapijePacijenta)
             {
                 String bolest = BolestKontroler.pronadjiNazivBolestiPoId(terapija.idBolesti);
                 String lek = LekKontroler.pronadjiImeLekaPoId(terapija.idLeka);
@@ -690,9 +698,6 @@ namespace Bolnica_aplikacija.Servis
                 //Console.WriteLine(bolest);
 
             }
-
-            return aktivneTerapije;
-
         }
 
     }
