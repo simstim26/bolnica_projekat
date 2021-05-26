@@ -908,7 +908,7 @@
     "broj": "120-35",
     "sprat": 1,
     "dostupnost": true,
-    "logickiObrisana": false,
+    "logickiObrisana": true,
     "brojZauzetihKreveta": 0,
     "Stavka": []
   },
@@ -918,6 +918,28 @@
     "tipProstorije": 2,
     "broj": "223-a",
     "sprat": 4,
+    "dostupnost": true,
+    "logickiObrisana": true,
+    "brojZauzetihKreveta": 0,
+    "Stavka": null
+  },
+  {
+    "id": "53",
+    "idBolnice": null,
+    "tipProstorije": 2,
+    "broj": "223-78",
+    "sprat": 4,
+    "dostupnost": true,
+    "logickiObrisana": false,
+    "brojZauzetihKreveta": 0,
+    "Stavka": []
+  },
+  {
+    "id": "54",
+    "idBolnice": null,
+    "tipProstorije": 1,
+    "broj": "244-a",
+    "sprat": 11,
     "dostupnost": true,
     "logickiObrisana": true,
     "brojZauzetihKreveta": 0,
