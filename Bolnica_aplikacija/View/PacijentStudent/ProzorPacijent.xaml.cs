@@ -2,6 +2,7 @@
 using Bolnica_aplikacija.PacijentModel;
 using Bolnica_aplikacija.PomocneKlase;
 using Bolnica_aplikacija.View.PacijentStudent;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -335,7 +336,7 @@ namespace Bolnica_aplikacija.PacijentStudent
 
         private void btnPodsetnik_Click(object sender, RoutedEventArgs e)
         {
-            Obavestenje obavestenje = new Obavestenje(dataGridObavestenja);
+            Obavestenje obavestenje = new Obavestenje(dataGridObavestenja, 0);
             obavestenje.ShowDialog();
         }
 
@@ -367,8 +368,27 @@ namespace Bolnica_aplikacija.PacijentStudent
 
         private void btnKreirajObavestenje_Click(object sender, RoutedEventArgs e)
         {
-            Obavestenje obavestenje = new Obavestenje(dataGridObavestenja);
+            Obavestenje obavestenje = new Obavestenje(dataGridObavestenja, 0);
             obavestenje.ShowDialog();
+        }
+
+        private void btnIzmeniObavestenje_Click(object sender, RoutedEventArgs e)
+        {
+            //to do: implementirati izmenu postojeceg obavestenja
+
+            if (dataGridObavestenja.SelectedIndex != -1)
+            {
+
+                Obavestenje obavestenje = new Obavestenje(dataGridObavestenja, 1);
+                obavestenje.ShowDialog();
+                
+            }
+            else
+            {
+                MessageBox.Show("Molimo odaberite obaveštenje koje želite da izmenite.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+
+
         }
     }
 }

@@ -23,6 +23,22 @@ namespace Bolnica_aplikacija.Kontroler
             notifikacijaServis.azurirajNotifikaciju(notifikacija);
         }
 
+        public static void azurirajNotifikacijuDTO(NotifikacijaDTO notifikacijaDTO, Ponavljanje ponavljanje)
+        {
+            Notifikacija notifikacija = new Notifikacija();
+
+            notifikacija.id = notifikacijaDTO.id;
+            notifikacija.idKorisnika = notifikacijaDTO.idKorisnika;
+            notifikacija.jeProcitana = notifikacijaDTO.jeProcitana;
+            notifikacija.nazivNotifikacije = notifikacijaDTO.nazivNotifikacije;
+            notifikacija.ponavljanje = ponavljanje;
+            notifikacija.porukaNotifikacije = notifikacijaDTO.porukaNotifikacije;
+            notifikacija.vremeNotifikovanja = notifikacijaDTO.vremeNotifikovanja;
+            notifikacija.datumNotifikovanja = notifikacijaDTO.datumNotifikovanja;
+
+            notifikacijaServis.azurirajNotifikaciju(notifikacija);
+        }
+
         public static Notifikacija getNotifikacija(String idNotifikacije, String idKorisnika)
         {
             return notifikacijaServis.getNotifikacija(idNotifikacije, idKorisnika);

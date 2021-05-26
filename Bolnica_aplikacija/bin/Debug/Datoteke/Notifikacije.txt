@@ -298,5 +298,15 @@
     "datumNotifikovanja": "2021-05-25T23:49:27.3545792+02:00",
     "jeProcitana": false,
     "ponavljanje": 0
+  },
+  {
+    "id": "31",
+    "nazivNotifikacije": "podsetnik",
+    "vremeNotifikovanja": "2021-05-26T10:00:00",
+    "porukaNotifikacije": "OVO JE PODSETNIK PLS RADI",
+    "idKorisnika": "1",
+    "datumNotifikovanja": "2021-05-26T00:16:46.0200818+02:00",
+    "jeProcitana": false,
+    "ponavljanje": 0
   }
 ]

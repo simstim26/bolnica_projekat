@@ -23,13 +23,16 @@ namespace Bolnica_aplikacija.View.PacijentStudent
     public partial class Obavestenje : Window
     {
         DataGrid dataGrid;
+        int indikator;
 
-        public Obavestenje(DataGrid dataGrid)
+        public Obavestenje(DataGrid dataGrid, int indikator)
         {
             InitializeComponent();
             this.dataGrid = dataGrid;
+            this.indikator = indikator;
 
             popuniPonavljanje();
+            popuniPodatke(indikator);
 
         }
 
@@ -39,6 +42,26 @@ namespace Bolnica_aplikacija.View.PacijentStudent
             comboBoxPonavljanje.Items.Add("Jednom");
             comboBoxPonavljanje.Items.Add("Svaki dan");
             comboBoxPonavljanje.SelectedIndex = 0;
+        }
+
+        private void popuniPodatke(int indikator)
+        {
+            if(indikator == 1)
+            {
+                Notifikacija notifikacijaDTO = (Notifikacija)dataGrid.SelectedItem;
+
+                txtNaziv.Text = notifikacijaDTO.nazivNotifikacije;
+                txtVreme.Text = notifikacijaDTO.vremeNotifikovanja.ToString("HH:mm");
+                txtPoruka.Text = notifikacijaDTO.porukaNotifikacije;
+
+                switch(notifikacijaDTO.ponavljanje)
+                {
+                    case Ponavljanje.Jednom: comboBoxPonavljanje.SelectedIndex = 0; break;
+                    case Ponavljanje.Svaki_dan: comboBoxPonavljanje.SelectedIndex = 2; break;
+                    default: comboBoxPonavljanje.SelectedIndex = 1; break;
+                }
+
+            }
         }
 
         private void btnNapravi_Click(object sender, RoutedEventArgs e)
@@ -54,13 +77,33 @@ namespace Bolnica_aplikacija.View.PacijentStudent
 
             DateTime vreme = Convert.ToDateTime(txtVreme.Text);
 
-            NotifikacijaKontroler.pacijentNapraviNotifikaciju(new NotifikacijaDTO(Convert.ToString(NotifikacijaKontroler.ucitajSve().Count + 1), txtNaziv.Text, vreme, txtPoruka.Text, KorisnikKontroler.GetPacijent().id, DateTime.Now, false), ponavljanje);
+            if(indikator == 1)
+            {
+                NotifikacijaKontroler.azurirajNotifikacijuDTO(new NotifikacijaDTO(Convert.ToString(NotifikacijaKontroler.ucitajSve().Count + 1), txtNaziv.Text, vreme, txtPoruka.Text, KorisnikKontroler.GetPacijent().id, DateTime.Now, false), ponavljanje);
 
+
+            }
+            else
+            {
+                NotifikacijaKontroler.pacijentNapraviNotifikaciju(new NotifikacijaDTO(Convert.ToString(NotifikacijaKontroler.ucitajSve().Count + 1), txtNaziv.Text, vreme, txtPoruka.Text, KorisnikKontroler.GetPacijent().id, DateTime.Now, false), ponavljanje);
+
+            }
+       
             MessageBox.Show("Podsetnik je uspešno kreiran.", "Kreiranje uspešno", MessageBoxButton.OK, MessageBoxImage.Information);
 
             dataGrid.ItemsSource = NotifikacijaKontroler.getNoveNotifikacijeKorisnika(KorisnikKontroler.GetPacijent().id);
 
             this.Close();
+        }
+
+        private void comboBoxPonavljanje_DropDownClosed(object sender, EventArgs e)
+        {
+            if (comboBoxPonavljanje.SelectedIndex == 0)
+            {
+                txtVreme.IsEnabled = false;
+            }
+            else
+                txtVreme.IsEnabled = true;
         }
     }
 }

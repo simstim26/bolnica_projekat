@@ -167,7 +167,7 @@
                         
                     </DataGrid>
                     <Button x:Name="btnObrisi" Margin="1084,778,621,36" Content="Obriši"  Width="201" Height="55" FontSize="22"  MinWidth="201" MinHeight="55"/>
-                    <Button x:Name="btnIzmeniObavestenje" Margin="853,778,852,36" Content="Izmeni"  Width="201" Height="55" FontSize="22" MinWidth="201" MinHeight="55"/>
+                    <Button x:Name="btnIzmeniObavestenje" Margin="853,778,852,36" Content="Izmeni"  Width="201" Height="55" FontSize="22" MinWidth="201" MinHeight="55" Click="btnIzmeniObavestenje_Click"/>
                     <Button x:Name="btnKreirajObavestenje" Margin="622,778,1083,36" Content="Napravi" Width="201" Height="55" FontSize="22" MinWidth="201" MinHeight="55" Click="btnKreirajObavestenje_Click"/>
                 </Grid>
             </TabItem>
