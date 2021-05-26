@@ -1275,11 +1275,71 @@ namespace Bolnica_aplikacija
             ocistiPoljaLekara();
         }
 
-        // DODAJ LEKARA
+        // DODAJ LEKARA      
 
+        private void btnDodajLekara_Click(object sender, RoutedEventArgs e)
+        {
+            if (proveriValidnostPoljaLekara(txtBoxImeLekara.Text, txtBoxPrezimeLekara.Text, txtBoxJMBG.Text, txtBoxEmail.Text, txtBoxTelefon.Text,
+                                                txtBoxBrojZdravKnjizice.Text, txtBoxPocetakRadnogVremena.Text, txtBoxKrajRadnogVremena.Text,
+                                                txtBoxBrojZauzetihDana.Text, txtBoxPocetakGodisnjegOdmora.Text))
+            {
+                LekarDTO noviLekar = ucitajUnetePodatkeULekara();
+                LekarKontroler.napraviLekara(noviLekar);
+                ocistiPoljaLekara();
+                ucitajLekareUTabelu();
+            }          
+        }
+
+        // IZMENI LEKARA
+        private void btnIzmeniLekara_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (proveriValidnostPoljaLekara(txtBoxImeLekara.Text, txtBoxPrezimeLekara.Text, txtBoxJMBG.Text, txtBoxEmail.Text, txtBoxTelefon.Text,
+                                               txtBoxBrojZdravKnjizice.Text, txtBoxPocetakRadnogVremena.Text, txtBoxKrajRadnogVremena.Text,
+                                               txtBoxBrojZauzetihDana.Text, txtBoxPocetakGodisnjegOdmora.Text))
+            {
+
+                LekarSpecijalizacija selektovanLekar = (LekarSpecijalizacija)dataGridLekari.SelectedItem;
+                              
+                if (!imaGodisnjiOdmor)
+                {
+                    checkBoxGodisnjiOdmor.IsEnabled = true;
+                    LekarDTO izmeniLekarDTO = ucitajUnetePodatkeULekara();
+                    izmeniLekarDTO.jeNaGodisnjemOdmoru = false;
+                    izmeniLekarDTO.brojSlobodnihDana += izmeniLekarDTO.brojZauzetihDana;
+                    izmeniLekarDTO.brojZauzetihDana = 0;
+                    LekarKontroler.izmeniLekara(izmeniLekarDTO);
+
+                }
+                else
+                {
+                    LekarDTO izmeniLekarDTO = ucitajUnetePodatkeULekara();
+                    LekarKontroler.izmeniLekara(izmeniLekarDTO);
+                }
+
+                ocistiPoljaLekara();
+                ucitajLekareUTabelu();
+            }
+           
+        }
+
+        // IZBRISI LEKARA
+
+        private void btnIzbrisiLekara_Click(object sender, RoutedEventArgs e)
+        {
+            LekarSpecijalizacija selektovanLekar = (LekarSpecijalizacija)dataGridLekari.SelectedItem;
+            String idLekara = selektovanLekar.idLekara;
+            LekarKontroler.obrisiLekara(idLekara);
+            ocistiPoljaLekara();
+            ucitajLekareUTabelu();
+
+        }
+
+        
+        //POMOCNE FUNKCIJE
         private LekarDTO ucitajUnetePodatkeULekara()
         {
-          
+
             Sekretar sekretar = KorisnikKontroler.GetSekretar();
             String idBolnice = sekretar.idBolnice;
             String ime = txtBoxImeLekara.Text;
@@ -1300,7 +1360,7 @@ namespace Bolnica_aplikacija
             DateTime krajRadnogVremena = DateTime.ParseExact(txtBoxKrajRadnogVremena.Text, "HH:mm", null);
             String idSpecijalizacije = specijalizacija.SelectedIndex.ToString();
             DateTime pocetakGodisnjegOdmora = new DateTime();
-            
+
 
             if (imaGodisnjiOdmor)
             {
@@ -1310,7 +1370,7 @@ namespace Bolnica_aplikacija
 
 
             LekarDTO lekarDTO = new LekarDTO();
-           
+
             if (!flagIzmeni)
             {
                 lekarDTO = new LekarDTO(idBolnice, ime, prezime, jmbg, lekarDatumRodjenja, mestoRodjenja, drzavaRodjenja,
@@ -1338,75 +1398,12 @@ namespace Bolnica_aplikacija
                     lekarDTO.brojZauzetihDana = brojZauzetihDana;
                     lekarDTO.brojSlobodnihDana -= brojZauzetihDana;
                 }
-              
+
             }
 
             return lekarDTO;
         }
 
-        private void btnDodajLekara_Click(object sender, RoutedEventArgs e)
-        {
-            if (proveriValidnostPoljaLekara(txtBoxImeLekara.Text, txtBoxPrezimeLekara.Text, txtBoxJMBG.Text, txtBoxEmail.Text, txtBoxTelefon.Text,
-                                                txtBoxBrojZdravKnjizice.Text, txtBoxPocetakRadnogVremena.Text, txtBoxKrajRadnogVremena.Text,
-                                                txtBoxBrojZauzetihDana.Text, txtBoxPocetakGodisnjegOdmora.Text))
-            {
-                LekarDTO noviLekar = ucitajUnetePodatkeULekara();
-                LekarKontroler.napraviLekara(noviLekar);
-
-                ocistiPoljaLekara();
-                ucitajLekareUTabelu();
-            }          
-        }
-
-        // IZMENI LEKARA
-
-        private void btnIzmeniLekara_Click(object sender, RoutedEventArgs e)
-        {
-
-            if (proveriValidnostPoljaLekara(txtBoxImeLekara.Text, txtBoxPrezimeLekara.Text, txtBoxJMBG.Text, txtBoxEmail.Text, txtBoxTelefon.Text,
-                                               txtBoxBrojZdravKnjizice.Text, txtBoxPocetakRadnogVremena.Text, txtBoxKrajRadnogVremena.Text,
-                                               txtBoxBrojZauzetihDana.Text, txtBoxPocetakGodisnjegOdmora.Text))
-            {
-
-                LekarSpecijalizacija selektovanLekar = (LekarSpecijalizacija)dataGridLekari.SelectedItem;
-                              
-                if (!imaGodisnjiOdmor)
-                {
-                    checkBoxGodisnjiOdmor.IsEnabled = true;
-                    LekarDTO izmeniLekarDTO = ucitajUnetePodatkeULekara();
-
-                    izmeniLekarDTO.jeNaGodisnjemOdmoru = false;
-                    izmeniLekarDTO.brojSlobodnihDana += izmeniLekarDTO.brojZauzetihDana;
-                    izmeniLekarDTO.brojZauzetihDana = 0;
-                    LekarKontroler.izmeniLekara(izmeniLekarDTO);
-
-                }
-                else
-                {
-                    LekarDTO izmeniLekarDTO = ucitajUnetePodatkeULekara();
-                    LekarKontroler.izmeniLekara(izmeniLekarDTO);
-                }
-
-                ocistiPoljaLekara();
-                ucitajLekareUTabelu();
-            }
-           
-        }
-
-        // IZBRISI LEKARA
-
-        private void btnIzbrisiLekara_Click(object sender, RoutedEventArgs e)
-        {
-            LekarSpecijalizacija selektovanLekar = (LekarSpecijalizacija)dataGridLekari.SelectedItem;
-            String idLekara = selektovanLekar.idLekara;
-            LekarKontroler.obrisiLekara(idLekara);
-
-            ocistiPoljaLekara();
-            ucitajLekareUTabelu();
-
-        }
-
-        //POMOCNE FUNKCIJE
         private String selektovanPol()
         {
             String pol = "";
@@ -1808,6 +1805,7 @@ namespace Bolnica_aplikacija
         }
         private bool proverIme(String ime)
         {
+            bool povratnaVrednost = true;
             foreach (char c in ime)
             {
                 if (!Char.IsLetter(c))

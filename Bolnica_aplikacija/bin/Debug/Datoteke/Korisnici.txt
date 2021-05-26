@@ -100,5 +100,29 @@
     "korisnickoIme": "simo",
     "lozinka": "simic",
     "tip": "lekar"
+  },
+  {
+    "id": "5",
+    "korisnickoIme": "ddd",
+    "lozinka": "ddd",
+    "tip": "lekar"
+  },
+  {
+    "id": "6",
+    "korisnickoIme": "arkan",
+    "lozinka": "arkan",
+    "tip": "lekar"
+  },
+  {
+    "id": "7",
+    "korisnickoIme": "vendi",
+    "lozinka": "uljez",
+    "tip": "lekar"
+  },
+  {
+    "id": "8",
+    "korisnickoIme": "zorka",
+    "lozinka": "snaga123",
+    "tip": "lekar"
   }
 ]
