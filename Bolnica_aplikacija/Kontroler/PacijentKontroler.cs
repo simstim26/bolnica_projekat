@@ -123,5 +123,10 @@ namespace Bolnica_aplikacija.Kontroler
             PacijentServis.getInstance().ObrisiPacijenta(idPacijenta);
         }
 
+        public static List<TerapijaPacijent> ucitajAktivneTerapije(String idPacijenta)
+        {
+            return PacijentServis.getInstance().ucitajAktivneTerapije(idPacijenta);
+        }
+
     }
 }

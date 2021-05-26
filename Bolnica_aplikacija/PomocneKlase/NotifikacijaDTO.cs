@@ -8,7 +8,7 @@ using System;
 
 namespace Model
 {
-   public class Notifikacija
+   public class NotifikacijaDTO
    {
         public String id { get; set; }
         public String nazivNotifikacije { get; set; }
@@ -19,12 +19,12 @@ namespace Model
         public bool jeProcitana { get; set; }
         public  Ponavljanje ponavljanje { get; set; }
 
-        public Notifikacija()
+        public NotifikacijaDTO()
         {
 
         }
         
-        public Notifikacija(String id, String nazivNotifikacije, DateTime vremeNotifikovanja, String porukaNotifikacije, String idKorisnika, DateTime datumNotifikovanja, bool jeProcitana)
+        public NotifikacijaDTO(String id, String nazivNotifikacije, DateTime vremeNotifikovanja, String porukaNotifikacije, String idKorisnika, DateTime datumNotifikovanja, bool jeProcitana)
         {
             this.id = id;
             this.nazivNotifikacije = nazivNotifikacije;

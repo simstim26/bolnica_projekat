@@ -668,5 +668,32 @@ namespace Bolnica_aplikacija.Servis
             }
             pacijentRepozitorijum.upisi(sviPacijenti);
         }
+
+        public List<TerapijaPacijent> ucitajAktivneTerapije(String idPacijenta)
+        {
+            List<Terapija> trenutneTerapijePacijenta = TerapijaServis.getInstance().ucitajTrenutneTerapijePacijenta(idPacijenta);
+            List<TerapijaPacijent> aktivneTerapije = new List<TerapijaPacijent>();
+
+            foreach(Terapija terapija in trenutneTerapijePacijenta)
+            {
+                String bolest = BolestKontroler.pronadjiNazivBolestiPoId(terapija.idBolesti);
+                String lek = LekKontroler.pronadjiImeLekaPoId(terapija.idLeka);
+                TerapijaPacijent terapijaPacijent = new TerapijaPacijent(bolest, lek, terapija.nacinUpotrebe, terapija.id);
+
+                terapijaPacijent.nazivLeka = lek;
+                terapijaPacijent.nazivOboljenja = bolest;
+                terapijaPacijent.opisTerapije = terapija.nacinUpotrebe;
+                terapijaPacijent.idTerapije = terapija.id;
+
+                aktivneTerapije.Add(terapijaPacijent);
+
+                //Console.WriteLine(bolest);
+
+            }
+
+            return aktivneTerapije;
+
+        }
+
     }
 }

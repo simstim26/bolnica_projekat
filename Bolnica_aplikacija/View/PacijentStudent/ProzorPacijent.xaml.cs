@@ -2,6 +2,7 @@
 using Bolnica_aplikacija.PacijentModel;
 using Bolnica_aplikacija.PomocneKlase;
 using Bolnica_aplikacija.View.PacijentStudent;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,8 +41,10 @@ namespace Bolnica_aplikacija.PacijentStudent
             SetLabelPacijentContent();
 
             PopuniTermine();
+            popuniTerapije();
             setujTajmer();
             proveraAnkete();
+            popuniObavestenja();
 
         }
 
@@ -49,6 +52,16 @@ namespace Bolnica_aplikacija.PacijentStudent
         {
             //PacijentKontroler.nadjiPacijenta(KorisnikKontroler.GetPacijent().id);
             dataGridTermin.ItemsSource = PacijentKontroler.prikazPacijentovihTermina(KorisnikKontroler.GetPacijent().id);
+        }
+
+        private void popuniTerapije()
+        {
+            dataGridTerapije.ItemsSource = PacijentKontroler.ucitajAktivneTerapije(KorisnikKontroler.GetPacijent().id);
+        }
+
+        private void popuniObavestenja()
+        {
+            dataGridObavestenja.ItemsSource = NotifikacijaKontroler.getNoveNotifikacijeKorisnika(KorisnikKontroler.GetPacijent().id);
         }
 
         private void SetLabelPacijentContent()
@@ -73,6 +86,10 @@ namespace Bolnica_aplikacija.PacijentStudent
         {
             dataGridTermin.Loaded += SetMinWidths;
             dataGridTermin.Height = System.Windows.SystemParameters.PrimaryScreenHeight - 370;
+
+            //dataGridTerapije.Loaded += SetMinWidths;
+            //dataGridTerapije.Height = System.Windows.SystemParameters.PrimaryScreenHeight - 370;
+
         }
 
         private void CenterWindow()
@@ -94,12 +111,26 @@ namespace Bolnica_aplikacija.PacijentStudent
                 column.MinWidth = column.ActualWidth;
                 column.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
             }
+
+            foreach (var column in dataGridTerapije.Columns)
+            {
+                column.MinWidth = column.ActualWidth;
+                column.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
+            }
+
+            foreach (var column in dataGridObavestenja.Columns)
+            {
+                column.MinWidth = column.ActualWidth;
+                column.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
+            }
+
         }
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             double newHeight = e.NewSize.Height;
             dataGridTermin.Height = newHeight - 370;
+            dataGridTerapije.Height = newHeight - 370;
             double newWidth = e.NewSize.Width;
         }
 
@@ -303,6 +334,12 @@ namespace Bolnica_aplikacija.PacijentStudent
             
         }
 
+        private void btnPodsetnik_Click(object sender, RoutedEventArgs e)
+        {
+            Obavestenje obavestenje = new Obavestenje(dataGridObavestenja, 0);
+            obavestenje.ShowDialog();
+        }
+
         private void proveraAnkete()
         {
             int mesec = DateTime.Now.Month;
@@ -327,6 +364,31 @@ namespace Bolnica_aplikacija.PacijentStudent
 
                 }
             }
+        }
+
+        private void btnKreirajObavestenje_Click(object sender, RoutedEventArgs e)
+        {
+            Obavestenje obavestenje = new Obavestenje(dataGridObavestenja, 0);
+            obavestenje.ShowDialog();
+        }
+
+        private void btnIzmeniObavestenje_Click(object sender, RoutedEventArgs e)
+        {
+            //to do: implementirati izmenu postojeceg obavestenja
+
+            if (dataGridObavestenja.SelectedIndex != -1)
+            {
+
+                Obavestenje obavestenje = new Obavestenje(dataGridObavestenja, 1);
+                obavestenje.ShowDialog();
+                
+            }
+            else
+            {
+                MessageBox.Show("Molimo odaberite obaveštenje koje želite da izmenite.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+
+
         }
     }
 }
