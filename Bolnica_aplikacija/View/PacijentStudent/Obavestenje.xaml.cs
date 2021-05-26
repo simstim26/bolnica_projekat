@@ -22,8 +22,8 @@ namespace Bolnica_aplikacija.View.PacijentStudent
     /// </summary>
     public partial class Obavestenje : Window
     {
-        DataGrid dataGrid;
-        int indikator;
+        private DataGrid dataGrid;
+        private int indikator;
 
         public Obavestenje(DataGrid dataGrid, int indikator)
         {
@@ -75,12 +75,17 @@ namespace Bolnica_aplikacija.View.PacijentStudent
                 default: ponavljanje = Ponavljanje.Svaki_dan; break;
             }
 
-            DateTime vreme = Convert.ToDateTime(txtVreme.Text);
+            DateTime vreme;
+
+            if (!txtVreme.Text.Equals(""))
+                vreme = Convert.ToDateTime(txtVreme.Text);
+            else
+                vreme = Convert.ToDateTime("00:00");
 
             if(indikator == 1)
             {
-                NotifikacijaKontroler.azurirajNotifikacijuDTO(new NotifikacijaDTO(Convert.ToString(NotifikacijaKontroler.ucitajSve().Count + 1), txtNaziv.Text, vreme, txtPoruka.Text, KorisnikKontroler.GetPacijent().id, DateTime.Now, false), ponavljanje);
-
+                Notifikacija notifijacijaSelektovana = (Notifikacija)dataGrid.SelectedItem;
+                NotifikacijaKontroler.azurirajNotifikacijuDTO(new NotifikacijaDTO(notifijacijaSelektovana.id, txtNaziv.Text, vreme, txtPoruka.Text, notifijacijaSelektovana.idKorisnika, DateTime.Now, false), ponavljanje);
 
             }
             else
