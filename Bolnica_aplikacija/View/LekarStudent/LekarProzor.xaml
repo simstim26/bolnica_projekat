@@ -52,7 +52,7 @@
         <ContentControl x:Name ="contentControl" HorizontalAlignment="Left" Margin="0,46,0,0" VerticalAlignment="Top" Height="675" Width="424" Background="White" Grid.RowSpan="2">
         </ContentControl>
         <Grid x:Name="gridOdobravanjeLekova" Background="White" Margin="0,46,0,2.4" Grid.RowSpan="2" Visibility="Hidden">
-            <DataGrid x:Name="dataGridLekoviZaOdobravanje" HorizontalAlignment="Left" AutoGenerateColumns="False" IsReadOnly="True" Height="533" Margin="0,141,0,0" VerticalAlignment="Top" Width="424">
+            <DataGrid x:Name="dataGridLekoviZaOdobravanje" ItemsSource="{Binding Path = lekoviZaOdobravanje, Mode=TwoWay}" SelectedItem="{Binding Path=pIzabraniLek, Mode=TwoWay}" HorizontalAlignment="Left" AutoGenerateColumns="False" IsReadOnly="True" Height="533" Margin="0,141,0,0" VerticalAlignment="Top" Width="424">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Naziv leka" Binding="{Binding naziv}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Tip" Binding="{Binding tip}"></DataGridTextColumn>
@@ -61,7 +61,7 @@
                 </DataGrid.Columns>
             </DataGrid>
             <Button x:Name="btnOdbaci" Content="Odbaci" HorizontalAlignment="Left" Margin="311,81,0,0" VerticalAlignment="Top" Width="82" Height="36" Click="btnOdbaci_Click"/>
-            <Button x:Name="btnOdobri" Content="Odobri" HorizontalAlignment="Left" Margin="175,81,0,0" VerticalAlignment="Top" Width="82" Height="36" Click="btnOdobri_Click"/>
+            <Button x:Name="btnOdobri" Content="Odobri" Command="{Binding Path=odobriLek}" HorizontalAlignment="Left" Margin="175,81,0,0" VerticalAlignment="Top" Width="82" Height="36"/>
             <Button x:Name="btnInfoLek" HorizontalAlignment="Left" Margin="37,81,0,0" VerticalAlignment="Top" Width="82" Height="36" Click="btnInfoLek_Click">
                 <materialDesign:PackIcon Kind="InfoCircle" Height="24" Width="25"></materialDesign:PackIcon>
             </Button>
@@ -71,11 +71,11 @@
                 <Label Content="Tip leka:" HorizontalAlignment="Left" Margin="54,92,0,0" VerticalAlignment="Top"/>
                 <Label Content="Način upotrebe:" HorizontalAlignment="Left" Margin="54,129,0,0" VerticalAlignment="Top"/>
                 <Label Content="Sastojci:" HorizontalAlignment="Left" Margin="17,158,0,0" VerticalAlignment="Top"/>
-                <Label x:Name="lblNazivLeka" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="209,22,0,0" Width="168" Height="24"/>
-                <Label x:Name="lblProizvodjac" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="209,57,0,0" Width="168" Height="24"/>
-                <Label x:Name="lblTipLeka" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="209,92,0,0" Width="168" Height="24"/>
-                <Label x:Name="lblNacinUpotrebe" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="209,129,0,0" Width="168" Height="24"/>
-                <ListBox x:Name="listSastojci"  Background="#F5F5F5" HorizontalAlignment="Left" Height="353" Margin="17,187,0,0" VerticalAlignment="Top" Width="387">
+                <Label x:Name="lblNazivLeka" Content="{Binding Path=pIzabraniLek.naziv}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="209,22,0,0" Width="168" Height="24"/>
+                <Label x:Name="lblProizvodjac" Content="{Binding Path=pIzabraniLek.proizvodjac}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="209,57,0,0" Width="168" Height="24"/>
+                <Label x:Name="lblTipLeka" Content="{Binding Path=pIzabraniLek.tip}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="209,92,0,0" Width="168" Height="24"/>
+                <Label x:Name="lblNacinUpotrebe" Content="{Binding Path=pIzabraniLek.nacinUpotrebe}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="209,129,0,0" Width="168" Height="24"/>
+                <ListBox x:Name="listSastojci" ItemsSource="{Binding Path=pIzabraniLek.sastojci}" Background="#F5F5F5" HorizontalAlignment="Left" Height="353" Margin="17,187,0,0" VerticalAlignment="Top" Width="387">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">

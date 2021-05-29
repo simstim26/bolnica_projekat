@@ -20,6 +20,7 @@ using Bolnica_aplikacija.LekarStudent;
 using Bolnica_aplikacija.Model;
 using Bolnica_aplikacija.PomocneKlase;
 using Bolnica_aplikacija.View.LekarStudent;
+using Bolnica_aplikacija.ViewModel;
 
 namespace Bolnica_aplikacija
 {
@@ -38,6 +39,9 @@ namespace Bolnica_aplikacija
         public LekarProzor()
         {
             InitializeComponent();
+
+            this.DataContext = new LekZaOdobravanjeViewModel();
+
             this.contentControl.Content = new LekarTabovi();
             x = this.contentControl;
             lblGlavna.Content = "Zdravo korporacija";
@@ -218,7 +222,7 @@ namespace Bolnica_aplikacija
 
         private void ucitajLekoveZaOdobravanje()
         {
-            dataGridLekoviZaOdobravanje.ItemsSource = LekKontroler.nadjiLekoveZaOdobravanjeZaLogovanogLekara(KorisnikKontroler.getLekar().id);
+           // dataGridLekoviZaOdobravanje.ItemsSource = LekKontroler.nadjiLekoveZaOdobravanjeZaLogovanogLekara(KorisnikKontroler.getLekar().id);
 
         }
 
@@ -228,13 +232,6 @@ namespace Bolnica_aplikacija
             {
                 glavnaLabela.Content = "Informacije o leku";
                 gridInfoLek.Visibility = Visibility.Visible;
-                LekZaOdobravanje lek = (LekZaOdobravanje)dataGridLekoviZaOdobravanje.SelectedItem;
-                lblNazivLeka.Content = lek.naziv;
-                lblProizvodjac.Content = lek.proizvodjac;
-                lblNacinUpotrebe.Content = lek.getNacinUpotrebeString();
-                lblTipLeka.Content = lek.getTipString();
-
-                listSastojci.ItemsSource = lek.sastojci;
             }
             else
             {
@@ -409,27 +406,6 @@ namespace Bolnica_aplikacija
             {
                 MessageBox.Show("Potrebno je izabrati lek!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
 
-            }
-        }
-
-        private void btnOdobri_Click(object sender, RoutedEventArgs e)
-        {
-            if(dataGridLekoviZaOdobravanje.SelectedIndex != -1)
-            {
-                if(((LekZaOdobravanje)dataGridLekoviZaOdobravanje.SelectedItem).brLekaraKojiSuodobriliLek + 1 < 2)
-                {
-                    LekKontroler.azurirajOdobravanje((LekZaOdobravanje)dataGridLekoviZaOdobravanje.SelectedItem);
-                    ucitajLekoveZaOdobravanje();
-                }
-                else
-                {
-                    LekKontroler.dodajLek((LekZaOdobravanje)dataGridLekoviZaOdobravanje.SelectedItem);
-                    ucitajLekoveZaOdobravanje();
-                }
-            }
-            else
-            {
-                MessageBox.Show("Potrebno je izabrati lek!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
