@@ -1,4 +1,5 @@
 ﻿using Bolnica_aplikacija.Kontroler;
+using Bolnica_aplikacija.PomocneKlase;
 using Bolnica_aplikacija.Repozitorijum;
 using Model;
 using System;
@@ -164,6 +165,18 @@ namespace Bolnica_aplikacija.Servis
                     notifikacijaRepozitorijum.dodajNotifikaciju(novaNotifikacija);
                 }
             }
+        }
+
+        public void pacijentNapraviNotifikaciju(Notifikacija notifikacija)
+        {
+
+            notifikacijaRepozitorijum.dodajNotifikaciju(notifikacija);
+
+        }
+
+        public List<Notifikacija> ucitajSve()
+        {
+            return notifikacijaRepozitorijum.ucitajSve();
         }
     }
 }

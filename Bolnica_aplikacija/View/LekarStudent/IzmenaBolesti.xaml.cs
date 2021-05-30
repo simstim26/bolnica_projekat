@@ -117,11 +117,8 @@ namespace Bolnica_aplikacija.LekarStudent
             {
                 if (PacijentKontroler.proveriAlergijuNaLekZaPacijenta(((BolestTerapija)fm.DataContext).idPacijenta, ((Lek)dataGridLekovi.SelectedItem).id))
                 {
-                    DialogResult dialogResult = System.Windows.Forms.MessageBox.Show("Pacijent je alergičan na dati lek.\n Da li ste sigurni da želite da izdate lek?", "Upozorenje", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                    if (dialogResult == DialogResult.Yes)
-                    {
-                        promeniTerapiju();
-                    }
+                    System.Windows.MessageBox.Show("Pacijent je alergičan na dati lek.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    
                 }
                 else
                 {

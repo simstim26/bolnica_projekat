@@ -2,55 +2,55 @@
   {
     "id": "1",
     "naziv": "a",
-    "idTerapije": "1",
-    "idPacijenta": "1"
+    "terapija": "1",
+    "pacijent": "1"
   },
   {
     "id": "2",
     "naziv": "a1",
-    "idTerapije": "2",
-    "idPacijenta": "1"
+    "terapija": "2",
+    "pacijent": "1"
   },
   {
     "id": "3",
     "naziv": "sada",
-    "idTerapije": "5",
-    "idPacijenta": "1"
+    "terapija": "5",
+    "pacijent": "1"
   },
   {
     "id": "4",
     "naziv": "asdfa",
-    "idTerapije": "6",
-    "idPacijenta": "1"
+    "terapija": "6",
+    "pacijent": "1"
   },
   {
     "id": "5",
     "naziv": "nije normalan",
-    "idTerapije": "7",
-    "idPacijenta": "2"
+    "terapija": "7",
+    "pacijent": "2"
   },
   {
     "id": "6",
     "naziv": "GUBIS VREME",
-    "idTerapije": "9",
-    "idPacijenta": "2"
+    "terapija": "9",
+    "pacijent": "2"
   },
   {
     "id": "7",
     "naziv": "aaaaaaaaaaa",
-    "idTerapije": "15",
-    "idPacijenta": "2"
+    "terapija": "15",
+    "pacijent": "2"
   },
   {
     "id": "8",
     "naziv": "proba",
-    "idTerapije": "10",
-    "idPacijenta": "3"
+    "terapija": "10",
+    "pacijent": "3"
   },
   {
     "id": "9",
     "naziv": "ASDFG",
-    "idTerapije": "14",
-    "idPacijenta": "2"
+    "terapija": "14",
+    "pacijent": "2"
   }
 ]

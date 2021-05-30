@@ -33,14 +33,14 @@ namespace Bolnica_aplikacija.Kontroler
             ProstorijaServis.getInstance().upisi(sveProstorije);
         }
 
-        public static void NapraviProstoriju(Prostorija prostorija)
+        public static bool NapraviProstoriju(ProstorijaDTO prostorija)
         {
-            ProstorijaServis.getInstance().NapraviProstoriju(prostorija);
+            return ProstorijaServis.getInstance().ProveriProstoriju(prostorija);
         }
 
-        public static void AzurirajProstoriju(Prostorija prostorija)
+        public static bool AzurirajProstoriju(ProstorijaDTO prostorija)
         {
-            ProstorijaServis.getInstance().AzurirajProstoriju(prostorija);
+            return ProstorijaServis.getInstance().AzurirajProstoriju(prostorija);
         }
 
         public static void ObrisiProstoriju(String idProstorija)

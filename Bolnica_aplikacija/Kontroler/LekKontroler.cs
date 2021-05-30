@@ -1,4 +1,5 @@
 ﻿using Bolnica_aplikacija.Model;
+using Bolnica_aplikacija.PomocneKlase;
 using Bolnica_aplikacija.Servis;
 using Model;
 using System;
@@ -122,5 +123,11 @@ namespace Bolnica_aplikacija.Kontroler
         {
             return LekServis.getInstance().ucitajLekoveZaOdobravanje();
         }
+    
+        public static String pronadjiImeLekaPoId(String idLeka)
+        {
+            return LekServis.getInstance().nadjiLekPoId(idLeka).naziv;
+        }
+    
     }
 }
