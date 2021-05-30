@@ -230,6 +230,20 @@ namespace Bolnica_aplikacija.ViewModel
                 NotifyPropertyChanged("gridDodavanjeZamenskihLekovaVisibility");
             }
         }
+
+        private bool pGridInfoLek = false;
+        public bool gridInfoLek
+        {
+            get
+            {
+                return pGridInfoLek;
+            }
+            set
+            {
+                pGridInfoLek = value;
+                NotifyPropertyChanged("gridInfoLek");
+            }
+        }
         #endregion
 
         #region konstruktor i pomocne metode
@@ -249,7 +263,7 @@ namespace Bolnica_aplikacija.ViewModel
             dodavanjeZamenskogLeka = new RelayCommand(izvrsiDodavanjeZamenskogLeka);
             brisanjeZamenskogLeka = new RelayCommand(izvrsiBrisanjeZamenskogLeka);
             ponistiZamenskiLek = new RelayCommand(izvrsiPonistavanjeZamenskogLeka);
-
+            infoLek = new RelayCommand(izvrsiInfoLek);
         }
 
     private void ucitajPodatke()
@@ -684,6 +698,35 @@ namespace Bolnica_aplikacija.ViewModel
             gridDodavanjeZamenskihLekovaVisibility = false;
         }
 
+        #endregion
+
+        #region info lek
+        private RelayCommand pInfoLek;
+
+        public RelayCommand infoLek
+        {
+            get
+            {
+                return pInfoLek;
+            }
+            set
+            {
+                pInfoLek = value;
+            }
+        }
+
+        private void izvrsiInfoLek(object obj)
+        {
+            if (izabraniLek != null)
+            {
+                LekarProzor.getGlavnaLabela().Content = "Informacije o leku";
+                gridInfoLek = true;
+            }
+            else
+            {
+                MessageBox.Show("Potrebno je izabrati lek!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
         #endregion
     }
 }

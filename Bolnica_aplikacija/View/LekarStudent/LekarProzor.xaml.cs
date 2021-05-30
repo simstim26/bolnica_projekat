@@ -219,19 +219,6 @@ namespace Bolnica_aplikacija
 
         }
 
-        private void btnInfoLek_Click(object sender, RoutedEventArgs e)
-        {
-            if (dataGridLekoviZaOdobravanje.SelectedIndex != -1)
-            {
-                glavnaLabela.Content = "Informacije o leku";
-                gridInfoLek.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                MessageBox.Show("Potrebno je izabrati lek!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
-        }
-
         private void sacuvajStareVrednosti()
         {
             prethodniSadrzajGlavneLabele = (String)glavnaLabela.Content;
@@ -335,20 +322,6 @@ namespace Bolnica_aplikacija
                 odobriLekove.Content = "Odobri lekova";
 
             }
-        }
-
-        private void btnObrisiZamenskiLek_Click(object sender, RoutedEventArgs e)
-        {
-           /* if(dataGridZamenskiLekovi.SelectedIndex != -1)
-            {
-                int id = dataGridPostojeciLekovi.SelectedIndex;
-                LekKontroler.obrisiZamenskiLek(((Lek)dataGridPostojeciLekovi.SelectedItem).id, ((Lek)dataGridZamenskiLekovi.SelectedItem).id);
-                osveziPrikaz(id);
-            }
-            else
-            {
-                MessageBox.Show("Izaberite lek za brisanje.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }*/
         }
     }
 }
