@@ -329,7 +329,7 @@ namespace Bolnica_aplikacija
             btnObrisiZamenskiLek.Visibility = Visibility.Visible;
             gridRUZamenskiLekovi.Visibility = Visibility.Visible;
             glavnaLabela.Content = "Zamenski lekovi";
-            dataGridZamenskiLekovi.ItemsSource = ((Lek)dataGridPostojeciLekovi.SelectedItem).zamenskiLekovi;
+            //dataGridZamenskiLekovi.ItemsSource = ((Lek)dataGridPostojeciLekovi.SelectedItem).zamenskiLekovi;
         }
 
         private void btnZamenskiLekovi_Click(object sender, RoutedEventArgs e)
