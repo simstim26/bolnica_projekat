@@ -34,11 +34,11 @@ namespace Bolnica_aplikacija
         {
             InitializeComponent();
             this.DataContext = new LekarTaboviViewModel();
+
             raspored = this.dataRaspored;
             tab = this.lekarTab;
             gridRasporedPretraga = this.gridPretragaRaspored;
             gridPrikaz = this.gridPrikazPacijenata;
-            ucitajSve();
         }
         public static Grid getRasporedPretraga()
         {
@@ -52,32 +52,6 @@ namespace Bolnica_aplikacija
         {
             return tab;
         }
-        private void ucitajSve()
-        {
-            //dataRaspored.ItemsSource = LekarKontroler.prikaziZauzeteTermineZaLekara(KorisnikKontroler.getLekar());
-        }
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            if (this.prvi.SelectedDate != null && this.drugi.SelectedDate != null)
-            {
-                DateTime prvi = (DateTime)this.prvi.SelectedDate;
-                DateTime drugi = (DateTime)this.drugi.SelectedDate;
-                DateTime pomocni = DateTime.Now;
-                DateTime danasnjiDatum = pomocni.Date.Add(new TimeSpan(0, 0, 0));
-                if(DateTime.Compare(prvi, danasnjiDatum) < 0 || DateTime.Compare(drugi, danasnjiDatum) < 0 || DateTime.Compare(prvi, drugi) > 0)
-                {
-                    lblGreska.Visibility = Visibility.Visible;
-                }
-                else
-                {
-                    lblGreska.Visibility = Visibility.Hidden;
-                    dataRaspored.ItemsSource = LekarKontroler.pretraziZauzeteTermineZaLekara(KorisnikKontroler.getLekar(), prvi, drugi);
-                }
-            }
-            else
-            {
-                ucitajSve();
-            }
-        }
+    
     }
 }

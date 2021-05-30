@@ -94,9 +94,12 @@ namespace Bolnica_aplikacija.ViewModel
         {
             ucitajPacijente();
             ucitajRaspored();
+            prviDatum = DateTime.Now.Date;
+            drugiDatum = DateTime.Now.Date;
             otkazi = new RelayCommand(izvrsiOtkazivanje);
             infoRaspored = new RelayCommand(izvrsiInfoRaspored);
             infoPacijent = new RelayCommand(izvrsiInfoPacijent);
+            pretragaRaspored = new RelayCommand(izvrsiPretragaRaspored);
         }
 
         private void ucitajPacijente()
@@ -106,6 +109,50 @@ namespace Bolnica_aplikacija.ViewModel
         private void ucitajRaspored()
         {
             raspored = new ObservableCollection<PacijentTermin>(LekarKontroler.prikaziZauzeteTermineZaLekara(KorisnikKontroler.getLekar()));
+        }
+
+        #endregion
+
+        #region datePicker-i i lblGreska
+        private DateTime pPrviDatum;
+        public DateTime prviDatum
+        {
+            get
+            {
+                return pPrviDatum;
+            }
+            set
+            {
+                pPrviDatum = value;
+                NotifyPropertyChanged("prviDatum");
+            }
+        }
+
+        private DateTime pDrugiDatum;
+        public DateTime drugiDatum
+        {
+            get
+            {
+                return pDrugiDatum;
+            }
+            set
+            {
+                pDrugiDatum = value;
+                NotifyPropertyChanged("drugiDatum");
+            }
+        }
+        private bool pGreskaVisibility;
+        public bool greskaVisibility
+        {
+            get
+            {
+                return pGreskaVisibility;
+            }
+            set
+            {
+                pGreskaVisibility = value;
+                NotifyPropertyChanged("greskaVisibility");
+            }
         }
 
         #endregion
@@ -205,6 +252,44 @@ namespace Bolnica_aplikacija.ViewModel
             }
         }
 
+        #endregion
+
+        #region Komanda -> pretraga rasporeda
+        private RelayCommand pPretragaRaspored;
+        public RelayCommand pretragaRaspored
+        {
+            get
+            {
+                return pPretragaRaspored;
+            }
+
+            set
+            {
+                pPretragaRaspored = value;
+            }
+        }
+
+        private void izvrsiPretragaRaspored(object obj)
+        {
+            if (prviDatum != null && drugiDatum != null)
+            {
+                DateTime pomocni = DateTime.Now;
+                DateTime danasnjiDatum = pomocni.Date.Add(new TimeSpan(0, 0, 0));
+                if (DateTime.Compare(prviDatum, danasnjiDatum) < 0 || DateTime.Compare(drugiDatum, danasnjiDatum) < 0 || DateTime.Compare(prviDatum, drugiDatum) > 0)
+                {
+                    greskaVisibility = true;
+                }
+                else
+                {
+                    greskaVisibility = false;
+                    raspored = new ObservableCollection<PacijentTermin>(LekarKontroler.pretraziZauzeteTermineZaLekara(KorisnikKontroler.getLekar(), prviDatum, drugiDatum));
+                }
+            }
+            else
+            {
+                ucitajRaspored();
+            }
+        }
         #endregion
     }
 }

@@ -14,6 +14,7 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
     </UserControl.Resources>
     
     <Grid>
@@ -62,17 +63,17 @@
                 </TabItem.HeaderTemplate>
                 <Grid>
                     <Grid x:Name="gridPretragaRaspored" Margin="-6,0,0.2,580.6" Background="#93c47d" Visibility="Hidden">
-                        <DatePicker x:Name="prvi" HorizontalAlignment="Left" Background="#b6d7a8"  Margin="27,15,0,0" VerticalAlignment="Top" Height="33" Width="75"/>
-                        <DatePicker x:Name="drugi" HorizontalAlignment="Left" Margin="166,15,0,0" VerticalAlignment="Top" Height="33" Width="75"/>
+                        <DatePicker x:Name="prvi" SelectedDate="{Binding Path=prviDatum, Mode=TwoWay}" HorizontalAlignment="Left" Background="#b6d7a8"  Margin="27,15,0,0" VerticalAlignment="Top" Height="33" Width="75"/>
+                        <DatePicker x:Name="drugi" SelectedDate="{Binding Path=drugiDatum, Mode=TwoWay}" HorizontalAlignment="Left" Margin="166,15,0,0" VerticalAlignment="Top" Height="33" Width="75"/>
                         <Label Content="-" HorizontalAlignment="Left" Margin="127,15,0,0" VerticalAlignment="Top" FontSize="14" Height="33" Width="34"/>
-                        <Label x:Name="lblGreska"  Content="*Pogrešan unos  datuma!" Foreground="Red" Visibility="Hidden" HorizontalAlignment="Left" Margin="61,44,0,0" VerticalAlignment="Top" Width="252" FontWeight="Bold" FontStyle="Italic"/>
-                        <Button HorizontalAlignment="Left" Margin="279,15,0,0" VerticalAlignment="Top" Width="34" Height="33" Style="{StaticResource MaterialDesignFloatingActionAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Black" Click="Button_Click">
+                        <Label x:Name="lblGreska"  Content="*Pogrešan unos  datuma!" Foreground="Red" Visibility="{Binding Path=greskaVisibility, Converter={StaticResource BoolToVis}, Mode=TwoWay}" HorizontalAlignment="Left" Margin="61,44,0,0" VerticalAlignment="Top" Width="252" FontWeight="Bold" FontStyle="Italic"/>
+                        <Button HorizontalAlignment="Left" Command="{Binding Path=pretragaRaspored}" Margin="279,15,0,0" VerticalAlignment="Top" Width="34" Height="33" Style="{StaticResource MaterialDesignFloatingActionAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Black">
                             <materialDesign:PackIcon Kind="Play" Height="26" Width="26" RenderTransformOrigin="0.5,0.5">
 
                             </materialDesign:PackIcon>
                         </Button>
                     </Grid>
-                    <DataGrid x:Name ="dataRaspored" ItemsSource="{Binding Path=raspored, Mode=TwoWay}" SelectedItem="{Binding Path=izabraniTermin}" GridLinesVisibility="All" Background="White" SelectionMode="Single" AlternatingRowBackground="#FF9900" AutoGenerateColumns="False" Margin="0,119,0.2,-0.2" AlternationCount="2" IsReadOnly="True" RowHeight="35">
+                    <DataGrid x:Name ="dataRaspored" ItemsSource="{Binding Path=raspored, Mode=TwoWay}" SelectedItem="{Binding Path=izabraniTermin, Mode=TwoWay}" GridLinesVisibility="All" Background="White" SelectionMode="Single" AlternatingRowBackground="#FF9900" AutoGenerateColumns="False" Margin="0,119,0.2,-0.2" AlternationCount="2" IsReadOnly="True" RowHeight="35">
                         <DataGrid.Columns>
                             <DataGridTextColumn x:Name="kolonaDatum" Binding="{Binding datum}" IsReadOnly="True" CanUserResize="False" Header="Datum" Width="112"></DataGridTextColumn>
                             <DataGridTextColumn x:Name="kolonaSatnica" Binding="{Binding satnica}" IsReadOnly="True" CanUserResize="False" Header="Satnica" Width="112"></DataGridTextColumn>
@@ -103,7 +104,7 @@
                 <Grid Background="White" Margin="-18,-2,-12.8,-1.4">
                     <Grid x:Name="gridPrikazPacijenata" Margin="10,-13,10,576" Background="#93c47d" Visibility="Hidden">
                         <TextBox  Margin="70,41,191.6,-29.2" VerticalAlignment="Top" Height="22" />
-                        <Button HorizontalAlignment="Left" Margin="256,30,0,-29.2" VerticalAlignment="Top" Width="34" Height="33" Style="{StaticResource MaterialDesignFloatingActionAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Black" Click="Button_Click">
+                        <Button HorizontalAlignment="Left" Margin="256,30,0,-29.2" VerticalAlignment="Top" Width="34" Height="33" Style="{StaticResource MaterialDesignFloatingActionAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Black">
                             <materialDesign:PackIcon Kind="Play" Height="26" Width="26" RenderTransformOrigin="0.5,0.5">
                             </materialDesign:PackIcon>
                         </Button>
