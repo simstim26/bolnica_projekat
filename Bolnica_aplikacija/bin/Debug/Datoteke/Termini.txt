@@ -456,7 +456,7 @@
     "jeZavrsen": false,
     "idTermina": "26",
     "idProstorije": "15",
-    "idPacijenta": "3",
+    "idPacijenta": "",
     "idLekara": "1",
     "idTerapije": null,
     "idBolesti": null,

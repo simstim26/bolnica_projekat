@@ -72,7 +72,7 @@
                             </materialDesign:PackIcon>
                         </Button>
                     </Grid>
-                    <DataGrid x:Name ="dataRaspored" GridLinesVisibility="All" Background="White" SelectionMode="Single" AlternatingRowBackground="#FF9900" AutoGenerateColumns="False" Margin="0,119,0.2,-0.2" AlternationCount="2" IsReadOnly="True" RowHeight="35">
+                    <DataGrid x:Name ="dataRaspored" ItemsSource="{Binding Path=raspored, Mode=TwoWay}" SelectedItem="{Binding Path=izabraniTermin}" GridLinesVisibility="All" Background="White" SelectionMode="Single" AlternatingRowBackground="#FF9900" AutoGenerateColumns="False" Margin="0,119,0.2,-0.2" AlternationCount="2" IsReadOnly="True" RowHeight="35">
                         <DataGrid.Columns>
                             <DataGridTextColumn x:Name="kolonaDatum" Binding="{Binding datum}" IsReadOnly="True" CanUserResize="False" Header="Datum" Width="112"></DataGridTextColumn>
                             <DataGridTextColumn x:Name="kolonaSatnica" Binding="{Binding satnica}" IsReadOnly="True" CanUserResize="False" Header="Satnica" Width="112"></DataGridTextColumn>
@@ -80,13 +80,13 @@
                             <DataGridTextColumn x:Name="kolonaTip" IsReadOnly="True" Binding="{Binding napomena}" CanUserResize="False" Header="Tip" Width="90"></DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Button x:Name="btnOtkazi" HorizontalAlignment="Left" Margin="167,70,0,0" VerticalAlignment="Top" Width="78" Height="34" Foreground="White" FontWeight="Bold" Click="btnOtkazi_Click">
+                    <Button x:Name="btnOtkazi" Command="{Binding Path=otkazi}" HorizontalAlignment="Left" Margin="167,70,0,0" VerticalAlignment="Top" Width="78" Height="34" Foreground="White" FontWeight="Bold">
                         <materialDesign:PackIcon Kind="TrashCan" Height="27" Width="43"></materialDesign:PackIcon>
                     </Button>
                     <Button x:Name="btnPromeni" HorizontalAlignment="Left" Margin="318,70,0,0" VerticalAlignment="Top" Width="78" Height="34" FontWeight="Bold">
                         <materialDesign:PackIcon Kind="Repeat" Height="27" Width="43"></materialDesign:PackIcon>
                     </Button>
-                    <Button x:Name="btnInfo" HorizontalAlignment="Left" Margin="20,70,0,0" VerticalAlignment="Top" Width="78" Height="34" FontWeight="Bold" Click="btnInfo_Click">
+                    <Button x:Name="btnInfo" Command="{Binding Path=infoRaspored}" HorizontalAlignment="Left" Margin="20,70,0,0" VerticalAlignment="Top" Width="78" Height="34" FontWeight="Bold">
                         <materialDesign:PackIcon Kind="InfoCircle" Height="27" Width="43"></materialDesign:PackIcon>
                     </Button>
 
@@ -108,10 +108,10 @@
                             </materialDesign:PackIcon>
                         </Button>
                     </Grid>
-                    <Button x:Name ="btnInfoPrikaz" HorizontalAlignment="Left" Margin="341,80,0,0" VerticalAlignment="Top" Width="78" Height="34" FontWeight="Bold" Click="btnInfoPrikaz_Click">
+                    <Button x:Name ="btnInfoPrika" Command="{Binding Path=infoPacijent}" HorizontalAlignment="Left" Margin="341,80,0,0" VerticalAlignment="Top" Width="78" Height="34" FontWeight="Bold">
                         <materialDesign:PackIcon Kind="InfoCircle" Height="27" Width="43"></materialDesign:PackIcon>
                     </Button>
-                    <DataGrid x:Name ="lstPacijenti" GridLinesVisibility="All" Background="White" SelectionMode="Single" AlternatingRowBackground="#FF9900" AutoGenerateColumns="False" Margin="10,119,10,10" AlternationCount="2" IsReadOnly="True" RowHeight="35">
+                    <DataGrid x:Name ="lstPacijenti" ItemsSource="{Binding Path=pacijenti, Mode=TwoWay}" SelectedItem="{Binding Path=pacijent, Mode=TwoWay}" GridLinesVisibility="All" Background="White" SelectionMode="Single" AlternatingRowBackground="#FF9900" AutoGenerateColumns="False" Margin="10,119,10,10" AlternationCount="2" IsReadOnly="True" RowHeight="35">
                         <DataGrid.Columns>
                             <DataGridTextColumn x:Name="kolonaJmbg" Binding="{Binding jmbg}" IsReadOnly="True" Header="JMBG" Width="140" CanUserResize="False"/>
                             <DataGridTextColumn x:Name="kolonaIme" Binding ="{Binding ime}" IsReadOnly="True" Header="Ime"  Width="140" CanUserResize="False"/>
