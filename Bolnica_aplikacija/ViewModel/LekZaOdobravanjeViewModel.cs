@@ -64,6 +64,21 @@ namespace Bolnica_aplikacija.ViewModel
                 NotifyPropertyChanged("zamenski");
             }
         }
+
+        private ObservableCollection<Lek> pZamenskiDodavanje;
+
+        public ObservableCollection<Lek> zamenskiDodavanje
+        {
+            get
+            {
+                return pZamenskiDodavanje;
+            }
+            set
+            {
+                pZamenskiDodavanje = value;
+                NotifyPropertyChanged("zamenskiDodavanje");
+            }
+        }
         #endregion
 
         #region text box-evi
@@ -199,6 +214,22 @@ namespace Bolnica_aplikacija.ViewModel
                 NotifyPropertyChanged("gridZamenskiLekoviVisibility");
             }
         }
+
+        private bool pGridDodavanjeZamenskihLekovaVisibility = false;
+
+        public bool gridDodavanjeZamenskihLekovaVisibility
+        {
+            get
+            {
+                return pGridDodavanjeZamenskihLekovaVisibility;
+            }
+
+            set
+            {
+                pGridDodavanjeZamenskihLekovaVisibility = value;
+                NotifyPropertyChanged("gridDodavanjeZamenskihLekovaVisibility");
+            }
+        }
         #endregion
 
         #region konstruktor i pomocne metode
@@ -214,6 +245,8 @@ namespace Bolnica_aplikacija.ViewModel
             prikazZamenskiLekovi = new RelayCommand(izvrsiPrikazZamenskihLekova);
             dodavanjeSastojaka = new RelayCommand(izvrsiDodavanjeSastojka);
             brisanjeSastojaka = new RelayCommand(izvrsiBrisanjeSastojaka);
+            dodavanjeZamenskihLekovaPrikaz = new RelayCommand(izvrsidodavanjeZamenskihLekovaPrikaz);
+            dodavanjeZamenskogLeka = new RelayCommand(izvrsiDodavanjeZamenskogLeka);
         }
 
         private void ucitajPodatke()
@@ -275,6 +308,20 @@ namespace Bolnica_aplikacija.ViewModel
                 NotifyPropertyChanged("izabraniSastojak");
             }
         }
+
+        private Lek pIzabraniLekZaDodavanje;
+        public Lek izabraniLekZaDodavanje
+        {
+            get
+            {
+                return pIzabraniLekZaDodavanje;
+            }
+            set
+            {
+                pIzabraniLekZaDodavanje = value;
+                NotifyPropertyChanged("izabraniLekZaDodavanje");
+            }
+        }
         #endregion
 
         #region prikaz zamenskih lekova
@@ -303,7 +350,7 @@ namespace Bolnica_aplikacija.ViewModel
             if (izabraniPostojeciLek.zamenskiLekovi != null)
                 zamenski = new ObservableCollection<Lek>(izabraniPostojeciLek.zamenskiLekovi);
             else
-                zamenski = new ObservableCollection<Lek>();            
+                zamenski = new ObservableCollection<Lek>();
         }
 
         private RelayCommand pPrikazZamenskiLekovi;
@@ -331,6 +378,29 @@ namespace Bolnica_aplikacija.ViewModel
             else
                 zamenski = new ObservableCollection<Lek>();
         }
+
+        private RelayCommand pDodavanjeZamenskihLekovaPrikaz;
+        public RelayCommand dodavanjeZamenskihLekovaPrikaz
+        {
+            get
+            {
+                return pDodavanjeZamenskihLekovaPrikaz;
+            }
+
+            set
+            {
+                pDodavanjeZamenskihLekovaPrikaz = value;
+            }
+        }
+
+        private void izvrsidodavanjeZamenskihLekovaPrikaz(object obj)
+        {
+            /*gridDodavanjeZamenskogLeka.Visibility = Visibility.Visible;
+            glavnaLabela.Content = "Dodavanje zamenskog leka";*/
+            gridDodavanjeZamenskihLekovaVisibility = true;
+            zamenskiDodavanje = new ObservableCollection<Lek>(LekKontroler.ucitajSveLekoveBezZamenskih(izabraniPostojeciLek.id));
+        }
+
         #endregion
 
         #region prikaz propratne poruke -> odbacivanje leka
@@ -389,7 +459,7 @@ namespace Bolnica_aplikacija.ViewModel
             }
         }
         #endregion
-        
+
         #region OdobravanjeLekaKomanda
         private RelayCommand pOdobrilek;
 
@@ -401,7 +471,7 @@ namespace Bolnica_aplikacija.ViewModel
             }
             set
             {
-                pOdobrilek = value; 
+                pOdobrilek = value;
             }
         }
 
@@ -509,5 +579,39 @@ namespace Bolnica_aplikacija.ViewModel
 
         #endregion
 
+        #region dodavanje zamenskog leka
+        private RelayCommand pDodavanjeZamenskogLeka;
+        public RelayCommand dodavanjeZamenskogLeka
+        {
+            get
+            {
+                return pDodavanjeZamenskogLeka;
+            }
+
+            set
+            {
+                pDodavanjeZamenskogLeka = value;
+            }
+        }
+
+        private void izvrsiDodavanjeZamenskogLeka(object obj)
+        {
+            if (izabraniLekZaDodavanje != null)
+            {
+                String id = izabraniPostojeciLek.id;
+                LekKontroler.dodajZamenskiLek(izabraniPostojeciLek.id, izabraniLekZaDodavanje);
+                ucitajPostojeceLekove();
+                izabraniPostojeciLek = LekKontroler.nadjiLekPoId(id);
+                zamenski = new ObservableCollection<Lek>(izabraniPostojeciLek.zamenskiLekovi);
+                zamenskiDodavanje =new ObservableCollection<Lek>(LekKontroler.ucitajSveLekoveBezZamenskih(izabraniPostojeciLek.id));
+            }
+            else
+            {
+                MessageBox.Show("Izaberite lek za dodavanje.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+
+        #endregion
     }
 }
