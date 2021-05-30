@@ -34,10 +34,41 @@ namespace Bolnica_aplikacija.ViewModel
             }
         }
 
+        private String pPropratnaPoruka;
+        public String propratnaPoruka
+        {
+            get
+            {
+                return pPropratnaPoruka;
+            }
+
+            set
+            {
+                pPropratnaPoruka = value;
+                NotifyPropertyChanged("propratnaPoruka");
+            }
+        }
+
+        private bool pGridPropratnaPorukaVisibility = false;
+        public bool gridPropratnaPorukaVisibility
+        {
+            get
+            {
+                return pGridPropratnaPorukaVisibility;
+            }
+            set
+            {
+                pGridPropratnaPorukaVisibility = value;
+                NotifyPropertyChanged("gridPropratnaPorukaVisibility");
+            }
+        }
+
+
         public LekZaOdobravanjeViewModel()
         {
             ucitajPodatke();
             odobriLek = new RelayCommand(izvrsiOdobravanjeLeka);
+            odbaciLek = new RelayCommand(izvrsiOdbacivanjeLeka);
         }
 
         private void ucitajPodatke()
@@ -62,6 +93,7 @@ namespace Bolnica_aplikacija.ViewModel
         }
 
         //Komande
+        #region OdobravanjeLekaKomanda
         private RelayCommand pOdobrilek;
 
         public RelayCommand odobriLek
@@ -96,6 +128,33 @@ namespace Bolnica_aplikacija.ViewModel
                 MessageBox.Show("Potrebno je izabrati lek!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
+        #endregion
+
+        #region OdbacivanjeLekaKomanda
+        private RelayCommand pOdbaciLek;
+        public RelayCommand odbaciLek
+        {
+            get
+            {
+                return pOdbaciLek;
+            }
+
+            set
+            {
+                pOdbaciLek = value;
+            }
+        }
+
+        private void izvrsiOdbacivanjeLeka(object obj)
+        {
+            izabraniLek.propratnaPoruka = propratnaPoruka;
+            LekKontroler.odbacivanjeLeka(izabraniLek);
+            gridPropratnaPorukaVisibility = false;
+            ucitajPodatke();
+        }
+
+
+        #endregion
 
     }
 }

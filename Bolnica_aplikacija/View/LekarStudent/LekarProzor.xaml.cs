@@ -217,13 +217,6 @@ namespace Bolnica_aplikacija
             btnNazad.Visibility = Visibility.Visible;
             btnPretraga.Visibility = Visibility.Hidden;
 
-            ucitajLekoveZaOdobravanje();
-        }
-
-        private void ucitajLekoveZaOdobravanje()
-        {
-           // dataGridLekoviZaOdobravanje.ItemsSource = LekKontroler.nadjiLekoveZaOdobravanjeZaLogovanogLekara(KorisnikKontroler.getLekar().id);
-
         }
 
         private void btnInfoLek_Click(object sender, RoutedEventArgs e)
@@ -411,25 +404,18 @@ namespace Bolnica_aplikacija
 
         private void btnPotvrdaUnosaPropratnePoruke_Click(object sender, RoutedEventArgs e)
         {
-            LekZaOdobravanje lek = (LekZaOdobravanje)dataGridLekoviZaOdobravanje.SelectedItem;
-            lek.propratnaPoruka = txtPropratnaPoruka.Text;
-            LekKontroler.odbacivanjeLeka(lek);
-            gridPropratnaPoruka.Visibility = Visibility.Hidden;
-            ucitajLekoveZaOdobravanje();
+           // LekZaOdobravanje lek = (LekZaOdobravanje)dataGridLekoviZaOdobravanje.SelectedItem;
+            //lek.propratnaPoruka = txtPropratnaPoruka.Text;
+            //LekKontroler.odbacivanjeLeka(lek);
+            //gridPropratnaPoruka.Visibility = Visibility.Hidden;
         }
 
         private void btnDodavanjeSastojka_Click(object sender, RoutedEventArgs e)
         {
-            //Lek lek = (Lek)dataGridPostojeciLekovi.SelectedItem;
-            //if (lek.sastojci == null)
-            //  lek.sastojci = new List<String>();
-            ///lek.sastojci.Add(txtDodavanjeSastojaka.Text);
-            //LekKontroler.azurirajLek(lek);
             int id = dataGridPostojeciLekovi.SelectedIndex;
             LekKontroler.dodajSastojak(((Lek)dataGridPostojeciLekovi.SelectedItem).id, txtDodavanjeSastojaka.Text);
             osveziPrikaz(id);
             txtDodavanjeSastojaka.Text = "";
-            //listRUSastojci.Items.Refresh();
         }
 
         private void txtDodavanjeSastojaka_TextChanged(object sender, TextChangedEventArgs e)

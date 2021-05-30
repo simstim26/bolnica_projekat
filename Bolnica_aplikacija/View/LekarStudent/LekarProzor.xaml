@@ -8,6 +8,9 @@
         mc:Ignorable="d"
         Title="Lekar" MaxHeight="750" MaxWidth="430" Height="750" Width="430"
         WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+    </Window.Resources>
     <Grid >
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" MinHeight="46.4"/>
@@ -86,14 +89,14 @@
                 </ListBox>
                 <Button x:Name="btnZamenskiLekovi" Content="Vidi zamenske lekove" HorizontalAlignment="Left" Margin="17,580,0,0" VerticalAlignment="Top" Width="387" Height="56" Click="btnZamenskiLekovi_Click"/>
             </Grid>
-            <Grid x:Name="gridPropratnaPoruka" Visibility="Hidden">
+            <Grid x:Name="gridPropratnaPoruka" Visibility="{Binding Path=gridPropratnaPorukaVisibility, Converter={StaticResource BoolToVis}, Mode=TwoWay}">
                 <Grid.Background>
                     <SolidColorBrush Color="White" Opacity="0.5"/>
                 </Grid.Background>
                 <Grid Background="White" Margin="0,181,0,212.4" >
                     <Label Content="Molimo Vas, unesite obrazloženje: (opciono)" HorizontalAlignment="Left" Margin="28,31,0,0" VerticalAlignment="Top" Height="26" Width="331"/>
-                    <TextBox x:Name="txtPropratnaPoruka" HorizontalAlignment="Left" Height="107" Margin="28,62,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="369"/>
-                    <Button x:Name="btnPotvrdaUnosaPropratnePoruke" HorizontalAlignment="Left" Margin="165,212,0,0" VerticalAlignment="Top" Width="75" Height="35" Click="btnPotvrdaUnosaPropratnePoruke_Click">
+                    <TextBox  x:Name="txtPropratnaPoruka" Text="{Binding Path=propratnaPoruka}" HorizontalAlignment="Left" Height="107" Margin="28,62,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="369"/>
+                    <Button x:Name="btnPotvrdaUnosaPropratnePoruke" Command="{Binding Path=odbaciLek}" HorizontalAlignment="Left" Margin="165,212,0,0" VerticalAlignment="Top" Width="75" Height="35" Click="btnPotvrdaUnosaPropratnePoruke_Click">
                         <materialDesign:PackIcon Kind="CheckCircle" Height="25" Width="29"></materialDesign:PackIcon>
                     </Button>
 
