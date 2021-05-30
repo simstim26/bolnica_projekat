@@ -248,9 +248,11 @@ namespace Bolnica_aplikacija.ViewModel
             dodavanjeZamenskihLekovaPrikaz = new RelayCommand(izvrsidodavanjeZamenskihLekovaPrikaz);
             dodavanjeZamenskogLeka = new RelayCommand(izvrsiDodavanjeZamenskogLeka);
             brisanjeZamenskogLeka = new RelayCommand(izvrsiBrisanjeZamenskogLeka);
+            ponistiZamenskiLek = new RelayCommand(izvrsiPonistavanjeZamenskogLeka);
+
         }
 
-        private void ucitajPodatke()
+    private void ucitajPodatke()
         {
             lekoviZaOdobravanje = new ObservableCollection<LekZaOdobravanje>(LekKontroler.nadjiLekoveZaOdobravanjeZaLogovanogLekara(KorisnikKontroler.getLekar().id));
         }
@@ -411,8 +413,6 @@ namespace Bolnica_aplikacija.ViewModel
 
         private void izvrsidodavanjeZamenskihLekovaPrikaz(object obj)
         {
-            /*gridDodavanjeZamenskogLeka.Visibility = Visibility.Visible;
-            glavnaLabela.Content = "Dodavanje zamenskog leka";*/
             gridDodavanjeZamenskihLekovaVisibility = true;
             zamenskiDodavanje = new ObservableCollection<Lek>(LekKontroler.ucitajSveLekoveBezZamenskih(izabraniPostojeciLek.id));
         }
@@ -661,6 +661,28 @@ namespace Bolnica_aplikacija.ViewModel
             }
         }
 
+
+        #endregion
+
+        #region ponistavanje dodavanja zamenskog leka
+        private RelayCommand pPonistiZamenskiLek;
+        public RelayCommand ponistiZamenskiLek
+        {
+            get
+            {
+                return pPonistiZamenskiLek;
+            }
+
+            set
+            {
+                pPonistiZamenskiLek = value;
+            }
+        }
+
+        private void izvrsiPonistavanjeZamenskogLeka(object obj)
+        {
+            gridDodavanjeZamenskihLekovaVisibility = false;
+        }
 
         #endregion
     }

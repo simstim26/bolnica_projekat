@@ -158,7 +158,7 @@
                 <Button x:Name="btnPotvrdaZamenskogLeka" Command="{Binding Path=dodavanjeZamenskogLeka}" HorizontalAlignment="Left" Margin="36,574,0,0" VerticalAlignment="Top" Width="85" Height="46">
                     <materialDesign:PackIcon Kind="CheckCircle"></materialDesign:PackIcon>
                 </Button>
-                <Button x:Name="btnPonistavanjeZamenskogLeka" HorizontalAlignment="Left" Margin="299,574,0,0" VerticalAlignment="Top" Width="80" Height="46">
+                <Button x:Name="btnPonistavanjeZamenskogLeka" Command="{Binding Path=ponistiZamenskiLek}" HorizontalAlignment="Left" Margin="299,574,0,0" VerticalAlignment="Top" Width="80" Height="46">
                     <materialDesign:PackIcon Kind="CloseCircle"></materialDesign:PackIcon>
                 </Button>
             </Grid>
