@@ -74,7 +74,7 @@
     "kolicina": 75,
     "proizvodjac": "proizvodjac neki",
     "nacinUpotrebe": 2,
-    "sastojci": null,
+    "sastojci": [],
     "zamenskiLekovi": null
   },
   {
@@ -84,7 +84,10 @@
     "kolicina": 75,
     "proizvodjac": "proizvodjac neki",
     "nacinUpotrebe": 1,
-    "sastojci": null,
+    "sastojci": [
+      "asdfa",
+      "asdfaaa"
+    ],
     "zamenskiLekovi": null
   },
   {

@@ -49,7 +49,24 @@ namespace Bolnica_aplikacija.ViewModel
                 NotifyPropertyChanged("lekovi");
             }
         }
+
+        private ObservableCollection<Lek> pZamenski;
+
+        public ObservableCollection<Lek> zamenski
+        {
+            get
+            {
+                return pZamenski;
+            }
+            set
+            {
+                pZamenski = value;
+                NotifyPropertyChanged("zamenski");
+            }
+        }
         #endregion
+
+        #region text box-evi
 
         private String pPropratnaPoruka;
         public String propratnaPoruka
@@ -65,6 +82,78 @@ namespace Bolnica_aplikacija.ViewModel
                 NotifyPropertyChanged("propratnaPoruka");
             }
         }
+
+        private String pSastojak;
+
+        public String sastojak
+        {
+            get
+            {
+                return pSastojak;
+            }
+            set
+            {
+                pSastojak = value;
+                if (String.IsNullOrWhiteSpace(pSastojak))
+                {
+                    btnDodaj = false;
+                }
+                else
+                {
+                    btnDodaj = true;
+                }
+                NotifyPropertyChanged("sastojak");
+            }
+        }
+        #endregion
+
+        #region dugmad - visibility, isEnabled
+        private bool pBtnDodajVisibility;
+        public bool btnDodajVisibility
+        {
+            get
+            {
+                return pBtnDodajVisibility;
+            }
+
+            set
+            {
+                pBtnDodajVisibility = value;
+                NotifyPropertyChanged("btnDodajVisibility");
+            }
+        }
+
+        private bool pBtnObrisiVisibility;
+        public bool btnObrisiVisibility
+        {
+            get
+            {
+                return pBtnObrisiVisibility;
+            }
+
+            set
+            {
+                pBtnObrisiVisibility = value;
+                NotifyPropertyChanged("btnObrisiVisibility");
+            }
+        }
+
+        private bool pBtnDodaj;
+        public bool btnDodaj
+        {
+            get
+            {
+                return pBtnDodaj;
+            }
+
+            set
+            {
+                pBtnDodaj = value;
+                NotifyPropertyChanged("btnDodaj");
+            }
+        }
+
+        #endregion
 
         #region gridovi
         private bool pGridPropratnaPorukaVisibility = false;
@@ -94,6 +183,22 @@ namespace Bolnica_aplikacija.ViewModel
                 NotifyPropertyChanged("gridIzmenaLekovaVisibility");
             }
         }
+
+        private bool pGridZamenskiLekoviVisibility = false;
+
+        public bool gridZamenskiLekoviVisibility
+        {
+            get
+            {
+                return pGridZamenskiLekoviVisibility;
+            }
+
+            set
+            {
+                pGridZamenskiLekoviVisibility = value;
+                NotifyPropertyChanged("gridZamenskiLekoviVisibility");
+            }
+        }
         #endregion
 
         #region konstruktor i pomocne metode
@@ -105,6 +210,10 @@ namespace Bolnica_aplikacija.ViewModel
             odbaciLek = new RelayCommand(izvrsiOdbacivanjeLeka);
             prikaziGridIzmenaLeka = new RelayCommand(izvrsiPrikazIzmenaLeka);
             prikazGridPropratnaPoruka = new RelayCommand(IzvrsiPrikazPropratnePoruke);
+            prikazZamenskiLekoviRU = new RelayCommand(izvrsiPrikazZamenskihLekovaRU);
+            prikazZamenskiLekovi = new RelayCommand(izvrsiPrikazZamenskihLekova);
+            dodavanjeSastojaka = new RelayCommand(izvrsiDodavanjeSastojka);
+            brisanjeSastojaka = new RelayCommand(izvrsiBrisanjeSastojaka);
         }
 
         private void ucitajPodatke()
@@ -119,8 +228,9 @@ namespace Bolnica_aplikacija.ViewModel
 
         #endregion
 
-        private LekZaOdobravanje izabraniLek;
+        #region polja -> izabrani lekovi iz data grid-ova
 
+        private LekZaOdobravanje izabraniLek;
 
         public LekZaOdobravanje pIzabraniLek
         {
@@ -151,7 +261,79 @@ namespace Bolnica_aplikacija.ViewModel
             }
         }
 
-        //Komande za promenu prikaza -> grid visibility
+        private String pIzabraniSastojak;
+
+        public String izabraniSastojak
+        {
+            get
+            {
+                return pIzabraniSastojak;
+            }
+            set
+            {
+                pIzabraniSastojak = value;
+                NotifyPropertyChanged("izabraniSastojak");
+            }
+        }
+        #endregion
+
+        #region prikaz zamenskih lekova
+
+        private RelayCommand pPrikazZamenskiLekoviRU;
+        public RelayCommand prikazZamenskiLekoviRU
+        {
+            get
+            {
+                return pPrikazZamenskiLekoviRU;
+            }
+
+            set
+            {
+                pPrikazZamenskiLekoviRU = value;
+            }
+        }
+
+        private void izvrsiPrikazZamenskihLekovaRU(object obj)
+        {
+            gridIzmenaLekovaVisibility = false;
+            btnDodajVisibility = true;
+            btnObrisiVisibility = true;
+            gridZamenskiLekoviVisibility = true;
+            LekarProzor.getGlavnaLabela().Content = "Zamenski lekovi";
+            if (izabraniPostojeciLek.zamenskiLekovi != null)
+                zamenski = new ObservableCollection<Lek>(izabraniPostojeciLek.zamenskiLekovi);
+            else
+                zamenski = new ObservableCollection<Lek>();            
+        }
+
+        private RelayCommand pPrikazZamenskiLekovi;
+        public RelayCommand prikazZamenskiLekovi
+        {
+            get
+            {
+                return pPrikazZamenskiLekovi;
+            }
+
+            set
+            {
+                pPrikazZamenskiLekovi = value;
+            }
+        }
+
+        private void izvrsiPrikazZamenskihLekova(object obj)
+        {
+            btnDodajVisibility = false;
+            btnObrisiVisibility = false;
+            gridZamenskiLekoviVisibility = true;
+            LekarProzor.getGlavnaLabela().Content = "Zamenski lekovi";
+            if (izabraniLek.zamenskiLekovi != null)
+                zamenski = new ObservableCollection<Lek>(izabraniLek.zamenskiLekovi);
+            else
+                zamenski = new ObservableCollection<Lek>();
+        }
+        #endregion
+
+        #region prikaz propratne poruke -> odbacivanje leka
         private RelayCommand pPrikaziGridPropratnaPoruka;
         public RelayCommand prikazGridPropratnaPoruka
         {
@@ -177,6 +359,9 @@ namespace Bolnica_aplikacija.ViewModel
                 MessageBox.Show("Potrebno je izabrati lek!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
+        #endregion
+
+        #region izmena leka - prikaz
 
         private RelayCommand pPrikaziGridIzmenaLeka;
         public RelayCommand prikaziGridIzmenaLeka
@@ -203,8 +388,8 @@ namespace Bolnica_aplikacija.ViewModel
                 MessageBox.Show("Potrebno je izabrati lek!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
-
-        //Komande
+        #endregion
+        
         #region OdobravanjeLekaKomanda
         private RelayCommand pOdobrilek;
 
@@ -264,6 +449,64 @@ namespace Bolnica_aplikacija.ViewModel
             gridPropratnaPorukaVisibility = false;
             ucitajPodatke();
         }
+        #endregion
+
+        #region dodavanje sastojaka
+        private RelayCommand pDodavanjeSastojaka;
+        public RelayCommand dodavanjeSastojaka
+        {
+            get
+            {
+                return pDodavanjeSastojaka;
+            }
+
+            set
+            {
+                pDodavanjeSastojaka = value;
+            }
+        }
+
+        private void izvrsiDodavanjeSastojka(object obj)
+        {
+            LekKontroler.dodajSastojak(izabraniPostojeciLek.id, sastojak);
+            String id = izabraniPostojeciLek.id;
+            ucitajPostojeceLekove();
+            izabraniPostojeciLek = LekKontroler.nadjiLekPoId(id);
+            sastojak = "";
+        }
+        #endregion
+
+        #region brisanje sastojaka
+        private RelayCommand pBrisanjeSastojaka;
+        public RelayCommand brisanjeSastojaka
+        {
+            get
+            {
+                return pBrisanjeSastojaka;
+            }
+
+            set
+            {
+                pBrisanjeSastojaka = value;
+            }
+        }
+
+        private void izvrsiBrisanjeSastojaka(object obj)
+        {
+            if (izabraniSastojak != null)
+            {
+                String id = izabraniPostojeciLek.id;
+                LekKontroler.izbrisiSastojak(izabraniPostojeciLek.id, izabraniSastojak);
+                ucitajPostojeceLekove();
+                izabraniPostojeciLek = LekKontroler.nadjiLekPoId(id);
+            }
+            else
+            {
+                MessageBox.Show("Izaberite sastojak za brisanje", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+
         #endregion
 
     }

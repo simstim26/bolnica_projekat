@@ -87,7 +87,7 @@
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
-                <Button x:Name="btnZamenskiLekovi" Content="Vidi zamenske lekove" HorizontalAlignment="Left" Margin="17,580,0,0" VerticalAlignment="Top" Width="387" Height="56" Click="btnZamenskiLekovi_Click"/>
+                <Button x:Name="btnZamenskiLekovi" Command="{Binding Path=prikazZamenskiLekovi}"  Content="Vidi zamenske lekove" HorizontalAlignment="Left" Margin="17,580,0,0" VerticalAlignment="Top" Width="387" Height="56"/>
             </Grid>
             <Grid x:Name="gridPropratnaPoruka" Visibility="{Binding Path=gridPropratnaPorukaVisibility, Converter={StaticResource BoolToVis}, Mode=TwoWay}">
                 <Grid.Background>
@@ -99,11 +99,10 @@
                     <Button x:Name="btnPotvrdaUnosaPropratnePoruke" Command="{Binding Path=odbaciLek}" HorizontalAlignment="Left" Margin="165,212,0,0" VerticalAlignment="Top" Width="75" Height="35">
                         <materialDesign:PackIcon Kind="CheckCircle" Height="25" Width="29"></materialDesign:PackIcon>
                     </Button>
-
                 </Grid>
             </Grid>
-
         </Grid>
+        
         <Grid x:Name="gridRULekovi" Background="White" Margin="0,46,0,2.4" Grid.RowSpan="2" Visibility="Hidden" >
             <DataGrid x:Name="dataGridPostojeciLekovi" ItemsSource="{Binding Path=lekovi, Mode=TwoWay}" SelectedItem="{Binding Path=izabraniPostojeciLek, Mode=TwoWay}" AutoGenerateColumns="False" IsReadOnly="True" HorizontalAlignment="Left" Height="526" Margin="0,148,0,0" VerticalAlignment="Top" Width="424">
                 <DataGrid.Columns>
@@ -124,30 +123,30 @@
                 <Label x:Name="lblRUProizvodjac" Content="{Binding Path=izabraniPostojeciLek.proizvodjac}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="209,57,0,0" Width="168" Height="24"/>
                 <Label x:Name="lblRUTipLeka" Content="{Binding Path=izabraniPostojeciLek.tip}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="209,92,0,0" Width="168" Height="24"/>
                 <Label x:Name="lblRUNacinUpotrebe" Content="{Binding Path=izabraniPostojeciLek.nacinUpotrebe}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="209,129,0,0" Width="168" Height="24"/>
-                <ListBox x:Name="listRUSastojci" ItemsSource="{Binding Path=izabraniPostojeciLek.sastojci}" Background="#F5F5F5" HorizontalAlignment="Left" Height="297" Margin="17,259,0,0" VerticalAlignment="Top" Width="387"/>
-                <TextBox x:Name="txtDodavanjeSastojaka" HorizontalAlignment="Left" Height="23" Margin="17,217,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="txtDodavanjeSastojaka_TextChanged"/>
-                <Button x:Name="btnDodavanjeSastojka" HorizontalAlignment="Left" Margin="167,208,0,0" VerticalAlignment="Top" Width="49" Click="btnDodavanjeSastojka_Click">
+                <ListBox x:Name="listRUSastojci" ItemsSource="{Binding Path=izabraniPostojeciLek.sastojci}" SelectedItem="{Binding Path=izabraniSastojak, Mode=TwoWay}" Background="#F5F5F5" HorizontalAlignment="Left" Height="297" Margin="17,259,0,0" VerticalAlignment="Top" Width="387"/>
+                <TextBox x:Name="txtDodavanjeSastojaka" Text="{Binding Path=sastojak, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="17,217,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                <Button x:Name="btnDodavanjeSastojka" Command="{Binding Path=dodavanjeSastojaka}" IsEnabled="{Binding Path=btnDodaj, Mode=TwoWay}" HorizontalAlignment="Left" Margin="167,208,0,0" VerticalAlignment="Top" Width="49">
                     <materialDesign:PackIcon Kind="Plus" HorizontalAlignment="Center" Height="25" Width="28"></materialDesign:PackIcon>
                 </Button>
-                <Button x:Name="btnIzbrisiSastojak" HorizontalAlignment="Left" Margin="320,208,0,0" VerticalAlignment="Top" Width="49" Click="btnIzbrisiSastojak_Click">
+                <Button x:Name="btnIzbrisiSastojak" Command="{Binding Path=brisanjeSastojaka}" HorizontalAlignment="Left" Margin="320,208,0,0" VerticalAlignment="Top" Width="49">
                     <materialDesign:PackIcon Kind="TrashCan" HorizontalAlignment="Center"  Height="25" Width="23"></materialDesign:PackIcon>
                 </Button>
-                <Button x:Name="btnRUZamenskiLekovi" Content="Vidi zamenske lekove" HorizontalAlignment="Left" Margin="54,588,0,0" VerticalAlignment="Top" Width="305" Height="40" Click="btnRUZamenskiLekovi_Click"/>
+                <Button x:Name="btnRUZamenskiLekovi" Command="{Binding Path=prikazZamenskiLekoviRU}" Content="Vidi zamenske lekove" HorizontalAlignment="Left" Margin="54,588,0,0" VerticalAlignment="Top" Width="305" Height="40"/>
             </Grid>
 
         </Grid>
-        <Grid x:Name="gridRUZamenskiLekovi" Background="White" Margin="0,4.6,0,1.4" Grid.Row="1" Visibility="Hidden">
-            <Button x:Name="btnObrisiZamenskiLek" HorizontalAlignment="Left" Margin="166,75,0,0" VerticalAlignment="Top" Width="75" Click="btnObrisiZamenskiLek_Click">
+        <Grid x:Name="gridRUZamenskiLekovi" Background="White" Margin="0,4.6,0,1.4" Grid.Row="1" Visibility="{Binding Path=gridZamenskiLekoviVisibility,Converter={StaticResource BoolToVis}, Mode=TwoWay}">
+            <Button x:Name="btnObrisiZamenskiLek" Visibility="{Binding Path=btnObrisiVisibility, Converter={StaticResource BoolToVis}, Mode=TwoWay}" HorizontalAlignment="Left" Margin="166,75,0,0" VerticalAlignment="Top" Width="75" Click="btnObrisiZamenskiLek_Click">
                 <materialDesign:PackIcon Kind="TrashCan" Height="26" Width="29"></materialDesign:PackIcon>
             </Button>
-            <DataGrid x:Name="dataGridZamenskiLekovi" ItemsSource="{Binding Path=izabraniPostojeciLek.zamenskiLekovi}" IsReadOnly="True" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="538" Margin="0,132,0,0" VerticalAlignment="Top" Width="424">
+            <DataGrid x:Name="dataGridZamenskiLekovi" ItemsSource="{Binding Path=zamenski, Mode=TwoWay}" IsReadOnly="True" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="538" Margin="0,132,0,0" VerticalAlignment="Top" Width="424">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Naziv leka" Binding="{Binding naziv}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Tip leka" Binding="{Binding tip}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Način upotrebe" Binding="{Binding nacinUpotrebe}"></DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
-            <Button x:Name="btnDodajZamenskiLek" Content="Dodaj" HorizontalAlignment="Left" Margin="315,75,0,0" VerticalAlignment="Top" Width="75" Click="btnDodajZamenskiLek_Click"/>
+            <Button x:Name="btnDodajZamenskiLek" Visibility="{Binding Path=btnDodajVisibility, Converter={StaticResource BoolToVis}, Mode=TwoWay}" Content="Dodaj" HorizontalAlignment="Left" Margin="315,75,0,0" VerticalAlignment="Top" Width="75" Click="btnDodajZamenskiLek_Click"/>
             <Grid x:Name="gridDodavanjeZamenskogLeka" Background="White" Visibility="Hidden">
                 <DataGrid x:Name="dataGridDodavanjeZamenskogLeka" IsReadOnly="True" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="426" Margin="0,114,0,0" VerticalAlignment="Top" Width="424">
                     <DataGrid.Columns>
