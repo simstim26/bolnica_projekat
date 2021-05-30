@@ -225,6 +225,7 @@ namespace Bolnica_aplikacija
             {
                 glavnaLabela.Content = "Informacije o leku";
                 gridInfoLek.Visibility = Visibility.Visible;
+                String a = (String)lblNazivLeka.Content;
             }
             else
             {
@@ -387,27 +388,6 @@ namespace Bolnica_aplikacija
                 odobriLekove.Content = "Odobri lekova";
 
             }
-        }
-
-        private void btnOdbaci_Click(object sender, RoutedEventArgs e)
-        {
-            if (dataGridLekoviZaOdobravanje.SelectedIndex != -1)
-            {
-                gridPropratnaPoruka.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                MessageBox.Show("Potrebno je izabrati lek!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
-
-            }
-        }
-
-        private void btnPotvrdaUnosaPropratnePoruke_Click(object sender, RoutedEventArgs e)
-        {
-           // LekZaOdobravanje lek = (LekZaOdobravanje)dataGridLekoviZaOdobravanje.SelectedItem;
-            //lek.propratnaPoruka = txtPropratnaPoruka.Text;
-            //LekKontroler.odbacivanjeLeka(lek);
-            //gridPropratnaPoruka.Visibility = Visibility.Hidden;
         }
 
         private void btnDodavanjeSastojka_Click(object sender, RoutedEventArgs e)

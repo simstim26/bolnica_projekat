@@ -63,7 +63,7 @@
                     <DataGridTextColumn Header="Proizvođač" Binding="{Binding proizvodjac}"></DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
-            <Button x:Name="btnOdbaci" Content="Odbaci" HorizontalAlignment="Left" Margin="311,81,0,0" VerticalAlignment="Top" Width="82" Height="36" Click="btnOdbaci_Click"/>
+            <Button x:Name="btnOdbaci" Content="Odbaci" Command="{Binding Path=prikazGridPropratnaPoruka}" HorizontalAlignment="Left" Margin="311,81,0,0" VerticalAlignment="Top" Width="82" Height="36"/>
             <Button x:Name="btnOdobri" Content="Odobri" Command="{Binding Path=odobriLek}" HorizontalAlignment="Left" Margin="175,81,0,0" VerticalAlignment="Top" Width="82" Height="36"/>
             <Button x:Name="btnInfoLek" HorizontalAlignment="Left" Margin="37,81,0,0" VerticalAlignment="Top" Width="82" Height="36" Click="btnInfoLek_Click">
                 <materialDesign:PackIcon Kind="InfoCircle" Height="24" Width="25"></materialDesign:PackIcon>
@@ -96,7 +96,7 @@
                 <Grid Background="White" Margin="0,181,0,212.4" >
                     <Label Content="Molimo Vas, unesite obrazloženje: (opciono)" HorizontalAlignment="Left" Margin="28,31,0,0" VerticalAlignment="Top" Height="26" Width="331"/>
                     <TextBox  x:Name="txtPropratnaPoruka" Text="{Binding Path=propratnaPoruka}" HorizontalAlignment="Left" Height="107" Margin="28,62,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="369"/>
-                    <Button x:Name="btnPotvrdaUnosaPropratnePoruke" Command="{Binding Path=odbaciLek}" HorizontalAlignment="Left" Margin="165,212,0,0" VerticalAlignment="Top" Width="75" Height="35" Click="btnPotvrdaUnosaPropratnePoruke_Click">
+                    <Button x:Name="btnPotvrdaUnosaPropratnePoruke" Command="{Binding Path=odbaciLek}" HorizontalAlignment="Left" Margin="165,212,0,0" VerticalAlignment="Top" Width="75" Height="35">
                         <materialDesign:PackIcon Kind="CheckCircle" Height="25" Width="29"></materialDesign:PackIcon>
                     </Button>
 

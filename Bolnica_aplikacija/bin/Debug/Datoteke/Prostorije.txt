@@ -30,6 +30,17 @@
         "jeStaticka": true,
         "jeLogickiObrisana": false,
         "jePotrosnaRoba": false
+      },
+      {
+        "id": "9",
+        "naziv": "stat",
+        "kolicina": 3,
+        "proizvodjac": "saf",
+        "idProstorije": null,
+        "idBolnice": "1",
+        "jeStaticka": true,
+        "jeLogickiObrisana": false,
+        "jePotrosnaRoba": false
       }
     ]
   },
@@ -97,6 +108,17 @@
         "jeStaticka": false,
         "jeLogickiObrisana": false,
         "jePotrosnaRoba": true
+      },
+      {
+        "id": "2",
+        "naziv": "Krevet",
+        "kolicina": 2,
+        "proizvodjac": "KrevetKrevet",
+        "idProstorije": null,
+        "idBolnice": "1",
+        "jeStaticka": true,
+        "jeLogickiObrisana": false,
+        "jePotrosnaRoba": false
       }
     ]
   },

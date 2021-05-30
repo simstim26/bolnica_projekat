@@ -97,5 +97,22 @@
         ]
       }
     ]
+  },
+  {
+    "brLekaraKojiSuodobriliLek": 0,
+    "lekariKojimaJePoslatLek": [
+      "1",
+      "2"
+    ],
+    "odobren": false,
+    "propratnaPoruka": null,
+    "id": "2",
+    "naziv": "asda",
+    "tip": 1,
+    "kolicina": 23,
+    "proizvodjac": "asdfa",
+    "nacinUpotrebe": 0,
+    "sastojci": [],
+    "zamenskiLekovi": null
   }
 ]

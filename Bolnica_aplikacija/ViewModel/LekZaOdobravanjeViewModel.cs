@@ -20,6 +20,7 @@ namespace Bolnica_aplikacija.ViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        #region Liste
         private ObservableCollection<LekZaOdobravanje> pLekoviZaOdobravanje;
         public ObservableCollection<LekZaOdobravanje> lekoviZaOdobravanje
         {
@@ -33,6 +34,7 @@ namespace Bolnica_aplikacija.ViewModel
                 NotifyPropertyChanged("lekoviZaOdobravanje");
             }
         }
+        #endregion
 
         private String pPropratnaPoruka;
         public String propratnaPoruka
@@ -49,6 +51,7 @@ namespace Bolnica_aplikacija.ViewModel
             }
         }
 
+        #region gridovi
         private bool pGridPropratnaPorukaVisibility = false;
         public bool gridPropratnaPorukaVisibility
         {
@@ -62,19 +65,23 @@ namespace Bolnica_aplikacija.ViewModel
                 NotifyPropertyChanged("gridPropratnaPorukaVisibility");
             }
         }
+        #endregion
 
-
+        #region konstruktor i pomocne metode
         public LekZaOdobravanjeViewModel()
         {
             ucitajPodatke();
             odobriLek = new RelayCommand(izvrsiOdobravanjeLeka);
             odbaciLek = new RelayCommand(izvrsiOdbacivanjeLeka);
+            prikazGridPropratnaPoruka = new RelayCommand(IzvrsiPrikazPropratnePoruke);
         }
 
         private void ucitajPodatke()
         {
             lekoviZaOdobravanje = new ObservableCollection<LekZaOdobravanje>(LekKontroler.nadjiLekoveZaOdobravanjeZaLogovanogLekara(KorisnikKontroler.getLekar().id));
         }
+
+        #endregion
 
         private LekZaOdobravanje izabraniLek;
 
@@ -89,6 +96,34 @@ namespace Bolnica_aplikacija.ViewModel
             set
             {
                 izabraniLek = value;
+                NotifyPropertyChanged("pIzabraniLek");
+            }
+        }
+
+        //Komande za promenu prikaza -> grid visibility
+        private RelayCommand pPrikaziGridPropratnaPoruka;
+        public RelayCommand prikazGridPropratnaPoruka
+        {
+            get
+            {
+                return pPrikaziGridPropratnaPoruka;
+            }
+
+            set
+            {
+                pPrikaziGridPropratnaPoruka = value;
+            }
+        }
+
+        private void IzvrsiPrikazPropratnePoruke(object obj)
+        {
+            if (izabraniLek != null)
+            {
+                gridPropratnaPorukaVisibility = true;
+            }
+            else
+            {
+                MessageBox.Show("Potrebno je izabrati lek!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
@@ -152,8 +187,6 @@ namespace Bolnica_aplikacija.ViewModel
             gridPropratnaPorukaVisibility = false;
             ucitajPodatke();
         }
-
-
         #endregion
 
     }
