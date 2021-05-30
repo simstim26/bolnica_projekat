@@ -286,7 +286,7 @@ namespace Bolnica_aplikacija
 
         private void ucitavanjePostojecihLekova()
         {
-            dataGridPostojeciLekovi.ItemsSource = LekKontroler.ucitajSve();
+           // dataGridPostojeciLekovi.ItemsSource = LekKontroler.ucitajSve();
         }
 
         private void podesiKretanjeUnazadZaRULekova()
@@ -319,26 +319,6 @@ namespace Bolnica_aplikacija
                 btnNazad.Visibility = btnNazadVisibility;
                 btnPretraga.Visibility = btnPretragaVisibility;
 
-            }
-        }
-
-        private void btnIzmeniPostojeciLek_Click(object sender, RoutedEventArgs e)
-        {
-            if (dataGridPostojeciLekovi.SelectedIndex != -1)
-            {
-                Lek izabraniLek = (Lek)dataGridPostojeciLekovi.SelectedItem;
-                lblRUNacinUpotrebe.Content = izabraniLek.getNacinUpotrebeString();
-                lblRUTipLeka.Content = izabraniLek.getTipString();
-                lblRUProizvodjac.Content = izabraniLek.proizvodjac;
-                lblRUNazivLeka.Content = izabraniLek.naziv;
-                gridIzmenaLekova.Visibility = Visibility.Visible;
-                glavnaLabela.Content = "Izmena leka";
-                listRUSastojci.ItemsSource = izabraniLek.sastojci;
-
-            }
-            else
-            {
-                MessageBox.Show("Potrebno je izabrati lek!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 

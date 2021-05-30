@@ -105,26 +105,26 @@
 
         </Grid>
         <Grid x:Name="gridRULekovi" Background="White" Margin="0,46,0,2.4" Grid.RowSpan="2" Visibility="Hidden" >
-            <DataGrid x:Name="dataGridPostojeciLekovi" AutoGenerateColumns="False" IsReadOnly="True" HorizontalAlignment="Left" Height="526" Margin="0,148,0,0" VerticalAlignment="Top" Width="424">
+            <DataGrid x:Name="dataGridPostojeciLekovi" ItemsSource="{Binding Path=lekovi, Mode=TwoWay}" SelectedItem="{Binding Path=izabraniPostojeciLek, Mode=TwoWay}" AutoGenerateColumns="False" IsReadOnly="True" HorizontalAlignment="Left" Height="526" Margin="0,148,0,0" VerticalAlignment="Top" Width="424">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Naziv leka" Binding="{Binding naziv}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Tip leka" Binding="{Binding tip}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Način upotrebe" Binding="{Binding nacinUpotrebe}"></DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
-            <Button x:Name="btnIzmeniPostojeciLek" Content="Izmeni" HorizontalAlignment="Left" Margin="305,81,0,0" VerticalAlignment="Top" Width="86" Height="45" Click="btnIzmeniPostojeciLek_Click"/>
+            <Button x:Name="btnIzmeniPostojeciLek" Command="{Binding Path=prikaziGridIzmenaLeka}" Content="Izmeni" HorizontalAlignment="Left" Margin="305,81,0,0" VerticalAlignment="Top" Width="86" Height="45"/>
 
-            <Grid x:Name="gridIzmenaLekova" Background="White" Visibility="Hidden">
+            <Grid x:Name="gridIzmenaLekova" Background="White" Visibility="{Binding Path=gridIzmenaLekovaVisibility,Converter={StaticResource BoolToVis}, Mode=TwoWay}">
                 <Label Content="Naziv:" HorizontalAlignment="Left" Margin="54,22,0,0" VerticalAlignment="Top"/>
                 <Label Content="Proizvođač:" HorizontalAlignment="Left" Margin="54,57,0,0" VerticalAlignment="Top"/>
                 <Label Content="Tip leka:" HorizontalAlignment="Left" Margin="54,92,0,0" VerticalAlignment="Top"/>
                 <Label Content="Način upotrebe:" HorizontalAlignment="Left" Margin="54,129,0,0" VerticalAlignment="Top"/>
                 <Label Content="Sastojci:" HorizontalAlignment="Left" Margin="17,188,0,0" VerticalAlignment="Top"/>
-                <Label x:Name="lblRUNazivLeka" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="209,22,0,0" Width="168" Height="24"/>
-                <Label x:Name="lblRUProizvodjac" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="209,57,0,0" Width="168" Height="24"/>
-                <Label x:Name="lblRUTipLeka" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="209,92,0,0" Width="168" Height="24"/>
-                <Label x:Name="lblRUNacinUpotrebe" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="209,129,0,0" Width="168" Height="24"/>
-                <ListBox x:Name="listRUSastojci" Background="#F5F5F5" HorizontalAlignment="Left" Height="297" Margin="17,259,0,0" VerticalAlignment="Top" Width="387"/>
+                <Label x:Name="lblRUNazivLeka" Content="{Binding Path=izabraniPostojeciLek.naziv}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="209,22,0,0" Width="168" Height="24"/>
+                <Label x:Name="lblRUProizvodjac" Content="{Binding Path=izabraniPostojeciLek.proizvodjac}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="209,57,0,0" Width="168" Height="24"/>
+                <Label x:Name="lblRUTipLeka" Content="{Binding Path=izabraniPostojeciLek.tip}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="209,92,0,0" Width="168" Height="24"/>
+                <Label x:Name="lblRUNacinUpotrebe" Content="{Binding Path=izabraniPostojeciLek.nacinUpotrebe}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="209,129,0,0" Width="168" Height="24"/>
+                <ListBox x:Name="listRUSastojci" ItemsSource="{Binding Path=izabraniPostojeciLek.sastojci}" Background="#F5F5F5" HorizontalAlignment="Left" Height="297" Margin="17,259,0,0" VerticalAlignment="Top" Width="387"/>
                 <TextBox x:Name="txtDodavanjeSastojaka" HorizontalAlignment="Left" Height="23" Margin="17,217,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="txtDodavanjeSastojaka_TextChanged"/>
                 <Button x:Name="btnDodavanjeSastojka" HorizontalAlignment="Left" Margin="167,208,0,0" VerticalAlignment="Top" Width="49" Click="btnDodavanjeSastojka_Click">
                     <materialDesign:PackIcon Kind="Plus" HorizontalAlignment="Center" Height="25" Width="28"></materialDesign:PackIcon>

@@ -1,6 +1,7 @@
 ﻿using Bolnica_aplikacija.Komande;
 using Bolnica_aplikacija.Kontroler;
 using Bolnica_aplikacija.Model;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -34,6 +35,20 @@ namespace Bolnica_aplikacija.ViewModel
                 NotifyPropertyChanged("lekoviZaOdobravanje");
             }
         }
+
+        private ObservableCollection<Lek> pLekovi;
+        public ObservableCollection<Lek> lekovi
+        {
+            get
+            {
+                return pLekovi;
+            }
+            set
+            {
+                pLekovi = value;
+                NotifyPropertyChanged("lekovi");
+            }
+        }
         #endregion
 
         private String pPropratnaPoruka;
@@ -65,20 +80,41 @@ namespace Bolnica_aplikacija.ViewModel
                 NotifyPropertyChanged("gridPropratnaPorukaVisibility");
             }
         }
+
+        private bool pGridIzmenaLekovaVisibility = false;
+        public bool gridIzmenaLekovaVisibility
+        {
+            get
+            {
+                return pGridIzmenaLekovaVisibility;
+            }
+            set
+            {
+                pGridIzmenaLekovaVisibility = value;
+                NotifyPropertyChanged("gridIzmenaLekovaVisibility");
+            }
+        }
         #endregion
 
         #region konstruktor i pomocne metode
         public LekZaOdobravanjeViewModel()
         {
             ucitajPodatke();
+            ucitajPostojeceLekove();
             odobriLek = new RelayCommand(izvrsiOdobravanjeLeka);
             odbaciLek = new RelayCommand(izvrsiOdbacivanjeLeka);
+            prikaziGridIzmenaLeka = new RelayCommand(izvrsiPrikazIzmenaLeka);
             prikazGridPropratnaPoruka = new RelayCommand(IzvrsiPrikazPropratnePoruke);
         }
 
         private void ucitajPodatke()
         {
             lekoviZaOdobravanje = new ObservableCollection<LekZaOdobravanje>(LekKontroler.nadjiLekoveZaOdobravanjeZaLogovanogLekara(KorisnikKontroler.getLekar().id));
+        }
+
+        private void ucitajPostojeceLekove()
+        {
+            lekovi = new ObservableCollection<Lek>(LekKontroler.ucitajSve());
         }
 
         #endregion
@@ -97,6 +133,21 @@ namespace Bolnica_aplikacija.ViewModel
             {
                 izabraniLek = value;
                 NotifyPropertyChanged("pIzabraniLek");
+            }
+        }
+
+        private Lek pIzabraniPostojeciLek;
+        public Lek izabraniPostojeciLek
+        {
+            get
+            {
+                return pIzabraniPostojeciLek;
+            }
+
+            set
+            {
+                pIzabraniPostojeciLek = value;
+                NotifyPropertyChanged("izabraniPostojeciLek");
             }
         }
 
@@ -120,6 +171,32 @@ namespace Bolnica_aplikacija.ViewModel
             if (izabraniLek != null)
             {
                 gridPropratnaPorukaVisibility = true;
+            }
+            else
+            {
+                MessageBox.Show("Potrebno je izabrati lek!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+        private RelayCommand pPrikaziGridIzmenaLeka;
+        public RelayCommand prikaziGridIzmenaLeka
+        {
+            get
+            {
+                return pPrikaziGridIzmenaLeka;
+            }
+            set
+            {
+                pPrikaziGridIzmenaLeka = value;
+            }
+        }
+
+        private void izvrsiPrikazIzmenaLeka(object obj)
+        {
+            if (izabraniPostojeciLek != null)
+            {
+                gridIzmenaLekovaVisibility = true;
+                LekarProzor.getGlavnaLabela().Content = "Izmena leka";
             }
             else
             {
