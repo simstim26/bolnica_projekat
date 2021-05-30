@@ -136,18 +136,18 @@
 
         </Grid>
         <Grid x:Name="gridRUZamenskiLekovi" Background="White" Margin="0,4.6,0,1.4" Grid.Row="1" Visibility="{Binding Path=gridZamenskiLekoviVisibility,Converter={StaticResource BoolToVis}, Mode=TwoWay}">
-            <Button x:Name="btnObrisiZamenskiLek" Visibility="{Binding Path=btnObrisiVisibility, Converter={StaticResource BoolToVis}, Mode=TwoWay}" HorizontalAlignment="Left" Margin="166,75,0,0" VerticalAlignment="Top" Width="75" Click="btnObrisiZamenskiLek_Click">
+            <Button x:Name="btnObrisiZamenskiLek" Command="{Binding Path=brisanjeZamenskogLeka}" Visibility="{Binding Path=btnObrisiVisibility, Converter={StaticResource BoolToVis}, Mode=TwoWay}" HorizontalAlignment="Left" Margin="166,75,0,0" VerticalAlignment="Top" Width="75" Click="btnObrisiZamenskiLek_Click">
                 <materialDesign:PackIcon Kind="TrashCan" Height="26" Width="29"></materialDesign:PackIcon>
             </Button>
-            <DataGrid x:Name="dataGridZamenskiLekovi" ItemsSource="{Binding Path=zamenski, Mode=TwoWay}" IsReadOnly="True" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="538" Margin="0,132,0,0" VerticalAlignment="Top" Width="424">
+            <DataGrid x:Name="dataGridZamenskiLekovi" ItemsSource="{Binding Path=zamenski, Mode=TwoWay}" SelectedItem="{Binding Path=izabraniLekZaBrisanje}" IsReadOnly="True" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="538" Margin="0,132,0,0" VerticalAlignment="Top" Width="424">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Naziv leka" Binding="{Binding naziv}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Tip leka" Binding="{Binding tip}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Način upotrebe" Binding="{Binding nacinUpotrebe}"></DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
-            <Button x:Name="btnDodajZamenskiLek" Command="{Binding Path=dodavanjeZamenskihLekovaPrikaz}" Visibility="{Binding Path=btnDodajVisibility, Converter={StaticResource BoolToVis}, Mode=TwoWay}" Content="Dodaj" HorizontalAlignment="Left" Margin="315,75,0,0" VerticalAlignment="Top" Width="75" Click="btnDodajZamenskiLek_Click"/>
-            <Grid x:Name="gridDodavanjeZamenskogLeka" Background="White" Visibility="{Binding Path=gridDodavanjeZamenskihLekovaVisibility, Converter={StaticResource BoolToVis}}">
+            <Button x:Name="btnDodajZamenskiLek" Command="{Binding Path=dodavanjeZamenskihLekovaPrikaz}" Visibility="{Binding Path=btnDodajVisibility, Converter={StaticResource BoolToVis}, Mode=TwoWay}" Content="Dodaj" HorizontalAlignment="Left" Margin="315,75,0,0" VerticalAlignment="Top" Width="75"/>
+            <Grid x:Name="gridDodavanjeZamenskogLeka" Background="White" Visibility="{Binding Path=gridDodavanjeZamenskihLekovaVisibility, Converter={StaticResource BoolToVis}, Mode=TwoWay}">
                 <DataGrid x:Name="dataGridDodavanjeZamenskogLeka" ItemsSource="{Binding Path=zamenskiDodavanje}" SelectedItem="{Binding Path=izabraniLekZaDodavanje, Mode=TwoWay}" IsReadOnly="True" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="426" Margin="0,114,0,0" VerticalAlignment="Top" Width="424">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Naziv leka" Binding="{Binding naziv}"></DataGridTextColumn>
@@ -155,7 +155,7 @@
                         <DataGridTextColumn Header="Način upotrebe" Binding="{Binding nacinUpotrebe}"></DataGridTextColumn>
                     </DataGrid.Columns>
                 </DataGrid>
-                <Button x:Name="btnPotvrdaZamenskogLeka" Command="{Binding Path=dodavanjeZamenskogLeka}" HorizontalAlignment="Left" Margin="36,574,0,0" VerticalAlignment="Top" Width="85" Height="46" Click="btnPotvrdaZamenskogLeka_Click">
+                <Button x:Name="btnPotvrdaZamenskogLeka" Command="{Binding Path=dodavanjeZamenskogLeka}" HorizontalAlignment="Left" Margin="36,574,0,0" VerticalAlignment="Top" Width="85" Height="46">
                     <materialDesign:PackIcon Kind="CheckCircle"></materialDesign:PackIcon>
                 </Button>
                 <Button x:Name="btnPonistavanjeZamenskogLeka" HorizontalAlignment="Left" Margin="299,574,0,0" VerticalAlignment="Top" Width="80" Height="46">

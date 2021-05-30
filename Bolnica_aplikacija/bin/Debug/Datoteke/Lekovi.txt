@@ -77,19 +77,6 @@
     "sastojci": [],
     "zamenskiLekovi": [
       {
-        "id": "3",
-        "naziv": "LekLekLek",
-        "tip": 5,
-        "kolicina": 75,
-        "proizvodjac": "proizvodjac neki",
-        "nacinUpotrebe": 1,
-        "sastojci": [
-          "asdfa",
-          "asdfaaa"
-        ],
-        "zamenskiLekovi": null
-      },
-      {
         "id": "5",
         "naziv": "dobro smo",
         "tip": 3,
@@ -146,7 +133,133 @@
       "asdfa",
       "asdfaaa"
     ],
-    "zamenskiLekovi": null
+    "zamenskiLekovi": [
+      {
+        "id": "4",
+        "naziv": "aaaaaaaLek",
+        "tip": 2,
+        "kolicina": 48921,
+        "proizvodjac": "volimoSeKorporacija",
+        "nacinUpotrebe": 2,
+        "sastojci": [
+          "mmmm"
+        ],
+        "zamenskiLekovi": [
+          {
+            "id": "2",
+            "naziv": "LekLek",
+            "tip": 5,
+            "kolicina": 75,
+            "proizvodjac": "proizvodjac neki",
+            "nacinUpotrebe": 2,
+            "sastojci": [],
+            "zamenskiLekovi": [
+              {
+                "id": "3",
+                "naziv": "LekLekLek",
+                "tip": 5,
+                "kolicina": 75,
+                "proizvodjac": "proizvodjac neki",
+                "nacinUpotrebe": 1,
+                "sastojci": [
+                  "asdfa",
+                  "asdfaaa"
+                ],
+                "zamenskiLekovi": null
+              },
+              {
+                "id": "5",
+                "naziv": "dobro smo",
+                "tip": 3,
+                "kolicina": 69,
+                "proizvodjac": "ZdravoZdravo",
+                "nacinUpotrebe": 2,
+                "sastojci": [
+                  "proba",
+                  "proba1"
+                ],
+                "zamenskiLekovi": [
+                  {
+                    "id": "2",
+                    "naziv": "LekLek",
+                    "tip": 5,
+                    "kolicina": 75,
+                    "proizvodjac": "proizvodjac neki",
+                    "nacinUpotrebe": 2,
+                    "sastojci": null,
+                    "zamenskiLekovi": null
+                  },
+                  {
+                    "id": "3",
+                    "naziv": "LekLekLek",
+                    "tip": 5,
+                    "kolicina": 75,
+                    "proizvodjac": "proizvodjac neki",
+                    "nacinUpotrebe": 1,
+                    "sastojci": null,
+                    "zamenskiLekovi": null
+                  },
+                  {
+                    "id": "4",
+                    "naziv": "aaaaaaaLek",
+                    "tip": 2,
+                    "kolicina": 48921,
+                    "proizvodjac": "volimoSeKorporacija",
+                    "nacinUpotrebe": 2,
+                    "sastojci": null,
+                    "zamenskiLekovi": null
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "5",
+        "naziv": "dobro smo",
+        "tip": 3,
+        "kolicina": 69,
+        "proizvodjac": "ZdravoZdravo",
+        "nacinUpotrebe": 2,
+        "sastojci": [
+          "proba",
+          "proba1"
+        ],
+        "zamenskiLekovi": [
+          {
+            "id": "2",
+            "naziv": "LekLek",
+            "tip": 5,
+            "kolicina": 75,
+            "proizvodjac": "proizvodjac neki",
+            "nacinUpotrebe": 2,
+            "sastojci": null,
+            "zamenskiLekovi": null
+          },
+          {
+            "id": "3",
+            "naziv": "LekLekLek",
+            "tip": 5,
+            "kolicina": 75,
+            "proizvodjac": "proizvodjac neki",
+            "nacinUpotrebe": 1,
+            "sastojci": null,
+            "zamenskiLekovi": null
+          },
+          {
+            "id": "4",
+            "naziv": "aaaaaaaLek",
+            "tip": 2,
+            "kolicina": 48921,
+            "proizvodjac": "volimoSeKorporacija",
+            "nacinUpotrebe": 2,
+            "sastojci": null,
+            "zamenskiLekovi": null
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "4",

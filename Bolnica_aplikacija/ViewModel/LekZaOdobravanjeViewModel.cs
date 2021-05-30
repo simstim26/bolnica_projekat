@@ -247,6 +247,7 @@ namespace Bolnica_aplikacija.ViewModel
             brisanjeSastojaka = new RelayCommand(izvrsiBrisanjeSastojaka);
             dodavanjeZamenskihLekovaPrikaz = new RelayCommand(izvrsidodavanjeZamenskihLekovaPrikaz);
             dodavanjeZamenskogLeka = new RelayCommand(izvrsiDodavanjeZamenskogLeka);
+            brisanjeZamenskogLeka = new RelayCommand(izvrsiBrisanjeZamenskogLeka);
         }
 
         private void ucitajPodatke()
@@ -320,6 +321,21 @@ namespace Bolnica_aplikacija.ViewModel
             {
                 pIzabraniLekZaDodavanje = value;
                 NotifyPropertyChanged("izabraniLekZaDodavanje");
+            }
+        }
+
+        private Lek pIzabraniLekZaBrisanje;
+        public Lek izabraniLekZaBrisanje
+        {
+            get
+            {
+                return pIzabraniLekZaBrisanje;
+            }
+
+            set
+            {
+                pIzabraniLekZaBrisanje = value;
+                NotifyPropertyChanged("izabraniLekZaBrisanje");
             }
         }
         #endregion
@@ -608,6 +624,40 @@ namespace Bolnica_aplikacija.ViewModel
             else
             {
                 MessageBox.Show("Izaberite lek za dodavanje.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+
+        #endregion
+
+        #region brisanje zamenskog leka
+        private RelayCommand pBrisanjeZamenskogLeka;
+        public RelayCommand brisanjeZamenskogLeka
+        {
+            get
+            {
+                return pBrisanjeZamenskogLeka;
+            }
+            set
+            {
+                pBrisanjeZamenskogLeka = value;
+            }
+        }
+
+        private void izvrsiBrisanjeZamenskogLeka(object obj)
+        {
+            if (izabraniLekZaBrisanje != null)
+            {
+                String id = izabraniPostojeciLek.id;
+                LekKontroler.obrisiZamenskiLek(izabraniPostojeciLek.id, izabraniLekZaBrisanje.id);
+                ucitajPostojeceLekove();
+                izabraniPostojeciLek = LekKontroler.nadjiLekPoId(id);
+                zamenski = new ObservableCollection<Lek>(izabraniPostojeciLek.zamenskiLekovi);
+                zamenskiDodavanje = new ObservableCollection<Lek>(LekKontroler.ucitajSveLekoveBezZamenskih(izabraniPostojeciLek.id));
+            }
+            else
+            {
+                MessageBox.Show("Izaberite lek za brisanje.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
