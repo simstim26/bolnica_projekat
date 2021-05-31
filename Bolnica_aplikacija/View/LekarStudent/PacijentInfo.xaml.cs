@@ -98,47 +98,10 @@ namespace Bolnica_aplikacija
             return tab;
         }
 
-        private void btnZakazi_Click(object sender, RoutedEventArgs e)
-        {
-            LekarProzor.getX().Content = new ZakaziTermin(0, ((String[])fm.DataContext)[0], "");
-        }
-
         public static TabControl getPregledTab()
         {
             return tab;
         }
-
-        private void btnPromeni_Click(object sender, RoutedEventArgs e)
-        {
-            if(dataGridTerminiPacijenta.SelectedIndex != -1)
-            {
-                PacijentTermin izabraniTermin = (PacijentTermin)dataGridTerminiPacijenta.SelectedItem;
-
-                if (TerminKontroler.proveriTipTermina(KorisnikKontroler.getLekar(), izabraniTermin.id))
-                {
-                    if (TerminKontroler.proveriDatumTermina(izabraniTermin.id) <= 0)
-                    {
-                        MessageBox.Show("Nije moguće izvršiti promenu termina 24h pred termin.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    }
-                    else
-                    {
-                        LekarProzor.getX().Content = new ZakaziTermin(1, ((String[])DataContext)[0], izabraniTermin.id);
-
-                    }
-                }
-                else 
-                {
-                    MessageBox.Show("Nije moguće promeniti operaciju!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
-                }
-                            
-            }
-            else
-            {
-                MessageBox.Show("Potrebno je izabrati termin.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
-
-            }
-        }
-
         private void tabInfo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if(this.tabInfo.SelectedIndex == 0)

@@ -149,10 +149,10 @@
                 </TabItem.HeaderTemplate>
                 <Grid>
                     <Grid Background="White" Margin="-2,-2,-1.6,1.6">
-                        <Button x:Name = "btnZakazi" HorizontalAlignment="Left" Margin="32,114,0,0" VerticalAlignment="Top" Width="86" Click="btnZakazi_Click" Height="29" FontWeight="Bold">
+                        <Button x:Name = "btnZakazi" Command="{Binding Path=zakazi}" HorizontalAlignment="Left" Margin="32,114,0,0" VerticalAlignment="Top" Width="86" Height="29" FontWeight="Bold">
                             <materialDesign:PackIcon Kind="Plus" Width="32" Height="23"></materialDesign:PackIcon>
                         </Button>
-                        <Button x:Name = "btnPromeni" HorizontalAlignment="Left" Margin="317,114,0,0" VerticalAlignment="Top" Width="85" Height="29" Click="btnPromeni_Click" FontWeight="Bold">
+                        <Button x:Name = "btnPromeni" Command="{Binding Path=promeni}" HorizontalAlignment="Left" Margin="317,114,0,0" VerticalAlignment="Top" Width="85" Height="29" FontWeight="Bold">
                             <materialDesign:PackIcon Kind="Repeat" Height="22" Width="30"></materialDesign:PackIcon>
                         </Button>
                         <Button x:Name = "btnOtkazi" Command="{Binding Path=otkazi}" HorizontalAlignment="Left" Margin="175,114,0,0" VerticalAlignment="Top" Width="85" Height="29" FontWeight="Bold">

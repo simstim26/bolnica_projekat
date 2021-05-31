@@ -157,6 +157,8 @@ namespace Bolnica_aplikacija.ViewModel
             ucitajBuduceTermine();
 
             otkazi = new RelayCommand(izvrsiOtkazivanje);
+            promeni = new RelayCommand(izvrsiPromenu);
+            zakazi = new RelayCommand(izvrsiZakazivanje);
         }
 
         private void ucitajProsleTermine()
@@ -213,6 +215,70 @@ namespace Bolnica_aplikacija.ViewModel
             buduci = new ObservableCollection<PacijentTermin>(PacijentKontroler.prikazBuducihTerminaPacijenta(pacijent.id));
         }
 
+        #endregion
+
+        #region Komanda -> promena termina
+        private RelayCommand pPromeni;
+        public RelayCommand promeni
+        {
+            get
+            {
+                return pPromeni;
+            }
+            set
+            {
+                pPromeni = value;
+            }
+        }
+
+        private void izvrsiPromenu(object obj)
+        {
+            if (buduciTermin != null)
+            {
+                if (TerminKontroler.proveriTipTermina(KorisnikKontroler.getLekar(), buduciTermin.id))
+                {
+                    if (TerminKontroler.proveriDatumTermina(buduciTermin.id) <= 0)
+                    {
+                        MessageBox.Show("Nije moguće izvršiti promenu termina 24h pred termin.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                    else
+                    {
+                        LekarProzor.getX().Content = new ZakaziTermin(1, pacijent.id, buduciTermin.id);
+
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Nije moguće promeniti operaciju!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Potrebno je izabrati termin.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+
+            }
+        }
+        #endregion
+
+        #region Komanda -> zakazivanje termina
+        private RelayCommand pZakazi;
+        public RelayCommand zakazi
+        {
+            get
+            {
+                return pZakazi;
+            }
+            set
+            {
+                pZakazi = value;
+            }
+        }
+
+        private void izvrsiZakazivanje(object obj)
+        {
+            LekarProzor.getX().Content = new ZakaziTermin(0, pacijent.id, "");
+        }
         #endregion
     }
 
