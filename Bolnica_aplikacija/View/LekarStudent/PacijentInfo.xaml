@@ -66,10 +66,10 @@
                     <Label Content="JMBG:" HorizontalAlignment="Left" Margin="26,15,0,0" VerticalAlignment="Top" Foreground="Black" FontWeight="Bold"/>
                     <Label Content="Datum rođenja:" HorizontalAlignment="Left" Margin="26,95,0,0" VerticalAlignment="Top" Width="116" Foreground="Black" FontWeight="Bold" Grid.ColumnSpan="2"/>
                     <Label Content="Pol:" HorizontalAlignment="Left" Margin="26,143,0,0" VerticalAlignment="Top" Width="96" Foreground="Black" FontWeight="Bold"/>
-                    <Button x:Name="btnTerapije" Content="Uvid u terapije" HorizontalAlignment="Left" Margin="19,513,0,0" VerticalAlignment="Top" Width="199" Height="44" FontWeight="Bold" Grid.ColumnSpan="2" BorderBrush="Black" Click="btnTerapije_Click"/>
-                    <Button x:Name="btnAlergije" Content="Alergije" HorizontalAlignment="Left" Margin="19,457,0,0" VerticalAlignment="Top" Width="199" Grid.ColumnSpan="2" Height="44" FontWeight="Bold" BorderBrush="Black" Click="btnAlergije_Click"/>
-                    <Button x:Name="btnBolesti" Content="Istorija bolesti" HorizontalAlignment="Left" Margin="19,400,0,0" VerticalAlignment="Top" Width="199" Grid.ColumnSpan="2" Height="44" FontWeight="Bold" BorderBrush="Black" Click="btnBolesti_Click"/>
-                    <Button x:Name="btnIzvestaj" Content="Napiši izveštaj" HorizontalAlignment="Left" Margin="19,567,0,0" VerticalAlignment="Top" Width="198" RenderTransformOrigin="0.5,0.5" Height="42" Grid.ColumnSpan="2" FontWeight="Bold" BorderBrush="Black" Click="btnIzvestaj_Click"/>
+                    <Button x:Name="btnTerapije" Content="Uvid u terapije" Command="{Binding Path=terapija}" HorizontalAlignment="Left" Margin="19,513,0,0" VerticalAlignment="Top" Width="199" Height="44" FontWeight="Bold" Grid.ColumnSpan="2" BorderBrush="Black"/>
+                    <Button x:Name="btnAlergije" Content="Alergije" Command="{Binding Path=alergija}" HorizontalAlignment="Left" Margin="19,457,0,0" VerticalAlignment="Top" Width="199" Grid.ColumnSpan="2" Height="44" FontWeight="Bold" BorderBrush="Black"/>
+                    <Button x:Name="btnBolesti" Content="Istorija bolesti" Command="{Binding Path=istorija}" HorizontalAlignment="Left" Margin="19,400,0,0" VerticalAlignment="Top" Width="199" Grid.ColumnSpan="2" Height="44" FontWeight="Bold" BorderBrush="Black"/>
+                    <Button x:Name="btnIzvestaj" Content="Napiši izveštaj" Command="{Binding Path=izvestaj}" HorizontalAlignment="Left" Margin="19,567,0,0" VerticalAlignment="Top" Width="198" RenderTransformOrigin="0.5,0.5" Height="42" Grid.ColumnSpan="2" FontWeight="Bold" BorderBrush="Black"/>
                     <Label Content="Ime roditelja/staratelja:" HorizontalAlignment="Left" Margin="26,66,0,0" VerticalAlignment="Top" Foreground="Black" Grid.ColumnSpan="2" Width="163" FontWeight="Bold" />
                     <Label Content="Mesto rođenja:" HorizontalAlignment="Left" Margin="26,119,0,0" VerticalAlignment="Top" Width="116" Foreground="Black" FontWeight="Bold" Grid.ColumnSpan="2"/>
                     <Label Content="Adresa stanovanja:" HorizontalAlignment="Left" Foreground="Black" FontWeight="Bold" Margin="26,167,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="132"/>
@@ -91,15 +91,15 @@
                     <Label x:Name="lblBracnoStanje" Content="{Binding Path=pacijent.bracniStatus}" Foreground="Black"  Grid.Column="1" HorizontalAlignment="Left" Margin="46,283,0,0" VerticalAlignment="Top" Width="220" Height="24"/>
                     <Label x:Name="Zanimanje" Content="{Binding Path=pacijent.zanimanje}"  Foreground="Black" Grid.Column="1" HorizontalAlignment="Left" Margin="46,312,0,0" VerticalAlignment="Top" Width="220" Height="24"/>
                     
-                    <Grid x:Name="gridNaBLecenju" Visibility="Visible" HorizontalAlignment="Left" Background="Gray" Height="59" Margin="0,336,0,0" VerticalAlignment="Top" Width="430" Grid.ColumnSpan="2">
+                    <Grid x:Name="gridNaBLecenju" Visibility="{Binding Path=gridBLecenjeVisibility, Converter={StaticResource BooleanToVisibilityConverter}, Mode=TwoWay}" HorizontalAlignment="Left" Background="Gray" Height="59" Margin="0,336,0,0" VerticalAlignment="Top" Width="430" Grid.ColumnSpan="2">
                         <Label Content="*Pacijent je na bolničkom lečenju:" Foreground="White" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="298" FontWeight="Bold"/>
                         <Label Content="Soba:" Foreground="White" HorizontalAlignment="Left" Margin="28,25,0,0" VerticalAlignment="Top"/>
                         <Label Content="Do:" Foreground="White" HorizontalAlignment="Left" Margin="183,24,0,0" VerticalAlignment="Top" Height="25"/>
-                        <Button x:Name="btnIzmeniBLecenje" HorizontalAlignment="Left" Margin="355,13,0,0" VerticalAlignment="Top" Width="46" Height="36" Click="btnIzmeniBLecenje_Click">
+                        <Button x:Name="btnIzmeniBLecenje" Command="{Binding Path=izmenaBLecenja}" HorizontalAlignment="Left" Margin="355,13,0,0" VerticalAlignment="Top" Width="46" Height="36">
                             <materialDesign:PackIcon Kind="Pencil" Height="23"></materialDesign:PackIcon>
                         </Button>
-                        <Label x:Name="lblBLecenjeSoba" Height="25" Foreground="White" HorizontalAlignment="Left" Margin="70,24,0,0" VerticalAlignment="Top" Width="108"/>
-                        <Label x:Name="lblBLecenjeDatum" Height="25" Foreground="White" HorizontalAlignment="Left" Margin="214,24,0,0" VerticalAlignment="Top" Width="127"/>
+                        <Label x:Name="lblBLecenjeSoba" Content="{Binding Path=soba, Mode=TwoWay}" Height="25" Foreground="White" HorizontalAlignment="Left" Margin="70,24,0,0" VerticalAlignment="Top" Width="108"/>
+                        <Label x:Name="lblBLecenjeDatum" Content="{Binding Path=datum, Mode=TwoWay}" Height="25" Foreground="White" HorizontalAlignment="Left" Margin="214,24,0,0" VerticalAlignment="Top" Width="127"/>
 
                     </Grid>
                 </Grid>
@@ -132,7 +132,7 @@
                             <DataGridTextColumn Header="Terapija" Binding="{Binding nazivTerapije}"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Button HorizontalAlignment="Left" Margin="330,72,0,0" VerticalAlignment="Top" Width="77" Height="49" Click="Button_Click">
+                    <Button HorizontalAlignment="Left" Command="{Binding Path=prosliIzvestaj}" Margin="330,72,0,0" VerticalAlignment="Top" Width="77" Height="49">
                         <materialDesign:PackIcon Kind="InfoCircle" Height="33" Width="38"></materialDesign:PackIcon>
                     </Button>
                 </Grid>
@@ -141,9 +141,7 @@
                 <TabItem.HeaderTemplate>
                     <DataTemplate>
                         <TextBlock Grid.ColumnSpan="2" Margin="-12,-5,-11,-3.8" IsEnabled="False">
-                                <Image Source="future-icon-png-19.jpg" Height="19" Width="55">
-                                    
-                                </Image>
+                                <Image Source="future-icon-png-19.jpg" Height="19" Width="55"/>
                         </TextBlock>
                     </DataTemplate>
                 </TabItem.HeaderTemplate>
@@ -165,9 +163,7 @@
                                 <DataGridTextColumn x:Name="kolonaLekar" IsReadOnly="True" CanUserResize="False" Binding="{Binding imeLekara}" Header="Lekar" Width="91"></DataGridTextColumn>
                                 <DataGridTextColumn x:Name="kolonaProstorija" IsReadOnly="True" CanUserResize="False" Binding="{Binding lokacija}" Header="Mesto" Width="82"></DataGridTextColumn>
                                 <DataGridTextColumn x:Name="kolonaTip" IsReadOnly="True" CanUserResize="False" Binding="{Binding napomena}" Header="Tip" Width="90"></DataGridTextColumn>
-
                             </DataGrid.Columns>
-
                         </DataGrid>
                     </Grid>
                 </Grid>

@@ -1,6 +1,9 @@
 ﻿using Bolnica_aplikacija.Komande;
 using Bolnica_aplikacija.Kontroler;
+using Bolnica_aplikacija.LekarStudent;
+using Bolnica_aplikacija.Model;
 using Bolnica_aplikacija.PacijentModel;
+using Bolnica_aplikacija.View.LekarStudent;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -110,6 +113,36 @@ namespace Bolnica_aplikacija.ViewModel
                 NotifyPropertyChanged("mestoRodjenja");
             }
         }
+
+        private String pSoba;
+
+        public String soba
+        {
+            get
+            {
+                return pSoba;
+            }
+            set
+            {
+                pSoba = value;
+                NotifyPropertyChanged("soba");
+            }
+        }
+
+        private String pDatum;
+        public String datum
+        {
+            get
+            {
+                return pDatum;
+            }
+
+            set
+            {
+                pDatum = value;
+                NotifyPropertyChanged("datum");
+            }
+        }
         #endregion
 
         #region Liste
@@ -145,6 +178,22 @@ namespace Bolnica_aplikacija.ViewModel
 
         #endregion
 
+        #region grid bolnicko lecenje visibility
+        private bool pGridBLecenjeVisibility;
+        public bool gridBLecenjeVisibility
+        {
+            get
+            {
+                return pGridBLecenjeVisibility;
+            }
+            set
+            {
+                pGridBLecenjeVisibility = value;
+                NotifyPropertyChanged("gridBLecenjeVisibility");
+            }
+        }
+        #endregion
+
         #region konstruktor i pomocne metode
 
         public PacijentiInfoViewModel(String idPacijenta, String idTermina)
@@ -152,6 +201,8 @@ namespace Bolnica_aplikacija.ViewModel
             pacijent = PacijentKontroler.nadjiPacijenta(idPacijenta);
             imePrezime = pacijent.ime + " " + pacijent.prezime;
             mestoRodjenja = pacijent.mestoRodjenja + ", " + pacijent.drzavaRodjenja;
+            zavrsiBolnickoLecenje();
+            prikaziBolnickoLecenje();
             termin = TerminKontroler.nadjiTerminPoId(idTermina);
             ucitajProsleTermine();
             ucitajBuduceTermine();
@@ -159,16 +210,41 @@ namespace Bolnica_aplikacija.ViewModel
             otkazi = new RelayCommand(izvrsiOtkazivanje);
             promeni = new RelayCommand(izvrsiPromenu);
             zakazi = new RelayCommand(izvrsiZakazivanje);
+            izmenaBLecenja = new RelayCommand(izvrsiIzmenuBLecenja);
+            alergija = new RelayCommand(izvrsiAlergija);
+            terapija = new RelayCommand(izvrsiTerapija);
+            istorija = new RelayCommand(izvrsiIstorija);
+            izvestaj = new RelayCommand(izvrsiIzvestaj);
+            prosliIzvestaj = new RelayCommand(izvrsiProsliIzvestaj);
         }
-
         private void ucitajProsleTermine()
         {
             prosli = new ObservableCollection<PacijentTermin>(PacijentKontroler.prikazProslihTerminaPacijenta(pacijent.id));
         }
-
         private void ucitajBuduceTermine()
         {
             buduci = new ObservableCollection<PacijentTermin>(PacijentKontroler.prikazBuducihTerminaPacijenta(pacijent.id));
+        }
+        private void prikaziBolnickoLecenje()
+        {
+            if (BolnickoLecenjeKontroler.proveriBolnickoLecenjeZaPacijenta(pacijent.id))
+            {
+                BolnickoLecenje bLecenje = BolnickoLecenjeKontroler.nadjiBolnickoLecenjeZaPacijenta(pacijent.id);
+                gridBLecenjeVisibility = true;
+                soba = bLecenje.bolnickaSoba.sprat + " " + bLecenje.bolnickaSoba.broj;
+                datum= bLecenje.datumPocetka.AddDays(bLecenje.trajanje).ToString("dd.MM.yyyy");
+            }
+            else
+            {
+                gridBLecenjeVisibility = false;
+            }
+        }
+        private void zavrsiBolnickoLecenje()
+        {
+            if (BolnickoLecenjeKontroler.proveriKrajBolnickogLecenje(pacijent.id))
+            {
+                BolnickoLecenjeKontroler.zavrsiBolnickoLecenje(pacijent.id);
+            }
         }
 
         #endregion
@@ -280,6 +356,134 @@ namespace Bolnica_aplikacija.ViewModel
             LekarProzor.getX().Content = new ZakaziTermin(0, pacijent.id, "");
         }
         #endregion
+
+        #region Komanda -> izmena B lecenja
+        private RelayCommand pIzmenaBLecenja;
+        public RelayCommand izmenaBLecenja
+        {
+            get
+            {
+                return pIzmenaBLecenja;
+            }
+            set
+            {
+                pIzmenaBLecenja = value;
+            }
+        }
+
+        private void izvrsiIzmenuBLecenja(object obj)
+        {
+            LekarProzor.getX().Content = new IzmenaBLecenja(pacijent.id);
+        }
+        #endregion
+
+        #region Komanda -> alergije
+         private RelayCommand pAlergija;
+        public RelayCommand alergija
+        {
+            get
+            {
+                return pAlergija;
+            }
+            set
+            {
+                pAlergija = value;
+            }
+        }
+
+        private void izvrsiAlergija(object obj)
+        {
+            LekarProzor.getX().Content = new Alergije(pacijent.id);
+        }
+        #endregion
+
+        #region Komanda -> terapije
+        private RelayCommand pTerapija;
+        public RelayCommand terapija
+        {
+            get
+            {
+                return pTerapija;
+            }
+            set
+            {
+                pTerapija = value;
+            }
+        }
+
+        private void izvrsiTerapija(object obj)
+        {
+            LekarProzor.getX().Content = new UvidUTerapije(pacijent.id);
+        }
+        #endregion
+
+        #region Komanda -> istorija
+        private RelayCommand pIstorija;
+        public RelayCommand istorija
+        {
+            get
+            {
+                return pIstorija;
+            }
+            set
+            {
+                pIstorija = value;
+            }
+        }
+
+        private void izvrsiIstorija(object obj)
+        {
+            LekarProzor.getX().Content = new IstorijaBolesti(pacijent.id);
+        }
+        #endregion
+
+        #region Komanda -> izvestaj
+        private RelayCommand pIzvestaj;
+        public RelayCommand izvestaj
+        {
+            get
+            {
+                return pIzvestaj;
+            }
+            set
+            {
+                pIzvestaj = value;
+            }
+        }
+
+        private void izvrsiIzvestaj(object obj)
+        {
+            LekarProzor.getX().Content = new Izvestaj(pacijent.id, termin.idTermina);
+        }
+        #endregion
+
+        #region Komanda -> prosli termin
+        private RelayCommand pProsliIzvestaj;
+        public RelayCommand prosliIzvestaj
+        {
+            get
+            {
+                return pProsliIzvestaj;
+            }
+            set
+            {
+                pProsliIzvestaj = value;
+            }
+        }
+
+        private void izvrsiProsliIzvestaj(object obj)
+        {
+            if (prosliTermin != null)
+            {
+                LekarProzor.getX().Content = new ProsliTermini(prosliTermin.id);
+            }
+            else
+            {
+                MessageBox.Show("Potrebno je izabrati termin!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+        #endregion
+
     }
 
 }
