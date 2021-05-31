@@ -20,6 +20,7 @@ using Bolnica_aplikacija.PacijentModel;
 using Bolnica_aplikacija.Kontroler;
 using Bolnica_aplikacija.LekarStudent;
 using Bolnica_aplikacija.View.LekarStudent;
+using Bolnica_aplikacija.ViewModel;
 
 namespace Bolnica_aplikacija
 {
@@ -32,20 +33,21 @@ namespace Bolnica_aplikacija
         private static FrameworkElement fm = new FrameworkElement();
         public PacijentInfo(String idPacijenta, String idTermina)
         {
+
             InitializeComponent();
+            this.DataContext = new PacijentiInfoViewModel(idPacijenta, idTermina); 
             LekarProzor.getNazad().Visibility = Visibility.Visible;
             LekarProzor.getGlavnaLabela().Content = "Rad sa pacijentima";
             aktivanPacijentInfo = true;
             tab = this.tabInfo;
-            Pacijent pacijent = PacijentKontroler.nadjiPacijenta(idPacijenta);
+            /*Pacijent pacijent = PacijentKontroler.nadjiPacijenta(idPacijenta);
             lblJmbg.Content = pacijent.jmbg;
             lblImePrezime.Content = pacijent.ime + " " + pacijent.prezime;
             lblDatumRodjenja.Content = pacijent.datumRodjenja.ToString("dd.MM.yyyy.");
             lblAdresa.Content = pacijent.adresa;
-            lblKontakt.Content = pacijent.brojTelefona;
+            lblKontakt.Content = pacijent.brojTelefona;*/
             String[] id = { idPacijenta, idTermina};
-            this.DataContext = id;
-            fm.DataContext = this.DataContext;
+            fm.DataContext = id;
 
             zavrsiBolnickoLecenje();
             prikaziBolnickoLecenje();
@@ -74,7 +76,6 @@ namespace Bolnica_aplikacija
             }*/
            
             dataTermini = this.dataGridTerminiPacijenta;
-            ucitajPodatke();
         }
 
         private void prikaziBolnickoLecenje()
@@ -145,13 +146,7 @@ namespace Bolnica_aplikacija
 
             }
 
-             ucitajPodatke();
-        }
-
-        private void ucitajPodatke()
-        {
-            dataGridTerminiPacijenta.ItemsSource = PacijentKontroler.prikazBuducihTerminaPacijenta(((String[])fm.DataContext)[0]);
-            dataGridProsliTermini.ItemsSource = PacijentKontroler.prikazProslihTerminaPacijenta(((String[])fm.DataContext)[0]);
+             //ucitajPodatke();
         }
 
         private void btnPromeni_Click(object sender, RoutedEventArgs e)

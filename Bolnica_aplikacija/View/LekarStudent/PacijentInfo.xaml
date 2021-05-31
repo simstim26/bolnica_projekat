@@ -78,18 +78,18 @@
                     <Label Content="Status osiguranja:" HorizontalAlignment="Left" Margin="26,254,0,0" VerticalAlignment="Top" FontWeight="Bold" Grid.ColumnSpan="2" Width="115" Foreground="Black"/>
                     <Label Content="Bračno stanje:" HorizontalAlignment="Left" Margin="26,283,0,0" VerticalAlignment="Top" FontWeight="Bold" Width="93" Foreground="Black"/>
                     <Label Content="Zanimanje:" HorizontalAlignment="Left" Margin="26,312,0,0" VerticalAlignment="Top" FontWeight="Bold" Width="75" Foreground="Black"/>
-                    <Label x:Name="lblJmbg" Foreground="Black" Grid.Column="1" HorizontalAlignment="Left" Margin="46,15,0,0" VerticalAlignment="Top" Width="220" Height="24"/>
-                    <Label x:Name="lblImePrezime" Foreground="Black"  Grid.Column="1" HorizontalAlignment="Left" Margin="46,42,0,0" VerticalAlignment="Top" Width="220" Height="24"/>
+                    <Label x:Name="lblJmbg" Content="{Binding Path=pacijent.jmbg}" Foreground="Black" Grid.Column="1" HorizontalAlignment="Left" Margin="46,15,0,0" VerticalAlignment="Top" Width="220" Height="24"/>
+                    <Label x:Name="lblImePrezime" Content="{Binding Path=imePrezime}" Foreground="Black"  Grid.Column="1" HorizontalAlignment="Left" Margin="46,42,0,0" VerticalAlignment="Top" Width="220" Height="24"/>
                     <Label x:Name="lblImeRoditelja" Foreground="Black"  Grid.Column="1" HorizontalAlignment="Left" Margin="46,66,0,0" VerticalAlignment="Top" Width="220" Height="24"/>
-                    <Label x:Name="lblDatumRodjenja"  Foreground="Black" Grid.Column="1" HorizontalAlignment="Left" Margin="46,95,0,0" VerticalAlignment="Top" Width="220" Height="24"/>
-                    <Label x:Name="lblMestoRodjenja" Foreground="Black"  Grid.Column="1" HorizontalAlignment="Left" Margin="46,119,0,0" VerticalAlignment="Top" Width="220" Height="24"/>
-                    <Label x:Name="lblPol"  Foreground="Black" Grid.Column="1" HorizontalAlignment="Left" Margin="46,143,0,0" VerticalAlignment="Top" Width="220" Height="24"/>
-                    <Label x:Name="lblAdresa"  Foreground="Black" Grid.Column="1" HorizontalAlignment="Left" Margin="46,167,0,0" VerticalAlignment="Top" Width="220" Height="24"/>
-                    <Label x:Name="lblKontakt"  Foreground="Black" Grid.Column="1" HorizontalAlignment="Left" Margin="46,196,0,0" VerticalAlignment="Top" Width="220" Height="24"/>
-                    <Label x:Name="lblBrZKnjizice" Foreground="Black"  Grid.Column="1" HorizontalAlignment="Left" Margin="46,225,0,0" VerticalAlignment="Top" Width="220" Height="24"/>
+                    <Label x:Name="lblDatumRodjenja" Content="{Binding Path=pacijent.datumRodjenja.Date}"  Foreground="Black" Grid.Column="1" HorizontalAlignment="Left" Margin="46,95,0,0" VerticalAlignment="Top" Width="220" Height="24"/>
+                    <Label x:Name="lblMestoRodjenja" Content="{Binding Path=mestoRodjenja}" Foreground="Black"  Grid.Column="1" HorizontalAlignment="Left" Margin="46,119,0,0" VerticalAlignment="Top" Width="220" Height="24"/>
+                    <Label x:Name="lblPol" Content="{Binding Path=pacijent.pol}" Foreground="Black" Grid.Column="1" HorizontalAlignment="Left" Margin="46,143,0,0" VerticalAlignment="Top" Width="220" Height="24"/>
+                    <Label x:Name="lblAdresa" Content="{Binding Path=pacijent.adresa}"  Foreground="Black" Grid.Column="1" HorizontalAlignment="Left" Margin="46,167,0,0" VerticalAlignment="Top" Width="220" Height="24"/>
+                    <Label x:Name="lblKontakt" Content="{Binding Path=pacijent.brojTelefona}" Foreground="Black" Grid.Column="1" HorizontalAlignment="Left" Margin="46,196,0,0" VerticalAlignment="Top" Width="220" Height="24"/>
+                    <Label x:Name="lblBrZKnjizice" Content="{Binding Path=pacijent.brojZdravstveneKnjizice}" Foreground="Black"  Grid.Column="1" HorizontalAlignment="Left" Margin="46,225,0,0" VerticalAlignment="Top" Width="220" Height="24"/>
                     <Label x:Name="lblStatusOsiguranja" Foreground="Black"  Grid.Column="1" HorizontalAlignment="Left" Margin="46,254,0,0" VerticalAlignment="Top" Width="220" Height="24"/>
-                    <Label x:Name="lblBracnoStanje" Foreground="Black"  Grid.Column="1" HorizontalAlignment="Left" Margin="46,283,0,0" VerticalAlignment="Top" Width="220" Height="24"/>
-                    <Label x:Name="Zanimanje"  Foreground="Black" Grid.Column="1" HorizontalAlignment="Left" Margin="46,312,0,0" VerticalAlignment="Top" Width="220" Height="24"/>
+                    <Label x:Name="lblBracnoStanje" Content="{Binding Path=pacijent.bracniStatus}" Foreground="Black"  Grid.Column="1" HorizontalAlignment="Left" Margin="46,283,0,0" VerticalAlignment="Top" Width="220" Height="24"/>
+                    <Label x:Name="Zanimanje" Content="{Binding Path=pacijent.zanimanje}"  Foreground="Black" Grid.Column="1" HorizontalAlignment="Left" Margin="46,312,0,0" VerticalAlignment="Top" Width="220" Height="24"/>
                     
                     <Grid x:Name="gridNaBLecenju" Visibility="Visible" HorizontalAlignment="Left" Background="Gray" Height="59" Margin="0,336,0,0" VerticalAlignment="Top" Width="430" Grid.ColumnSpan="2">
                         <Label Content="*Pacijent je na bolničkom lečenju:" Foreground="White" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="298" FontWeight="Bold"/>
@@ -122,7 +122,7 @@
                             </materialDesign:PackIcon>
                         </Button>
                     </Grid>
-                    <DataGrid x:Name="dataGridProsliTermini"  Margin="0,136,0,-0.4" RowHeight="35" IsReadOnly="True" AutoGenerateColumns="False" GridLinesVisibility="All" Background="White" AlternatingRowBackground="#FF9900" AlternationCount="2" SelectionMode="Single">
+                    <DataGrid x:Name="dataGridProsliTermini" ItemsSource="{Binding Path=prosli, Mode=TwoWay}" SelectedItem="{Binding Path=prosliTermin, Mode=TwoWay}" Margin="0,136,0,-0.4" RowHeight="35" IsReadOnly="True" AutoGenerateColumns="False" GridLinesVisibility="All" Background="White" AlternatingRowBackground="#FF9900" AlternationCount="2" SelectionMode="Single">
                         <DataGrid.Columns>
 
                             <DataGridTextColumn ElementStyle="{StaticResource ColumnElementStyle}"  Header="Datum" Binding="{Binding datum}"/>
@@ -158,7 +158,7 @@
                         <Button x:Name = "btnOtkazi" HorizontalAlignment="Left" Margin="175,114,0,0" VerticalAlignment="Top" Width="85" Height="29" Click="btnOtkazi_Click" FontWeight="Bold">
                             <materialDesign:PackIcon Kind="TrashCan" Height="22" Width="34"></materialDesign:PackIcon>
                         </Button>
-                        <DataGrid x:Name ="dataGridTerminiPacijenta" GridLinesVisibility="All" Background="White" AlternatingRowBackground="#FF9900" AlternationCount="2" RowHeight="33"  IsReadOnly ="True" SelectionMode="Single" Height="456" Margin="0,166,0.6,0" VerticalAlignment="Top" AutoGenerateColumns="False">
+                        <DataGrid x:Name ="dataGridTerminiPacijenta" ItemsSource="{Binding Path=buduci, Mode=TwoWay}" SelectedItem="{Binding Path=buduciTermin, Mode=TwoWay}" GridLinesVisibility="All" Background="White" AlternatingRowBackground="#FF9900" AlternationCount="2" RowHeight="33"  IsReadOnly ="True" SelectionMode="Single" Height="456" Margin="0,166,0.6,0" VerticalAlignment="Top" AutoGenerateColumns="False">
                             <DataGrid.Columns>
                                 <DataGridTextColumn x:Name ="kolonaDatumOdrzavanja" IsReadOnly="True" CanUserResize="False" Binding="{Binding datum}" Header="Datum" Width="96"></DataGridTextColumn>
                                 <DataGridTextColumn x:Name="kolonaSatnica" IsReadOnly="True" CanUserResize="False" Binding="{Binding satnica}" Header="Vreme" Width="71"></DataGridTextColumn>
