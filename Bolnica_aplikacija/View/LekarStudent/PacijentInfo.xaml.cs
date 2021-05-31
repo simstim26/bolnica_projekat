@@ -27,7 +27,6 @@ namespace Bolnica_aplikacija
     public partial class PacijentInfo : UserControl
     {
         public static TabControl tab;
-        private static DataGrid dataTermini;
         public static bool aktivanPacijentInfo { get; set; }
 
         private static FrameworkElement fm = new FrameworkElement();
@@ -40,12 +39,7 @@ namespace Bolnica_aplikacija
             LekarProzor.getGlavnaLabela().Content = "Rad sa pacijentima";
             aktivanPacijentInfo = true;
             tab = this.tabInfo;
-            /*Pacijent pacijent = PacijentKontroler.nadjiPacijenta(idPacijenta);
-            lblJmbg.Content = pacijent.jmbg;
-            lblImePrezime.Content = pacijent.ime + " " + pacijent.prezime;
-            lblDatumRodjenja.Content = pacijent.datumRodjenja.ToString("dd.MM.yyyy.");
-            lblAdresa.Content = pacijent.adresa;
-            lblKontakt.Content = pacijent.brojTelefona;*/
+
             String[] id = { idPacijenta, idTermina};
             fm.DataContext = id;
 
@@ -75,7 +69,6 @@ namespace Bolnica_aplikacija
                 }
             }*/
            
-            dataTermini = this.dataGridTerminiPacijenta;
         }
 
         private void prikaziBolnickoLecenje()
@@ -104,10 +97,6 @@ namespace Bolnica_aplikacija
         {
             return tab;
         }
-        public static DataGrid getDataTermini()
-        {
-            return dataTermini;
-        }
 
         private void btnZakazi_Click(object sender, RoutedEventArgs e)
         {
@@ -117,36 +106,6 @@ namespace Bolnica_aplikacija
         public static TabControl getPregledTab()
         {
             return tab;
-        }
-
-        private void btnOtkazi_Click(object sender, RoutedEventArgs e)
-        {
-            if (dataGridTerminiPacijenta.SelectedIndex != -1)
-            {
-                PacijentTermin izabraniTermin = (PacijentTermin)dataGridTerminiPacijenta.SelectedItem;
-                if (TerminKontroler.proveriTipTermina(KorisnikKontroler.getLekar(), izabraniTermin.id))
-                {
-                    if (TerminKontroler.proveriDatumTermina(izabraniTermin.id) <= 0)
-                    {
-                        MessageBox.Show("Nije moguće izvršiti otkazivanje termina 24h pred termin.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    }
-                    else
-                    {
-                        PacijentKontroler.otkaziTerminPacijenta(izabraniTermin.id);
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Ne mozete otkazati operaciju!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
-                }
-            }
-            else
-            {
-                MessageBox.Show("Potrebno je izabrati termin.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
-
-            }
-
-             //ucitajPodatke();
         }
 
         private void btnPromeni_Click(object sender, RoutedEventArgs e)

@@ -155,7 +155,7 @@
                         <Button x:Name = "btnPromeni" HorizontalAlignment="Left" Margin="317,114,0,0" VerticalAlignment="Top" Width="85" Height="29" Click="btnPromeni_Click" FontWeight="Bold">
                             <materialDesign:PackIcon Kind="Repeat" Height="22" Width="30"></materialDesign:PackIcon>
                         </Button>
-                        <Button x:Name = "btnOtkazi" HorizontalAlignment="Left" Margin="175,114,0,0" VerticalAlignment="Top" Width="85" Height="29" Click="btnOtkazi_Click" FontWeight="Bold">
+                        <Button x:Name = "btnOtkazi" Command="{Binding Path=otkazi}" HorizontalAlignment="Left" Margin="175,114,0,0" VerticalAlignment="Top" Width="85" Height="29" FontWeight="Bold">
                             <materialDesign:PackIcon Kind="TrashCan" Height="22" Width="34"></materialDesign:PackIcon>
                         </Button>
                         <DataGrid x:Name ="dataGridTerminiPacijenta" ItemsSource="{Binding Path=buduci, Mode=TwoWay}" SelectedItem="{Binding Path=buduciTermin, Mode=TwoWay}" GridLinesVisibility="All" Background="White" AlternatingRowBackground="#FF9900" AlternationCount="2" RowHeight="33"  IsReadOnly ="True" SelectionMode="Single" Height="456" Margin="0,166,0.6,0" VerticalAlignment="Top" AutoGenerateColumns="False">

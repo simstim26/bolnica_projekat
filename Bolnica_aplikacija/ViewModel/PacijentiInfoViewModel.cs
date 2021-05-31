@@ -1,4 +1,5 @@
-﻿using Bolnica_aplikacija.Kontroler;
+﻿using Bolnica_aplikacija.Komande;
+using Bolnica_aplikacija.Kontroler;
 using Bolnica_aplikacija.PacijentModel;
 using Model;
 using System;
@@ -8,6 +9,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Bolnica_aplikacija.ViewModel
 {
@@ -50,8 +52,8 @@ namespace Bolnica_aplikacija.ViewModel
                 NotifyPropertyChanged("termin");
             }
         }
-        private Termin pProsliTermin;
-        public Termin prosliTermin
+        private PacijentTermin pProsliTermin;
+        public PacijentTermin prosliTermin
         {
             get
             {
@@ -64,8 +66,8 @@ namespace Bolnica_aplikacija.ViewModel
                 NotifyPropertyChanged("prosliTermin");
             }
         }
-        private Termin pBuduciTermin;
-        public Termin buduciTermin
+        private PacijentTermin pBuduciTermin;
+        public PacijentTermin buduciTermin
         {
             get
             {
@@ -153,6 +155,8 @@ namespace Bolnica_aplikacija.ViewModel
             termin = TerminKontroler.nadjiTerminPoId(idTermina);
             ucitajProsleTermine();
             ucitajBuduceTermine();
+
+            otkazi = new RelayCommand(izvrsiOtkazivanje);
         }
 
         private void ucitajProsleTermine()
@@ -162,6 +166,50 @@ namespace Bolnica_aplikacija.ViewModel
 
         private void ucitajBuduceTermine()
         {
+            buduci = new ObservableCollection<PacijentTermin>(PacijentKontroler.prikazBuducihTerminaPacijenta(pacijent.id));
+        }
+
+        #endregion
+
+        #region Komanda -> otkazivanje termina
+        private RelayCommand pOtkazi;
+        public RelayCommand otkazi
+        {
+            get
+            {
+                return pOtkazi;
+            }
+            set
+            {
+                pOtkazi = value;
+            }
+        }
+
+        private void izvrsiOtkazivanje(object obj)
+        {
+            if (buduciTermin != null)
+            {
+                if (TerminKontroler.proveriTipTermina(KorisnikKontroler.getLekar(), buduciTermin.id))
+                {
+                    if (TerminKontroler.proveriDatumTermina(buduciTermin.id) <= 0)
+                    {
+                        MessageBox.Show("Nije moguće izvršiti otkazivanje termina 24h pred termin.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                    else
+                    {
+                        PacijentKontroler.otkaziTerminPacijenta(buduciTermin.id);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Ne mozete otkazati operaciju!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Potrebno je izabrati termin.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+
+            }
             buduci = new ObservableCollection<PacijentTermin>(PacijentKontroler.prikazBuducihTerminaPacijenta(pacijent.id));
         }
 
