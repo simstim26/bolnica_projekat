@@ -4,6 +4,10 @@ using Bolnica_aplikacija.LekarStudent;
 using Bolnica_aplikacija.Model;
 using Bolnica_aplikacija.PacijentModel;
 using Bolnica_aplikacija.View.LekarStudent;
+using iText.Kernel.Pdf;
+using iText.Kernel.Pdf.Canvas.Draw;
+using iText.Layout;
+using iText.Layout.Element;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -216,6 +220,7 @@ namespace Bolnica_aplikacija.ViewModel
             istorija = new RelayCommand(izvrsiIstorija);
             izvestaj = new RelayCommand(izvrsiIzvestaj);
             prosliIzvestaj = new RelayCommand(izvrsiProsliIzvestaj);
+            izgenerisi = new RelayCommand(izvrsiIzgenerisi);
         }
         private void ucitajProsleTermine()
         {
@@ -484,6 +489,58 @@ namespace Bolnica_aplikacija.ViewModel
         }
         #endregion
 
+        #region Komanda -> izgenerisi
+        private RelayCommand pIzgenerisi;
+        public RelayCommand izgenerisi
+        {
+            get
+            {
+                return pIzgenerisi;
+            }
+            set
+            {
+                pIzgenerisi = value;
+            }
+        }
+
+        private void izvrsiIzgenerisi(object obj)
+        {
+            PdfWriter writer = new PdfWriter("proba.pdf");
+            PdfDocument doc = new PdfDocument(writer);
+            doc.AddNewPage();
+            Document d = new Document(doc);
+            Paragraph zaglavljePacijent = new Paragraph();
+            zaglavljePacijent.Add("Pacijent: " + imePrezime).SetBold();
+            d.Add(zaglavljePacijent);
+            foreach(PacijentTermin pacTermin in prosli)
+            {
+                Termin termin = TerminKontroler.nadjiTerminPoId(pacTermin.id);
+                Lekar lekar = LekarKontroler.nadjiLekaraPoId(termin.idLekara);
+                Lekar lekarUput = LekarKontroler.nadjiLekaraPoId(termin.idUputLekara);
+                Terapija terapija = TerapijaKontroler.nadjiTerapijuPoId(termin.idTerapije);
+                Paragraph paragraph = new Paragraph();
+                Paragraph paragrafTermin = new Paragraph();
+                paragrafTermin.Add(termin.getTipString() + " - " + pacTermin.datum + " " + pacTermin.satnica + "\n").SetBold();
+                paragraph.Add("Lekar koji je odrzao termin: ");
+                paragraph.Add(lekar.ime + " " + lekar.prezime + "\n");
+                paragraph.Add("Specijalizacija: " + SpecijalizacijaKontroler.nadjiSpecijalizacijuPoId(lekar.idSpecijalizacije) + "\n");
+                paragraph.Add("Dijagnoza: " + BolestKontroler.nadjiBolestPoId(termin.idBolesti).naziv + "\n");
+                paragraph.Add("Terapija: " + LekKontroler.nadjiLekPoId(terapija.idLeka).naziv + "\n");
+                paragraph.Add("Izdat uput za: " + TerminKontroler.nadjiTerminPoId(termin.idUputTermin).getTipString() + " kod :" + lekarUput.ime + " " + lekarUput.prezime + "\n");
+                paragraph.Add("Izvestaj: " + termin.izvestaj + "\n");
+                paragraph.Add("Izvestaj sa uputa: " + termin.izvestajUputa + "\n");
+                paragraph.Add("Nacin upotrebe terapije: " + terapija.nacinUpotrebe + "\n");
+                d.Add(paragrafTermin);
+                d.Add(paragraph);
+                LineSeparator ls = new LineSeparator(new SolidLine());
+                d.Add(ls);
+
+            }
+            d.Close();
+            MessageBox.Show("Uspesno je napravljen pdf", "Informacija", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        #endregion
     }
 
 }

@@ -135,6 +135,8 @@
                     <Button HorizontalAlignment="Left" Command="{Binding Path=prosliIzvestaj}" Margin="330,72,0,0" VerticalAlignment="Top" Width="77" Height="49">
                         <materialDesign:PackIcon Kind="InfoCircle" Height="33" Width="38"></materialDesign:PackIcon>
                     </Button>
+                    <Button HorizontalAlignment="Left" Command="{Binding Path=izgenerisi}" Margin="22,72,0,0" VerticalAlignment="Top" Width="77" Height="49">
+                    </Button>
                 </Grid>
             </TabItem>
             <TabItem x:Name="tabPregled" Width="143">
