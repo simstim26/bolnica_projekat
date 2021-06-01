@@ -1,6 +1,7 @@
 ﻿using Bolnica_aplikacija.Kontroler;
 using Bolnica_aplikacija.PacijentModel;
 using Bolnica_aplikacija.Repozitorijum;
+using Bolnica_aplikacija.ViewModel;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -26,30 +27,19 @@ namespace Bolnica_aplikacija
     {
         private static ContentControl x;
         private static TabControl tab;
-        //private static TabItem tabRad;
         private static DataGrid raspored;
         private static Grid gridRasporedPretraga;
         private static Grid gridPrikaz;
-        private static int indikator; //0-raspored; 1-prikaz
         public LekarTabovi()
         {
             InitializeComponent();
-            // this.contentControl.Content = new PrikazPacijenata();
-            // x = this.contentControl;
+            this.DataContext = new LekarTaboviViewModel();
+
             raspored = this.dataRaspored;
             tab = this.lekarTab;
             gridRasporedPretraga = this.gridPretragaRaspored;
-            lstPacijenti.ItemsSource = PacijentKontroler.prikazPacijenata();
             gridPrikaz = this.gridPrikazPacijenata;
-            ucitajSve();
-
         }
-
-        public static  int getIndikator()
-        {
-            return indikator;
-        }
-
         public static Grid getRasporedPretraga()
         {
             return gridRasporedPretraga;
@@ -58,99 +48,10 @@ namespace Bolnica_aplikacija
         {
             return gridPrikaz;
         }
-        public static DataGrid getRaspored()
-        {
-            return raspored;
-        }
-
-        public static ContentControl getX()
-        {
-            return x;
-        }
-
         public static TabControl getTab()
         {
             return tab;
         }
-        private void ucitajSve()
-        {
-            dataRaspored.ItemsSource = LekarKontroler.prikaziZauzeteTermineZaLekara(KorisnikKontroler.getLekar());
-        }
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            if (this.prvi.SelectedDate != null && this.drugi.SelectedDate != null)
-            {
-                DateTime prvi = (DateTime)this.prvi.SelectedDate;
-                DateTime drugi = (DateTime)this.drugi.SelectedDate;
-                DateTime pomocni = DateTime.Now;
-                DateTime danasnjiDatum = pomocni.Date.Add(new TimeSpan(0, 0, 0));
-                if(DateTime.Compare(prvi, danasnjiDatum) < 0 || DateTime.Compare(drugi, danasnjiDatum) < 0 || DateTime.Compare(prvi, drugi) > 0)
-                {
-                    lblGreska.Visibility = Visibility.Visible;
-                }
-                else
-                {
-                    lblGreska.Visibility = Visibility.Hidden;
-                    dataRaspored.ItemsSource = LekarKontroler.pretraziZauzeteTermineZaLekara(KorisnikKontroler.getLekar(), prvi, drugi);
-                }
-            }
-            else
-            {
-                ucitajSve();
-            }
-        }
-
-        private void btnOtkazi_Click(object sender, RoutedEventArgs e)
-        {
-            if(dataRaspored.SelectedIndex != -1)
-            {
-                PacijentKontroler.otkaziTerminPacijenta(((PacijentTermin)dataRaspored.SelectedItem).id);
-                if (this.prvi.SelectedDate != null && this.prvi.SelectedDate != null)
-                {
-                    dataRaspored.ItemsSource = LekarKontroler.pretraziZauzeteTermineZaLekara(KorisnikKontroler.getLekar(), (DateTime)this.prvi.SelectedDate, (DateTime)this.drugi.SelectedDate);
-
-                }
-                else
-                {
-                    this.prvi.SelectedDate = null;
-                    this.drugi.SelectedDate = null;
-                    ucitajSve();
-                }
-                //PacijentInfo.getDataTermini().ItemsSource = PacijentKontroler.prikazSvihTerminaPacijenta();
-            }
-            else
-            {
-                MessageBox.Show("Potrebno je izabrati termin!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
-        }
-
-        private void btnInfoPrikaz_Click(object sender, RoutedEventArgs e)
-        {
-            if (lstPacijenti.SelectedIndex != -1)
-            {
-                PacijentKontroler.nadjiPacijenta(((Pacijent)lstPacijenti.SelectedItem).id);
-                indikator = 1;
-                Pacijent p = PacijentKontroler.nadjiPacijenta(((Pacijent)lstPacijenti.SelectedItem).id);
-                this.Content = new PacijentInfo(p.id, "");
-            }
-            else
-            {
-                MessageBox.Show("Potrebno je izabrati termin!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
-        }
-
-        private void btnInfo_Click(object sender, RoutedEventArgs e)
-        {
-            if(dataRaspored.SelectedIndex != -1)
-            {
-                indikator = 0;
-                this.Content = new PacijentInfo(TerminKontroler.nadjiPacijentaZaTermin(((PacijentTermin)dataRaspored.SelectedItem).id).id,
-                    ((PacijentTermin)dataRaspored.SelectedItem).id);
-            }
-            else
-            {
-                MessageBox.Show("Potrebno je izabrati termin!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
-        }
+    
     }
 }

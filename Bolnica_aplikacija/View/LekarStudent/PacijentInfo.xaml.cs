@@ -20,36 +20,29 @@ using Bolnica_aplikacija.PacijentModel;
 using Bolnica_aplikacija.Kontroler;
 using Bolnica_aplikacija.LekarStudent;
 using Bolnica_aplikacija.View.LekarStudent;
+using Bolnica_aplikacija.ViewModel;
 
 namespace Bolnica_aplikacija
 {
     public partial class PacijentInfo : UserControl
     {
         public static TabControl tab;
-        private static DataGrid dataTermini;
         public static bool aktivanPacijentInfo { get; set; }
 
         private static FrameworkElement fm = new FrameworkElement();
         public PacijentInfo(String idPacijenta, String idTermina)
         {
+
             InitializeComponent();
+            this.DataContext = new PacijentiInfoViewModel(idPacijenta, idTermina);
             LekarProzor.getNazad().Visibility = Visibility.Visible;
             LekarProzor.getGlavnaLabela().Content = "Rad sa pacijentima";
             aktivanPacijentInfo = true;
             tab = this.tabInfo;
-            Pacijent pacijent = PacijentKontroler.nadjiPacijenta(idPacijenta);
-            lblJmbg.Content = pacijent.jmbg;
-            lblImePrezime.Content = pacijent.ime + " " + pacijent.prezime;
-            lblDatumRodjenja.Content = pacijent.datumRodjenja.ToString("dd.MM.yyyy.");
-            lblAdresa.Content = pacijent.adresa;
-            lblKontakt.Content = pacijent.brojTelefona;
-            String[] id = { idPacijenta, idTermina};
-            this.DataContext = id;
-            fm.DataContext = this.DataContext;
 
-            zavrsiBolnickoLecenje();
-            prikaziBolnickoLecenje();
-            
+            String[] id = { idPacijenta, idTermina };
+            fm.DataContext = id;
+
             /*if(LekarTabovi.getIndikator() == 1)
             {
                 btnIzvestaj.IsEnabled = false;
@@ -72,27 +65,7 @@ namespace Bolnica_aplikacija
                     btnIzvestaj.IsEnabled = false;
                 }
             }*/
-           
-            dataTermini = this.dataGridTerminiPacijenta;
-            ucitajPodatke();
-        }
 
-        private void prikaziBolnickoLecenje()
-        {
-            gridNaBLecenju.Visibility = BolnickoLecenjeKontroler.proveriBolnickoLecenjeZaPacijenta(((String[])fm.DataContext)[0]) ? Visibility.Visible : Visibility.Hidden;
-            if (BolnickoLecenjeKontroler.proveriBolnickoLecenjeZaPacijenta(((String[])fm.DataContext)[0]))
-            {
-                lblBLecenjeSoba.Content = BolnickoLecenjeKontroler.nadjiBolnickoLecenjeZaPacijenta(((String[])fm.DataContext)[0]).bolnickaSoba.sprat + " " + BolnickoLecenjeKontroler.nadjiBolnickoLecenjeZaPacijenta(((String[])fm.DataContext)[0]).bolnickaSoba.broj;
-                lblBLecenjeDatum.Content = (BolnickoLecenjeKontroler.nadjiBolnickoLecenjeZaPacijenta(((String[])fm.DataContext)[0]).datumPocetka.AddDays(BolnickoLecenjeKontroler.nadjiBolnickoLecenjeZaPacijenta(((String[])fm.DataContext)[0]).trajanje)).ToString("dd.MM.yyyy");
-            }
-        }
-
-        private void zavrsiBolnickoLecenje()
-        {
-            if (BolnickoLecenjeKontroler.proveriKrajBolnickogLecenje(((String[])fm.DataContext)[0]))
-            {
-                BolnickoLecenjeKontroler.zavrsiBolnickoLecenje(((String[])fm.DataContext)[0]);
-            }
         }
         public static FrameworkElement getFM()
         {
@@ -103,95 +76,18 @@ namespace Bolnica_aplikacija
         {
             return tab;
         }
-        public static DataGrid getDataTermini()
-        {
-            return dataTermini;
-        }
-
-        private void btnZakazi_Click(object sender, RoutedEventArgs e)
-        {
-            LekarProzor.getX().Content = new ZakaziTermin(0, ((String[])fm.DataContext)[0], "");
-        }
 
         public static TabControl getPregledTab()
         {
             return tab;
         }
-
-        private void btnOtkazi_Click(object sender, RoutedEventArgs e)
-        {
-            if (dataGridTerminiPacijenta.SelectedIndex != -1)
-            {
-                PacijentTermin izabraniTermin = (PacijentTermin)dataGridTerminiPacijenta.SelectedItem;
-                if (TerminKontroler.proveriTipTermina(KorisnikKontroler.getLekar(), izabraniTermin.id))
-                {
-                    if (TerminKontroler.proveriDatumTermina(izabraniTermin.id) <= 0)
-                    {
-                        MessageBox.Show("Nije moguće izvršiti otkazivanje termina 24h pred termin.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    }
-                    else
-                    {
-                        PacijentKontroler.otkaziTerminPacijenta(izabraniTermin.id);
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Ne mozete otkazati operaciju!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
-                }
-            }
-            else
-            {
-                MessageBox.Show("Potrebno je izabrati termin.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
-
-            }
-
-             ucitajPodatke();
-        }
-
-        private void ucitajPodatke()
-        {
-            dataGridTerminiPacijenta.ItemsSource = PacijentKontroler.prikazBuducihTerminaPacijenta(((String[])fm.DataContext)[0]);
-            dataGridProsliTermini.ItemsSource = PacijentKontroler.prikazProslihTerminaPacijenta(((String[])fm.DataContext)[0]);
-        }
-
-        private void btnPromeni_Click(object sender, RoutedEventArgs e)
-        {
-            if(dataGridTerminiPacijenta.SelectedIndex != -1)
-            {
-                PacijentTermin izabraniTermin = (PacijentTermin)dataGridTerminiPacijenta.SelectedItem;
-
-                if (TerminKontroler.proveriTipTermina(KorisnikKontroler.getLekar(), izabraniTermin.id))
-                {
-                    if (TerminKontroler.proveriDatumTermina(izabraniTermin.id) <= 0)
-                    {
-                        MessageBox.Show("Nije moguće izvršiti promenu termina 24h pred termin.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    }
-                    else
-                    {
-                        LekarProzor.getX().Content = new ZakaziTermin(1, ((String[])DataContext)[0], izabraniTermin.id);
-
-                    }
-                }
-                else 
-                {
-                    MessageBox.Show("Nije moguće promeniti operaciju!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
-                }
-                            
-            }
-            else
-            {
-                MessageBox.Show("Potrebno je izabrati termin.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
-
-            }
-        }
-
         private void tabInfo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(this.tabInfo.SelectedIndex == 0)
+            if (this.tabInfo.SelectedIndex == 0)
             {
                 LekarProzor.getPretraga().Visibility = Visibility.Hidden;
             }
-            else if(this.tabInfo.SelectedIndex == 1)
+            else if (this.tabInfo.SelectedIndex == 1)
             {
                 LekarProzor.getPretraga().Visibility = Visibility.Visible;
 
@@ -199,43 +95,6 @@ namespace Bolnica_aplikacija
             else
             {
                 LekarProzor.getPretraga().Visibility = Visibility.Visible;
-            }
-        }
-
-        private void btnIzvestaj_Click(object sender, RoutedEventArgs e)
-        {
-            Content = new Izvestaj(((String[])fm.DataContext)[0], ((String[])fm.DataContext)[1]);
-        }
-
-        private void btnBolesti_Click(object sender, RoutedEventArgs e)
-        {
-            Content = new IstorijaBolesti(((String[])fm.DataContext)[0]);
-        }
-
-        private void btnTerapije_Click(object sender, RoutedEventArgs e)
-        {
-            Content = new UvidUTerapije(((String[])fm.DataContext)[0]);
-        }
-
-        private void btnAlergije_Click(object sender, RoutedEventArgs e)
-        {
-            Content = new Alergije(((String[])fm.DataContext)[0]);
-        }
-
-        private void btnIzmeniBLecenje_Click(object sender, RoutedEventArgs e)
-        {
-            Content = new IzmenaBLecenja(((String[])fm.DataContext)[0]);
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            if(dataGridProsliTermini.SelectedIndex != -1)
-            {
-                Content = new ProsliTermini(((PacijentTermin)dataGridProsliTermini.SelectedItem).id);
-            }
-            else
-            {
-                MessageBox.Show("Potrebno je izabrati termin!",  "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
     }
