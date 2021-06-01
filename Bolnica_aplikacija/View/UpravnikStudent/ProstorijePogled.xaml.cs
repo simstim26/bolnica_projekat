@@ -1,5 +1,6 @@
 ﻿using Bolnica_aplikacija.Kontroler;
 using Bolnica_aplikacija.View.UpravnikStudent;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,11 +24,13 @@ namespace Bolnica_aplikacija.View.UpravnikStudent
     public partial class ProstorijePogled : UserControl
     {
         public static DataGrid dataGridProstorije;
+        public static Grid gridProstorije;
         public ProstorijePogled()
         {
             InitializeComponent();
             dataGridProstorija.ItemsSource = ProstorijaKontroler.ucitajNeobrisane();
             dataGridProstorije = dataGridProstorija;
+            gridProstorije = gridProstorija;
         }
 
         private void btnDodajProstoriju_Click(object sender, RoutedEventArgs e)
@@ -47,12 +50,20 @@ namespace Bolnica_aplikacija.View.UpravnikStudent
 
         private void btnIzbrisiProstoriju_Click(object sender, RoutedEventArgs e)
         {
-            
+            if (dataGridProstorija.SelectedIndex != -1)
+            {
+                Potvrda potvrda = new Potvrda("prostoriju");
+                potvrda.ShowDialog();
+            }
         }
 
         private void btnPogledajInventar_Click(object sender, RoutedEventArgs e)
         {
-
+            if (dataGridProstorija.SelectedIndex != -1)
+            {
+                GlavniProzor.DobaviProzorZaIzmenu().Children.Clear();
+                GlavniProzor.DobaviProzorZaIzmenu().Children.Add(new PogledajInventar());
+            }
         }
 
         private void btnZakaziRenoviranje_Click(object sender, RoutedEventArgs e)
@@ -63,6 +74,11 @@ namespace Bolnica_aplikacija.View.UpravnikStudent
         public static DataGrid dobaviDataGridProstorija()
         {
             return dataGridProstorije;
+        }
+
+        public static Grid dobaviGridProstorija()
+        {
+            return gridProstorije;
         }
     }
 }

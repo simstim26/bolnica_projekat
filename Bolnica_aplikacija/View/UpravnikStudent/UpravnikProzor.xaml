@@ -189,7 +189,7 @@
             <TextBlock x:Name="textBlockA" FontSize="30" FontWeight="Bold" HorizontalAlignment="Left" Margin="176,188,0,0" TextWrapping="Wrap" Text="Dodajte novu prostoriju:" VerticalAlignment="Top"/>
         </Grid>
 
-        <Grid x:Name="gridPogledajInventar" Visibility="Hidden">
+        <Grid x:Name="gridPogledajInventar" Visibility="Visible">
             <Rectangle Fill="LightGray" HorizontalAlignment="Left" Height="685" Stroke="Black" VerticalAlignment="Top" Width="919" Margin="98,54,0,0"/>
             <DataGrid x:Name="dataGridInventarProstorije" HorizontalAlignment="Left" Height="474" Margin="173,204,0,0" VerticalAlignment="Top" HeadersVisibility="All" AutoGenerateColumns="False" SelectionMode="Single" CanUserResizeRows="False" CanUserAddRows="False">
                 <DataGrid.Columns>

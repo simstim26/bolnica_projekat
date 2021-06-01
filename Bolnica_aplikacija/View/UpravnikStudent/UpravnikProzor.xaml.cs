@@ -218,6 +218,8 @@ namespace Bolnica_aplikacija
             }
         }
 
+
+        //URADJENO
         private void btnPotvrdi_Click(object sender, RoutedEventArgs e)
         {
             {
@@ -268,6 +270,7 @@ namespace Bolnica_aplikacija
             }
         }
 
+        //URADJENO
         private void btnIzmeniStavku_Click(object sender, RoutedEventArgs e)
         {
 

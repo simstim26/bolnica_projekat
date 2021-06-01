@@ -260,6 +260,15 @@
     <Compile Include="View\UpravnikStudent\IzmeniProstoriju.xaml.cs">
       <DependentUpon>IzmeniProstoriju.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\UpravnikStudent\PogledajInventar.xaml.cs">
+      <DependentUpon>PogledajInventar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UpravnikStudent\Potvrda.xaml.cs">
+      <DependentUpon>Potvrda.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UpravnikStudent\PremestiUDruguProstoriju.xaml.cs">
+      <DependentUpon>PremestiUDruguProstoriju.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\UpravnikStudent\ProstorijePogled.xaml.cs">
       <DependentUpon>ProstorijePogled.xaml</DependentUpon>
     </Compile>
@@ -438,6 +447,18 @@
     <Page Include="View\UpravnikStudent\IzmeniProstoriju.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\UpravnikStudent\PogledajInventar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UpravnikStudent\Potvrda.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UpravnikStudent\PremestiUDruguProstoriju.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\UpravnikStudent\ProstorijePogled.xaml">
       <Generator>MSBuild:Compile</Generator>

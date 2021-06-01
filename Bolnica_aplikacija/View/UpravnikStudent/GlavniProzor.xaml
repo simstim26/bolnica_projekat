@@ -22,46 +22,56 @@
         <Rectangle Fill="White" HorizontalAlignment="Left" Height="51" Margin="175,0,0,0" Stroke="Black" StrokeThickness="3" VerticalAlignment="Top" Width="3"/>
         <TextBlock x:Name="textBlock1" Foreground="White"  FontSize="17" HorizontalAlignment="Left" Margin="895,16,0,0" TextWrapping="Wrap" Text="Odjavite se" VerticalAlignment="Top"/>
         <ListView x:Name="listView"  HorizontalAlignment="Left" Height="685" Margin="0,54,0,0" VerticalAlignment="Top" Width="100" Grid.RowSpan="2">
-            <ListViewItem Width="100" Height="90" Background="#FF20F016" BorderThickness="0,0,1,1" BorderBrush="Black">
+
+            <ListViewItem Width="100" Height="95" Background="#FF2196F3" BorderThickness="0,0,1,1" BorderBrush="Black">
                 <Grid>
-                    <Image Source="patient_room.png" Margin="13,0,-19,15"/>
-                    <TextBlock Text="Prostorije" HorizontalAlignment="Center" FontSize="15" Margin="-1,58,-37,-4"/>
+                    <Image Source="user.png" Margin="13,0,-19,15"/>
+                    <TextBlock Text="Moj profil" HorizontalAlignment="Center" FontSize="15" Margin="-1,58,-37,-4"/>
                 </Grid>
             </ListViewItem>
-            <ListViewItem Width="100" Height="90" Background="#FF20F016" BorderBrush="Black" BorderThickness="0,0,1,1" Selected="ListViewItem_Selected">
+            <ListViewItem x:Name="listProstorije" Width="100" Height="98" Background="#FF2196F3" BorderBrush="Black" BorderThickness="0,0,1,1" Selected="ListViewItem_Selected">
                 <Grid>
                     <Image Source="prostorija.png" Margin="13,0,-19,15"/>
                     <TextBlock Text="Prostorije" HorizontalAlignment="Center" FontSize="15" Margin="-1,58,-37,-4"/>
                 </Grid>
             </ListViewItem>
-            <ListViewItem Width="100" Height="90" Background="#FF20F016" BorderThickness="0,0,1,1" BorderBrush="Black">
+            <ListViewItem x:Name="listInventar" Width="100" Height="98" Background="#FF2196F3" BorderThickness="0,0,1,1" BorderBrush="Black">
                 <Grid>
-                    <Image Source="patient_room.png" Margin="13,0,-19,15"/>
-                    <TextBlock Text="Prostorije" HorizontalAlignment="Center" FontSize="15" Margin="-1,58,-37,-4"/>
+                    <Image Source="inventory.png" Margin="13,0,-19,15"/>
+                    <TextBlock Text="Inventar" HorizontalAlignment="Center" FontSize="15" Margin="-1,67,-37,-4"/>
                 </Grid>
             </ListViewItem>
-            <ListViewItem Width="100" Height="90" Background="#FF20F016" BorderThickness="0,0,1,1" BorderBrush="Black">
+            <ListViewItem x:Name="listLekovi" Width="100" Height="98" Background="#FF2196F3" BorderThickness="0,0,1,1" BorderBrush="Black">
                 <Grid>
-                    <Image Source="patient_room.png" Margin="13,0,-19,15"/>
-                    <TextBlock Text="Prostorije" HorizontalAlignment="Center" FontSize="15" Margin="-1,58,-37,-4"/>
+                    <Image Source="drugs.png" Margin="13,0,-19,15"/>
+                    <TextBlock Text="Lekovi" HorizontalAlignment="Center" FontSize="15" Margin="-1,67,-37,-4"/>
                 </Grid>
             </ListViewItem>
-            <ListViewItem Width="100" Height="90" Background="#FF20F016" BorderThickness="0,0,1,1" BorderBrush="Black">
+            <ListViewItem Width="100" Height="98" Background="#FF2196F3" BorderThickness="0,0,1,1" BorderBrush="Black">
                 <Grid>
-                    <Image Source="patient_room.png" Margin="13,0,-19,15"/>
-                    <TextBlock Text="Prostorije" HorizontalAlignment="Center" FontSize="15" Margin="-1,58,-37,-4"/>
+                    <Image Source="users.png" Margin="13,0,-19,15"/>
+                    <TextBlock Text="Osoblje" HorizontalAlignment="Center" FontSize="15" Margin="-1,67,-37,-4"/>
                 </Grid>
             </ListViewItem>
-            <ListViewItem Width="100" Height="90" Background="#FF20F016" BorderThickness="0,0,1,1" BorderBrush="Black">
+            <ListViewItem Width="100" Height="98" Background="#FF2196F3" BorderThickness="0,0,1,1" BorderBrush="Black">
                 <Grid>
-                    <Image Source="prostorija.png" Margin="13,0,-19,15"/>
-                    <TextBlock Text="Prostorije" HorizontalAlignment="Center" FontSize="15" Margin="-1,58,-37,-4"/>
+                    <Image Source="praktikanti.png" Margin="13,0,-19,15"/>
+                    <TextBlock Text="Praktikanti" HorizontalAlignment="Center" FontSize="15" Margin="-1,67,-37,-4"/>
                 </Grid>
             </ListViewItem>
-            <ListViewItem Width="100" Height="90" Background="#FF20F016" BorderThickness="0,0,1,1" BorderBrush="Black">
+            <ListViewItem Width="100" Height="99" Background="#FF2196F3" BorderThickness="0,0,1,1" BorderBrush="Black">
                 <Grid>
-                    <Image Source="patient_room.png" Margin="13,0,-19,15"/>
-                    <TextBlock Text="Prostorije" HorizontalAlignment="Center" FontSize="15" Margin="-1,58,-37,-4"/>
+                    <Image Source="hel.png" Margin="13,0,-19,15" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="0.9" ScaleY="0.9"/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <TextBlock Text="Pomoć" HorizontalAlignment="Center" FontSize="15" Margin="-1,65,-37,-4"/>
                 </Grid>
             </ListViewItem>
 

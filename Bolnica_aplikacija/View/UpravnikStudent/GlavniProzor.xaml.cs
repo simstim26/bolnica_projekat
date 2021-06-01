@@ -45,14 +45,5 @@ namespace Bolnica_aplikacija.View.UpravnikStudent
             PromenaPogleda(new ProstorijePogled());  
         }
 
-        private void button3_Click(object sender, RoutedEventArgs e)
-        {
-            PromenaPogleda(new ProstorijePogled());
-        }
-
-        private void button1_Click(object sender, RoutedEventArgs e)
-        {
-            PromenaPogleda(new ProstorijePogled());
-        }
     }
 }
