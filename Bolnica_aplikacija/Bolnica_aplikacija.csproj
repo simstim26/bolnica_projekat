@@ -148,6 +148,7 @@
     <Compile Include="Kontroler\OcenaBolniceKontroler.cs" />
     <Compile Include="Kontroler\OcenaLekaraKontroler.cs" />
     <Compile Include="Kontroler\PacijentKontroler.cs" />
+    <Compile Include="Kontroler\PrijavaGreskeKontroler.cs" />
     <Compile Include="Kontroler\ProstorijaKontroler.cs" />
     <Compile Include="Kontroler\ProstorijaZauzetoKontroler.cs" />
     <Compile Include="Kontroler\SekretarKontroler.cs" />
@@ -183,10 +184,12 @@
     <Compile Include="Repozitorijum\LogovanjeRepozitorijum.cs" />
     <Compile Include="Repozitorijum\OcenaBolniceRepozitorijum.cs" />
     <Compile Include="Repozitorijum\OcenaLekaraRepozitorijum.cs" />
+    <Compile Include="Repozitorijum\PrijavaGreskeRepozitorijum.cs" />
     <Compile Include="Servis\BolnickoLecenjeServis.cs" />
     <Compile Include="Servis\LogovanjeServis.cs" />
     <Compile Include="Servis\OcenaBolniceServis.cs" />
     <Compile Include="Servis\OcenaLekaraServis.cs" />
+    <Compile Include="Servis\PrijavaGreskeServis.cs" />
     <Compile Include="ViewModel\LekarTaboviViewModel.cs" />
     <Compile Include="ViewModel\LekZaOdobravanjeViewModel.cs" />
     <Compile Include="ViewModel\PacijentiInfoViewModel.cs" />

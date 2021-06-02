@@ -82,7 +82,11 @@ namespace Bolnica_aplikacija
 
         private void btnNazad_Click(object sender, RoutedEventArgs e)
         {
-            if(gridOdobravanjeLekova.Visibility == Visibility.Visible)
+            if(gridPrijavaGreske.Visibility == Visibility.Visible)
+            {
+                gridPrijavaGreske.Visibility = Visibility.Hidden;
+            }
+            else if(gridOdobravanjeLekova.Visibility == Visibility.Visible)
             {
                 podesiKretanjeUnazadZaOdobravanjeLekova();
             }
@@ -332,5 +336,6 @@ namespace Bolnica_aplikacija
 
             }
         }
+
     }
 }

@@ -29,7 +29,7 @@
                     <Button x:Name="odobriLekove" Content="Odobri lekove" Click="odobriLekove_Click"/>
                     <Button Content="Pregled i izmena lekova" Click="RULekovi_Click" />
                     <Button Content="Pomoć"/>
-                    <Button Content="Prijava greške"/>
+                    <Button Content="Prijava greške" Command="{Binding Path=prikazPrijave}" />
                     <Button Content="Odjava" Click="meniOdjava_Click"/>
                 </StackPanel>
             </materialDesign:PopupBox>
@@ -103,7 +103,7 @@
                 </Grid>
             </Grid>
         </Grid>
-        
+
         <Grid x:Name="gridRULekovi" Background="White" Margin="0,46,0,2.4" Grid.RowSpan="2" Visibility="Hidden" >
             <DataGrid x:Name="dataGridPostojeciLekovi" ItemsSource="{Binding Path=lekovi, Mode=TwoWay}" SelectedItem="{Binding Path=izabraniPostojeciLek, Mode=TwoWay}" AutoGenerateColumns="False" IsReadOnly="True" HorizontalAlignment="Left" Height="526" Margin="0,148,0,0" VerticalAlignment="Top" Width="424">
                 <DataGrid.Columns>
@@ -164,6 +164,21 @@
                 </Button>
             </Grid>
         </Grid>
+        <Grid x:Name="gridPrijavaGreske" Visibility="{Binding Path=gridPrijavaGreske, Mode=TwoWay, Converter={StaticResource BoolToVis}}" Margin="0,46,0,2.4" Grid.RowSpan="2">
+            <Grid.Background>
+                <SolidColorBrush Color="White" Opacity="0.5"/>
+            </Grid.Background>
+            <Grid Background="White" Margin="0,164,0,257" Opacity="1" >
+                <TextBox x:Name="txtPrijavaGreske" HorizontalAlignment="Left" Height="107" Background="Gainsboro" Margin="33,85,0,0" TextWrapping="Wrap" Text="{Binding Path=prijavaGreskeTekst, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="360"/>
+                <Button HorizontalAlignment="Left" Command="{Binding Path=potvrdaPrijaveGreske}" IsEnabled="{Binding Path=btnPotvrdaPrijave, Mode=TwoWay}" Margin="74,204,0,0" VerticalAlignment="Top" Width="75">
+                    <materialDesign:PackIcon Kind="CheckCircle" Height="22" Width="25"></materialDesign:PackIcon>
+                </Button>
+                <Button HorizontalAlignment="Left" Margin="281,204,0,0" VerticalAlignment="Top" Width="75" Command="{Binding Path=ponistavanjePrikaza}">
+                    <materialDesign:PackIcon Kind="CloseCircle" Height="22" Width="25"></materialDesign:PackIcon>
+                </Button>
 
+            </Grid>
+            <Label Content="Objašnjenje primećenog problema u softveru:" HorizontalAlignment="Left" Margin="33,207,0,0" VerticalAlignment="Top"/>
+        </Grid>
     </Grid>
 </Window>
