@@ -14,7 +14,7 @@
         <TextBox x:Name="txtTerapija" IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="144,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Button x:Name="btnIzmeniTerapiju" Content="Izmeni" HorizontalAlignment="Left" Margin="295,103,0,0" VerticalAlignment="Top" Width="75" Click="btnIzmeniTerapiju_Click"/>
         <Label Content="Izveštaj:" HorizontalAlignment="Left" Margin="37,212,0,0" VerticalAlignment="Top" Height="25" Width="58"/>
-        <TextBox x:Name="txtIzvestaj" HorizontalAlignment="Left" Height="274" Margin="10,254,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="410" TextChanged="txtIzvestaj_TextChanged"/>
+        <TextBox x:Name="txtIzvestaj" Background="Gainsboro" HorizontalAlignment="Left" Height="274" Margin="10,254,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="410" TextChanged="txtIzvestaj_TextChanged"/>
         <Button x:Name="btnPotvrdi" HorizontalAlignment="Left" Margin="37,589,0,0" VerticalAlignment="Top" Width="84" Height="44" Click="btnPotvrdi_Click">
             <materialDesign:PackIcon Kind="CheckCircle" Height="25" Width="29"></materialDesign:PackIcon>
         </Button>
@@ -37,7 +37,7 @@
             <Label Content="Datum propisivanja:" HorizontalAlignment="Left" Margin="39,344,0,0" VerticalAlignment="Top"/>
             <Label Content="Trajanje:" HorizontalAlignment="Left" Margin="39,385,0,0" VerticalAlignment="Top"/>
             <Label Content="Način upotrebe:" HorizontalAlignment="Left" Margin="39,432,0,0" VerticalAlignment="Top"/>
-            <TextBox x:Name="txtNacinUpotrebe" HorizontalAlignment="Left" Height="101" Margin="0,461,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="430"/>
+            <TextBox x:Name="txtNacinUpotrebe" Background="Gainsboro" HorizontalAlignment="Left" Height="101" Margin="0,461,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="430"/>
             <Button x:Name="btnPotvrdiRecept" HorizontalAlignment="Left" Margin="39,594,0,0" VerticalAlignment="Top" Width="75" Click="btnPotvrdiRecept_Click">
                 <materialDesign:PackIcon Kind="CheckCircle"></materialDesign:PackIcon>
             </Button>
@@ -58,7 +58,7 @@
         </Grid>
 
         <Grid x:Name="gridOdabirLeka" Background="White" Visibility="Hidden">
-            <DataGrid x:Name="dataGridLekovi" IsReadOnly="True" AutoGenerateColumns="False" SelectionMode="Single" HorizontalAlignment="Left" Height="432" Margin="0,114,0,0" VerticalAlignment="Top" Width="430">
+            <DataGrid x:Name="dataGridLekovi" IsReadOnly="True" Background="White" AlternatingRowBackground="#FF9900" AlternationCount="2" AutoGenerateColumns="False" SelectionMode="Single" HorizontalAlignment="Left" Height="432" Margin="0,114,0,0" VerticalAlignment="Top" Width="430">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Naziv" Binding="{Binding naziv}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Količina [mg]" Binding="{Binding kolicina}"></DataGridTextColumn>

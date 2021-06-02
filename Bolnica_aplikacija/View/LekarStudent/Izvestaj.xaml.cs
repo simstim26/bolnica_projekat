@@ -252,7 +252,7 @@ namespace Bolnica_aplikacija.LekarStudent
         {
             if (dataGridLekovi.SelectedIndex != -1)
             {
-                if (PacijentKontroler.proveriAlergijuNaLekZaPacijenta(((BolestTerapija)fm.DataContext).idPacijenta, ((Lek)dataGridLekovi.SelectedItem).id))
+                if (PacijentKontroler.proveriAlergijuNaLekZaPacijenta(((String [])fm.DataContext)[0], ((Lek)dataGridLekovi.SelectedItem).id))
                 {
                   MessageBox.Show("Pacijent je alergičan na dati lek.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }

@@ -15,12 +15,12 @@
     "email": "email@email.com",
     "brojTelefona": "123/123-123",
     "jmbg": "1234567891012",
-    "mestoRodjenja": null,
-    "drzavaRodjenja": null,
-    "pol": null,
-    "brojZdravstveneKnjizice": null,
-    "bracniStatus": null,
-    "zanimanje": null
+    "mestoRodjenja": "mesto",
+    "drzavaRodjenja": "drzava",
+    "pol": "Zenski",
+    "brojZdravstveneKnjizice": "123",
+    "bracniStatus": "Razvedena",
+    "zanimanje": "Pevacica"
   },
   {
     "id": "2",
@@ -38,12 +38,12 @@
     "email": "iodum99@yahoo.com",
     "brojTelefona": "\u002B381649563126",
     "jmbg": "0504999800007",
-    "mestoRodjenja": null,
-    "drzavaRodjenja": null,
-    "pol": null,
-    "brojZdravstveneKnjizice": null,
-    "bracniStatus": null,
-    "zanimanje": null
+    "mestoRodjenja": "meesto",
+    "drzavaRodjenja": "drzzzzaaava",
+    "pol": "Musko",
+    "brojZdravstveneKnjizice": "234",
+    "bracniStatus": "Nepoznato",
+    "zanimanje": "Student"
   },
   {
     "id": "3",

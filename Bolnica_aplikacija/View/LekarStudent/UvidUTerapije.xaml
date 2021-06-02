@@ -8,7 +8,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="750" d:DesignWidth="430">
     <Grid Background="White">
-        <DataGrid x:Name="dataGridTerapije" IsReadOnly="True" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="623" Margin="0,127,0,0" VerticalAlignment="Top" Width="430">
+        <DataGrid x:Name="dataGridTerapije" IsReadOnly="True" Background="White" AlternationCount="2" AlternatingRowBackground="#FF9900" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="623" Margin="0,127,0,0" VerticalAlignment="Top" Width="430">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Naziv leka" Binding="{Binding nazivTerapije}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTextColumn Header="Količina" Binding="{Binding kolicina}" IsReadOnly="True"></DataGridTextColumn>

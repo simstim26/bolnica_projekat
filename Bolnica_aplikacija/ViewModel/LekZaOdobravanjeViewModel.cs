@@ -120,6 +120,46 @@ namespace Bolnica_aplikacija.ViewModel
                 NotifyPropertyChanged("sastojak");
             }
         }
+
+        private bool pBtnPotvrdaPrijave;
+
+        public bool btnPotvrdaPrijave
+        {
+            get
+            {
+                return pBtnPotvrdaPrijave;
+            }
+
+            set
+            {
+                pBtnPotvrdaPrijave = value;
+                NotifyPropertyChanged("btnPotvrdaPrijave");
+            }
+        }
+
+        private String pPrijavaGreskeTekst;
+
+        public String prijavaGreskeTekst
+        {
+            get
+            {
+                return pPrijavaGreskeTekst;
+            }
+
+            set
+            {
+                pPrijavaGreskeTekst = value;
+                if (String.IsNullOrWhiteSpace(pPrijavaGreskeTekst))
+                {
+                    btnPotvrdaPrijave = false;
+                }
+                else
+                {
+                    btnPotvrdaPrijave = true;
+                }
+                NotifyPropertyChanged("prijavaGreskeTekst");
+            }
+        }
         #endregion
 
         #region dugmad - visibility, isEnabled
@@ -244,6 +284,21 @@ namespace Bolnica_aplikacija.ViewModel
                 NotifyPropertyChanged("gridInfoLek");
             }
         }
+
+        private bool pGridPrijavaGreske = false;
+
+        public bool gridPrijavaGreske
+        {
+            get
+            {
+                return pGridPrijavaGreske;
+            }
+            set
+            {
+                pGridPrijavaGreske = value;
+                NotifyPropertyChanged("gridPrijavaGreske");
+            }
+        }
         #endregion
 
         #region konstruktor i pomocne metode
@@ -264,6 +319,9 @@ namespace Bolnica_aplikacija.ViewModel
             brisanjeZamenskogLeka = new RelayCommand(izvrsiBrisanjeZamenskogLeka);
             ponistiZamenskiLek = new RelayCommand(izvrsiPonistavanjeZamenskogLeka);
             infoLek = new RelayCommand(izvrsiInfoLek);
+            potvrdaPrijaveGreske = new RelayCommand(izvrsiPotvrduPrijaveGreske);
+            prikazPrijave = new RelayCommand(izvrsiPrikazPrijave);
+            ponistavanjePrikaza = new RelayCommand(izvrsiPonistavanjePrikaza);
         }
 
     private void ucitajPodatke()
@@ -726,6 +784,67 @@ namespace Bolnica_aplikacija.ViewModel
             {
                 MessageBox.Show("Potrebno je izabrati lek!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
+        }
+        #endregion
+
+        #region Komanda ->potvrda prijave greske
+        private RelayCommand pPotvrdaPrijaveGreske;
+
+        public RelayCommand potvrdaPrijaveGreske
+        {
+            get
+            {
+                return pPotvrdaPrijaveGreske;
+            }
+            set
+            {
+                pPotvrdaPrijaveGreske = value;
+            }
+        }
+
+        private void izvrsiPotvrduPrijaveGreske(object obj)
+        {
+            PrijavaGreskeKontroler.sacuvaj(prijavaGreskeTekst);
+            MessageBox.Show("Greska je uspesno prijavljena!", "informacija", MessageBoxButton.OK, MessageBoxImage.Information);
+            gridPrijavaGreske = false;
+        }
+
+        private RelayCommand pPrikazPrijave;
+
+        public RelayCommand prikazPrijave
+        {
+            get
+            {
+                return pPrikazPrijave;
+            }
+            set
+            {
+                pPrikazPrijave = value;
+            }
+        }
+
+        private void izvrsiPrikazPrijave(object obj)
+        {
+            gridPrijavaGreske = true;
+        }
+
+        private RelayCommand pPonistavanjePrikaza;
+
+        public RelayCommand ponistavanjePrikaza
+        {
+            get
+            {
+                return pPonistavanjePrikaza;
+            }
+            set
+            {
+                pPonistavanjePrikaza = value;
+            }
+        }
+
+        private void izvrsiPonistavanjePrikaza(object obj)
+        {
+            gridPrijavaGreske = false;
         }
         #endregion
     }

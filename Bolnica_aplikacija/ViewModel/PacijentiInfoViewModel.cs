@@ -88,6 +88,21 @@ namespace Bolnica_aplikacija.ViewModel
             }
         }
 
+        private String pImeIzvestaja;
+        public String imeIzvestaja
+        {
+            get
+            {
+                return pImeIzvestaja;
+            }
+
+            set
+            {
+                pImeIzvestaja = value;
+                NotifyPropertyChanged("imeIzvestaja");
+            }
+        }
+
         #endregion
 
         #region pomocni stringovi za prikaz
@@ -505,7 +520,7 @@ namespace Bolnica_aplikacija.ViewModel
 
         private void izvrsiIzgenerisi(object obj)
         {
-            PdfWriter writer = new PdfWriter("proba.pdf");
+            PdfWriter writer = new PdfWriter(imeIzvestaja + ".pdf");
             PdfDocument doc = new PdfDocument(writer);
             doc.AddNewPage();
             Document d = new Document(doc);

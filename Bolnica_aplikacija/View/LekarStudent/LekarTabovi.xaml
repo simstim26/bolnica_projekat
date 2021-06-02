@@ -62,7 +62,7 @@
                     </DataTemplate>
                 </TabItem.HeaderTemplate>
                 <Grid>
-                    <Grid x:Name="gridPretragaRaspored" Margin="-6,0,0.2,580.6" Background="#93c47d" Visibility="Hidden">
+                    <Grid x:Name="gridPretragaRaspored" Margin="-6,0,-0.2,563.8" Background="#93c47d" Visibility="Hidden">
                         <DatePicker x:Name="prvi" SelectedDate="{Binding Path=prviDatum, Mode=TwoWay}" HorizontalAlignment="Left" Background="#b6d7a8"  Margin="27,15,0,0" VerticalAlignment="Top" Height="33" Width="75"/>
                         <DatePicker x:Name="drugi" SelectedDate="{Binding Path=drugiDatum, Mode=TwoWay}" HorizontalAlignment="Left" Margin="166,15,0,0" VerticalAlignment="Top" Height="33" Width="75"/>
                         <Label Content="-" HorizontalAlignment="Left" Margin="127,15,0,0" VerticalAlignment="Top" FontSize="14" Height="33" Width="34"/>

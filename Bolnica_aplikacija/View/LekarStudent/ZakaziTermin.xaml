@@ -9,10 +9,10 @@
              d:DesignHeight="750" d:DesignWidth="430">
     <Grid>
         <Rectangle Fill="White" HorizontalAlignment="Left" Height="670" Stroke="Black" VerticalAlignment="Top" Width="430"/>
-        <Button x:Name="btnPotvrdi" HorizontalAlignment="Left" Height="40" Margin="35,598,0,0" VerticalAlignment="Top" Width="145" Click="btnPotvrdi_Click" BorderBrush="Black">
+        <Button x:Name="btnPotvrdi" HorizontalAlignment="Left" Height="40" Margin="48,598,0,0" VerticalAlignment="Top" Width="85" Click="btnPotvrdi_Click" BorderBrush="Black">
             <materialDesign:PackIcon Kind="CheckCircle" Height="28" Width="37"></materialDesign:PackIcon>
         </Button>
-        <Button x:Name="btnPonisti" HorizontalAlignment="Left" Height="40" Margin="249,598,0,0" VerticalAlignment="Top" Width="145" Click="btnPonisti_Click" BorderBrush="Black">
+        <Button x:Name="btnPonisti" HorizontalAlignment="Left" Height="40" Margin="311,598,0,0" VerticalAlignment="Top" Width="83" Click="btnPonisti_Click" BorderBrush="Black">
             <materialDesign:PackIcon Kind="PlusCircle" Height="29" Width="29" RenderTransformOrigin="0.5,0.5">
                 <materialDesign:PackIcon.RenderTransform>
                     <TransformGroup>
