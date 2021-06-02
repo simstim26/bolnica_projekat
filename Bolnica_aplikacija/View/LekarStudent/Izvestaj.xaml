@@ -23,7 +23,7 @@
         <Image HorizontalAlignment="Left" Height="54" Margin="58,121,0,0" VerticalAlignment="Top" Width="50" Source="doc.png"/>
         <Label x:Name="lblLekar" HorizontalAlignment="Left" Margin="128,137,0,0" VerticalAlignment="Top" Width="232" Height="30"/>
         <Label Content="Izveštaj:" HorizontalAlignment="Left" Margin="35,303,0,0" VerticalAlignment="Top" Height="23" Width="66"/>
-        <TextBox x:Name="txtIzvestaj" HorizontalAlignment="Left" Height="158" Margin="22,331,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="389" BorderBrush="#FF010104"/>
+        <TextBox x:Name="txtIzvestaj" Background="Gainsboro"  HorizontalAlignment="Left" Height="158" Margin="17,331,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="385" BorderBrush="#FF010104"/>
         <Button x:Name="btnPotvrdaIzvestaj" HorizontalAlignment="Left" Margin="35,602,0,0" VerticalAlignment="Top" Width="75" Height="39" Click="btnPotvrdaIzvestaj_Click">
             <materialDesign:PackIcon Kind="CheckCircle" Height="29" Width="27"></materialDesign:PackIcon>
         </Button>
@@ -86,7 +86,7 @@
                 <materialDesign:PackIcon Kind="Plus" Width="22" Height="22" HorizontalAlignment="Center"></materialDesign:PackIcon>
             </Button>
             <Label Content="Upućuje se na " HorizontalAlignment="Left" Margin="34,150,0,0" VerticalAlignment="Top"/>
-            <TextBox x:Name="txtUputIzvestaj" HorizontalAlignment="Left" Height="244" Margin="10,245,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="410"/>
+            <TextBox x:Name="txtUputIzvestaj" Background="Gainsboro" HorizontalAlignment="Left" Height="244" Margin="10,245,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="410"/>
             <Button x:Name="btnPotvrdiUput" HorizontalAlignment="Left" Margin="34,558,0,0" VerticalAlignment="Top" Width="90" Height="38" Click="btnPotvrdiUput_Click">
                 <materialDesign:PackIcon Kind="CheckCircle" Height="28" Width="39"></materialDesign:PackIcon>
             </Button>
@@ -123,7 +123,7 @@
             <Label Content="Datum propisivanja:" HorizontalAlignment="Left" Margin="39,344,0,0" VerticalAlignment="Top"/>
             <Label Content="Trajanje:" HorizontalAlignment="Left" Margin="39,385,0,0" VerticalAlignment="Top"/>
             <Label Content="Način upotrebe:" HorizontalAlignment="Left" Margin="39,432,0,0" VerticalAlignment="Top"/>
-            <TextBox x:Name="txtNacinUpotrebe" HorizontalAlignment="Left" Height="101" Margin="0,461,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="430"/>
+            <TextBox x:Name="txtNacinUpotrebe" Background="Gainsboro" HorizontalAlignment="Left" Height="101" Margin="0,461,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="430"/>
             <Button x:Name="btnPotvrdiRecept" HorizontalAlignment="Left" Margin="39,594,0,0" VerticalAlignment="Top" Width="75" Click="btnPotvrdiRecept_Click">
                 <materialDesign:PackIcon Kind="CheckCircle" Height="28" Width="39"></materialDesign:PackIcon>
             </Button>
@@ -272,11 +272,8 @@
                         <DataGridTextColumn Header="Proizvođač" Binding="{Binding proizvodjac}"></DataGridTextColumn>
                     </DataGrid.Columns>
                 </DataGrid>
-
             </Grid>
-
         </Grid>
-
     </Grid>
 
 </UserControl>
