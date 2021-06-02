@@ -17,6 +17,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using InteractiveDataDisplay;
 
 namespace Bolnica_aplikacija.PacijentStudent
 {
@@ -46,6 +47,13 @@ namespace Bolnica_aplikacija.PacijentStudent
             proveraAnkete();
             popuniObavestenja();
 
+
+
+        }
+
+        private void napraviGraf()
+        {
+            
         }
 
         private void PopuniTermine()
