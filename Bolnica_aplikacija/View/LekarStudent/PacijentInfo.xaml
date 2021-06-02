@@ -90,7 +90,7 @@
                     <Label x:Name="lblStatusOsiguranja" Foreground="Black"  Grid.Column="1" HorizontalAlignment="Left" Margin="46,254,0,0" VerticalAlignment="Top" Width="220" Height="24"/>
                     <Label x:Name="lblBracnoStanje" Content="{Binding Path=pacijent.bracniStatus}" Foreground="Black"  Grid.Column="1" HorizontalAlignment="Left" Margin="46,283,0,0" VerticalAlignment="Top" Width="220" Height="24"/>
                     <Label x:Name="Zanimanje" Content="{Binding Path=pacijent.zanimanje}"  Foreground="Black" Grid.Column="1" HorizontalAlignment="Left" Margin="46,312,0,0" VerticalAlignment="Top" Width="220" Height="24"/>
-                    
+
                     <Grid x:Name="gridNaBLecenju" Visibility="{Binding Path=gridBLecenjeVisibility, Converter={StaticResource BooleanToVisibilityConverter}, Mode=TwoWay}" HorizontalAlignment="Left" Background="Gray" Height="59" Margin="0,336,0,0" VerticalAlignment="Top" Width="430" Grid.ColumnSpan="2">
                         <Label Content="*Pacijent je na bolničkom lečenju:" Foreground="White" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="298" FontWeight="Bold"/>
                         <Label Content="Soba:" Foreground="White" HorizontalAlignment="Left" Margin="28,25,0,0" VerticalAlignment="Top"/>
@@ -132,11 +132,11 @@
                             <DataGridTextColumn Header="Terapija" Binding="{Binding nazivTerapije}"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Button HorizontalAlignment="Left" Command="{Binding Path=prosliIzvestaj}" Margin="330,72,0,0" VerticalAlignment="Top" Width="77" Height="49">
+                    <Button HorizontalAlignment="Left" Command="{Binding Path=prosliIzvestaj}" Margin="336,72,0,0" VerticalAlignment="Top" Width="69" Height="49">
                         <materialDesign:PackIcon Kind="InfoCircle" Height="33" Width="38"></materialDesign:PackIcon>
                     </Button>
-                    <Button HorizontalAlignment="Left" Command="{Binding Path=izgenerisi}" Margin="22,72,0,0" VerticalAlignment="Top" Width="77" Height="49">
-                    </Button>
+                    <Button HorizontalAlignment="Left" Content="Napravi izveštaj" Command="{Binding Path=izgenerisi}" Margin="168,72,0,0" VerticalAlignment="Top" Width="142" Height="49"/>
+                    <TextBox TextWrapping="Wrap" Text="{Binding Path=imeIzvestaja, Mode=TwoWay}" Margin="16,85,280,500.6"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="tabPregled" Width="143">

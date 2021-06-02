@@ -174,7 +174,18 @@ namespace Bolnica_aplikacija
 
         private void btnPretraga_Click(object sender, RoutedEventArgs e)
         {
-            if (LekarTabovi.getTab().SelectedIndex == 0)
+            if (PacijentInfo.aktivanPacijentInfo)
+            {
+                if (PacijentInfo.gridPretraga.Visibility == Visibility.Hidden)
+                {
+                    PacijentInfo.gridPretraga.Visibility = Visibility.Visible;
+                }
+                else if (PacijentInfo.gridPretraga.Visibility == Visibility.Visible)
+                {
+                    PacijentInfo.gridPretraga.Visibility = Visibility.Hidden;
+                }
+            }
+            else if (LekarTabovi.getTab().SelectedIndex == 0)
             {
                 if (LekarTabovi.getRasporedPretraga().Visibility == Visibility.Visible)
                 {
@@ -184,8 +195,6 @@ namespace Bolnica_aplikacija
                 {
                     LekarTabovi.getRasporedPretraga().Visibility = Visibility.Visible;
                 }
-
-
             }
             else if (LekarTabovi.getTab().SelectedIndex == 1)
             {
