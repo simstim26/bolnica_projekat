@@ -1,0 +1,39 @@
+// File:    Notifikacija.cs
+// Author:  User
+// Created: Wednesday, March 24, 2021 1:26:44 PM
+// Purpose: Definition of Class Notifikacija
+
+using Bolnica_aplikacija.PomocneKlase;
+using System;
+
+namespace Model
+{
+   public class NotifikacijaDTO
+   {
+        public String id { get; set; }
+        public String nazivNotifikacije { get; set; }
+        public DateTime vremeNotifikovanja { get; set; }
+        public String porukaNotifikacije { get; set; }
+        public String idKorisnika { get; set; }
+        public DateTime datumNotifikovanja { get; set; }
+        public bool jeProcitana { get; set; }
+        public  Ponavljanje ponavljanje { get; set; }
+
+        public NotifikacijaDTO()
+        {
+
+        }
+        
+        public NotifikacijaDTO(String id, String nazivNotifikacije, DateTime vremeNotifikovanja, String porukaNotifikacije, String idKorisnika, DateTime datumNotifikovanja, bool jeProcitana)
+        {
+            this.id = id;
+            this.nazivNotifikacije = nazivNotifikacije;
+            this.vremeNotifikovanja = vremeNotifikovanja;
+            this.porukaNotifikacije = porukaNotifikacije;
+            this.idKorisnika = idKorisnika;
+            this.datumNotifikovanja = datumNotifikovanja;
+            this.jeProcitana = jeProcitana;
+        }
+
+    }
+}

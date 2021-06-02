@@ -72,5 +72,20 @@ namespace Bolnica_aplikacija.Servis
             terapija.idBolesti = idBolesti;
             terapijaRepozitorijum.azurirajTerapiju(terapija);
         }
+
+        public List<Terapija> ucitajTrenutneTerapijePacijenta(String idPacijenta)
+        {
+            List<Terapija> pacijentTerapije = new List<Terapija>();
+
+            foreach (Terapija terapija in ucitajSve())
+            {
+                if(DateTime.Compare(terapija.datumPocetka.AddDays(terapija.trajanje), DateTime.Now) >= 0)
+                {
+                    pacijentTerapije.Add(terapija);
+                }
+            }
+
+            return pacijentTerapije;
+        }
     }
 }

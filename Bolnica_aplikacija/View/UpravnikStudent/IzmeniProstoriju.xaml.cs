@@ -62,7 +62,7 @@ namespace Bolnica_aplikacija.View.UpravnikStudent
 
         private void btnPotvrdiIzmenu_Click(object sender, RoutedEventArgs e)
         {
-            ProstorijaKontroler.AzurirajProstoriju((Prostorija)ProstorijePogled.dobaviDataGridProstorija().SelectedItem);
+            //ProstorijaKontroler.AzurirajProstoriju((Prostorija)ProstorijePogled.dobaviDataGridProstorija().SelectedItem);
             GlavniProzor.DobaviProzorZaIzmenu().Children.Clear();
             GlavniProzor.DobaviProzorZaIzmenu().Children.Add(new ProstorijePogled());
         }

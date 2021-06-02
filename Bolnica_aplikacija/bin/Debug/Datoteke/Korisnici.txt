@@ -76,5 +76,29 @@
     "korisnickoIme": "aaa",
     "lozinka": "aaa",
     "tip": "pacijent"
+  },
+  {
+    "id": "10",
+    "korisnickoIme": "refaktor",
+    "lozinka": "refaktor",
+    "tip": "pacijent"
+  },
+  {
+    "id": "11",
+    "korisnickoIme": "ref",
+    "lozinka": "ref",
+    "tip": "pacijent"
+  },
+  {
+    "id": "3",
+    "korisnickoIme": "laza",
+    "lozinka": "lazic",
+    "tip": "lekar"
+  },
+  {
+    "id": "4",
+    "korisnickoIme": "simo",
+    "lozinka": "simic",
+    "tip": "lekar"
   }
 ]

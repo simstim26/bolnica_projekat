@@ -3,6 +3,7 @@
 // Created: Wednesday, March 24, 2021 1:26:44 PM
 // Purpose: Definition of Class Notifikacija
 
+using Bolnica_aplikacija.PomocneKlase;
 using System;
 
 namespace Model
@@ -16,7 +17,8 @@ namespace Model
         public String idKorisnika { get; set; }
         public DateTime datumNotifikovanja { get; set; }
         public bool jeProcitana { get; set; }
-        
+        public  Ponavljanje ponavljanje { get; set; }
+
         public Notifikacija()
         {
 

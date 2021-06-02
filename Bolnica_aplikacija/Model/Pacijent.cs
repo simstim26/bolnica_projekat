@@ -17,18 +17,27 @@ namespace Model
       public String id { get; set;}
       public String idBolnice { get; set; }
       public bool jeGost { get; set; }
-      public String adresa { get; set; }
+      
       public Termin[] termin;
 
         public bool anketa { get; set; }
 
       public bool jeLogickiObrisan { get; set; }
 
-        public Pacijent (String jmbg, String ime, String prezime)
+        //String idBolnice, bool gost, String korisnickoIme, String lozinka, String jmbg, String ime, String prezime, DateTime datumRodj, string adresa, string email, string telefon
+        public Pacijent (String idBolnice, bool gost, String korisnickoIme, String lozinka, String jmbg, String ime, String prezime, DateTime datumRodj, String adresa, String email, String telefon)
         {
+            this.idBolnice = idBolnice;
+            this.jeGost = gost;
+            this.korisnickoIme = korisnickoIme;
+            this.lozinka = lozinka;         
             this.jmbg = jmbg;
             this.ime = ime;
             this.prezime = prezime;
+            this.datumRodjenja = datumRodj;
+            this.adresa = adresa;
+            this.email = email;
+            this.brojTelefona = telefon;
         }
         public Pacijent() { }
 

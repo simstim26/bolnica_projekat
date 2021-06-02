@@ -148,5 +148,16 @@
     "datumPocetka": "2021-05-22T20:30:30.8744189+02:00",
     "trajanje": 0,
     "nacinUpotrebe": "Rektalno"
+  },
+  {
+    "id": "16",
+    "idLeka": "5",
+    "idPacijenta": "1",
+    "idBolesti": "7",
+    "idTermina": "19",
+    "datumPocetka": "2021-05-22T20:30:30.8744189+02:00",
+    "trajanje": 14,
+    "nacinUpotrebe": "Rektalno"
   }
+
 ]

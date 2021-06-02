@@ -29,7 +29,7 @@ namespace Bolnica_aplikacija.PacijentStudent
         private DataGrid dataGrid;
         //private String idPacijenta;
 
-        public PacijentZakaziTermin(DataGrid dataGrid, String idPacijenta)
+        public PacijentZakaziTermin(DataGrid dataGrid)
         {
             InitializeComponent();
 
@@ -68,8 +68,8 @@ namespace Bolnica_aplikacija.PacijentStudent
                     {
                         PacijentTermin selektovanTermin = (PacijentTermin)dataGridSlobodniTermini.SelectedItem;
                         String idSelektovanog = selektovanTermin.id;
-                        //PacijentKontroler.zakaziTerminPacijentu(idSelektovanog);
-                        //dataGrid.ItemsSource = PacijentKontroler.prikazPacijentovihTermina();
+                        PacijentKontroler.zakaziTerminPacijentu(KorisnikKontroler.GetPacijent().id, idSelektovanog);
+                        dataGrid.ItemsSource = PacijentKontroler.prikazPacijentovihTermina(KorisnikKontroler.GetPacijent().id);
 
                         //ANTI TROL SISTEM
 

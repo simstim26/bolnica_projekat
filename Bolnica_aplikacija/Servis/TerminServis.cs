@@ -112,7 +112,7 @@ namespace Bolnica_aplikacija.Servis
                 termin.idTerapije = terapija.id;
             }
             
-            termin.idBolesti = bolestServis.napraviBolest(new Bolest("",nazivBolesti, termin.idTerapije, termin.idPacijenta));
+            termin.idBolesti = bolestServis.napraviBolest(new Bolest("",nazivBolesti, TerapijaServis.getInstance().nadjiTerapijuPoId(termin.idTerapije), PacijentServis.getInstance().nadjiPacijenta(termin.idPacijenta)));
            
             if(terapija != null)
             {
@@ -259,32 +259,31 @@ namespace Bolnica_aplikacija.Servis
 
         public List<PacijentTermin> ucitajTermineZaHitanSlucaj(String tip, String idSpecijalizacije)
         {
-
-            List<PacijentTermin> datumiUOpsegu = pronadjiTermineZaSatVremena();
-            List<PacijentTermin> filtriraniTermini = new List<PacijentTermin>();
-
-            foreach (PacijentTermin pacijentTermin in datumiUOpsegu)
-            {
-                if (pacijentTermin.napomena.Equals(tip) && pacijentTermin.idSpecijalizacije.Equals(idSpecijalizacije))
-                {
-                    filtriraniTermini.Add(pacijentTermin);
-                }
-            }
+            List<PacijentTermin> terminiUOpsegu = pronadjiTermineZaSatVremena();
+            List<PacijentTermin> filtriraniTermini = pretraziTerminePoTipuISpecijalizaciji(terminiUOpsegu, tip, idSpecijalizacije);
 
             //Ako nema slobodnih termina, proverava zauzete
             if (filtriraniTermini.Count == 0)
             {
                 List<PacijentTermin> sviTermini = PacijentServis.getInstance().ucitajZauzeteTermine();
-
-                foreach (PacijentTermin pacijentTermin in sviTermini)
-                {
-                    if (pacijentTermin.napomena.Equals(tip) && pacijentTermin.idSpecijalizacije.Equals(idSpecijalizacije))
-                    {
-                        filtriraniTermini.Add(pacijentTermin);
-                    }
-                }
+                filtriraniTermini = pretraziTerminePoTipuISpecijalizaciji(sviTermini, tip, idSpecijalizacije);
             }
 
+            return filtriraniTermini;
+        }
+
+        private List<PacijentTermin> pretraziTerminePoTipuISpecijalizaciji(List<PacijentTermin> termini, String tip, String idSpecijalizacije)
+        {
+            List<PacijentTermin> filtriraniTermini = new List<PacijentTermin>();
+
+            foreach (PacijentTermin pacijentTermin in termini)
+            {
+                if (pacijentTermin.napomena.Equals(tip) && pacijentTermin.idSpecijalizacije.Equals(idSpecijalizacije))
+                {
+                    filtriraniTermini.Add(pacijentTermin);
+
+                }
+            }
 
             return filtriraniTermini;
         }
@@ -292,28 +291,59 @@ namespace Bolnica_aplikacija.Servis
         private List<PacijentTermin> pronadjiTermineZaSatVremena()
         {
             List<PacijentTermin> datumiUOpsegu = new List<PacijentTermin>();
-            foreach (Termin termin in terminRepozitorijum.ucitajSve())
+
+            foreach (PacijentTermin pacijentTermin in PacijentServis.getInstance().ucitajSlobodneTermine(0, true))
             {
-                foreach (PacijentTermin pacijentTermin in PacijentServis.getInstance().ucitajSlobodneTermine(0, true))
+
+                Termin termin = nadjiTerminPoId(pacijentTermin.id);
+                DateTime terminDatum = termin.datum;
+                DateTime datumSatUnapred = DateTime.Now.AddHours(1);
+
+                int rezultat1 = DateTime.Compare(terminDatum, datumSatUnapred);
+                int rezultat2 = DateTime.Compare(terminDatum, DateTime.Now);
+
+                if (rezultat1 <= 0 && rezultat2 > 0)
                 {
-                    if (pacijentTermin.id.Equals(termin.idTermina))
-                    {
-                        DateTime terminDatum = termin.datum;
-                        DateTime datumSatUnapred = DateTime.Now.AddHours(1);
-
-                        int rezultat1 = DateTime.Compare(terminDatum, datumSatUnapred);
-                        int rezultat2 = DateTime.Compare(terminDatum, DateTime.Now);
-
-                        if (rezultat1 <= 0 && rezultat2 > 0)
-                        {
-                            datumiUOpsegu.Add(pacijentTermin);
-                        }
-
-                    }
+                    datumiUOpsegu.Add(pacijentTermin);
+                    Console.WriteLine(pacijentTermin.napomena + " " + pacijentTermin.idSpecijalizacije);
                 }
             }
-
+           
             return datumiUOpsegu;
+        }
+
+        public void oznaciHitanTermin(String idTermina)
+        {
+            Termin termin = nadjiTerminPoId(idTermina);
+            termin.jeHitan = true;
+            azurirajTermin(termin);
+        }
+
+        public bool terminJeTokomGodisnjegOdmoraLekara(Termin termin)
+        {
+            bool rezultat = false;
+            Lekar lekar = LekarServis.getInstance().nadjiLekaraPoId(termin.idLekara);
+
+            if (lekar.jeNaGodisnjemOdmoru)
+            {
+                DateTime terminDatum = termin.datum;
+                DateTime datumPocetkaGodisnjeg = lekar.pocetakGodisnjegOdmora;
+                DateTime datumKrajaGodisnjeg = lekar.krajGodisnjegOdmora;
+
+                int rezultat1 = DateTime.Compare(terminDatum, datumPocetkaGodisnjeg);
+                int rezultat2 = DateTime.Compare(terminDatum, datumKrajaGodisnjeg);
+
+                if (rezultat1 > 0 && rezultat2 < 0)
+                {
+                    rezultat = true;
+                }
+            }
+            else
+            {
+                rezultat = false;
+            }
+            
+            return rezultat;
         }
 
 

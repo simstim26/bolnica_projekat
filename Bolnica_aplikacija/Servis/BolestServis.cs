@@ -37,7 +37,7 @@ namespace Bolnica_aplikacija.Servis
         public void azurirajTerapijuZaBolest(String idBolesti, String idTerapije)
         {
             Bolest bolest = nadjiBolestPoId(idBolesti);
-            bolest.idTerapije = idTerapije;
+            bolest.terapija.id = idTerapije;
             bolestRepozitorijum.azurirajBolest(bolest);
         }
         public String napraviBolest(Bolest bolest)
