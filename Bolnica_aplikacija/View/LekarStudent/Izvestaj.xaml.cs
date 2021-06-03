@@ -545,5 +545,51 @@ namespace Bolnica_aplikacija.LekarStudent
             LekarProzor.getGlavnaLabela().Content = "Pisanje izveštaja";
 
         }
+
+        private void txtTrajanjeBLecenje_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Regex rx = new Regex("[^0-9]+");
+            if (rx.IsMatch(txtTrajanjeBLecenje.Text))
+            {
+                lblGreskaBLecenje.Visibility = Visibility.Visible;
+                btnPotvrdiBLecenje.IsEnabled = false;
+            }
+            else
+            {
+                lblGreskaBLecenje.Visibility = Visibility.Hidden;
+                btnPotvrdiBLecenje.IsEnabled = true;
+                potvrdaBLecenjeEnabled(true, (datumBLecenje.SelectedDate != null && DateTime.Compare((DateTime)datumBLecenje.SelectedDate, DateTime.Now.Date) >= 0), (dataGridBolnickeSobe.SelectedIndex != -1));
+
+            }
+        }
+
+        private void datumBLecenje_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(DateTime.Compare((DateTime)datumBLecenje.SelectedDate, DateTime.Now.Date) < 0)
+            {
+                lblGreskaDatumBLecenje.Visibility = Visibility.Visible;
+                btnPotvrdiBLecenje.IsEnabled = false;
+            }
+            else
+            {
+                Regex rx = new Regex("[^0-9]+");
+                lblGreskaDatumBLecenje.Visibility = Visibility.Hidden;
+                potvrdaBLecenjeEnabled(!rx.IsMatch(txtTrajanjeBLecenje.Text), true, (dataGridBolnickeSobe.SelectedIndex != -1));
+
+            }
+        }
+
+        private void dataGridBolnickeSobe_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Regex rx = new Regex("[^0-9]+");
+            potvrdaBLecenjeEnabled(!rx.IsMatch(txtTrajanjeBLecenje.Text), (datumBLecenje.SelectedDate != null && DateTime.Compare((DateTime)datumBLecenje.SelectedDate, DateTime.Now.Date) >= 0), (dataGridBolnickeSobe.SelectedIndex != -1));
+
+        }
+
+        private void potvrdaBLecenjeEnabled(bool trajanjeOK, bool datumOK, bool bSobaOk)
+        {
+            btnPotvrdiBLecenje.IsEnabled = trajanjeOK && datumOK && bSobaOk;
+
+        }
     }
 }
