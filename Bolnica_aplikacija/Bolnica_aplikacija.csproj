@@ -190,6 +190,7 @@
     <Compile Include="Servis\OcenaBolniceServis.cs" />
     <Compile Include="Servis\OcenaLekaraServis.cs" />
     <Compile Include="Servis\PrijavaGreskeServis.cs" />
+    <Compile Include="ViewModel\AlergijaViewModel.cs" />
     <Compile Include="ViewModel\LekarTaboviViewModel.cs" />
     <Compile Include="ViewModel\LekZaOdobravanjeViewModel.cs" />
     <Compile Include="ViewModel\PacijentiInfoViewModel.cs" />

@@ -569,7 +569,7 @@ namespace Bolnica_aplikacija.ViewModel
         private void izvrsiIzgenerisi(object obj)
         {
             PdfWriter writer = new PdfWriter(imeIzvestaja + ".pdf");
-            PdfDocument doc = new PdfDocument(writer);
+            PdfDocument doc = new PdfDocument(writer); 
             doc.AddNewPage();
             Document d = new Document(doc);
             Paragraph zaglavljePacijent = new Paragraph();
