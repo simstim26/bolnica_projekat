@@ -41,7 +41,7 @@
         <materialDesign:PackIcon Kind="Calendar" HorizontalAlignment="Left" Margin="306,344,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtDatum" IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="205,344,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="123"/>
         <Grid x:Name="gridDodavanjeLeka" Background="White" Visibility="Hidden">
-            <DataGrid x:Name="dataGridLekovi" IsReadOnly="True" AutoGenerateColumns="False" SelectionMode="Single" HorizontalAlignment="Left" Height="432" Margin="0,114,0,0" VerticalAlignment="Top" Width="430">
+            <DataGrid x:Name="dataGridLekovi" AlternatingRowBackground="#FF9900" AlternationCount="2" IsReadOnly="True" AutoGenerateColumns="False" SelectionMode="Single" HorizontalAlignment="Left" Height="432" Margin="0,114,0,0" VerticalAlignment="Top" Width="430">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Naziv" Binding="{Binding naziv}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Količina [mg]" Binding="{Binding kolicina}"></DataGridTextColumn>

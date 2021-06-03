@@ -179,7 +179,7 @@
         </Grid>
 
         <Grid x:Name="gridOdabirLekaraUput" Background="White" Visibility="Hidden">
-            <DataGrid x:Name="dataGridLekari" HorizontalAlignment="Left" Height="436" AutoGenerateColumns="False" IsReadOnly="True" Margin="0,140,0,0" VerticalAlignment="Top" Width="430">
+            <DataGrid x:Name="dataGridLekari" HorizontalAlignment="Left" AlternatingRowBackground="#FF9900" AlternationCount="2" Height="436" AutoGenerateColumns="False" IsReadOnly="True" Margin="0,140,0,0" VerticalAlignment="Top" Width="430">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Lekar" Binding="{Binding imeLekara}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Specijalizacija" Binding="{Binding nazivSpecijalizacije}"></DataGridTextColumn>
@@ -206,7 +206,7 @@
 
         </Grid>
         <Grid x:Name="gridZakazivanje" Background="White" Visibility="Hidden">
-            <DataGrid x:Name="dataGridSlobodniTerminiLekara" HorizontalAlignment="Left" IsReadOnly="True" AutoGenerateColumns="False" Height="436" Margin="0,122,0,0" VerticalAlignment="Top" Width="430">
+            <DataGrid x:Name="dataGridSlobodniTerminiLekara" AlternatingRowBackground="#FF9900" AlternationCount="2" HorizontalAlignment="Left" IsReadOnly="True" AutoGenerateColumns="False" Height="436" Margin="0,122,0,0" VerticalAlignment="Top" Width="430">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Datum" Binding="{Binding datum}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Vreme" Binding="{Binding satnica}"></DataGridTextColumn>
@@ -250,7 +250,7 @@
             <Label x:Name="lblPacijent" HorizontalAlignment="Left" Margin="157,47,0,0" VerticalAlignment="Top" Width="186" Height="24"/>
 
             <Grid x:Name="gridOdabirProstorija" Background="White" Visibility="Hidden">
-                <DataGrid x:Name="dataGridProstorije" IsReadOnly="True" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="369" Margin="0,169,0,0" VerticalAlignment="Top" Width="430">
+                <DataGrid x:Name="dataGridProstorije" IsReadOnly="True" AlternatingRowBackground="#FF9900" AlternationCount="2" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="369" Margin="0,169,0,0" VerticalAlignment="Top" Width="430">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Sprat" Binding="{Binding sprat}"></DataGridTextColumn>
                         <DataGridTextColumn Header="Broj" Binding="{Binding broj}"></DataGridTextColumn>
@@ -265,7 +265,7 @@
             </Grid>
 
             <Grid x:Name="gridPrikazInventara" Background="White" Visibility="Hidden">
-                <DataGrid x:Name="dataGridInventar" AutoGenerateColumns="False" IsReadOnly="True" HorizontalAlignment="Left" Height="627" Margin="0,123,0,0" VerticalAlignment="Top" Width="430">
+                <DataGrid x:Name="dataGridInventar" AutoGenerateColumns="False" AlternatingRowBackground="#FF9900" AlternationCount="2" IsReadOnly="True" HorizontalAlignment="Left" Height="627" Margin="0,123,0,0" VerticalAlignment="Top" Width="430">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Naziv" Binding="{Binding naziv}"></DataGridTextColumn>
                         <DataGridTextColumn Header="Količina" Binding="{Binding kolicina}"></DataGridTextColumn>
