@@ -438,7 +438,7 @@ namespace Bolnica_aplikacija.LekarStudent
 
         private void txtVreme_TextChanged(object sender, TextChangedEventArgs e)
         {
-            Regex rx = new Regex("[0-9]{2}[:][0-9]{2}");
+            Regex rx = new Regex("^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$");
             if (rx.IsMatch(txtVreme.Text))
             {
                 omoguciDugme();
@@ -462,7 +462,7 @@ namespace Bolnica_aplikacija.LekarStudent
 
         private void omoguciDugme()
         {
-            if (!String.IsNullOrWhiteSpace(txtVreme.Text) && datum.SelectedDate != null && !txtProstorija.Text.Equals("Prostorija..."))
+            if (!String.IsNullOrWhiteSpace(txtVreme.Text) && (datum.SelectedDate != null && DateTime.Compare((DateTime)datum.SelectedDate, DateTime.Now.Date) >= 0) && !txtProstorija.Text.Equals("Prostorija..."))
             {
                 btnPotvrdi.IsEnabled = true;
             }
@@ -474,7 +474,7 @@ namespace Bolnica_aplikacija.LekarStudent
 
         private void omoguciDugmeZaProstoriju()
         {
-            if (!String.IsNullOrWhiteSpace(txtVreme.Text) && datum.SelectedDate != null)
+            if (!String.IsNullOrWhiteSpace(txtVreme.Text) && (datum.SelectedDate != null && DateTime.Compare((DateTime)datum.SelectedDate, DateTime.Now.Date) >= 0))
             {
                 btnDodajProstoriju.IsEnabled = true;
             }
@@ -628,6 +628,20 @@ namespace Bolnica_aplikacija.LekarStudent
         private void potvrdaReceptaEnabled(bool trajanjeOK, bool dijagnozaOk, bool nazivLekaOK, bool nacinUpotrebeOK)
         {
             btnPotvrdiRecept.IsEnabled = trajanjeOK && dijagnozaOk && nazivLekaOK && nacinUpotrebeOK;
+        }
+
+        private void datum_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            lblGreskaDatumOperacija.Visibility = DateTime.Compare((DateTime)datum.SelectedDate, DateTime.Now.Date) < 0 ? Visibility.Visible : Visibility.Hidden; 
+            omoguciDugme();
+            omoguciDugmeZaProstoriju();    
+        }
+
+        private void btnPonistiProstoriju_Click(object sender, RoutedEventArgs e)
+        {
+            gridOdabirProstorija.Visibility = Visibility.Hidden;
+            gridZakazivanjeOperacije.Visibility = Visibility.Visible;
+            LekarProzor.getGlavnaLabela().Content = "Zakazivanje operacije";
         }
     }
 }
