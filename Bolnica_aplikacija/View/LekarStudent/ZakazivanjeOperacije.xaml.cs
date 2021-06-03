@@ -108,12 +108,13 @@ namespace Bolnica_aplikacija.LekarStudent
             TerminKontroler.napraviTermin(new TerminDTO(TipTermina.OPERACIJA, (DateTime)datum.SelectedDate, (DateTime)datum.SelectedDate
                 + (new TimeSpan(Convert.ToInt32(satnica[0]), Convert.ToInt32(satnica[1]), 0)), false, "", ((Prostorija)dataGridProstorije.SelectedItem).id,
                  ((String)fm.DataContext), KorisnikKontroler.getLekar().id, null, null, null, null, null, null, TipTermina.PREGLED, (bool)cBoxHitna.IsChecked));
+            Content = new PacijentInfo(((String[])PacijentInfo.getFM().DataContext)[0], ((String[])PacijentInfo.getFM().DataContext)[1]);
         }
        
         private void txtVreme_TextChanged(object sender, TextChangedEventArgs e)
         {
 
-            Regex rx = new Regex("[0-9]{2}[:][0-9]{2}");
+            Regex rx = new Regex("^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$");
             if (rx.IsMatch(txtVreme.Text))
             {
                 omoguciDugme();
@@ -136,7 +137,7 @@ namespace Bolnica_aplikacija.LekarStudent
 
         private void omoguciDugme()
         {
-            if (!String.IsNullOrWhiteSpace(txtVreme.Text) && datum.SelectedDate != null && !txtProstorija.Text.Equals("Prostorija..."))
+            if (!String.IsNullOrWhiteSpace(txtVreme.Text) && (datum.SelectedDate != null && DateTime.Compare((DateTime)datum.SelectedDate, DateTime.Now.Date) >= 0) && !txtProstorija.Text.Equals("Prostorija..."))
             {
                 btnPotvrdi.IsEnabled = true;
             }
@@ -148,7 +149,7 @@ namespace Bolnica_aplikacija.LekarStudent
 
         private void omoguciDugmeZaProstoriju()
         {
-            if(!String.IsNullOrWhiteSpace(txtVreme.Text) && datum.SelectedDate != null)
+            if(!String.IsNullOrWhiteSpace(txtVreme.Text) && (datum.SelectedDate != null && DateTime.Compare((DateTime)datum.SelectedDate, DateTime.Now.Date) >= 0))
             {
                 btnDodajProstoriju.IsEnabled = true;
             }
@@ -192,6 +193,13 @@ namespace Bolnica_aplikacija.LekarStudent
             aktivan = false;
             Content = new ZakaziTermin(ZakaziTermin.getTipAkcije(), ((String[])ZakaziTermin.getFM().DataContext)[0]
                     , ((String[])ZakaziTermin.getFM().DataContext)[1]);
+        }
+
+        private void datum_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            lblGreskaDatum.Visibility = DateTime.Compare((DateTime)datum.SelectedDate, DateTime.Now.Date) < 0 ? Visibility.Visible : Visibility.Hidden;
+            omoguciDugme();
+            omoguciDugmeZaProstoriju();
         }
     }
 }
