@@ -313,6 +313,15 @@ namespace Bolnica_aplikacija.LekarStudent
             LekarProzor.getGlavnaLabela().Content = "Izdavanje uputa";
 
             TerminKontroler.azurirajLekaraZaUput(((String[])fm.DataContext)[1], ((LekarSpecijalizacija)dataGridLekari.SelectedItem).idLekara);
+
+            if (LekarKontroler.nadjiLekaraPoId(((LekarSpecijalizacija)dataGridLekari.SelectedItem).idLekara).idSpecijalizacije.Equals("0"))
+            {
+                radioBtnOperacija.IsEnabled = false;
+            }
+            else
+            {
+                radioBtnOperacija.IsEnabled = true;
+            }
         }
 
         private void btnZakaziOperaciju_Click(object sender, RoutedEventArgs e)
@@ -502,6 +511,7 @@ namespace Bolnica_aplikacija.LekarStudent
         private void btnPonisti_Click(object sender, RoutedEventArgs e)
         {
             gridZakazivanjeOperacije.Visibility = Visibility.Hidden;
+            gridOdabirLekaraUput.Visibility = Visibility.Visible;
             LekarProzor.getGlavnaLabela().Content = "Odabir lekara";
         }
 
@@ -642,6 +652,60 @@ namespace Bolnica_aplikacija.LekarStudent
             gridOdabirProstorija.Visibility = Visibility.Hidden;
             gridZakazivanjeOperacije.Visibility = Visibility.Visible;
             LekarProzor.getGlavnaLabela().Content = "Zakazivanje operacije";
+        }
+
+        private void btnPonistavanjeZakazivanja_Click(object sender, RoutedEventArgs e)
+        {
+            gridZakazivanje.Visibility = Visibility.Hidden;
+            gridOdabirLekaraUput.Visibility = Visibility.Visible;
+            LekarProzor.getGlavnaLabela().Content = "Odabir lekara";
+        }
+
+        private void btnPonistiOdaberLeka_Click(object sender, RoutedEventArgs e)
+        {
+            gridOdabirLeka.Visibility = Visibility.Hidden;
+            gridRecept.Visibility = Visibility.Visible;
+            LekarProzor.getGlavnaLabela().Content = "Izdavanje recepta";
+        }
+
+        private void txtUputIzvestaj_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (String.IsNullOrWhiteSpace(txtUputIzvestaj.Text) || String.IsNullOrWhiteSpace(txtLekarUput.Text))
+            {
+                btnPotvrdiUput.IsEnabled = false;
+            }
+            else
+            {
+                btnPotvrdiUput.IsEnabled = true;
+            }
+        }
+
+        private void txtLekarUput_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (String.IsNullOrWhiteSpace(txtUputIzvestaj.Text) || String.IsNullOrWhiteSpace(txtLekarUput.Text))
+            {
+                btnPotvrdiUput.IsEnabled = false;
+            }
+            else
+            {
+                btnPotvrdiUput.IsEnabled = true;
+            }
+        }
+
+        private void btnPonistiUput_Click(object sender, RoutedEventArgs e)
+        {
+            gridUput.Visibility = Visibility.Hidden;
+            LekarProzor.getGlavnaLabela().Content = "Pisanje izveštaja";
+        }
+
+        private void txtIzvestaj_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            btnPotvrdaIzvestaj.IsEnabled = (String.IsNullOrWhiteSpace(txtDijagnozaIzvestaj.Text) || String.IsNullOrWhiteSpace(txtIzvestaj.Text)) ? false : true;
+        }
+
+        private void txtDijagnozaIzvestaj_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            btnPotvrdaIzvestaj.IsEnabled = (String.IsNullOrWhiteSpace(txtDijagnozaIzvestaj.Text) || String.IsNullOrWhiteSpace(txtIzvestaj.Text)) ? false : true;
         }
     }
 }
