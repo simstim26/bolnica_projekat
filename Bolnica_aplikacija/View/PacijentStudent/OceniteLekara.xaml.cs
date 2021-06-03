@@ -53,7 +53,7 @@ namespace Bolnica_aplikacija.View.PacijentStudent
         private void popuniLekara()
         {
 
-            comboBoxLekar.ItemsSource = LekarKontroler.popuniLekarComboBox(KorisnikKontroler.GetPacijent().id);
+            comboBoxLekar.ItemsSource = LekarKontroler.popuniLekarComboBox(KorisnikKontroler.GetPacijent().id).Values;
             comboBoxLekar.SelectedIndex = 0;
          
         }
