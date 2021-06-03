@@ -83,7 +83,7 @@
             <Label Content="Upućuje:" HorizontalAlignment="Left" Margin="50,56,0,0" VerticalAlignment="Top" Height="26" Width="74"/>
             <Label x:Name="lblUpucuje" HorizontalAlignment="Left" Margin="148,56,0,0" VerticalAlignment="Top" Height="26" Width="155"/>
             <Label Content="Kod:" HorizontalAlignment="Left" Margin="50,97,0,0" VerticalAlignment="Top" Height="27" Width="74"/>
-            <TextBox x:Name="txtLekarUput" HorizontalAlignment="Left" Height="23" Margin="148,97,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155"/>
+            <TextBox x:Name="txtLekarUput" IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="148,97,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155"/>
             <Button x:Name="btnIzaberiLekara" HorizontalAlignment="Left" Margin="332,87,0,0" VerticalAlignment="Top" Width="45" Height="33" Click="btnIzaberiLekara_Click">
                 <materialDesign:PackIcon Kind="Plus" Width="22" Height="22" HorizontalAlignment="Center"></materialDesign:PackIcon>
             </Button>
@@ -109,7 +109,7 @@
             <Label Content="radi:" HorizontalAlignment="Left" Margin="34,213,0,0" VerticalAlignment="Top"/>
 
         </Grid>
-        <Grid x:Name="gridRecept" Background="White" Visibility="Hidden" IsVisibleChanged="gridRecept_IsVisibleChanged">
+        <Grid x:Name="gridRecept" Background="White" Visibility="Visible" IsVisibleChanged="gridRecept_IsVisibleChanged">
             <Image HorizontalAlignment="Left" Height="31" Margin="59,41,0,0" VerticalAlignment="Top" Width="31" Source="patient-icon-3.jpg"/>
             <Label Content="JMBG:" HorizontalAlignment="Left" Margin="127,55,0,0" VerticalAlignment="Top"/>
             <Label Content="Ime i prezime:" HorizontalAlignment="Left" Margin="127,99,0,0" VerticalAlignment="Top"/>
@@ -124,25 +124,25 @@
             <Label Content="Količina:" HorizontalAlignment="Left" Margin="39,306,0,0" VerticalAlignment="Top"/>
             <Label Content="Datum propisivanja:" HorizontalAlignment="Left" Margin="39,344,0,0" VerticalAlignment="Top"/>
             <Label Content="Trajanje:" HorizontalAlignment="Left" Margin="39,385,0,0" VerticalAlignment="Top"/>
-            <Label Content="Način upotrebe:" HorizontalAlignment="Left" Margin="39,432,0,0" VerticalAlignment="Top"/>
-            <TextBox x:Name="txtNacinUpotrebe" Background="Gainsboro" HorizontalAlignment="Left" Height="101" Margin="0,461,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="430"/>
-            <Button x:Name="btnPotvrdiRecept" HorizontalAlignment="Left" Margin="39,594,0,0" VerticalAlignment="Top" Width="75" Click="btnPotvrdiRecept_Click">
+            <Label Content="Način upotrebe:" HorizontalAlignment="Left" Margin="39,432,0,0" VerticalAlignment="Top" />
+            <TextBox x:Name="txtNacinUpotrebe" Background="Gainsboro" HorizontalAlignment="Left" Height="101" Margin="0,461,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="430" TextChanged="txtNacinUpotrebe_TextChanged"/>
+            <Button x:Name="btnPotvrdiRecept" IsEnabled="False" HorizontalAlignment="Left" Margin="39,594,0,0" VerticalAlignment="Top" Width="75" Click="btnPotvrdiRecept_Click">
                 <materialDesign:PackIcon Kind="CheckCircle" Height="28" Width="39"></materialDesign:PackIcon>
             </Button>
             <Button x:Name="btnPonistiRecept" HorizontalAlignment="Left" Margin="306,594,0,0" VerticalAlignment="Top" Width="75">
                 <materialDesign:PackIcon Kind="CloseCircle" Height="28" Width="30" RenderTransformOrigin="0.5,0.5"/>
             </Button>
-            <TextBox x:Name="txtDijagnoza" HorizontalAlignment="Left" Height="23" Margin="205,229,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="123"/>
-            <TextBox x:Name="txtNazivLeka" HorizontalAlignment="Left" Height="23" Margin="205,268,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="123"/>
-            <TextBox x:Name="txtKol" HorizontalAlignment="Left" Height="23" Margin="205,306,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="123"/>
-            <TextBox x:Name="txtTrajanje" HorizontalAlignment="Left" Height="23" Margin="205,386,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="123"/>
+            <TextBox x:Name="txtDijagnoza" HorizontalAlignment="Left" Height="23" Margin="205,229,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="123" TextChanged="txtDijagnoza_TextChanged"/>
+            <TextBox x:Name="txtNazivLeka" IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="205,268,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="123" TextChanged="txtNazivLeka_TextChanged"/>
+            <TextBox x:Name="txtKol" IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="205,306,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="123"/>
+            <TextBox x:Name="txtTrajanje" HorizontalAlignment="Left" Height="23" Margin="205,386,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="123" TextChanged="txtTrajanje_TextChanged" />
 
             <Button x:Name="btnDodavanjeLeka" HorizontalAlignment="Left" Margin="355,259,0,0" VerticalAlignment="Top" Width="45" Click="btnDodavanjeLeka_Click">
                 <materialDesign:PackIcon Kind="Plus" HorizontalAlignment="Center" Height="22" Width="24"></materialDesign:PackIcon>
             </Button>
             <materialDesign:PackIcon Kind="Calendar" HorizontalAlignment="Left" Margin="306,344,0,0" VerticalAlignment="Top"/>
             <TextBox x:Name="txtDatum" IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="205,344,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="123"/>
-
+            <Label x:Name="lblGreskaTrajanjeRecept" Content="*Greška! U polju trajanje mogu biti samo brojevi!" Visibility="Hidden" FontWeight="Bold" HorizontalAlignment="Left" Margin="39,409,0,0" VerticalAlignment="Top"/>
 
         </Grid>
         <Grid x:Name="gridAzuriranje" Background="White" Visibility="Hidden">

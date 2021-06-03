@@ -591,5 +591,43 @@ namespace Bolnica_aplikacija.LekarStudent
             btnPotvrdiBLecenje.IsEnabled = trajanjeOK && datumOK && bSobaOk;
 
         }
+
+        private void txtTrajanje_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Regex rx = new Regex("[^0-9]+");
+            if (rx.IsMatch(txtTrajanje.Text))
+            {
+                lblGreskaTrajanjeRecept.Visibility = Visibility.Visible;
+                btnPotvrdiRecept.IsEnabled = false;
+            }
+            else
+            {
+                lblGreskaTrajanjeRecept.Visibility = Visibility.Hidden;
+                potvrdaReceptaEnabled(true && (!String.IsNullOrWhiteSpace(txtTrajanje.Text)), !String.IsNullOrWhiteSpace(txtDijagnoza.Text), !String.IsNullOrWhiteSpace(txtNazivLeka.Text), !String.IsNullOrWhiteSpace(txtNacinUpotrebe.Text));
+            }
+        }
+
+        private void txtDijagnoza_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Regex rx = new Regex("[^0-9]+");
+            potvrdaReceptaEnabled((!String.IsNullOrWhiteSpace(txtTrajanje.Text)) && !rx.IsMatch(txtTrajanje.Text), !String.IsNullOrWhiteSpace(txtDijagnoza.Text), !String.IsNullOrWhiteSpace(txtNazivLeka.Text), !String.IsNullOrWhiteSpace(txtNacinUpotrebe.Text));
+        }
+
+        private void txtNazivLeka_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Regex rx = new Regex("[^0-9]+");
+            potvrdaReceptaEnabled((!String.IsNullOrWhiteSpace(txtTrajanje.Text)) && !rx.IsMatch(txtTrajanje.Text), !String.IsNullOrWhiteSpace(txtDijagnoza.Text), !String.IsNullOrWhiteSpace(txtNazivLeka.Text), !String.IsNullOrWhiteSpace(txtNacinUpotrebe.Text));
+        }
+
+        private void txtNacinUpotrebe_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Regex rx = new Regex("[^0-9]+");
+            potvrdaReceptaEnabled((!String.IsNullOrWhiteSpace(txtTrajanje.Text)) && !rx.IsMatch(txtTrajanje.Text), !String.IsNullOrWhiteSpace(txtDijagnoza.Text), !String.IsNullOrWhiteSpace(txtNazivLeka.Text), !String.IsNullOrWhiteSpace(txtNacinUpotrebe.Text));
+        }
+
+        private void potvrdaReceptaEnabled(bool trajanjeOK, bool dijagnozaOk, bool nazivLekaOK, bool nacinUpotrebeOK)
+        {
+            btnPotvrdiRecept.IsEnabled = trajanjeOK && dijagnozaOk && nazivLekaOK && nacinUpotrebeOK;
+        }
     }
 }
