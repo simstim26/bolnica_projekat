@@ -122,7 +122,8 @@
                             </materialDesign:PackIcon>
                         </Button>
                     </Grid>
-                    <DataGrid x:Name="dataGridProsliTermini" ItemsSource="{Binding Path=prosli, Mode=TwoWay}" SelectedItem="{Binding Path=prosliTermin, Mode=TwoWay}" Margin="0,136,0,-0.4" RowHeight="35" IsReadOnly="True" AutoGenerateColumns="False" GridLinesVisibility="All" Background="White" AlternatingRowBackground="#FF9900" AlternationCount="2" SelectionMode="Single">
+                    <Label Content="*Greška! Naziv može da se sastoji samo od slova i brojeva!" Visibility="{Binding Path=greskaVis, Converter={StaticResource BooleanToVisibilityConverter}}" FontWeight="Bold" HorizontalAlignment="Left" Margin="16,126,0,0" VerticalAlignment="Top"/>
+                    <DataGrid x:Name="dataGridProsliTermini" ItemsSource="{Binding Path=prosli, Mode=TwoWay}" SelectedItem="{Binding Path=prosliTermin, Mode=TwoWay}" Margin="0,161,0,-0.4" RowHeight="35" IsReadOnly="True" AutoGenerateColumns="False" GridLinesVisibility="All" Background="White" AlternatingRowBackground="#FF9900" AlternationCount="2" SelectionMode="Single">
                         <DataGrid.Columns>
 
                             <DataGridTextColumn ElementStyle="{StaticResource ColumnElementStyle}"  Header="Datum" Binding="{Binding datum}"/>
@@ -135,8 +136,8 @@
                     <Button HorizontalAlignment="Left" Command="{Binding Path=prosliIzvestaj}" Margin="336,72,0,0" VerticalAlignment="Top" Width="69" Height="49">
                         <materialDesign:PackIcon Kind="InfoCircle" Height="33" Width="38"></materialDesign:PackIcon>
                     </Button>
-                    <Button HorizontalAlignment="Left" Content="Napravi izveštaj" Command="{Binding Path=izgenerisi}" Margin="168,72,0,0" VerticalAlignment="Top" Width="142" Height="49"/>
-                    <TextBox TextWrapping="Wrap" Text="{Binding Path=imeIzvestaja, Mode=TwoWay}" Margin="16,85,280,500.6"/>
+                    <Button HorizontalAlignment="Left" Content="Napravi izveštaj" Command="{Binding Path=izgenerisi}" IsEnabled="{Binding Path=izvestajEnabled}" Margin="168,72,0,0" VerticalAlignment="Top" Width="142" Height="49"/>
+                    <TextBox TextWrapping="Wrap" Text="{Binding Path=imeIzvestaja, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="16,85,280,500.6"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="tabPregled" Width="143">

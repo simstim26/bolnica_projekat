@@ -15,6 +15,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -99,7 +100,54 @@ namespace Bolnica_aplikacija.ViewModel
             set
             {
                 pImeIzvestaja = value;
+                Regex rx = new Regex("[^A-Za-z0-9]");
+                if (rx.IsMatch(pImeIzvestaja))
+                {
+                    greskaVis = true;
+                    izvestajEnabled = false;
+                }
+                else
+                {
+                    greskaVis = false;
+                    if (String.IsNullOrWhiteSpace(pImeIzvestaja))
+                    {
+                        izvestajEnabled = false;
+                    }
+                    else
+                    {
+                        izvestajEnabled = true;
+                    }
+                }
                 NotifyPropertyChanged("imeIzvestaja");
+            }
+        }
+
+        private bool pIzvestajEnabled;
+
+        public bool izvestajEnabled
+        {
+            get
+            {
+                return pIzvestajEnabled;
+            }
+            set
+            {
+                pIzvestajEnabled = value;
+                NotifyPropertyChanged("izvestajEnabled");
+            }
+        }
+
+        private bool pGreskaVis;
+        public bool greskaVis
+        {
+            get
+            {
+                return pGreskaVis;
+            }
+            set
+            {
+                pGreskaVis = value;
+                NotifyPropertyChanged("greskaVis");
             }
         }
 
