@@ -145,9 +145,7 @@ namespace Bolnica_aplikacija.LekarStudent
             {
                 lblGreskaTrajanje.Visibility = Visibility.Hidden;
                 potvrdaReceptaEnabled(true && !String.IsNullOrWhiteSpace(txtTrajanje.Text), !String.IsNullOrWhiteSpace(txtNacinUpotrebe.Text));
-
             }
-
         }
 
         private void txtNacinUpotrebe_TextChanged(object sender, TextChangedEventArgs e)

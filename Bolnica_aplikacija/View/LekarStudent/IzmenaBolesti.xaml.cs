@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -174,6 +175,32 @@ namespace Bolnica_aplikacija.LekarStudent
         {
             aktivan = false;
             Content = new IstorijaBolesti(((BolestTerapija)fm.DataContext).idPacijenta);
+        }
+
+        private void txtTrajanje_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Regex rx = new Regex("[^0-9]+");
+            if (rx.IsMatch(txtTrajanje.Text))
+            {
+                lblGreskaTrajanje.Visibility = Visibility.Visible;
+                potvrdaReceptEnable(false, !String.IsNullOrWhiteSpace(txtNacinUpotrebe.Text));
+            }
+            else
+            {
+                lblGreskaTrajanje.Visibility = Visibility.Hidden;
+                potvrdaReceptEnable(true && !String.IsNullOrEmpty(txtTrajanje.Text), !String.IsNullOrWhiteSpace(txtNacinUpotrebe.Text));
+            }
+        }
+
+        private void txtNacinUpotrebe_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Regex rx = new Regex("[^0-9]+");
+            potvrdaReceptEnable(!rx.IsMatch(txtTrajanje.Text) && !String.IsNullOrEmpty(txtTrajanje.Text), !String.IsNullOrWhiteSpace(txtNacinUpotrebe.Text));
+        }
+
+        private void potvrdaReceptEnable(bool trajanjeOK, bool nacinUpotrebeOK)
+        {
+            btnPotvrdiRecept.IsEnabled = trajanjeOK && nacinUpotrebeOK;
         }
     }
 }
