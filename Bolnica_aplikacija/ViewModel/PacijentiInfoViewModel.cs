@@ -151,6 +151,83 @@ namespace Bolnica_aplikacija.ViewModel
             }
         }
 
+        private DateTime pPrviDatum;
+        public DateTime prviDatum
+        {
+            get
+            {
+                return pPrviDatum;
+            }
+
+            set
+            {
+                pPrviDatum = value;
+
+                if (DateTime.Compare(pPrviDatum, DateTime.Now) > 0)
+                {
+                    greskaTekst = "Datum ne moze biti veci od trenutnog!";
+                    pretragaProsliGreska = true;
+                }
+                else
+                {
+                    pretragaProsliGreska = false;
+                }
+                NotifyPropertyChanged("prviDatum");
+            }
+        }
+
+        private DateTime pDrugiDatum;
+        public DateTime drugiDatum
+        {
+            get
+            {
+                return pDrugiDatum;
+            }
+            set
+            {
+                pDrugiDatum = value;
+                if(DateTime.Compare(pDrugiDatum, DateTime.Now) > 0)
+                {
+                    greskaTekst = "Datum ne može biti veći od trenutnog!";
+                    pretragaProsliGreska = true;
+                }
+                else
+                {
+                    pretragaProsliGreska = false;
+                }
+                NotifyPropertyChanged("drugiDatum");
+            }
+        }
+
+        private String pGreskaTekst;
+        public String greskaTekst
+        {
+            get
+            {
+                return pGreskaTekst;
+            }
+
+            set
+            {
+                pGreskaTekst = value;
+                NotifyPropertyChanged("greskaTekst");
+            }
+        }
+
+        private bool pPretragaProsliGreska;
+        public bool pretragaProsliGreska
+        {
+            get
+            {
+                return pPretragaProsliGreska;
+            }
+            set
+            {
+                pPretragaProsliGreska = value;
+                NotifyPropertyChanged("pretragaProsliGreska");
+            }
+        }
+
         #endregion
 
         #region pomocni stringovi za prikaz
@@ -274,6 +351,9 @@ namespace Bolnica_aplikacija.ViewModel
             ucitajProsleTermine();
             ucitajBuduceTermine();
 
+            prviDatum = DateTime.Now.Date;
+            drugiDatum = DateTime.Now.Date;
+
             otkazi = new RelayCommand(izvrsiOtkazivanje);
             promeni = new RelayCommand(izvrsiPromenu);
             zakazi = new RelayCommand(izvrsiZakazivanje);
@@ -284,6 +364,7 @@ namespace Bolnica_aplikacija.ViewModel
             izvestaj = new RelayCommand(izvrsiIzvestaj);
             prosliIzvestaj = new RelayCommand(izvrsiProsliIzvestaj);
             izgenerisi = new RelayCommand(izvrsiIzgenerisi);
+            pretraziProsleTermine = new RelayCommand(izvrsiPretraguProslih);
         }
         private void ucitajProsleTermine()
         {
@@ -602,6 +683,41 @@ namespace Bolnica_aplikacija.ViewModel
             d.Close();
             MessageBox.Show("Uspesno je napravljen pdf", "Informacija", MessageBoxButton.OK, MessageBoxImage.Information);
         }
+
+        #endregion
+
+        #region Komanda -> pretraga proslih termina
+        private RelayCommand pPretraziProsleTermine;
+        public RelayCommand pretraziProsleTermine
+        {
+            get
+            {
+                return pPretraziProsleTermine;
+            }
+
+            set
+            {
+                pPretraziProsleTermine = value;
+            }
+        }
+
+        private void izvrsiPretraguProslih(object obj)
+        {
+            if (prviDatum != null && drugiDatum != null)
+            {
+                if (DateTime.Compare(prviDatum, drugiDatum) <= 0)
+                {
+                    prosli = new ObservableCollection<PacijentTermin>(PacijentKontroler.pretraziProsleTermineZaPacijenta(pacijent.id, prviDatum, drugiDatum));
+                    pretragaProsliGreska = false;
+                }
+                else
+                {
+                    greskaTekst = "Prvi datum mora biti pre drugog!";
+                    pretragaProsliGreska = true;
+                }
+            }
+        }
+
 
         #endregion
     }

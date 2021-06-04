@@ -22,6 +22,12 @@ namespace Bolnica_aplikacija.Kontroler
         {
             return PacijentServis.getInstance().ucitajSveTerapijeZaPacijenta(idPacijenta);
         }
+        
+        public static List<PacijentTermin> pretraziProsleTermineZaPacijenta(String idPacijenta, DateTime prvi, DateTime drugi)
+        {
+            return PacijentServis.getInstance().pretraziProsleTermineZaPacijenta(idPacijenta, prvi, drugi);
+        }
+
 
         public static List<BolestTerapija> nadjiIstorijuBolestiZaPacijenta(String idPacijenta)
         {

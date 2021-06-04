@@ -2,10 +2,10 @@
   {
     "id": "1",
     "datumPocetka": "2021-05-30T00:00:00",
-    "trajanje": 3,
-    "jeZavrsen": true,
+    "trajanje": 10,
+    "jeZavrsen": false,
     "pacijent": "2",
-    "bolnickaSoba": "1",
+    "bolnickaSoba": "3",
     "termin": "27"
   }
 ]

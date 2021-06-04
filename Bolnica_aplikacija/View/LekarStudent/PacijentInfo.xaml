@@ -113,14 +113,15 @@
                     </DataTemplate>
                 </TabItem.HeaderTemplate>
                 <Grid>
-                    <Grid x:Name="gridIstorijaTerminaPretraga" Background="#93c47d" Margin="-4,-2,-1,567.6" Visibility="Hidden">
-                        <DatePicker HorizontalAlignment="Left" Margin="26,14,0,0" VerticalAlignment="Top" Width="77"/>
-                        <DatePicker HorizontalAlignment="Left" Margin="160,14,0,0" VerticalAlignment="Top" Width="77"/>
+                    <Grid x:Name="gridIstorijaTerminaPretraga" Background="#93c47d" Margin="-4,-2,-1,561.6" Visibility="Visible">
+                        <DatePicker HorizontalAlignment="Left" SelectedDate="{Binding Path=prviDatum, Mode=TwoWay}" Margin="26,14,0,0" VerticalAlignment="Top" Width="77"/>
+                        <DatePicker HorizontalAlignment="Left" SelectedDate="{Binding Path=drugiDatum, Mode=TwoWay}" Margin="160,14,0,0" VerticalAlignment="Top" Width="77"/>
                         <Label Content="-" HorizontalAlignment="Left" Margin="122,15,0,0" VerticalAlignment="Top"/>
-                        <Button HorizontalAlignment="Left" Margin="258,10,0,0" VerticalAlignment="Top" Width="34" Height="33" Style="{StaticResource MaterialDesignFloatingActionAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Black">
+                        <Button HorizontalAlignment="Left" Command="{Binding Path=pretraziProsleTermine}" Margin="258,10,0,0" VerticalAlignment="Top" Width="34" Height="33" Style="{StaticResource MaterialDesignFloatingActionAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Black">
                             <materialDesign:PackIcon Kind="Play" Height="26" Width="26" RenderTransformOrigin="0.5,0.5">
                             </materialDesign:PackIcon>
                         </Button>
+                        <Label Content="{Binding Path=greskaTekst, Mode=TwoWay}" Visibility="{Binding Path=pretragaProsliGreska, Converter={StaticResource BooleanToVisibilityConverter}, Mode=TwoWay}" FontWeight="Black" HorizontalAlignment="Left" Margin="26,38,0,0" VerticalAlignment="Top" Height="24" Width="304"/>
                     </Grid>
                     <Label Content="*Greška! Naziv može da se sastoji samo od slova i brojeva!" Visibility="{Binding Path=greskaVis, Converter={StaticResource BooleanToVisibilityConverter}}" FontWeight="Bold" HorizontalAlignment="Left" Margin="16,126,0,0" VerticalAlignment="Top"/>
                     <DataGrid x:Name="dataGridProsliTermini" ItemsSource="{Binding Path=prosli, Mode=TwoWay}" SelectedItem="{Binding Path=prosliTermin, Mode=TwoWay}" Margin="0,161,0,-0.4" RowHeight="35" IsReadOnly="True" AutoGenerateColumns="False" GridLinesVisibility="All" Background="White" AlternatingRowBackground="#FF9900" AlternationCount="2" SelectionMode="Single">
