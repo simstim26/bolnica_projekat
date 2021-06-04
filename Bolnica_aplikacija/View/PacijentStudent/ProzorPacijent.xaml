@@ -4,12 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Bolnica_aplikacija.PacijentStudent"
+        xmlns:calendar="clr-namespace:MyCalendar.Calendar;assembly=MyCalendar.Calendar"
         xmlns:d3="http://research.microsoft.com/DynamicDataDisplay/1.0"
         mc:Ignorable="d"
         Title="Pacijent" 
         Height="{Binding Source={x:Static SystemParameters.PrimaryScreenHeight}}"
         Width="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}}" 
-        SizeChanged="Window_SizeChanged" Background="#FF8AF671">
+        SizeChanged="Window_SizeChanged" Background="#FF8AF671" ResizeMode="NoResize">
 
     <Window.Resources>
 
@@ -218,9 +219,15 @@
             </TabItem>
 
             <TabItem Header="Kalendar" FontSize="20">
-                
+                <Grid HorizontalAlignment="Left" Height="875" VerticalAlignment="Top" Width="1907" Margin="0,-2,-1,-1">
+
+                    <calendar:Calendar x:Name="Calendar" Margin="74,70,90,42" FontSize="26" />
+                    
+
+
+                </Grid>
+
             </TabItem>
-            <Button x:Name="button" Content="Button" Height="100" Width="75"/>
 
         </TabControl>
 
