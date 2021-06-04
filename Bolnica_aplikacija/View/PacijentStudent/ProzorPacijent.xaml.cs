@@ -47,30 +47,7 @@ namespace Bolnica_aplikacija.PacijentStudent
             proveraAnkete();
             popuniObavestenja();
 
-            popuniKalendar();
-
-        }
-
-        private void popuniKalendar()
-        {
-            for (int i=0; i<42; i++)
-                Calendar.Days[i].Enabled = false;
-
-            List<PacijentTermin> termini = TerminKontroler.pronadjiPacijentTerminUTrenutnomMesecu(KorisnikKontroler.GetPacijent().id);
-
-            foreach(PacijentTermin pacijentTermin in termini)
-            {
-                DateTime datum = DateTime.Parse(pacijentTermin.datum);
-                
-                for(int i = 0; i < 42; i++)
-                {
-                    if(i==datum.Day)
-                    {
-                        Calendar.Days[datum.Day+1].Notes = pacijentTermin.napomena + "," + pacijentTermin.imeLekara;
-                    }
-                }
-
-            }
+            PomocnaKlasaKalendar.popuniKalendar(calendar);
 
         }
 
@@ -174,6 +151,10 @@ namespace Bolnica_aplikacija.PacijentStudent
                                 PacijentKontroler.otkaziTerminPacijenta(izabraniTermin.id);
                                 //ANTI TROL
                                 PomocnaKlasaProvere.antiTrolMetoda(KorisnikKontroler.GetPacijent().id);
+
+                                //Kalendar
+                                PomocnaKlasaKalendar.azurirajKalendar(calendar);
+
                             }
                             else
                             {
@@ -218,7 +199,7 @@ namespace Bolnica_aplikacija.PacijentStudent
                         {
                             if (izabraniTermin.idSpecijalizacije.Equals("0"))
                             {
-                                IzmenaTerminaPacijent izmenaTermina = new IzmenaTerminaPacijent(dataGridTermin);
+                                IzmenaTerminaPacijent izmenaTermina = new IzmenaTerminaPacijent(dataGridTermin, calendar);
                                 izmenaTermina.Owner = this;
                                 izmenaTermina.ShowDialog();
                             }
@@ -250,7 +231,7 @@ namespace Bolnica_aplikacija.PacijentStudent
         {
             if(proveraUzastopnihIzmena())
             {
-                PacijentZakaziTermin zakaziTermin = new PacijentZakaziTermin(dataGridTermin);
+                PacijentZakaziTermin zakaziTermin = new PacijentZakaziTermin(dataGridTermin, calendar);
                 zakaziTermin.Owner = this;
                 zakaziTermin.ShowDialog();
             }

@@ -10,7 +10,7 @@
         Title="Pacijent" 
         Height="{Binding Source={x:Static SystemParameters.PrimaryScreenHeight}}"
         Width="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}}" 
-        SizeChanged="Window_SizeChanged" Background="#FF8AF671" ResizeMode="NoResize">
+        SizeChanged="Window_SizeChanged" Background="#FF8AF671">
 
     <Window.Resources>
 
@@ -149,7 +149,7 @@
                 <Grid HorizontalAlignment="Left" Height="877" VerticalAlignment="Top" Width="1907" Margin="0,0,-1,-5">
                     <Rectangle Stroke="Black" Margin="-16,0,-38,804" Height="73" VerticalAlignment="Bottom"/>
                     <Button x:Name="btnLicniPodaci" Content="Lični podaci" Height="Auto" Margin="10,20,1777,826"/>
-                    <Button x:Name="btnIzvrseniTermini" Content="Izvršeni termini" Height="Auto" Margin="146,20,1618,826"/>
+                    <Button x:Name="btnIzvrseniTermini" Content="Izvršeni termini" Height="Auto" Margin="146,20,1618,826" IsEnabled="False"/>
                     <Button x:Name="btnAlergije" Content="Alergije" Height="Auto" Margin="306,20,1481,826"/>
                     <Button x:Name="btnIstorijaBolesti" Content="Istorija bolesti" Height="Auto" Margin="444,20,1343,826"/>
                     <Grid Margin="0,73,0,0"/>
@@ -231,7 +231,7 @@
             <TabItem Header="Kalendar" FontSize="20">
                 <Grid HorizontalAlignment="Left" Height="875" VerticalAlignment="Top" Width="1907" Margin="0,-2,-1,-1">
 
-                    <Label x:Name="label1" Content="Mesec:" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="40" Margin="74,9,0,0"/>
+                    <Label x:Name="label1" Content="Mesec:" FontSize="40" Margin="74,9,1703,805"/>
 
                     <Rectangle Stroke="Black" Margin="74,102,90,42">
                         <Rectangle.Fill>
@@ -244,7 +244,7 @@
 
 
 
-                    <calendar:Calendar x:Name="Calendar" Margin="74,70,90,42" FontSize="26" />
+                    <calendar:Calendar x:Name="calendar" Margin="74,70,0,42" FontSize="26" HorizontalAlignment="Left" Width="1743" />
 
 
 

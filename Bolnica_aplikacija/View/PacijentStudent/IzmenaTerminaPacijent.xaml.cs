@@ -27,13 +27,15 @@ namespace Bolnica_aplikacija.PacijentStudent
     {
         //private string idPacijenta;
         private DataGrid dataGrid;
+        private MyCalendar.Calendar.Calendar calendar;
 
-        public IzmenaTerminaPacijent(DataGrid dataGrid)
+        public IzmenaTerminaPacijent(DataGrid dataGrid, MyCalendar.Calendar.Calendar calendar)
         {
             InitializeComponent();
 
             //this.idPacijenta = idPacijenta;
             this.dataGrid = dataGrid;
+            this.calendar = calendar;
             dataGridSlobodniTermini.Loaded += SetMinSirina;
 
             ucitajSlobodneTermine();
@@ -74,6 +76,8 @@ namespace Bolnica_aplikacija.PacijentStudent
 
                         //ANTI TROL
                         PomocnaKlasaProvere.antiTrolMetoda(KorisnikKontroler.GetPacijent().id);
+
+                        PomocnaKlasaKalendar.azurirajKalendar(calendar);
 
                         this.Close();
                     }
