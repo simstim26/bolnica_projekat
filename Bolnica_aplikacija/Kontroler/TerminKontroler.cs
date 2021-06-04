@@ -107,5 +107,11 @@ namespace Bolnica_aplikacija.Kontroler
         {
             TerminServis.getInstance().oznaciHitanTermin(idTermina);
         }
+    
+        public static List<PacijentTermin> pronadjiPacijentTerminUTrenutnomMesecu(String idPacijenta)
+        {
+            return TerminServis.getInstance().pronadjiPacijentTerminUTrenutnomMesecu(idPacijenta);
+        }
+    
     }
 }

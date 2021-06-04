@@ -74,8 +74,8 @@
         <TabControl Grid.Row="2">
             <TabControl.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FF8BF772" Offset="0"/>
-                    <GradientStop Color="#FF4BAA35" Offset="1"/>
+                    <GradientStop Color="#FFABFF97" Offset="0"/>
+                    <GradientStop Color="#FF278013" Offset="1"/>
                 </LinearGradientBrush>
             </TabControl.Background>
 
@@ -157,7 +157,11 @@
 
 
 
-                    <DataGrid x:Name="dataGridIzvrseniTermini" Margin="10,106,957,71"/>
+                    <DataGrid x:Name="dataGridIzvrseniTermini" Margin="10,106,957,71">
+                        <DataGrid.Background>
+                            <SolidColorBrush Color="#FFFAFAFA" Opacity="0.7"/>
+                        </DataGrid.Background>
+                    </DataGrid>
                 </Grid>
             </TabItem>
             <TabItem Header="Aktivne terapije" FontSize="20">
@@ -165,6 +169,9 @@
                     <Label x:Name="lblDatum" Content="Današnji datum: " HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="28"/>
                     <Label x:Name="label" Content="Vaše terapije za ovu sedmicu su prikazane ispod." HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top" FontSize="28"/>
                     <DataGrid x:Name="dataGridTerapije" Margin="10,110,10,143" Height="661" IsReadOnly="True" SelectionMode="Single" AutoGenerateColumns="False" VerticalAlignment="Top" FontSize="18">
+                        <DataGrid.Background>
+                            <SolidColorBrush Color="#FFFAFAFA" Opacity="0.7"/>
+                        </DataGrid.Background>
 
                         <DataGrid.Columns>
                             <DataGridTextColumn x:Name="kolonaNazivOboljenja" Header="Naziv oboljenja" Binding="{Binding nazivOboljenja}"/>
@@ -197,6 +204,9 @@
                 <Grid HorizontalAlignment="Left" Height="869" VerticalAlignment="Top" Width="1906">
                     <Label Content="Obaveštenja:" FontSize="28" Margin="0,0,0,822"/>
                     <DataGrid x:Name="dataGridObavestenja" HorizontalAlignment="Left" Height="677" Margin="8,52,0,0" VerticalAlignment="Top" Width="1888" IsReadOnly="True" SelectionMode="Single" AutoGenerateColumns="False" FontSize="18">
+                        <DataGrid.Background>
+                            <SolidColorBrush Color="#FFFAFAFA" Opacity="0.7"/>
+                        </DataGrid.Background>
 
                         <DataGrid.Columns>
                             <DataGridTextColumn x:Name="kolonaNaziv" Header="Naziv" Binding="{Binding nazivNotifikacije}"/>
@@ -221,8 +231,21 @@
             <TabItem Header="Kalendar" FontSize="20">
                 <Grid HorizontalAlignment="Left" Height="875" VerticalAlignment="Top" Width="1907" Margin="0,-2,-1,-1">
 
+                    <Label x:Name="label1" Content="Mesec:" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="40" Margin="74,9,0,0"/>
+
+                    <Rectangle Stroke="Black" Margin="74,102,90,42">
+                        <Rectangle.Fill>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FF35E845" Offset="0"/>
+                                <GradientStop Color="#FF74C6FF" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Rectangle.Fill>
+                    </Rectangle>
+
+
+
                     <calendar:Calendar x:Name="Calendar" Margin="74,70,90,42" FontSize="26" />
-                    
+
 
 
                 </Grid>

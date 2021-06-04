@@ -346,6 +346,34 @@ namespace Bolnica_aplikacija.Servis
             return rezultat;
         }
 
+        public List<PacijentTermin> pronadjiPacijentTerminUTrenutnomMesecu(String idPacijenta)
+        {
+            List<PacijentTermin> termini = new List<PacijentTermin>();
+
+            List<PacijentTermin> predstojeciTermini = PacijentServis.getInstance().prikazBuducihTerminaPacijenta(idPacijenta);
+
+            pronadjiOdgovarajuceTermine(termini, predstojeciTermini);
+
+            return termini;
+        }
+
+        private void pronadjiOdgovarajuceTermine(List<PacijentTermin> termini, List<PacijentTermin> predstojeciTermini)
+        {
+            DateTime danas = DateTime.Now;
+            int mesec = danas.Month;
+
+            foreach(PacijentTermin pacijentTermin in predstojeciTermini)
+            {
+                DateTime terminDatum = DateTime.Parse(pacijentTermin.datum);
+
+                if(mesec == terminDatum.Month)
+                {
+                    termini.Add(pacijentTermin);
+                }
+
+            }
+
+        }
 
     }
 }

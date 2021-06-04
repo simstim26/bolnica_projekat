@@ -47,7 +47,30 @@ namespace Bolnica_aplikacija.PacijentStudent
             proveraAnkete();
             popuniObavestenja();
 
+            popuniKalendar();
 
+        }
+
+        private void popuniKalendar()
+        {
+            for (int i=0; i<42; i++)
+                Calendar.Days[i].Enabled = false;
+
+            List<PacijentTermin> termini = TerminKontroler.pronadjiPacijentTerminUTrenutnomMesecu(KorisnikKontroler.GetPacijent().id);
+
+            foreach(PacijentTermin pacijentTermin in termini)
+            {
+                DateTime datum = DateTime.Parse(pacijentTermin.datum);
+                
+                for(int i = 0; i < 42; i++)
+                {
+                    if(i==datum.Day)
+                    {
+                        Calendar.Days[datum.Day+1].Notes = pacijentTermin.napomena + "," + pacijentTermin.imeLekara;
+                    }
+                }
+
+            }
 
         }
 
@@ -57,8 +80,7 @@ namespace Bolnica_aplikacija.PacijentStudent
         }
 
         private void PopuniTermine()
-        {
-            //PacijentKontroler.nadjiPacijenta(KorisnikKontroler.GetPacijent().id);
+        { 
             dataGridTermin.ItemsSource = PacijentKontroler.prikazPacijentovihTermina(KorisnikKontroler.GetPacijent().id);
         }
 
@@ -74,11 +96,9 @@ namespace Bolnica_aplikacija.PacijentStudent
 
         private void SetLabelPacijentContent()
         {
-
             lblPacijent.Content = lblPacijent.Content + " " +
                 KorisnikKontroler.GetPacijent().ime + " " +
                 KorisnikKontroler.GetPacijent().prezime;
-
         }
 
         private void SetScreenSize()
@@ -94,22 +114,16 @@ namespace Bolnica_aplikacija.PacijentStudent
         {
             dataGridTermin.Loaded += SetMinWidths;
             dataGridTermin.Height = System.Windows.SystemParameters.PrimaryScreenHeight - 370;
-
-            //dataGridTerapije.Loaded += SetMinWidths;
-            //dataGridTerapije.Height = System.Windows.SystemParameters.PrimaryScreenHeight - 370;
-
         }
 
         private void CenterWindow()
         {
-
             double screenWidth = System.Windows.SystemParameters.PrimaryScreenWidth;
             double screenHeight = System.Windows.SystemParameters.PrimaryScreenHeight;
             double windowWidth = this.Width;
             double windowHeight = this.Height;
             this.Left = (screenWidth / 2) - (windowWidth / 2);
             this.Top = (screenHeight / 2) - (windowHeight / 2);
-
         }
 
         public void SetMinWidths(object source, EventArgs e)
@@ -119,19 +133,16 @@ namespace Bolnica_aplikacija.PacijentStudent
                 column.MinWidth = column.ActualWidth;
                 column.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
             }
-
             foreach (var column in dataGridTerapije.Columns)
             {
                 column.MinWidth = column.ActualWidth;
                 column.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
             }
-
             foreach (var column in dataGridObavestenja.Columns)
             {
                 column.MinWidth = column.ActualWidth;
                 column.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
             }
-
         }
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -290,8 +301,8 @@ namespace Bolnica_aplikacija.PacijentStudent
                 }
                 else if (zaProveriti.Count == 1)
                 {
-                    NotifikacijaProzor notifikacijaProzor = new NotifikacijaProzor(zaProveriti.ElementAt(0).id, KorisnikKontroler.GetPacijent().id);
-                    notifikacijaProzor.ShowDialog();
+                    //NotifikacijaProzor notifikacijaProzor = new NotifikacijaProzor(zaProveriti.ElementAt(0).id, KorisnikKontroler.GetPacijent().id);
+                    //notifikacijaProzor.ShowDialog();
 
                 }
                 else
