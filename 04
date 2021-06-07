@@ -1,0 +1,531 @@
+[33mcommit 77cd1d0b19c2468f0f8fb7e4e4452d377853d4b1[m[33m ([m[1;36mHEAD -> [m[1;32mpacijent_kalendar[m[33m)[m
+Merge: 9f88318 a0e9f51
+Author: jandric162 <jandric.ra162.2018@uns.ac.rs>
+Date:   Mon Jun 7 11:57:25 2021 +0200
+
+    merge
+
+[33mcommit a0e9f514fc19fce3cb023406cca492c479b70111[m[33m ([m[1;31morigin/lekar_mvvm[m[33m, [m[1;32mlekar_mvvm[m[33m)[m
+Author: simin161 <simin.ra161.2018@uns.ac.rs>
+Date:   Fri Jun 4 18:42:33 2021 +0200
+
+    pretraga proslih termina
+
+[33mcommit 9f883186e7e1a37010b6806dcb13b16924800ac7[m[33m ([m[1;31morigin/pacijent_kalendar[m[33m, [m[1;32mpacijent_izvestaj[m[33m)[m
+Author: jandric162 <jandric.ra162.2018@uns.ac.rs>
+Date:   Fri Jun 4 16:22:16 2021 +0200
+
+    osvezavanje kalendara
+
+[33mcommit 752cdeced19855476e2b39e293137531e6ccdabd[m
+Author: jandric162 <jandric.ra162.2018@uns.ac.rs>
+Date:   Fri Jun 4 14:04:57 2021 +0200
+
+    nastavak rada na kalendaru
+
+[33mcommit d92d26382863371bbb24585277674cb72be6c6d5[m[33m ([m[1;31morigin/pacijent_mvvm[m[33m, [m[1;32mpacijent_mvvm[m[33m)[m
+Author: jandric162 <jandric.ra162.2018@uns.ac.rs>
+Date:   Fri Jun 4 13:19:44 2021 +0200
+
+    rad sa kalendarom
+
+[33mcommit 4ecbea5a6905f361b91ec0f3902e1e3b305154fc[m
+Author: simin161 <simin.ra161.2018@uns.ac.rs>
+Date:   Thu Jun 3 23:35:34 2021 +0200
+
+    alergija viewModel, validacija -> zavrseno
+
+[33mcommit d498bfaffd386ec3ed92475d779a59f62a200ba6[m
+Author: simin161 <simin.ra161.2018@uns.ac.rs>
+Date:   Thu Jun 3 22:22:39 2021 +0200
+
+    naziv izvestaja validacija
+
+[33mcommit e3fec682108fd54b7ed7a2c153b9ae7cffc68af0[m
+Author: simin161 <simin.ra161.2018@uns.ac.rs>
+Date:   Thu Jun 3 15:14:15 2021 +0200
+
+    validacija izdavanje recepta -> izmena bolesti
+
+[33mcommit aeab9761457915e5cbe362d9039e44df4d7d9538[m
+Author: simin161 <simin.ra161.2018@uns.ac.rs>
+Date:   Thu Jun 3 14:30:28 2021 +0200
+
+    validacija izdavanje recepta (TerapijaIzdavanjeRecpeta) -> zavrseno
+
+[33mcommit cf77f6c202876682e85618f3d461d9c5dc94a62c[m
+Author: simin161 <simin.ra161.2018@uns.ac.rs>
+Date:   Thu Jun 3 13:22:18 2021 +0200
+
+    validacija zakazivanje operacije -> zavrseno
+
+[33mcommit add0478100442c3cbe405dba3d6c6d05b8d0b09c[m
+Author: simin161 <simin.ra161.2018@uns.ac.rs>
+Date:   Thu Jun 3 11:30:33 2021 +0200
+
+    validacija izvestaja -> potpuna
+
+[33mcommit 943e6e7c33bab28630d5d25faa9cf5cc934d706d[m
+Author: simin161 <simin.ra161.2018@uns.ac.rs>
+Date:   Thu Jun 3 11:00:04 2021 +0200
+
+    validacija zakazivanje operacije -> izvestaj
+
+[33mcommit c41ccb7b524d2ed48908d05236da4d70c1a0ee9a[m
+Author: simin161 <simin.ra161.2018@uns.ac.rs>
+Date:   Thu Jun 3 10:13:04 2021 +0200
+
+    validacija izdavanje recepta -> izvestaj
+
+[33mcommit 38afb9aba257c2f755904bed5a536dd57e63b73d[m
+Author: simin161 <simin.ra161.2018@uns.ac.rs>
+Date:   Thu Jun 3 09:46:25 2021 +0200
+
+    validacija bolnicko lecenje -> izvestaj
+
+[33mcommit f39f5992126d362076244985d7c969bcbf79caba[m
+Author: jandric162 <jandric.ra162.2018@uns.ac.rs>
+Date:   Thu Jun 3 09:17:07 2021 +0200
+
+    ispravka ocenjivanja lekara
+
+[33mcommit d8fac17ae31a789742e304cea7180e8ab1705f6a[m
+Author: simin161 <simin.ra161.2018@uns.ac.rs>
+Date:   Thu Jun 3 09:12:48 2021 +0200
+
+    ispravka tabela
+
+[33mcommit 8b43367934c74a4aac37983d1f28c6476f1aa112[m
+Author: simin161 <simin.ra161.2018@uns.ac.rs>
+Date:   Wed Jun 2 11:51:54 2021 +0200
+
+    prijava greske odradjena (front + back)
+
+[33mcommit 7815ec8be56ab07eefbab577c95a999a7cebab4b[m
+Author: simin161 <simin.ra161.2018@uns.ac.rs>
+Date:   Wed Jun 2 10:43:13 2021 +0200
+
+    izmene nakon hci
+
+[33mcommit 6afe7b242e2feadd40a85e2a746bd55a6ae62472[m
+Author: jandric162 <jandric.ra162.2018@uns.ac.rs>
+Date:   Wed Jun 2 10:27:55 2021 +0200
+
+    zapocet rad na grafiku?
+
+[33mcommit 0047b3a98891a6f233715b062460ece1a35d761a[m
+Author: simin161 <simin.ra161.2018@uns.ac.rs>
+Date:   Wed Jun 2 08:45:45 2021 +0200
+
+    sitne ispravke
+
+[33mcommit e091c4e8594a9cd991167b2435a6f5afddd15b93[m
+Merge: 62f7736 b1b0e6a
+Author: jandric162 <jandric.ra162.2018@uns.ac.rs>
+Date:   Wed Jun 2 07:31:17 2021 +0200
+
+    merge
+
+[33mcommit d2d9b7b8719fa19b8b26a7d95042db589847d50e[m
+Author: simin161 <simin.ra161.2018@uns.ac.rs>
+Date:   Tue Jun 1 15:15:07 2021 +0200
+
+    pisanje izvestaja
+
+[33mcommit acd9d55fa88605f919ecf2545b992b26b7e54f28[m
+Author: simin161 <simin.ra161.2018@uns.ac.rs>
+Date:   Mon May 31 23:10:06 2021 +0200
+
+    pacijent info
+
+[33mcommit 68a906c722fae5774a1638368259c8e8d80a96a6[m
+Author: simin161 <simin.ra161.2018@uns.ac.rs>
+Date:   Mon May 31 15:32:54 2021 +0200
+
+    zakazivanje i promena termina -> zavrseno
+
+[33mcommit dd88684ee8458f2c7cc7d1d95d0b1d2d041031bc[m
+Author: simin161 <simin.ra161.2018@uns.ac.rs>
+Date:   Mon May 31 15:24:42 2021 +0200
+
+    otkazivanje termina -> zavrseno
+
+[33mcommit 0bd3df3bd7163b863831704911fed59344102d47[m
+Author: simin161 <simin.ra161.2018@uns.ac.rs>
+Date:   Mon May 31 15:03:34 2021 +0200
+
+    pacijent info - uvezane tabele i polja
+
+[33mcommit 7a2a3dc8d4030f306a9d9d90e93e234a3d57f008[m
+Author: simin161 <simin.ra161.2018@uns.ac.rs>
+Date:   Mon May 31 00:25:56 2021 +0200
+
+    LekarTabovi zavrsen
+
+[33mcommit 8162c51dd5cfa8d6883d53b78145462b66f491f2[m
+Author: simin161 <simin.ra161.2018@uns.ac.rs>
+Date:   Mon May 31 00:02:13 2021 +0200
+
+    prerada LekarTabovi, ostala pretraga
+
+[33mcommit bf755b59effe5ff7b4c4b6cd3c113c6368117d2a[m
+Merge: 250bb7d b1b0e6a
+Author: simin161 <simin.ra161.2018@uns.ac.rs>
+Date:   Sun May 30 18:48:44 2021 +0200
+
+    merge
+
+[33mcommit 250bb7dd41620904a91786437a5e96c9ef15413f[m
+Author: simin161 <simin.ra161.2018@uns.ac.rs>
+Date:   Sun May 30 18:41:32 2021 +0200
+
+    info lek
+
+[33mcommit 7674eab628e0c13022b1a33544a7cd74e81847ca[m
+Author: simin161 <simin.ra161.2018@uns.ac.rs>
+Date:   Sun May 30 18:14:43 2021 +0200
+
+    akcija za dugme ponisti (dodavanje z lekova)
+
+[33mcommit 85eb60694fc99b9d3dd98761f228ba4f71d4d9f6[m
+Author: simin161 <simin.ra161.2018@uns.ac.rs>
+Date:   Sun May 30 18:00:20 2021 +0200
+
+    brisanje zamenskih
+
+[33mcommit 0fc435d125b3b4c23671fe300d74eadb9d6afeb5[m
+Author: simin161 <simin.ra161.2018@uns.ac.rs>
+Date:   Sun May 30 17:36:08 2021 +0200
+
+    dodavanje zamenskih lekova
+
+[33mcommit f108692a34ce0b1eaa6da9ba3f1223df87620b58[m
+Author: simin161 <simin.ra161.2018@uns.ac.rs>
+Date:   Sun May 30 16:55:39 2021 +0200
+
+    izmena sastojaka
+
+[33mcommit 815a2e147d541daac5481442dcae2e857c7c21f2[m
+Author: simin161 <simin.ra161.2018@uns.ac.rs>
+Date:   Sun May 30 13:08:14 2021 +0200
+
+    razresen exception
+
+[33mcommit 7713426a779d6208066d9df9284b8f3153d05b55[m
+Author: simin161 <simin.ra161.2018@uns.ac.rs>
+Date:   Sun May 30 13:04:04 2021 +0200
+
+    binding pregled i izmena lekova, komanda za izmenu
+
+[33mcommit 4198289429070b37315df0c0ead3ec632fb223ff[m
+Author: simin161 <simin.ra161.2018@uns.ac.rs>
+Date:   Sun May 30 11:16:11 2021 +0200
+
+    ispravka viewModel-a
+
+[33mcommit 23ead97fb9b8e88836ff3ce848c571911d32b911[m
+Author: simin161 <simin.ra161.2018@uns.ac.rs>
+Date:   Sun May 30 10:35:26 2021 +0200
+
+    odbacivanje leka - komanda
+
+[33mcommit 62f773629c7928ac5e9ce532882b2837883ca2a4[m
+Author: simin161 <simin.ra161.2018@uns.ac.rs>
+Date:   Sun May 30 00:07:39 2021 +0200
+
+    lekovi za odobravanje, odradjena komanda odobri, odradjen binding
+
+[33mcommit b1b0e6a7f3f67edd71ce91713d5c1c76ef10bdf2[m
+Author: simin161 <simin.ra161.2018@uns.ac.rs>
+Date:   Wed May 26 09:13:18 2021 +0200
+
+    izmena
+
+[33mcommit 32f830ea6bc17fec1dcbee6d553a0922bd6507c5[m
+Author: jandric162 <jandric.ra162.2018@uns.ac.rs>
+Date:   Wed May 26 07:50:20 2021 +0200
+
+    dodatne izmene class dijagrama
+
+[33mcommit 4c12ab5eefd248164e20d862d98cfcadc6b25394[m
+Author: jandric162 <jandric.ra162.2018@uns.ac.rs>
+Date:   Wed May 26 07:45:49 2021 +0200
+
+    izmena class dijagrama
+
+[33mcommit ceac68cbef884f396c5b2f78ec4f486012f030e7[m
+Merge: 3dc8059 a63035c
+Author: jandric162 <jandric.ra162.2018@uns.ac.rs>
+Date:   Wed May 26 06:58:41 2021 +0200
+
+    merge u implementaciju
+
+[33mcommit a63035cb08e4b08c668c4080bbc416d9ad2628a0[m[33m ([m[1;31morigin/pacijent_anamneze[m[33m, [m[1;32mpacijent_anamneze[m[33m)[m
+Author: jandric162 <jandric.ra162.2018@uns.ac.rs>
+Date:   Wed May 26 06:52:45 2021 +0200
+
+    dorada izmene notifikacije
+
+[33mcommit 3dc80590e1c526ec2917aea5591a2f62fa592805[m
+Author: dusansisarica <dusansisarica@gmail.com>
+Date:   Wed May 26 04:58:22 2021 +0200
+
+    izmenjen sequence za upravnika
+
+[33mcommit 0dd26b6fcf31abd0b882c1491eac2423c05768de[m
+Author: DejanBjelic <dejan.bjelic@uns.ac.rs>
+Date:   Wed May 26 00:01:48 2021 +0200
+
+    Azuriranje dijagrama
+
+[33mcommit 394b6231a63bad276aece9ca3d1fd0d6d0053271[m
+Author: jandric162 <jandric.ra162.2018@uns.ac.rs>
+Date:   Tue May 25 23:50:32 2021 +0200
+
+    dorada notifikacija
+
+[33mcommit e0f79b162e29667637523bc53c8967422cf76802[m
+Author: simin161 <simin.ra161.2018@uns.ac.rs>
+Date:   Tue May 25 22:57:18 2021 +0200
+
+    izmenjen lekar sequence
+
+[33mcommit f118673ac055f1c7d820bc24955e7128921021e1[m
+Author: DejanBjelic <dejan.bjelic@uns.ac.rs>
+Date:   Tue May 25 21:44:14 2021 +0200
+
+    Ispravke provere validnostu unetih podataka
+
+[33mcommit f9a01b53dfc34539e308764632fb0be65ca28e40[m
+Author: DejanBjelic <dejan.bjelic@uns.ac.rs>
+Date:   Tue May 25 20:31:38 2021 +0200
+
+    Ispravke class dijagrama za pacijenta
+
+[33mcommit e06b34f3f9adbc8eef04669621feb64e0ae3b305[m
+Author: DejanBjelic <dejan.bjelic@uns.ac.rs>
+Date:   Tue May 25 20:24:33 2021 +0200
+
+    Refaktorisanje pacijenta
+
+[33mcommit d4fda0f449ab3c7faa4eca4c5558e6a2d599937d[m
+Author: jandric162 <jandric.ra162.2018@uns.ac.rs>
+Date:   Tue May 25 20:16:26 2021 +0200
+
+    dorada anamneze i notifikacije
+
+[33mcommit 60d8a81e55a4d124621227f43aae7a305af26fc9[m
+Author: DejanBjelic <dejan.bjelic@uns.ac.rs>
+Date:   Tue May 25 19:58:23 2021 +0200
+
+    Ispravke class dijagrama
+
+[33mcommit b2f31fd61b6420cc98ab0d4f20e86fafb8ceaff5[m
+Merge: b4c9c8a c032b3c
+Author: DejanBjelic <dejan.bjelic@uns.ac.rs>
+Date:   Tue May 25 19:35:14 2021 +0200
+
+    Merge branch 'implementacija' into sekretar_CRUD_lekari
+
+[33mcommit b4c9c8a17744dc484fd2fb83bcd577e5f140e657[m
+Author: DejanBjelic <dejan.bjelic@uns.ac.rs>
+Date:   Tue May 25 19:27:00 2021 +0200
+
+    Implementacija provere termina tokom godisnjeg
+
+[33mcommit c032b3c4288b559934d914f60d529eccc3fa0e16[m
+Author: simin161 <simin.ra161.2018@uns.ac.rs>
+Date:   Tue May 25 19:05:28 2021 +0200
+
+    ispravka b lecenja
+
+[33mcommit fb8cdaf000348f11884d3ba6f045a3836887b65d[m[33m ([m[1;31morigin/id[m[33m)[m
+Author: simin161 <simin.ra161.2018@uns.ac.rs>
+Date:   Tue May 25 18:57:36 2021 +0200
+
+    stavke
+
+[33mcommit e66a02e67674c728a5f0536af93a7287c5b4eb99[m
+Author: DejanBjelic <dejan.bjelic@uns.ac.rs>
+Date:   Tue May 25 18:49:05 2021 +0200
+
+    Ispravke rukovanja godisnjim odmorom
+
+[33mcommit a346b060162b55705ef5f4efb3068f27a4289895[m
+Author: simin161 <simin.ra161.2018@uns.ac.rs>
+Date:   Tue May 25 18:44:12 2021 +0200
+
+    bolest resena
+
+[33mcommit bc9855505060ea3d63ed821882a1838cf71bb48c[m
+Author: simin161 <simin.ra161.2018@uns.ac.rs>
+Date:   Tue May 25 17:59:14 2021 +0200
+
+    zavrsen class dijagram -> dalje ispravke (pojedinacno)
+
+[33mcommit 97d43377d8d55a2734225485ed74885707e5238b[m
+Author: DejanBjelic <dejan.bjelic@uns.ac.rs>
+Date:   Tue May 25 16:30:15 2021 +0200
+
+    Implementacija godisnjeg odmora
+
+[33mcommit 947002cab1dee5fd6f4304477ce8bf7c5c175418[m
+Author: DejanBjelic <dejan.bjelic@uns.ac.rs>
+Date:   Tue May 25 16:08:07 2021 +0200
+
+    Implementirana izmena Lekara
+
+[33mcommit 95df7e7188042409e38cb6c8fc4ff5469f6f9fbb[m
+Author: DejanBjelic <dejan.bjelic@uns.ac.rs>
+Date:   Tue May 25 15:06:50 2021 +0200
+
+    Provere popunjenosti polja pri izmeni Lekara
+
+[33mcommit 137be1e4ab9b85194c14226b3b9adce0138bc843[m
+Author: simin161 <simin.ra161.2018@uns.ac.rs>
+Date:   Tue May 25 14:56:28 2021 +0200
+
+    izmena class dijagrama -> poslednji issue, povratna vrednost kod ucitajAktivneTerapije, dejanov issue ceo ostao
+
+[33mcommit da67eed82c709b8f29259c385a427b794767907c[m[33m ([m[1;31morigin/upravnik_renoviranje_nastavak[m[33m)[m
+Merge: f3a5ffa 89ddaab
+Author: dusansisarica <dusansisarica@gmail.com>
+Date:   Tue May 25 13:25:18 2021 +0200
+
+    Merge branch 'implementacija' into upravnik_renoviranje_nastavak
+
+[33mcommit f3a5ffa8777d663b0ae79ecdc1d8cac27c6ac6c0[m
+Author: dusansisarica <dusansisarica@gmail.com>
+Date:   Tue May 25 13:22:16 2021 +0200
+
+    sredjivanje klase ProstorijaZauzetoServis
+
+[33mcommit e8d6ffadad3b6d7df8bcaa3a2b2f92d2aeba41ac[m
+Author: simin161 <simin.ra161.2018@uns.ac.rs>
+Date:   Tue May 25 13:21:03 2021 +0200
+
+    pocetak
+
+[33mcommit 294e4d58aea39d7848c96c0f7d17cf095b9c0326[m
+Author: DejanBjelic <dejan.bjelic@uns.ac.rs>
+Date:   Tue May 25 03:33:35 2021 +0200
+
+    Implementacija logickog brisanja lekara
+
+[33mcommit a3a23e0ccc79f89d60681328fcca73ff9d4458f8[m
+Author: DejanBjelic <dejan.bjelic@uns.ac.rs>
+Date:   Tue May 25 02:57:57 2021 +0200
+
+    Implementacija dodavanja lekara
+
+[33mcommit b50f713c429d88f897e50c43fbdc0ae1539df623[m
+Author: DejanBjelic <dejan.bjelic@uns.ac.rs>
+Date:   Tue May 25 02:17:18 2021 +0200
+
+    Implementacija LekarDTO klase
+
+[33mcommit 33d44222e3ecfeee4c2f1c866381327c14996181[m
+Author: DejanBjelic <dejan.bjelic@uns.ac.rs>
+Date:   Tue May 25 01:21:09 2021 +0200
+
+    Implementacija fronta za CRUD lekara
+
+[33mcommit 2ca4ea6b6a859674ddc5d4e75c4455425257d643[m
+Author: jandric162 <jandric.ra162.2018@uns.ac.rs>
+Date:   Tue May 25 00:33:45 2021 +0200
+
+    zapocet rad na kreiranju podsetnika/napomene/obavestenja
+
+[33mcommit e5cfe4ea4bb7c661203c2f3fe20d76a2e423d43b[m
+Author: dusansisarica <dusansisarica@gmail.com>
+Date:   Mon May 24 23:32:32 2021 +0200
+
+    unapredjeno renoviranje prostorija
+
+[33mcommit 2fc5b2ba3b5d096474aac1f69635d1016fcbca23[m[33m ([m[1;31morigin/lekar_prosliTermini[m[33m)[m
+Author: simin161 <simin.ra161.2018@uns.ac.rs>
+Date:   Mon May 24 17:16:14 2021 +0200
+
+    dovrsen prikaz izvestaja proslih termina
+
+[33mcommit 74c9ec6cc240c96b9d8547a86610950251a38f45[m
+Author: DejanBjelic <dejan.bjelic@uns.ac.rs>
+Date:   Mon May 24 16:34:37 2021 +0200
+
+    Ispravke
+
+[33mcommit 0cac773b278cf064144a333f8568fd82f91e7a37[m[33m ([m[1;31morigin/sekretar_CC[m[33m)[m
+Author: DejanBjelic <dejan.bjelic@uns.ac.rs>
+Date:   Mon May 24 16:17:28 2021 +0200
+
+    Refaktorisanje koda sekretara
+
+[33mcommit 3d7aa5cb2569bc4d92c60241ecbf94af9e3abd10[m
+Author: DejanBjelic <dejan.bjelic@uns.ac.rs>
+Date:   Mon May 24 15:39:47 2021 +0200
+
+    Ispravka zakazivanja hitnog slucaja
+
+[33mcommit 7d0a61d4dd209228713f892cc2525785266fbf9b[m[33m ([m[1;31morigin/upravnik_cc2[m[33m)[m
+Author: dusansisarica <dusansisarica@gmail.com>
+Date:   Mon May 24 12:20:11 2021 +0200
+
+    refaktorisanje stavki
+
+[33mcommit 50a5bd45ece2032a98db6757ac52cf9d9a1ba438[m
+Author: DejanBjelic <dejan.bjelic@uns.ac.rs>
+Date:   Mon May 24 12:19:40 2021 +0200
+
+    Ispravke
+
+[33mcommit 8372ff1df7b30ff2011db29d19a452c577515df6[m
+Author: jandric162 <jandric.ra162.2018@uns.ac.rs>
+Date:   Mon May 24 10:15:37 2021 +0200
+
+    front za anamnezu
+
+[33mcommit 89ddaab83993baf1c81e046160b23d483f11897c[m
+Author: jandric162 <jandric.ra162.2018@uns.ac.rs>
+Date:   Mon May 24 09:26:07 2021 +0200
+
+    otkomentarisan kod
+
+[33mcommit e608aa2cc327bdc1faa4787732c3ec5cc71db61a[m
+Author: DejanBjelic <dejan.bjelic@uns.ac.rs>
+Date:   Sun May 23 23:57:13 2021 +0200
+
+    Refaktorisanje NotifikacijaServis
+
+[33mcommit 698feddeebf3c14f45d1f5f919358525ac4e4a4a[m
+Merge: a91c6c8 3340636
+Author: DejanBjelic <dejan.bjelic@uns.ac.rs>
+Date:   Sun May 23 23:36:01 2021 +0200
+
+    Merge branch 'implementacija' into sekretar_CRUD_lekari
+
+[33mcommit a91c6c813d74b2cab915b0f28b829be25c6ee994[m
+Author: DejanBjelic <dejan.bjelic@uns.ac.rs>
+Date:   Sun May 23 23:28:25 2021 +0200
+
+    Zapoceta implementacija CRUD-a za lekare
+
+[33mcommit 3a155714126714fe1d2e0e313682de25fbe1574b[m
+Author: dusansisarica <dusansisarica@gmail.com>
+Date:   Sun May 23 13:09:59 2021 +0200
+
+    ispravka premestanja
+
+[33mcommit 84563a38129e4fb54c57b4a6586895a4f067d1da[m
+Author: simin161 <simin.ra161.2018@uns.ac.rs>
+Date:   Sun May 23 10:59:56 2021 +0200
+
+    zapocet prikaz
+
+[33mcommit 04239dff6ac3fddc6937dd606f85d9cd46820261[m
+Author: dusansisarica <dusansisarica@gmail.com>
+Date:   Sun May 23 02:12:10 2021 +0200
+
+    sredjen kod za prostorije
+
+[33mcommit 2625a534c1d31306af81f261402fabb9e974919f[m
+Au
