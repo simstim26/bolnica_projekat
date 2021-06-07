@@ -215,6 +215,9 @@
     <Compile Include="View\LekarStudent\TerapijeIzdavanjeRecpeta.xaml.cs">
       <DependentUpon>TerapijeIzdavanjeRecpeta.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\LekarStudent\Tutorial.xaml.cs">
+      <DependentUpon>Tutorial.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\LekarStudent\UvidUTerapije.xaml.cs">
       <DependentUpon>UvidUTerapije.xaml</DependentUpon>
     </Compile>
@@ -414,6 +417,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\LekarStudent\TerapijeIzdavanjeRecpeta.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\LekarStudent\Tutorial.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -636,6 +643,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="View\UpravnikStudent\logout.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Assets\video1.mp4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets" Condition="Exists('packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets')" />

@@ -337,5 +337,10 @@ namespace Bolnica_aplikacija
             }
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Tutorial tutorial = new Tutorial();
+            tutorial.Show();
+        }
     }
 }
