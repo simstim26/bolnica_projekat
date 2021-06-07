@@ -28,6 +28,6 @@
         <Label Content="Trenutna prostorija:" HorizontalAlignment="Left" Margin="25,136,0,0" VerticalAlignment="Top" Width="123"/>
         <Label x:Name="lblTrenutnaProstorija"  HorizontalAlignment="Left" Margin="171,136,0,0" VerticalAlignment="Top" Width="182" Height="24"/>
         <Button Content="Završi bolničko lečenje" HorizontalAlignment="Left" Margin="73,500,0,0" VerticalAlignment="Top" Width="280" Click="Button_Click"/>
-        <Label x:Name="lblGreska" HorizontalAlignment="Left" Margin="25,116,0,0" VerticalAlignment="Top" Width="299" Height="20" FontWeight="Bold" />
+        <Label x:Name="lblGreska" Visibility="Hidden" HorizontalAlignment="Left" Margin="25,116,0,0" VerticalAlignment="Top" Width="299" Height="20" FontWeight="Bold" />
     </Grid>
 </UserControl>
