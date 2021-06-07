@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Text.RegularExpressions;
 
 namespace Bolnica_aplikacija.Servis
 {
@@ -48,6 +49,22 @@ namespace Bolnica_aplikacija.Servis
             }
 
             return false;
+        }
+
+        public List<Pacijent> pretragaPacijenata(String kriterijum)
+        {
+            Regex rx = new Regex(kriterijum.ToLower(),RegexOptions.Compiled | RegexOptions.IgnoreCase);
+            List<Pacijent> povratnaVrednost = new List<Pacijent>();
+
+            foreach(Pacijent pacijent in prikazPacijenata())
+            {
+                if(rx.IsMatch(pacijent.ime.ToLower()+ " " + pacijent.prezime.ToLower() + " " + pacijent.jmbg.ToLower()))
+                {
+                    povratnaVrednost.Add(pacijent);
+                }
+            }
+
+            return povratnaVrednost;
         }
 
         public List<PacijentTermin> pretraziBuduceTermineZaPacijenta(String idPacijenta, DateTime datum)
