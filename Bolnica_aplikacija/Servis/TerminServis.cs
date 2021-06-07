@@ -375,5 +375,26 @@ namespace Bolnica_aplikacija.Servis
 
         }
 
+        public int pronadjiOdradjeneTermineZaMesec(String idPacijenta, int mesec)
+        {
+            int broj = 0;
+
+            foreach(Termin termin in terminRepozitorijum.ucitajSve())
+            {
+                if(termin.idPacijenta.Equals(idPacijenta))
+                {
+                    if (termin.jeZavrsen)
+                    {
+                        if(termin.datum.Month == mesec)
+                        {
+                            broj += 1;
+                        }
+                    }
+                }
+            }
+
+            return broj;
+        }
+
     }
 }

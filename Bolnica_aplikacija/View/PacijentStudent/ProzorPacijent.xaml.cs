@@ -2,22 +2,12 @@
 using Bolnica_aplikacija.PacijentModel;
 using Bolnica_aplikacija.PomocneKlase;
 using Bolnica_aplikacija.View.PacijentStudent;
-using Model;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using System.Windows.Threading;
-using InteractiveDataDisplay;
 
 namespace Bolnica_aplikacija.PacijentStudent
 {
@@ -29,11 +19,11 @@ namespace Bolnica_aplikacija.PacijentStudent
 
         //private String idPacijenta;
         private DispatcherTimer tajmer;
+        public List<KeyValuePair<String, int>> ValueList { get;  private set; }
 
         public ProzorPacijent()
         {
             InitializeComponent();
-            //this.idPacijenta = KorisnikKontroler.GetPacijent().id;
             this.DataContext = this;
 
             SetScreenSize();
@@ -46,6 +36,7 @@ namespace Bolnica_aplikacija.PacijentStudent
             setujTajmer();
             proveraAnkete();
             popuniObavestenja();
+            napraviGraf();
 
             PomocnaKlasaKalendar.popuniKalendar(calendar);
 
@@ -53,7 +44,26 @@ namespace Bolnica_aplikacija.PacijentStudent
 
         private void napraviGraf()
         {
-            
+            ValueList = new List<KeyValuePair<string, int>>();
+
+            int[] brojOdradjenihTermina = { 0,0,0,0,0,0,0,0,0,0,0,0};
+            for(int i=1; i <= 12; i++)
+            {
+                brojOdradjenihTermina[i-1] = PomocnaKlasaProvere.prebrojTermine(KorisnikKontroler.GetPacijent().id, i);
+            }
+
+            ValueList.Add(new KeyValuePair<string, int>("JAN", brojOdradjenihTermina[0]));
+            ValueList.Add(new KeyValuePair<string, int>("FEB", brojOdradjenihTermina[1]));
+            ValueList.Add(new KeyValuePair<string, int>("MAR", brojOdradjenihTermina[2]));
+            ValueList.Add(new KeyValuePair<string, int>("APR", brojOdradjenihTermina[3]));
+            ValueList.Add(new KeyValuePair<string, int>("MAJ", brojOdradjenihTermina[4]));
+            ValueList.Add(new KeyValuePair<string, int>("JUN", brojOdradjenihTermina[5]));
+            ValueList.Add(new KeyValuePair<string, int>("JUL", brojOdradjenihTermina[6])); 
+            ValueList.Add(new KeyValuePair<string, int>("AVG", brojOdradjenihTermina[7]));
+            ValueList.Add(new KeyValuePair<string, int>("SEP", brojOdradjenihTermina[8]));
+            ValueList.Add(new KeyValuePair<string, int>("OKT", brojOdradjenihTermina[9]));
+            ValueList.Add(new KeyValuePair<string, int>("NOV", brojOdradjenihTermina[10]));
+            ValueList.Add(new KeyValuePair<string, int>("DEC", brojOdradjenihTermina[11]));
         }
 
         private void PopuniTermine()

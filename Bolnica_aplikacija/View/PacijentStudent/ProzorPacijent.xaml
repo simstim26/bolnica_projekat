@@ -5,28 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Bolnica_aplikacija.PacijentStudent"
         xmlns:calendar="clr-namespace:MyCalendar.Calendar;assembly=MyCalendar.Calendar"
-        xmlns:d3="http://research.microsoft.com/DynamicDataDisplay/1.0"
+        xmlns:DV="clr-namespace:System.Windows.Controls.DataVisualization;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+        xmlns:DVC="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
         mc:Ignorable="d"
         Title="Pacijent" 
         Height="{Binding Source={x:Static SystemParameters.PrimaryScreenHeight}}"
         Width="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}}" 
         SizeChanged="Window_SizeChanged" Background="#FF8AF671">
-
-    <Window.Resources>
-
-
-
-        <DataTemplate x:Key="template">
-            <StackPanel Orientation="Horizontal"
-                        VerticalAlignment="Bottom">
-                <Rectangle Height="{Binding}"
-                           Width="20"
-                           Fill="Red" />
-                <Rectangle Width="5" />
-            </StackPanel>
-        </DataTemplate>
-
-    </Window.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -155,7 +140,15 @@
                     <Grid Margin="0,73,0,0"/>
                     <Rectangle Fill="#FFF4F4F5" Stroke="Black" Margin="979,106,28,71"/>
 
+                    <DVC:Chart Name="grafickiPrikaz" Background="YellowGreen" Foreground="DarkBlue" Title="Mesečna posećenost zdravstvenoj ustanovi" Margin="979,106,28,71">
 
+                        <DVC:Chart.Series>
+                            <DVC:ColumnSeries IndependentValuePath="Key"  DependentValuePath="Value" ItemsSource="{Binding Path=ValueList}">
+                                
+                            </DVC:ColumnSeries>
+                        </DVC:Chart.Series>
+                        
+                    </DVC:Chart>
 
                     <DataGrid x:Name="dataGridIzvrseniTermini" Margin="10,106,957,71">
                         <DataGrid.Background>

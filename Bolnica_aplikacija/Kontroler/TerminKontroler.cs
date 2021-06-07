@@ -113,5 +113,10 @@ namespace Bolnica_aplikacija.Kontroler
             return TerminServis.getInstance().pronadjiPacijentTerminUTrenutnomMesecu(idPacijenta);
         }
     
+        public static int pronadjiOdradjeneTermineZaMesec(String idPacijenta, int mesec)
+        {
+            return TerminServis.getInstance().pronadjiOdradjeneTermineZaMesec(idPacijenta, mesec);
+        }
+
     }
 }
