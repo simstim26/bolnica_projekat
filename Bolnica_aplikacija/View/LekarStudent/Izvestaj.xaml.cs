@@ -286,8 +286,15 @@ namespace Bolnica_aplikacija.LekarStudent
 
         private void btnPotvrdaIzbora_Click(object sender, RoutedEventArgs e)
         {
-            gridPitanjeOZakazivanju.Visibility = Visibility.Visible;
-            btnZakaziOperaciju.IsEnabled = !((LekarSpecijalizacija)dataGridLekari.SelectedItem).nazivSpecijalizacije.Equals("Opšta praksa");
+            if (dataGridLekari.SelectedIndex != -1)
+            {
+                gridPitanjeOZakazivanju.Visibility = Visibility.Visible;
+                btnZakaziOperaciju.IsEnabled = !((LekarSpecijalizacija)dataGridLekari.SelectedItem).nazivSpecijalizacije.Equals("Opšta praksa");
+            }
+            else
+            {
+                MessageBox.Show("Potrebno je izabrati lekara!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
         private void btnZakaziPregled_Click(object sender, RoutedEventArgs e)
@@ -330,6 +337,8 @@ namespace Bolnica_aplikacija.LekarStudent
             gridOdabirLekaraUput.Visibility = Visibility.Hidden;
             gridPitanjeOZakazivanju.Visibility = Visibility.Hidden;
             gridUput.Visibility = Visibility.Hidden;
+            lblLekarOperacija.Content = ((LekarSpecijalizacija)dataGridLekari.SelectedItem).imeLekara + " " + ((LekarSpecijalizacija)dataGridLekari.SelectedItem).prezimeLekara + ", " + ((LekarSpecijalizacija)dataGridLekari.SelectedItem).nazivSpecijalizacije;
+            lblPacijent.Content = PacijentKontroler.nadjiPacijenta(((String [])fm.DataContext)[0]).ime + " " + PacijentKontroler.nadjiPacijenta(((String[])fm.DataContext)[0]).prezime;
             LekarProzor.getGlavnaLabela().Content = "Zakazivanje operacije";
         }
 

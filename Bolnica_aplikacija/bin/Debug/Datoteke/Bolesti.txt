@@ -52,5 +52,11 @@
     "naziv": "ASDFG",
     "terapija": "14",
     "pacijent": "2"
+  },
+  {
+    "id": "10",
+    "naziv": "nknkn",
+    "terapija": "17",
+    "pacijent": "1"
   }
 ]

@@ -158,6 +158,15 @@
     "datumPocetka": "2021-05-22T20:30:30.8744189+02:00",
     "trajanje": 14,
     "nacinUpotrebe": "Rektalno"
+  },
+  {
+    "id": "17",
+    "idLeka": "3",
+    "idPacijenta": "1",
+    "idBolesti": "10",
+    "idTermina": "2",
+    "datumPocetka": "2021-06-07T15:52:29.5707436+02:00",
+    "trajanje": 90,
+    "nacinUpotrebe": "Sublingvalno, oijj"
   }
-
 ]
