@@ -169,7 +169,14 @@
                                 <DataGridTextColumn x:Name="kolonaTip" IsReadOnly="True" CanUserResize="False" Binding="{Binding napomena}" Header="Tip" Width="90"></DataGridTextColumn>
                             </DataGrid.Columns>
                         </DataGrid>
-                        <Grid HorizontalAlignment="Left" Height="59" VerticalAlignment="Top" Width="431"/>
+                        <Grid x:Name="lblPretragaBuduci" Visibility="Hidden" Background="#93c47d" HorizontalAlignment="Left" Height="82" VerticalAlignment="Top" Width="435" Margin="-3,-3,-0.4,0">
+                            <DatePicker HorizontalAlignment="Left" SelectedDate="{Binding Path=datumBuduci, Mode=TwoWay}" Margin="49,22,0,0" VerticalAlignment="Top" Width="97"/>
+                            <Button HorizontalAlignment="Left" Margin="173,19,0,0" Command="{Binding Path=pretragaBuduci}" VerticalAlignment="Top" Width="34" Height="33" Style="{StaticResource MaterialDesignFloatingActionAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Black">
+                                <materialDesign:PackIcon Kind="Play" Height="26" Width="26" RenderTransformOrigin="0.5,0.5">
+                                </materialDesign:PackIcon>
+                            </Button>
+                            <Label Content="*Datum ne sme biti manji od trenutnog!" Visibility="{Binding Path=greskaBuduci, Mode=TwoWay, Converter={StaticResource BooleanToVisibilityConverter}}" FontWeight="Bold" HorizontalAlignment="Left" Margin="49,52,0,0" VerticalAlignment="Top"/>
+                        </Grid>
                     </Grid>
                 </Grid>
             </TabItem>

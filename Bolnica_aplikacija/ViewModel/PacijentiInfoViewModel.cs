@@ -228,6 +228,42 @@ namespace Bolnica_aplikacija.ViewModel
             }
         }
 
+        private bool pGreskaBuduci;
+        public bool greskaBuduci
+        {
+            get
+            {
+                return pGreskaBuduci;
+            }
+            set
+            {
+                pGreskaBuduci = value;
+                NotifyPropertyChanged("greskaBuduci");
+            }
+        }
+
+        private DateTime pDatumBuduci;
+        public DateTime datumBuduci
+        {
+            get
+            {
+                return pDatumBuduci;
+            }
+            set
+            {
+                pDatumBuduci = value;
+                if(DateTime.Compare(pDatumBuduci, DateTime.Now.Date) < 0)
+                {
+                    greskaBuduci = true;
+                }
+                else
+                {
+                    greskaBuduci = false;
+                }
+                NotifyPropertyChanged("datumBuduci");
+            }
+        }
+
         #endregion
 
         #region pomocni stringovi za prikaz
@@ -353,6 +389,7 @@ namespace Bolnica_aplikacija.ViewModel
 
             prviDatum = DateTime.Now.Date;
             drugiDatum = DateTime.Now.Date;
+            datumBuduci = DateTime.Now.Date;
 
             otkazi = new RelayCommand(izvrsiOtkazivanje);
             promeni = new RelayCommand(izvrsiPromenu);
@@ -365,6 +402,7 @@ namespace Bolnica_aplikacija.ViewModel
             prosliIzvestaj = new RelayCommand(izvrsiProsliIzvestaj);
             izgenerisi = new RelayCommand(izvrsiIzgenerisi);
             pretraziProsleTermine = new RelayCommand(izvrsiPretraguProslih);
+            pretragaBuduci = new RelayCommand(izvrsiPretraguBuducih);
         }
         private void ucitajProsleTermine()
         {
@@ -718,6 +756,34 @@ namespace Bolnica_aplikacija.ViewModel
             }
         }
 
+
+        #endregion
+
+        #region Komanda -> pretraga buduci
+        private RelayCommand pPretragaBuduci;
+        public RelayCommand pretragaBuduci
+        {
+            get
+            {
+                return pPretragaBuduci;
+            }
+            set
+            {
+                pPretragaBuduci = value;
+            }
+        }
+
+        private void izvrsiPretraguBuducih(object obj)
+        {
+            if(datumBuduci != null)
+            {
+                buduci = new ObservableCollection<PacijentTermin>(PacijentKontroler.pretraziBuduceTermineZaPacijenta(pacijent.id, datumBuduci));
+            }
+            else
+            {
+                buduci = new ObservableCollection<PacijentTermin>(PacijentKontroler.prikazBuducihTerminaPacijenta(pacijent.id));
+            }
+        }
 
         #endregion
     }
