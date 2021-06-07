@@ -34,19 +34,7 @@
                 </Button.Background>
                 <materialDesign:PackIcon x:Name="packIconTermini" Kind="Calendar" Height="152" Width="158"/>
             </Button>
-            <Button x:Name="saleButton" VerticalAlignment="Top" Height="200" FontSize="36" FontWeight="Bold" Margin="428,388,0,0" HorizontalAlignment="Left" Width="200" BorderBrush="#FF69EA62">
-                <Button.Effect>
-                    <DropShadowEffect BlurRadius="10" Opacity="0.35"/>
-                </Button.Effect>
-                <Button.Background>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="#FFF3F336" Offset="0"/>
-                        <GradientStop Color="#FFC1C104" Offset="1"/>
-                    </LinearGradientBrush>
-                </Button.Background>
-                <materialDesign:PackIcon x:Name="packIconSale" Kind="Bed" Height="152" Width="158"/>
-            </Button>
-            <Button x:Name="lekariButton" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Height="200" FontSize="36" FontWeight="Bold" Margin="700,388,0,0" Click="lekariButton_Click" BorderBrush="#FFE1E145">
+            <Button x:Name="lekariButton" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Height="200" FontSize="36" FontWeight="Bold" Margin="428,388,0,0" Click="lekariButton_Click" BorderBrush="#FFE1E145">
                 <Button.Effect>
                     <DropShadowEffect BlurRadius="10" Opacity="0.35"/>
                 </Button.Effect>
@@ -80,15 +68,19 @@
                     <DropShadowEffect ShadowDepth="2" Opacity="0.15"/>
                 </Label.Effect>
             </Label>
-            <Button x:Name="btnObavestenja" HorizontalAlignment="Left" Margin="1148,639,0,0" VerticalAlignment="Top" Width="90" Height="90" BorderBrush="{x:Null}" Click="btnObavestenja_Click">
+            <Button x:Name="btnObavestenja" HorizontalAlignment="Left" Margin="700,388,0,0" VerticalAlignment="Top" Width="200" Height="200" BorderBrush="{x:Null}" Click="btnObavestenja_Click" Foreground="{x:Null}">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF5084CF" Offset="0"/>
+                        <GradientStop Color="#FF7BABF0" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.Background>
                 <Button.Effect>
                     <DropShadowEffect BlurRadius="22" Opacity="0.45"/>
                 </Button.Effect>
-                <Button.Background>
-                    <ImageBrush ImageSource="PacijentInfo.png" Stretch="Uniform"/>
-                </Button.Background>
+                <materialDesign:PackIcon x:Name="iconObavestenja" Kind ="InfoCircle" Width="158" Height="154" Foreground="White"/>
             </Button>
-            <Button x:Name="btnHitanSlucaj" HorizontalAlignment="Left" Margin="1058,643,0,0" VerticalAlignment="Top" Width="70" Height="78" BorderBrush="{x:Null}" Click="btnHitanSlucaj_Click">
+            <Button x:Name="btnHitanSlucaj" HorizontalAlignment="Left" Margin="1154,643,0,0" VerticalAlignment="Top" Width="70" Height="78" BorderBrush="{x:Null}" Click="btnHitanSlucaj_Click">
                 <Button.Effect>
                     <DropShadowEffect BlurRadius="22" Opacity="0.45"/>
                 </Button.Effect>
@@ -97,14 +89,13 @@
                 </Button.Background>
             </Button>
         </Grid>
-        <Grid x:Name="PacijentGrid" HorizontalAlignment="Left" Height="730" Margin="0,18,0,0" VerticalAlignment="Top" Width="1346" TargetUpdated="PacijentGrid_TargetUpdated" d:IsHidden="True">
+        <Grid x:Name="PacijentGrid" HorizontalAlignment="Left" Height="730" Margin="0,18,0,0" VerticalAlignment="Top" Width="1346" TargetUpdated="PacijentGrid_TargetUpdated">
             <Grid.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF83C8F7" Offset="0"/>
                     <GradientStop Color="#FFCBDBE6" Offset="1"/>
                 </LinearGradientBrush>
             </Grid.Background>
-            <Image x:Name="pacijentIcon" HorizontalAlignment="Left" Height="200" Margin="50,93,0,0" VerticalAlignment="Top" Width="200" Source="pacijent.png" />
             <Button x:Name="btnDodajPacijenta" Content="                     " HorizontalAlignment="Left" Height="80" Margin="110,320,0,0" VerticalAlignment="Top" Width="80" RenderTransformOrigin="0.325,0.75" BorderThickness="0" ToolTip="Dodaj pacijenta" Click="dodajPacijentaButton_Click">
                 <Button.Background>
                     <ImageBrush  Stretch="Uniform" ImageSource="dodajPacijenta.png"/>
@@ -134,22 +125,17 @@
                 </Button.Background>
 
             </Button>
-            <Button x:Name="btnPovratakPacijent" Content="POVRATAK" HorizontalAlignment="Left" Height="25" Margin="94,17,0,0" VerticalAlignment="Top" Width="108" Click="ButtonPovratak_Click" BorderThickness="0">
-                <Button.Background>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="#FFEA8A48" Offset="0"/>
-                        <GradientStop Color="#FFEEB38A" Offset="1"/>
-                    </LinearGradientBrush>
-                </Button.Background>
+            <Button x:Name="btnPovratakPacijent" HorizontalAlignment="Left" Height="80" Margin="10,10,0,0" VerticalAlignment="Top" Width="80" Click="ButtonPovratak_Click" BorderThickness="0" Foreground="{x:Null}" Background="{x:Null}">
+                <materialDesign:PackIcon x:Name="iconPacijentiPovratak" Kind="ArrowBackCircle" Height="55" Width="45" Foreground="#FF178EEA"/>
             </Button>
-            <DataGrid x:Name="TabelaPacijenti" HorizontalAlignment="Left" Height="242" Margin="324,0,-18,488" VerticalAlignment="Bottom" Width="1040" FontSize="24" HeadersVisibility="All" AutoGenerateColumns="False" CanUserAddRows="false">
+            <DataGrid x:Name="TabelaPacijenti" HorizontalAlignment="Left" Height="242" Margin="324,0,-18,488" VerticalAlignment="Bottom" Width="1040" FontSize="24" HeadersVisibility="All" AutoGenerateColumns="False" CanUserAddRows="false" Background="#FFB5D5EB">
                 <DataGrid.Columns>
                     <DataGridTextColumn x:Name="kolonaJMBG" Binding="{Binding jmbg}" IsReadOnly="True" Header="JMBG" Width="347" CanUserResize="False" Foreground="Black" FontSize="24"/>
                     <DataGridTextColumn x:Name="kolonaIme" Binding="{Binding ime}" IsReadOnly="True" Header="IME" Width="347" CanUserResize="False" Foreground="Black" FontSize="24" />
                     <DataGridTextColumn x:Name="kolonaPrezime" Binding="{Binding prezime}" IsReadOnly="True" Header="PREZIME" Width="347" CanUserResize="False" Foreground="Black" FontSize="24"/>
                 </DataGrid.Columns>
             </DataGrid>
-            <DataGrid x:Name="dataGridAlergije" HorizontalAlignment="Left" Height="180" Margin="882,442,0,0" VerticalAlignment="Top" Width="436" CanUserAddRows="true" CanUserDeleteRows="true" AutoGenerateColumns="False" IsEnabled="False" >
+            <DataGrid x:Name="dataGridAlergije" HorizontalAlignment="Left" Height="180" Margin="882,442,0,0" VerticalAlignment="Top" Width="436" CanUserAddRows="true" CanUserDeleteRows="true" AutoGenerateColumns="False" IsEnabled="False" Background="#FFB5D5EB" >
                 <DataGrid.Columns>
                     <DataGridTextColumn x:Name="kolonaAlergije"  Binding="{Binding nazivAlergije}" IsReadOnly="False" Header="NAZIV ALERGIJE" Width="347" CanUserResize="False" Foreground="Black" FontSize="24" />
                 </DataGrid.Columns>
@@ -199,6 +185,7 @@
                 </Image.RenderTransform>
             </Image>
             <Button x:Name="___btnDodajRed_" HorizontalAlignment="Left" Margin="1012,453,0,0" VerticalAlignment="Top" Width="19" Height="18" Click="___btnDodajRed__Click" Background="{x:Null}" BorderBrush="{x:Null}" Content="" IsEnabled="False" />
+            <materialDesign:PackIcon x:Name="iconPacijent" Kind="Person" HorizontalAlignment="Left" Margin="60,95,0,0" VerticalAlignment="Top" Width="180" Height="180" Foreground="#FF178EE9"/>
         </Grid>
         <Grid x:Name="TerminiGrid" HorizontalAlignment="Left" Height="730" Margin="0,18,0,0" VerticalAlignment="Top" Width="1346" d:IsHidden="True">
             <Grid.Background>
@@ -208,7 +195,6 @@
                     <GradientStop Color="#FF9D6EEE" Offset="0"/>
                 </LinearGradientBrush>
             </Grid.Background>
-            <Image x:Name="pacijentIcon1" HorizontalAlignment="Left" Height="200" Margin="62,93,0,0" VerticalAlignment="Top" Width="200" Source="termin.png" />
             <Button x:Name="zakaziTerminButton" Content="                     " HorizontalAlignment="Left" Height="80" Margin="110,320,0,0" VerticalAlignment="Top" Width="80" RenderTransformOrigin="0.325,0.75" BorderThickness="0" ToolTip="Zakaži termin" Click="zakaziTerminButton_Click" BorderBrush="#FF9C5353">
                 <Button.Background>
                     <ImageBrush  Stretch="Uniform" ImageSource="zakaziTermin.png"/>
@@ -232,7 +218,9 @@
                     </LinearGradientBrush>
                 </GridSplitter.Background>
             </GridSplitter>
-            <Button Content="POVRATAK" HorizontalAlignment="Left" Height="25" Margin="92,17,0,0" VerticalAlignment="Top" Width="114" Click="ButtonPovratak_Click" BorderThickness="0" Background="{x:Null}"/>
+            <Button HorizontalAlignment="Left" Height="80" Margin="10,10,0,0" VerticalAlignment="Top" Width="80" Click="ButtonPovratak_Click" BorderThickness="0" Background="{x:Null}">
+                <materialDesign:PackIcon x:Name="iconTerminiPovratak" Kind="ArrowBackCircle" Width="45" Height="60" Foreground="#FF773CB6"/>
+            </Button>
             <DataGrid x:Name="TabelaPacijentiTermini" HorizontalAlignment="Left" Height="200" Margin="346,0,0,513" VerticalAlignment="Bottom" Width="996" FontSize="24" HeadersVisibility="All" AutoGenerateColumns="False" CanUserAddRows="false" SelectionChanged="TabelaPacijenti1_SelectionChanged" Background="#FFDDD3F0">
                 <DataGrid.Resources>
                     <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" 
@@ -311,6 +299,7 @@
                     </Button.Background>
                 </Button>
             </Grid>
+            <materialDesign:PackIcon x:Name="iconTermini" Kind="Calendar" HorizontalAlignment="Left" Margin="60,99,0,0" VerticalAlignment="Top" Width="180" Height="180" Foreground="#FF773CB6"/>
         </Grid>
         <Grid x:Name="ObavestenjaGrid" HorizontalAlignment="Left" Height="730" Margin="0,18,-8,0" VerticalAlignment="Top" Width="1364" Visibility="Visible" d:IsHidden="True">
             <Grid.Background>
@@ -343,7 +332,9 @@
                     </LinearGradientBrush>
                 </GridSplitter.Background>
             </GridSplitter>
-            <Button x:Name="btnPovratakObavestenja" Content="POVRATAK" HorizontalAlignment="Left" Height="25" Margin="92,17,0,0" VerticalAlignment="Top" Width="114" BorderThickness="0" Background="{x:Null}" Click="btnPovratakObavestenja_Click"/>
+            <Button x:Name="btnPovratakObavestenja" HorizontalAlignment="Left" Height="80" Margin="10,10,0,0" VerticalAlignment="Top" Width="80" BorderThickness="0" Background="{x:Null}" Click="btnPovratakObavestenja_Click">
+                <materialDesign:PackIcon x:Name="iconObavestenjaPovratak" Kind="ArrowBackCircle" Width="45" Height="60" Foreground="#FF188DE6"/>
+            </Button>
             <DataGrid x:Name="dataGridObavestenja" HorizontalAlignment="Left" Height="200" Margin="346,0,0,513" VerticalAlignment="Bottom" Width="996" FontSize="24" HeadersVisibility="All" AutoGenerateColumns="False" CanUserAddRows="false" SelectionChanged="dataGridObavestenja_SelectionChanged" Background="#FFBBCBF5">
                 <DataGrid.Resources>
                     <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" 
@@ -391,8 +382,8 @@
             <Grid.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF83C8F7" Offset="0"/>
-                    <GradientStop Color="#FFF9CDCD" Offset="1"/>
-                    <GradientStop Color="#FFDA1D36" Offset="0"/>
+                    <GradientStop Color="#FFD86868" Offset="0.992"/>
+                    <GradientStop Color="#FFF5697B" Offset="0"/>
                 </LinearGradientBrush>
             </Grid.Background>
             <Image x:Name="pacijentIcon2" HorizontalAlignment="Left" Height="149" Margin="78,93,0,0" VerticalAlignment="Top" Width="149" Source="hitanSlucaj.png" />
@@ -409,7 +400,9 @@
                     </LinearGradientBrush>
                 </GridSplitter.Background>
             </GridSplitter>
-            <Button x:Name="btnPovratakHitanSlucaj" Content="POVRATAK" HorizontalAlignment="Left" Height="25" Margin="92,17,0,0" VerticalAlignment="Top" Width="114" Click="btnPovratakHitanSlucaj_Click" BorderThickness="0" Background="{x:Null}"/>
+            <Button x:Name="btnPovratakHitanSlucaj" HorizontalAlignment="Left" Height="80" Margin="10,10,0,0" VerticalAlignment="Top" Width="80" Click="btnPovratakHitanSlucaj_Click" BorderThickness="0" Background="{x:Null}">
+                <materialDesign:PackIcon x:Name="iconHitanSlucajPovratak" Kind="ArrowBackCircle" Width="45" Height="60" Foreground="#FFDB2B42"/>
+            </Button>
             <DataGrid x:Name="dataGridPacijentiHitanSlucaj" HorizontalAlignment="Left" Height="200" Margin="346,0,0,465" VerticalAlignment="Bottom" Width="996" FontSize="24" HeadersVisibility="All" AutoGenerateColumns="False" CanUserAddRows="false" SelectionChanged="dataGridPacijentiHitanSlucaj_SelectionChanged_1" Background="#FFF58C9A">
                 <DataGrid.Resources>
                     <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" 
@@ -448,7 +441,7 @@
             </DataGrid>
             <Label x:Name="lblUpozorenjeTermin" Content="* Nema slobodnih termina" HorizontalAlignment="Left" Margin="800,393,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold" IsEnabled="False" Height="39" Width="502" Foreground="#FFE00000" Visibility="Hidden"/>
         </Grid>
-        <Grid x:Name="LekariGrid" HorizontalAlignment="Left" Height="739" Margin="0,18,-8,-9" VerticalAlignment="Top" Width="1364">
+        <Grid x:Name="LekariGrid" HorizontalAlignment="Left" Height="739" Margin="0,18,-8,-9" VerticalAlignment="Top" Width="1364" d:IsHidden="True">
             <Grid.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FFA5EAA1" Offset="0"/>
@@ -475,7 +468,7 @@
             </Button>
             <materialDesign:PackIcon x:Name="iconLekari" Kind="Doctor" HorizontalAlignment="Left" Margin="62,111,0,0" VerticalAlignment="Top" Height="180" Width="180" Foreground="#FF44C155"/>
             <Button x:Name="btnPovratakLekari" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="80" Height="80" Click="btnPovratakLekari_Click" Background="{x:Null}" BorderBrush="{x:Null}">
-                <materialDesign:PackIcon x:Name="iconPovratakLekari" Kind="PagePrevious" Height="80" Width="48" Foreground="#FF44C155"/>
+                <materialDesign:PackIcon x:Name="iconPovratakLekari" Kind="ArrowBackCircle" Height="60" Width="45" Foreground="#FF44C155"/>
             </Button>
             <DataGrid x:Name="dataGridLekari" HorizontalAlignment="Left" Height="197" Margin="331,17,0,0" VerticalAlignment="Top" Width="1008" AutoGenerateColumns="False" Background="#FFB2E6B3" SelectionChanged="dataGridLekari_SelectionChanged">
                 <DataGrid.Columns>
