@@ -79,10 +79,7 @@ namespace Bolnica_aplikacija
             prijava.ShowDialog();
         }
 
-        public static Pacijent GetPacijent()
-        {
-            return pacijent;
-        }
+        //PACIJENTI
         private void pacijenti_Click(object sender, RoutedEventArgs e)
         {
 

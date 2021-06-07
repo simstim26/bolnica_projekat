@@ -193,6 +193,7 @@
     <Compile Include="ViewModel\LekarTaboviViewModel.cs" />
     <Compile Include="ViewModel\LekZaOdobravanjeViewModel.cs" />
     <Compile Include="ViewModel\PacijentiInfoViewModel.cs" />
+    <Compile Include="ViewModel\SekretarObavestenja.cs" />
     <Compile Include="View\LekarStudent\Alergije.xaml.cs">
       <DependentUpon>Alergije.xaml</DependentUpon>
     </Compile>
