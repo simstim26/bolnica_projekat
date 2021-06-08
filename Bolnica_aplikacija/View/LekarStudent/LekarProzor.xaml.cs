@@ -178,6 +178,20 @@ namespace Bolnica_aplikacija
 
         private void btnPretraga_Click(object sender, RoutedEventArgs e)
         {
+            if (Izvestaj.aktivan)
+            {
+                if(Izvestaj.lekari.Visibility == Visibility.Visible)
+                {
+                    if(Izvestaj.pretragaLekara.Visibility == Visibility.Visible)
+                    {
+                        Izvestaj.pretragaLekara.Visibility = Visibility.Hidden;
+                    }
+                    else
+                    {
+                        Izvestaj.pretragaLekara.Visibility = Visibility.Visible;
+                    }
+                }
+            }
             if (ZakaziTermin.aktivan)
             {
                 if(ZakaziTermin.pretraga.Visibility == Visibility.Hidden)

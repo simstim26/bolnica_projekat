@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Bolnica_aplikacija.Servis
@@ -35,6 +36,24 @@ namespace Bolnica_aplikacija.Servis
         {
             return nadjiLekaraPoId(idLekara).prezime;
         }
+
+        public List<LekarSpecijalizacija> pretraziLekare(String kriterijum)
+        {
+            List<LekarSpecijalizacija> povratnaVrednost = new List<LekarSpecijalizacija>();
+            Regex rx = new Regex(kriterijum.ToLower());
+
+
+            foreach(LekarSpecijalizacija lekar in ucitajLekareSaSpecijalizacijom())
+            {
+                if(rx.IsMatch((lekar.prezimeLekara + lekar.nazivSpecijalizacije).ToLower()))
+                {
+                    povratnaVrednost.Add(lekar);
+                }
+            }
+
+            return povratnaVrednost;
+        }
+
 
         public List<PacijentTermin> pretraziSlobodneTermineZaLekara(DateTime datum, int tipAkcije)
         {

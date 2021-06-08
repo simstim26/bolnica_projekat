@@ -30,7 +30,7 @@ namespace Bolnica_aplikacija.LekarStudent
         private static Grid recept;
         private static Grid odabirLeka;
         private static Grid azuriranje;
-        private static Grid lekari;
+        public static Grid lekari { get; set; }
         private static Grid zakazivanje;
         private static Grid zakazivanjeOperacije;
         private static Grid odabirProstorije;
@@ -38,6 +38,7 @@ namespace Bolnica_aplikacija.LekarStudent
         private static Grid pitanjeOZakazivanju;
         private static Grid pitanjeOUputu;
         private static Grid bolnickoLecenje;
+        public static Grid pretragaLekara { get; set; }
         private static FrameworkElement fm = new FrameworkElement();
         public Izvestaj(String idPacijenta, String idTermina)
         {
@@ -95,6 +96,7 @@ namespace Bolnica_aplikacija.LekarStudent
             pitanjeOZakazivanju = this.gridPitanjeOZakazivanju;
             pitanjeOUputu = this.gridPitanjeOUputu;
             bolnickoLecenje = this.gridBolnickoLecenje;
+            pretragaLekara = this.gridPretragaLekar;
         }
 
         public static void podesiKretanjeZaDugmeNazad()
@@ -720,6 +722,40 @@ namespace Bolnica_aplikacija.LekarStudent
         private void txtDijagnozaIzvestaj_TextChanged(object sender, TextChangedEventArgs e)
         {
             btnPotvrdaIzvestaj.IsEnabled = (String.IsNullOrWhiteSpace(txtDijagnozaIzvestaj.Text) || String.IsNullOrWhiteSpace(txtIzvestaj.Text)) ? false : true;
+        }
+
+        private void gridOdabirLekaraUput_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if(gridOdabirLekaraUput.Visibility == Visibility.Hidden)
+            {
+                LekarProzor.getPretraga().Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                LekarProzor.getPretraga().Visibility = Visibility.Visible;
+            }
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            if (!String.IsNullOrWhiteSpace(txtKriterijum.Text))
+            {
+                Regex rx = new Regex("[0-9]+");
+                if (rx.IsMatch(txtKriterijum.Text))
+                {
+                    lblGreskaPretraga.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    lblGreskaPretraga.Visibility = Visibility.Hidden;
+                    dataGridLekari.ItemsSource = LekarKontroler.pretraziLekare(txtKriterijum.Text);
+
+                }
+            }
+            else
+            {
+                dataGridLekari.ItemsSource = LekarKontroler.ucitajLekareSaSpecijalizacijom();
+            }
         }
     }
 }
