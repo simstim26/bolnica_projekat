@@ -1,14 +1,64 @@
-﻿<Page x:Class="Bolnica_aplikacija.View.SekretarStudent.SekretarObavestenja"
+﻿<Page
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Bolnica_aplikacija.View.SekretarStudent"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="Bolnica_aplikacija.View.SekretarStudent.SekretarObavestenja"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="SekretarObavestenja">
+      Title="SekretarObavestenja" Width="1356" Height="748">
 
-    <Grid>
-        
+    <Grid Width="1356" Height="747.9">
+
+        <Grid x:Name="ObavestenjaGrid" HorizontalAlignment="Left" Height="730" Margin="0,18,-8,-0.1" VerticalAlignment="Top" Width="1364" Visibility="Visible">
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF83C8F7" Offset="0"/>
+                    <GradientStop Color="#FFD3DDE8" Offset="1"/>
+                    <GradientStop Color="#FF6EA8EE" Offset="0"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+            <Button x:Name="btnDodajObavestenje" Content="" IsEnabled="{Binding BtnDodajObavestenjeIsEnabled}" Command="{Binding btnDodajObavestenjeCommand}" HorizontalAlignment="Left" Height="80" Margin="110,320,0,0" VerticalAlignment="Top" Width="80" RenderTransformOrigin="0.325,0.75" BorderThickness="0" ToolTip="Napravi obaveštenje" BorderBrush="#FF9C5353" Foreground="#FF2A83A4">
+                <Button.Background>
+                    <ImageBrush  Stretch="Uniform" ImageSource="dodajPacijenta.png"/>
+                </Button.Background>
+            </Button>
+            <Button x:Name="btnIzmeniObavestenje" Content="" IsEnabled="{Binding BtnIzmeniObavestenjeIsEnabled}" Command="{Binding btnIzmeniObavestenjeCommand}" HorizontalAlignment="Left" Height="80" Margin="110,420,0,0" VerticalAlignment="Top" Width="80" RenderTransformOrigin="0.325,0.75" BorderThickness="0" ToolTip="Izmeni obaveštenje">
+                <Button.Background>
+                    <ImageBrush  Stretch="Uniform" ImageSource="IzmeniPacijenta.png"/>
+                </Button.Background>
+            </Button>
+            <Button x:Name="btnIzbrisiObavestenje" Content=" " IsEnabled="{Binding BtnObrisiObavestenjeIsEnabled}" Command="{Binding btnIzbrisiObavestenjeCommand}" HorizontalAlignment="Left" Height="80" Margin="110,520,0,0" VerticalAlignment="Top" Width="80" RenderTransformOrigin="0.325,0.75" BorderThickness="0" ToolTip="Obriši obaveštenje" >
+                <Button.Background>
+                    <ImageBrush  Stretch="Uniform" ImageSource="IzbrisiPacijenta.png"/>
+                </Button.Background>
+            </Button>
+            <GridSplitter HorizontalAlignment="Left" Height="730" Margin="326,0,-20,0" VerticalAlignment="Top" Width="1040">
+                <GridSplitter.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFCFC9C9" Offset="0"/>
+                        <GradientStop Color="White" Offset="1"/>
+                    </LinearGradientBrush>
+                </GridSplitter.Background>
+            </GridSplitter>
+            <Button x:Name="btnPovratakObavestenja" Command="{Binding buttonObavestenjaPovratak}" HorizontalAlignment="Left" Height="80" Margin="10,10,0,0" VerticalAlignment="Top" Width="80" BorderThickness="0" Background="{x:Null}">
+                <materialDesign:PackIcon x:Name="iconObavestenjaPovratak" Kind="ArrowBackCircle" Width="45" Height="60" Foreground="#FF188DE6"/>
+            </Button>
+            <DataGrid x:Name="dataGridObavestenja" ItemsSource="{Binding obavestenja, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelektovanoObavestenje}" HorizontalAlignment="Left" Height="200" Margin="346,0,0,513" VerticalAlignment="Bottom" Width="996" FontSize="24" HeadersVisibility="All" AutoGenerateColumns="False" CanUserAddRows="false" Background="#FFBBCBF5">
+                <DataGrid.Resources>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" 
+                        Color="#FF9D6EEE"/>
+                </DataGrid.Resources>
+                <DataGrid.Columns>
+                    <DataGridTextColumn x:Name="kolonaNaslov" Binding="{Binding naslovObavestenja}" IsReadOnly="True" Header="NASLOV OBAVEŠTENJA" Width="347" CanUserResize="False" Foreground="Black" FontSize="24"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <materialDesign:PackIcon x:Name="iconObavestenje" Kind="InfoOutline" HorizontalAlignment="Left" Margin="62,111,0,0" VerticalAlignment="Top" Height="180" Width="180" Foreground="#FF188DE6"/>
+            <TextBox x:Name="txtSadrzajObavestenja" Text="{Binding TxtSadrzajObavestenja, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="355" Margin="346,320,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="996" materialDesign:HintAssist.Hint=" Unesite sadržaj obaveštenja..." FontSize="24" Background="#FFBBCBF5" BorderBrush="{x:Null}"/>
+            <TextBox x:Name="txtNaslovObavestenja" Text="{Binding TxtNaslovObavestenja, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="43" Margin="346,253,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="614" FontSize="20" materialDesign:HintAssist.Hint="Unesite naslov obaveštenja..."/>
+            <Button x:Name="btnOdustaniIzmenaObavestenja" Visibility="{Binding BtnOdustaniIzmenaObavestenja}" Command="{Binding btnOdustaniIzmenaObavestenjaCommand}" Content="ODUSTANI" HorizontalAlignment="Left" Margin="346,680,0,0" VerticalAlignment="Top" Width="109"/>
+        </Grid>
+
     </Grid>
 </Page>

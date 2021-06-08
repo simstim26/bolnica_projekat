@@ -3,6 +3,7 @@ using Bolnica_aplikacija.Model;
 using Bolnica_aplikacija.PacijentModel;
 using Bolnica_aplikacija.PacijentStudent;
 using Bolnica_aplikacija.PomocneKlase;
+using Bolnica_aplikacija.View.SekretarStudent;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -35,10 +36,10 @@ namespace Bolnica_aplikacija
         private bool flagIzmeni;
         private String idPacijenta;
         private int tipAkcijeTermini; // 0 - dodaj, 1 - izmeni, 2 - ukloni
-        private int tipAkcijeObavestenja; // 0 - dodaj, 1 - izmeni, 2 - ukloni
+       // private int tipAkcijeObavestenja; // 0 - dodaj, 1 - izmeni, 2 - ukloni
         private String imePrezimePacijenta;
         private PacijentTermin izabraniTermin;
-        private Obavestenje izabranoObavestenje;
+       // private Obavestenje izabranoObavestenje;
         private List<Alergija> alergije;
         private bool jeHitanSlucaj;
         private String tipHitanSlucaj;
@@ -55,7 +56,6 @@ namespace Bolnica_aplikacija
             lblSekretar.Content = KorisnikKontroler.GetSekretar().ime + " " + KorisnikKontroler.GetSekretar().prezime;
             this.PacijentGrid.Visibility = Visibility.Hidden;
             this.TerminiGrid.Visibility = Visibility.Hidden;
-            this.ObavestenjaGrid.Visibility = Visibility.Hidden;
             this.HitanSlucajGrid.Visibility = Visibility.Hidden;
             this.LekariGrid.Visibility = Visibility.Hidden;
 
@@ -96,7 +96,6 @@ namespace Bolnica_aplikacija
             this.PocetniEkranGrid.Visibility = Visibility.Visible;
             this.PacijentGrid.Visibility = Visibility.Hidden;
             this.TerminiGrid.Visibility = Visibility.Hidden;
-            this.ObavestenjaGrid.Visibility = Visibility.Hidden;
 
             //Termini
             slobodniTerminiLabel.Visibility = Visibility.Hidden;
@@ -918,14 +917,20 @@ namespace Bolnica_aplikacija
 
         private void btnObavestenja_Click(object sender, RoutedEventArgs e)
         {
-            PocetniEkranGrid.Visibility = Visibility.Hidden;
-            PacijentGrid.Visibility = Visibility.Hidden;
-            TerminiGrid.Visibility = Visibility.Hidden;
-            ObavestenjaGrid.Visibility = Visibility.Visible;
+            frame.Content = new SekretarObavestenja(this);
 
-            ucitajObavestenjaUTabelu();
+            this.PocetniEkranGrid.Visibility = Visibility.Hidden;
+            this.PacijentGrid.Visibility = Visibility.Hidden;
+            this.TerminiGrid.Visibility = Visibility.Hidden;
+            this.HitanSlucajGrid.Visibility = Visibility.Hidden;
+
+            //ucitajObavestenja();
+
+
+
         }
 
+        /*
         private void btnPovratakObavestenja_Click(object sender, RoutedEventArgs e)
         {
             ocistiPoljaObavestenja();
@@ -1031,6 +1036,7 @@ namespace Bolnica_aplikacija
             dataGridObavestenja.SelectedIndex = -1;
             ocistiPoljaObavestenja();
         }
+        */
 
         // HITAN SLUCAJ
 
@@ -1040,7 +1046,6 @@ namespace Bolnica_aplikacija
             this.PocetniEkranGrid.Visibility = Visibility.Hidden;
             this.PacijentGrid.Visibility = Visibility.Hidden;
             this.TerminiGrid.Visibility = Visibility.Hidden;
-            this.ObavestenjaGrid.Visibility = Visibility.Hidden;
             this.HitanSlucajGrid.Visibility = Visibility.Visible;
             this.dataGridSlobodniTerminiHItanSlucaj.Visibility = Visibility.Hidden;
 
@@ -1255,7 +1260,6 @@ namespace Bolnica_aplikacija
             PocetniEkranGrid.Visibility = Visibility.Hidden;
             PacijentGrid.Visibility = Visibility.Hidden;
             TerminiGrid.Visibility = Visibility.Hidden;
-            ObavestenjaGrid.Visibility = Visibility.Hidden;
             HitanSlucajGrid.Visibility = Visibility.Hidden;
             LekariGrid.Visibility = Visibility.Visible;
 

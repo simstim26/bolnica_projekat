@@ -22,9 +22,30 @@
   },
   {
     "id": "4",
-    "naslovObavestenja": "asdasdas",
-    "sadrzajObavestenja": "sadsadas",
+    "naslovObavestenja": "Naslov Izmena 2",
+    "sadrzajObavestenja": "Tekst",
+    "notifikacija": null,
+    "jeLogickiObrisano": true
+  },
+  {
+    "id": "5",
+    "naslovObavestenja": "Obavestenje",
+    "sadrzajObavestenja": "BlaBla4",
     "notifikacija": null,
     "jeLogickiObrisano": false
+  },
+  {
+    "id": "6",
+    "naslovObavestenja": "Novo Obavestenje",
+    "sadrzajObavestenja": "Hehe",
+    "notifikacija": null,
+    "jeLogickiObrisano": false
+  },
+  {
+    "id": "7",
+    "naslovObavestenja": "Novo Obavestenje 2",
+    "sadrzajObavestenja": "Eh",
+    "notifikacija": null,
+    "jeLogickiObrisano": true
   }
 ]

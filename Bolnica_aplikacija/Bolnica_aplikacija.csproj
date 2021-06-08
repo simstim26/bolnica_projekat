@@ -135,6 +135,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Komande\BindableBase.cs" />
     <Compile Include="Komande\RelayCommand.cs" />
     <Compile Include="Kontroler\AlergijaKontroler.cs" />
     <Compile Include="Kontroler\BolestKontroler.cs" />
@@ -193,7 +194,7 @@
     <Compile Include="ViewModel\LekarTaboviViewModel.cs" />
     <Compile Include="ViewModel\LekZaOdobravanjeViewModel.cs" />
     <Compile Include="ViewModel\PacijentiInfoViewModel.cs" />
-    <Compile Include="ViewModel\SekretarObavestenja.cs" />
+    <Compile Include="ViewModel\SekretarObavestenjaViewModel.cs" />
     <Compile Include="View\LekarStudent\Alergije.xaml.cs">
       <DependentUpon>Alergije.xaml</DependentUpon>
     </Compile>
@@ -273,6 +274,9 @@
     <Compile Include="Repozitorijum\TerapijaRepozitorijum.cs" />
     <Compile Include="Repozitorijum\TerminRepozitorijum.cs" />
     <Compile Include="Repozitorijum\UpravnikRepozitorijum.cs" />
+    <Compile Include="View\SekretarStudent\SekretarObavestenja.xaml.cs">
+      <DependentUpon>SekretarObavestenja.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\SekretarStudent\SekretarProzor.xaml.cs">
       <DependentUpon>SekretarProzor.xaml</DependentUpon>
     </Compile>
@@ -462,6 +466,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Prijava.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SekretarStudent\SekretarObavestenja.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

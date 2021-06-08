@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bolnica_aplikacija.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,13 @@ namespace Bolnica_aplikacija.View.SekretarStudent
     /// </summary>
     public partial class SekretarObavestenja : Page
     {
-        public SekretarObavestenja()
+        
+        public SekretarObavestenja(SekretarProzor parent)
         {
             InitializeComponent();
+            this.DataContext = new SekretarObavestenjaViewModel(parent);
         }
+
+
     }
 }
