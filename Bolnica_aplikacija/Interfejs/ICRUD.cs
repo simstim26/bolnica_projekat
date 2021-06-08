@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace Bolnica_aplikacija.Interfejs
 {
-    interface CRUDInterfejs
+    interface ICRUD <T>
     {
-        //public void kreirajEntitet();
-
+        void kreiraj(T obj);
+        List<T> ucitaj();
+        void azuriraj(T obj);
+        void obrisi(String key);
     }
 }
