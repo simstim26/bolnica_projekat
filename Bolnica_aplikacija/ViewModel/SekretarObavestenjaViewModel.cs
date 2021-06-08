@@ -1,6 +1,7 @@
 ﻿using Bolnica_aplikacija.Komande;
 using Bolnica_aplikacija.Kontroler;
 using Bolnica_aplikacija.Model;
+using Bolnica_aplikacija.PomocneKlase;
 using Bolnica_aplikacija.View.SekretarStudent;
 using System;
 using System.Collections.Generic;
@@ -226,7 +227,7 @@ namespace Bolnica_aplikacija.ViewModel
             String naslovObavestenja = TxtNaslovObavestenja;
             String sadrzajObavestenja = TxtSadrzajObavestenja;
 
-            ObavestenjeKontroler.napraviObavestenje(naslovObavestenja, sadrzajObavestenja);
+            ObavestenjeKontroler.napraviObavestenje(new ObavestenjeDTO(naslovObavestenja, sadrzajObavestenja));
             ocistiPoljaObavestenja();
             ucitajObavestenjaUTabelu();
             parent.frame.Content = null;
@@ -238,7 +239,9 @@ namespace Bolnica_aplikacija.ViewModel
 
         private void btnIzmeniObavestenje_Click(object obj)
         {
-            ObavestenjeKontroler.azurirajObavestenje(izabranoObavestenje.id, TxtNaslovObavestenja, TxtSadrzajObavestenja);
+            ObavestenjeDTO obavestenjeDTO = new ObavestenjeDTO(TxtNaslovObavestenja, TxtSadrzajObavestenja);
+            obavestenjeDTO.id = selektovanoObavestenje.id;
+            ObavestenjeKontroler.azurirajObavestenje(obavestenjeDTO);
             ocistiPoljaObavestenja();
             ucitajObavestenjaUTabelu();
             parent.frame.Content = null;

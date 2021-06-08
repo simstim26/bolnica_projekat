@@ -1,51 +1,20 @@
 [
   {
     "id": "1",
-    "naslovObavestenja": "Neki naslov izmena",
-    "sadrzajObavestenja": "Neki sadrzaj vesti izmena",
-    "notifikacija": null,
+    "naslovObavestenja": "Test 1",
+    "sadrzajObavestenja": "Tekst1",
     "jeLogickiObrisano": true
   },
   {
     "id": "2",
-    "naslovObavestenja": "Neki naslov 2",
-    "sadrzajObavestenja": "Neki tekst",
-    "notifikacija": null,
-    "jeLogickiObrisano": true
+    "naslovObavestenja": "Test 2 IZMENA",
+    "sadrzajObavestenja": "tekst 2 IZMENA",
+    "jeLogickiObrisano": false
   },
   {
     "id": "3",
-    "naslovObavestenja": "Neki naslov 3 izmena",
-    "sadrzajObavestenja": "Neki sadrzaj izmena",
-    "notifikacija": null,
-    "jeLogickiObrisano": true
-  },
-  {
-    "id": "4",
-    "naslovObavestenja": "Naslov Izmena 2",
-    "sadrzajObavestenja": "Tekst",
-    "notifikacija": null,
-    "jeLogickiObrisano": true
-  },
-  {
-    "id": "5",
-    "naslovObavestenja": "Obavestenje",
-    "sadrzajObavestenja": "BlaBla4",
-    "notifikacija": null,
+    "naslovObavestenja": "Obavestenje 2",
+    "sadrzajObavestenja": "Obavestenje 2",
     "jeLogickiObrisano": false
-  },
-  {
-    "id": "6",
-    "naslovObavestenja": "Novo Obavestenje",
-    "sadrzajObavestenja": "Hehe",
-    "notifikacija": null,
-    "jeLogickiObrisano": false
-  },
-  {
-    "id": "7",
-    "naslovObavestenja": "Novo Obavestenje 2",
-    "sadrzajObavestenja": "Eh",
-    "notifikacija": null,
-    "jeLogickiObrisano": true
   }
 ]

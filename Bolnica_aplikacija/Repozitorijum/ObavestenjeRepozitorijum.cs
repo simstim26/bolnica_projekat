@@ -55,7 +55,6 @@ namespace Bolnica_aplikacija.Repozitorijum
                     obavestenje.id = obavestenjeZaAzuriranje.id;
                     obavestenje.naslovObavestenja = obavestenjeZaAzuriranje.naslovObavestenja;
                     obavestenje.sadrzajObavestenja = obavestenjeZaAzuriranje.sadrzajObavestenja;
-                    obavestenje.notifikacija = obavestenjeZaAzuriranje.notifikacija;
 
                     break;
                 }

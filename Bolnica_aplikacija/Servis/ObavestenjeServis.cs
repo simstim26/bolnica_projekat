@@ -15,21 +15,13 @@ namespace Bolnica_aplikacija.Servis
         private static ObavestenjeRepozitorijum obavestenjeRepozitorijum = new ObavestenjeRepozitorijum();
         private static PacijentRepozitorijum pacijentRepozitorijum = new PacijentRepozitorijum();
 
-        public void napraviObavestenje(String naslovObavestenja, String sadrzajObavestenja)
+        public void napraviObavestenje(Obavestenje obavestenje)
         {
             List<Obavestenje> svaObavestenja = obavestenjeRepozitorijum.ucitajSve();      
-            napraviNotifikacije(naslovObavestenja);
-            obavestenjeRepozitorijum.dodajObavestenje(new Obavestenje((svaObavestenja.Count + 1).ToString(), naslovObavestenja, sadrzajObavestenja, null));
-         
-        }
-        public void napraviNotifikacije(String porukaNotifikacije)
-        {
-            List<Pacijent> sviPacijenti = pacijentRepozitorijum.ucitajSve();
             
-            foreach(Pacijent pacijent in sviPacijenti)
-            {
-                NotifikacijaKontroler.napraviNotifikaciju("Nova vest", porukaNotifikacije, pacijent.id, "pacijent");
-            }
+            obavestenje.id = (svaObavestenja.Count + 1).ToString();
+            obavestenjeRepozitorijum.dodajObavestenje(obavestenje);
+         
         }
 
         public List<Obavestenje> ucitajObavestenja()
@@ -45,23 +37,15 @@ namespace Bolnica_aplikacija.Servis
                 }
             }
 
+            Console.WriteLine(neobrisanaObavestenja.Count + " BR OBAV ZA UCIT");
             return neobrisanaObavestenja;
         }
 
-        public void azurirajObavestenje(String id, String naslovObavestenja, String sadrzajObavestenja)
+        public void azurirajObavestenje(Obavestenje obavestenjeIzmena)
         {
-            List<Obavestenje> svaObavestenja = obavestenjeRepozitorijum.ucitajSve();
 
-            foreach(Obavestenje obavestenje in svaObavestenja)
-            {
-                if (obavestenje.id.Equals(id))
-                {
-                    obavestenje.naslovObavestenja = naslovObavestenja;
-                    obavestenje.sadrzajObavestenja = sadrzajObavestenja;
+            obavestenjeRepozitorijum.azurirajObavestenje(obavestenjeIzmena);
 
-                    obavestenjeRepozitorijum.azurirajObavestenje(obavestenje);
-                }
-            }
         }
 
         public void obrisiObavestenje(String idObavestenja)

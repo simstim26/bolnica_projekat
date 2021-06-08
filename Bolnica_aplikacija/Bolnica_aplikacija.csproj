@@ -138,6 +138,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Interfejs\CRUDInterfejs.cs" />
     <Compile Include="Komande\BindableBase.cs" />
     <Compile Include="Komande\RelayCommand.cs" />
     <Compile Include="Kontroler\AlergijaKontroler.cs" />
@@ -165,6 +166,7 @@
     <Compile Include="PomocneKlase\BolnickoLecenjeDTO.cs" />
     <Compile Include="PomocneKlase\KonvertBolest.cs" />
     <Compile Include="PomocneKlase\NotifikacijaDTO.cs" />
+    <Compile Include="PomocneKlase\ObavestenjeDTO.cs" />
     <Compile Include="PomocneKlase\Ponavljanje.cs" />
     <Compile Include="PomocneKlase\KonverterBolnickoLecenje.cs" />
     <Compile Include="PomocneKlase\LekarDTO.cs" />
@@ -656,9 +658,7 @@
   <ItemGroup>
     <Resource Include="View\UpravnikStudent\logout.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Help\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets" Condition="Exists('packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
