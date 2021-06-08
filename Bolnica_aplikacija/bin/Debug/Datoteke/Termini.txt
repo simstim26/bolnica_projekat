@@ -574,5 +574,23 @@
     "idUputTermin": null,
     "tipUput": 0,
     "jeHitan": false
+  },
+  {
+    "tip": 1,
+    "datum": "2021-06-15T00:00:00",
+    "satnica": "2021-06-15T12:00:00",
+    "jeZavrsen": false,
+    "idTermina": "33",
+    "idProstorije": "15",
+    "idPacijenta": "4",
+    "idLekara": "1",
+    "idTerapije": null,
+    "idBolesti": null,
+    "izvestaj": null,
+    "izvestajUputa": null,
+    "idUputLekara": null,
+    "idUputTermin": null,
+    "tipUput": 0,
+    "jeHitan": false
   }
 ]

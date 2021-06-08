@@ -98,6 +98,8 @@ namespace Bolnica_aplikacija
                     PacijentKontroler.azurirajTerminPacijentu(((String[])fm.DataContext)[1], pacijentTermin.id);
                 }
 
+                MessageBox.Show("Uspešno ste zakazali pregled!", "Informacija", MessageBoxButton.OK, MessageBoxImage.Information);
+
                 LekarProzor.getX().Content = new PacijentInfo(((String[])PacijentInfo.getFM().DataContext)[0],
                     ((String[])PacijentInfo.getFM().DataContext)[1]);
                 PacijentInfo.getPregledTab().SelectedIndex = 2;
