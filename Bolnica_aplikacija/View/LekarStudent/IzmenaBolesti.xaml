@@ -15,10 +15,10 @@
         <Button x:Name="btnIzmeniTerapiju" Content="Izmeni" HorizontalAlignment="Left" Margin="295,103,0,0" VerticalAlignment="Top" Width="75" Click="btnIzmeniTerapiju_Click"/>
         <Label Content="Izveštaj:" HorizontalAlignment="Left" Margin="37,212,0,0" VerticalAlignment="Top" Height="25" Width="58"/>
         <TextBox x:Name="txtIzvestaj" Background="Gainsboro" HorizontalAlignment="Left" Height="274" Margin="10,254,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="410" TextChanged="txtIzvestaj_TextChanged"/>
-        <Button x:Name="btnPotvrdi" HorizontalAlignment="Left" Margin="37,589,0,0" VerticalAlignment="Top" Width="84" Height="44" Click="btnPotvrdi_Click">
+        <Button x:Name="btnPotvrdi" HorizontalAlignment="Left" Margin="37,589,0,0" VerticalAlignment="Top" Width="84" Height="44" Click="btnPotvrdi_Click" Background="#FF274E13">
             <materialDesign:PackIcon Kind="CheckCircle" Height="25" Width="29"></materialDesign:PackIcon>
         </Button>
-        <Button x:Name="btnPonisti" HorizontalAlignment="Left" Margin="295,589,0,0" VerticalAlignment="Top" Width="84" Height="44" Click="btnPonisti_Click">
+        <Button x:Name="btnPonisti" HorizontalAlignment="Left" Margin="295,589,0,0" VerticalAlignment="Top" Width="84" Height="44" Click="btnPonisti_Click" Background="#FF990000">
             <materialDesign:PackIcon Kind="CloseCircle" Height="23" Width="24" RenderTransformOrigin="0.5,0.5"/>
         </Button>
         <Grid x:Name="gridIzmenaTerapije" Background="White" Visibility="Hidden" >
@@ -38,10 +38,10 @@
             <Label Content="Trajanje:" HorizontalAlignment="Left" Margin="39,385,0,0" VerticalAlignment="Top"/>
             <Label Content="Način upotrebe:" HorizontalAlignment="Left" Margin="39,432,0,0" VerticalAlignment="Top"/>
             <TextBox x:Name="txtNacinUpotrebe" Background="Gainsboro" HorizontalAlignment="Left" Height="101" Margin="0,461,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="430" TextChanged="txtNacinUpotrebe_TextChanged"/>
-            <Button x:Name="btnPotvrdiRecept" HorizontalAlignment="Left" Margin="39,594,0,0" VerticalAlignment="Top" Width="75" Click="btnPotvrdiRecept_Click">
+            <Button x:Name="btnPotvrdiRecept"  Background="#FF274E13" HorizontalAlignment="Left" Margin="39,594,0,0" VerticalAlignment="Top" Width="75" Click="btnPotvrdiRecept_Click">
                 <materialDesign:PackIcon Kind="CheckCircle"></materialDesign:PackIcon>
             </Button>
-            <Button x:Name="btnPonistiRecept" HorizontalAlignment="Left" Margin="306,594,0,0" VerticalAlignment="Top" Width="75">
+            <Button x:Name="btnPonistiRecept" Background="#FF990000" HorizontalAlignment="Left" Margin="306,594,0,0" VerticalAlignment="Top" Width="75">
                 <materialDesign:PackIcon Kind="CloseCircle"></materialDesign:PackIcon>
             </Button>
             <TextBox x:Name="txtDijagnoza" IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="205,229,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="123"/>
@@ -66,10 +66,10 @@
                     <DataGridTextColumn Header="Način upotrebe" Binding="{Binding nacinUpotrebe}"></DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
-            <Button x:Name="btnPotvdiOdabirLeka" HorizontalAlignment="Left" Margin="45,588,0,0" VerticalAlignment="Top" Width="78" RenderTransformOrigin="-0.213,0.3" Height="38" Click="btnPotvdiOdabirLeka_Click">
+            <Button x:Name="btnPotvdiOdabirLeka"  Background="#FF274E13" HorizontalAlignment="Left" Margin="45,588,0,0" VerticalAlignment="Top" Width="78" RenderTransformOrigin="-0.213,0.3" Height="38" Click="btnPotvdiOdabirLeka_Click">
                 <materialDesign:PackIcon Kind="CheckCircle"></materialDesign:PackIcon>
             </Button>
-            <Button x:Name="btnPonistiOdaberLeka" HorizontalAlignment="Left" Margin="299,588,0,0" VerticalAlignment="Top" Width="78" RenderTransformOrigin="-0.213,0.3" Height="38">
+            <Button x:Name="btnPonistiOdaberLeka" Background="#FF990000" HorizontalAlignment="Left" Margin="299,588,0,0" VerticalAlignment="Top" Width="78" RenderTransformOrigin="-0.213,0.3" Height="38">
                 <materialDesign:PackIcon Kind="CloseCircle"></materialDesign:PackIcon>
             </Button>
         </Grid>
