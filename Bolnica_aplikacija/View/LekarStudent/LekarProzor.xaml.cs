@@ -178,6 +178,17 @@ namespace Bolnica_aplikacija
 
         private void btnPretraga_Click(object sender, RoutedEventArgs e)
         {
+            if (ZakaziTermin.aktivan)
+            {
+                if(ZakaziTermin.pretraga.Visibility == Visibility.Hidden)
+                {
+                    ZakaziTermin.pretraga.Visibility = Visibility.Visible;
+                }
+                else if(ZakaziTermin.pretraga.Visibility == Visibility.Visible)
+                {
+                    ZakaziTermin.pretraga.Visibility = Visibility.Hidden;
+                }
+            }
             if (PacijentInfo.aktivanPacijentInfo)
             {
                 if (PacijentInfo.getTab().SelectedIndex == 1)

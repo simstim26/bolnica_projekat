@@ -36,6 +36,22 @@ namespace Bolnica_aplikacija.Servis
             return nadjiLekaraPoId(idLekara).prezime;
         }
 
+        public List<PacijentTermin> pretraziSlobodneTermineZaLekara(DateTime datum, int tipAkcije)
+        {
+            List<PacijentTermin> povratnaVrednost = new List<PacijentTermin>();
+
+            foreach(PacijentTermin termin in prikaziSlobodneTermineZaLekara(nadjiLekaraPoId(KorisnikServis.getInstance().getLekar().id), tipAkcije))
+            {
+                Termin t = TerminServis.getInstance().nadjiTerminPoId(termin.id);
+                if(DateTime.Compare(t.datum.Date, datum.Date) == 0)
+                {
+                    povratnaVrednost.Add(termin);
+                }
+            }
+
+            return povratnaVrednost;
+        }
+
         public String pronadjiPunoImeLekara(String idLekara)
         {
             Lekar lekar = nadjiLekaraPoId(idLekara);
@@ -103,7 +119,7 @@ namespace Bolnica_aplikacija.Servis
             DateTime danasnji = danasnjiDatum.Date.Add(new TimeSpan(0, 0, 0));
             foreach (Termin termin in TerminServis.getInstance().ucitajSve())
             {
-                if (!termin.jeZavrsen && termin.idLekara.Equals(lekar.id) && !termin.idPacijenta.Equals(""))
+                if (!termin.jeZavrsen && termin.idLekara.Equals(lekar.id) && !String.IsNullOrWhiteSpace(termin.idPacijenta))
                 {
                     if (DateTime.Compare(termin.datum, danasnji) >= 0)
                     {
