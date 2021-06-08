@@ -38,6 +38,7 @@ namespace Bolnica_aplikacija.LekarStudent
             lblRDatumR.Content = pacijent.datumRodjenja;
             lblRImePrezime.Content = pacijent.ime + " " + pacijent.prezime;
             lblRJmbg.Content = pacijent.jmbg;
+            lblRPol.Content = pacijent.pol;
 
             txtDijagnoza.Text = bolestTerapija.nazivBolesti;
             txtKol.Text = bolestTerapija.kolicina;

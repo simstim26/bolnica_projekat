@@ -47,6 +47,7 @@ namespace Bolnica_aplikacija.LekarStudent
             this.lblRJmbg.Content = pacijent.jmbg;
             this.lblRImePrezime.Content = pacijent.ime + " " + pacijent.prezime;
             this.lblRDatumR.Content = pacijent.datumRodjenja.ToString("dd.MM.yyyy.");
+            lblRPol.Content = pacijent.pol;
 
             gridRecept = gridIzmenaTerapije;
             gridLekovi = gridOdabirLeka;

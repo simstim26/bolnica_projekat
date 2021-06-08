@@ -63,6 +63,7 @@ namespace Bolnica_aplikacija.LekarStudent
             lblRJmbg.Content = pacijent.jmbg;
             lblRImePrezime.Content = pacijent.ime + " " + pacijent.prezime;
             lblRDatumR.Content = pacijent.datumRodjenja.ToString("dd.MM.yyyy");
+            lblRPol.Content = pacijent.pol;
 
             podesiStaticGridPolja();
 
@@ -208,7 +209,7 @@ namespace Bolnica_aplikacija.LekarStudent
                this.txtIzvestaj.Text);
 
             aktivan = false;
-
+            MessageBox.Show("Uspešno ste završili termin!", "Informacija", MessageBoxButton.OK, MessageBoxImage.Information);
             LekarProzor.getX().Content = new PacijentInfo(((String[])PacijentInfo.getFM().DataContext)[0],
                     ((String[])PacijentInfo.getFM().DataContext)[1]);
 
@@ -244,6 +245,7 @@ namespace Bolnica_aplikacija.LekarStudent
             TerapijaKontroler.dodajTerapiju(new TerapijaDTO("", ((Lek)dataGridLekovi.SelectedItem).id, ((String[])fm.DataContext)[0], "",
                 ((String[])fm.DataContext)[1], DateTime.Now, Convert.ToInt32(txtTrajanje.Text), txtNacinUpotrebe.Text));
 
+            MessageBox.Show("Uspešno izdat recept!", "Informacija", MessageBoxButton.OK, MessageBoxImage.Information);
             this.gridRecept.Visibility = Visibility.Hidden;
             LekarProzor.getGlavnaLabela().Content = "Izdavanje recepta";
         }
@@ -390,6 +392,8 @@ namespace Bolnica_aplikacija.LekarStudent
 
                 TerminKontroler.azurirajUputTermina(((String[])fm.DataContext)[1], ((PacijentTermin)dataGridSlobodniTerminiLekara.SelectedItem).id);
 
+                MessageBox.Show("Uspešno zakazan pregled!", "Informacija", MessageBoxButton.OK, MessageBoxImage.Information);
+
                 gridZakazivanje.Visibility = Visibility.Hidden;
                 gridPitanjeOZakazivanju.Visibility = Visibility.Hidden;
                 gridOdabirLekaraUput.Visibility = Visibility.Hidden;
@@ -413,6 +417,8 @@ namespace Bolnica_aplikacija.LekarStudent
             TerminKontroler.azurirajUputTermina(((String[])fm.DataContext)[1], TerminKontroler.napraviTermin(new TerminDTO(TipTermina.OPERACIJA,
                 (DateTime)datum.SelectedDate, sat, false, "", ((Prostorija)dataGridProstorije.SelectedItem).id, ((String[])fm.DataContext)[0], ((LekarSpecijalizacija)dataGridLekari.SelectedItem).idLekara,
                 null, null, null, null, null, null, TipTermina.PREGLED, (bool)cBoxHitna.IsChecked)));
+
+            MessageBox.Show("Uspešno zakazana operacija!", "Informacija", MessageBoxButton.OK, MessageBoxImage.Information);
 
             radioBtnOperacija.IsChecked = true;
             radioBtnPregled.IsEnabled = false;
@@ -444,7 +450,7 @@ namespace Bolnica_aplikacija.LekarStudent
         private void btnPotvrdiUput_Click(object sender, RoutedEventArgs e)
         {
             TerminKontroler.azurirajIzvestajUputa(((String[])fm.DataContext)[1], proveriOznaceniRadioButton(),txtUputIzvestaj.Text);
-
+            MessageBox.Show("Uspešno izdat uput!","Informacija", MessageBoxButton.OK, MessageBoxImage.Information);
             gridUput.Visibility = Visibility.Hidden;
             LekarProzor.getGlavnaLabela().Content = "Izdavanje uputa";
         }
@@ -542,13 +548,12 @@ namespace Bolnica_aplikacija.LekarStudent
 
         private void btnPotvrdiBLecenje_Click(object sender, RoutedEventArgs e)
         {
-            /*string id, DateTime datumPocetka, int trajanje, bool jeZavrsen, string idPacijenta, string idProstorije*/
-
             if(dataGridBolnickeSobe.SelectedIndex != -1)
             {
                 BolnickoLecenjeKontroler.napraviUputZaBolnickoLecenje(new BolnickoLecenjeDTO("", (DateTime)datumBLecenje.SelectedDate, Convert.ToInt32(txtTrajanjeBLecenje.Text),
                     false, ((String[])fm.DataContext)[0], ((Prostorija)dataGridBolnickeSobe.SelectedItem).id, ((String[])fm.DataContext)[1]));
                 ProstorijaKontroler.azurirajBrojZauzetihKreveta(((Prostorija)dataGridBolnickeSobe.SelectedItem).id);
+                MessageBox.Show("Uspešno izdat uput za bolničko lečenje!", "Informacija", MessageBoxButton.OK, MessageBoxImage.Information);
                 gridBolnickoLecenje.Visibility = Visibility.Hidden;
                 LekarProzor.getGlavnaLabela().Content = "Pisanje izveštaja";
             }
