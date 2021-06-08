@@ -227,7 +227,7 @@ namespace Bolnica_aplikacija.ViewModel
             String naslovObavestenja = TxtNaslovObavestenja;
             String sadrzajObavestenja = TxtSadrzajObavestenja;
 
-            ObavestenjeKontroler.napraviObavestenje(new ObavestenjeDTO(naslovObavestenja, sadrzajObavestenja));
+            ObavestenjeKontroler.napraviObavestenje(new Obavestenje(naslovObavestenja, sadrzajObavestenja));
             ocistiPoljaObavestenja();
             ucitajObavestenjaUTabelu();
             parent.frame.Content = null;
@@ -239,9 +239,9 @@ namespace Bolnica_aplikacija.ViewModel
 
         private void btnIzmeniObavestenje_Click(object obj)
         {
-            ObavestenjeDTO obavestenjeDTO = new ObavestenjeDTO(TxtNaslovObavestenja, TxtSadrzajObavestenja);
-            obavestenjeDTO.id = selektovanoObavestenje.id;
-            ObavestenjeKontroler.azurirajObavestenje(obavestenjeDTO);
+            Obavestenje obavestenje = new Obavestenje(TxtNaslovObavestenja, TxtSadrzajObavestenja);
+            obavestenje.id = selektovanoObavestenje.id;
+            ObavestenjeKontroler.azurirajObavestenje(obavestenje);
             ocistiPoljaObavestenja();
             ucitajObavestenjaUTabelu();
             parent.frame.Content = null;

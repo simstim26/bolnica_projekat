@@ -150,7 +150,6 @@ namespace Bolnica_aplikacija
 
                 alergije = (List<Alergija>)dataGridAlergije.ItemsSource;
 
-                Console.WriteLine(dataGridAlergije.IsEnabled);
 
                 if (pacijent.jeGost)
                 {
