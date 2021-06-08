@@ -139,6 +139,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Interfejs\ICRUD.cs" />
+    <Compile Include="Interfejs\Implementacija\LekarCRUDImplementacija.cs" />
     <Compile Include="Interfejs\Implementacija\ObavestenjeCRUDImplementacija.cs" />
     <Compile Include="Komande\BindableBase.cs" />
     <Compile Include="Komande\RelayCommand.cs" />

@@ -67,5 +67,13 @@ namespace Bolnica_aplikacija.Servis
         {
             alergijaRepozitorijum.azurirajAlergije(alergije, id);
         }
+
+        public void dodajAlergijePacijentu(String idPacijenta, List<Alergija> alergije)
+        {
+            foreach (Alergija alergija in alergije)
+            {
+                AlergijaServis.getInstance().dodajAlergiju(new Alergija(idPacijenta, alergija.nazivAlergije));
+            }
+        }
     }
 }

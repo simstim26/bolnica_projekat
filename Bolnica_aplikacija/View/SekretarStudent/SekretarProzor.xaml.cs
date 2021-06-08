@@ -36,10 +36,8 @@ namespace Bolnica_aplikacija
         private bool flagIzmeni;
         private String idPacijenta;
         private int tipAkcijeTermini; // 0 - dodaj, 1 - izmeni, 2 - ukloni
-       // private int tipAkcijeObavestenja; // 0 - dodaj, 1 - izmeni, 2 - ukloni
         private String imePrezimePacijenta;
         private PacijentTermin izabraniTermin;
-       // private Obavestenje izabranoObavestenje;
         private List<Alergija> alergije;
         private bool jeHitanSlucaj;
         private String tipHitanSlucaj;
@@ -263,14 +261,17 @@ namespace Bolnica_aplikacija
                     {
                         alergije = (List<Alergija>)dataGridAlergije.ItemsSource;
                         PacijentDTO pacijentDTO = new PacijentDTO(pacIdBolnice, pacGost, pacKorisnickoIme, pacLozinka, pacJmbg, pacIme, pacPrezime, pacDatumRodjenja, pacAdresa, pacEmail, pacTelefon);
-                        PacijentKontroler.NapraviPacijenta(pacijentDTO, alergije);
+
+                        String idPacijentaNovi = (PacijentKontroler.ukupanBrojPacijenata() + 1).ToString();
+                        PacijentKontroler.napraviPacijenta(pacijentDTO);
+                        AlergijaKontroler.dodajAlergijePacijentu(idPacijentaNovi, alergije);
                         ucitajPacijenteTabela();
                     }
                     else
                     {
                         alergije = (List<Alergija>)dataGridAlergije.ItemsSource;
                         PacijentDTO pacijentDTO = new PacijentDTO(pacIdBolnice, pacGost, pacKorisnickoIme, pacLozinka, pacJmbg, pacIme, pacPrezime, pacDatumRodjenja, "", "", pacTelefon);
-                        PacijentKontroler.NapraviPacijenta(pacijentDTO, alergije);
+                        PacijentKontroler.napraviPacijenta(pacijentDTO);
                         ucitajPacijenteTabela();
                     }
 
@@ -285,7 +286,8 @@ namespace Bolnica_aplikacija
 
                     PacijentDTO pacijentDTO = new PacijentDTO(pacIdBolnice, pacGost, pacKorisnickoIme, pacLozinka, pacJmbg, pacIme, pacPrezime, pacDatumRodjenja, pacAdresa, pacEmail, pacTelefon);
                     pacijentDTO.id = idPacijenta;
-                    PacijentKontroler.AzurirajPacijenta(pacijentDTO, alergije);
+                    PacijentKontroler.azurirajPacijenta(pacijentDTO);
+                    AlergijaKontroler.azurirajAlergije(alergije, idPacijenta);
                     ucitajPacijenteTabela();
                 }
 

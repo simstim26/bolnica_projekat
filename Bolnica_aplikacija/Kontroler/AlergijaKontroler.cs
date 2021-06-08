@@ -14,5 +14,15 @@ namespace Bolnica_aplikacija.Kontroler
         {
             AlergijaServis.getInstance().obrisiAlergiju(alergija);
         }
+
+        public static void dodajAlergijePacijentu(String idPacijenta, List<Alergija> alergije)
+        {
+            AlergijaServis.getInstance().dodajAlergijePacijentu(idPacijenta, alergije);
+        }
+
+        public static void azurirajAlergije(List<Alergija> alergije, String id)
+        {
+            AlergijaServis.getInstance().azurirajAlergije(alergije, id);
+        }
     }
 }
