@@ -64,13 +64,7 @@
                 </LinearGradientBrush>
             </TabControl.Background>
 
-            <TabItem Header="Termini" FontSize="20">
-                <TabItem.Background>
-                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-                        <GradientStop Color="#FFF0F0F0" Offset="0"/>
-                        <GradientStop Color="White" Offset="1"/>
-                    </LinearGradientBrush>
-                </TabItem.Background>
+            <TabItem Header="Termini" FontSize="20" Background="#FFEEEEEE">
 
                 <Grid>
                     <Grid.RowDefinitions>
@@ -142,18 +136,40 @@
 
                     <DVC:Chart Name="grafickiPrikaz" Background="YellowGreen" Foreground="DarkBlue" Title="Mesečna posećenost zdravstvenoj ustanovi" Margin="979,106,28,71">
 
+                        <DVC:Chart.LegendStyle>
+                            <Style x:Name="LegendHideStyle" TargetType="Control">
+                                <Setter Property="Width" Value="0"></Setter>
+                                <Setter Property="Height" Value="0"></Setter>
+                             </Style>
+                        </DVC:Chart.LegendStyle>
+
+                        <DVC:Chart.Axes>
+                            <DVC:LinearAxis Orientation="Y" Interval="1" ShowGridLines="false">
+                                
+                            </DVC:LinearAxis>
+                        </DVC:Chart.Axes>
+                        
                         <DVC:Chart.Series>
                             <DVC:ColumnSeries IndependentValuePath="Key"  DependentValuePath="Value" ItemsSource="{Binding Path=ValueList}">
-                                
+
                             </DVC:ColumnSeries>
                         </DVC:Chart.Series>
-                        
+
                     </DVC:Chart>
 
-                    <DataGrid x:Name="dataGridIzvrseniTermini" Margin="10,106,957,71">
+                    <DataGrid x:Name="dataGridIzvrseniTermini" Margin="10,106,957,71" IsReadOnly="True" SelectionMode="Single" AutoGenerateColumns="False" >
                         <DataGrid.Background>
                             <SolidColorBrush Color="#FFFAFAFA" Opacity="0.7"/>
                         </DataGrid.Background>
+
+                        <DataGrid.Columns>
+                            <DataGridTextColumn x:Name="kolonaDatum2" Header="Datum" Binding="{Binding datum}"/>
+                            <DataGridTextColumn Header="Satnica" x:Name="kolonaSatnica2" Binding="{Binding satnica}"/>
+                            <DataGridTextColumn Header="Lokacija" x:Name="kolonaLokacija2" Binding="{Binding lokacija}"/>
+                            <DataGridTextColumn x:Name="kolonaNapomena2" Header="Napomena" Binding="{Binding napomena}"/>
+                            <DataGridTextColumn Header="Lekar" x:Name="kolonaLekar2" Binding="{Binding imeLekara}"/>
+                        </DataGrid.Columns>
+                        
                     </DataGrid>
                 </Grid>
             </TabItem>

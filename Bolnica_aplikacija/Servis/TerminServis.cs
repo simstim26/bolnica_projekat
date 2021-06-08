@@ -370,14 +370,13 @@ namespace Bolnica_aplikacija.Servis
                 {
                     termini.Add(pacijentTermin);
                 }
-
             }
-
         }
 
         public int pronadjiOdradjeneTermineZaMesec(String idPacijenta, int mesec)
         {
             int broj = 0;
+            int godina = DateTime.Now.Year;
 
             foreach(Termin termin in terminRepozitorijum.ucitajSve())
             {
@@ -385,15 +384,40 @@ namespace Bolnica_aplikacija.Servis
                 {
                     if (termin.jeZavrsen)
                     {
-                        if(termin.datum.Month == mesec)
-                        {
-                            broj += 1;
-                        }
+                        if(termin.datum.Year == godina)
+                            if(termin.datum.Month == mesec)
+                            {
+                                broj += 1;
+                            }
                     }
                 }
             }
 
             return broj;
+        }
+
+        public List<PacijentTermin> pronadjiOdradjeneTerminePacijenta(String idPacijenta)
+        {
+            List<PacijentTermin> terminiPacijenta = new List<PacijentTermin>();
+            foreach (Termin termin in TerminServis.getInstance().ucitajSve())
+            {
+                if (termin.idPacijenta.Equals(idPacijenta))
+                {
+
+                    int rezultat = DateTime.Compare(termin.datum, DateTime.Today);
+                    
+                    if (rezultat < 0 && termin.jeZavrsen)
+                    {
+                        PacijentTermin pacijentTermin = new PacijentTermin();
+
+                        PacijentServis.getInstance().radSaPacijentTerminomPrikazPacijentovihTermina(termin, pacijentTermin);
+
+                        terminiPacijenta.Add(pacijentTermin);
+                    }
+                }
+            }
+
+            return terminiPacijenta;
         }
 
     }

@@ -133,7 +133,7 @@ namespace Bolnica_aplikacija.Servis
             TerminServis.getInstance().azurirajTermin(stariTermin);
         }
 
-        private void radSaPacijentTerminomPrikazPacijentovihTermina(Termin termin, PacijentTermin pacijentTermin)
+        public void radSaPacijentTerminomPrikazPacijentovihTermina(Termin termin, PacijentTermin pacijentTermin)
         {
             popuniProstoriju(termin, pacijentTermin);
             popuniLekara(termin, pacijentTermin);

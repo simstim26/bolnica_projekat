@@ -37,9 +37,15 @@ namespace Bolnica_aplikacija.PacijentStudent
             proveraAnkete();
             popuniObavestenja();
             napraviGraf();
+            popuniMesecneTermine();
 
             PomocnaKlasaKalendar.popuniKalendar(calendar);
 
+        }
+
+        private void popuniMesecneTermine()
+        {
+            dataGridIzvrseniTermini.ItemsSource = TerminKontroler.pronadjiOdradjeneTerminePacijenta(KorisnikKontroler.GetPacijent().id);
         }
 
         private void napraviGraf()
@@ -126,6 +132,11 @@ namespace Bolnica_aplikacija.PacijentStudent
                 column.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
             }
             foreach (var column in dataGridObavestenja.Columns)
+            {
+                column.MinWidth = column.ActualWidth;
+                column.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
+            }
+            foreach (var column in dataGridIzvrseniTermini.Columns)
             {
                 column.MinWidth = column.ActualWidth;
                 column.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
