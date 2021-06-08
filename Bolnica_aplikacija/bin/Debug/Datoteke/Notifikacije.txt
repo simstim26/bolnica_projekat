@@ -328,5 +328,25 @@
     "datumNotifikovanja": "2021-06-08T01:52:57.8533785+02:00",
     "jeProcitana": false,
     "ponavljanje": 0
+  },
+  {
+    "id": "34",
+    "nazivNotifikacije": "Zakazivanje termina (Pacijent)",
+    "vremeNotifikovanja": "2021-06-08T18:01:46.89772+02:00",
+    "porukaNotifikacije": "Zakazan je teremin (Pacijent)",
+    "idKorisnika": "2",
+    "datumNotifikovanja": "2021-06-08T18:01:46.89772+02:00",
+    "jeProcitana": false,
+    "ponavljanje": 0
+  },
+  {
+    "id": "35",
+    "nazivNotifikacije": "Zakazivanje termina (Lekar)",
+    "vremeNotifikovanja": "2021-06-08T18:01:46.9107168+02:00",
+    "porukaNotifikacije": "Zakazan je teremin (Lekar)",
+    "idKorisnika": "8",
+    "datumNotifikovanja": "2021-06-08T18:01:46.9107168+02:00",
+    "jeProcitana": false,
+    "ponavljanje": 0
   }
 ]

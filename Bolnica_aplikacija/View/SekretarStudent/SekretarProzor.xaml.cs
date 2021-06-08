@@ -54,10 +54,12 @@ namespace Bolnica_aplikacija
             CenterWindow();
 
             lblSekretar.Content = KorisnikKontroler.GetSekretar().ime + " " + KorisnikKontroler.GetSekretar().prezime;
+            
             this.PacijentGrid.Visibility = Visibility.Hidden;
             this.TerminiGrid.Visibility = Visibility.Hidden;
             this.HitanSlucajGrid.Visibility = Visibility.Hidden;
             this.LekariGrid.Visibility = Visibility.Hidden;
+            frame.Visibility = Visibility.Hidden;
 
         }
         private void CenterWindow()
@@ -79,7 +81,7 @@ namespace Bolnica_aplikacija
             prijava.ShowDialog();
         }
 
-        //PACIJENTI
+        #region Rukovanje Pacijentima
         private void pacijenti_Click(object sender, RoutedEventArgs e)
         {
 
@@ -475,6 +477,26 @@ namespace Bolnica_aplikacija
             proveraPopunjenosti();
         }
 
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            textAdresa.Clear();
+            textAdresa.IsEnabled = false;
+            textEmail.Clear();
+            textEmail.IsEnabled = false;
+            proveraPopunjenosti();
+        }
+
+        private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+
+            textAdresa.IsEnabled = true;
+            textEmail.IsEnabled = true;
+            proveraPopunjenosti();
+        }
+
+        #endregion
+
+        #region Validacija pacijent
         private bool proveriIspravnostPolja(String id, bool gost, String korisnickoIme, String loznika, String jmbg, String ime, String prezime, DateTime datumRodj, string adresa, string email, string telefon)
         {
 
@@ -588,24 +610,10 @@ namespace Bolnica_aplikacija
 
         }
 
-        private void CheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-            textAdresa.Clear();
-            textAdresa.IsEnabled = false;
-            textEmail.Clear();
-            textEmail.IsEnabled = false;
-            proveraPopunjenosti();
-        }
+        #endregion
+      
+        #region Rukovanje terminima
 
-        private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
-        {
-
-            textAdresa.IsEnabled = true;
-            textEmail.IsEnabled = true;
-            proveraPopunjenosti();
-        }
-
-        // TERMINI
         private void ucitajTerminePacijenta()
         {
 
@@ -913,10 +921,13 @@ namespace Bolnica_aplikacija
 
         }
 
-        // OBAVESTENJA
+        #endregion
+
+        #region Rukovanje Obavestenjima (MVVM)
 
         private void btnObavestenja_Click(object sender, RoutedEventArgs e)
         {
+            frame.Visibility = Visibility.Visible;
             frame.Content = new SekretarObavestenja(this);
 
             this.PocetniEkranGrid.Visibility = Visibility.Hidden;
@@ -924,122 +935,10 @@ namespace Bolnica_aplikacija
             this.TerminiGrid.Visibility = Visibility.Hidden;
             this.HitanSlucajGrid.Visibility = Visibility.Hidden;
 
-            //ucitajObavestenja();
-
-
-
         }
+        #endregion
 
-        /*
-        private void btnPovratakObavestenja_Click(object sender, RoutedEventArgs e)
-        {
-            ocistiPoljaObavestenja();
-
-            this.PocetniEkranGrid.Visibility = Visibility.Visible;
-            this.PacijentGrid.Visibility = Visibility.Hidden;
-            this.TerminiGrid.Visibility = Visibility.Hidden;
-            this.ObavestenjaGrid.Visibility = Visibility.Hidden;
-        }
-
-        private void txtNaslovObavestenja_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            proveriPopunjenostPoljaObavestenja();
-        }
-
-        private void txtSadrzajObavestenja_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            proveriPopunjenostPoljaObavestenja();
-        }
-
-        private void proveriPopunjenostPoljaObavestenja()
-        {
-            if (tipAkcijeObavestenja == 0)
-            {
-                this.btnDodajObavestenje.IsEnabled = !string.IsNullOrWhiteSpace(this.txtNaslovObavestenja.Text) &&
-                                                     !string.IsNullOrWhiteSpace(this.txtSadrzajObavestenja.Text);
-            }
-            else
-            {
-                this.btnIzmeniObavestenje.IsEnabled = !string.IsNullOrWhiteSpace(this.txtNaslovObavestenja.Text) &&
-                                                      !string.IsNullOrWhiteSpace(this.txtSadrzajObavestenja.Text);
-            }
-
-        }
-
-        private void btnDodajObavestenje_Click(object sender, RoutedEventArgs e)
-        {
-            tipAkcijeObavestenja = 0;
-            String naslovObavestenja = txtNaslovObavestenja.Text;
-            String sadrzajObavestenja = txtSadrzajObavestenja.Text;
-
-            ObavestenjeKontroler.napraviObavestenje(naslovObavestenja, sadrzajObavestenja);
-            ocistiPoljaObavestenja();
-            ucitajObavestenjaUTabelu();
-        }
-
-        private void btnIzmeniObavestenje_Click(object sender, RoutedEventArgs e)
-        {
-            ObavestenjeKontroler.azurirajObavestenje(izabranoObavestenje.id, txtNaslovObavestenja.Text, txtSadrzajObavestenja.Text);
-            ocistiPoljaObavestenja();
-            ucitajObavestenjaUTabelu();
-
-        }
-
-        private void btnIzbrisiObavestenje_Click(object sender, RoutedEventArgs e)
-        {
-            ObavestenjeKontroler.obrisiObavestenje(izabranoObavestenje.id);
-            ocistiPoljaObavestenja();
-            ucitajObavestenjaUTabelu();
-
-        }
-
-        private void ucitajObavestenjaUTabelu()
-        {
-            List<Obavestenje> svaObavestenja = ObavestenjeKontroler.ucitajObavestenja();
-            dataGridObavestenja.ItemsSource = svaObavestenja;
-            dataGridObavestenja.Items.Refresh();
-        }
-
-        private void ocistiPoljaObavestenja()
-        {
-            txtSadrzajObavestenja.Clear();
-            txtNaslovObavestenja.Clear();
-            btnDodajObavestenje.IsEnabled = false;
-            btnIzbrisiObavestenje.IsEnabled = false;
-            btnIzbrisiObavestenje.IsEnabled = false;
-            btnOdustaniIzmenaObavestenja.Visibility = Visibility.Hidden;
-        }
-
-        private void dataGridObavestenja_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            tipAkcijeObavestenja = 1;
-            Console.WriteLine("Selektovano");
-            if (dataGridObavestenja.SelectedIndex != -1)
-            {
-                izabranoObavestenje = (Obavestenje)dataGridObavestenja.SelectedItem;
-                txtNaslovObavestenja.Text = izabranoObavestenje.naslovObavestenja;
-                txtSadrzajObavestenja.Text = izabranoObavestenje.sadrzajObavestenja;
-                btnIzbrisiObavestenje.IsEnabled = true;
-                btnOdustaniIzmenaObavestenja.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                btnIzmeniObavestenje.IsEnabled = false;
-                btnIzbrisiObavestenje.IsEnabled = false;
-                tipAkcijeObavestenja = 0;
-            }
-
-        }
-
-        private void btnOdustaniIzmenaObavestenja_Click(object sender, RoutedEventArgs e)
-        {
-            dataGridObavestenja.SelectedIndex = -1;
-            ocistiPoljaObavestenja();
-        }
-        */
-
-        // HITAN SLUCAJ
-
+        #region Hitan Slucaj
         private void btnHitanSlucaj_Click(object sender, RoutedEventArgs e)
         {
 
@@ -1252,8 +1151,10 @@ namespace Bolnica_aplikacija
 
             }
         }
+#endregion
 
-        // LEKARI CRUD
+        #region Rukovanje lekarima
+        
 
         private void lekariButton_Click(object sender, RoutedEventArgs e)
         {
@@ -1758,13 +1659,18 @@ namespace Bolnica_aplikacija
             passwordBoxLozinkaLekar.IsEnabled = true;
         }
 
+
+        #endregion
+
+        #region Validacija lekar
+
         private bool proveriValidnostPoljaLekara(String ime, String prezime, String jmbg,
-                                                 String email, String telefon, String brojZdravstveneKnjizice, String pocetakRadnogVremena, 
+                                                 String email, String telefon, String brojZdravstveneKnjizice, String pocetakRadnogVremena,
                                                  String krajRadnogVremena, String brojZauzetihDana, String pocetakGodisnjegOdmora)
         {
-            if(!proverIme(ime) || !proveriPrezime(prezime) || !proveriJMBG(jmbg) || !proveriEmail(email) || !proveriTelefon(telefon) ||
+            if (!proverIme(ime) || !proveriPrezime(prezime) || !proveriJMBG(jmbg) || !proveriEmail(email) || !proveriTelefon(telefon) ||
                !proveriBrojZdravstveneKnjizice(brojZdravstveneKnjizice) || !proveriRadnoVremePocetak(pocetakRadnogVremena) || !proveriRadnoVremeKraj(krajRadnogVremena))
-               
+
             {
                 return false;
             }
@@ -1857,7 +1763,7 @@ namespace Bolnica_aplikacija
                     }
                 }
             }
-         
+
             return true;
         }
 
@@ -1898,6 +1804,23 @@ namespace Bolnica_aplikacija
             return true;
         }
 
+        #endregion
+
+        #region Izvestaj (MVVM)
+
+        private void btnIzvetaj_Click(object sender, RoutedEventArgs e)
+        {
+            frame.Visibility = Visibility.Visible;
+            frame.Content = new SekretarIzvestaj(this);
+
+            this.TerminiGrid.IsEnabled = false;
+
+
+            //this.PocetniEkranGrid.Visibility = Visibility.Hidden;
+
+        }
+
+        #endregion
     }
 
 

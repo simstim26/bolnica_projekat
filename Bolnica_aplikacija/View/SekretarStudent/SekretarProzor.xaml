@@ -9,7 +9,6 @@
         Title="Sekretar" Height="768" Width="1366" Visibility="Visible" ResizeMode="CanMinimize"
         >
     <Grid x:Name="Grid" HorizontalAlignment="Left" Height="748" Margin="-4,-17,0,0" VerticalAlignment="Top" Width="1356">
-        <Frame x:Name="frame" Content="Frame" Margin="0,0,0,0" NavigationUIVisibility="Hidden"/>
         <Grid x:Name="PacijentGrid" HorizontalAlignment="Left" Height="730" Margin="0,18,-8,0" VerticalAlignment="Top" Width="1364" TargetUpdated="PacijentGrid_TargetUpdated" d:IsHidden="True">
             <Grid.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -108,7 +107,7 @@
             <Button x:Name="___btnDodajRed_" HorizontalAlignment="Left" Margin="1012,453,0,0" VerticalAlignment="Top" Width="19" Height="18" Click="___btnDodajRed__Click" Background="{x:Null}" BorderBrush="{x:Null}" Content="" IsEnabled="False" />
             <materialDesign:PackIcon x:Name="iconPacijent" Kind="Person" HorizontalAlignment="Left" Margin="60,95,0,0" VerticalAlignment="Top" Width="180" Height="180" Foreground="#FF178EE9"/>
         </Grid>
-        <Grid x:Name="TerminiGrid" HorizontalAlignment="Left" Height="730" Margin="0,18,0,0" VerticalAlignment="Top" Width="1346" d:IsHidden="True">
+        <Grid x:Name="TerminiGrid" HorizontalAlignment="Left" Height="739" Margin="0,18,0,-9" VerticalAlignment="Top" Width="1346">
             <Grid.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF83C8F7" Offset="0"/>
@@ -221,6 +220,9 @@
                 </Button>
             </Grid>
             <materialDesign:PackIcon x:Name="iconTermini" Kind="Calendar" HorizontalAlignment="Left" Margin="60,99,0,0" VerticalAlignment="Top" Width="180" Height="180" Foreground="#FF773CB6"/>
+            <Button x:Name="btnIzvetaj" HorizontalAlignment="Left" Margin="0,649,0,0" VerticalAlignment="Top" Width="80" Height="80" Background="{x:Null}" BorderBrush="{x:Null}" Click="btnIzvetaj_Click">
+                <materialDesign:PackIcon x:Name="iconIzvestaj" Kind="Notebook" Height="80" Width="49" Foreground="#FF783CB7"/>
+            </Button>
         </Grid>
         <Grid x:Name="HitanSlucajGrid" HorizontalAlignment="Left" Margin="0,18,-8,-9" Width="1364" d:IsHidden="True">
             <Grid.Background>
@@ -433,7 +435,17 @@
                 </Button.Background>
             </Button>
             <Button x:Name="odjavaButton" Content="ODJAVI SE" HorizontalAlignment="Left" Margin="1198,31,0,0" VerticalAlignment="Top" Width="141" Height="55" RenderTransformOrigin="0.624,0" FontSize="22" FontWeight="Bold" Click="odjavaButton_Click" Background="#FF6CD894" BorderBrush="#FF55EE8C"/>
-            <Label x:Name="lblSekretar" Content="" HorizontalAlignment="Right" Margin="0,31,171,0" VerticalAlignment="Top" Height="55" Width="393" FontSize="36"/>
+            <Label x:Name="lblSekretar" Content="*Tekxt*" HorizontalContentAlignment="Right" HorizontalAlignment="Right" Margin="0,31,173,0" VerticalAlignment="Top" Height="55" Width="393" FontSize="36">
+                <Label.Foreground>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF74EE61" Offset="0"/>
+                        <GradientStop Color="#FFA1EE95" Offset="1"/>
+                    </LinearGradientBrush>
+                </Label.Foreground>
+                <Label.Effect>
+                    <DropShadowEffect ShadowDepth="2" Opacity="0.15"/>
+                </Label.Effect>
+            </Label>
             <Image x:Name="imgLogo" HorizontalAlignment="Left" Height="100" Margin="28,10,0,0" VerticalAlignment="Top" Width="100" Source="logo.png"/>
             <Label x:Name="lblnazivKompanije" Content="ZDRAVO KORPORACIJA" HorizontalAlignment="Right" Margin="0,31,769,0" VerticalAlignment="Top" Height="55" Width="467" FontSize="36" FontWeight="Bold" FontFamily="MV Boli" Background="{x:Null}">
                 <Label.Foreground>
@@ -467,6 +479,7 @@
                 </Button.Background>
             </Button>
         </Grid>
+        <Frame x:Name="frame" Content="Frame" Margin="0,0,0,0" NavigationUIVisibility="Hidden"/>
     </Grid>
 
 </Window>
