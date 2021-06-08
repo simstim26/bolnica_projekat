@@ -1,4 +1,5 @@
 ﻿using Bolnica_aplikacija.Model;
+using Bolnica_aplikacija.Repozitorijum;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,24 +10,49 @@ namespace Bolnica_aplikacija.Interfejs.Implementacija
 {
     class ObavestenjeCRUDImplementacija : ICRUD<Obavestenje>
     {
-        public void azuriraj(Obavestenje obj)
+        private static ObavestenjeRepozitorijum obavestenjeRepozitorijum = new ObavestenjeRepozitorijum();
+        public void azuriraj(Obavestenje objekat)
         {
-            throw new NotImplementedException();
+            obavestenjeRepozitorijum.azurirajObavestenje(objekat);
         }
 
-        public void kreiraj(Obavestenje obj)
+        public void kreiraj(Obavestenje objekat)
         {
-            throw new NotImplementedException();
+            List<Obavestenje> svaObavestenja = obavestenjeRepozitorijum.ucitajSve();
+
+            objekat.id = (svaObavestenja.Count + 1).ToString();
+            obavestenjeRepozitorijum.dodajObavestenje(objekat);
         }
 
-        public void obrisi(string key)
+        public void obrisi(string id)
         {
-            throw new NotImplementedException();
+            List<Obavestenje> svaObavestenja = obavestenjeRepozitorijum.ucitajSve();
+
+            foreach (Obavestenje obavestenje in svaObavestenja)
+            {
+
+                if (obavestenje.id.Equals(id))
+                {
+                    obavestenje.jeLogickiObrisano = true;
+                }
+            }
+
+            obavestenjeRepozitorijum.upisi(svaObavestenja);
         }
 
         public List<Obavestenje> ucitaj()
         {
-            throw new NotImplementedException();
+            List<Obavestenje> svaObavestenja = obavestenjeRepozitorijum.ucitajSve();
+            List<Obavestenje> neobrisanaObavestenja = new List<Obavestenje>();
+
+            foreach (Obavestenje obavestenje in svaObavestenja)
+            {
+                if (!obavestenje.jeLogickiObrisano)
+                {
+                    neobrisanaObavestenja.Add(obavestenje);
+                }
+            }
+            return neobrisanaObavestenja;
         }
     }
 }

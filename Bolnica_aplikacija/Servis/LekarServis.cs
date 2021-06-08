@@ -1,4 +1,5 @@
-﻿using Bolnica_aplikacija.PacijentModel;
+﻿using Bolnica_aplikacija.Interfejs.Implementacija;
+using Bolnica_aplikacija.PacijentModel;
 using Bolnica_aplikacija.PomocneKlase;
 using Bolnica_aplikacija.Repozitorijum;
 using Model;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Bolnica_aplikacija.Servis
 {
-    class LekarServis
+    class LekarServis : LekarCRUDImplementacija
     {
         private static LekarServis instance;
 
@@ -196,49 +197,23 @@ namespace Bolnica_aplikacija.Servis
 
         public void napraviLekara(Lekar lekar)
         {
-
-            List<Lekar> sviLekari = lekarRepozitorijum.ucitajSve();
-            lekar.id = (sviLekari.Count() + 1).ToString();
- 
-            lekarRepozitorijum.dodajLekara(lekar);
-            KorisnikServis.getInstance().dodajKorisnika(lekar.id, lekar.korisnickoIme, lekar.lozinka, "lekar");
+            kreiraj(lekar);         
         }
-        /*
+        
         public List<Lekar> procitajLekare()
         {
-            List<Lekar> ucitaniLekari = lekarRepozitorijum.ucitajSve();
-            List<Lekar> neobrisaniLekari = new List<Lekar>();
-
-            foreach (Lekar lekar in ucitaniLekari)
-            {
-                if (!lekar.jeLogickiObrisan)
-                {
-                    neobrisaniLekari.Add(lekar);
-                }
-            }
-            return neobrisaniLekari;
+            return ucitaj();
         }
-        */
+        
 
         public void izmeniLekara(Lekar izmeniLekar)
         {
-
-            lekarRepozitorijum.azurirajLekara(izmeniLekar);
-            
+            azuriraj(izmeniLekar);          
         }
 
         public void obrisiLekara(String idLekara)
         {
-            List<Lekar> sviLekari = lekarRepozitorijum.ucitajSve();
-            foreach (Lekar lekar in sviLekari)
-            {
-                if (lekar.id.Equals(idLekara))
-                {
-                    lekar.jeLogickiObrisan = true;
-                }
-            }
-
-            lekarRepozitorijum.upisi(sviLekari);
+            obrisi(idLekara);
         }
     }
 }

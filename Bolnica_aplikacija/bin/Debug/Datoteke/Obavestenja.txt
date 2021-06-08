@@ -8,13 +8,19 @@
   {
     "id": "2",
     "naslovObavestenja": "Test 2 IZMENA",
-    "sadrzajObavestenja": "tekst 2 IZMENA",
-    "jeLogickiObrisano": false
+    "sadrzajObavestenja": "tekst 2 IZMENAA",
+    "jeLogickiObrisano": true
   },
   {
     "id": "3",
     "naslovObavestenja": "Obavestenje 2",
     "sadrzajObavestenja": "Obavestenje 2",
+    "jeLogickiObrisano": false
+  },
+  {
+    "id": "4",
+    "naslovObavestenja": "Novo",
+    "sadrzajObavestenja": "uuu",
     "jeLogickiObrisano": false
   }
 ]

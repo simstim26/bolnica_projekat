@@ -12,9 +12,8 @@ namespace Bolnica_aplikacija.Kontroler
     class ObavestenjeKontroler
     {
         private static ObavestenjeServis obavestenjeServis = new ObavestenjeServis();
-        public static void napraviObavestenje(ObavestenjeDTO obavestenjeDTO)
+        public static void napraviObavestenje(Obavestenje obavestenje)
         {
-            Obavestenje obavestenje = new Obavestenje(obavestenjeDTO.naslovObavestenja, obavestenjeDTO.sadrzajObavestenja);
             obavestenjeServis.napraviObavestenje(obavestenje);
         }
 
@@ -23,12 +22,9 @@ namespace Bolnica_aplikacija.Kontroler
             return obavestenjeServis.ucitajObavestenja();
         }
 
-        public static void azurirajObavestenje(ObavestenjeDTO obavestenjeDTO)
+        public static void azurirajObavestenje(Obavestenje obavestenje)
         {
-            Obavestenje obavestenjeIzmena = new Obavestenje(obavestenjeDTO.naslovObavestenja, obavestenjeDTO.sadrzajObavestenja);
-            obavestenjeIzmena.id = obavestenjeDTO.id;
-            Console.WriteLine("ID: " + obavestenjeDTO.id);
-            obavestenjeServis.azurirajObavestenje(obavestenjeIzmena);
+            obavestenjeServis.azurirajObavestenje(obavestenje);
         }
 
         public static void obrisiObavestenje(String idObavestenja)
