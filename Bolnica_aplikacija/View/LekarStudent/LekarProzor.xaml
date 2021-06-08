@@ -28,7 +28,7 @@
                     <Button Content="Moj nalog"/>
                     <Button x:Name="odobriLekove" Content="Odobri lekove" Click="odobriLekove_Click"/>
                     <Button Content="Pregled i izmena lekova" Click="RULekovi_Click" />
-                    <Button Content="Pomoć"/>
+                    <Button Content="Pomoć" Click="Button_Click"/>
                     <Button Content="Prijava greške" Command="{Binding Path=prikazPrijave}" />
                     <Button Content="Odjava" Click="meniOdjava_Click"/>
                 </StackPanel>

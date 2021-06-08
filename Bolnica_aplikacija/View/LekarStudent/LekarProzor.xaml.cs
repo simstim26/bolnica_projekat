@@ -178,15 +178,40 @@ namespace Bolnica_aplikacija
 
         private void btnPretraga_Click(object sender, RoutedEventArgs e)
         {
+            if (ZakaziTermin.aktivan)
+            {
+                if(ZakaziTermin.pretraga.Visibility == Visibility.Hidden)
+                {
+                    ZakaziTermin.pretraga.Visibility = Visibility.Visible;
+                }
+                else if(ZakaziTermin.pretraga.Visibility == Visibility.Visible)
+                {
+                    ZakaziTermin.pretraga.Visibility = Visibility.Hidden;
+                }
+            }
             if (PacijentInfo.aktivanPacijentInfo)
             {
-                if (PacijentInfo.gridPretraga.Visibility == Visibility.Hidden)
+                if (PacijentInfo.getTab().SelectedIndex == 1)
                 {
-                    PacijentInfo.gridPretraga.Visibility = Visibility.Visible;
+                    if (PacijentInfo.gridPretraga.Visibility == Visibility.Hidden)
+                    {
+                        PacijentInfo.gridPretraga.Visibility = Visibility.Visible;
+                    }
+                    else if (PacijentInfo.gridPretraga.Visibility == Visibility.Visible)
+                    {
+                        PacijentInfo.gridPretraga.Visibility = Visibility.Hidden;
+                    }
                 }
-                else if (PacijentInfo.gridPretraga.Visibility == Visibility.Visible)
+                else if(PacijentInfo.getTab().SelectedIndex == 2)
                 {
-                    PacijentInfo.gridPretraga.Visibility = Visibility.Hidden;
+                    if (PacijentInfo.pretragaBuduci.Visibility == Visibility.Hidden)
+                    {
+                        PacijentInfo.pretragaBuduci.Visibility = Visibility.Visible;
+                    }
+                    else if (PacijentInfo.pretragaBuduci.Visibility == Visibility.Visible)
+                    {
+                        PacijentInfo.pretragaBuduci.Visibility = Visibility.Hidden;
+                    }
                 }
             }
             else if (LekarTabovi.getTab().SelectedIndex == 0)
@@ -337,5 +362,10 @@ namespace Bolnica_aplikacija
             }
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Tutorial tutorial = new Tutorial();
+            tutorial.Show();
+        }
     }
 }

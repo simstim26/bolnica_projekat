@@ -28,6 +28,7 @@ namespace Bolnica_aplikacija
     {
         private static int tipAkcije; //0-zakazivanje; 1-promena (zahteva zakazivanje i otkazivanje)
         public static bool aktivan { get; set; }
+        public static Grid pretraga { get; set; }
         private static FrameworkElement fm = new FrameworkElement();
         public ZakaziTermin(int tip, String idPacijenta, String idTermina)
         {
@@ -37,9 +38,12 @@ namespace Bolnica_aplikacija
             PrikazProstorija.aktivan = false;
             aktivan = true;
             LekarProzor.getPretraga().Visibility = Visibility.Visible;
+            pretraga = this.gridPretraga;
             String[] id = { idPacijenta, idTermina };
             this.DataContext = id;
             fm.DataContext = this.DataContext;
+            datum.SelectedDate = DateTime.Now.Date;
+            lblGreska.Visibility = Visibility.Hidden;
 
             if (tipAkcije == 1)
             {
@@ -98,6 +102,8 @@ namespace Bolnica_aplikacija
                     PacijentKontroler.azurirajTerminPacijentu(((String[])fm.DataContext)[1], pacijentTermin.id);
                 }
 
+                MessageBox.Show("Uspešno ste zakazali pregled!", "Informacija", MessageBoxButton.OK, MessageBoxImage.Information);
+
                 LekarProzor.getX().Content = new PacijentInfo(((String[])PacijentInfo.getFM().DataContext)[0],
                     ((String[])PacijentInfo.getFM().DataContext)[1]);
                 PacijentInfo.getPregledTab().SelectedIndex = 2;
@@ -125,6 +131,27 @@ namespace Bolnica_aplikacija
         private void btnZakaziOperaciju_Click(object sender, RoutedEventArgs e)
         {
             Content = new ZakazivanjeOperacije(((String[])fm.DataContext)[0]);
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if(datum.SelectedDate != null)
+            {
+                if(DateTime.Compare((DateTime) datum.SelectedDate,DateTime.Now.Date) >= 0)
+                {
+                    lblGreska.Visibility = Visibility.Hidden;
+                    dataGridZakazivanjeTermina.ItemsSource = LekarKontroler.pretraziSlobodneTermineZaLekara((DateTime)datum.SelectedDate, tipAkcije);
+
+                }
+                else
+                {
+                    lblGreska.Visibility = Visibility.Visible;
+                }
+            }
+            else
+            {
+                dataGridZakazivanjeTermina.ItemsSource = LekarKontroler.prikaziSlobodneTermineZaLekara(KorisnikKontroler.getLekar(), tipAkcije);
+            }
         }
     }
 }

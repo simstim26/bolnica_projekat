@@ -31,12 +31,12 @@ namespace Bolnica_aplikacija.View.LekarStudent
             aktivan = true ;
             PacijentInfo.aktivanPacijentInfo = false;
             LekarProzor.getGlavnaLabela().Content = "Bolničko lečenje";
-
+            fm.DataContext = idPacijenta;
+           // lblGreska.Visibility = Visibility.Hidden;
             lblDatumPocekta.Content = BolnickoLecenjeKontroler.nadjiBolnickoLecenjeZaPacijenta(idPacijenta).datumPocetka.ToString("dd.MM.yyyy.");
             lblTrenutnaProstorija.Content = BolnickoLecenjeKontroler.nadjiBolnickoLecenjeZaPacijenta(idPacijenta).bolnickaSoba.sprat + " " + BolnickoLecenjeKontroler.nadjiBolnickoLecenjeZaPacijenta(idPacijenta).bolnickaSoba.broj;
             txtTrajanje.Text = BolnickoLecenjeKontroler.nadjiBolnickoLecenjeZaPacijenta(idPacijenta).trajanje.ToString();
             dataGridBolnickeSobe.ItemsSource = ProstorijaKontroler.pronadjiSlobodneBolnickeSobe();
-            fm.DataContext = idPacijenta;
         }
 
         public static FrameworkElement getFM()

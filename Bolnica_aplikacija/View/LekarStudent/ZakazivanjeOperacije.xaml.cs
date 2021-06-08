@@ -108,7 +108,9 @@ namespace Bolnica_aplikacija.LekarStudent
             TerminKontroler.napraviTermin(new TerminDTO(TipTermina.OPERACIJA, (DateTime)datum.SelectedDate, (DateTime)datum.SelectedDate
                 + (new TimeSpan(Convert.ToInt32(satnica[0]), Convert.ToInt32(satnica[1]), 0)), false, "", ((Prostorija)dataGridProstorije.SelectedItem).id,
                  ((String)fm.DataContext), KorisnikKontroler.getLekar().id, null, null, null, null, null, null, TipTermina.PREGLED, (bool)cBoxHitna.IsChecked));
+            MessageBox.Show("Uspešno ste zakazali operaciju!", "Informacija", MessageBoxButton.OK, MessageBoxImage.Information);
             Content = new PacijentInfo(((String[])PacijentInfo.getFM().DataContext)[0], ((String[])PacijentInfo.getFM().DataContext)[1]);
+            PacijentInfo.getTab().SelectedIndex = 2;
         }
        
         private void txtVreme_TextChanged(object sender, TextChangedEventArgs e)

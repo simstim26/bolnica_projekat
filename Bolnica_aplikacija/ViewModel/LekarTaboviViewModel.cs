@@ -100,6 +100,7 @@ namespace Bolnica_aplikacija.ViewModel
             infoRaspored = new RelayCommand(izvrsiInfoRaspored);
             infoPacijent = new RelayCommand(izvrsiInfoPacijent);
             pretragaRaspored = new RelayCommand(izvrsiPretragaRaspored);
+            pretragaPacijenata = new RelayCommand(izvrsiPretraguPacijenata);
         }
 
         private void ucitajPacijente()
@@ -152,6 +153,20 @@ namespace Bolnica_aplikacija.ViewModel
             {
                 pGreskaVisibility = value;
                 NotifyPropertyChanged("greskaVisibility");
+            }
+        }
+        private String pTxtPretragaPacijenti;
+        public String txtPretragaPacijenti
+        {
+            get
+            {
+                return pTxtPretragaPacijenti;
+            }
+
+            set
+            {
+                pTxtPretragaPacijenti = value;
+                NotifyPropertyChanged("txtPretragaPacijenti");
             }
         }
 
@@ -290,6 +305,36 @@ namespace Bolnica_aplikacija.ViewModel
                 ucitajRaspored();
             }
         }
+        #endregion
+
+        #region Komanda -> pretraga pacijenata
+
+        private RelayCommand pPretragaPacijenata;
+
+        public RelayCommand pretragaPacijenata
+        {
+            get
+            {
+                return pPretragaPacijenata;
+            }
+            set
+            {
+                pPretragaPacijenata = value;
+            }
+        }
+
+        private void izvrsiPretraguPacijenata(object obj)
+        {
+            if (String.IsNullOrWhiteSpace(txtPretragaPacijenti))
+            {
+                ucitajPacijente();
+            }
+            else
+            {
+                pacijenti = new ObservableCollection<Pacijent>(PacijentKontroler.pretragaPacijenata(txtPretragaPacijenti));
+            }
+        }
+
         #endregion
     }
 }

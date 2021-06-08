@@ -31,6 +31,8 @@ namespace Bolnica_aplikacija
 
         private static FrameworkElement fm = new FrameworkElement();
         public static Grid gridPretraga { get; set; }
+        
+        public static Grid pretragaBuduci { get; set; }
         public PacijentInfo(String idPacijenta, String idTermina)
         {
 
@@ -45,6 +47,7 @@ namespace Bolnica_aplikacija
             fm.DataContext = id;
 
             gridPretraga = this.gridIstorijaTerminaPretraga;
+            pretragaBuduci = lblPretragaBuduci;
 
             /*if(LekarTabovi.getIndikator() == 1)
             {
