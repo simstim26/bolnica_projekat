@@ -9,10 +9,10 @@
              d:DesignHeight="750" d:DesignWidth="430">
     <Grid>
         <Rectangle Fill="White" HorizontalAlignment="Left" Height="670" Stroke="Black" VerticalAlignment="Top" Width="430"/>
-        <Button x:Name="btnPotvrdi" HorizontalAlignment="Left" Height="40" Margin="35,598,0,0" VerticalAlignment="Top" Width="145" Click="btnPotvrdi_Click" BorderBrush="Black">
+        <Button x:Name="btnPotvrdi" HorizontalAlignment="Left" Height="40" Margin="48,598,0,0" VerticalAlignment="Top" Width="85" Click="btnPotvrdi_Click">
             <materialDesign:PackIcon Kind="CheckCircle" Height="28" Width="37"></materialDesign:PackIcon>
         </Button>
-        <Button x:Name="btnPonisti" HorizontalAlignment="Left" Height="40" Margin="249,598,0,0" VerticalAlignment="Top" Width="145" Click="btnPonisti_Click" BorderBrush="Black">
+        <Button x:Name="btnPonisti" HorizontalAlignment="Left" Height="40" Margin="311,598,0,0" VerticalAlignment="Top" Width="83" Click="btnPonisti_Click">
             <materialDesign:PackIcon Kind="PlusCircle" Height="29" Width="29" RenderTransformOrigin="0.5,0.5">
                 <materialDesign:PackIcon.RenderTransform>
                     <TransformGroup>
@@ -24,7 +24,7 @@
                 </materialDesign:PackIcon.RenderTransform>
             </materialDesign:PackIcon>
         </Button>
-        <DataGrid x:Name="dataGridZakazivanjeTermina" IsReadOnly="True" AutoGenerateColumns="False" GridLinesVisibility="All" Background="White" AlternatingRowBackground="#FF9900" AlternationCount="2" SelectionMode="Single" HorizontalAlignment="Left" Height="455" Margin="0,123,0,0" VerticalAlignment="Top" Width="430">
+        <DataGrid x:Name="dataGridZakazivanjeTermina" IsReadOnly="True" AutoGenerateColumns="False" Background="White" AlternatingRowBackground="#FF9900" AlternationCount="2" SelectionMode="Single" HorizontalAlignment="Left" Height="438" Margin="0,140,0,0" VerticalAlignment="Top" Width="430">
             <DataGrid.Style>
                 <Style TargetType="DataGrid">
                     <Setter Property="AlternatingRowBackground" Value="#FFBFBFBF"/>
@@ -38,7 +38,15 @@
                 <DataGridTextColumn x:Name="kolonaSpecijalizacija" IsReadOnly="True" CanUserResize="False" Binding="{Binding nazivSpecijalizacije}" Header="Specijalizacija"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="btnOdabirProstorije" Content="Odabir prostorije" HorizontalAlignment="Left" Height="42" Margin="241,55,0,0" VerticalAlignment="Top" Width="153" BorderBrush="Black" Click="btnOdabirProstorije_Click"/>
-        <Button x:Name="btnZakaziOperaciju" Content="Zakazi operaciju" HorizontalAlignment="Left" Height="42" Margin="241,55,0,0" VerticalAlignment="Top" Width="153" BorderBrush="Black" Click="btnZakaziOperaciju_Click"/>
+        <Button x:Name="btnOdabirProstorije" Content="Odabir prostorije" HorizontalAlignment="Left" Height="42" Margin="241,81,0,0" VerticalAlignment="Top" Width="153" Click="btnOdabirProstorije_Click"/>
+        <Button x:Name="btnZakaziOperaciju" Content="Zakazi operaciju" HorizontalAlignment="Left" Height="42" Margin="241,81,0,0" VerticalAlignment="Top" Width="153" Click="btnZakaziOperaciju_Click"/>
+        <Grid x:Name="gridPretraga" Visibility="Hidden"  HorizontalAlignment="Left" Height="61" Background="#93c47d" VerticalAlignment="Top" Width="430" Margin="0,-2,0,0">
+            <DatePicker x:Name="datum" HorizontalAlignment="Left" Margin="40,10,0,0" VerticalAlignment="Top" Width="89"/>
+            <Label x:Name="lblGreska" Content="*Datum ne sme biti pre današnjeg!" FontWeight="Bold" Visibility="Hidden" HorizontalAlignment="Left" Margin="26,34,0,0" VerticalAlignment="Top" Width="163"/>
+            <Button HorizontalAlignment="Left" Margin="134,5,0,0" VerticalAlignment="Top" Width="34" Height="33" Style="{StaticResource MaterialDesignFloatingActionAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Black" Click="Button_Click">
+                <materialDesign:PackIcon Kind="Play" Height="26" Width="26" RenderTransformOrigin="0.5,0.5">
+                </materialDesign:PackIcon>
+            </Button>
+        </Grid>
     </Grid>
 </UserControl>

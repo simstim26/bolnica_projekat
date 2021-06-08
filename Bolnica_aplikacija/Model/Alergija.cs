@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Bolnica_aplikacija.Model
 {
-    class Alergija
+    public class Alergija
     {
         public String idPacijenta { get; set; }
         public String nazivAlergije { get; set; }

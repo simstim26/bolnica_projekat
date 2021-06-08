@@ -82,7 +82,11 @@ namespace Bolnica_aplikacija
 
         private void btnNazad_Click(object sender, RoutedEventArgs e)
         {
-            if(gridOdobravanjeLekova.Visibility == Visibility.Visible)
+            if(gridPrijavaGreske.Visibility == Visibility.Visible)
+            {
+                gridPrijavaGreske.Visibility = Visibility.Hidden;
+            }
+            else if(gridOdobravanjeLekova.Visibility == Visibility.Visible)
             {
                 podesiKretanjeUnazadZaOdobravanjeLekova();
             }
@@ -174,7 +178,43 @@ namespace Bolnica_aplikacija
 
         private void btnPretraga_Click(object sender, RoutedEventArgs e)
         {
-            if (LekarTabovi.getTab().SelectedIndex == 0)
+            if (ZakaziTermin.aktivan)
+            {
+                if(ZakaziTermin.pretraga.Visibility == Visibility.Hidden)
+                {
+                    ZakaziTermin.pretraga.Visibility = Visibility.Visible;
+                }
+                else if(ZakaziTermin.pretraga.Visibility == Visibility.Visible)
+                {
+                    ZakaziTermin.pretraga.Visibility = Visibility.Hidden;
+                }
+            }
+            if (PacijentInfo.aktivanPacijentInfo)
+            {
+                if (PacijentInfo.getTab().SelectedIndex == 1)
+                {
+                    if (PacijentInfo.gridPretraga.Visibility == Visibility.Hidden)
+                    {
+                        PacijentInfo.gridPretraga.Visibility = Visibility.Visible;
+                    }
+                    else if (PacijentInfo.gridPretraga.Visibility == Visibility.Visible)
+                    {
+                        PacijentInfo.gridPretraga.Visibility = Visibility.Hidden;
+                    }
+                }
+                else if(PacijentInfo.getTab().SelectedIndex == 2)
+                {
+                    if (PacijentInfo.pretragaBuduci.Visibility == Visibility.Hidden)
+                    {
+                        PacijentInfo.pretragaBuduci.Visibility = Visibility.Visible;
+                    }
+                    else if (PacijentInfo.pretragaBuduci.Visibility == Visibility.Visible)
+                    {
+                        PacijentInfo.pretragaBuduci.Visibility = Visibility.Hidden;
+                    }
+                }
+            }
+            else if (LekarTabovi.getTab().SelectedIndex == 0)
             {
                 if (LekarTabovi.getRasporedPretraga().Visibility == Visibility.Visible)
                 {
@@ -184,8 +224,6 @@ namespace Bolnica_aplikacija
                 {
                     LekarTabovi.getRasporedPretraga().Visibility = Visibility.Visible;
                 }
-
-
             }
             else if (LekarTabovi.getTab().SelectedIndex == 1)
             {
@@ -322,6 +360,12 @@ namespace Bolnica_aplikacija
                 odobriLekove.Content = "Odobri lekova";
 
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Tutorial tutorial = new Tutorial();
+            tutorial.Show();
         }
     }
 }

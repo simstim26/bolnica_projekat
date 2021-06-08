@@ -17,6 +17,10 @@ namespace Bolnica_aplikacija.Kontroler
             return LekarServis.getInstance().prikaziSlobodneTermineZaLekara(ulogovaniLekar, tipAkcije);
         }
 
+        public static List<PacijentTermin> pretraziSlobodneTermineZaLekara(DateTime datum, int tipAkcije)
+        {
+            return LekarServis.getInstance().pretraziSlobodneTermineZaLekara(datum, tipAkcije);
+        }
         public static List<PacijentTermin> prikaziZauzeteTermineZaLekara(Lekar ulogovaniLekar)
         {
             return LekarServis.getInstance().prikaziZauzeteTermineZaLekara(ulogovaniLekar);

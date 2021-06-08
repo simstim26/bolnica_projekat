@@ -14,5 +14,11 @@ namespace Bolnica_aplikacija.Kontroler
         {
             AlergijaServis.getInstance().obrisiAlergiju(alergija);
         }
+        public static bool proveriPostojanjeAlergije(String idPacijenta, String nazivAlergije)
+        {
+            return AlergijaServis.getInstance().proveriPostojanjeAlergije(idPacijenta, nazivAlergije);
+        }
+
+
     }
 }

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -46,6 +47,7 @@ namespace Bolnica_aplikacija.LekarStudent
             this.lblRJmbg.Content = pacijent.jmbg;
             this.lblRImePrezime.Content = pacijent.ime + " " + pacijent.prezime;
             this.lblRDatumR.Content = pacijent.datumRodjenja.ToString("dd.MM.yyyy.");
+            lblRPol.Content = pacijent.pol;
 
             gridRecept = gridIzmenaTerapije;
             gridLekovi = gridOdabirLeka;
@@ -80,6 +82,7 @@ namespace Bolnica_aplikacija.LekarStudent
         private void btnPotvrdi_Click(object sender, RoutedEventArgs e)
         {
             TerminKontroler.azuriranjeIzvestajaZaTermin(txtIzvestaj.Text, ((BolestTerapija)fm.DataContext).idTermina);
+            System.Windows.MessageBox.Show("Uspešno ste izmenili izveštaj s termina!", "Informacija", MessageBoxButton.OK, MessageBoxImage.Information);
             Content = new IstorijaBolesti(((BolestTerapija)fm.DataContext).idPacijenta);
 
         }
@@ -150,8 +153,6 @@ namespace Bolnica_aplikacija.LekarStudent
         }
         private void btnPotvrdiRecept_Click(object sender, RoutedEventArgs e)
         {
-            this.gridIzmenaTerapije.Visibility = Visibility.Hidden;
-            LekarProzor.getGlavnaLabela().Content = "Ažuriranje bolesti";
             if (((BolestTerapija)fm.DataContext).idTerapije != null)
             {
                 Terapija terapija = TerapijaKontroler.nadjiTerapijuPoId(((BolestTerapija)fm.DataContext).idTerapije);
@@ -168,12 +169,41 @@ namespace Bolnica_aplikacija.LekarStudent
                 TerminKontroler.azuriranjeTerapijeZaTermin(((BolestTerapija)fm.DataContext).idTermina, idTerapije);
                 BolestKontroler.azurirajTerapijuZaBolest(((BolestTerapija)fm.DataContext).idBolesti, idTerapije);
             }
+            System.Windows.MessageBox.Show("Uspešno izdat recept", "Informacija", MessageBoxButton.OK, MessageBoxImage.Information);
+            this.gridIzmenaTerapije.Visibility = Visibility.Hidden;
+            LekarProzor.getGlavnaLabela().Content = "Ažuriranje bolesti";
         }
 
         private void btnPonisti_Click(object sender, RoutedEventArgs e)
         {
             aktivan = false;
             Content = new IstorijaBolesti(((BolestTerapija)fm.DataContext).idPacijenta);
+        }
+
+        private void txtTrajanje_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Regex rx = new Regex("[^0-9]+");
+            if (rx.IsMatch(txtTrajanje.Text))
+            {
+                lblGreskaTrajanje.Visibility = Visibility.Visible;
+                potvrdaReceptEnable(false, !String.IsNullOrWhiteSpace(txtNacinUpotrebe.Text));
+            }
+            else
+            {
+                lblGreskaTrajanje.Visibility = Visibility.Hidden;
+                potvrdaReceptEnable(true && !String.IsNullOrEmpty(txtTrajanje.Text), !String.IsNullOrWhiteSpace(txtNacinUpotrebe.Text));
+            }
+        }
+
+        private void txtNacinUpotrebe_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Regex rx = new Regex("[^0-9]+");
+            potvrdaReceptEnable(!rx.IsMatch(txtTrajanje.Text) && !String.IsNullOrEmpty(txtTrajanje.Text), !String.IsNullOrWhiteSpace(txtNacinUpotrebe.Text));
+        }
+
+        private void potvrdaReceptEnable(bool trajanjeOK, bool nacinUpotrebeOK)
+        {
+            btnPotvrdiRecept.IsEnabled = trajanjeOK && nacinUpotrebeOK;
         }
     }
 }

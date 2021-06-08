@@ -4,6 +4,8 @@ using Bolnica_aplikacija.LekarStudent;
 using Bolnica_aplikacija.Model;
 using Bolnica_aplikacija.PacijentModel;
 using Bolnica_aplikacija.View.LekarStudent;
+using iText.IO.Font;
+using iText.Kernel.Font;
 using iText.Kernel.Pdf;
 using iText.Kernel.Pdf.Canvas.Draw;
 using iText.Layout;
@@ -15,6 +17,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -85,6 +88,181 @@ namespace Bolnica_aplikacija.ViewModel
             {
                 pBuduciTermin = value;
                 NotifyPropertyChanged("buduciTermin");
+            }
+        }
+
+        private String pImeIzvestaja;
+        public String imeIzvestaja
+        {
+            get
+            {
+                return pImeIzvestaja;
+            }
+
+            set
+            {
+                pImeIzvestaja = value;
+                Regex rx = new Regex("[^A-Za-z0-9]");
+                if (rx.IsMatch(pImeIzvestaja))
+                {
+                    greskaVis = true;
+                    izvestajEnabled = false;
+                }
+                else
+                {
+                    greskaVis = false;
+                    if (String.IsNullOrWhiteSpace(pImeIzvestaja))
+                    {
+                        izvestajEnabled = false;
+                    }
+                    else
+                    {
+                        izvestajEnabled = true;
+                    }
+                }
+                NotifyPropertyChanged("imeIzvestaja");
+            }
+        }
+
+        private bool pIzvestajEnabled;
+
+        public bool izvestajEnabled
+        {
+            get
+            {
+                return pIzvestajEnabled;
+            }
+            set
+            {
+                pIzvestajEnabled = value;
+                NotifyPropertyChanged("izvestajEnabled");
+            }
+        }
+
+        private bool pGreskaVis;
+        public bool greskaVis
+        {
+            get
+            {
+                return pGreskaVis;
+            }
+            set
+            {
+                pGreskaVis = value;
+                NotifyPropertyChanged("greskaVis");
+            }
+        }
+
+        private DateTime pPrviDatum;
+        public DateTime prviDatum
+        {
+            get
+            {
+                return pPrviDatum;
+            }
+
+            set
+            {
+                pPrviDatum = value;
+
+                if (DateTime.Compare(pPrviDatum, DateTime.Now) > 0)
+                {
+                    greskaTekst = "Datum ne moze biti veci od trenutnog!";
+                    pretragaProsliGreska = true;
+                }
+                else
+                {
+                    pretragaProsliGreska = false;
+                }
+                NotifyPropertyChanged("prviDatum");
+            }
+        }
+
+        private DateTime pDrugiDatum;
+        public DateTime drugiDatum
+        {
+            get
+            {
+                return pDrugiDatum;
+            }
+            set
+            {
+                pDrugiDatum = value;
+                if(DateTime.Compare(pDrugiDatum, DateTime.Now) > 0)
+                {
+                    greskaTekst = "Datum ne može biti veći od trenutnog!";
+                    pretragaProsliGreska = true;
+                }
+                else
+                {
+                    pretragaProsliGreska = false;
+                }
+                NotifyPropertyChanged("drugiDatum");
+            }
+        }
+
+        private String pGreskaTekst;
+        public String greskaTekst
+        {
+            get
+            {
+                return pGreskaTekst;
+            }
+
+            set
+            {
+                pGreskaTekst = value;
+                NotifyPropertyChanged("greskaTekst");
+            }
+        }
+
+        private bool pPretragaProsliGreska;
+        public bool pretragaProsliGreska
+        {
+            get
+            {
+                return pPretragaProsliGreska;
+            }
+            set
+            {
+                pPretragaProsliGreska = value;
+                NotifyPropertyChanged("pretragaProsliGreska");
+            }
+        }
+
+        private bool pGreskaBuduci;
+        public bool greskaBuduci
+        {
+            get
+            {
+                return pGreskaBuduci;
+            }
+            set
+            {
+                pGreskaBuduci = value;
+                NotifyPropertyChanged("greskaBuduci");
+            }
+        }
+
+        private DateTime pDatumBuduci;
+        public DateTime datumBuduci
+        {
+            get
+            {
+                return pDatumBuduci;
+            }
+            set
+            {
+                pDatumBuduci = value;
+                if(DateTime.Compare(pDatumBuduci, DateTime.Now.Date) < 0)
+                {
+                    greskaBuduci = true;
+                }
+                else
+                {
+                    greskaBuduci = false;
+                }
+                NotifyPropertyChanged("datumBuduci");
             }
         }
 
@@ -211,6 +389,10 @@ namespace Bolnica_aplikacija.ViewModel
             ucitajProsleTermine();
             ucitajBuduceTermine();
 
+            prviDatum = DateTime.Now.Date;
+            drugiDatum = DateTime.Now.Date;
+            datumBuduci = DateTime.Now.Date;
+
             otkazi = new RelayCommand(izvrsiOtkazivanje);
             promeni = new RelayCommand(izvrsiPromenu);
             zakazi = new RelayCommand(izvrsiZakazivanje);
@@ -221,6 +403,8 @@ namespace Bolnica_aplikacija.ViewModel
             izvestaj = new RelayCommand(izvrsiIzvestaj);
             prosliIzvestaj = new RelayCommand(izvrsiProsliIzvestaj);
             izgenerisi = new RelayCommand(izvrsiIzgenerisi);
+            pretraziProsleTermine = new RelayCommand(izvrsiPretraguProslih);
+            pretragaBuduci = new RelayCommand(izvrsiPretraguBuducih);
         }
         private void ucitajProsleTermine()
         {
@@ -505,10 +689,13 @@ namespace Bolnica_aplikacija.ViewModel
 
         private void izvrsiIzgenerisi(object obj)
         {
-            PdfWriter writer = new PdfWriter("proba.pdf");
-            PdfDocument doc = new PdfDocument(writer);
+            PdfWriter writer = new PdfWriter(imeIzvestaja + ".pdf");
+            PdfDocument doc = new PdfDocument(writer); 
             doc.AddNewPage();
             Document d = new Document(doc);
+            FontProgram fontProgram = FontProgramFactory.CreateFont();
+            PdfFont font = PdfFontFactory.CreateFont(fontProgram, "Cp1250");
+            d.SetFont(font);
             Paragraph zaglavljePacijent = new Paragraph();
             zaglavljePacijent.Add("Pacijent: " + imePrezime).SetBold();
             d.Add(zaglavljePacijent);
@@ -521,15 +708,55 @@ namespace Bolnica_aplikacija.ViewModel
                 Paragraph paragraph = new Paragraph();
                 Paragraph paragrafTermin = new Paragraph();
                 paragrafTermin.Add(termin.getTipString() + " - " + pacTermin.datum + " " + pacTermin.satnica + "\n").SetBold();
-                paragraph.Add("Lekar koji je odrzao termin: ");
+                paragraph.Add("Lekar koji je održao termin: ");
                 paragraph.Add(lekar.ime + " " + lekar.prezime + "\n");
                 paragraph.Add("Specijalizacija: " + SpecijalizacijaKontroler.nadjiSpecijalizacijuPoId(lekar.idSpecijalizacije) + "\n");
-                paragraph.Add("Dijagnoza: " + BolestKontroler.nadjiBolestPoId(termin.idBolesti).naziv + "\n");
-                paragraph.Add("Terapija: " + LekKontroler.nadjiLekPoId(terapija.idLeka).naziv + "\n");
-                paragraph.Add("Izdat uput za: " + TerminKontroler.nadjiTerminPoId(termin.idUputTermin).getTipString() + " kod :" + lekarUput.ime + " " + lekarUput.prezime + "\n");
-                paragraph.Add("Izvestaj: " + termin.izvestaj + "\n");
-                paragraph.Add("Izvestaj sa uputa: " + termin.izvestajUputa + "\n");
-                paragraph.Add("Nacin upotrebe terapije: " + terapija.nacinUpotrebe + "\n");
+                if (!String.IsNullOrWhiteSpace(termin.idBolesti))
+                {
+                    paragraph.Add("Dijagnoza: " + BolestKontroler.nadjiBolestPoId(termin.idBolesti).naziv + "\n");
+                }
+                else
+                {
+                    paragraph.Add("Ne postoji dijagnoza.\n");
+                }
+
+                if (!String.IsNullOrWhiteSpace(terapija.idLeka))
+                {
+                    paragraph.Add("Terapija: " + LekKontroler.nadjiLekPoId(terapija.idLeka).naziv + "\n");
+                }
+         
+                if (!String.IsNullOrWhiteSpace(termin.idUputTermin))
+                {
+                    paragraph.Add("Izdat uput za: " + TerminKontroler.nadjiTerminPoId(termin.idUputTermin).getTipString() + " kod: " + lekarUput.ime + " " + lekarUput.prezime + "\n");
+                }
+               
+                if (!String.IsNullOrWhiteSpace(termin.izvestaj))
+                {
+                    paragraph.Add("Izvestaj: " + termin.izvestaj + "\n");
+                }
+                else
+                {
+                    paragraph.Add("Ne postoji izveštaj sa pregleda.\n");
+                }
+                
+                if (!String.IsNullOrWhiteSpace(termin.izvestajUputa))
+                {
+                    paragraph.Add("Izvestaj sa uputa: " + termin.izvestajUputa + "\n");
+                }
+                else if(!String.IsNullOrWhiteSpace(termin.idUputTermin) && String.IsNullOrWhiteSpace(termin.izvestajUputa))
+                {
+                    paragraph.Add("Ne postoji izveštaj sa uputa.\n");
+
+                }
+                
+                if (!String.IsNullOrWhiteSpace(terapija.idLeka) && !String.IsNullOrWhiteSpace(terapija.nacinUpotrebe))
+                {
+                    paragraph.Add("Način upotrebe terapije: " + terapija.nacinUpotrebe + "\n");
+                }
+                else if(!String.IsNullOrWhiteSpace(terapija.idLeka) && String.IsNullOrWhiteSpace(terapija.nacinUpotrebe))
+                {
+                    paragraph.Add("Ne postoji objašnjenje načina upotrebe terapije.\n");
+                }
                 d.Add(paragrafTermin);
                 d.Add(paragraph);
                 LineSeparator ls = new LineSeparator(new SolidLine());
@@ -537,7 +764,70 @@ namespace Bolnica_aplikacija.ViewModel
 
             }
             d.Close();
-            MessageBox.Show("Uspesno je napravljen pdf", "Informacija", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show("Uspešno je napravljen pdf", "Informacija", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        #endregion
+
+        #region Komanda -> pretraga proslih termina
+        private RelayCommand pPretraziProsleTermine;
+        public RelayCommand pretraziProsleTermine
+        {
+            get
+            {
+                return pPretraziProsleTermine;
+            }
+
+            set
+            {
+                pPretraziProsleTermine = value;
+            }
+        }
+
+        private void izvrsiPretraguProslih(object obj)
+        {
+            if (prviDatum != null && drugiDatum != null)
+            {
+                if (DateTime.Compare(prviDatum, drugiDatum) <= 0)
+                {
+                    prosli = new ObservableCollection<PacijentTermin>(PacijentKontroler.pretraziProsleTermineZaPacijenta(pacijent.id, prviDatum, drugiDatum));
+                    pretragaProsliGreska = false;
+                }
+                else
+                {
+                    greskaTekst = "Prvi datum mora biti pre drugog!";
+                    pretragaProsliGreska = true;
+                }
+            }
+        }
+
+
+        #endregion
+
+        #region Komanda -> pretraga buduci
+        private RelayCommand pPretragaBuduci;
+        public RelayCommand pretragaBuduci
+        {
+            get
+            {
+                return pPretragaBuduci;
+            }
+            set
+            {
+                pPretragaBuduci = value;
+            }
+        }
+
+        private void izvrsiPretraguBuducih(object obj)
+        {
+            if(datumBuduci != null)
+            {
+                buduci = new ObservableCollection<PacijentTermin>(PacijentKontroler.pretraziBuduceTermineZaPacijenta(pacijent.id, datumBuduci));
+            }
+            else
+            {
+                buduci = new ObservableCollection<PacijentTermin>(PacijentKontroler.prikazBuducihTerminaPacijenta(pacijent.id));
+            }
         }
 
         #endregion

@@ -15,12 +15,12 @@
     "email": "email@email.com",
     "brojTelefona": "123/123-123",
     "jmbg": "1234567891012",
-    "mestoRodjenja": null,
-    "drzavaRodjenja": null,
-    "pol": null,
-    "brojZdravstveneKnjizice": null,
-    "bracniStatus": null,
-    "zanimanje": null
+    "mestoRodjenja": "mesto",
+    "drzavaRodjenja": "drzava",
+    "pol": "Zenski",
+    "brojZdravstveneKnjizice": "123",
+    "bracniStatus": "Razvedena",
+    "zanimanje": "Pevacica"
   },
   {
     "id": "2",
@@ -38,12 +38,12 @@
     "email": "iodum99@yahoo.com",
     "brojTelefona": "\u002B381649563126",
     "jmbg": "0504999800007",
-    "mestoRodjenja": null,
-    "drzavaRodjenja": null,
-    "pol": null,
-    "brojZdravstveneKnjizice": null,
-    "bracniStatus": null,
-    "zanimanje": null
+    "mestoRodjenja": "meesto",
+    "drzavaRodjenja": "drzzzzaaava",
+    "pol": "Musko",
+    "brojZdravstveneKnjizice": "234",
+    "bracniStatus": "Nepoznato",
+    "zanimanje": "Student"
   },
   {
     "id": "3",
@@ -61,12 +61,12 @@
     "email": "gaspsinspanish@telenovela.com",
     "brojTelefona": "123456",
     "jmbg": "0434567898123",
-    "mestoRodjenja": null,
-    "drzavaRodjenja": null,
-    "pol": null,
-    "brojZdravstveneKnjizice": null,
-    "bracniStatus": null,
-    "zanimanje": null
+    "mestoRodjenja": "Beograd",
+    "drzavaRodjenja": "Republika Srbija",
+    "pol": "Ženski",
+    "brojZdravstveneKnjizice": "1234",
+    "bracniStatus": "Neudata",
+    "zanimanje": "Starleta"
   },
   {
     "id": "4",
@@ -80,16 +80,16 @@
     "ime": "Gost",
     "prezime": "Gostojic",
     "datumRodjenja": "1979-01-01T00:00:00",
-    "adresa": "",
-    "email": "",
+    "adresa": "Nepoznato",
+    "email": "Nepoznato",
     "brojTelefona": "\u002B381649877788",
     "jmbg": "1234567654564",
-    "mestoRodjenja": null,
-    "drzavaRodjenja": null,
-    "pol": null,
-    "brojZdravstveneKnjizice": null,
-    "bracniStatus": null,
-    "zanimanje": null
+    "mestoRodjenja": "Šabac",
+    "drzavaRodjenja": "Republika Srbija",
+    "pol": "Muški",
+    "brojZdravstveneKnjizice": "0000",
+    "bracniStatus": "Nepoznato",
+    "zanimanje": "Nepoznato"
   },
   {
     "id": "5",
@@ -107,12 +107,12 @@
     "email": "nesto@mejl.com",
     "brojTelefona": "123121",
     "jmbg": "1234566654531",
-    "mestoRodjenja": null,
-    "drzavaRodjenja": null,
-    "pol": null,
-    "brojZdravstveneKnjizice": null,
-    "bracniStatus": null,
-    "zanimanje": null
+    "mestoRodjenja": "Graad",
+    "drzavaRodjenja": "Drzava",
+    "pol": "Ostalo",
+    "brojZdravstveneKnjizice": "2222",
+    "bracniStatus": "Nepoznato",
+    "zanimanje": "Nepoznato"
   },
   {
     "id": "6",
@@ -130,12 +130,12 @@
     "email": "nesto@mejl.com",
     "brojTelefona": "1234567",
     "jmbg": "1234567876567",
-    "mestoRodjenja": null,
-    "drzavaRodjenja": null,
-    "pol": null,
-    "brojZdravstveneKnjizice": null,
-    "bracniStatus": null,
-    "zanimanje": null
+    "mestoRodjenja": "MEsto",
+    "drzavaRodjenja": "Dryava",
+    "pol": "Muški",
+    "brojZdravstveneKnjizice": "202020",
+    "bracniStatus": "Oženjen",
+    "zanimanje": "Spremačica"
   },
   {
     "id": "7",
@@ -153,12 +153,12 @@
     "email": "",
     "brojTelefona": "0649875567",
     "jmbg": "1123456766565",
-    "mestoRodjenja": null,
-    "drzavaRodjenja": null,
-    "pol": null,
-    "brojZdravstveneKnjizice": null,
-    "bracniStatus": null,
-    "zanimanje": null
+    "mestoRodjenja": "Mesto",
+    "drzavaRodjenja": "Drzava",
+    "pol": "Žensko",
+    "brojZdravstveneKnjizice": "101010",
+    "bracniStatus": "Razvedena",
+    "zanimanje": "Nezaposlen"
   },
   {
     "id": "8",
@@ -176,12 +176,12 @@
     "email": "",
     "brojTelefona": "123213",
     "jmbg": "1234567876567",
-    "mestoRodjenja": null,
-    "drzavaRodjenja": null,
-    "pol": null,
-    "brojZdravstveneKnjizice": null,
-    "bracniStatus": null,
-    "zanimanje": null
+    "mestoRodjenja": "Mesto",
+    "drzavaRodjenja": "Mesto",
+    "pol": "Muški",
+    "brojZdravstveneKnjizice": "8888",
+    "bracniStatus": "Nepoznato",
+    "zanimanje": "Nepoznato"
   },
   {
     "id": "9",
@@ -199,12 +199,12 @@
     "email": "",
     "brojTelefona": "123213",
     "jmbg": "1234445656767",
-    "mestoRodjenja": null,
-    "drzavaRodjenja": null,
-    "pol": null,
-    "brojZdravstveneKnjizice": null,
-    "bracniStatus": null,
-    "zanimanje": null
+    "mestoRodjenja": "Mesto",
+    "drzavaRodjenja": "Drzava",
+    "pol": "Muško",
+    "brojZdravstveneKnjizice": "12334",
+    "bracniStatus": "Neoženjen",
+    "zanimanje": "Nezaposlen"
   },
   {
     "id": "10",
@@ -219,15 +219,15 @@
     "prezime": "Refaktorovic",
     "datumRodjenja": "1977-01-01T00:00:00",
     "adresa": "Neka adresa 22",
-    "email": null,
-    "brojTelefona": null,
+    "email": "Nepoznato",
+    "brojTelefona": "Nepoznato",
     "jmbg": "1234445456765",
-    "mestoRodjenja": null,
-    "drzavaRodjenja": null,
-    "pol": null,
-    "brojZdravstveneKnjizice": null,
-    "bracniStatus": null,
-    "zanimanje": null
+    "mestoRodjenja": "Mesto",
+    "drzavaRodjenja": "Drzava",
+    "pol": "Muško",
+    "brojZdravstveneKnjizice": "3333",
+    "bracniStatus": "Razveden",
+    "zanimanje": "Domar"
   },
   {
     "id": "11",
@@ -245,11 +245,11 @@
     "email": "ref2@mail.com",
     "brojTelefona": "0554341",
     "jmbg": "1234567877777",
-    "mestoRodjenja": null,
-    "drzavaRodjenja": null,
-    "pol": null,
-    "brojZdravstveneKnjizice": null,
-    "bracniStatus": null,
-    "zanimanje": null
+    "mestoRodjenja": "Mesto",
+    "drzavaRodjenja": "Država",
+    "pol": "Muški",
+    "brojZdravstveneKnjizice": "5555",
+    "bracniStatus": "Oženjen",
+    "zanimanje": "Diplomirani pravnik"
   }
 ]

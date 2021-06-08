@@ -148,6 +148,7 @@
     <Compile Include="Kontroler\OcenaBolniceKontroler.cs" />
     <Compile Include="Kontroler\OcenaLekaraKontroler.cs" />
     <Compile Include="Kontroler\PacijentKontroler.cs" />
+    <Compile Include="Kontroler\PrijavaGreskeKontroler.cs" />
     <Compile Include="Kontroler\ProstorijaKontroler.cs" />
     <Compile Include="Kontroler\ProstorijaZauzetoKontroler.cs" />
     <Compile Include="Kontroler\SekretarKontroler.cs" />
@@ -183,10 +184,13 @@
     <Compile Include="Repozitorijum\LogovanjeRepozitorijum.cs" />
     <Compile Include="Repozitorijum\OcenaBolniceRepozitorijum.cs" />
     <Compile Include="Repozitorijum\OcenaLekaraRepozitorijum.cs" />
+    <Compile Include="Repozitorijum\PrijavaGreskeRepozitorijum.cs" />
     <Compile Include="Servis\BolnickoLecenjeServis.cs" />
     <Compile Include="Servis\LogovanjeServis.cs" />
     <Compile Include="Servis\OcenaBolniceServis.cs" />
     <Compile Include="Servis\OcenaLekaraServis.cs" />
+    <Compile Include="Servis\PrijavaGreskeServis.cs" />
+    <Compile Include="ViewModel\AlergijaViewModel.cs" />
     <Compile Include="ViewModel\LekarTaboviViewModel.cs" />
     <Compile Include="ViewModel\LekZaOdobravanjeViewModel.cs" />
     <Compile Include="ViewModel\PacijentiInfoViewModel.cs" />
@@ -210,6 +214,9 @@
     </Compile>
     <Compile Include="View\LekarStudent\TerapijeIzdavanjeRecpeta.xaml.cs">
       <DependentUpon>TerapijeIzdavanjeRecpeta.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\LekarStudent\Tutorial.xaml.cs">
+      <DependentUpon>Tutorial.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\LekarStudent\UvidUTerapije.xaml.cs">
       <DependentUpon>UvidUTerapije.xaml</DependentUpon>
@@ -455,6 +462,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\LekarStudent\TerapijeIzdavanjeRecpeta.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\LekarStudent\Tutorial.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -737,6 +748,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="View\UpravnikStudent\logout.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Assets\video1.mp4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\video2.mp4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets" Condition="Exists('packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets')" />

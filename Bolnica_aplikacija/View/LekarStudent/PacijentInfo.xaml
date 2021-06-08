@@ -80,17 +80,17 @@
                     <Label Content="Zanimanje:" HorizontalAlignment="Left" Margin="26,312,0,0" VerticalAlignment="Top" FontWeight="Bold" Width="75" Foreground="Black"/>
                     <Label x:Name="lblJmbg" Content="{Binding Path=pacijent.jmbg}" Foreground="Black" Grid.Column="1" HorizontalAlignment="Left" Margin="46,15,0,0" VerticalAlignment="Top" Width="220" Height="24"/>
                     <Label x:Name="lblImePrezime" Content="{Binding Path=imePrezime}" Foreground="Black"  Grid.Column="1" HorizontalAlignment="Left" Margin="46,42,0,0" VerticalAlignment="Top" Width="220" Height="24"/>
-                    <Label x:Name="lblImeRoditelja" Foreground="Black"  Grid.Column="1" HorizontalAlignment="Left" Margin="46,66,0,0" VerticalAlignment="Top" Width="220" Height="24"/>
+                    <Label x:Name="lblImeRoditelja" Content="Nepoznato" Foreground="Black"  Grid.Column="1" HorizontalAlignment="Left" Margin="46,66,0,0" VerticalAlignment="Top" Width="220" Height="24"/>
                     <Label x:Name="lblDatumRodjenja" Content="{Binding Path=pacijent.datumRodjenja.Date}"  Foreground="Black" Grid.Column="1" HorizontalAlignment="Left" Margin="46,95,0,0" VerticalAlignment="Top" Width="220" Height="24"/>
                     <Label x:Name="lblMestoRodjenja" Content="{Binding Path=mestoRodjenja}" Foreground="Black"  Grid.Column="1" HorizontalAlignment="Left" Margin="46,119,0,0" VerticalAlignment="Top" Width="220" Height="24"/>
                     <Label x:Name="lblPol" Content="{Binding Path=pacijent.pol}" Foreground="Black" Grid.Column="1" HorizontalAlignment="Left" Margin="46,143,0,0" VerticalAlignment="Top" Width="220" Height="24"/>
                     <Label x:Name="lblAdresa" Content="{Binding Path=pacijent.adresa}"  Foreground="Black" Grid.Column="1" HorizontalAlignment="Left" Margin="46,167,0,0" VerticalAlignment="Top" Width="220" Height="24"/>
                     <Label x:Name="lblKontakt" Content="{Binding Path=pacijent.brojTelefona}" Foreground="Black" Grid.Column="1" HorizontalAlignment="Left" Margin="46,196,0,0" VerticalAlignment="Top" Width="220" Height="24"/>
                     <Label x:Name="lblBrZKnjizice" Content="{Binding Path=pacijent.brojZdravstveneKnjizice}" Foreground="Black"  Grid.Column="1" HorizontalAlignment="Left" Margin="46,225,0,0" VerticalAlignment="Top" Width="220" Height="24"/>
-                    <Label x:Name="lblStatusOsiguranja" Foreground="Black"  Grid.Column="1" HorizontalAlignment="Left" Margin="46,254,0,0" VerticalAlignment="Top" Width="220" Height="24"/>
+                    <Label x:Name="lblStatusOsiguranja" Content="Nepoznato" Foreground="Black"  Grid.Column="1" HorizontalAlignment="Left" Margin="46,254,0,0" VerticalAlignment="Top" Width="220" Height="24"/>
                     <Label x:Name="lblBracnoStanje" Content="{Binding Path=pacijent.bracniStatus}" Foreground="Black"  Grid.Column="1" HorizontalAlignment="Left" Margin="46,283,0,0" VerticalAlignment="Top" Width="220" Height="24"/>
                     <Label x:Name="Zanimanje" Content="{Binding Path=pacijent.zanimanje}"  Foreground="Black" Grid.Column="1" HorizontalAlignment="Left" Margin="46,312,0,0" VerticalAlignment="Top" Width="220" Height="24"/>
-                    
+
                     <Grid x:Name="gridNaBLecenju" Visibility="{Binding Path=gridBLecenjeVisibility, Converter={StaticResource BooleanToVisibilityConverter}, Mode=TwoWay}" HorizontalAlignment="Left" Background="Gray" Height="59" Margin="0,336,0,0" VerticalAlignment="Top" Width="430" Grid.ColumnSpan="2">
                         <Label Content="*Pacijent je na bolničkom lečenju:" Foreground="White" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="298" FontWeight="Bold"/>
                         <Label Content="Soba:" Foreground="White" HorizontalAlignment="Left" Margin="28,25,0,0" VerticalAlignment="Top"/>
@@ -113,16 +113,18 @@
                     </DataTemplate>
                 </TabItem.HeaderTemplate>
                 <Grid>
-                    <Grid x:Name="gridIstorijaTerminaPretraga" Background="#93c47d" Margin="-4,-2,-1,567.6" Visibility="Hidden">
-                        <DatePicker HorizontalAlignment="Left" Margin="26,14,0,0" VerticalAlignment="Top" Width="77"/>
-                        <DatePicker HorizontalAlignment="Left" Margin="160,14,0,0" VerticalAlignment="Top" Width="77"/>
+                    <Grid x:Name="gridIstorijaTerminaPretraga" Background="#93c47d" Margin="-4,-2,-1,561.6" Visibility="Hidden">
+                        <DatePicker HorizontalAlignment="Left" SelectedDate="{Binding Path=prviDatum, Mode=TwoWay}" Margin="26,14,0,0" VerticalAlignment="Top" Width="77"/>
+                        <DatePicker HorizontalAlignment="Left" SelectedDate="{Binding Path=drugiDatum, Mode=TwoWay}" Margin="160,14,0,0" VerticalAlignment="Top" Width="77"/>
                         <Label Content="-" HorizontalAlignment="Left" Margin="122,15,0,0" VerticalAlignment="Top"/>
-                        <Button HorizontalAlignment="Left" Margin="258,10,0,0" VerticalAlignment="Top" Width="34" Height="33" Style="{StaticResource MaterialDesignFloatingActionAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Black">
+                        <Button HorizontalAlignment="Left" Command="{Binding Path=pretraziProsleTermine}" Margin="258,10,0,0" VerticalAlignment="Top" Width="34" Height="33" Style="{StaticResource MaterialDesignFloatingActionAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Black">
                             <materialDesign:PackIcon Kind="Play" Height="26" Width="26" RenderTransformOrigin="0.5,0.5">
                             </materialDesign:PackIcon>
                         </Button>
+                        <Label Content="{Binding Path=greskaTekst, Mode=TwoWay}" Visibility="{Binding Path=pretragaProsliGreska, Converter={StaticResource BooleanToVisibilityConverter}, Mode=TwoWay}" FontWeight="Black" HorizontalAlignment="Left" Margin="26,38,0,0" VerticalAlignment="Top" Height="24" Width="304"/>
                     </Grid>
-                    <DataGrid x:Name="dataGridProsliTermini" ItemsSource="{Binding Path=prosli, Mode=TwoWay}" SelectedItem="{Binding Path=prosliTermin, Mode=TwoWay}" Margin="0,136,0,-0.4" RowHeight="35" IsReadOnly="True" AutoGenerateColumns="False" GridLinesVisibility="All" Background="White" AlternatingRowBackground="#FF9900" AlternationCount="2" SelectionMode="Single">
+                    <Label Content="*Greška! Naziv može da se sastoji samo od slova i brojeva!" Visibility="{Binding Path=greskaVis, Converter={StaticResource BooleanToVisibilityConverter}}" FontWeight="Bold" HorizontalAlignment="Left" Margin="16,126,0,0" VerticalAlignment="Top"/>
+                    <DataGrid x:Name="dataGridProsliTermini" ItemsSource="{Binding Path=prosli, Mode=TwoWay}" SelectedItem="{Binding Path=prosliTermin, Mode=TwoWay}" Margin="0,161,0,-0.4" RowHeight="35" IsReadOnly="True" AutoGenerateColumns="False" GridLinesVisibility="All" Background="White" AlternatingRowBackground="#FF9900" AlternationCount="2" SelectionMode="Single">
                         <DataGrid.Columns>
 
                             <DataGridTextColumn ElementStyle="{StaticResource ColumnElementStyle}"  Header="Datum" Binding="{Binding datum}"/>
@@ -132,11 +134,11 @@
                             <DataGridTextColumn Header="Terapija" Binding="{Binding nazivTerapije}"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Button HorizontalAlignment="Left" Command="{Binding Path=prosliIzvestaj}" Margin="330,72,0,0" VerticalAlignment="Top" Width="77" Height="49">
+                    <Button HorizontalAlignment="Left" Command="{Binding Path=prosliIzvestaj}" Margin="336,72,0,0" VerticalAlignment="Top" Width="69" Height="49">
                         <materialDesign:PackIcon Kind="InfoCircle" Height="33" Width="38"></materialDesign:PackIcon>
                     </Button>
-                    <Button HorizontalAlignment="Left" Command="{Binding Path=izgenerisi}" Margin="22,72,0,0" VerticalAlignment="Top" Width="77" Height="49">
-                    </Button>
+                    <Button HorizontalAlignment="Left" Content="Napravi izveštaj" Command="{Binding Path=izgenerisi}" IsEnabled="{Binding Path=izvestajEnabled}" Margin="168,72,0,0" VerticalAlignment="Top" Width="142" Height="49"/>
+                    <TextBox TextWrapping="Wrap" Text="{Binding Path=imeIzvestaja, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="16,85,280,500.6"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="tabPregled" Width="143">
@@ -167,6 +169,14 @@
                                 <DataGridTextColumn x:Name="kolonaTip" IsReadOnly="True" CanUserResize="False" Binding="{Binding napomena}" Header="Tip" Width="90"></DataGridTextColumn>
                             </DataGrid.Columns>
                         </DataGrid>
+                        <Grid x:Name="lblPretragaBuduci" Visibility="Hidden" Background="#93c47d" HorizontalAlignment="Left" Height="82" VerticalAlignment="Top" Width="435" Margin="-3,-3,-0.4,0">
+                            <DatePicker HorizontalAlignment="Left" SelectedDate="{Binding Path=datumBuduci, Mode=TwoWay}" Margin="49,22,0,0" VerticalAlignment="Top" Width="97"/>
+                            <Button HorizontalAlignment="Left" Margin="173,19,0,0" Command="{Binding Path=pretragaBuduci}" VerticalAlignment="Top" Width="34" Height="33" Style="{StaticResource MaterialDesignFloatingActionAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Black">
+                                <materialDesign:PackIcon Kind="Play" Height="26" Width="26" RenderTransformOrigin="0.5,0.5">
+                                </materialDesign:PackIcon>
+                            </Button>
+                            <Label Content="*Datum ne sme biti manji od trenutnog!" Visibility="{Binding Path=greskaBuduci, Mode=TwoWay, Converter={StaticResource BooleanToVisibilityConverter}}" FontWeight="Bold" HorizontalAlignment="Left" Margin="49,52,0,0" VerticalAlignment="Top"/>
+                        </Grid>
                     </Grid>
                 </Grid>
             </TabItem>
