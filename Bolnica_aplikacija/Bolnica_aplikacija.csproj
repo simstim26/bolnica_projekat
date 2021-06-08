@@ -676,7 +676,7 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
-  <ItemGroup />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\video1.mp4">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

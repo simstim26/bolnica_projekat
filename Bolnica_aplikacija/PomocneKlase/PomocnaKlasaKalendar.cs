@@ -37,7 +37,7 @@ namespace Bolnica_aplikacija.PomocneKlase
                 {
                     if (i == datum.Day)
                     {
-                        calendar.Days[datum.Day + 1].Notes = pacijentTermin.napomena + "," + pacijentTermin.imeLekara;
+                        calendar.Days[datum.Day + 1].Notes = pacijentTermin.napomena + "," + pacijentTermin.satnica;
                     }
                 }
             }

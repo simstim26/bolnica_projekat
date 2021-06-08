@@ -14,7 +14,7 @@
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="200" Margin="10,153,0,0" Stroke="Black" VerticalAlignment="Top" Width="368"/>
         <TextBox x:Name="txtPoruka" HorizontalAlignment="Left" Height="200" Margin="10,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="16"/>
         <TextBox x:Name="txtNaziv" HorizontalAlignment="Left" Height="30" Margin="71,18,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="307" FontSize="16"/>
-        <TextBox x:Name="txtVreme" HorizontalAlignment="Left" Height="30" Margin="71,64,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="103" FontSize="16"/>
+        <TextBox x:Name="txtVreme" HorizontalAlignment="Left" Height="30" Margin="71,64,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="103" FontSize="16" IsEnabled="False"/>
         <ComboBox x:Name="comboBoxPonavljanje" HorizontalAlignment="Left" Margin="259,64,0,0" VerticalAlignment="Top" Width="119" Height="30" SelectedIndex="7" FontSize="16" DropDownClosed="comboBoxPonavljanje_DropDownClosed"/>
         <Button x:Name="btnNapravi" Content="Napravi" HorizontalAlignment="Left" Margin="136,371,0,0" VerticalAlignment="Top" Width="111" FontSize="18" Height="34" Click="btnNapravi_Click"/>
         <Button x:Name="btnOdustani" Content="Odustani" HorizontalAlignment="Left" Margin="136,410,0,0" VerticalAlignment="Top" Width="111" FontSize="18" Height="34" IsCancel="True"/>

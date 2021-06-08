@@ -2,6 +2,12 @@
 using Bolnica_aplikacija.PacijentModel;
 using Bolnica_aplikacija.PomocneKlase;
 using Bolnica_aplikacija.View.PacijentStudent;
+using iText.IO.Font;
+using iText.Kernel.Font;
+using iText.Kernel.Pdf;
+using iText.Kernel.Pdf.Canvas.Draw;
+using iText.Layout;
+using iText.Layout.Element;
 using System;
 using System.Collections.Generic;
 using System.Windows;
@@ -31,6 +37,8 @@ namespace Bolnica_aplikacija.PacijentStudent
             SetDataGridBounds();
             SetLabelPacijentContent();
 
+            postaviLabeleDatuma();
+
             PopuniTermine();
             popuniTerapije();
             setujTajmer();
@@ -40,6 +48,44 @@ namespace Bolnica_aplikacija.PacijentStudent
             popuniMesecneTermine();
 
             PomocnaKlasaKalendar.popuniKalendar(calendar);
+
+        }
+
+        private void postaviLabeleDatuma()
+        {
+            DateTime datum = DateTime.Now;
+            lblDatum.Content = lblDatum.Content + " " + datum.ToString("dd/MM/yyyy");
+
+            switch (datum.Month)
+            {
+                case 1:
+                    lblMesec.Content = "Januar"; break;
+                case 2:
+                    lblMesec.Content = "Februar"; break;
+                case 3:
+                    lblMesec.Content = "Mart"; break;
+                case 4:
+                    lblMesec.Content = "April"; break;
+                case 5:
+                    lblMesec.Content = "Maj"; break;
+                case 6:
+                    lblMesec.Content = "Jun"; break;
+                case 7:
+                    lblMesec.Content = "Jul"; break;
+                case 8:
+                    lblMesec.Content = "Avgust"; break;
+                case 9:
+                    lblMesec.Content = "Septembar"; break;
+                case 10:
+                    lblMesec.Content = "Oktobar"; break;
+                case 11:
+                    lblMesec.Content = "Novembar"; break;
+                case 12:
+                    lblMesec.Content = "Decembar"; break;
+                default:
+                    lblMesec.Content = ""; break;
+
+            }
 
         }
 
@@ -409,6 +455,47 @@ namespace Bolnica_aplikacija.PacijentStudent
                 MessageBox.Show("Molimo odaberite obaveštenje koje želite da izmenite.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
 
+
+        }
+
+        private void btnIzvestaj_Click(object sender, RoutedEventArgs e)
+        {
+            String imeIzvestaja = "Nedeljne terapije za pacijenta";
+
+            PdfWriter writer = new PdfWriter(imeIzvestaja + ".pdf");
+            PdfDocument document = new PdfDocument(writer);
+            document.AddNewPage();
+            Document d = new Document(document);
+            FontProgram fontProgram = FontProgramFactory.CreateFont();
+            PdfFont font = PdfFontFactory.CreateFont(fontProgram, "Cp1250");
+            d.SetFont(font);
+
+            Paragraph zaglavlje = new Paragraph();
+            zaglavlje.Add("Pacijent: " + KorisnikKontroler.GetPacijent().ime + " " + KorisnikKontroler.GetPacijent().prezime).SetBold();
+            d.Add(zaglavlje);
+            int brojac = 1;
+            foreach(TerapijaPacijent terapija in TerapijaKontroler.ucitajTrenutneTerapijePacijentaTP(KorisnikKontroler.GetPacijent().id))
+            {
+                Paragraph paragraf = new Paragraph();
+                Paragraph terapijaParagraf = new Paragraph();
+
+                terapijaParagraf.Add("Terapija broj " + brojac + ":\n").SetBold();
+                paragraf.Add("Naziv oboljenja: "+terapija.nazivOboljenja);
+                paragraf.Add("\nIzdat lek za upotrebu: " + terapija.nazivLeka + "\n");
+                paragraf.Add("Dodatno:\n");
+                paragraf.Add(terapija.opisTerapije);
+
+                d.Add(terapijaParagraf);
+                d.Add(paragraf);
+                LineSeparator ls = new LineSeparator(new SolidLine());
+                d.Add(ls);
+
+                brojac += 1;
+            
+            }
+            d.Close();
+
+            MessageBox.Show("Uspešno je napravljen izveštaj o nedeljnim terapijama!", "Informacija", MessageBoxButton.OK, MessageBoxImage.Information);
 
         }
     }

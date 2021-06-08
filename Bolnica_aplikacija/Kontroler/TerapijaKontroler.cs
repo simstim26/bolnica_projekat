@@ -31,5 +31,9 @@ namespace Bolnica_aplikacija.Kontroler
             return TerapijaServis.getInstance().ucitajTrenutneTerapijePacijenta(idPacijenta);
         }
 
+        public static List<TerapijaPacijent> ucitajTrenutneTerapijePacijentaTP(String idPacijenta)
+        {
+            return TerapijaServis.getInstance().ucitajTrenutneTerapijePacijentaTP(idPacijenta);
+        }
     }
 }

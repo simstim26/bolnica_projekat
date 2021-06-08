@@ -157,7 +157,7 @@
 
                     </DVC:Chart>
 
-                    <DataGrid x:Name="dataGridIzvrseniTermini" Margin="10,106,957,71" IsReadOnly="True" SelectionMode="Single" AutoGenerateColumns="False" >
+                    <DataGrid x:Name="dataGridIzvrseniTermini" Margin="10,106,957,71" IsReadOnly="True" SelectionMode="Single" AutoGenerateColumns="False" FontSize="18" >
                         <DataGrid.Background>
                             <SolidColorBrush Color="#FFFAFAFA" Opacity="0.7"/>
                         </DataGrid.Background>
@@ -206,6 +206,7 @@
                         </DataGrid.Columns>
 
                     </DataGrid>
+                    <Button x:Name="btnIzvestaj" Content="Napravi izveštaj" HorizontalAlignment="Left" Margin="1647,27,0,0" VerticalAlignment="Top" Width="169" Height="52" FontSize="18" Click="btnIzvestaj_Click"/>
 
                 </Grid>
             </TabItem>
@@ -240,7 +241,7 @@
             <TabItem Header="Kalendar" FontSize="20">
                 <Grid HorizontalAlignment="Left" Height="875" VerticalAlignment="Top" Width="1907" Margin="0,-2,-1,-1">
 
-                    <Label x:Name="label1" Content="Mesec:" FontSize="40" Margin="74,9,1703,805"/>
+                    <Label x:Name="lblMesec" Content="Mesec:" FontSize="40" Margin="74,9,1703,805"/>
 
                     <Rectangle Stroke="Black" Margin="74,102,90,42">
                         <Rectangle.Fill>
