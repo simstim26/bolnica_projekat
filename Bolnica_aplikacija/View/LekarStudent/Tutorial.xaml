@@ -9,7 +9,7 @@
         Title="Tutorial" Height="500" Width="430">
     <Grid>
         <Button Content="Započni video tutorial za izveštaj" HorizontalAlignment="Left" Margin="41,10,0,0" VerticalAlignment="Top" Width="319" Height="37" Click="Button_Click"/>
-        <MediaElement x:Name="media" HorizontalAlignment="Left" Height="382" LoadedBehavior="Manual"  Margin="89,78,0,0" VerticalAlignment="Top" Source="Assets/video1.mp4" Width="216"/>
+        <MediaElement x:Name="media" HorizontalAlignment="Left" Height="383" LoadedBehavior="Manual"  Margin="0,87,0,0" VerticalAlignment="Top" Source="Assets/video2.mp4" Width="424"/>
 
     </Grid>
 </Window>

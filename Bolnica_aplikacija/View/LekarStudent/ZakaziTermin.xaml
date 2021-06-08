@@ -24,7 +24,7 @@
                 </materialDesign:PackIcon.RenderTransform>
             </materialDesign:PackIcon>
         </Button>
-        <DataGrid x:Name="dataGridZakazivanjeTermina" IsReadOnly="True" AutoGenerateColumns="False" GridLinesVisibility="All" Background="White" AlternatingRowBackground="#FF9900" AlternationCount="2" SelectionMode="Single" HorizontalAlignment="Left" Height="438" Margin="0,140,0,0" VerticalAlignment="Top" Width="430">
+        <DataGrid x:Name="dataGridZakazivanjeTermina" IsReadOnly="True" AutoGenerateColumns="False" Background="White" AlternatingRowBackground="#FF9900" AlternationCount="2" SelectionMode="Single" HorizontalAlignment="Left" Height="438" Margin="0,140,0,0" VerticalAlignment="Top" Width="430">
             <DataGrid.Style>
                 <Style TargetType="DataGrid">
                     <Setter Property="AlternatingRowBackground" Value="#FFBFBFBF"/>
