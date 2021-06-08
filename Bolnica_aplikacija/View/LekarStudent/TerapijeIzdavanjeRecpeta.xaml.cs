@@ -118,6 +118,8 @@ namespace Bolnica_aplikacija.LekarStudent
                    terapija.idBolesti, terapija.idTermina, DateTime.Now, Convert.ToInt32(txtTrajanje.Text), txtNacinUpotrebe.Text));
             }
 
+            MessageBox.Show("Uspešno ste izdali recept!", "Informacija", MessageBoxButton.OK, MessageBoxImage.Information);
+
             Content = new UvidUTerapije(((BolestTerapija)fm.DataContext).idPacijenta);
         }
 

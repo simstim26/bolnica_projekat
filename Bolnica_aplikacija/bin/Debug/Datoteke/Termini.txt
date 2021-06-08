@@ -550,7 +550,7 @@
     "idLekara": "1",
     "idTerapije": "18",
     "idBolesti": "11",
-    "izvestaj": "zgmajnafdadsads dsfkmdalmkadsmkldas fadmadskmlads asfkfadkladlmk",
+    "izvestaj": "39,2",
     "izvestajUputa": "dsfadfasdfasdfasd fasdfasdf asdfasdfa sdfa sdfa sdf asd fas dfasd fasdf asdfasd",
     "idUputLekara": "3",
     "idUputTermin": "32",

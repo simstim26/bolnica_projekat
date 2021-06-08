@@ -102,7 +102,7 @@
                     </DataTemplate>
                 </TabItem.HeaderTemplate>
                 <Grid Background="White" Margin="-18,-2,-12.8,-1.4">
-                    <Grid x:Name="gridPrikazPacijenata" Margin="10,-13,10.6,570.2" Background="#93c47d" Visibility="Visible">
+                    <Grid x:Name="gridPrikazPacijenata" Margin="10,-13,10.6,570.2" Background="#93c47d" Visibility="Hidden">
                         <TextBox Text="{Binding Path=txtPretragaPacijenti, Mode=TwoWay, UpdateSourceTrigger=Default}"  Margin="61,30,200.2,0" VerticalAlignment="Top" Height="22" />
                         <Button HorizontalAlignment="Left" Command="{Binding Path=pretragaPacijenata}" Margin="256,19,0,0" VerticalAlignment="Top" Width="34" Height="33" Style="{StaticResource MaterialDesignFloatingActionAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Black">
                             <materialDesign:PackIcon Kind="Play" Height="26" Width="26" RenderTransformOrigin="0.5,0.5">

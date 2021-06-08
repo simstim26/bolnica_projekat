@@ -82,6 +82,7 @@ namespace Bolnica_aplikacija.LekarStudent
         private void btnPotvrdi_Click(object sender, RoutedEventArgs e)
         {
             TerminKontroler.azuriranjeIzvestajaZaTermin(txtIzvestaj.Text, ((BolestTerapija)fm.DataContext).idTermina);
+            System.Windows.MessageBox.Show("Uspešno ste izmenili izveštaj s termina!", "Informacija", MessageBoxButton.OK, MessageBoxImage.Information);
             Content = new IstorijaBolesti(((BolestTerapija)fm.DataContext).idPacijenta);
 
         }
@@ -152,8 +153,6 @@ namespace Bolnica_aplikacija.LekarStudent
         }
         private void btnPotvrdiRecept_Click(object sender, RoutedEventArgs e)
         {
-            this.gridIzmenaTerapije.Visibility = Visibility.Hidden;
-            LekarProzor.getGlavnaLabela().Content = "Ažuriranje bolesti";
             if (((BolestTerapija)fm.DataContext).idTerapije != null)
             {
                 Terapija terapija = TerapijaKontroler.nadjiTerapijuPoId(((BolestTerapija)fm.DataContext).idTerapije);
@@ -170,6 +169,9 @@ namespace Bolnica_aplikacija.LekarStudent
                 TerminKontroler.azuriranjeTerapijeZaTermin(((BolestTerapija)fm.DataContext).idTermina, idTerapije);
                 BolestKontroler.azurirajTerapijuZaBolest(((BolestTerapija)fm.DataContext).idBolesti, idTerapije);
             }
+            System.Windows.MessageBox.Show("Uspešno izdat recept", "Informacija", MessageBoxButton.OK, MessageBoxImage.Information);
+            this.gridIzmenaTerapije.Visibility = Visibility.Hidden;
+            LekarProzor.getGlavnaLabela().Content = "Ažuriranje bolesti";
         }
 
         private void btnPonisti_Click(object sender, RoutedEventArgs e)
