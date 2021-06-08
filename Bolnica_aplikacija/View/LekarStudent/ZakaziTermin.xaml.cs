@@ -124,7 +124,7 @@ namespace Bolnica_aplikacija
 
         private void btnZakaziOperaciju_Click(object sender, RoutedEventArgs e)
         {
-            Content = new ZakazivanjeOperacije((String)this.DataContext);
+            Content = new ZakazivanjeOperacije(((String[])fm.DataContext)[0]);
         }
     }
 }

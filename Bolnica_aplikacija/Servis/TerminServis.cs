@@ -80,7 +80,7 @@ namespace Bolnica_aplikacija.Servis
 
         public Termin nadjiTerminPoId(String idTermina)
         {
-            if (idTermina == null)
+            if (idTermina == null || idTermina == "")
                 return new Termin();
 
             return terminRepozitorijum.ucitajSve().ToDictionary(t => t.idTermina)[idTermina];

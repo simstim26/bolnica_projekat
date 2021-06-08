@@ -91,6 +91,23 @@ namespace Bolnica_aplikacija.Servis
             return povratnaVrednost;
         }
 
+        public List<PacijentTermin> pretraziProsleTermineZaPacijenta(String idPacijenta, DateTime prvi, DateTime drugi)
+        {
+            List<PacijentTermin> povratnaVrednost = new List<PacijentTermin>();
+            foreach (PacijentTermin pacijentTermin in prikazProslihTerminaPacijenta(idPacijenta))
+            {
+                    Termin termin = TerminServis.getInstance().nadjiTerminPoId(pacijentTermin.id);
+                    int rez1 = DateTime.Compare(termin.datum, prvi);
+                    int rez2 = DateTime.Compare(termin.datum, drugi);
+                    if (rez1 >= 0 && rez2 <= 0)
+                    {
+                        povratnaVrednost.Add(pacijentTermin);
+                    }
+                
+            }
+            return povratnaVrednost;
+        }
+
         private String proveriAktivnostTerapije(Terapija terapija)
         {
             String povratnaVrednost = "Završeno";

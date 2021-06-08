@@ -23,8 +23,8 @@
         <Image HorizontalAlignment="Left" Height="54" Margin="58,121,0,0" VerticalAlignment="Top" Width="50" Source="doc.png"/>
         <Label x:Name="lblLekar" HorizontalAlignment="Left" Margin="128,137,0,0" VerticalAlignment="Top" Width="232" Height="30"/>
         <Label Content="Izveštaj:" HorizontalAlignment="Left" Margin="35,303,0,0" VerticalAlignment="Top" Height="23" Width="66"/>
-        <TextBox x:Name="txtIzvestaj" HorizontalAlignment="Left" Height="158" Margin="22,331,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="389" BorderBrush="#FF010104"/>
-        <Button x:Name="btnPotvrdaIzvestaj" HorizontalAlignment="Left" Margin="35,602,0,0" VerticalAlignment="Top" Width="75" Height="39" Click="btnPotvrdaIzvestaj_Click">
+        <TextBox x:Name="txtIzvestaj" Background="Gainsboro"  HorizontalAlignment="Left" Height="158" Margin="17,331,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="385" BorderBrush="#FF010104" TextChanged="txtIzvestaj_TextChanged"/>
+        <Button x:Name="btnPotvrdaIzvestaj" HorizontalAlignment="Left" IsEnabled="False" Margin="35,602,0,0" VerticalAlignment="Top" Width="75" Height="39" Click="btnPotvrdaIzvestaj_Click">
             <materialDesign:PackIcon Kind="CheckCircle" Height="29" Width="27"></materialDesign:PackIcon>
         </Button>
         <Button x:Name="btnPonistiIzvestaj" HorizontalAlignment="Left" Margin="313,602,0,0" VerticalAlignment="Top" Width="76" Height="39" Click="btnPonistiIzvestaj_Click">
@@ -41,7 +41,7 @@
         </Button>
         <Button Content="Zabeleži potrošene stavke" HorizontalAlignment="Left" Margin="98,515,0,0" VerticalAlignment="Top" Width="225" Height="59" Click="Button_Click"/>
         <Label Content="Dijagnoza:" HorizontalAlignment="Left" Margin="35,268,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtDijagnozaIzvestaj" HorizontalAlignment="Left" Height="23" Margin="142,269,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="154"/>
+        <TextBox x:Name="txtDijagnozaIzvestaj" HorizontalAlignment="Left" Height="23" Margin="142,269,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="154" TextChanged="txtDijagnozaIzvestaj_TextChanged"/>
 
         <Grid x:Name="gridPitanjeOUputu" Visibility="Hidden">
             <Grid.Background>
@@ -57,23 +57,25 @@
         </Grid>
 
         <Grid x:Name="gridBolnickoLecenje" Background="White" Visibility="Hidden">
-            <DatePicker x:Name="datumBLecenje" HorizontalAlignment="Left" Margin="144,114,0,0" VerticalAlignment="Top" Width="98"/>
+            <DatePicker x:Name="datumBLecenje" HorizontalAlignment="Left" Margin="144,114,0,0" VerticalAlignment="Top" Width="98" SelectedDateChanged="datumBLecenje_SelectedDateChanged"/>
             <Label Content="Datum početka:" HorizontalAlignment="Left" Margin="25,115,0,0" VerticalAlignment="Top"/>
-            <Label Content="Trajanje:" HorizontalAlignment="Left" Margin="25,153,0,0" VerticalAlignment="Top"/>
-            <TextBox x:Name="txtTrajanjeBLecenje" HorizontalAlignment="Left" Height="23" Margin="144,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="98" RenderTransformOrigin="0.247,0.67"/>
-            <DataGrid x:Name="dataGridBolnickeSobe" HorizontalAlignment="Left" AutoGenerateColumns="False" IsReadOnly="True" AlternationCount="2" AlternatingRowBackground="#FF9900"  Height="257" Margin="0,252,0,0" VerticalAlignment="Top" Width="430">
+            <Label Content="Trajanje:" HorizontalAlignment="Left" Margin="25,165,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="txtTrajanjeBLecenje" HorizontalAlignment="Left" Height="23" Margin="144,165,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="98" RenderTransformOrigin="0.247,0.67" TextChanged="txtTrajanjeBLecenje_TextChanged"/>
+            <DataGrid x:Name="dataGridBolnickeSobe" HorizontalAlignment="Left" AutoGenerateColumns="False" IsReadOnly="True" AlternationCount="2" AlternatingRowBackground="#FF9900"  Height="257" Margin="0,252,0,0" VerticalAlignment="Top" Width="430" SelectionChanged="dataGridBolnickeSobe_SelectionChanged">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Sprat" Binding="{Binding sprat}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Broj" Binding="{Binding broj}"></DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
             <Label Content="Odabir bolničke sobe:" HorizontalAlignment="Left" Margin="25,223,0,0" VerticalAlignment="Top"/>
-            <Button x:Name="btnPotvrdiBLecenje" HorizontalAlignment="Left" Margin="42,569,0,0" VerticalAlignment="Top" Width="85" Height="50" Click="btnPotvrdiBLecenje_Click">
+            <Button x:Name="btnPotvrdiBLecenje" IsEnabled="False" HorizontalAlignment="Left" Margin="42,569,0,0" VerticalAlignment="Top" Width="85" Height="50" Click="btnPotvrdiBLecenje_Click">
                 <materialDesign:PackIcon Kind="CheckCircle" Height="31" Width="37"></materialDesign:PackIcon>
             </Button>
             <Button x:Name="btnPonistiBLecenje" HorizontalAlignment="Left" Margin="303,569,0,0" VerticalAlignment="Top" Width="85" Height="50" Click="btnPonistiBLecenje_Click">
                 <materialDesign:PackIcon Kind="CloseCircle" Height="37" Width="34"></materialDesign:PackIcon>
             </Button>
+            <Label x:Name="lblGreskaBLecenje" Content="*Greška! U polju za trajanje mogu biti samo brojevi!" Visibility="Hidden" HorizontalAlignment="Left" Margin="25,194,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+            <Label x:Name="lblGreskaDatumBLecenje" Content="*Greška! Datum ne može biti manji od trenutnog!" FontWeight="Bold" Visibility="Hidden" HorizontalAlignment="Left" Margin="25,141,0,0" VerticalAlignment="Top"/>
 
         </Grid>
 
@@ -81,16 +83,16 @@
             <Label Content="Upućuje:" HorizontalAlignment="Left" Margin="50,56,0,0" VerticalAlignment="Top" Height="26" Width="74"/>
             <Label x:Name="lblUpucuje" HorizontalAlignment="Left" Margin="148,56,0,0" VerticalAlignment="Top" Height="26" Width="155"/>
             <Label Content="Kod:" HorizontalAlignment="Left" Margin="50,97,0,0" VerticalAlignment="Top" Height="27" Width="74"/>
-            <TextBox x:Name="txtLekarUput" HorizontalAlignment="Left" Height="23" Margin="148,97,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155"/>
+            <TextBox x:Name="txtLekarUput" IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="148,97,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" TextChanged="txtLekarUput_TextChanged"/>
             <Button x:Name="btnIzaberiLekara" HorizontalAlignment="Left" Margin="332,87,0,0" VerticalAlignment="Top" Width="45" Height="33" Click="btnIzaberiLekara_Click">
                 <materialDesign:PackIcon Kind="Plus" Width="22" Height="22" HorizontalAlignment="Center"></materialDesign:PackIcon>
             </Button>
             <Label Content="Upućuje se na " HorizontalAlignment="Left" Margin="34,150,0,0" VerticalAlignment="Top"/>
-            <TextBox x:Name="txtUputIzvestaj" HorizontalAlignment="Left" Height="244" Margin="10,245,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="410"/>
-            <Button x:Name="btnPotvrdiUput" HorizontalAlignment="Left" Margin="34,558,0,0" VerticalAlignment="Top" Width="90" Height="38" Click="btnPotvrdiUput_Click">
+            <TextBox x:Name="txtUputIzvestaj" Background="Gainsboro" HorizontalAlignment="Left" Height="244" Margin="10,245,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="410" TextChanged="txtUputIzvestaj_TextChanged"/>
+            <Button x:Name="btnPotvrdiUput" IsEnabled="False" HorizontalAlignment="Left" Margin="34,558,0,0" VerticalAlignment="Top" Width="90" Height="38" Click="btnPotvrdiUput_Click">
                 <materialDesign:PackIcon Kind="CheckCircle" Height="28" Width="39"></materialDesign:PackIcon>
             </Button>
-            <Button x:Name="btnPonistiUput" HorizontalAlignment="Left" Margin="297,558,0,0" VerticalAlignment="Top" Width="90" Height="38">
+            <Button x:Name="btnPonistiUput" HorizontalAlignment="Left" Margin="297,558,0,0" VerticalAlignment="Top" Width="90" Height="38" Click="btnPonistiUput_Click">
                 <materialDesign:PackIcon Kind="PlusCircle" Height="28" Width="30" RenderTransformOrigin="0.5,0.5">
                     <materialDesign:PackIcon.RenderTransform>
                         <TransformGroup>
@@ -122,25 +124,25 @@
             <Label Content="Količina:" HorizontalAlignment="Left" Margin="39,306,0,0" VerticalAlignment="Top"/>
             <Label Content="Datum propisivanja:" HorizontalAlignment="Left" Margin="39,344,0,0" VerticalAlignment="Top"/>
             <Label Content="Trajanje:" HorizontalAlignment="Left" Margin="39,385,0,0" VerticalAlignment="Top"/>
-            <Label Content="Način upotrebe:" HorizontalAlignment="Left" Margin="39,432,0,0" VerticalAlignment="Top"/>
-            <TextBox x:Name="txtNacinUpotrebe" HorizontalAlignment="Left" Height="101" Margin="0,461,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="430"/>
-            <Button x:Name="btnPotvrdiRecept" HorizontalAlignment="Left" Margin="39,594,0,0" VerticalAlignment="Top" Width="75" Click="btnPotvrdiRecept_Click">
+            <Label Content="Način upotrebe:" HorizontalAlignment="Left" Margin="39,432,0,0" VerticalAlignment="Top" />
+            <TextBox x:Name="txtNacinUpotrebe" Background="Gainsboro" HorizontalAlignment="Left" Height="101" Margin="0,461,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="430" TextChanged="txtNacinUpotrebe_TextChanged"/>
+            <Button x:Name="btnPotvrdiRecept" IsEnabled="False" HorizontalAlignment="Left" Margin="39,594,0,0" VerticalAlignment="Top" Width="75" Click="btnPotvrdiRecept_Click">
                 <materialDesign:PackIcon Kind="CheckCircle" Height="28" Width="39"></materialDesign:PackIcon>
             </Button>
             <Button x:Name="btnPonistiRecept" HorizontalAlignment="Left" Margin="306,594,0,0" VerticalAlignment="Top" Width="75">
                 <materialDesign:PackIcon Kind="CloseCircle" Height="28" Width="30" RenderTransformOrigin="0.5,0.5"/>
             </Button>
-            <TextBox x:Name="txtDijagnoza" HorizontalAlignment="Left" Height="23" Margin="205,229,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="123"/>
-            <TextBox x:Name="txtNazivLeka" HorizontalAlignment="Left" Height="23" Margin="205,268,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="123"/>
-            <TextBox x:Name="txtKol" HorizontalAlignment="Left" Height="23" Margin="205,306,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="123"/>
-            <TextBox x:Name="txtTrajanje" HorizontalAlignment="Left" Height="23" Margin="205,386,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="123"/>
+            <TextBox x:Name="txtDijagnoza" HorizontalAlignment="Left" Height="23" Margin="205,229,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="123" TextChanged="txtDijagnoza_TextChanged"/>
+            <TextBox x:Name="txtNazivLeka" IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="205,268,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="123" TextChanged="txtNazivLeka_TextChanged"/>
+            <TextBox x:Name="txtKol" IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="205,306,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="123"/>
+            <TextBox x:Name="txtTrajanje" HorizontalAlignment="Left" Height="23" Margin="205,386,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="123" TextChanged="txtTrajanje_TextChanged" />
 
             <Button x:Name="btnDodavanjeLeka" HorizontalAlignment="Left" Margin="355,259,0,0" VerticalAlignment="Top" Width="45" Click="btnDodavanjeLeka_Click">
                 <materialDesign:PackIcon Kind="Plus" HorizontalAlignment="Center" Height="22" Width="24"></materialDesign:PackIcon>
             </Button>
             <materialDesign:PackIcon Kind="Calendar" HorizontalAlignment="Left" Margin="306,344,0,0" VerticalAlignment="Top"/>
             <TextBox x:Name="txtDatum" IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="205,344,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="123"/>
-
+            <Label x:Name="lblGreskaTrajanjeRecept" Content="*Greška! U polju trajanje mogu biti samo brojevi!" Visibility="Hidden" FontWeight="Bold" HorizontalAlignment="Left" Margin="39,409,0,0" VerticalAlignment="Top"/>
 
         </Grid>
         <Grid x:Name="gridAzuriranje" Background="White" Visibility="Hidden">
@@ -172,16 +174,16 @@
             <Button x:Name="btnPotvdiOdabirLeka" HorizontalAlignment="Left" Margin="45,588,0,0" VerticalAlignment="Top" Width="78" RenderTransformOrigin="-0.213,0.3" Height="38" Click="btnPotvdiOdabirLeka_Click">
                 <materialDesign:PackIcon Kind="CheckCircle"></materialDesign:PackIcon>
             </Button>
-            <Button x:Name="btnPonistiOdaberLeka" HorizontalAlignment="Left" Margin="299,588,0,0" VerticalAlignment="Top" Width="78" RenderTransformOrigin="-0.213,0.3" Height="38">
+            <Button x:Name="btnPonistiOdaberLeka" HorizontalAlignment="Left" Margin="299,588,0,0" VerticalAlignment="Top" Width="78" RenderTransformOrigin="-0.213,0.3" Height="38" Click="btnPonistiOdaberLeka_Click">
                 <materialDesign:PackIcon Kind="CloseCircle"></materialDesign:PackIcon>
             </Button>
 
         </Grid>
 
         <Grid x:Name="gridOdabirLekaraUput" Background="White" Visibility="Hidden">
-            <DataGrid x:Name="dataGridLekari" HorizontalAlignment="Left" Height="436" AutoGenerateColumns="False" IsReadOnly="True" Margin="0,140,0,0" VerticalAlignment="Top" Width="430">
+            <DataGrid x:Name="dataGridLekari" HorizontalAlignment="Left" AlternatingRowBackground="#FF9900" AlternationCount="2" Height="436" AutoGenerateColumns="False" IsReadOnly="True" Margin="0,140,0,0" VerticalAlignment="Top" Width="430">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Lekar" Binding="{Binding imeLekara}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Lekar" Binding="{Binding prezimeLekara}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Specijalizacija" Binding="{Binding nazivSpecijalizacije}"></DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
@@ -206,7 +208,7 @@
 
         </Grid>
         <Grid x:Name="gridZakazivanje" Background="White" Visibility="Hidden">
-            <DataGrid x:Name="dataGridSlobodniTerminiLekara" HorizontalAlignment="Left" IsReadOnly="True" AutoGenerateColumns="False" Height="436" Margin="0,122,0,0" VerticalAlignment="Top" Width="430">
+            <DataGrid x:Name="dataGridSlobodniTerminiLekara" AlternatingRowBackground="#FF9900" AlternationCount="2" HorizontalAlignment="Left" IsReadOnly="True" AutoGenerateColumns="False" Height="436" Margin="0,122,0,0" VerticalAlignment="Top" Width="430">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Datum" Binding="{Binding datum}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Vreme" Binding="{Binding satnica}"></DataGridTextColumn>
@@ -218,11 +220,13 @@
             <Button x:Name="btnPotvrdaZakazivanja" HorizontalAlignment="Left" Margin="33,595,0,0" VerticalAlignment="Top" Width="85" Height="43" Click="btnPotvrdaZakazivanja_Click" >
                 <materialDesign:PackIcon Kind="CheckCircle" Height="27" Width="31"></materialDesign:PackIcon>
             </Button>
-            <Button x:Name="btnPonistavanjeZakazivanja" Content="Button" HorizontalAlignment="Left" Margin="308,595,0,0" VerticalAlignment="Top" Width="85" Height="43"/>
+            <Button x:Name="btnPonistavanjeZakazivanja" HorizontalAlignment="Left" Margin="308,595,0,0" VerticalAlignment="Top" Width="85" Height="43" Click="btnPonistavanjeZakazivanja_Click">
+                <materialDesign:PackIcon Kind="CloseCircle" Height="27" Width="31"></materialDesign:PackIcon>
+            </Button>
 
         </Grid>
         <Grid x:Name="gridZakazivanjeOperacije" Background="White" Visibility="Hidden">
-            <Label x:Name="lblGreska" Visibility="Hidden" Content="*Ispravan format: HH:mm" HorizontalAlignment="Left" Margin="257,317,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+            <Label x:Name="lblGreska" Visibility="Hidden" Content="*Greška! Ispravan format: HH:mm" HorizontalAlignment="Left" Margin="57,341,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
 
             <CheckBox x:Name="cBoxHitna" Content="Hitna" HorizontalAlignment="Left" Margin="57,478,0,0" VerticalAlignment="Top" Height="25" Width="93" FontWeight="Bold" FontSize="14"/>
 
@@ -242,15 +246,15 @@
             <Image HorizontalAlignment="Left" Height="26" Margin="57,45,0,0" VerticalAlignment="Top" Width="27" Source="patient-icon-3.jpg"/>
             <Image HorizontalAlignment="Left" Height="57" Margin="47,159,0,0" VerticalAlignment="Top" Width="43" Source="doc.png"/>
             <Label Content="Datum:" HorizontalAlignment="Left" Margin="56,269,0,0" VerticalAlignment="Top"/>
-            <DatePicker x:Name="datum" HorizontalAlignment="Left" Margin="150,269,0,0" VerticalAlignment="Top" Height="24" Width="90"/>
+            <DatePicker x:Name="datum" HorizontalAlignment="Left" Margin="150,269,0,0" VerticalAlignment="Top" Height="24" Width="90" SelectedDateChanged="datum_SelectedDateChanged"/>
             <Label Content="Vreme:" HorizontalAlignment="Left" Margin="57,317,0,0" VerticalAlignment="Top" Width="45"/>
             <TextBox x:Name="txtVreme" HorizontalAlignment="Left" Height="23" Margin="150,318,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="90" TextChanged="txtVreme_TextChanged"/>
-            <TextBox x:Name="txtProstorija" HorizontalAlignment="Left" Height="25" Margin="57,397,0,0" TextWrapping="Wrap" Text="Prostorija..." VerticalAlignment="Top" Width="120" Foreground="Gray" TextChanged="txtProstorija_TextChanged"/>
+            <TextBox x:Name="txtProstorija" IsReadOnly="True" HorizontalAlignment="Left" Height="25" Margin="57,397,0,0" TextWrapping="Wrap" Text="Prostorija..." VerticalAlignment="Top" Width="120" Foreground="Gray" TextChanged="txtProstorija_TextChanged"/>
             <Label x:Name="lblLekarOperacija" HorizontalAlignment="Left" Margin="150,169,0,0" VerticalAlignment="Top" Width="214" Height="27"/>
             <Label x:Name="lblPacijent" HorizontalAlignment="Left" Margin="157,47,0,0" VerticalAlignment="Top" Width="186" Height="24"/>
 
             <Grid x:Name="gridOdabirProstorija" Background="White" Visibility="Hidden">
-                <DataGrid x:Name="dataGridProstorije" IsReadOnly="True" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="369" Margin="0,169,0,0" VerticalAlignment="Top" Width="430">
+                <DataGrid x:Name="dataGridProstorije" IsReadOnly="True" AlternatingRowBackground="#FF9900" AlternationCount="2" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="369" Margin="0,169,0,0" VerticalAlignment="Top" Width="430">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Sprat" Binding="{Binding sprat}"></DataGridTextColumn>
                         <DataGridTextColumn Header="Broj" Binding="{Binding broj}"></DataGridTextColumn>
@@ -260,23 +264,23 @@
                 <Button x:Name="btnPotvrdiProstoriju" HorizontalAlignment="Left" Margin="60,608,0,0" VerticalAlignment="Top" Width="81" Height="42" Click="btnPotvrdiProstoriju_Click">
                     <materialDesign:PackIcon Kind="CheckCircle" Height="22" Width="24"></materialDesign:PackIcon>
                 </Button>
-                <Button x:Name= "btnPonistiProstoriju" HorizontalAlignment="Left" Margin="292,608,0,0" VerticalAlignment="Top" Width="82" Height="42"/>
+                <Button x:Name= "btnPonistiProstoriju" HorizontalAlignment="Left" Margin="292,608,0,0" VerticalAlignment="Top" Width="82" Height="42" Click="btnPonistiProstoriju_Click" >
+                    <materialDesign:PackIcon Kind="CloseCircle" Height="22" Width="24"></materialDesign:PackIcon>
+                </Button>
 
             </Grid>
 
             <Grid x:Name="gridPrikazInventara" Background="White" Visibility="Hidden">
-                <DataGrid x:Name="dataGridInventar" AutoGenerateColumns="False" IsReadOnly="True" HorizontalAlignment="Left" Height="627" Margin="0,123,0,0" VerticalAlignment="Top" Width="430">
+                <DataGrid x:Name="dataGridInventar" AutoGenerateColumns="False" AlternatingRowBackground="#FF9900" AlternationCount="2" IsReadOnly="True" HorizontalAlignment="Left" Height="627" Margin="0,123,0,0" VerticalAlignment="Top" Width="430">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Naziv" Binding="{Binding naziv}"></DataGridTextColumn>
                         <DataGridTextColumn Header="Količina" Binding="{Binding kolicina}"></DataGridTextColumn>
                         <DataGridTextColumn Header="Proizvođač" Binding="{Binding proizvodjac}"></DataGridTextColumn>
                     </DataGrid.Columns>
                 </DataGrid>
-
             </Grid>
-
+            <Label x:Name="lblGreskaDatumOperacija" Visibility="Hidden" Content="*Greška! Datum ne može biti manji od trenutnog!" HorizontalAlignment="Left" Margin="57,298,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         </Grid>
-
     </Grid>
 
 </UserControl>

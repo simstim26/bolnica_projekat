@@ -82,7 +82,11 @@ namespace Bolnica_aplikacija
 
         private void btnNazad_Click(object sender, RoutedEventArgs e)
         {
-            if(gridOdobravanjeLekova.Visibility == Visibility.Visible)
+            if(gridPrijavaGreske.Visibility == Visibility.Visible)
+            {
+                gridPrijavaGreske.Visibility = Visibility.Hidden;
+            }
+            else if(gridOdobravanjeLekova.Visibility == Visibility.Visible)
             {
                 podesiKretanjeUnazadZaOdobravanjeLekova();
             }
@@ -174,7 +178,18 @@ namespace Bolnica_aplikacija
 
         private void btnPretraga_Click(object sender, RoutedEventArgs e)
         {
-            if (LekarTabovi.getTab().SelectedIndex == 0)
+            if (PacijentInfo.aktivanPacijentInfo)
+            {
+                if (PacijentInfo.gridPretraga.Visibility == Visibility.Hidden)
+                {
+                    PacijentInfo.gridPretraga.Visibility = Visibility.Visible;
+                }
+                else if (PacijentInfo.gridPretraga.Visibility == Visibility.Visible)
+                {
+                    PacijentInfo.gridPretraga.Visibility = Visibility.Hidden;
+                }
+            }
+            else if (LekarTabovi.getTab().SelectedIndex == 0)
             {
                 if (LekarTabovi.getRasporedPretraga().Visibility == Visibility.Visible)
                 {
@@ -184,8 +199,6 @@ namespace Bolnica_aplikacija
                 {
                     LekarTabovi.getRasporedPretraga().Visibility = Visibility.Visible;
                 }
-
-
             }
             else if (LekarTabovi.getTab().SelectedIndex == 1)
             {
@@ -217,26 +230,6 @@ namespace Bolnica_aplikacija
             btnNazad.Visibility = Visibility.Visible;
             btnPretraga.Visibility = Visibility.Hidden;
 
-            ucitajLekoveZaOdobravanje();
-        }
-
-        private void ucitajLekoveZaOdobravanje()
-        {
-           // dataGridLekoviZaOdobravanje.ItemsSource = LekKontroler.nadjiLekoveZaOdobravanjeZaLogovanogLekara(KorisnikKontroler.getLekar().id);
-
-        }
-
-        private void btnInfoLek_Click(object sender, RoutedEventArgs e)
-        {
-            if (dataGridLekoviZaOdobravanje.SelectedIndex != -1)
-            {
-                glavnaLabela.Content = "Informacije o leku";
-                gridInfoLek.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                MessageBox.Show("Potrebno je izabrati lek!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
         }
 
         private void sacuvajStareVrednosti()
@@ -281,18 +274,12 @@ namespace Bolnica_aplikacija
             {
                 sacuvajStareVrednosti();
             }
-            ucitavanjePostojecihLekova();
             gridOdobravanjeLekova.Visibility = Visibility.Hidden;
             gridRULekovi.Visibility = Visibility.Visible;
             gridRUZamenskiLekovi.Visibility = Visibility.Hidden;
             glavnaLabela.Content = "Pregled i izmena lekova";
             btnNazad.Visibility = Visibility.Visible;
             btnPretraga.Visibility = Visibility.Hidden;
-        }
-
-        private void ucitavanjePostojecihLekova()
-        {
-            dataGridPostojeciLekovi.ItemsSource = LekKontroler.ucitajSve();
         }
 
         private void podesiKretanjeUnazadZaRULekova()
@@ -328,52 +315,6 @@ namespace Bolnica_aplikacija
             }
         }
 
-        private void btnIzmeniPostojeciLek_Click(object sender, RoutedEventArgs e)
-        {
-            if (dataGridPostojeciLekovi.SelectedIndex != -1)
-            {
-                Lek izabraniLek = (Lek)dataGridPostojeciLekovi.SelectedItem;
-                lblRUNacinUpotrebe.Content = izabraniLek.getNacinUpotrebeString();
-                lblRUTipLeka.Content = izabraniLek.getTipString();
-                lblRUProizvodjac.Content = izabraniLek.proizvodjac;
-                lblRUNazivLeka.Content = izabraniLek.naziv;
-                gridIzmenaLekova.Visibility = Visibility.Visible;
-                glavnaLabela.Content = "Izmena leka";
-                listRUSastojci.ItemsSource = izabraniLek.sastojci;
-
-            }
-            else
-            {
-                MessageBox.Show("Potrebno je izabrati lek!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
-        }
-
-        private void btnRUZamenskiLekovi_Click(object sender, RoutedEventArgs e)
-        {
-            gridIzmenaLekova.Visibility = Visibility.Hidden;
-            btnDodajZamenskiLek.Visibility = Visibility.Visible;
-            btnObrisiZamenskiLek.Visibility = Visibility.Visible;
-            gridRUZamenskiLekovi.Visibility = Visibility.Visible;
-            glavnaLabela.Content = "Zamenski lekovi";
-            dataGridZamenskiLekovi.ItemsSource = ((Lek)dataGridPostojeciLekovi.SelectedItem).zamenskiLekovi;
-        }
-
-        private void btnZamenskiLekovi_Click(object sender, RoutedEventArgs e)
-        {
-            gridRUZamenskiLekovi.Visibility = Visibility.Visible;
-            btnDodajZamenskiLek.Visibility = Visibility.Hidden;
-            btnObrisiZamenskiLek.Visibility = Visibility.Hidden;
-            glavnaLabela.Content = "Zamenski lekovi";
-            dataGridZamenskiLekovi.ItemsSource = ((LekZaOdobravanje)dataGridLekoviZaOdobravanje.SelectedItem).zamenskiLekovi;
-        }
-
-        private void btnDodajZamenskiLek_Click(object sender, RoutedEventArgs e)
-        {
-            gridDodavanjeZamenskogLeka.Visibility = Visibility.Visible;
-            glavnaLabela.Content = "Dodavanje zamenskog leka";
-            dataGridDodavanjeZamenskogLeka.ItemsSource = LekKontroler.ucitajSveLekoveBezZamenskih(((Lek)dataGridPostojeciLekovi.SelectedItem).id);
-        }
-
         private void PopupBox_Opened(object sender, RoutedEventArgs e)
         {
             if (!LekKontroler.proveriLekoveZaOdobravanjeZaLogovanogLekara(KorisnikKontroler.getLekar().id))
@@ -396,103 +337,5 @@ namespace Bolnica_aplikacija
             }
         }
 
-        private void btnOdbaci_Click(object sender, RoutedEventArgs e)
-        {
-            if (dataGridLekoviZaOdobravanje.SelectedIndex != -1)
-            {
-                gridPropratnaPoruka.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                MessageBox.Show("Potrebno je izabrati lek!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
-
-            }
-        }
-
-        private void btnPotvrdaUnosaPropratnePoruke_Click(object sender, RoutedEventArgs e)
-        {
-            LekZaOdobravanje lek = (LekZaOdobravanje)dataGridLekoviZaOdobravanje.SelectedItem;
-            lek.propratnaPoruka = txtPropratnaPoruka.Text;
-            LekKontroler.odbacivanjeLeka(lek);
-            gridPropratnaPoruka.Visibility = Visibility.Hidden;
-            ucitajLekoveZaOdobravanje();
-        }
-
-        private void btnDodavanjeSastojka_Click(object sender, RoutedEventArgs e)
-        {
-            //Lek lek = (Lek)dataGridPostojeciLekovi.SelectedItem;
-            //if (lek.sastojci == null)
-            //  lek.sastojci = new List<String>();
-            ///lek.sastojci.Add(txtDodavanjeSastojaka.Text);
-            //LekKontroler.azurirajLek(lek);
-            int id = dataGridPostojeciLekovi.SelectedIndex;
-            LekKontroler.dodajSastojak(((Lek)dataGridPostojeciLekovi.SelectedItem).id, txtDodavanjeSastojaka.Text);
-            osveziPrikaz(id);
-            txtDodavanjeSastojaka.Text = "";
-            //listRUSastojci.Items.Refresh();
-        }
-
-        private void txtDodavanjeSastojaka_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (String.IsNullOrWhiteSpace(txtDodavanjeSastojaka.Text))
-            {
-                btnDodavanjeSastojka.IsEnabled = false;
-            }
-            else
-            {
-                btnDodavanjeSastojka.IsEnabled = true;
-            }
-        }
-
-        private void btnIzbrisiSastojak_Click(object sender, RoutedEventArgs e)
-        {
-            if(listRUSastojci.SelectedIndex != -1)
-            {
-                int id = dataGridPostojeciLekovi.SelectedIndex;
-                LekKontroler.izbrisiSastojak(((Lek)dataGridPostojeciLekovi.SelectedItem).id, (String)listRUSastojci.SelectedItem);
-                osveziPrikaz(id);
-            }
-            else
-            {
-                MessageBox.Show("Izaberite sastojak za brisanje", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
-        }
-
-        private void osveziPrikaz(int id)
-        {
-            dataGridPostojeciLekovi.ItemsSource = LekKontroler.ucitajSve();
-            dataGridPostojeciLekovi.SelectedIndex = id;
-            dataGridZamenskiLekovi.ItemsSource = ((Lek)dataGridPostojeciLekovi.SelectedItem).zamenskiLekovi;
-            dataGridDodavanjeZamenskogLeka.ItemsSource = LekKontroler.ucitajSveLekoveBezZamenskih(((Lek)dataGridPostojeciLekovi.SelectedItem).id);
-            listRUSastojci.ItemsSource = ((Lek)dataGridPostojeciLekovi.SelectedItem).sastojci;
-        }
-
-        private void btnPotvrdaZamenskogLeka_Click(object sender, RoutedEventArgs e)
-        {
-            if(dataGridDodavanjeZamenskogLeka.SelectedIndex != -1)
-            {
-                int id = dataGridPostojeciLekovi.SelectedIndex;
-                LekKontroler.dodajZamenskiLek(((Lek)dataGridPostojeciLekovi.SelectedItem).id,(Lek)dataGridDodavanjeZamenskogLeka.SelectedItem);
-                osveziPrikaz(id);     
-            }
-            else
-            {
-                MessageBox.Show("Izaberite lek za dodavanje.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
-        }
-
-        private void btnObrisiZamenskiLek_Click(object sender, RoutedEventArgs e)
-        {
-            if(dataGridZamenskiLekovi.SelectedIndex != -1)
-            {
-                int id = dataGridPostojeciLekovi.SelectedIndex;
-                LekKontroler.obrisiZamenskiLek(((Lek)dataGridPostojeciLekovi.SelectedItem).id, ((Lek)dataGridZamenskiLekovi.SelectedItem).id);
-                osveziPrikaz(id);
-            }
-            else
-            {
-                MessageBox.Show("Izaberite lek za brisanje.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
-        }
     }
 }

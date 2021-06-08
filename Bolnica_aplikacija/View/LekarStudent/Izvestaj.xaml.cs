@@ -252,7 +252,7 @@ namespace Bolnica_aplikacija.LekarStudent
         {
             if (dataGridLekovi.SelectedIndex != -1)
             {
-                if (PacijentKontroler.proveriAlergijuNaLekZaPacijenta(((BolestTerapija)fm.DataContext).idPacijenta, ((Lek)dataGridLekovi.SelectedItem).id))
+                if (PacijentKontroler.proveriAlergijuNaLekZaPacijenta(((String [])fm.DataContext)[0], ((Lek)dataGridLekovi.SelectedItem).id))
                 {
                   MessageBox.Show("Pacijent je alergičan na dati lek.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
@@ -313,6 +313,15 @@ namespace Bolnica_aplikacija.LekarStudent
             LekarProzor.getGlavnaLabela().Content = "Izdavanje uputa";
 
             TerminKontroler.azurirajLekaraZaUput(((String[])fm.DataContext)[1], ((LekarSpecijalizacija)dataGridLekari.SelectedItem).idLekara);
+
+            if (LekarKontroler.nadjiLekaraPoId(((LekarSpecijalizacija)dataGridLekari.SelectedItem).idLekara).idSpecijalizacije.Equals("0"))
+            {
+                radioBtnOperacija.IsEnabled = false;
+            }
+            else
+            {
+                radioBtnOperacija.IsEnabled = true;
+            }
         }
 
         private void btnZakaziOperaciju_Click(object sender, RoutedEventArgs e)
@@ -438,7 +447,7 @@ namespace Bolnica_aplikacija.LekarStudent
 
         private void txtVreme_TextChanged(object sender, TextChangedEventArgs e)
         {
-            Regex rx = new Regex("[0-9]{2}[:][0-9]{2}");
+            Regex rx = new Regex("^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$");
             if (rx.IsMatch(txtVreme.Text))
             {
                 omoguciDugme();
@@ -462,7 +471,7 @@ namespace Bolnica_aplikacija.LekarStudent
 
         private void omoguciDugme()
         {
-            if (!String.IsNullOrWhiteSpace(txtVreme.Text) && datum.SelectedDate != null && !txtProstorija.Text.Equals("Prostorija..."))
+            if (!String.IsNullOrWhiteSpace(txtVreme.Text) && (datum.SelectedDate != null && DateTime.Compare((DateTime)datum.SelectedDate, DateTime.Now.Date) >= 0) && !txtProstorija.Text.Equals("Prostorija..."))
             {
                 btnPotvrdi.IsEnabled = true;
             }
@@ -474,7 +483,7 @@ namespace Bolnica_aplikacija.LekarStudent
 
         private void omoguciDugmeZaProstoriju()
         {
-            if (!String.IsNullOrWhiteSpace(txtVreme.Text) && datum.SelectedDate != null)
+            if (!String.IsNullOrWhiteSpace(txtVreme.Text) && (datum.SelectedDate != null && DateTime.Compare((DateTime)datum.SelectedDate, DateTime.Now.Date) >= 0))
             {
                 btnDodajProstoriju.IsEnabled = true;
             }
@@ -502,6 +511,7 @@ namespace Bolnica_aplikacija.LekarStudent
         private void btnPonisti_Click(object sender, RoutedEventArgs e)
         {
             gridZakazivanjeOperacije.Visibility = Visibility.Hidden;
+            gridOdabirLekaraUput.Visibility = Visibility.Visible;
             LekarProzor.getGlavnaLabela().Content = "Odabir lekara";
         }
 
@@ -544,6 +554,158 @@ namespace Bolnica_aplikacija.LekarStudent
             gridBolnickoLecenje.Visibility = Visibility.Hidden;
             LekarProzor.getGlavnaLabela().Content = "Pisanje izveštaja";
 
+        }
+
+        private void txtTrajanjeBLecenje_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Regex rx = new Regex("[^0-9]+");
+            if (rx.IsMatch(txtTrajanjeBLecenje.Text))
+            {
+                lblGreskaBLecenje.Visibility = Visibility.Visible;
+                btnPotvrdiBLecenje.IsEnabled = false;
+            }
+            else
+            {
+                lblGreskaBLecenje.Visibility = Visibility.Hidden;
+                btnPotvrdiBLecenje.IsEnabled = true;
+                potvrdaBLecenjeEnabled(true, (datumBLecenje.SelectedDate != null && DateTime.Compare((DateTime)datumBLecenje.SelectedDate, DateTime.Now.Date) >= 0), (dataGridBolnickeSobe.SelectedIndex != -1));
+
+            }
+        }
+
+        private void datumBLecenje_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(DateTime.Compare((DateTime)datumBLecenje.SelectedDate, DateTime.Now.Date) < 0)
+            {
+                lblGreskaDatumBLecenje.Visibility = Visibility.Visible;
+                btnPotvrdiBLecenje.IsEnabled = false;
+            }
+            else
+            {
+                Regex rx = new Regex("[^0-9]+");
+                lblGreskaDatumBLecenje.Visibility = Visibility.Hidden;
+                potvrdaBLecenjeEnabled(!rx.IsMatch(txtTrajanjeBLecenje.Text), true, (dataGridBolnickeSobe.SelectedIndex != -1));
+
+            }
+        }
+
+        private void dataGridBolnickeSobe_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Regex rx = new Regex("[^0-9]+");
+            potvrdaBLecenjeEnabled(!rx.IsMatch(txtTrajanjeBLecenje.Text), (datumBLecenje.SelectedDate != null && DateTime.Compare((DateTime)datumBLecenje.SelectedDate, DateTime.Now.Date) >= 0), (dataGridBolnickeSobe.SelectedIndex != -1));
+
+        }
+
+        private void potvrdaBLecenjeEnabled(bool trajanjeOK, bool datumOK, bool bSobaOk)
+        {
+            btnPotvrdiBLecenje.IsEnabled = trajanjeOK && datumOK && bSobaOk;
+
+        }
+
+        private void txtTrajanje_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Regex rx = new Regex("[^0-9]+");
+            if (rx.IsMatch(txtTrajanje.Text))
+            {
+                lblGreskaTrajanjeRecept.Visibility = Visibility.Visible;
+                btnPotvrdiRecept.IsEnabled = false;
+            }
+            else
+            {
+                lblGreskaTrajanjeRecept.Visibility = Visibility.Hidden;
+                potvrdaReceptaEnabled(true && (!String.IsNullOrWhiteSpace(txtTrajanje.Text)), !String.IsNullOrWhiteSpace(txtDijagnoza.Text), !String.IsNullOrWhiteSpace(txtNazivLeka.Text), !String.IsNullOrWhiteSpace(txtNacinUpotrebe.Text));
+            }
+        }
+
+        private void txtDijagnoza_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Regex rx = new Regex("[^0-9]+");
+            potvrdaReceptaEnabled((!String.IsNullOrWhiteSpace(txtTrajanje.Text)) && !rx.IsMatch(txtTrajanje.Text), !String.IsNullOrWhiteSpace(txtDijagnoza.Text), !String.IsNullOrWhiteSpace(txtNazivLeka.Text), !String.IsNullOrWhiteSpace(txtNacinUpotrebe.Text));
+        }
+
+        private void txtNazivLeka_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Regex rx = new Regex("[^0-9]+");
+            potvrdaReceptaEnabled((!String.IsNullOrWhiteSpace(txtTrajanje.Text)) && !rx.IsMatch(txtTrajanje.Text), !String.IsNullOrWhiteSpace(txtDijagnoza.Text), !String.IsNullOrWhiteSpace(txtNazivLeka.Text), !String.IsNullOrWhiteSpace(txtNacinUpotrebe.Text));
+        }
+
+        private void txtNacinUpotrebe_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Regex rx = new Regex("[^0-9]+");
+            potvrdaReceptaEnabled((!String.IsNullOrWhiteSpace(txtTrajanje.Text)) && !rx.IsMatch(txtTrajanje.Text), !String.IsNullOrWhiteSpace(txtDijagnoza.Text), !String.IsNullOrWhiteSpace(txtNazivLeka.Text), !String.IsNullOrWhiteSpace(txtNacinUpotrebe.Text));
+        }
+
+        private void potvrdaReceptaEnabled(bool trajanjeOK, bool dijagnozaOk, bool nazivLekaOK, bool nacinUpotrebeOK)
+        {
+            btnPotvrdiRecept.IsEnabled = trajanjeOK && dijagnozaOk && nazivLekaOK && nacinUpotrebeOK;
+        }
+
+        private void datum_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            lblGreskaDatumOperacija.Visibility = DateTime.Compare((DateTime)datum.SelectedDate, DateTime.Now.Date) < 0 ? Visibility.Visible : Visibility.Hidden; 
+            omoguciDugme();
+            omoguciDugmeZaProstoriju();    
+        }
+
+        private void btnPonistiProstoriju_Click(object sender, RoutedEventArgs e)
+        {
+            gridOdabirProstorija.Visibility = Visibility.Hidden;
+            gridZakazivanjeOperacije.Visibility = Visibility.Visible;
+            LekarProzor.getGlavnaLabela().Content = "Zakazivanje operacije";
+        }
+
+        private void btnPonistavanjeZakazivanja_Click(object sender, RoutedEventArgs e)
+        {
+            gridZakazivanje.Visibility = Visibility.Hidden;
+            gridOdabirLekaraUput.Visibility = Visibility.Visible;
+            LekarProzor.getGlavnaLabela().Content = "Odabir lekara";
+        }
+
+        private void btnPonistiOdaberLeka_Click(object sender, RoutedEventArgs e)
+        {
+            gridOdabirLeka.Visibility = Visibility.Hidden;
+            gridRecept.Visibility = Visibility.Visible;
+            LekarProzor.getGlavnaLabela().Content = "Izdavanje recepta";
+        }
+
+        private void txtUputIzvestaj_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (String.IsNullOrWhiteSpace(txtUputIzvestaj.Text) || String.IsNullOrWhiteSpace(txtLekarUput.Text))
+            {
+                btnPotvrdiUput.IsEnabled = false;
+            }
+            else
+            {
+                btnPotvrdiUput.IsEnabled = true;
+            }
+        }
+
+        private void txtLekarUput_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (String.IsNullOrWhiteSpace(txtUputIzvestaj.Text) || String.IsNullOrWhiteSpace(txtLekarUput.Text))
+            {
+                btnPotvrdiUput.IsEnabled = false;
+            }
+            else
+            {
+                btnPotvrdiUput.IsEnabled = true;
+            }
+        }
+
+        private void btnPonistiUput_Click(object sender, RoutedEventArgs e)
+        {
+            gridUput.Visibility = Visibility.Hidden;
+            LekarProzor.getGlavnaLabela().Content = "Pisanje izveštaja";
+        }
+
+        private void txtIzvestaj_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            btnPotvrdaIzvestaj.IsEnabled = (String.IsNullOrWhiteSpace(txtDijagnozaIzvestaj.Text) || String.IsNullOrWhiteSpace(txtIzvestaj.Text)) ? false : true;
+        }
+
+        private void txtDijagnozaIzvestaj_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            btnPotvrdaIzvestaj.IsEnabled = (String.IsNullOrWhiteSpace(txtDijagnozaIzvestaj.Text) || String.IsNullOrWhiteSpace(txtIzvestaj.Text)) ? false : true;
         }
     }
 }

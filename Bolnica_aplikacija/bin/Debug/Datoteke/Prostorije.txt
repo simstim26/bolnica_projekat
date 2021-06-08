@@ -32,6 +32,17 @@
         "jePotrosnaRoba": false
       },
       {
+        "id": "9",
+        "naziv": "stat",
+        "kolicina": 3,
+        "proizvodjac": "saf",
+        "idProstorije": null,
+        "idBolnice": "1",
+        "jeStaticka": true,
+        "jeLogickiObrisana": false,
+        "jePotrosnaRoba": false
+	   },
+	   {
         "id": "1",
         "naziv": "rukavice",
         "kolicina": 35,
@@ -118,7 +129,7 @@
         "idBolnice": "1",
         "jeStaticka": true,
         "jeLogickiObrisana": false,
-        "jePotrosnaRoba": false
+        "jePotrosnaRoba": true
       }
     ]
   },
