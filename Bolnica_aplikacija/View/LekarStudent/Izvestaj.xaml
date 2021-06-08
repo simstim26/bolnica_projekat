@@ -164,7 +164,7 @@
 
         </Grid>
         <Grid x:Name="gridOdabirLeka" Background="White" Visibility="Hidden">
-            <DataGrid x:Name="dataGridLekovi" IsReadOnly="True" AutoGenerateColumns="False" SelectionMode="Single" HorizontalAlignment="Left" Height="432" Margin="0,114,0,0" VerticalAlignment="Top" Width="430">
+            <DataGrid x:Name="dataGridLekovi" IsReadOnly="True" AutoGenerateColumns="False" AlternationCount="2" AlternatingRowBackground="#FF9900" SelectionMode="Single" HorizontalAlignment="Left" Height="432" Margin="0,114,0,0" VerticalAlignment="Top" Width="430">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Naziv" Binding="{Binding naziv}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Količina [mg]" Binding="{Binding kolicina}"></DataGridTextColumn>
@@ -172,10 +172,10 @@
                 </DataGrid.Columns>
             </DataGrid>
             <Button x:Name="btnPotvdiOdabirLeka" HorizontalAlignment="Left" Margin="45,588,0,0" VerticalAlignment="Top" Width="78" RenderTransformOrigin="-0.213,0.3" Height="38" Click="btnPotvdiOdabirLeka_Click">
-                <materialDesign:PackIcon Kind="CheckCircle"></materialDesign:PackIcon>
+                <materialDesign:PackIcon Kind="CheckCircle" Height="30" Width="29"></materialDesign:PackIcon>
             </Button>
             <Button x:Name="btnPonistiOdaberLeka" HorizontalAlignment="Left" Margin="299,588,0,0" VerticalAlignment="Top" Width="78" RenderTransformOrigin="-0.213,0.3" Height="38" Click="btnPonistiOdaberLeka_Click">
-                <materialDesign:PackIcon Kind="CloseCircle"></materialDesign:PackIcon>
+                <materialDesign:PackIcon Kind="CloseCircle" Height="31" Width="35"></materialDesign:PackIcon>
             </Button>
 
         </Grid>

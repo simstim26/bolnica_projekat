@@ -54,7 +54,7 @@ namespace Bolnica_aplikacija.View.LekarStudent
 
             if(String.IsNullOrWhiteSpace(TerminKontroler.nadjiTerminPoId((String)fm.DataContext).izvestaj))
             {
-                povratnaVrednost = "Nema izveštaja sa termina.";
+                povratnaVrednost = "Nema izveštaja sa termina.\n";
             }
             else
             {
@@ -65,7 +65,7 @@ namespace Bolnica_aplikacija.View.LekarStudent
                     povratnaVrednost += "\n\nIzveštaj sa uputa:\n";
                     if (String.IsNullOrWhiteSpace(TerminKontroler.nadjiTerminPoId((String)fm.DataContext).izvestajUputa))
                     {
-                        povratnaVrednost += "Nema podataka";
+                        povratnaVrednost += "Nema podataka\n";
                     }
                     else
                     {
@@ -80,7 +80,7 @@ namespace Bolnica_aplikacija.View.LekarStudent
 
                     if (String.IsNullOrWhiteSpace(TerapijaKontroler.nadjiTerapijuPoId(TerminKontroler.nadjiTerminPoId((String)fm.DataContext).idTerapije).nacinUpotrebe))
                     {
-                        povratnaVrednost += "Nema podataka";
+                        povratnaVrednost += "Nema podataka\n";
                     }
                     else
                     {
@@ -89,7 +89,7 @@ namespace Bolnica_aplikacija.View.LekarStudent
                 }
                 else
                 {
-                    povratnaVrednost += "Nema načina upotrebe";
+                    povratnaVrednost += "Nema načina upotrebe\n";
                 }
             }
 
@@ -101,7 +101,7 @@ namespace Bolnica_aplikacija.View.LekarStudent
             String povratnaVrednost;
             if (String.IsNullOrWhiteSpace(TerminKontroler.nadjiTerminPoId((String)fm.DataContext).idUputLekara))
             {
-                povratnaVrednost = "Nema podataka";
+                povratnaVrednost = "Nema podataka\n";
             }
             else
             {
@@ -117,7 +117,7 @@ namespace Bolnica_aplikacija.View.LekarStudent
             String povratnaVrednost;
             if (String.IsNullOrWhiteSpace(TerminKontroler.nadjiTerminPoId((String)fm.DataContext).idBolesti))
             {
-                povratnaVrednost = "Nema podataka";
+                povratnaVrednost = "Nema podataka\n";
             }
             else
             {
@@ -132,7 +132,7 @@ namespace Bolnica_aplikacija.View.LekarStudent
             String povratnaVrednost;
             if (String.IsNullOrWhiteSpace(TerminKontroler.nadjiTerminPoId((String)fm.DataContext).idTerapije))
             {
-                povratnaVrednost = "Nema podataka";
+                povratnaVrednost = "Nema podataka\n";
             }
             else
             {
