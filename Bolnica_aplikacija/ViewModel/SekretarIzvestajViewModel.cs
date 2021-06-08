@@ -16,12 +16,7 @@ namespace Bolnica_aplikacija.ViewModel
 {
     class SekretarIzvestajViewModel : BindableBase
     {
-        SekretarIzvestaj parent;
-        SekretarProzor pocetni;
-
-        List<string> data = new List<string>();
-        PdfPTable table = new PdfPTable(6);
-        
+          
         public RelayCommand NapisiIzvestaj { get; set; }
         public RelayCommand Odustani { get; set; }
         public SekretarIzvestajViewModel(SekretarIzvestaj parent, SekretarProzor pocetni)
@@ -38,6 +33,44 @@ namespace Bolnica_aplikacija.ViewModel
 
         }
 
+
+        #region Polja i property
+        SekretarIzvestaj parent;
+        SekretarProzor pocetni;
+
+        List<string> data = new List<string>();
+        PdfPTable table = new PdfPTable(6);
+
+        private DateTime datumPocetak;
+        public DateTime DatumPocetak
+        {
+            get { return datumPocetak; }
+            set
+            {
+                if (datumPocetak != value)
+                {
+                    datumPocetak = value;
+                    OnPropertyChanged("DatumPocetak");
+                }
+            }
+        }
+
+        private DateTime datumKraj;
+        public DateTime DatumKraj
+        {
+            get { return datumKraj; }
+            set
+            {
+                if (datumKraj != value)
+                {
+                    datumKraj = value;
+                    OnPropertyChanged("DatumKraj");
+                }
+            }
+        }
+
+        #endregion
+
         #region Komanda -> Sacuvaj
         private void sacuvaj(object obj)
         {
@@ -52,15 +85,15 @@ namespace Bolnica_aplikacija.ViewModel
             iTextSharp.text.Rectangle rec = new iTextSharp.text.Rectangle(PageSize.A4);
             Document doc = new Document(rec);
             PdfWriter pdfwriter = PdfWriter.GetInstance(doc, fs);
-            BaseFont bfTimes = BaseFont.CreateFont(BaseFont.COURIER, BaseFont.CP1252, false);
-            Font titleFont = new Font(bfTimes, 16);
+            BaseFont bfTimes = BaseFont.CreateFont(BaseFont.TIMES_ROMAN, BaseFont.CP1252, false);
+            Font titleFont = new Font(bfTimes, 16, iTextSharp.text.Font.NORMAL);
             iTextSharp.text.Paragraph title = new iTextSharp.text.Paragraph("IZVEŠTAJ SEKRETARA O ZAKAZANIM TERMINIMA", titleFont);
             title.Alignment = Element.ALIGN_CENTER;
 
             iTextSharp.text.Paragraph blanc = new iTextSharp.text.Paragraph("    ", titleFont);
             iTextSharp.text.Paragraph signature = new iTextSharp.text.Paragraph("Potpis:\n _______________", titleFont);
             signature.Alignment = Element.ALIGN_RIGHT;
-            iTextSharp.text.Paragraph stamp = new iTextSharp.text.Paragraph("Pečat", titleFont);
+            iTextSharp.text.Paragraph stamp = new iTextSharp.text.Paragraph("Pecat", titleFont);
             signature.Alignment = Element.ALIGN_LEFT;
 
             doc.Open();
@@ -158,36 +191,6 @@ namespace Bolnica_aplikacija.ViewModel
         }
         #endregion
 
-        #region Konstruktori i polja
-        private DateTime datumPocetak;
-        public DateTime DatumPocetak
-        {
-            get { return datumPocetak; }
-            set
-            {
-                if (datumPocetak != value)
-                {
-                    datumPocetak = value;
-                    OnPropertyChanged("DatumPocetak");
-                }
-            }
-        }
-
-        private DateTime datumKraj;
-        public DateTime DatumKraj
-        {
-            get { return datumKraj; }
-            set
-            {
-                if (datumKraj != value)
-                {
-                    datumKraj = value;
-                    OnPropertyChanged("DatumKraj");
-                }
-            }
-        }
-
-        #endregion
 
     }
 }

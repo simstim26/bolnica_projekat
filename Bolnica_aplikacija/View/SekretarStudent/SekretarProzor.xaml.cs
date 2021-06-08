@@ -1815,9 +1815,6 @@ namespace Bolnica_aplikacija
 
             this.TerminiGrid.IsEnabled = false;
 
-
-            //this.PocetniEkranGrid.Visibility = Visibility.Hidden;
-
         }
 
         #endregion
