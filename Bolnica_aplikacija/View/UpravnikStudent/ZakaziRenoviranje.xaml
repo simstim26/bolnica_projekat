@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="Bolnica_aplikacija.View.UpravnikStudent.ZakaziRenoviranje"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Bolnica_aplikacija.View.UpravnikStudent"
+             mc:Ignorable="d" 
+             d:DesignHeight="685" d:DesignWidth="913">
+
+    <Grid x:Name="gridZakaziProstorijuZaRenoviranje" Visibility="Visible" Margin="0,0,0,0">
+        <DataGrid x:Name="dataGridProstorijeZaRenoviranje" BorderThickness="1" HorizontalAlignment="Left" Height="508" Margin="52,132,0,0" VerticalAlignment="Top" Width="368" CanUserAddRows="False" SelectionMode="Extended" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="brojRenoviranje" Binding="{Binding broj}" IsReadOnly="True" Header="broj" Width="143" CanUserResize="False"/>
+                <DataGridTextColumn x:Name="spratRenoviranje" Binding="{Binding sprat}" IsReadOnly="True" Header="sprat" Width="143" CanUserResize="False"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <TextBlock x:Name="textBlock4" FontSize="24" HorizontalAlignment="Left" Margin="486,132,0,0" TextWrapping="Wrap" Text="Renoviranje traje od:" VerticalAlignment="Top" Height="36" Width="231"/>
+        <DatePicker x:Name="datumRenoviranjaOd" HorizontalAlignment="Left" Margin="486,213,0,0" VerticalAlignment="Top" Width="130"/>
+        <TextBlock x:Name="textBlock5" FontSize="24" HorizontalAlignment="Left" Margin="684,206,0,0" TextWrapping="Wrap" Text="do:" VerticalAlignment="Top"/>
+        <DatePicker x:Name="datumRenoviranjaDo" HorizontalAlignment="Left" Margin="753,213,0,0" VerticalAlignment="Top" Width="120"/>
+        <TextBlock x:Name="textBlock6" FontSize="24" HorizontalAlignment="Left" Margin="486,272,0,0" TextWrapping="Wrap" Text="Razlog renoviranja: " VerticalAlignment="Top" Width="236" Height="46"/>
+        <TextBox x:Name="textBoxRazlogRenoviranja" BorderThickness="1" Background="White" HorizontalAlignment="Left" Height="128" Margin="486,323,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="387"/>
+        <Button x:Name="btnZakaziRenoviranjeProstorije" Content="Zakaži" HorizontalAlignment="Left" Margin="486,575,0,0" VerticalAlignment="Top" Width="160" Height="65" Click="btnZakaziRenoviranjeProstorije_Click"/>
+        <Button x:Name="btnOtkaziRenoviranjeProstorije" Content="Otkaži" HorizontalAlignment="Left" Margin="713,575,0,0" VerticalAlignment="Top" Width="160" Height="65" Click="btnOtkaziRenoviranjeProstorije_Click"/>
+        <TextBlock x:Name="textBlock4_Copy" FontSize="24" HorizontalAlignment="Left" Margin="52,61,0,0" TextWrapping="Wrap" Text="Izaberite prostorije za renoviranje:" VerticalAlignment="Top" Height="36" Width="368"/>
+        <TextBlock x:Name="textBlock6_Copy" FontSize="24" HorizontalAlignment="Left" Margin="486,491,0,0" TextWrapping="Wrap" Text="Tip renoviranja: " VerticalAlignment="Top" Width="182" Height="46"/>
+        <ComboBox x:Name="cbTipRenoviranja" HorizontalAlignment="Left" Margin="694,491,0,0" VerticalAlignment="Top" Width="179">
+            <ComboBoxItem Content="Obično"/>
+            <ComboBoxItem Content="Proširivanje"/>
+            <ComboBoxItem Content="Spajanje"/>
+        </ComboBox>
+        <TextBlock x:Name="izaberiteProstorije" Visibility="Hidden" FontStyle="Italic" Foreground="red" HorizontalAlignment="Left" Margin="486,524,0,0" TextWrapping="Wrap" Text="*Izaberite prostorije za renoviranje!" VerticalAlignment="Top"/>
+        <TextBlock x:Name="neispravanDatum" Visibility="Hidden" FontStyle="Italic" Foreground="red" HorizontalAlignment="Left" Margin="486,243,0,0" TextWrapping="Wrap" Text="*Izaberite ispavan datum!" VerticalAlignment="Top"/>
+        <TextBlock x:Name="prostorijeSpajanjeGreska" Visibility="Hidden" FontStyle="Italic" Foreground="red" HorizontalAlignment="Left" Margin="486,524,0,0" TextWrapping="Wrap" Text="*Izaberite tačno dve prostorije za spajanje!" VerticalAlignment="Top"/>
+        <TextBlock x:Name="prostorijeSpratGreska" Visibility="Hidden" FontStyle="Italic" Foreground="red" HorizontalAlignment="Left" Margin="486,524,0,0" TextWrapping="Wrap" Text="*Prostorije za spajanje moraju biti na istom spratu!" VerticalAlignment="Top"/>
+        <TextBlock x:Name="praznaPolja" Visibility="Hidden" FontStyle="Italic" Foreground="red" HorizontalAlignment="Left" Margin="486,524,0,0" TextWrapping="Wrap" Text="*Sva polja moraju biti popunjena!" VerticalAlignment="Top"/>
+    </Grid>
+</UserControl>

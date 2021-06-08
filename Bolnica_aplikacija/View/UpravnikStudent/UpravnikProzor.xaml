@@ -189,7 +189,7 @@
             <TextBlock x:Name="textBlockA" FontSize="30" FontWeight="Bold" HorizontalAlignment="Left" Margin="176,188,0,0" TextWrapping="Wrap" Text="Dodajte novu prostoriju:" VerticalAlignment="Top"/>
         </Grid>
 
-        <Grid x:Name="gridPogledajInventar" Visibility="Visible">
+        <Grid x:Name="gridPogledajInventar" Visibility="Hidden">
             <Rectangle Fill="LightGray" HorizontalAlignment="Left" Height="685" Stroke="Black" VerticalAlignment="Top" Width="919" Margin="98,54,0,0"/>
             <DataGrid x:Name="dataGridInventarProstorije" HorizontalAlignment="Left" Height="474" Margin="173,204,0,0" VerticalAlignment="Top" HeadersVisibility="All" AutoGenerateColumns="False" SelectionMode="Single" CanUserResizeRows="False" CanUserAddRows="False">
                 <DataGrid.Columns>
@@ -362,9 +362,9 @@
             </ComboBox>
         </Grid>
 
-        <Grid  Visibility="Visible" HorizontalAlignment="Left" Height="739" VerticalAlignment="Top" Width="78" Grid.ColumnSpan="3" Grid.RowSpan="3">
+        <Grid  Visibility="Hidden" HorizontalAlignment="Left" Height="739" VerticalAlignment="Top" Width="78" Grid.ColumnSpan="3" Grid.RowSpan="3">
 
-            <Grid x:Name="gridInventar" Visibility="Hidden" Background="LightGray" HorizontalAlignment="Left" Height="685" Margin="98,54,-940,0" VerticalAlignment="Top" Width="920">
+            <Grid x:Name="gridInventar" Visibility="Visible" Background="LightGray" HorizontalAlignment="Left" Height="685" Margin="98,54,-940,0" VerticalAlignment="Top" Width="920">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="68*"/>
                     <ColumnDefinition Width="407*"/>
@@ -537,7 +537,7 @@
                 <Rectangle  HorizontalAlignment="Left" Height="124" Margin="37,28,0,0" Stroke="Black" VerticalAlignment="Top" Width="367"/>
             </Grid>
 
-            <Grid x:Name="gridDodajStavku" Visibility="Hidden">
+            <Grid x:Name="gridDodajStavku" Visibility="Visible">
                 <Rectangle Fill="LightGray" HorizontalAlignment="Left" Height="685" Stroke="Black" VerticalAlignment="Top" Width="917" Margin="100,54,-939,0"/>
                 <Button x:Name="btnPotvrdiStavku" HorizontalAlignment="Left" Margin="764,223,-880,0" VerticalAlignment="Top" Width="194" Height="48" Click="btnPotvrdiStavku_Click">
                     <StackPanel Orientation="Horizontal" Width="170">

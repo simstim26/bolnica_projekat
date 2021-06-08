@@ -22,11 +22,13 @@ namespace Bolnica_aplikacija.View.UpravnikStudent
     /// </summary>
     public partial class PogledajInventar : UserControl
     {
+        public static DataGrid dataGridProstorijeInventar;
         public PogledajInventar()
         {
             InitializeComponent();
             dataGridInventarProstorije.ItemsSource = ProstorijaKontroler.dobaviStavkeIzProstorije(
                 (Prostorija)ProstorijePogled.dobaviDataGridProstorija().SelectedItem);
+            dataGridProstorijeInventar = dataGridInventarProstorije;
         }
 
         private void btnOtkaziPrikaz_Click(object sender, RoutedEventArgs e)
@@ -43,6 +45,11 @@ namespace Bolnica_aplikacija.View.UpravnikStudent
                 GlavniProzor.DobaviProzorZaIzmenu().Children.Add(new PremestiUDruguProstoriju());
             }
             
+        }
+
+        public static DataGrid dobaviDataGridProstorijaInventar()
+        {
+            return dataGridProstorijeInventar;
         }
     }
 }

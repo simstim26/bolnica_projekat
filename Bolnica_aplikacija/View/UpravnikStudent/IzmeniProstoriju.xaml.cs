@@ -64,6 +64,9 @@ namespace Bolnica_aplikacija.View.UpravnikStudent
 
         private void btnPotvrdiIzmenu_Click(object sender, RoutedEventArgs e)
         {
+            lblNijePopunjenoIzmeni.Visibility = Visibility.Hidden;
+            lblMoraBitiBroj.Visibility = Visibility.Hidden;
+            lblBrojPostoji.Visibility = Visibility.Hidden;
             String pat = @"^[0-9]+$";
             Regex r = new Regex(pat);
             Match m = r.Match(txtBrojProstorije.Text.Replace(" ", ""));
@@ -76,7 +79,7 @@ namespace Bolnica_aplikacija.View.UpravnikStudent
             }
             else if (!m.Success || !m1.Success)
             {
-                lblNijePopunjenoIspravnoIzmeni.Visibility = Visibility.Visible;
+                lblMoraBitiBroj.Visibility = Visibility.Visible;
             }
             else
             {

@@ -114,5 +114,69 @@
     "nacinUpotrebe": 0,
     "sastojci": [],
     "zamenskiLekovi": null
+  },
+  {
+    "brLekaraKojiSuodobriliLek": 0,
+    "lekariKojimaJePoslatLek": [
+      "2",
+      "4"
+    ],
+    "odobren": false,
+    "propratnaPoruka": null,
+    "id": "3",
+    "naziv": "prolom",
+    "tip": 1,
+    "kolicina": 350,
+    "proizvodjac": "Banja",
+    "nacinUpotrebe": 0,
+    "sastojci": [
+      "dusan"
+    ],
+    "zamenskiLekovi": [
+      {
+        "id": "5",
+        "naziv": "dobro smo",
+        "tip": 3,
+        "kolicina": 69,
+        "proizvodjac": "ZdravoZdravo",
+        "nacinUpotrebe": 2,
+        "sastojci": [
+          "proba",
+          "proba1"
+        ],
+        "zamenskiLekovi": [
+          {
+            "id": "2",
+            "naziv": "LekLek",
+            "tip": 5,
+            "kolicina": 75,
+            "proizvodjac": "proizvodjac neki",
+            "nacinUpotrebe": 2,
+            "sastojci": null,
+            "zamenskiLekovi": null
+          },
+          {
+            "id": "3",
+            "naziv": "LekLekLek",
+            "tip": 5,
+            "kolicina": 75,
+            "proizvodjac": "proizvodjac neki",
+            "nacinUpotrebe": 1,
+            "sastojci": null,
+            "zamenskiLekovi": null
+          },
+          {
+            "id": "4",
+            "naziv": "aaaaaaaLek",
+            "tip": 2,
+            "kolicina": 48921,
+            "proizvodjac": "volimoSeKorporacija",
+            "nacinUpotrebe": 2,
+            "sastojci": null,
+            "zamenskiLekovi": null
+          }
+        ]
+      }
+    ]
   }
 ]

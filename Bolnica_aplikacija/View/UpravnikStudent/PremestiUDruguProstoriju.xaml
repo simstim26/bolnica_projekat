@@ -51,6 +51,9 @@
         <TextBlock x:Name="textStaticka2U" FontSize="20" HorizontalAlignment="Left" Margin="527,427,0,0" TextWrapping="Wrap" Text="do" VerticalAlignment="Top" Width="73"/>
         <DatePicker x:Name="datumKrajaU" HorizontalAlignment="Left" Margin="605,414,0,0" VerticalAlignment="Top" Width="134" Height="45"/>
         <Rectangle HorizontalAlignment="Left" Height="432" Margin="54,61,0,0" Stroke="Black" VerticalAlignment="Top" Width="805"/>
-
+        <TextBlock x:Name="svePoljaMorajuBitiPopunjena" Visibility="Hidden" HorizontalAlignment="Left" Foreground="Red" Margin="54,493,0,0" TextWrapping="Wrap" Text="*sva polja moraju biti popunjena!" VerticalAlignment="Top"/>
+        <TextBlock x:Name="neispravanDatum" Visibility="Hidden" HorizontalAlignment="Left" Foreground="Red" Margin="54,493,0,0" TextWrapping="Wrap" Text="*neispravno unet datum!" VerticalAlignment="Top"/>
+        <TextBlock x:Name="kolicinaBroj" Visibility="Hidden" HorizontalAlignment="Left" Foreground="Red" Margin="88,298,0,0" TextWrapping="Wrap" Text="*kolicina mora biti broj!" VerticalAlignment="Top"/>
+        
     </Grid>
 </UserControl>

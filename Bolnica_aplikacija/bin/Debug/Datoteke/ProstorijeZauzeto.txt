@@ -106,5 +106,14 @@
     "jeZavrseno": true,
     "idStavke": "2",
     "kolicinaStavke": 2
+  },
+  {
+    "idProstorije": "14",
+    "idProstorijeUKojuSePrebacuje": "1",
+    "datumPocetka": "2021-06-09T00:00:00",
+    "datumKraja": "2021-06-09T00:00:00",
+    "jeZavrseno": false,
+    "idStavke": "2",
+    "kolicinaStavke": 1
   }
 ]

@@ -36,6 +36,10 @@ namespace Bolnica_aplikacija.View.UpravnikStudent
 
         private void btnPotvrdi_Click(object sender, RoutedEventArgs e)
         {
+            lblNijePopunjenoDodaj.Visibility = Visibility.Hidden;
+            lblMoraBitiBroj.Visibility = Visibility.Hidden;
+            lblNijePopunjenoIspravnoDodaj.Visibility = Visibility.Hidden;
+            lblBrojPostojiDodaj.Visibility = Visibility.Hidden;
             String pat = @"^[0-9]+$";
             Regex r = new Regex(pat);
             Match m = r.Match(unosBrojaProstorije.Text.Replace(" ", ""));
@@ -46,7 +50,9 @@ namespace Bolnica_aplikacija.View.UpravnikStudent
             }
             else if (!m.Success || !m1.Success)
             {
-                lblNijePopunjenoIspravnoDodaj.Visibility = Visibility.Visible;
+                lblMoraBitiBroj.Visibility = Visibility.Visible;
+                unosBrojaProstorije.Clear();
+                unosSprata.Clear();
             }
             else
             {
@@ -69,7 +75,9 @@ namespace Bolnica_aplikacija.View.UpravnikStudent
                 bool provera = ProstorijaKontroler.NapraviProstoriju(prostorija);
                 if (!provera)
                 {
-                    lblNijePopunjenoIspravnoDodaj.Visibility = Visibility.Visible;
+                    lblBrojPostojiDodaj.Visibility = Visibility.Visible;
+                    unosBrojaProstorije.Clear();
+                    unosSprata.Clear();
                 }
                 else
                 {

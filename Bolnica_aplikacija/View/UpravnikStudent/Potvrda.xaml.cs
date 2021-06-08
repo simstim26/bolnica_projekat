@@ -1,4 +1,5 @@
 ﻿using Bolnica_aplikacija.Kontroler;
+using Bolnica_aplikacija.Model;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -28,8 +29,22 @@ namespace Bolnica_aplikacija.View.UpravnikStudent
             InitializeComponent();
             this.ime = ime;
             textBlockBrisanje.Text = ime + "?";
-            (ProstorijePogled.dobaviGridProstorija()).Opacity = 0.50;
-            /*this.NavigationService.Navigate(this);*/
+            if (ime == "prostoriju")
+            {
+                (ProstorijePogled.dobaviGridProstorija()).Opacity = 0.50;
+            }
+            if (ime == "stavku")
+            {
+                (InventarPogled.dobaviGridInventar()).Opacity = 0.50;
+            }
+            if (ime == "odbačen lek")
+            {
+                (OdbijeniLekovi.dobaviGridOdbijeniLekovi()).Opacity = 0.50;
+            }
+            if (ime == "lek")
+            {
+                (LekoviProzor.dobaviGridLekova()).Opacity = 0.50;
+            }
 
         }
 
@@ -44,12 +59,55 @@ namespace Bolnica_aplikacija.View.UpravnikStudent
                 ProstorijePogled.dobaviDataGridProstorija().ItemsSource = ProstorijaKontroler.ucitajNeobrisane();
                 
             }
+            if (ime == "stavku")
+            {
+                StavkaKontroler.IzbrisiStavku((Stavka)InventarPogled.dobaviDataGridInventar().SelectedItem);
+                InventarPogled.dobaviDataGridInventar().ItemsSource = StavkaKontroler.UcitajNeobrisaneStavke();
+                this.Close();
+                (InventarPogled.dobaviGridInventar()).Opacity = 1;
+            }
+            if (ime == "odbačen lek")
+            {
+                LekKontroler.fizickiObrisiLekZaOdbacivanje((LekZaOdobravanje)OdbijeniLekovi.dobaviDataGridOdbijenihLekova().SelectedItem);
+                OdbijeniLekovi.dobaviDataGridOdbijenihLekova().ItemsSource = LekKontroler.ucitajOdbaceneLekove();
+                OdbijeniLekovi.dobaviDataGridOdbijenihLekova().Items.Refresh();
+                this.Close();
+                (OdbijeniLekovi.dobaviGridOdbijeniLekovi()).Opacity = 1;
+            }
+            if (ime == "lek")
+            {
+                Lek lek = (Lek)LekoviProzor.dobaviDataGridLekova().SelectedItem;
+                List<Lek> lekovi = (List<Lek>)LekoviProzor.dobaviDataGridLekova().ItemsSource;
+                lekovi.Remove(lek);
+                LekoviProzor.dobaviDataGridLekova().ItemsSource = lekovi;
+                LekoviProzor.dobaviDataGridLekova().Items.Refresh();
+                this.Close();
+                (LekoviProzor.dobaviGridLekova()).Opacity = 1;
+            }
         }
 
         private void button_Copy_Click(object sender, RoutedEventArgs e)
         {
-            (ProstorijePogled.dobaviGridProstorija()).Opacity = 1;
-            this.Close();
+            if (ime == "prostoriju")
+            {
+                (ProstorijePogled.dobaviGridProstorija()).Opacity = 1;
+                this.Close();
+            }
+            if (ime == "stavku")
+            {
+                this.Close();
+                (InventarPogled.dobaviGridInventar()).Opacity = 1;
+            }
+            if (ime == "odbačen lek")
+            {
+                this.Close();
+                (OdbijeniLekovi.dobaviGridOdbijeniLekovi()).Opacity = 1;
+            }
+            if (ime == "lek")
+            {
+                this.Close();
+                (LekoviProzor.dobaviGridLekova()).Opacity = 1;
+            }
         }
     }
 }

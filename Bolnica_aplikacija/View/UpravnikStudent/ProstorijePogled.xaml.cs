@@ -41,34 +41,50 @@ namespace Bolnica_aplikacija.View.UpravnikStudent
 
         private void btnIzmeniProstoriju_Click(object sender, RoutedEventArgs e)
         {
+            izaberite.Visibility = Visibility.Hidden;
             if (dataGridProstorija.SelectedIndex != -1)
             {
                 GlavniProzor.DobaviProzorZaIzmenu().Children.Clear();
                 GlavniProzor.DobaviProzorZaIzmenu().Children.Add(new IzmeniProstoriju());
             }
+            else
+            {
+                izaberite.Visibility = Visibility.Visible;
+            }
         }
 
         private void btnIzbrisiProstoriju_Click(object sender, RoutedEventArgs e)
         {
+            izaberite.Visibility = Visibility.Hidden;
             if (dataGridProstorija.SelectedIndex != -1)
             {
                 Potvrda potvrda = new Potvrda("prostoriju");
                 potvrda.ShowDialog();
             }
+            else
+            {
+                izaberite.Visibility = Visibility.Visible;
+            }
         }
 
         private void btnPogledajInventar_Click(object sender, RoutedEventArgs e)
         {
+            izaberite.Visibility = Visibility.Hidden;
             if (dataGridProstorija.SelectedIndex != -1)
             {
                 GlavniProzor.DobaviProzorZaIzmenu().Children.Clear();
                 GlavniProzor.DobaviProzorZaIzmenu().Children.Add(new PogledajInventar());
             }
+            else
+            {
+                izaberite.Visibility = Visibility.Visible;
+            }
         }
 
         private void btnZakaziRenoviranje_Click(object sender, RoutedEventArgs e)
         {
-            
+            GlavniProzor.DobaviProzorZaIzmenu().Children.Clear();
+            GlavniProzor.DobaviProzorZaIzmenu().Children.Add(new ZakaziRenoviranje());
         }
 
         public static DataGrid dobaviDataGridProstorija()

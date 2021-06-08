@@ -69,12 +69,55 @@
             </StackPanel>
         </Button>
 
-        <Button x:Name="btnPogledajInventar"  Content="Pogledaj Inventar" HorizontalAlignment="Left" Margin="318,384,-65,0" VerticalAlignment="Top" Width="289" Height="48" Click="btnPogledajInventar_Click" Grid.Column="1"/>
-        <Button x:Name="btnZakaziRenoviranje" Content="Zakazi renoviranje" HorizontalAlignment="Left" Margin="318,474,-65,0" VerticalAlignment="Top" Width="289" Height="48" Click="btnZakaziRenoviranje_Click" Grid.Column="1"/>
+        <Button x:Name="btnPogledajInventar" HorizontalAlignment="Left" Margin="318,384,-65,0" VerticalAlignment="Top" Width="289" Height="48" Click="btnPogledajInventar_Click" Grid.Column="1">
+            <StackPanel Orientation="Horizontal">
+                <Image  RenderTransformOrigin="0.5,0.5" Source="inventory.png">
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="0.8" ScaleY="0.8"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>
+                <TextBlock Text="Pogledaj inventar" FontSize="18" Margin="15,0,0,0" Height="28" Width="176"/>
+            </StackPanel>
+        </Button>
+        <Button x:Name="btnZakaziRenoviranje" HorizontalAlignment="Left" Margin="318,474,-65,0" VerticalAlignment="Top" Width="289" Height="48" Click="btnZakaziRenoviranje_Click" Grid.Column="1">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="clock.png" RenderTransformOrigin="0.5,0.5">
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="0.8" ScaleY="0.8"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>
+                <TextBlock Text="Zakaži renoviranje" FontSize="18" Margin="15,0,0,0" Height="28" Width="176"/>
+            </StackPanel>
+        </Button>
         <TextBlock x:Name="textBlock" FontSize="25" FontStyle="Italic" FontWeight="Bold" HorizontalAlignment="Left" Margin="50,19,0,0" TextWrapping="Wrap" Text="Prikaz prostorija" VerticalAlignment="Top" TextDecorations="Underline"/>
         <TextBlock x:Name="textBlock1" FontSize="15" HorizontalAlignment="Left" Margin="50,74,0,0" TextWrapping="Wrap" Text="Unesite broj prostorije koju želite da pretražite:" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
         <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="133,71,0,0" TextWrapping="Wrap" Text=""  VerticalAlignment="Top" Width="130" Grid.Column="1"/>
-        <Button x:Name="btnZakaziRenoviranje_Copy" Content="Izveštaj o zauzetosti" HorizontalAlignment="Left" Margin="318,564,-65,0" VerticalAlignment="Top" Width="289" Height="48" Grid.Column="1"/>
+        <Button x:Name="btnZakaziRenoviranje_Copy" HorizontalAlignment="Left" Margin="317,564,-65,0" VerticalAlignment="Top" Width="289" Height="48" Grid.Column="1">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="diagram.png" RenderTransformOrigin="0.5,0.5">
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="0.8" ScaleY="0.8"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>
+                <TextBlock Text="Izveštaj o zauzetosti" FontSize="18" Margin="15,0,0,0" Height="28" Width="176"/>
+            </StackPanel>
+        </Button>
+        <TextBlock x:Name="izaberite" Foreground="red" Visibility="Hidden" FontStyle="Italic" HorizontalAlignment="Left" Margin="50,612,0,0" TextWrapping="Wrap" Text="*Izaberite prostoriju!" VerticalAlignment="Top"/>
 
 
     </Grid>

@@ -45,22 +45,23 @@
                     <TextBlock FontSize="13" Margin="0,0,0,0" Text="Odbaci izmene" Height="18" Width="116"/>
                 </StackPanel>
             </Button>
-            <TextBox x:Name="txtBrojProstorije" HorizontalAlignment="Center" Height="41" Margin="398,197,310,0" TextWrapping="Wrap" Width="205" VerticalAlignment="Top"/>
-            <TextBox x:Name="txtSpratProstorije" HorizontalAlignment="Center" Height="39" Margin="398,267,310,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="205"/>
-            <ComboBox x:Name="cbDostupnostProstorije" HorizontalAlignment="Left" Margin="398,337,0,0" VerticalAlignment="Top" Width="205" Height="39">
+            <TextBox x:Name="txtBrojProstorije" FontSize="20" HorizontalAlignment="Center" Height="32" Margin="398,206,310,0" TextWrapping="Wrap" Width="205" VerticalAlignment="Top"/>
+            <TextBox x:Name="txtSpratProstorije" FontSize="20" HorizontalAlignment="Center" Height="32" Margin="398,274,310,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="205"/>
+            <ComboBox x:Name="cbDostupnostProstorije" FontSize="20" HorizontalAlignment="Left" Margin="398,337,0,0" VerticalAlignment="Top" Width="205" Height="39">
                 <ComboBoxItem Content="Slobodna"/>
                 <ComboBoxItem Content="Zauzeta"/>
             </ComboBox>
             <TextBlock x:Name="lblTipProstorijeIzmena" HorizontalAlignment="Left" Margin="86,407,0,0" TextWrapping="Wrap" Text="Tip prostorije: " VerticalAlignment="Top" Height="54" Width="200" FontSize="30"/>
-            <ComboBox x:Name="cbTipProstorijeIzmena" HorizontalAlignment="Left" Margin="398,407,0,0" VerticalAlignment="Top" Width="205" Height="39">
+            <ComboBox x:Name="cbTipProstorijeIzmena" FontSize="20" HorizontalAlignment="Left" Margin="398,407,0,0" VerticalAlignment="Top" Width="205" Height="39">
                 <ComboBoxItem Content="Bolnicka soba"/>
                 <ComboBoxItem Content="Operaciona sala"/>
                 <ComboBoxItem Content="Soba za odmor"/>
             </ComboBox>
-            <TextBlock x:Name="lblBrojPostoji" Foreground="Red" Visibility="Hidden" HorizontalAlignment="Left" Margin="424,229,-703,0" TextWrapping="Wrap" Text="*prostorija sa ovim brojem vec postoji" VerticalAlignment="Top" Width="312" FontStyle="Italic"/>
-            <TextBlock x:Name="lblNijePopunjenoIzmeni" Foreground="Red" Visibility="Hidden" HorizontalAlignment="Left" Margin="146,430,-425,-148" TextWrapping="Wrap" Text="*sva polja moraju biti popunjena!" VerticalAlignment="Top" Width="312" FontStyle="Italic"/>
-            <TextBlock x:Name="lblNijePopunjenoIspravnoIzmeni" Foreground="Red" Visibility="Hidden" HorizontalAlignment="Left" Margin="146,430,-425,-148" TextWrapping="Wrap" Text="*sva polja moraju biti popunjena!" VerticalAlignment="Top" Width="312" FontStyle="Italic"/>
+            <TextBlock x:Name="lblBrojPostoji" Foreground="Red" Visibility="Hidden" HorizontalAlignment="Left" Margin="86,238,0,0" TextWrapping="Wrap" Text="*prostorija sa ovim brojem vec postoji" VerticalAlignment="Top" Width="312" FontStyle="Italic"/>
+            <TextBlock x:Name="lblNijePopunjenoIzmeni" Foreground="Red" Visibility="Hidden" HorizontalAlignment="Left" Margin="36,523,0,0" TextWrapping="Wrap" Text="*sva polja moraju biti popunjena!" VerticalAlignment="Top" Width="312" FontStyle="Italic"/>
+            <TextBlock x:Name="lblNijePopunjenoIspravnoIzmeni" Foreground="Red" Visibility="Hidden" HorizontalAlignment="Left" Margin="36,518,0,0" TextWrapping="Wrap" Text="*sva polja moraju biti popunjena!" VerticalAlignment="Top" Width="312" FontStyle="Italic"/>
             <TextBlock x:Name="textBlock" FontSize="30" FontWeight="Bold" HorizontalAlignment="Left" Margin="86,102,0,0" TextWrapping="Wrap" Text="Izmenite prostoriju:" VerticalAlignment="Top"/>
+            <TextBlock x:Name="lblMoraBitiBroj" Foreground="Red" Visibility="Hidden" HorizontalAlignment="Left" Margin="36,523,0,0" TextWrapping="Wrap" Text="*broj i sprat prostorije mogu biti samo brojevi!" VerticalAlignment="Top" Width="312" FontStyle="Italic"/>
         </Grid>
     </Grid>
 </UserControl>

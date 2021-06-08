@@ -43,8 +43,9 @@ namespace Bolnica_aplikacija.Servis
         public void DodajStavku(StavkaDTO stavkaDTO)
         {
             var sveStavke = stavkaRepozitorijum.UcitajSve();
+            Prostorija prostorija = new Prostorija();
             Stavka stavka = new Stavka(dodajIDStavke(), stavkaDTO.naziv, stavkaDTO.kolicina, 
-                stavkaDTO.proizvodjac, null, stavkaDTO.jeStaticka, false, stavkaDTO.jePotrosnaRoba);
+                stavkaDTO.proizvodjac, prostorija, stavkaDTO.jeStaticka, false, stavkaDTO.jePotrosnaRoba);
             sveStavke.Add(stavka);
             stavkaRepozitorijum.Upisi(sveStavke);
         }

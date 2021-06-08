@@ -88,14 +88,14 @@
     "jePotrosnaRoba": false
   },
   {
-    "id": "10",
-    "naziv": "proba",
-    "kolicina": 120,
-    "proizvodjac": "proizvodjac",
+    "id": "9",
+    "naziv": "pls radi",
+    "kolicina": 10,
+    "proizvodjac": "sa",
     "prostorija": null,
     "idBolnice": null,
-    "jeStaticka": false,
-    "jeLogickiObrisana": true,
+    "jeStaticka": true,
+    "jeLogickiObrisana": false,
     "jePotrosnaRoba": false
   }
 ]

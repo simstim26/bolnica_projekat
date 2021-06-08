@@ -5,6 +5,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Windows.Controls;
 
 namespace Model
 {
@@ -84,9 +85,13 @@ namespace Model
             stavka.Clear();*/
       //}
       public Termin[] termin;
-   
 
-      public static TipProstorije ConvertTip(String s)
+        public static explicit operator Prostorija(DataGrid v)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static TipProstorije ConvertTip(String s)
       {
         if(s == "BOLNICKA_SOBA")
             {

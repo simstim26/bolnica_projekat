@@ -10,17 +10,6 @@
     "brojZauzetihKreveta": 1,
     "Stavka": [
       {
-        "id": "5",
-        "naziv": "Igla",
-        "kolicina": 3,
-        "proizvodjac": "IgloLand",
-        "prostorija": null,
-        "idBolnice": "1",
-        "jeStaticka": false,
-        "jeLogickiObrisana": false,
-        "jePotrosnaRoba": true
-      },
-      {
         "id": "2",
         "naziv": "Krevet",
         "kolicina": 5,
@@ -45,9 +34,51 @@
       {
         "id": "1",
         "naziv": "rukavice",
-        "kolicina": 35,
+        "kolicina": 45,
         "proizvodjac": "Mipex",
         "prostorija": null,
+        "idBolnice": "1",
+        "jeStaticka": false,
+        "jeLogickiObrisana": false,
+        "jePotrosnaRoba": true
+      },
+      {
+        "id": "4",
+        "naziv": "hanzaplast",
+        "kolicina": 19,
+        "proizvodjac": "hanZa",
+        "prostorija": {
+          "id": null,
+          "idBolnice": null,
+          "tipProstorije": 0,
+          "broj": null,
+          "sprat": 0,
+          "dostupnost": false,
+          "logickiObrisana": false,
+          "brojZauzetihKreveta": 0,
+          "Stavka": null
+        },
+        "idBolnice": "1",
+        "jeStaticka": false,
+        "jeLogickiObrisana": false,
+        "jePotrosnaRoba": true
+      },
+      {
+        "id": "7",
+        "naziv": "proba",
+        "kolicina": 2,
+        "proizvodjac": "test",
+        "prostorija": {
+          "id": null,
+          "idBolnice": null,
+          "tipProstorije": 0,
+          "broj": null,
+          "sprat": 0,
+          "dostupnost": false,
+          "logickiObrisana": false,
+          "brojZauzetihKreveta": 0,
+          "Stavka": null
+        },
         "idBolnice": "1",
         "jeStaticka": false,
         "jeLogickiObrisana": false,
@@ -101,7 +132,7 @@
       {
         "id": "7",
         "naziv": "dusan",
-        "kolicina": 4,
+        "kolicina": 3,
         "proizvodjac": "sisarica",
         "prostorija": null,
         "idBolnice": "1",
@@ -210,20 +241,9 @@
         "jePotrosnaRoba": false
       },
       {
-        "id": "5",
-        "naziv": "Igla",
-        "kolicina": 3,
-        "proizvodjac": "IgloLand",
-        "prostorija": null,
-        "idBolnice": "1",
-        "jeStaticka": false,
-        "jeLogickiObrisana": false,
-        "jePotrosnaRoba": true
-      },
-      {
         "id": "1",
         "naziv": "rukavice",
-        "kolicina": 300,
+        "kolicina": 290,
         "proizvodjac": "Mipex",
         "prostorija": null,
         "idBolnice": "1",
@@ -242,19 +262,7 @@
     "dostupnost": true,
     "logickiObrisana": false,
     "brojZauzetihKreveta": 0,
-    "Stavka": [
-      {
-        "id": "2",
-        "naziv": "Krevet",
-        "kolicina": 2,
-        "proizvodjac": "KrevetKrevet",
-        "prostorija": null,
-        "idBolnice": "1",
-        "jeStaticka": true,
-        "jeLogickiObrisana": false,
-        "jePotrosnaRoba": false
-      }
-    ]
+    "Stavka": []
   },
   {
     "id": "11",
@@ -291,7 +299,7 @@
       {
         "id": "4",
         "naziv": "hanzaplast",
-        "kolicina": 26,
+        "kolicina": 16,
         "proizvodjac": "hanZa",
         "prostorija": null,
         "idBolnice": "1",
@@ -304,17 +312,6 @@
         "naziv": "rukavice",
         "kolicina": 30,
         "proizvodjac": "Mipex",
-        "prostorija": null,
-        "idBolnice": "1",
-        "jeStaticka": false,
-        "jeLogickiObrisana": false,
-        "jePotrosnaRoba": true
-      },
-      {
-        "id": "5",
-        "naziv": "Igla",
-        "kolicina": 1,
-        "proizvodjac": "IgloLand",
         "prostorija": null,
         "idBolnice": "1",
         "jeStaticka": false,
@@ -336,7 +333,7 @@
       {
         "id": "4",
         "naziv": "hanzaplast",
-        "kolicina": 15,
+        "kolicina": 6,
         "proizvodjac": "hanZa",
         "prostorija": null,
         "idBolnice": "1",
@@ -356,20 +353,9 @@
         "jePotrosnaRoba": true
       },
       {
-        "id": "5",
-        "naziv": "Igla",
-        "kolicina": 23,
-        "proizvodjac": "IgloLand",
-        "prostorija": null,
-        "idBolnice": "1",
-        "jeStaticka": false,
-        "jeLogickiObrisana": false,
-        "jePotrosnaRoba": true
-      },
-      {
         "id": "7",
         "naziv": "dusan",
-        "kolicina": 7,
+        "kolicina": 6,
         "proizvodjac": "sisarica",
         "prostorija": null,
         "idBolnice": "1",
@@ -380,7 +366,7 @@
       {
         "id": "2",
         "naziv": "Krevet",
-        "kolicina": 12,
+        "kolicina": 11,
         "proizvodjac": "KrevetKrevet",
         "prostorija": null,
         "idBolnice": "1",
@@ -468,17 +454,6 @@
     "brojZauzetihKreveta": 0,
     "Stavka": [
       {
-        "id": "5",
-        "naziv": "Igla",
-        "kolicina": 3,
-        "proizvodjac": "IgloLand",
-        "prostorija": null,
-        "idBolnice": "1",
-        "jeStaticka": false,
-        "jeLogickiObrisana": false,
-        "jePotrosnaRoba": true
-      },
-      {
         "id": "1",
         "naziv": "rukavice",
         "kolicina": 100,
@@ -522,17 +497,6 @@
         "jeStaticka": true,
         "jeLogickiObrisana": false,
         "jePotrosnaRoba": false
-      },
-      {
-        "id": "5",
-        "naziv": "Igla",
-        "kolicina": 2,
-        "proizvodjac": "IgloLand",
-        "prostorija": null,
-        "idBolnice": "1",
-        "jeStaticka": false,
-        "jeLogickiObrisana": false,
-        "jePotrosnaRoba": true
       }
     ]
   },
@@ -556,17 +520,6 @@
         "jeStaticka": true,
         "jeLogickiObrisana": false,
         "jePotrosnaRoba": false
-      },
-      {
-        "id": "5",
-        "naziv": "Igla",
-        "kolicina": 2,
-        "proizvodjac": "IgloLand",
-        "prostorija": null,
-        "idBolnice": "1",
-        "jeStaticka": false,
-        "jeLogickiObrisana": false,
-        "jePotrosnaRoba": true
       }
     ]
   },
@@ -599,7 +552,7 @@
     "broj": "100-a",
     "sprat": 100,
     "dostupnost": true,
-    "logickiObrisana": false,
+    "logickiObrisana": true,
     "brojZauzetihKreveta": 0,
     "Stavka": []
   },
@@ -643,7 +596,7 @@
     "broj": "87",
     "sprat": 1,
     "dostupnost": false,
-    "logickiObrisana": false,
+    "logickiObrisana": true,
     "brojZauzetihKreveta": 0,
     "Stavka": null
   },
@@ -964,6 +917,17 @@
     "sprat": 1,
     "dostupnost": true,
     "logickiObrisana": true,
+    "brojZauzetihKreveta": 0,
+    "Stavka": null
+  },
+  {
+    "id": "56",
+    "idBolnice": null,
+    "tipProstorije": 2,
+    "broj": "120",
+    "sprat": 2,
+    "dostupnost": true,
+    "logickiObrisana": false,
     "brojZauzetihKreveta": 0,
     "Stavka": null
   }

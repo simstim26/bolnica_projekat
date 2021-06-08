@@ -1,0 +1,58 @@
+﻿<UserControl x:Class="Bolnica_aplikacija.View.UpravnikStudent.IzmeniStavku"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Bolnica_aplikacija.View.UpravnikStudent"
+             mc:Ignorable="d" 
+             d:DesignHeight="685" d:DesignWidth="913">
+    <Grid>
+        <Rectangle HorizontalAlignment="Left" Height="505" Margin="51,51,0,0" Stroke="Black" VerticalAlignment="Top" Width="590"/>
+
+        <TextBlock x:Name="txtNazivStavke" HorizontalAlignment="Left" Margin="99,197,0,0" TextWrapping="Wrap" Text="Naziv Stavke:" VerticalAlignment="Top" Height="66" Width="246" FontSize="30"/>
+        <TextBlock x:Name="txtKolicinaStavke" HorizontalAlignment="Left" Margin="101,268,0,0" TextWrapping="Wrap" Text="Količina Stavke:" VerticalAlignment="Top" Height="66" Width="246" FontSize="30"/>
+        <TextBlock x:Name="txtProizvodjacStavke" HorizontalAlignment="Left" Margin="99,339,0,0" TextWrapping="Wrap" Text="Proizvođač Stavke:" VerticalAlignment="Top" Height="66" Width="246" FontSize="30"/>
+        <TextBlock x:Name="txtTipStavke" HorizontalAlignment="Left" Margin="99,410,0,0" TextWrapping="Wrap" Text="Tip Stavke: " VerticalAlignment="Top" Height="55" Width="246" FontSize="30"/>
+        <ComboBox x:Name="cbTipStavke" Margin="388,422,332,235" Height="28" >
+            <ComboBoxItem Content="Statička"/>
+            <ComboBoxItem Content="Dinamička"/>
+        </ComboBox>
+        <Button x:Name="btnPotvrdiIzmenuStavke" HorizontalAlignment="Left" Margin="666,166,0,0" VerticalAlignment="Top" Width="224" Click="btnPotvrdiIzmenuStavke_Click" Height="48">
+            <StackPanel Orientation="Horizontal" Width="170">
+                <Image  RenderTransformOrigin="0.5,0.5" Source="save.png" >
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>
+                <TextBlock FontSize="18" Margin="0,0,0,0" Text="Potvrdi izmenu" Height="24" Width="128"/>
+            </StackPanel>
+        </Button>
+        <Button x:Name="btnOtkaziIzmenuStavke" HorizontalAlignment="Left" Margin="666,264,0,0" VerticalAlignment="Top" Width="224" Click="btnOtkaziIzmenuStavke_Click" Height="48">
+            <StackPanel Orientation="Horizontal" Width="170">
+                <Image  RenderTransformOrigin="0.5,0.5" Source="forbidden.png" >
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>
+                <TextBlock FontSize="18" Margin="0,0,0,0" Text="Otkaži izmenu" Height="24" Width="116"/>
+            </StackPanel>
+        </Button>
+        <TextBox x:Name="txtBoxNazivStavke" HorizontalAlignment="Left" Height="26" Margin="388,218,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="193"/>
+        <TextBox x:Name="txtBoxKolicinaStavke" HorizontalAlignment="Left" Height="24" Margin="388,288,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="193"/>
+        <TextBox x:Name="txtBoxProizvodjacStavke" HorizontalAlignment="Left" Height="24" Margin="388,358,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="193"/>
+        <CheckBox x:Name="checkBoxPotrosnaIzmeni" FontSize="24" Content="Potrošna roba" HorizontalAlignment="Left" Margin="101,491,0,0" VerticalAlignment="Top" Height="37"/>
+        <Label x:Name="labelNepravilanUnosIzmena" FontStyle="Italic" Foreground="red" Content="*polja nisu ispravno popunjena" Visibility="Hidden" HorizontalAlignment="Left" Margin="51,556,0,0" VerticalAlignment="Top" Width="184"/>
+        <Label x:Name="kolicinaIzmena" FontStyle="Italic" Foreground="red" Content="*kolicina mora biti broj!" Visibility="Hidden" HorizontalAlignment="Left" Margin="99,310,0,0" VerticalAlignment="Top" Width="184"/>
+        <TextBlock x:Name="textBlock11" FontSize="40" FontWeight="Bold" HorizontalAlignment="Left" Margin="101,81,0,0" TextWrapping="Wrap" Text="Izmenite stavku:" VerticalAlignment="Top" Width="334"/>
+    </Grid>
+</UserControl>
