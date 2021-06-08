@@ -406,7 +406,7 @@ namespace Bolnica_aplikacija.Servis
 
                     int rezultat = DateTime.Compare(termin.datum, DateTime.Today);
                     
-                    if (rezultat < 0 && termin.jeZavrsen)
+                    if (rezultat <= 0 && termin.jeZavrsen)
                     {
                         PacijentTermin pacijentTermin = new PacijentTermin();
 
