@@ -114,7 +114,7 @@ namespace Bolnica_aplikacija.View.UpravnikStudent
             {
                 String sastojak = textBoxUpisiSastojakIzmena.Text;
                 List<String> sastojci;
-                if (((List<String>)dataGridDodajSastojkeIzmena.ItemsSource).Count == 0)
+                if (((List<String>)dataGridDodajSastojkeIzmena.ItemsSource) == null)
                 {
                     sastojci = new List<String>();
                 }
@@ -170,6 +170,12 @@ namespace Bolnica_aplikacija.View.UpravnikStudent
             {
                 Lek lek = (Lek)LekoviProzor.dobaviDataGridLekova().SelectedItem;
                 List<Lek> sviLekovi = (List<Lek>)dataGridSviLekoviZaZamenskiIzmena.ItemsSource;
+                if(lek.zamenskiLekovi == null)
+                {
+                    List<Lek> zamenski = new List<Lek>();
+                    lek.zamenskiLekovi = zamenski;
+                }
+              
                 lek.zamenskiLekovi.Add((Lek)dataGridSviLekoviZaZamenskiIzmena.SelectedItem);
                 sviLekovi.Remove((Lek)dataGridSviLekoviZaZamenskiIzmena.SelectedItem);
                 dataGridZamenskiUbaceniLekoviIzmena.ItemsSource = lek.zamenskiLekovi;

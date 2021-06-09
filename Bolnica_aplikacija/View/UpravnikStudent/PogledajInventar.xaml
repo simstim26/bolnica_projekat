@@ -46,6 +46,7 @@
                 <TextBlock FontSize="15" Margin="0,0,0,0" Text="Premesti u drugu prostoriju" Height="24" Width="202"/>
             </StackPanel>
         </Button>
+        <TextBlock x:Name="izaberiStavku" Foreground="red" FontStyle="Italic" Visibility="Hidden" HorizontalAlignment="Left" Margin="603,217,0,0" TextWrapping="Wrap" Text="*morate izabrati stavku koju želite da premestite" VerticalAlignment="Top"/>
 
     </Grid>
 </UserControl>

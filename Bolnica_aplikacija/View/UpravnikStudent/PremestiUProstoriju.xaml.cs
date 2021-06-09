@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -63,12 +64,84 @@ namespace Bolnica_aplikacija.View.UpravnikStudent
 
         private void btnPremesti_Click(object sender, RoutedEventArgs e)
         {
-            var prostorijaId = (KeyValuePair<string, string>)comboBoxProstorijeZaPremestanje.SelectedItem;
-            var stavka = (Stavka)InventarPogled.dobaviDataGridInventar().SelectedItem;
+            /*var prostorijaId = (KeyValuePair<string, string>)comboBoxProstorijeZaPremestanje.SelectedItem;
+            var stavka = (Stavka)InventarPogled.dobaviDataGridInventar().SelectedItem;*/
             DateTime datumPocetkaPremestanja;
             DateTime datumKrajaPremestanja;
+            svaPolja.Visibility = Visibility.Hidden;
+            neispravanDatum.Visibility = Visibility.Hidden;
+            kolicinaBroj.Visibility = Visibility.Hidden;
 
-            if (datumPocetka.SelectedDate != null && datumKraja.SelectedDate != null)
+            String pat = @"^[0-9]+$";
+            Regex r = new Regex(pat);
+            Match m = r.Match(textBoxKolicinaZaPremestanje.Text.Replace(" ", ""));
+
+            if (comboBoxProstorijeZaPremestanje.SelectedIndex != -1 && !String.IsNullOrEmpty(textBoxKolicinaZaPremestanje.Text) && m.Success)
+            {
+                var prostorijaId = (KeyValuePair<string, string>)comboBoxProstorijeZaPremestanje.SelectedItem;
+                var stavka = (Stavka)InventarPogled.dobaviDataGridInventar().SelectedItem;
+                if (stavka.jeStaticka)
+                {
+                    
+                    if (!datumPocetka.SelectedDate.HasValue || !datumKraja.SelectedDate.HasValue)
+                    {
+                        svaPolja.Visibility = Visibility.Visible;
+                    }
+                    else if (datumPocetka.SelectedDate.Value < System.DateTime.Now.AddDays(-1) || datumKraja.SelectedDate.Value < datumPocetka.SelectedDate.Value)
+                    {
+                        neispravanDatum.Visibility = Visibility.Visible;
+                    }
+                    else
+                    {
+                        datumPocetkaPremestanja = datumPocetka.SelectedDate.Value;
+                        datumKrajaPremestanja = datumKraja.SelectedDate.Value;
+                        ProstorijaPrebacivanjeDTO prebacivanje = new ProstorijaPrebacivanjeDTO(stavka.id, null, prostorijaId.Key, Int32.Parse(textBoxKolicinaZaPremestanje.Text),
+                     datumPocetkaPremestanja, datumKrajaPremestanja);
+                        ProstorijaKontroler.dodajStavku(prebacivanje);
+                        InventarPogled.dobaviDataGridInventar().ItemsSource = StavkaKontroler.UcitajNeobrisaneStavke();
+                        GlavniProzor.DobaviProzorZaIzmenu().Children.Clear();
+                        GlavniProzor.DobaviProzorZaIzmenu().Children.Add(new InventarPogled());
+                    }
+                    /*else
+                    {
+                        datumPocetkaPremestanja = datumPocetka.SelectedDate.Value;
+                        datumKrajaPremestanja = datumKraja.SelectedDate.Value;
+                        ProstorijaPrebacivanjeDTO prebacivanje = new ProstorijaPrebacivanjeDTO(stavka.id, null, prostorijaId.Key, Int32.Parse(textBoxKolicinaZaPremestanje.Text),
+                             datumPocetkaPremestanja, datumKrajaPremestanja);
+                        ProstorijaKontroler.dodajStavku(prebacivanje);
+                        InventarPogled.dobaviDataGridInventar().ItemsSource = StavkaKontroler.UcitajNeobrisaneStavke();
+                        GlavniProzor.DobaviProzorZaIzmenu().Children.Clear();
+                        GlavniProzor.DobaviProzorZaIzmenu().Children.Add(new InventarPogled());
+                    }*/
+                }
+                else
+                {
+                    datumPocetkaPremestanja = System.DateTime.MinValue;
+                    datumKrajaPremestanja = System.DateTime.MinValue;
+                    ProstorijaPrebacivanjeDTO prebacivanje = new ProstorijaPrebacivanjeDTO(stavka.id, null, prostorijaId.Key, Int32.Parse(textBoxKolicinaZaPremestanje.Text),
+                     datumPocetkaPremestanja, datumKrajaPremestanja);
+                    ProstorijaKontroler.dodajStavku(prebacivanje);
+                    InventarPogled.dobaviDataGridInventar().ItemsSource = StavkaKontroler.UcitajNeobrisaneStavke();
+                    GlavniProzor.DobaviProzorZaIzmenu().Children.Clear();
+                    GlavniProzor.DobaviProzorZaIzmenu().Children.Add(new InventarPogled());
+                }
+/*
+                datumPocetkaPremestanja = datumPocetka.SelectedDate.Value;
+                datumKrajaPremestanja = datumKraja.SelectedDate.Value;*/
+                
+            }
+            else if (!m.Success)
+            {
+                kolicinaBroj.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                svaPolja.Visibility = Visibility.Visible;
+            }
+
+            
+
+            /*if (datumPocetka.SelectedDate != null && datumKraja.SelectedDate != null)
             {
                 datumPocetkaPremestanja = datumPocetka.SelectedDate.Value;
                 datumKrajaPremestanja = datumKraja.SelectedDate.Value;
@@ -84,7 +157,7 @@ namespace Bolnica_aplikacija.View.UpravnikStudent
             ProstorijaKontroler.dodajStavku(prebacivanje);
             InventarPogled.dobaviDataGridInventar().ItemsSource = StavkaKontroler.UcitajNeobrisaneStavke();
             GlavniProzor.DobaviProzorZaIzmenu().Children.Clear();
-            GlavniProzor.DobaviProzorZaIzmenu().Children.Add(new InventarPogled());
+            GlavniProzor.DobaviProzorZaIzmenu().Children.Add(new InventarPogled());*/
         }
 
         private void btnOtkaziPremestanje_Click(object sender, RoutedEventArgs e)

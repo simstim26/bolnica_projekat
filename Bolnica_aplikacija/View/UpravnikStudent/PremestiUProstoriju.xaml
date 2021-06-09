@@ -49,6 +49,9 @@
         <TextBlock x:Name="textStaticka1" FontSize="20" HorizontalAlignment="Left" Margin="77,418,0,0" TextWrapping="Wrap" Text="Zauzmi prostoriju od:" VerticalAlignment="Top" Height="32" Width="221"/>
         <TextBlock x:Name="textStaticka2" FontSize="20" HorizontalAlignment="Left" Margin="497,420,0,0" TextWrapping="Wrap" Text="do" VerticalAlignment="Top" Width="73"/>
         <DatePicker x:Name="datumKraja" HorizontalAlignment="Left" Margin="589,405,0,0" VerticalAlignment="Top" Width="134" Height="45"/>
+        <TextBlock x:Name="svaPolja" Visibility="Hidden" Foreground="red" FontStyle="Italic" HorizontalAlignment="Left" Margin="57,479,0,0" TextWrapping="Wrap" Text="*sva polja moraju biti popunjena!" VerticalAlignment="Top"/>
+        <TextBlock x:Name="kolicinaBroj" Visibility="Hidden" Foreground="red" FontStyle="Italic" HorizontalAlignment="Left" Margin="77,284,0,0" TextWrapping="Wrap" Text="*količina mora biti broj!" VerticalAlignment="Top"/>
+        <TextBlock x:Name="neispravanDatum" Visibility="Hidden" Foreground="red" FontStyle="Italic" HorizontalAlignment="Left" Margin="57,479,0,0" TextWrapping="Wrap" Text="*neispravno unet datum!" VerticalAlignment="Top"/>
 
     </Grid>
 </UserControl>

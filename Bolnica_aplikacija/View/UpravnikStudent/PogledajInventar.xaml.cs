@@ -39,10 +39,15 @@ namespace Bolnica_aplikacija.View.UpravnikStudent
 
         private void btnPremestiUDruguProstoriju_Click(object sender, RoutedEventArgs e)
         {
+            izaberiStavku.Visibility = Visibility.Hidden;
             if (dataGridInventarProstorije.SelectedIndex != -1)
             {
                 GlavniProzor.DobaviProzorZaIzmenu().Children.Clear();
                 GlavniProzor.DobaviProzorZaIzmenu().Children.Add(new PremestiUDruguProstoriju());
+            }
+            else
+            {
+                izaberiStavku.Visibility = Visibility.Visible;
             }
             
         }
