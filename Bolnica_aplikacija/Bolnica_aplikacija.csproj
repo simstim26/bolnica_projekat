@@ -188,6 +188,10 @@
     <Compile Include="Kontroler\TerminKontroler.cs" />
     <Compile Include="Model\BolnickoLecenje.cs" />
     <Compile Include="Model\LekZaOdobravanje.cs" />
+    <Compile Include="PacijentTemplate\Pretraga.cs" />
+    <Compile Include="PacijentTemplate\PretragaPoDatumima.cs" />
+    <Compile Include="PacijentTemplate\PretragaPoLekarima.cs" />
+    <Compile Include="PacijentTemplate\Pretrazi.cs" />
     <Compile Include="PomocneKlase\BolnickoLecenjeDTO.cs" />
     <Compile Include="PomocneKlase\KonvertBolest.cs" />
     <Compile Include="PomocneKlase\NotifikacijaDTO.cs" />

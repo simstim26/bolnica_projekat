@@ -1,5 +1,6 @@
 ﻿using Bolnica_aplikacija.Kontroler;
 using Bolnica_aplikacija.PacijentModel;
+using Bolnica_aplikacija.PacijentTemplate;
 using Bolnica_aplikacija.PomocneKlase;
 using Model;
 using System;
@@ -90,15 +91,17 @@ namespace Bolnica_aplikacija.PacijentStudent
 
         private void btnPretrazi_Click(object sender, RoutedEventArgs e)
         {
-            int indikator = -1;
             if (rbtnLekar.IsChecked == true)
             {
                 if (!Regex.IsMatch(txtPretraga.Text, @"^[\p{L}\p{M}' \.\-]+$"))
                 {
-                    indikator = -2;
+                    MessageBox.Show("Molimo unesite ime u odgovarajućem formatu.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    ucitajPodatke();
                 }
                 else
-                    indikator = 0;
+                {
+                    dataGridSlobodniTermini.ItemsSource = Pretrazi.izvrsiFiltriranje(new PretragaPoLekarima(), txtPretraga.Text);
+                }
             }
             else if (rbtnTermin.IsChecked == true)
             {
@@ -106,27 +109,18 @@ namespace Bolnica_aplikacija.PacijentStudent
                 DateTime dt;
                 if (DateTime.TryParseExact(txtPretraga.Text, formati, null, System.Globalization.DateTimeStyles.None, out dt))
                 {
-                    indikator = 1;
+                    dataGridSlobodniTermini.ItemsSource = Pretrazi.izvrsiFiltriranje(new PretragaPoDatumima(), txtPretraga.Text);
                 }
                 else
-                    indikator = -3;
-            }
-            else
-                indikator = -1;
-
-            if(!PomocnaKlasaProvere.proveraPretrage(indikator))
-            {
-                ucitajPodatke();
-            }
-            else
-            {
-
-                dataGridSlobodniTermini.ItemsSource = PacijentKontroler.filtrirajTermine(indikator, txtPretraga.Text);
-
-                if (txtPretraga.Text == "")
                 {
+                    MessageBox.Show("Molimo unesite datum u odgovarajućem formatu. Neki od podržanih formata su: dd/MM/yyyy, d/m/yyyy, dd.MM.yyyy.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
                     ucitajPodatke();
                 }
+            }
+            else
+            {
+                MessageBox.Show("Molimo izaberite prioritet pretrage.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+                ucitajPodatke();
             }
         }
 
