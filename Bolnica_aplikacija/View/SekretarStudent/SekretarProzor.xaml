@@ -75,13 +75,13 @@
                     <Label x:Name="labelaDatumRodj" Content="DATUM ROĐENJA:" HorizontalAlignment="Left" Height="46" Margin="0,163,-73,0" VerticalAlignment="Top" Width="174" FontSize="20"/>
                 </Grid>
                 <Grid x:Name="TextFieldPolja" Grid.Column="1" Margin="11,-32,596,157">
-                    <TextBox x:Name="textJMBG" HorizontalAlignment="Left" Height="41" TextWrapping="Wrap" VerticalAlignment="Top" Width="260" Background="#FFB2D4EC" FontSize="18" IsEnabled="False" Margin="82,0,-58,0" TextChanged="textJMBG_TextChanged"/>
-                    <TextBox x:Name="textIme" HorizontalAlignment="Left" Height="41" Margin="82,55,-58,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="260" Background="#FFB2D4EC" FontSize="18" IsEnabled="False" TextChanged="textIme_TextChanged"/>
-                    <TextBox x:Name="textPrezime" HorizontalAlignment="Left" Height="41" Margin="82,105,-58,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="260" Background="#FFB2D4EC" FontSize="18" IsEnabled="False" TextChanged="textPrezime_TextChanged"/>
-                    <TextBox x:Name="textAdresa" HorizontalAlignment="Left" Height="41" Margin="82,212,-58,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="260" Background="#FFB2D4EC" FontSize="18" IsEnabled="False" TextChanged="textAdresa_TextChanged"/>
-                    <TextBox x:Name="textEmail" HorizontalAlignment="Left" Height="41" Margin="82,268,-58,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="260" Background="#FFB2D4EC" FontSize="18" IsEnabled="False" TextChanged="textEmail_TextChanged"/>
-                    <TextBox x:Name="textTelefon" HorizontalAlignment="Left" Height="41" Margin="82,319,-58,-48" TextWrapping="Wrap" VerticalAlignment="Top" Width="260" Background="#FFB2D4EC" FontSize="18" IsEnabled="False" TextChanged="textTelefon_TextChanged"/>
-                    <TextBox x:Name="textDatumRodj" HorizontalAlignment="Left" Height="41" Margin="82,158,-58,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="260" Background="#FFB2D4EC" FontSize="18" IsEnabled="False" TextChanged="textDatumRodj_TextChanged"/>
+                    <TextBox x:Name="textJMBG" HorizontalAlignment="Left" Height="41" TextWrapping="Wrap" VerticalAlignment="Top" Width="260" Background="#FFB2D4EC" FontSize="18" IsEnabled="False" Margin="82,0,-58,0" TextChanged="textJMBG_TextChanged" materialDesign:HintAssist.Hint=" Unesite JMBG (13 cifara)..."/>
+                    <TextBox x:Name="textIme" HorizontalAlignment="Left" Height="41" Margin="82,55,-58,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="260" Background="#FFB2D4EC" FontSize="18" IsEnabled="False" TextChanged="textIme_TextChanged" materialDesign:HintAssist.Hint=" Unesite ime..."/>
+                    <TextBox x:Name="textPrezime" HorizontalAlignment="Left" Height="41" Margin="82,105,-58,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="260" Background="#FFB2D4EC" FontSize="18" IsEnabled="False" TextChanged="textPrezime_TextChanged" materialDesign:HintAssist.Hint=" Unesite preyime..."/>
+                    <TextBox x:Name="textAdresa" HorizontalAlignment="Left" Height="41" Margin="82,212,-58,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="260" Background="#FFB2D4EC" FontSize="18" IsEnabled="False" TextChanged="textAdresa_TextChanged" materialDesign:HintAssist.Hint=" Unesite adresu stanovanja..."/>
+                    <TextBox x:Name="textEmail" HorizontalAlignment="Left" Height="41" Margin="82,268,-58,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="260" Background="#FFB2D4EC" FontSize="18" IsEnabled="False" TextChanged="textEmail_TextChanged" materialDesign:HintAssist.Hint=" Unesite E-mail adresu..."/>
+                    <TextBox x:Name="textTelefon" HorizontalAlignment="Left" Height="41" Margin="82,319,-58,-48" TextWrapping="Wrap" VerticalAlignment="Top" Width="260" Background="#FFB2D4EC" FontSize="18" IsEnabled="False" TextChanged="textTelefon_TextChanged" materialDesign:HintAssist.Hint=" Unesite broj telefona..."/>
+                    <TextBox x:Name="textDatumRodj" HorizontalAlignment="Left" Height="41" Margin="82,158,-58,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="260" Background="#FFB2D4EC" FontSize="18" IsEnabled="False" TextChanged="textDatumRodj_TextChanged" materialDesign:HintAssist.Hint=" Mesec/Dan/Godina..."/>
                 </Grid>
                 <Button x:Name="buttonPotvrdiDodavanje" Content="POTVRDI" Grid.Column="1" HorizontalAlignment="Left" Margin="97,352,0,0" VerticalAlignment="Top" Width="98" Height="33" Click="buttonPotvrdiDodavanje_Click" Visibility="Hidden"/>
                 <Button x:Name="buttonOdustaniDodavanje" Content="ODUSTANI" Grid.Column="1" HorizontalAlignment="Left" Margin="257,352,0,0" VerticalAlignment="Top" Width="103" Height="33" Click="buttonOdustani_Click" Visibility="Hidden"/>
@@ -141,18 +141,18 @@
             <Button HorizontalAlignment="Left" Height="80" Margin="10,10,0,0" VerticalAlignment="Top" Width="80" Click="ButtonPovratak_Click" BorderThickness="0" Background="{x:Null}">
                 <materialDesign:PackIcon x:Name="iconTerminiPovratak" Kind="ArrowBackCircle" Width="45" Height="60" Foreground="#FF773CB6"/>
             </Button>
-            <DataGrid x:Name="TabelaPacijentiTermini" HorizontalAlignment="Left" Height="200" Margin="346,0,0,513" VerticalAlignment="Bottom" Width="996" FontSize="24" HeadersVisibility="All" AutoGenerateColumns="False" CanUserAddRows="false" SelectionChanged="TabelaPacijenti1_SelectionChanged" Background="#FFDDD3F0">
+            <DataGrid x:Name="TabelaPacijentiTermini" HorizontalAlignment="Left" Height="200" Margin="346,0,0,513" VerticalAlignment="Bottom" Width="996" FontSize="18" HeadersVisibility="All" AutoGenerateColumns="False" CanUserAddRows="false" SelectionChanged="TabelaPacijenti1_SelectionChanged" Background="#FFDDD3F0">
                 <DataGrid.Resources>
                     <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" 
                    Color="#FF9D6EEE"/>
                 </DataGrid.Resources>
                 <DataGrid.Columns>
-                    <DataGridTextColumn x:Name="kolonaJMBG1" Binding="{Binding jmbg}" IsReadOnly="True" Header="JMBG" Width="347" CanUserResize="False" Foreground="Black" FontSize="24"/>
-                    <DataGridTextColumn x:Name="kolonaIme1" Binding="{Binding ime}" IsReadOnly="True" Header="IME" Width="347" CanUserResize="False" Foreground="Black" FontSize="24" />
-                    <DataGridTextColumn x:Name="kolonaPrezime1" Binding="{Binding prezime}" IsReadOnly="True" Header="PREZIME" Width="347" CanUserResize="False" Foreground="Black" FontSize="24"/>
+                    <DataGridTextColumn x:Name="kolonaJMBG1" Binding="{Binding jmbg}" IsReadOnly="True" Header="JMBG" Width="347" CanUserResize="False" Foreground="Black" FontSize="18"/>
+                    <DataGridTextColumn x:Name="kolonaIme1" Binding="{Binding ime}" IsReadOnly="True" Header="IME" Width="347" CanUserResize="False" Foreground="Black" FontSize="18" />
+                    <DataGridTextColumn x:Name="kolonaPrezime1" Binding="{Binding prezime}" IsReadOnly="True" Header="PREZIME" Width="347" CanUserResize="False" Foreground="Black" FontSize="18"/>
                 </DataGrid.Columns>
             </DataGrid>
-            <DataGrid x:Name="TabelaTerminiPacijenta" HorizontalAlignment="left" Height="202" Margin="346,0,0,306" VerticalAlignment="Bottom" Width="996" FontSize="24" HeadersVisibility="All" AutoGenerateColumns="False" CanUserAddRows="false" Background="#FFDDD3F0" RenderTransformOrigin="0.5,0.5" SelectionChanged="TabelaTerminiPacijenta_SelectionChanged">
+            <DataGrid x:Name="TabelaTerminiPacijenta" HorizontalAlignment="left" Height="202" Margin="346,0,0,306" VerticalAlignment="Bottom" Width="996" FontSize="18" HeadersVisibility="All" AutoGenerateColumns="False" CanUserAddRows="false" Background="#FFDDD3F0" RenderTransformOrigin="0.5,0.5" SelectionChanged="TabelaTerminiPacijenta_SelectionChanged">
                 <DataGrid.Resources>
                     <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" 
                    Color="#FF9D6EEE"/>
@@ -166,11 +166,11 @@
                     </TransformGroup>
                 </DataGrid.RenderTransform>
                 <DataGrid.Columns>
-                    <DataGridTextColumn x:Name="kolonaDatum" Binding="{Binding datum}" IsReadOnly="True" Header="Datum održavanja" Width="216" CanUserResize="False" Foreground="Black" FontSize="24"/>
-                    <DataGridTextColumn x:Name="kolonaSatnica" Binding="{Binding satnica}" IsReadOnly="True" Header="Satnica" Width="100" CanUserResize="False" Foreground="Black" FontSize="24" />
-                    <DataGridTextColumn x:Name="kolonaProstorija" Binding="{Binding lokacija}" IsReadOnly="True" Header="Prostorija" Width="290" CanUserResize="False" Foreground="Black" FontSize="24"/>
-                    <DataGridTextColumn x:Name="kolonaNapomena" Binding="{Binding napomena}" IsReadOnly="True" Header="Napomena" Width="195" CanUserResize="False" Foreground="Black" FontSize="24"/>
-                    <DataGridTextColumn x:Name="kolonaLekar" Binding="{Binding imeLekara}" IsReadOnly="True" Header="Lekar" Width="195" CanUserResize="False" Foreground="Black" FontSize="24"/>
+                    <DataGridTextColumn x:Name="kolonaDatum" Binding="{Binding datum}" IsReadOnly="True" Header="Datum održavanja" Width="216" CanUserResize="False" Foreground="Black" FontSize="18"/>
+                    <DataGridTextColumn x:Name="kolonaSatnica" Binding="{Binding satnica}" IsReadOnly="True" Header="Satnica" Width="100" CanUserResize="False" Foreground="Black" FontSize="18" />
+                    <DataGridTextColumn x:Name="kolonaProstorija" Binding="{Binding lokacija}" IsReadOnly="True" Header="Prostorija" Width="290" CanUserResize="False" Foreground="Black" FontSize="18"/>
+                    <DataGridTextColumn x:Name="kolonaNapomena" Binding="{Binding napomena}" IsReadOnly="True" Header="Napomena" Width="195" CanUserResize="False" Foreground="Black" FontSize="18"/>
+                    <DataGridTextColumn x:Name="kolonaLekar" Binding="{Binding imeLekara}" IsReadOnly="True" Header="Lekar" Width="195" CanUserResize="False" Foreground="Black" FontSize="18"/>
                 </DataGrid.Columns>
             </DataGrid>
             <DataGrid x:Name="TabelaSlobodnihTermina" HorizontalAlignment="left" Height="195" Margin="346,0,0,46" VerticalAlignment="Bottom" Width="996" FontSize="24" HeadersVisibility="All" AutoGenerateColumns="False" CanUserAddRows="false" Background="#FFDDD3F0" Visibility="Hidden" SelectionChanged="TabelaSlobodnihTermina_SelectionChanged">
@@ -179,11 +179,11 @@
                         Color="#FF9D6EEE"/>
                 </DataGrid.Resources>
                 <DataGrid.Columns>
-                    <DataGridTextColumn x:Name="kolonaDatum1" Binding="{Binding datum}" IsReadOnly="True" Header="Datum održavanja" Width="216" CanUserResize="False" Foreground="Black" FontSize="24"/>
-                    <DataGridTextColumn x:Name="kolonaSatnica1" Binding="{Binding satnica}" IsReadOnly="True" Header="Satnica" Width="100" CanUserResize="False" Foreground="Black" FontSize="24" />
-                    <DataGridTextColumn x:Name="kolonaProstorija1" Binding="{Binding lokacija}" IsReadOnly="True" Header="Prostorija" Width="290" CanUserResize="False" Foreground="Black" FontSize="24"/>
-                    <DataGridTextColumn x:Name="kolonaNapomena1" Binding="{Binding napomena}" IsReadOnly="True" Header="Napomena" Width="195" CanUserResize="False" Foreground="Black" FontSize="24"/>
-                    <DataGridTextColumn x:Name="kolonaLekar1" Binding="{Binding imeLekara}" IsReadOnly="True" Header="Lekar" Width="195" CanUserResize="False" Foreground="Black" FontSize="24"/>
+                    <DataGridTextColumn x:Name="kolonaDatum1" Binding="{Binding datum}" IsReadOnly="True" Header="Datum održavanja" Width="216" CanUserResize="False" Foreground="Black" FontSize="18"/>
+                    <DataGridTextColumn x:Name="kolonaSatnica1" Binding="{Binding satnica}" IsReadOnly="True" Header="Satnica" Width="100" CanUserResize="False" Foreground="Black" FontSize="18" />
+                    <DataGridTextColumn x:Name="kolonaProstorija1" Binding="{Binding lokacija}" IsReadOnly="True" Header="Prostorija" Width="290" CanUserResize="False" Foreground="Black" FontSize="18"/>
+                    <DataGridTextColumn x:Name="kolonaNapomena1" Binding="{Binding napomena}" IsReadOnly="True" Header="Napomena" Width="195" CanUserResize="False" Foreground="Black" FontSize="18"/>
+                    <DataGridTextColumn x:Name="kolonaLekar1" Binding="{Binding imeLekara}" IsReadOnly="True" Header="Lekar" Width="195" CanUserResize="False" Foreground="Black" FontSize="18"/>
                 </DataGrid.Columns>
             </DataGrid>
             <Label x:Name="slobodniTerminiLabel" Content="SLOBODNI TERMINI:" HorizontalAlignment="Left" Margin="346,449,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold" IsEnabled="False" Height="31" Width="212" Visibility="Hidden"/>
@@ -220,7 +220,7 @@
                 </Button>
             </Grid>
             <materialDesign:PackIcon x:Name="iconTermini" Kind="Calendar" HorizontalAlignment="Left" Margin="60,99,0,0" VerticalAlignment="Top" Width="180" Height="180" Foreground="#FF773CB6"/>
-            <Button x:Name="btnIzvetaj" HorizontalAlignment="Left" Margin="0,649,0,0" VerticalAlignment="Top" Width="80" Height="80" Background="{x:Null}" BorderBrush="{x:Null}" Click="btnIzvetaj_Click">
+            <Button x:Name="btnIzvetaj" HorizontalAlignment="Left" Margin="10,649,0,0" VerticalAlignment="Top" Width="80" Height="80" Background="{x:Null}" BorderBrush="{x:Null}" Click="btnIzvetaj_Click">
                 <materialDesign:PackIcon x:Name="iconIzvestaj" Kind="Notebook" Height="80" Width="49" Foreground="#FF783CB7"/>
             </Button>
         </Grid>
@@ -390,7 +390,7 @@
                     <GradientStop Color="White" Offset="0.992"/>
                 </LinearGradientBrush>
             </Grid.Background>
-            <Button x:Name="pacijentiButton" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Height="200" FontSize="36" FontWeight="Bold" Click="pacijenti_Click" Margin="428,140,0,0" BorderBrush="#FF67B6D5" AutomationProperties.HelpText="Rukovanje Pacijentima" ToolTip="Rukovanje pacijentima" >
+            <Button x:Name="pacijentiButton" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Height="200" FontSize="36" FontWeight="Bold" Click="pacijenti_Click" Margin="428,140,0,0" BorderBrush="{x:Null}" AutomationProperties.HelpText="Rukovanje Pacijentima" ToolTip="Rukovanje pacijentima" >
                 <Button.Effect>
                     <DropShadowEffect BlurRadius="10" Direction="314" Opacity="0.35"/>
                 </Button.Effect>
@@ -402,7 +402,7 @@
                 </Button.Background>
                 <materialDesign:PackIcon x:Name="packIconPacijenti" Kind="person" Height="152" Width="158"/>
             </Button>
-            <Button x:Name="terminiButton" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Height="200" FontSize="36" FontWeight="Bold" Margin="700,140,0,0" Click="terminiButton_Click" BorderBrush="#FF9A88D3" AutomationProperties.HelpText="Rukovanje terminima" ToolTip="Rukovanje terminima" >
+            <Button x:Name="terminiButton" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Height="200" FontSize="36" FontWeight="Bold" Margin="700,140,0,0" Click="terminiButton_Click" BorderBrush="{x:Null}" AutomationProperties.HelpText="Rukovanje terminima" ToolTip="Rukovanje terminima" >
                 <Button.Effect>
                     <DropShadowEffect BlurRadius="10" Opacity="0.35"/>
                 </Button.Effect>
@@ -414,7 +414,7 @@
                 </Button.Background>
                 <materialDesign:PackIcon x:Name="packIconTermini" Kind="Calendar" Height="152" Width="158"/>
             </Button>
-            <Button x:Name="lekariButton" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Height="200" FontSize="36" FontWeight="Bold" Margin="428,388,0,0" Click="lekariButton_Click" BorderBrush="#FFE1E145" AutomationProperties.HelpText="Rukovanje lekarima" ToolTip="Rukovanje lekarima">
+            <Button x:Name="lekariButton" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Height="200" FontSize="36" FontWeight="Bold" Margin="428,388,0,0" Click="lekariButton_Click" BorderBrush="{x:Null}" AutomationProperties.HelpText="Rukovanje lekarima" ToolTip="Rukovanje lekarima">
                 <Button.Effect>
                     <DropShadowEffect BlurRadius="10" Opacity="0.35"/>
                 </Button.Effect>
@@ -482,7 +482,7 @@
                 <Button.Effect>
                     <DropShadowEffect BlurRadius="22" Opacity="0.45"/>
                 </Button.Effect>
-                <materialDesign:PackIcon x:Name="iconFeedback" Kind="Bug" Width="90" Height="90" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF7A3BFF"/>
+                <materialDesign:PackIcon x:Name="iconFeedback" Kind="Bug" Width="90" Height="90" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF8B6CCD"/>
             </Button>
         </Grid>
         <Frame x:Name="frame" Content="Frame" Margin="0,0,0,0" NavigationUIVisibility="Hidden" d:IsHidden="True"/>
