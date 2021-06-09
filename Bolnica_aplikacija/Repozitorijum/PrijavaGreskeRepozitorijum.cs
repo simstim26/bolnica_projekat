@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bolnica_aplikacija.Interfejs.Implementacija;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -8,30 +9,15 @@ using System.Threading.Tasks;
 
 namespace Bolnica_aplikacija.Repozitorijum
 {
-    class PrijavaGreskeRepozitorijum
+    class PrijavaGreskeRepozitorijum : IRepoImpl<String>
     {
         public List<String> ucitaj()
         {
-            List<String> sveZalbe;
-            try
-            {
-                sveZalbe = JsonSerializer.Deserialize<List<String>>(File.ReadAllText("Datoteke/Zalbe.txt"));
-            }
-            catch (Exception e)
-            {
-                sveZalbe = new List<String>();
-            }
-
-            return sveZalbe;
+            return ucitajSve("Datoteke/Zalbe.txt");
         }
         public void upisi(List<String> sveZalbe)
         {
-            var formatiranje = new JsonSerializerOptions
-            {
-                WriteIndented = true,
-            };
-            string jsonString = JsonSerializer.Serialize(sveZalbe, formatiranje);
-            File.WriteAllText("Datoteke/Zalbe.txt", jsonString);
+            upisi(sveZalbe, "Datoteke/Zalbe.txt");
         }
     }
 }

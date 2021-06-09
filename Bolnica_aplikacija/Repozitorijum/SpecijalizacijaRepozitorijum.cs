@@ -1,4 +1,5 @@
-﻿using Model;
+﻿using Bolnica_aplikacija.Interfejs.Implementacija;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,21 +10,16 @@ using System.Threading.Tasks;
 
 namespace Bolnica_aplikacija.Repozitorijum
 {
-    class SpecijalizacijaRepozitorijum
+    class SpecijalizacijaRepozitorijum : IRepoImpl<Specijalizacija>
     {
         public List<Specijalizacija> ucitajSve()
         {
-            List<Specijalizacija> sveSpecijalizacije;
-            try
-            {
-                sveSpecijalizacije = JsonSerializer.Deserialize<List<Specijalizacija>>(File.ReadAllText("Datoteke/Specijalizacije.txt"));
-            }
-            catch (Exception e)
-            {
-                sveSpecijalizacije = new List<Specijalizacija>();
-            }
+            return ucitajSve("Datoteke/Specijalizacije.txt");
+        }
 
-            return sveSpecijalizacije;
+        public void upisi(List<Specijalizacija> sveSpecijalizacije)
+        {
+            upisi(sveSpecijalizacije, "Datoteke/Specijalizacije.txt");
         }
     }
 }

@@ -33,7 +33,16 @@ namespace Bolnica_aplikacija.Servis
         }
         public void azurirajTerapiju(Terapija terapijaZaAzuriranje)
         {
-            terapijaRepozitorijum.azurirajTerapiju(terapijaZaAzuriranje);
+            List<Terapija> sveTerapije = ucitajSve();
+            foreach (Terapija terapija in sveTerapije)
+            {
+                if (terapija.id.Equals(terapijaZaAzuriranje.id))
+                {
+                    terapija.kopiraj(terapijaZaAzuriranje);
+                    break;
+                }
+            }
+            terapijaRepozitorijum.upisi(sveTerapije);
         }
 
         public Terapija nadjiTerapijuPoId(String idTerapije)
@@ -70,7 +79,7 @@ namespace Bolnica_aplikacija.Servis
         {
             Terapija terapija = nadjiTerapijuPoId(idTerapije);
             terapija.idBolesti = idBolesti;
-            terapijaRepozitorijum.azurirajTerapiju(terapija);
+            azurirajTerapiju(terapija);
         }
 
         public List<Terapija> ucitajTrenutneTerapijePacijenta(String idPacijenta)
