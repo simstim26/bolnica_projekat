@@ -828,7 +828,7 @@ namespace Bolnica_aplikacija.ViewModel
         private void izvrsiPotvrduPrijaveGreske(object obj)
         {
             PrijavaGreskeKontroler.sacuvaj(prijavaGreskeTekst);
-            MessageBox.Show("Greska je uspesno prijavljena!", "informacija", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show("Greška je uspešno prijavljena!", "informacija", MessageBoxButton.OK, MessageBoxImage.Information);
             gridPrijavaGreske = false;
         }
 
