@@ -74,9 +74,7 @@
                 <TextBlock FontSize="18" Margin="30,0,0,0" Text="Obriši lek" Height="24" Width="116"/>
             </StackPanel>
         </Button>
-        <TextBlock x:Name="textBlock12" FontSize="28" FontWeight="Bold"  HorizontalAlignment="Left" Margin="33,30,0,0" TextWrapping="Wrap" Text="Prikaz lekova" VerticalAlignment="Top" TextDecorations="Underline" FontStyle="Italic"/>
-        <TextBlock x:Name="textBlock13" FontSize="18" HorizontalAlignment="Left" Margin="33,94,0,0" TextWrapping="Wrap" Text="Unesite naziv leka koji želite da pretražite: " VerticalAlignment="Top"/>
-        <TextBox x:Name="textBox1" HorizontalAlignment="Left" Height="24" Margin="374,94,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="154"/>
+        <TextBlock x:Name="textBlock12" FontSize="28" FontWeight="Bold"  HorizontalAlignment="Left" Margin="33,54,0,0" TextWrapping="Wrap" Text="Prikaz lekova" VerticalAlignment="Top" TextDecorations="Underline" FontStyle="Italic"/>
         <TextBlock x:Name="izaberiteLek" HorizontalAlignment="Left" Visibility="Hidden" Foreground="Red" FontStyle="Italic" Margin="33,603,0,0" TextWrapping="Wrap" Text="*morate prvo izabrati lek iz tabele" VerticalAlignment="Top"/>
 
     </Grid>

@@ -99,9 +99,7 @@
                 <TextBlock Text="Zakaži renoviranje" FontSize="18" Margin="15,0,0,0" Height="28" Width="176"/>
             </StackPanel>
         </Button>
-        <TextBlock x:Name="textBlock" FontSize="25" FontStyle="Italic" FontWeight="Bold" HorizontalAlignment="Left" Margin="50,19,0,0" TextWrapping="Wrap" Text="Prikaz prostorija" VerticalAlignment="Top" TextDecorations="Underline"/>
-        <TextBlock x:Name="textBlock1" FontSize="15" HorizontalAlignment="Left" Margin="50,74,0,0" TextWrapping="Wrap" Text="Unesite broj prostorije koju želite da pretražite:" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
-        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="133,71,0,0" TextWrapping="Wrap" Text=""  VerticalAlignment="Top" Width="130" Grid.Column="1"/>
+        <TextBlock x:Name="textBlock" FontSize="25" FontStyle="Italic" FontWeight="Bold" HorizontalAlignment="Left" Margin="50,36,0,0" TextWrapping="Wrap" Text="Prikaz prostorija" VerticalAlignment="Top" TextDecorations="Underline"/>
         <Button x:Name="btnZakaziRenoviranje_Copy" HorizontalAlignment="Left" Margin="317,564,-65,0" VerticalAlignment="Top" Width="289" Height="48" Grid.Column="1" Click="btnZakaziRenoviranje_Copy_Click">
             <StackPanel Orientation="Horizontal">
                 <Image Source="diagram.png" RenderTransformOrigin="0.5,0.5">
