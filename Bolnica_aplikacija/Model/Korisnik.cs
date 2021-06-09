@@ -30,20 +30,5 @@ namespace Model
       public String bracniStatus { get; set; }
       public String zanimanje { get; set; }
 
-        public static String[] Prijava(String korisnickoIme, String lozinka)
-        {
-            String[] retVal = { "",""};
-            foreach (PomocnaKlasaKorisnici e in JsonSerializer.Deserialize<List<PomocnaKlasaKorisnici>>(File.ReadAllText("Datoteke/probaKorisnici.txt")))
-            {
-                if(e.korisnickoIme.Equals(korisnickoIme) && e.lozinka.Equals(lozinka))
-                {
-                    retVal[0] = e.tip;
-                    retVal[1] = e.id;
-                }
-            }
-
-            return retVal;
-
-        }
    }
 }
