@@ -206,10 +206,8 @@
     <Compile Include="PomocneKlase\BolnickoLecenjeDTO.cs" />
     <Compile Include="PomocneKlase\KonvertBolest.cs" />
     <Compile Include="PomocneKlase\NotifikacijaDTO.cs" />
-	
     <Compile Include="PomocneKlase\ObavestenjeDTO.cs" />
-    
-	<Compile Include="PomocneKlase\PomocnaKlasaKalendar.cs" />
+    <Compile Include="PomocneKlase\PomocnaKlasaKalendar.cs" />
     <Compile Include="PomocneKlase\Ponavljanje.cs" />
     <Compile Include="PomocneKlase\KonverterBolnickoLecenje.cs" />
     <Compile Include="PomocneKlase\LekarDTO.cs" />
@@ -718,17 +716,9 @@
   <ItemGroup>
     <Resource Include="View\UpravnikStudent\logout.png" />
   </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="C:\Users\ACER\Desktop\CalendarExample2\CalendarExample2\MojKalendar\Jarloo.Calendar\MyCalendar.Calendar.csproj">
-      <Project>{31c3b4a7-504b-4eff-bacc-c8f2ffe5af6f}</Project>
-      <Name>MyCalendar.Calendar</Name>
-    </ProjectReference>
-  </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
-
   <ItemGroup>
     <Content Include="Assets\video1.mp4">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -736,6 +726,12 @@
     <Content Include="Assets\video2.mp4">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Jarloo.Calendar\MyCalendar.Calendar.csproj">
+      <Project>{31c3b4a7-504b-4eff-bacc-c8f2ffe5af6f}</Project>
+      <Name>MyCalendar.Calendar</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets" Condition="Exists('packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets')" />
