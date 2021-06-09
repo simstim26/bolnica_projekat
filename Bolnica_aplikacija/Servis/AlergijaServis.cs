@@ -63,7 +63,30 @@ namespace Bolnica_aplikacija.Servis
 
         public void azurirajAlergije(List<Alergija> alergije, String id)
         {
-            alergijaRepozitorijum.azurirajAlergije(alergije, id);
+            List<Alergija> sveAlergije = ucitajOstaleAlergije(id);
+
+            foreach (Alergija alergijaIzmena in alergije)
+            {
+                if (!alergijaIzmena.nazivAlergije.Equals(""))
+                {
+                    sveAlergije.Add(alergijaIzmena);
+                }
+
+            }           
+            alergijaRepozitorijum.azurirajAlergije(sveAlergije);
+        }
+
+        private List<Alergija> ucitajOstaleAlergije(String idPacijenta)
+        {
+            List<Alergija> povratna = new List<Alergija>();
+            foreach (Alergija alergija in ucitajSve())
+            {
+                if (!alergija.idPacijenta.Equals(idPacijenta))
+                {
+                    povratna.Add(alergija);
+                }
+            }
+            return povratna;
         }
 
         public void dodajAlergijePacijentu(String idPacijenta, List<Alergija> alergije)

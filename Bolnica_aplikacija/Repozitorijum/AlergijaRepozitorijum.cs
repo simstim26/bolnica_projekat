@@ -43,29 +43,9 @@ namespace Bolnica_aplikacija.Repozitorijum
             File.WriteAllText("Datoteke/Alergije.txt", jsonString);
         }
 
-        public void azurirajAlergije(List<Alergija> alergije, String idPacijenta)
-        {
-            List<Alergija> sveAlergije = new List<Alergija>();
-            
-            foreach(Alergija alergija in ucitajSve())
-            {
-                if (!alergija.idPacijenta.Equals(idPacijenta))
-                {
-                    sveAlergije.Add(alergija);
-                }
-            }
-
-            foreach(Alergija alergijaIzmena in alergije)
-            {
-                if (!alergijaIzmena.nazivAlergije.Equals(""))
-                {
-                    sveAlergije.Add(alergijaIzmena);
-                }
-               
-            }
-
-            upisi(sveAlergije);
-
+        public void azurirajAlergije(List<Alergija> alergije)
+        {        
+            upisi(alergije);
         }
     }
 }

@@ -10,9 +10,9 @@ namespace Bolnica_aplikacija.Kontroler
 {
     class ProzorFactoryKontroler
     {
-        public static Window inicijalizujProzor(String tip)
+        public static Window inicijalizujProzor(String tipKorisnika)
         {
-            return ProzorFactoryServis.getInstance().inicijalizujProzor(tip);
+            return ProzorFactoryServis.getInstance().inicijalizujProzor(tipKorisnika);
         }
     }
 }

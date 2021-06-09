@@ -49,6 +49,10 @@
   },
   {
     "idPacijenta": "2",
-    "nazivAlergije": "Svasta Nesto"
+    "nazivAlergije": "Svasta Nesto 2"
+  },
+  {
+    "idPacijenta": "2",
+    "nazivAlergije": "Alergija"
   }
 ]

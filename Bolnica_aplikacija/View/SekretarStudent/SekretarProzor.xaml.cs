@@ -145,8 +145,7 @@ namespace Bolnica_aplikacija
                 textTelefon.Text = pacijent.brojTelefona;
 
                 alergije = (List<Alergija>)dataGridAlergije.ItemsSource;
-
-
+                
                 if (pacijent.jeGost)
                 {
                     checkboxGostujuciNalog.IsChecked = true;
