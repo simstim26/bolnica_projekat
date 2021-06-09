@@ -65,7 +65,7 @@
                 </LinearGradientBrush>
             </TabControl.Background>
 
-            <TabItem Header="Termini" FontSize="20" Background="#FFEEEEEE">
+            <TabItem Header="Termini" FontSize="20" Background="{x:Null}" BorderBrush="Black" Foreground="Black">
 
                 <Grid>
                     <Grid.RowDefinitions>
@@ -125,7 +125,7 @@
                 </Grid>
 
             </TabItem>
-            <TabItem Header="Zdravstveni karton" FontSize="20">
+            <TabItem Header="Zdravstveni karton" FontSize="20" Background="{x:Null}" BorderBrush="Black">
                 <Grid HorizontalAlignment="Left" Height="877" VerticalAlignment="Top" Width="1907" Margin="0,0,-1,-5">
                     <Rectangle Stroke="Black" Margin="-16,0,-38,804" Height="73" VerticalAlignment="Bottom"/>
                     <Button x:Name="btnLicniPodaci" Content="Lični podaci" Height="Auto" Margin="10,20,1777,826" Background="White" Foreground="Black"/>
@@ -174,7 +174,7 @@
                     </DataGrid>
                 </Grid>
             </TabItem>
-            <TabItem Header="Aktivne terapije" FontSize="20">
+            <TabItem Header="Aktivne terapije" FontSize="20" Background="{x:Null}" BorderBrush="Black">
                 <Grid Margin="0,0,0,-6">
                     <Label x:Name="lblDatum" Content="Današnji datum: " HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="28"/>
                     <Label x:Name="label" Content="Vaše terapije za ovu sedmicu su prikazane ispod." HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top" FontSize="28"/>
@@ -191,7 +191,7 @@
                             <DataGridTemplateColumn Header="Opširnije informacije">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <Button Content="Info" />
+                                        <Button Content="Info" Background="White" Foreground="Black"/>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
@@ -199,7 +199,7 @@
                             <DataGridTemplateColumn Header="Postavi podsetnik">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <Button Click="btnPodsetnik_Click" Content="Podsetnik"/>
+                                        <Button Click="btnPodsetnik_Click" Content="Podsetnik" Background="White" Foreground="Black"/>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
@@ -211,7 +211,7 @@
 
                 </Grid>
             </TabItem>
-            <TabItem Header="Obaveštenja" FontSize="20">
+            <TabItem Header="Obaveštenja" FontSize="20" Background="{x:Null}" BorderBrush="Black">
                 <Grid HorizontalAlignment="Left" Height="869" VerticalAlignment="Top" Width="1906">
                     <Label Content="Obaveštenja:" FontSize="28" Margin="0,0,0,822"/>
                     <DataGrid x:Name="dataGridObavestenja" HorizontalAlignment="Left" Height="677" Margin="8,52,0,0" VerticalAlignment="Top" Width="1888" IsReadOnly="True" SelectionMode="Single" AutoGenerateColumns="False" FontSize="18">
@@ -239,7 +239,7 @@
                 </Grid>
             </TabItem>
 
-            <TabItem Header="Kalendar" FontSize="20">
+            <TabItem Header="Kalendar" FontSize="20" BorderBrush="Black" Background="{x:Null}">
                 <Grid HorizontalAlignment="Left" Height="875" VerticalAlignment="Top" Width="1907" Margin="0,-2,-1,-1">
 
                     <Label x:Name="lblMesec" Content="Mesec:" FontSize="40" Margin="74,9,1703,805"/>
