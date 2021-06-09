@@ -162,37 +162,57 @@ namespace Bolnica_aplikacija.View.UpravnikStudent
 
         private void btnIzmeniStavku_Click(object sender, RoutedEventArgs e)
         {
+            izaberiteStavku.Visibility = Visibility.Hidden;
             if (dataGridInventar.SelectedIndex != -1)
             {
                 GlavniProzor.DobaviProzorZaIzmenu().Children.Clear();
                 GlavniProzor.DobaviProzorZaIzmenu().Children.Add(new IzmeniStavku());
             }
+            else
+            {
+                izaberiteStavku.Visibility = Visibility.Visible;
+            }
         }
 
         private void btnObrisiStavku_Click(object sender, RoutedEventArgs e)
         {
+            izaberiteStavku.Visibility = Visibility.Hidden;
             if (dataGridInventar.SelectedIndex != -1)
             {
                 Potvrda potvrda = new Potvrda("stavku");
                 potvrda.Show();
             }
+            else
+            {
+                izaberiteStavku.Visibility = Visibility.Visible;
+            }
         }
 
         private void btnPremestiUProstoriju_Click(object sender, RoutedEventArgs e)
         {
+            izaberiteStavku.Visibility = Visibility.Hidden;
             if (dataGridInventar.SelectedIndex != -1)
             {
                 GlavniProzor.DobaviProzorZaIzmenu().Children.Clear();
                 GlavniProzor.DobaviProzorZaIzmenu().Children.Add(new PremestiUProstoriju());
             }
+            else
+            {
+                izaberiteStavku.Visibility = Visibility.Visible;
+            }
         }
 
         private void btnPogledajProstorije_Click(object sender, RoutedEventArgs e)
         {
+            izaberiteStavku.Visibility = Visibility.Hidden;
             if (dataGridInventar.SelectedIndex != -1)
             {
                 GlavniProzor.DobaviProzorZaIzmenu().Children.Clear();
                 GlavniProzor.DobaviProzorZaIzmenu().Children.Add(new PrikaziProstorije());
+            }
+            else
+            {
+                izaberiteStavku.Visibility = Visibility.Visible;
             }
         }
     }

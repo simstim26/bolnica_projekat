@@ -60,6 +60,7 @@
                 </StackPanel>
             </Button>
             <TextBlock x:Name="textBlock" FontSize="24" HorizontalAlignment="Left" Margin="42,80,0,0" TextWrapping="Wrap" Text="Odbijeni lekovi:" VerticalAlignment="Top"/>
+            <TextBlock x:Name="izaberiteOdbaceni" Foreground="red" FontStyle="Italic"  HorizontalAlignment="Left" Margin="42,480,0,0" TextWrapping="Wrap" Text="*morate prvo izabrati odbačeni lek!" VerticalAlignment="Top"/>
         </Grid>
 
         

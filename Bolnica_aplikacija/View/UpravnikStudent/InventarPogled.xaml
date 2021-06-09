@@ -145,6 +145,7 @@
             <ComboBoxItem Content="naziv - opadajuce"/>
         </ComboBox>
         <TextBlock x:Name="textBlock19" FontSize="28" HorizontalAlignment="Left" Margin="42,22,0,0" TextWrapping="Wrap" Text="Prikaz inventara bolnice" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="334" FontWeight="Bold" FontStyle="Italic" TextDecorations="Underline"/>
+        <TextBlock x:Name="izaberiteStavku" HorizontalAlignment="Left" Visibility="Hidden" Foreground="red" FontStyle="Italic" Margin="34,620,0,0" TextWrapping="Wrap" Text="*morate prvo da izaberete stavku!" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="180"/>
 
     </Grid>
 </UserControl>

@@ -42,19 +42,28 @@ namespace Bolnica_aplikacija.View.UpravnikStudent
 
         private void btnIzmeniLek_Click(object sender, RoutedEventArgs e)
         {
+            izaberiteOdbaceni.Visibility = Visibility.Hidden;
             if (dataGridOdbijeniLekovi.SelectedIndex != -1)
             {
                 GlavniProzor.DobaviProzorZaIzmenu().Children.Clear();
                 GlavniProzor.DobaviProzorZaIzmenu().Children.Add(new IzmenaOdbijenog());
             }
+            else
+            {
+                izaberiteOdbaceni.Visibility = Visibility.Visible;
+            }
         }
 
         private void btnObrisiOdbacenLek_Click(object sender, RoutedEventArgs e)
         {
+            izaberiteOdbaceni.Visibility = Visibility.Hidden;
             if (dataGridOdbijeniLekovi.SelectedIndex != -1)
             {
                 Potvrda potvrda = new Potvrda("odbačen lek");
                 potvrda.Show();
+            }
+            {
+                izaberiteOdbaceni.Visibility = Visibility.Visible;
             }
         }
 
