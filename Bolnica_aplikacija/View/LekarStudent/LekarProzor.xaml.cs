@@ -120,6 +120,7 @@ namespace Bolnica_aplikacija
             else if (Izvestaj.aktivan)
             {
                 Izvestaj.podesiKretanjeZaDugmeNazad();
+                Izvestaj.aktivan = false;
             }
             else if (IstorijaBolesti.aktivan)
             {

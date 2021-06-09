@@ -49,6 +49,14 @@ namespace Bolnica_aplikacija
             gridPretraga = this.gridIstorijaTerminaPretraga;
             pretragaBuduci = lblPretragaBuduci;
 
+            Alergije.aktivan = false;
+            IzmenaBLecenja.aktivan = false;
+            IzmenaBolesti.aktivan = false;
+            IstorijaBolesti.aktivan = false;
+            UvidUTerapije.aktivan = false;
+            TerapijeIzdavanjeRecpeta.aktivan = false;
+            Izvestaj.aktivan = false;
+
             /*if(LekarTabovi.getIndikator() == 1)
             {
                 btnIzvestaj.IsEnabled = false;
