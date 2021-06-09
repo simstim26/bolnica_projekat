@@ -115,9 +115,32 @@ namespace Bolnica_aplikacija.ViewModel
                 }
                 else
                 {
-                    btnDodaj = true;
+                    if (LekKontroler.postojiSastojak(izabraniPostojeciLek.id, sastojak.Trim()))
+                    {
+                        btnDodaj = false;
+                        sasGr = true;
+                    }
+                    else
+                    {
+                        btnDodaj = true;
+                        sasGr = false;
+                    }
                 }
                 NotifyPropertyChanged("sastojak");
+            }
+        }
+
+        private bool pSasGr;
+        public bool sasGr
+        {
+            get
+            {
+                return pSasGr;
+            }
+            set
+            {
+                pSasGr = value;
+                NotifyPropertyChanged("sasGr");
             }
         }
 

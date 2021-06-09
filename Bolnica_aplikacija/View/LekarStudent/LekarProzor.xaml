@@ -124,8 +124,9 @@
                 <Label x:Name="lblRUProizvodjac" Content="{Binding Path=izabraniPostojeciLek.proizvodjac}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="209,57,0,0" Width="168" Height="24"/>
                 <Label x:Name="lblRUTipLeka" Content="{Binding Path=izabraniPostojeciLek.tip}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="209,92,0,0" Width="168" Height="24"/>
                 <Label x:Name="lblRUNacinUpotrebe" Content="{Binding Path=izabraniPostojeciLek.nacinUpotrebe}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="209,129,0,0" Width="168" Height="24"/>
+                <Label x:Name="lblSas" Content="*Sastojak već postoji" FontWeight="Bold" Visibility="{Binding Path=sasGr, Converter={StaticResource BoolToVis}}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15,232,5,0" Width="168" Height="24"/>
                 <ListBox x:Name="listRUSastojci" ItemsSource="{Binding Path=izabraniPostojeciLek.sastojci}" SelectedItem="{Binding Path=izabraniSastojak, Mode=TwoWay}" Background="#F5F5F5" HorizontalAlignment="Left" Height="297" Margin="17,259,0,0" VerticalAlignment="Top" Width="387"/>
-                <TextBox x:Name="txtDodavanjeSastojaka" Text="{Binding Path=sastojak, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="17,217,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                <TextBox x:Name="txtDodavanjeSastojaka" Text="{Binding Path=sastojak, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="17,215,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
                 <Button x:Name="btnDodavanjeSastojka" Command="{Binding Path=dodavanjeSastojaka}" IsEnabled="{Binding Path=btnDodaj, Mode=TwoWay}" HorizontalAlignment="Left" Margin="167,208,0,0" VerticalAlignment="Top" Width="49">
                     <materialDesign:PackIcon Kind="Plus" HorizontalAlignment="Center" Height="25" Width="28"></materialDesign:PackIcon>
                 </Button>
