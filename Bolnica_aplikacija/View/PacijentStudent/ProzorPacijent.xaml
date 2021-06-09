@@ -83,8 +83,8 @@
 
                         </Grid.ColumnDefinitions>
 
-                        <TextBox x:Name="txtPretraga" HorizontalAlignment="Right"  Text="" VerticalAlignment="Top" Width="427" Grid.Column="1" FontSize="24" Margin="10,10,10,10"/>
-                        <Button x:Name="btnPretraga" Grid.Column="2" FontSize="24" Height="Auto" Margin="10,10,30,10" Content="Pretraži" Foreground="Black" Background="White"/>
+                        <TextBox x:Name="txtPretraga" HorizontalAlignment="Right"  Text="" VerticalAlignment="Top" Width="427" Grid.Column="1" FontSize="24" Margin="10,10,10,10" ToolTip="Unesite ime lekara"/>
+                        <Button x:Name="btnPretraga" Grid.Column="2" FontSize="24" Height="Auto" Margin="10,10,30,10" Content="Pretraži" Foreground="Black" Background="White" Click="btnPretraga_Click"/>
 
                     </Grid>
 

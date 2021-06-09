@@ -10,6 +10,7 @@ using iText.Layout;
 using iText.Layout.Element;
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -503,6 +504,34 @@ namespace Bolnica_aplikacija.PacijentStudent
         {
             PrijavaProblema prijava = new PrijavaProblema();
             prijava.ShowDialog();
+        }
+
+        private void btnPretraga_Click(object sender, RoutedEventArgs e)
+        {
+            int indikator = -2;
+
+            if (!Regex.IsMatch(txtPretraga.Text, @"^[\p{L}\p{M}' \.\-]+$"))
+            {
+                indikator = -2;
+            }
+            else
+                indikator = 0;
+
+            if(!PomocnaKlasaProvere.proveraPretrage(indikator))
+            {
+                PopuniTermine();
+            }
+            else
+                dataGridTermin.ItemsSource = PacijentKontroler.filtrirajTermineSve(indikator, txtPretraga.Text);
+
+        }
+
+        private void txtPretraga_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (txtPretraga.Text.Length == 0)
+            {
+                PopuniTermine();
+            }
         }
     }
 }
