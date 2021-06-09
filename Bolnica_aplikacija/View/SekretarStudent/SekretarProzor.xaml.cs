@@ -579,25 +579,28 @@ namespace Bolnica_aplikacija
                 textDatumRodj.Clear();
                 povratnaVrednost = false;
             }
-
-            String[] parts = datumRodj.Split('/');
-            int mesec;
-            int dan;
-            Int32.TryParse(parts[0], out mesec);
-            Int32.TryParse(parts[1], out dan);
-
-            if (mesec > 12)
+            else
             {
-                textDatumRodj.Clear();
-                povratnaVrednost = false;
-           
-            } else
-            {
-                if (dan > 31)
+                String[] parts = datumRodj.Split('/');
+                int mesec;
+                int dan;
+                Int32.TryParse(parts[0], out mesec);
+                Int32.TryParse(parts[1], out dan);
+
+                if (mesec > 12)
                 {
                     textDatumRodj.Clear();
                     povratnaVrednost = false;
+
                 }
+                else
+                {
+                    if (dan > 31)
+                    {
+                        textDatumRodj.Clear();
+                        povratnaVrednost = false;
+                    }
+                }          
             }
 
             #endregion
