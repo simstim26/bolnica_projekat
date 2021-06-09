@@ -107,5 +107,10 @@ namespace Bolnica_aplikacija.Kontroler
         {
             TerminServis.getInstance().oznaciHitanTermin(idTermina);
         }
+
+        public static List<Termin> pronadjiTermineZaIzvestajSekretara(DateTime pocetak, DateTime kraj)
+        {
+            return TerminServis.getInstance().pronadjiTermineZaIzvestajSekretara(pocetak, kraj);
+        }
     }
 }

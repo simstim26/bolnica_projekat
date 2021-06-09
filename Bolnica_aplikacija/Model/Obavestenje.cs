@@ -14,18 +14,17 @@ namespace Bolnica_aplikacija.Model
         public String id { get; set; }
         public String naslovObavestenja { get; set; }
         public String sadrzajObavestenja { get; set; }
-        public Notifikacija notifikacija { get; set; }
         public bool jeLogickiObrisano { get; set; }
 
         //Ideja: Iterira kroz obavestenja i kada se ID notifikacije poklopi, prikaze ga
-        public Obavestenje(String id, String naslovObavestenja, String sadrzajObavestenja, Notifikacija notifikacija)
+  
+        public Obavestenje(String naslovObavestenja, String sadrzajObavestenja)
         {
-            this.id = id;
+ 
             this.naslovObavestenja = naslovObavestenja;
             this.sadrzajObavestenja = sadrzajObavestenja;
-            this.notifikacija = notifikacija;
             this.jeLogickiObrisano = false;
-          
+
         }
 
     }

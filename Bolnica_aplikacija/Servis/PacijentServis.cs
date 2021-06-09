@@ -11,11 +11,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using Bolnica_aplikacija.Interfejs.Implementacija;
 using System.Text.RegularExpressions;
 
 namespace Bolnica_aplikacija.Servis
 {
-    class PacijentServis
+    class PacijentServis : PacijentCRUDImplementacija
     {
         private PacijentRepozitorijum pacijentRepozitorijum = new PacijentRepozitorijum();
         private static PacijentServis instance;
@@ -663,60 +664,28 @@ namespace Bolnica_aplikacija.Servis
             if (!pronadjenTermin)
             {
                 NotifikacijaKontroler.napraviNotifikaciju("Otkazivanje termina (Pacijent)", "Otkazan je termin usled pomeranja (Pacijent)", idPacijenta, "pacijent");
-
             }
 
         }
 
-        public void NapraviPacijenta(Pacijent pacijent, List<Alergija> alergije)
+        public void napraviPacijenta(Pacijent pacijent)
         {
-            
-            List<Pacijent> sviPacijenti = pacijentRepozitorijum.ucitajSve();
-            pacijent.id = (sviPacijenti.Count() + 1).ToString();
-            
-            foreach (Alergija alergija in alergije)
-            {
-                AlergijaServis.getInstance().dodajAlergiju(new Alergija(pacijent.id, alergija.nazivAlergije));
-            }
-
-            pacijentRepozitorijum.dodajPacijenta(pacijent);
-            KorisnikServis.getInstance().dodajKorisnika(pacijent.id, pacijent.korisnickoIme, pacijent.lozinka, "pacijent");
+            kreiraj(pacijent);
         }
 
-        public List<Pacijent> ProcitajPacijente()
+        public List<Pacijent> procitajPacijente()
         {
-            List<Pacijent> ucitaniPacijenti = pacijentRepozitorijum.ucitajSve();
-            List<Pacijent> neobrisaniPacijenti = new List<Pacijent>();
-
-            foreach (Pacijent p in ucitaniPacijenti)
-            {
-                if (!p.jeLogickiObrisan)
-                {
-                    neobrisaniPacijenti.Add(p);
-                }
-            }
-            return neobrisaniPacijenti;
+            return ucitaj();
         }
 
-        public void AzurirajPacijenta(Pacijent izmeniPacijent, List<Alergija> alergije)
+        public void azurirajPacijenta(Pacijent izmeniPacijent)
         {
-            AlergijaServis.getInstance().azurirajAlergije(alergije, izmeniPacijent.id);
-            pacijentRepozitorijum.azurirajPacijenta(izmeniPacijent);
-
+            azuriraj(izmeniPacijent);
         }
 
-        public void ObrisiPacijenta(String idPacijenta)
+        public void obrisiPacijenta(String idPacijenta)
         {
-            List<Pacijent> sviPacijenti = pacijentRepozitorijum.ucitajSve();
-            foreach (Pacijent p in sviPacijenti)
-            {
-                if (p.id.Equals(idPacijenta))
-                {
-                    p.jeLogickiObrisan = true;
-
-                }
-            }
-            pacijentRepozitorijum.upisi(sviPacijenti);
+            obrisi(idPacijenta);
         }
 
         public List<TerapijaPacijent> ucitajAktivneTerapije(String idPacijenta)
@@ -748,6 +717,10 @@ namespace Bolnica_aplikacija.Servis
                 //Console.WriteLine(bolest);
 
             }
+        }
+        public int ukupanBrojPacijenata()
+        {
+            return pacijentRepozitorijum.ucitajSve().Count;
         }
 
     }

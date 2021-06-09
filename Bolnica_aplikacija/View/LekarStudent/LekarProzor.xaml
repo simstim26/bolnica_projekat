@@ -96,8 +96,8 @@
                 </Grid.Background>
                 <Grid Background="White" Margin="0,181,0,212.4" >
                     <Label Content="Molimo Vas, unesite obrazloženje: (opciono)" HorizontalAlignment="Left" Margin="28,31,0,0" VerticalAlignment="Top" Height="26" Width="331"/>
-                    <TextBox  x:Name="txtPropratnaPoruka" Text="{Binding Path=propratnaPoruka}" HorizontalAlignment="Left" Height="107" Margin="28,62,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="369"/>
-                    <Button x:Name="btnPotvrdaUnosaPropratnePoruke" Command="{Binding Path=odbaciLek}" HorizontalAlignment="Left" Margin="165,212,0,0" VerticalAlignment="Top" Width="75" Height="35">
+                    <TextBox  x:Name="txtPropratnaPoruka" Background="Gainsboro" Text="{Binding Path=propratnaPoruka}" HorizontalAlignment="Left" Height="107" Margin="28,62,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="369"/>
+                    <Button x:Name="btnPotvrdaUnosaPropratnePoruke" Background="#FF274E13" Command="{Binding Path=odbaciLek}" HorizontalAlignment="Left" Margin="165,212,0,0" VerticalAlignment="Top" Width="75" Height="35">
                         <materialDesign:PackIcon Kind="CheckCircle" Height="25" Width="29"></materialDesign:PackIcon>
                     </Button>
                 </Grid>
@@ -124,8 +124,9 @@
                 <Label x:Name="lblRUProizvodjac" Content="{Binding Path=izabraniPostojeciLek.proizvodjac}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="209,57,0,0" Width="168" Height="24"/>
                 <Label x:Name="lblRUTipLeka" Content="{Binding Path=izabraniPostojeciLek.tip}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="209,92,0,0" Width="168" Height="24"/>
                 <Label x:Name="lblRUNacinUpotrebe" Content="{Binding Path=izabraniPostojeciLek.nacinUpotrebe}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="209,129,0,0" Width="168" Height="24"/>
+                <Label x:Name="lblSas" Content="*Sastojak već postoji" FontWeight="Bold" Visibility="{Binding Path=sasGr, Converter={StaticResource BoolToVis}}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15,232,5,0" Width="168" Height="24"/>
                 <ListBox x:Name="listRUSastojci" ItemsSource="{Binding Path=izabraniPostojeciLek.sastojci}" SelectedItem="{Binding Path=izabraniSastojak, Mode=TwoWay}" Background="#F5F5F5" HorizontalAlignment="Left" Height="297" Margin="17,259,0,0" VerticalAlignment="Top" Width="387"/>
-                <TextBox x:Name="txtDodavanjeSastojaka" Text="{Binding Path=sastojak, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="17,217,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                <TextBox x:Name="txtDodavanjeSastojaka" Text="{Binding Path=sastojak, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="17,215,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
                 <Button x:Name="btnDodavanjeSastojka" Command="{Binding Path=dodavanjeSastojaka}" IsEnabled="{Binding Path=btnDodaj, Mode=TwoWay}" HorizontalAlignment="Left" Margin="167,208,0,0" VerticalAlignment="Top" Width="49">
                     <materialDesign:PackIcon Kind="Plus" HorizontalAlignment="Center" Height="25" Width="28"></materialDesign:PackIcon>
                 </Button>
@@ -156,10 +157,10 @@
                         <DataGridTextColumn Header="Način upotrebe" Binding="{Binding nacinUpotrebe}"></DataGridTextColumn>
                     </DataGrid.Columns>
                 </DataGrid>
-                <Button x:Name="btnPotvrdaZamenskogLeka" Command="{Binding Path=dodavanjeZamenskogLeka}" HorizontalAlignment="Left" Margin="36,574,0,0" VerticalAlignment="Top" Width="85" Height="46">
+                <Button x:Name="btnPotvrdaZamenskogLeka" Background="#FF274E13" Command="{Binding Path=dodavanjeZamenskogLeka}" HorizontalAlignment="Left" Margin="36,574,0,0" VerticalAlignment="Top" Width="85" Height="46">
                     <materialDesign:PackIcon Kind="CheckCircle"></materialDesign:PackIcon>
                 </Button>
-                <Button x:Name="btnPonistavanjeZamenskogLeka" Command="{Binding Path=ponistiZamenskiLek}" HorizontalAlignment="Left" Margin="299,574,0,0" VerticalAlignment="Top" Width="80" Height="46">
+                <Button x:Name="btnPonistavanjeZamenskogLeka" Background="#FF990000" Command="{Binding Path=ponistiZamenskiLek}" HorizontalAlignment="Left" Margin="299,574,0,0" VerticalAlignment="Top" Width="80" Height="46">
                     <materialDesign:PackIcon Kind="CloseCircle"></materialDesign:PackIcon>
                 </Button>
             </Grid>
@@ -170,10 +171,10 @@
             </Grid.Background>
             <Grid Background="White" Margin="0,164,0,257" Opacity="1" >
                 <TextBox x:Name="txtPrijavaGreske" HorizontalAlignment="Left" Height="107" Background="Gainsboro" Margin="33,85,0,0" TextWrapping="Wrap" Text="{Binding Path=prijavaGreskeTekst, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="360"/>
-                <Button HorizontalAlignment="Left" Command="{Binding Path=potvrdaPrijaveGreske}" IsEnabled="{Binding Path=btnPotvrdaPrijave, Mode=TwoWay}" Margin="74,204,0,0" VerticalAlignment="Top" Width="75">
+                <Button HorizontalAlignment="Left" Background="#FF274E13" Command="{Binding Path=potvrdaPrijaveGreske}" IsEnabled="{Binding Path=btnPotvrdaPrijave, Mode=TwoWay}" Margin="74,204,0,0" VerticalAlignment="Top" Width="75">
                     <materialDesign:PackIcon Kind="CheckCircle" Height="22" Width="25"></materialDesign:PackIcon>
                 </Button>
-                <Button HorizontalAlignment="Left" Margin="281,204,0,0" VerticalAlignment="Top" Width="75" Command="{Binding Path=ponistavanjePrikaza}">
+                <Button HorizontalAlignment="Left" Background="#FF990000" Margin="281,204,0,0" VerticalAlignment="Top" Width="75" Command="{Binding Path=ponistavanjePrikaza}">
                     <materialDesign:PackIcon Kind="CloseCircle" Height="22" Width="25"></materialDesign:PackIcon>
                 </Button>
 

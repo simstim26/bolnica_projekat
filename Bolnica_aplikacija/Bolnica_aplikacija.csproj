@@ -37,8 +37,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
-      <HintPath>packages\Portable.BouncyCastle.1.8.9\lib\net40\BouncyCastle.Crypto.dll</HintPath>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.6.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>packages\BouncyCastle.1.8.6.1\lib\BouncyCastle.Crypto.dll</HintPath>
     </Reference>
     <Reference Include="Common.Logging, Version=3.4.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
       <HintPath>packages\Common.Logging.3.4.1\lib\net40\Common.Logging.dll</HintPath>
@@ -72,6 +72,9 @@
     </Reference>
     <Reference Include="itext.svg, Version=7.1.15.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
       <HintPath>packages\itext7.7.1.15\lib\net45\itext.svg.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.2, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>packages\iTextSharp.5.5.13.2\lib\itextsharp.dll</HintPath>
     </Reference>
     <Reference Include="MaterialDesignColors, Version=2.0.0.2422, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
       <HintPath>packages\MaterialDesignColors.2.0.0\lib\net452\MaterialDesignColors.dll</HintPath>
@@ -135,6 +138,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Interfejs\ICRUD.cs" />
+    <Compile Include="Interfejs\Implementacija\LekarCRUDImplementacija.cs" />
+    <Compile Include="Interfejs\Implementacija\ObavestenjeCRUDImplementacija.cs" />
+    <Compile Include="Interfejs\Implementacija\PacijentCRUDImplementacija.cs" />
+    <Compile Include="Komande\BindableBase.cs" />
     <Compile Include="Komande\RelayCommand.cs" />
     <Compile Include="Kontroler\AlergijaKontroler.cs" />
     <Compile Include="Kontroler\BolestKontroler.cs" />
@@ -151,6 +159,7 @@
     <Compile Include="Kontroler\PrijavaGreskeKontroler.cs" />
     <Compile Include="Kontroler\ProstorijaKontroler.cs" />
     <Compile Include="Kontroler\ProstorijaZauzetoKontroler.cs" />
+    <Compile Include="Kontroler\ProzorFactoryKontroler.cs" />
     <Compile Include="Kontroler\SekretarKontroler.cs" />
     <Compile Include="Kontroler\SpecijalizacijaKontroler.cs" />
     <Compile Include="Kontroler\StavkaKontroler.cs" />
@@ -167,6 +176,7 @@
     <Compile Include="PomocneKlase\KonvertBolest.cs" />
     <Compile Include="PomocneKlase\KonverterProstorije.cs" />
     <Compile Include="PomocneKlase\NotifikacijaDTO.cs" />
+    <Compile Include="PomocneKlase\ObavestenjeDTO.cs" />
     <Compile Include="PomocneKlase\Ponavljanje.cs" />
     <Compile Include="PomocneKlase\KonverterBolnickoLecenje.cs" />
     <Compile Include="PomocneKlase\LekarDTO.cs" />
@@ -193,6 +203,7 @@
     <Compile Include="Repozitorijum\OcenaLekaraRepozitorijum.cs" />
     <Compile Include="Repozitorijum\PrijavaGreskeRepozitorijum.cs" />
     <Compile Include="Servis\BolnickoLecenjeServis.cs" />
+    <Compile Include="Servis\ProzorFactoryServis.cs" />
     <Compile Include="Servis\LogovanjeServis.cs" />
     <Compile Include="Servis\OcenaBolniceServis.cs" />
     <Compile Include="Servis\OcenaLekaraServis.cs" />
@@ -201,6 +212,9 @@
     <Compile Include="ViewModel\LekarTaboviViewModel.cs" />
     <Compile Include="ViewModel\LekZaOdobravanjeViewModel.cs" />
     <Compile Include="ViewModel\PacijentiInfoViewModel.cs" />
+    <Compile Include="ViewModel\SekretarFeedbackViewModel.cs" />
+    <Compile Include="ViewModel\SekretarIzvestajViewModel.cs" />
+    <Compile Include="ViewModel\SekretarObavestenjaViewModel.cs" />
     <Compile Include="View\LekarStudent\Alergije.xaml.cs">
       <DependentUpon>Alergije.xaml</DependentUpon>
     </Compile>
@@ -283,6 +297,15 @@
     <Compile Include="Repozitorijum\TerapijaRepozitorijum.cs" />
     <Compile Include="Repozitorijum\TerminRepozitorijum.cs" />
     <Compile Include="Repozitorijum\UpravnikRepozitorijum.cs" />
+    <Compile Include="View\SekretarStudent\SekretarFeedback.xaml.cs">
+      <DependentUpon>SekretarFeedback.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SekretarStudent\SekretarIzvestaj.xaml.cs">
+      <DependentUpon>SekretarIzvestaj.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SekretarStudent\SekretarObavestenja.xaml.cs">
+      <DependentUpon>SekretarObavestenja.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\SekretarStudent\SekretarProzor.xaml.cs">
       <DependentUpon>SekretarProzor.xaml</DependentUpon>
     </Compile>
@@ -524,6 +547,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\SekretarStudent\SekretarFeedback.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SekretarStudent\SekretarIzvestaj.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SekretarStudent\SekretarObavestenja.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\SekretarStudent\SekretarProzor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -756,7 +791,6 @@
   <ItemGroup>
     <Resource Include="View\UpravnikStudent\logout.png" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="Assets\video1.mp4">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

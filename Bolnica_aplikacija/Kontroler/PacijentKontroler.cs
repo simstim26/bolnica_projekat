@@ -114,32 +114,37 @@ namespace Bolnica_aplikacija.Kontroler
             PacijentServis.getInstance().pomeriTerminNaPrviSlobodan(idPacijenta, idTermina, tip, idSpecijalizacije);
         }
 
-        public static void NapraviPacijenta(PacijentDTO pacijentDTO, List<Alergija> alergije)
+        public static void napraviPacijenta(PacijentDTO pacijentDTO)
         {
             Pacijent pacijent = new Pacijent(pacijentDTO.idBolnice, pacijentDTO.jeGost, pacijentDTO.korisnickoIme, pacijentDTO.lozinka, pacijentDTO.jmbg, pacijentDTO.ime, pacijentDTO.prezime, pacijentDTO.datumRodjenja, pacijentDTO.adresa, pacijentDTO.email, pacijentDTO.brojTelefona);
-            PacijentServis.getInstance().NapraviPacijenta(pacijent,alergije);
+            PacijentServis.getInstance().napraviPacijenta(pacijent);
         }
 
         public static List<Pacijent> ProcitajPacijente()
         {
-            return PacijentServis.getInstance().ProcitajPacijente();
+            return PacijentServis.getInstance().procitajPacijente();
         }
 
-        public static void AzurirajPacijenta(PacijentDTO pacijentDTO, List<Alergija> alergije)
+        public static void azurirajPacijenta(PacijentDTO pacijentDTO)
         {
             Pacijent pacijent = new Pacijent(pacijentDTO.idBolnice, pacijentDTO.jeGost, pacijentDTO.korisnickoIme, pacijentDTO.lozinka, pacijentDTO.jmbg, pacijentDTO.ime, pacijentDTO.prezime, pacijentDTO.datumRodjenja, pacijentDTO.adresa, pacijentDTO.email, pacijentDTO.brojTelefona);
             pacijent.id = pacijentDTO.id;
-            PacijentServis.getInstance().AzurirajPacijenta(pacijent, alergije);
+            PacijentServis.getInstance().azurirajPacijenta(pacijent);
         }
 
         public static void ObrisiPacijenta(String idPacijenta)
         {
-            PacijentServis.getInstance().ObrisiPacijenta(idPacijenta);
+            PacijentServis.getInstance().obrisiPacijenta(idPacijenta);
         }
 
         public static List<TerapijaPacijent> ucitajAktivneTerapije(String idPacijenta)
         {
             return PacijentServis.getInstance().ucitajAktivneTerapije(idPacijenta);
+        }
+
+        public static int ukupanBrojPacijenata()
+        {
+            return PacijentServis.getInstance().ukupanBrojPacijenata();
         }
 
     }

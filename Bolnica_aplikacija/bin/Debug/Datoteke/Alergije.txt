@@ -33,7 +33,15 @@
   },
   {
     "idPacijenta": "11",
-    "nazivAlergije": "obiman foreach"
+    "nazivAlergije": "obiman foreachh"
+  },
+  {
+    "idPacijenta": "2",
+    "nazivAlergije": "Svasta Nesto 2"
+  },
+  {
+    "idPacijenta": "2",
+    "nazivAlergije": "Alergija"
   },
   {
     "idPacijenta": "1",

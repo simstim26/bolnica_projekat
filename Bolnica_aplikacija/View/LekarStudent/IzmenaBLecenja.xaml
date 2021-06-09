@@ -18,10 +18,10 @@
             </DataGrid.Columns>
         </DataGrid>
         <Label Content="Odabir bolničke sobe:" HorizontalAlignment="Left" Margin="25,188,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="btnPotvrdi" HorizontalAlignment="Left" Margin="42,569,0,0" VerticalAlignment="Top" Width="85" Height="50" Click="btnPotvrdi_Click">
+        <Button x:Name="btnPotvrdi" HorizontalAlignment="Left" Margin="42,569,0,0" VerticalAlignment="Top" Width="85" Height="50" Click="btnPotvrdi_Click" Background="#FF274E13">
             <materialDesign:PackIcon Kind="CheckCircle" Height="31" Width="37"></materialDesign:PackIcon>
         </Button>
-        <Button x:Name="btnPonisti" HorizontalAlignment="Left" Margin="303,569,0,0" VerticalAlignment="Top" Width="85" Height="50" Click="btnPonisti_Click">
+        <Button x:Name="btnPonisti" HorizontalAlignment="Left" Margin="303,569,0,0" VerticalAlignment="Top" Width="85" Height="50" Click="btnPonisti_Click" Background="#FF990000">
             <materialDesign:PackIcon Kind="CloseCircle" Height="37" Width="34"></materialDesign:PackIcon>
         </Button>
         <Label x:Name="lblDatumPocekta" HorizontalAlignment="Left" Margin="171,51,0,0" VerticalAlignment="Top" Width="182" Height="24"/>

@@ -115,9 +115,32 @@ namespace Bolnica_aplikacija.ViewModel
                 }
                 else
                 {
-                    btnDodaj = true;
+                    if (LekKontroler.postojiSastojak(izabraniPostojeciLek.id, sastojak.Trim()))
+                    {
+                        btnDodaj = false;
+                        sasGr = true;
+                    }
+                    else
+                    {
+                        btnDodaj = true;
+                        sasGr = false;
+                    }
                 }
                 NotifyPropertyChanged("sastojak");
+            }
+        }
+
+        private bool pSasGr;
+        public bool sasGr
+        {
+            get
+            {
+                return pSasGr;
+            }
+            set
+            {
+                pSasGr = value;
+                NotifyPropertyChanged("sasGr");
             }
         }
 
@@ -805,7 +828,7 @@ namespace Bolnica_aplikacija.ViewModel
         private void izvrsiPotvrduPrijaveGreske(object obj)
         {
             PrijavaGreskeKontroler.sacuvaj(prijavaGreskeTekst);
-            MessageBox.Show("Greska je uspesno prijavljena!", "informacija", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show("Greška je uspešno prijavljena!", "informacija", MessageBoxButton.OK, MessageBoxImage.Information);
             gridPrijavaGreske = false;
         }
 

@@ -1,30 +1,32 @@
 [
   {
     "id": "1",
-    "naslovObavestenja": "Neki naslov izmena",
-    "sadrzajObavestenja": "Neki sadrzaj vesti izmena",
-    "notifikacija": null,
+    "naslovObavestenja": "Test 1",
+    "sadrzajObavestenja": "Tekst1",
     "jeLogickiObrisano": true
   },
   {
     "id": "2",
-    "naslovObavestenja": "Neki naslov 2",
-    "sadrzajObavestenja": "Neki tekst",
-    "notifikacija": null,
+    "naslovObavestenja": "Test 2 IZMENA",
+    "sadrzajObavestenja": "tekst 2 IZMENAA",
     "jeLogickiObrisano": true
   },
   {
     "id": "3",
-    "naslovObavestenja": "Neki naslov 3 izmena",
-    "sadrzajObavestenja": "Neki sadrzaj izmena",
-    "notifikacija": null,
-    "jeLogickiObrisano": true
+    "naslovObavestenja": "Obavestenje 2",
+    "sadrzajObavestenja": "Obavestenje 2",
+    "jeLogickiObrisano": false
   },
   {
     "id": "4",
-    "naslovObavestenja": "asdasdas",
-    "sadrzajObavestenja": "sadsadas",
-    "notifikacija": null,
+    "naslovObavestenja": "Novo IZMENA 2",
+    "sadrzajObavestenja": "uuu3",
     "jeLogickiObrisano": false
+  },
+  {
+    "id": "5",
+    "naslovObavestenja": "AAA",
+    "sadrzajObavestenja": "aaa",
+    "jeLogickiObrisano": true
   }
 ]

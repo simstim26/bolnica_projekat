@@ -329,7 +329,6 @@ namespace Bolnica_aplikacija.Servis
                 DateTime terminDatum = termin.datum;
                 DateTime datumPocetkaGodisnjeg = lekar.pocetakGodisnjegOdmora;
                 DateTime datumKrajaGodisnjeg = lekar.krajGodisnjegOdmora;
-
                 int rezultat1 = DateTime.Compare(terminDatum, datumPocetkaGodisnjeg);
                 int rezultat2 = DateTime.Compare(terminDatum, datumKrajaGodisnjeg);
 
@@ -341,9 +340,27 @@ namespace Bolnica_aplikacija.Servis
             else
             {
                 rezultat = false;
-            }
-            
+            }           
             return rezultat;
+        }
+
+        public List<Termin> pronadjiTermineZaIzvestajSekretara(DateTime pocetak, DateTime kraj)
+        {
+            List<Termin> termini = new List<Termin>();
+
+            if(pocetak == kraj)
+            {
+                kraj.AddDays(1);
+            }
+
+            foreach (Termin termin in ucitajSve())
+            {
+                if (termin.datum >= pocetak && termin.datum <= kraj && !termin.idPacijenta.Equals(""))
+                {
+                    termini.Add(termin);
+                }
+            }          
+            return termini;
         }
 
 

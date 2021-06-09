@@ -9,102 +9,13 @@
         Title="Sekretar" Height="768" Width="1366" Visibility="Visible" ResizeMode="CanMinimize"
         >
     <Grid x:Name="Grid" HorizontalAlignment="Left" Height="748" Margin="-4,-17,0,0" VerticalAlignment="Top" Width="1356">
-        <Grid x:Name="PocetniEkranGrid" Margin="0,18,-8,-9" HorizontalAlignment="Left" Width="1364" Background="#FFF7FFF4" d:IsHidden="True">
-            <Button x:Name="pacijentiButton" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Height="200" FontSize="36" FontWeight="Bold" Click="pacijenti_Click" Margin="428,140,0,0" BorderBrush="#FF67B6D5" >
-                <Button.Effect>
-                    <DropShadowEffect BlurRadius="10" Direction="314" Opacity="0.35"/>
-                </Button.Effect>
-                <Button.Background>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="#FF55D4DA" Offset="0"/>
-                        <GradientStop Color="#FF70A6D3" Offset="1"/>
-                    </LinearGradientBrush>
-                </Button.Background>
-                <materialDesign:PackIcon x:Name="packIconPacijenti" Kind="person" Height="152" Width="158"/>
-            </Button>
-            <Button x:Name="terminiButton" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Height="200" FontSize="36" FontWeight="Bold" Margin="700,140,0,0" Click="terminiButton_Click" BorderBrush="#FF9A88D3" >
-                <Button.Effect>
-                    <DropShadowEffect BlurRadius="10" Opacity="0.35"/>
-                </Button.Effect>
-                <Button.Background>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="#FF9C85CD" Offset="0"/>
-                        <GradientStop Color="#FF9297F0" Offset="1"/>
-                    </LinearGradientBrush>
-                </Button.Background>
-                <materialDesign:PackIcon x:Name="packIconTermini" Kind="Calendar" Height="152" Width="158"/>
-            </Button>
-            <Button x:Name="saleButton" VerticalAlignment="Top" Height="200" FontSize="36" FontWeight="Bold" Margin="428,388,0,0" HorizontalAlignment="Left" Width="200" BorderBrush="#FF69EA62">
-                <Button.Effect>
-                    <DropShadowEffect BlurRadius="10" Opacity="0.35"/>
-                </Button.Effect>
-                <Button.Background>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="#FFF3F336" Offset="0"/>
-                        <GradientStop Color="#FFC1C104" Offset="1"/>
-                    </LinearGradientBrush>
-                </Button.Background>
-                <materialDesign:PackIcon x:Name="packIconSale" Kind="Bed" Height="152" Width="158"/>
-            </Button>
-            <Button x:Name="lekariButton" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Height="200" FontSize="36" FontWeight="Bold" Margin="700,388,0,0" Click="lekariButton_Click" BorderBrush="#FFE1E145">
-                <Button.Effect>
-                    <DropShadowEffect BlurRadius="10" Opacity="0.35"/>
-                </Button.Effect>
-                <Button.Background>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="#FF5FEA58" Offset="0"/>
-                        <GradientStop Color="#FFA0E899" Offset="1"/>
-                    </LinearGradientBrush>
-                </Button.Background>
-                <materialDesign:PackIcon x:Name="packIconLekari" Kind="Doctor" Height="152" Width="158"/>
-            </Button>
-            <Button x:Name="helpButton" Content="" VerticalAlignment="Top" Height="65" FontSize="36" FontWeight="Bold" BorderThickness="0" Margin="1254,651,44,0" Width="65" RenderTransformOrigin="0.569,1.138" >
-                <Button.Effect>
-                    <DropShadowEffect BlurRadius="22" Opacity="0.45"/>
-                </Button.Effect>
-                <Button.Background>
-                    <ImageBrush Stretch="Uniform" ImageSource="question_mark.png"/>
-                </Button.Background>
-            </Button>
-            <Button x:Name="odjavaButton" Content="ODJAVI SE" HorizontalAlignment="Left" Margin="1198,31,0,0" VerticalAlignment="Top" Width="141" Height="55" RenderTransformOrigin="0.624,0" FontSize="22" FontWeight="Bold" Click="odjavaButton_Click" Background="#FF6CD894" BorderBrush="#FF55EE8C"/>
-            <Label x:Name="lblSekretar" Content="" HorizontalAlignment="Right" Margin="0,31,171,0" VerticalAlignment="Top" Height="55" Width="393" FontSize="36"/>
-            <Image x:Name="imgLogo" HorizontalAlignment="Left" Height="100" Margin="28,10,0,0" VerticalAlignment="Top" Width="100" Source="logo.png"/>
-            <Label x:Name="lblnazivKompanije" Content="ZDRAVO KORPORACIJA" HorizontalAlignment="Right" Margin="0,31,769,0" VerticalAlignment="Top" Height="55" Width="467" FontSize="36" FontWeight="Bold" FontFamily="MV Boli" Background="{x:Null}">
-                <Label.Foreground>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="#FF74EE61" Offset="0"/>
-                        <GradientStop Color="#FFA1EE95" Offset="1"/>
-                    </LinearGradientBrush>
-                </Label.Foreground>
-                <Label.Effect>
-                    <DropShadowEffect ShadowDepth="2" Opacity="0.15"/>
-                </Label.Effect>
-            </Label>
-            <Button x:Name="btnObavestenja" HorizontalAlignment="Left" Margin="1148,639,0,0" VerticalAlignment="Top" Width="90" Height="90" BorderBrush="{x:Null}" Click="btnObavestenja_Click">
-                <Button.Effect>
-                    <DropShadowEffect BlurRadius="22" Opacity="0.45"/>
-                </Button.Effect>
-                <Button.Background>
-                    <ImageBrush ImageSource="PacijentInfo.png" Stretch="Uniform"/>
-                </Button.Background>
-            </Button>
-            <Button x:Name="btnHitanSlucaj" HorizontalAlignment="Left" Margin="1058,643,0,0" VerticalAlignment="Top" Width="70" Height="78" BorderBrush="{x:Null}" Click="btnHitanSlucaj_Click">
-                <Button.Effect>
-                    <DropShadowEffect BlurRadius="22" Opacity="0.45"/>
-                </Button.Effect>
-                <Button.Background>
-                    <ImageBrush ImageSource="hitanSlucaj.png" Stretch="Uniform"/>
-                </Button.Background>
-            </Button>
-        </Grid>
-        <Grid x:Name="PacijentGrid" HorizontalAlignment="Left" Height="730" Margin="0,18,0,0" VerticalAlignment="Top" Width="1346" TargetUpdated="PacijentGrid_TargetUpdated" d:IsHidden="True">
+        <Grid x:Name="PacijentGrid" HorizontalAlignment="Left" Height="732" Margin="0,16,-8,0" VerticalAlignment="Top" Width="1364" TargetUpdated="PacijentGrid_TargetUpdated" d:IsHidden="True">
             <Grid.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF83C8F7" Offset="0"/>
                     <GradientStop Color="#FFCBDBE6" Offset="1"/>
                 </LinearGradientBrush>
             </Grid.Background>
-            <Image x:Name="pacijentIcon" HorizontalAlignment="Left" Height="200" Margin="50,93,0,0" VerticalAlignment="Top" Width="200" Source="pacijent.png" />
             <Button x:Name="btnDodajPacijenta" Content="                     " HorizontalAlignment="Left" Height="80" Margin="110,320,0,0" VerticalAlignment="Top" Width="80" RenderTransformOrigin="0.325,0.75" BorderThickness="0" ToolTip="Dodaj pacijenta" Click="dodajPacijentaButton_Click">
                 <Button.Background>
                     <ImageBrush  Stretch="Uniform" ImageSource="dodajPacijenta.png"/>
@@ -120,7 +31,7 @@
                     <ImageBrush  Stretch="Uniform" ImageSource="IzbrisiPacijenta.png"/>
                 </Button.Background>
             </Button>
-            <GridSplitter HorizontalAlignment="Left" Height="730" Margin="326,0,-20,0" VerticalAlignment="Top" Width="1040">
+            <GridSplitter HorizontalAlignment="Stretch" Height="730" Margin="326,0,0,0" VerticalAlignment="Top">
                 <GridSplitter.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                         <GradientStop Color="#FFCFC9C9" Offset="0"/>
@@ -134,22 +45,17 @@
                 </Button.Background>
 
             </Button>
-            <Button x:Name="btnPovratakPacijent" Content="POVRATAK" HorizontalAlignment="Left" Height="25" Margin="94,17,0,0" VerticalAlignment="Top" Width="108" Click="ButtonPovratak_Click" BorderThickness="0">
-                <Button.Background>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="#FFEA8A48" Offset="0"/>
-                        <GradientStop Color="#FFEEB38A" Offset="1"/>
-                    </LinearGradientBrush>
-                </Button.Background>
+            <Button x:Name="btnPovratakPacijent" HorizontalAlignment="Left" Height="80" Margin="10,10,0,0" VerticalAlignment="Top" Width="80" Click="ButtonPovratak_Click" BorderThickness="0" Foreground="{x:Null}" Background="{x:Null}">
+                <materialDesign:PackIcon x:Name="iconPacijentiPovratak" Kind="ArrowBackCircle" Height="55" Width="45" Foreground="#FF178EEA"/>
             </Button>
-            <DataGrid x:Name="TabelaPacijenti" HorizontalAlignment="Left" Height="242" Margin="324,0,-18,488" VerticalAlignment="Bottom" Width="1040" FontSize="24" HeadersVisibility="All" AutoGenerateColumns="False" CanUserAddRows="false">
+            <DataGrid x:Name="TabelaPacijenti" HorizontalAlignment="Left" Height="242" Margin="324,0,-18,488" VerticalAlignment="Bottom" Width="1040" FontSize="24" HeadersVisibility="All" AutoGenerateColumns="False" CanUserAddRows="false" Background="#FFB5D5EB">
                 <DataGrid.Columns>
                     <DataGridTextColumn x:Name="kolonaJMBG" Binding="{Binding jmbg}" IsReadOnly="True" Header="JMBG" Width="347" CanUserResize="False" Foreground="Black" FontSize="24"/>
                     <DataGridTextColumn x:Name="kolonaIme" Binding="{Binding ime}" IsReadOnly="True" Header="IME" Width="347" CanUserResize="False" Foreground="Black" FontSize="24" />
                     <DataGridTextColumn x:Name="kolonaPrezime" Binding="{Binding prezime}" IsReadOnly="True" Header="PREZIME" Width="347" CanUserResize="False" Foreground="Black" FontSize="24"/>
                 </DataGrid.Columns>
             </DataGrid>
-            <DataGrid x:Name="dataGridAlergije" HorizontalAlignment="Left" Height="180" Margin="882,442,0,0" VerticalAlignment="Top" Width="436" CanUserAddRows="true" CanUserDeleteRows="true" AutoGenerateColumns="False" IsEnabled="False" >
+            <DataGrid x:Name="dataGridAlergije" HorizontalAlignment="Left" Height="180" Margin="882,442,0,0" VerticalAlignment="Top" Width="436" CanUserAddRows="true" CanUserDeleteRows="true" AutoGenerateColumns="False" IsEnabled="False" Background="#FFB5D5EB" >
                 <DataGrid.Columns>
                     <DataGridTextColumn x:Name="kolonaAlergije"  Binding="{Binding nazivAlergije}" IsReadOnly="False" Header="NAZIV ALERGIJE" Width="347" CanUserResize="False" Foreground="Black" FontSize="24" />
                 </DataGrid.Columns>
@@ -169,13 +75,13 @@
                     <Label x:Name="labelaDatumRodj" Content="DATUM ROĐENJA:" HorizontalAlignment="Left" Height="46" Margin="0,163,-73,0" VerticalAlignment="Top" Width="174" FontSize="20"/>
                 </Grid>
                 <Grid x:Name="TextFieldPolja" Grid.Column="1" Margin="11,-32,596,157">
-                    <TextBox x:Name="textJMBG" HorizontalAlignment="Left" Height="41" TextWrapping="Wrap" VerticalAlignment="Top" Width="260" Background="#FFB2D4EC" FontSize="18" IsEnabled="False" Margin="82,0,-58,0" TextChanged="textJMBG_TextChanged"/>
-                    <TextBox x:Name="textIme" HorizontalAlignment="Left" Height="41" Margin="82,55,-58,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="260" Background="#FFB2D4EC" FontSize="18" IsEnabled="False" TextChanged="textIme_TextChanged"/>
-                    <TextBox x:Name="textPrezime" HorizontalAlignment="Left" Height="41" Margin="82,105,-58,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="260" Background="#FFB2D4EC" FontSize="18" IsEnabled="False" TextChanged="textPrezime_TextChanged"/>
-                    <TextBox x:Name="textAdresa" HorizontalAlignment="Left" Height="41" Margin="82,212,-58,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="260" Background="#FFB2D4EC" FontSize="18" IsEnabled="False" TextChanged="textAdresa_TextChanged"/>
-                    <TextBox x:Name="textEmail" HorizontalAlignment="Left" Height="41" Margin="82,268,-58,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="260" Background="#FFB2D4EC" FontSize="18" IsEnabled="False" TextChanged="textEmail_TextChanged"/>
-                    <TextBox x:Name="textTelefon" HorizontalAlignment="Left" Height="41" Margin="82,319,-58,-48" TextWrapping="Wrap" VerticalAlignment="Top" Width="260" Background="#FFB2D4EC" FontSize="18" IsEnabled="False" TextChanged="textTelefon_TextChanged"/>
-                    <TextBox x:Name="textDatumRodj" HorizontalAlignment="Left" Height="41" Margin="82,158,-58,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="260" Background="#FFB2D4EC" FontSize="18" IsEnabled="False" TextChanged="textDatumRodj_TextChanged"/>
+                    <TextBox x:Name="textJMBG" ToolTip="Format: 13 cifara" HorizontalAlignment="Left" Height="41" TextWrapping="Wrap" VerticalAlignment="Top" Width="260" Background="#FFB2D4EC" FontSize="18" IsEnabled="False" Margin="82,0,-58,0" TextChanged="textJMBG_TextChanged" materialDesign:HintAssist.Hint=" Unesite JMBG (13 cifara)..."/>
+                    <TextBox x:Name="textIme" HorizontalAlignment="Left" Height="41" Margin="82,55,-58,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="260" Background="#FFB2D4EC" FontSize="18" IsEnabled="False" TextChanged="textIme_TextChanged" materialDesign:HintAssist.Hint=" Unesite ime..."/>
+                    <TextBox x:Name="textPrezime" HorizontalAlignment="Left" Height="41" Margin="82,105,-58,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="260" Background="#FFB2D4EC" FontSize="18" IsEnabled="False" TextChanged="textPrezime_TextChanged" materialDesign:HintAssist.Hint=" Unesite preyime..."/>
+                    <TextBox x:Name="textAdresa" HorizontalAlignment="Left" Height="41" Margin="82,212,-58,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="260" Background="#FFB2D4EC" FontSize="18" IsEnabled="False" TextChanged="textAdresa_TextChanged" materialDesign:HintAssist.Hint=" Unesite adresu stanovanja..."/>
+                    <TextBox x:Name="textEmail" HorizontalAlignment="Left" Height="41" Margin="82,268,-58,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="260" Background="#FFB2D4EC" FontSize="18" IsEnabled="False" TextChanged="textEmail_TextChanged" materialDesign:HintAssist.Hint=" Unesite E-mail adresu..."/>
+                    <TextBox x:Name="textTelefon" HorizontalAlignment="Left" Height="41" Margin="82,319,-58,-48" TextWrapping="Wrap" VerticalAlignment="Top" Width="260" Background="#FFB2D4EC" FontSize="18" IsEnabled="False" TextChanged="textTelefon_TextChanged" materialDesign:HintAssist.Hint=" Unesite broj telefona..."/>
+                    <TextBox x:Name="textDatumRodj" ToolTip="Format: Mesec/Dan/Godina (06/06/1994)" HorizontalAlignment="Left" Height="41" Margin="82,158,-58,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="260" Background="#FFB2D4EC" FontSize="18" IsEnabled="False" TextChanged="textDatumRodj_TextChanged" materialDesign:HintAssist.Hint=" Mesec/Dan/Godina..."/>
                 </Grid>
                 <Button x:Name="buttonPotvrdiDodavanje" Content="POTVRDI" Grid.Column="1" HorizontalAlignment="Left" Margin="97,352,0,0" VerticalAlignment="Top" Width="98" Height="33" Click="buttonPotvrdiDodavanje_Click" Visibility="Hidden"/>
                 <Button x:Name="buttonOdustaniDodavanje" Content="ODUSTANI" Grid.Column="1" HorizontalAlignment="Left" Margin="257,352,0,0" VerticalAlignment="Top" Width="103" Height="33" Click="buttonOdustani_Click" Visibility="Hidden"/>
@@ -183,7 +89,7 @@
                     <Label x:Name="labelaKorisnickoIme" Content="KORISNIČKO IME:" HorizontalAlignment="Left" Height="46" Margin="58,5,0,0" VerticalAlignment="Top" Width="166" FontSize="20"/>
                     <TextBox x:Name="textKorisnickoIme" HorizontalAlignment="Left" Height="41" Margin="237,10,-64,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="259" Background="#FFB2D4EC" FontSize="18" IsEnabled="False" TextChanged="textKorisnickoIme_TextChanged"/>
                     <Label x:Name="labelaLozinka" Content="LOZINKA:" HorizontalAlignment="Left" Height="46" Margin="58,56,0,0" VerticalAlignment="Top" Width="166" FontSize="20"/>
-                    <PasswordBox x:Name="lozinka" HorizontalAlignment="Left" Margin="237,62,-64,0" VerticalAlignment="Top" Width="259" Height="40" Background="#FFCADCEA" PasswordChanged="lozinka_PasswordChanged"/>
+                    <PasswordBox x:Name="lozinka" HorizontalAlignment="Left" Margin="237,62,-64,0" VerticalAlignment="Top" Width="259" Height="40" Background="#FFB2D4EC" PasswordChanged="lozinka_PasswordChanged"/>
                     <Label x:Name="labelaLozinka_Copy" Content="ALERGIJE:" HorizontalAlignment="Left" Height="46" Margin="58,151,0,-45" VerticalAlignment="Top" Width="166" FontSize="20"/>
                 </Grid>
             </Grid>
@@ -199,8 +105,9 @@
                 </Image.RenderTransform>
             </Image>
             <Button x:Name="___btnDodajRed_" HorizontalAlignment="Left" Margin="1012,453,0,0" VerticalAlignment="Top" Width="19" Height="18" Click="___btnDodajRed__Click" Background="{x:Null}" BorderBrush="{x:Null}" Content="" IsEnabled="False" />
+            <materialDesign:PackIcon x:Name="iconPacijent" Kind="Person" HorizontalAlignment="Left" Margin="60,95,0,0" VerticalAlignment="Top" Width="180" Height="180" Foreground="#FF178EE9"/>
         </Grid>
-        <Grid x:Name="TerminiGrid" HorizontalAlignment="Left" Height="730" Margin="0,18,0,0" VerticalAlignment="Top" Width="1346" d:IsHidden="True">
+        <Grid x:Name="TerminiGrid" HorizontalAlignment="Left" Height="741" Margin="0,16,-8,-9" VerticalAlignment="Top" Width="1364" d:IsHidden="True">
             <Grid.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF83C8F7" Offset="0"/>
@@ -208,7 +115,6 @@
                     <GradientStop Color="#FF9D6EEE" Offset="0"/>
                 </LinearGradientBrush>
             </Grid.Background>
-            <Image x:Name="pacijentIcon1" HorizontalAlignment="Left" Height="200" Margin="62,93,0,0" VerticalAlignment="Top" Width="200" Source="termin.png" />
             <Button x:Name="zakaziTerminButton" Content="                     " HorizontalAlignment="Left" Height="80" Margin="110,320,0,0" VerticalAlignment="Top" Width="80" RenderTransformOrigin="0.325,0.75" BorderThickness="0" ToolTip="Zakaži termin" Click="zakaziTerminButton_Click" BorderBrush="#FF9C5353">
                 <Button.Background>
                     <ImageBrush  Stretch="Uniform" ImageSource="zakaziTermin.png"/>
@@ -224,7 +130,7 @@
                     <ImageBrush  Stretch="Uniform" ImageSource="otkaziTermin.png"/>
                 </Button.Background>
             </Button>
-            <GridSplitter HorizontalAlignment="Left" Height="730" Margin="326,0,-20,0" VerticalAlignment="Top" Width="1040">
+            <GridSplitter HorizontalAlignment="Left" Height="741" Margin="326,0,-2,0" VerticalAlignment="Bottom" Width="1040">
                 <GridSplitter.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                         <GradientStop Color="#FFCFC9C9" Offset="0"/>
@@ -232,19 +138,21 @@
                     </LinearGradientBrush>
                 </GridSplitter.Background>
             </GridSplitter>
-            <Button Content="POVRATAK" HorizontalAlignment="Left" Height="25" Margin="92,17,0,0" VerticalAlignment="Top" Width="114" Click="ButtonPovratak_Click" BorderThickness="0" Background="{x:Null}"/>
-            <DataGrid x:Name="TabelaPacijentiTermini" HorizontalAlignment="Left" Height="200" Margin="346,0,0,513" VerticalAlignment="Bottom" Width="996" FontSize="24" HeadersVisibility="All" AutoGenerateColumns="False" CanUserAddRows="false" SelectionChanged="TabelaPacijenti1_SelectionChanged" Background="#FFDDD3F0">
+            <Button x:Name="btnPovratakTermini" HorizontalAlignment="Left" Height="80" Margin="10,10,0,0" VerticalAlignment="Top" Width="80" Click="ButtonPovratak_Click" BorderThickness="0" Background="{x:Null}">
+                <materialDesign:PackIcon x:Name="iconTerminiPovratak" Kind="ArrowBackCircle" Width="45" Height="60" Foreground="#FF773CB6"/>
+            </Button>
+            <DataGrid x:Name="TabelaPacijentiTermini" HorizontalAlignment="Left" Height="200" Margin="346,0,0,529" VerticalAlignment="Bottom" Width="996" FontSize="18" HeadersVisibility="All" AutoGenerateColumns="False" CanUserAddRows="false" SelectionChanged="TabelaPacijenti1_SelectionChanged" Background="#FFDDD3F0">
                 <DataGrid.Resources>
                     <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" 
                    Color="#FF9D6EEE"/>
                 </DataGrid.Resources>
                 <DataGrid.Columns>
-                    <DataGridTextColumn x:Name="kolonaJMBG1" Binding="{Binding jmbg}" IsReadOnly="True" Header="JMBG" Width="347" CanUserResize="False" Foreground="Black" FontSize="24"/>
-                    <DataGridTextColumn x:Name="kolonaIme1" Binding="{Binding ime}" IsReadOnly="True" Header="IME" Width="347" CanUserResize="False" Foreground="Black" FontSize="24" />
-                    <DataGridTextColumn x:Name="kolonaPrezime1" Binding="{Binding prezime}" IsReadOnly="True" Header="PREZIME" Width="347" CanUserResize="False" Foreground="Black" FontSize="24"/>
+                    <DataGridTextColumn x:Name="kolonaJMBG1" Binding="{Binding jmbg}" IsReadOnly="True" Header="JMBG" Width="347" CanUserResize="False" Foreground="Black" FontSize="18"/>
+                    <DataGridTextColumn x:Name="kolonaIme1" Binding="{Binding ime}" IsReadOnly="True" Header="IME" Width="347" CanUserResize="False" Foreground="Black" FontSize="18" />
+                    <DataGridTextColumn x:Name="kolonaPrezime1" Binding="{Binding prezime}" IsReadOnly="True" Header="PREZIME" Width="347" CanUserResize="False" Foreground="Black" FontSize="18"/>
                 </DataGrid.Columns>
             </DataGrid>
-            <DataGrid x:Name="TabelaTerminiPacijenta" HorizontalAlignment="left" Height="202" Margin="346,0,0,306" VerticalAlignment="Bottom" Width="996" FontSize="24" HeadersVisibility="All" AutoGenerateColumns="False" CanUserAddRows="false" Background="#FFDDD3F0" RenderTransformOrigin="0.5,0.5" SelectionChanged="TabelaTerminiPacijenta_SelectionChanged">
+            <DataGrid x:Name="TabelaTerminiPacijenta" HorizontalAlignment="left" Height="202" Margin="346,0,0,318" VerticalAlignment="Bottom" Width="996" FontSize="18" HeadersVisibility="All" AutoGenerateColumns="False" CanUserAddRows="false" Background="#FFDDD3F0" RenderTransformOrigin="0.5,0.5" SelectionChanged="TabelaTerminiPacijenta_SelectionChanged">
                 <DataGrid.Resources>
                     <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" 
                    Color="#FF9D6EEE"/>
@@ -258,30 +166,30 @@
                     </TransformGroup>
                 </DataGrid.RenderTransform>
                 <DataGrid.Columns>
-                    <DataGridTextColumn x:Name="kolonaDatum" Binding="{Binding datum}" IsReadOnly="True" Header="Datum održavanja" Width="216" CanUserResize="False" Foreground="Black" FontSize="24"/>
-                    <DataGridTextColumn x:Name="kolonaSatnica" Binding="{Binding satnica}" IsReadOnly="True" Header="Satnica" Width="100" CanUserResize="False" Foreground="Black" FontSize="24" />
-                    <DataGridTextColumn x:Name="kolonaProstorija" Binding="{Binding lokacija}" IsReadOnly="True" Header="Prostorija" Width="290" CanUserResize="False" Foreground="Black" FontSize="24"/>
-                    <DataGridTextColumn x:Name="kolonaNapomena" Binding="{Binding napomena}" IsReadOnly="True" Header="Napomena" Width="195" CanUserResize="False" Foreground="Black" FontSize="24"/>
-                    <DataGridTextColumn x:Name="kolonaLekar" Binding="{Binding imeLekara}" IsReadOnly="True" Header="Lekar" Width="195" CanUserResize="False" Foreground="Black" FontSize="24"/>
+                    <DataGridTextColumn x:Name="kolonaDatum" Binding="{Binding datum}" IsReadOnly="True" Header="Datum održavanja" Width="216" CanUserResize="False" Foreground="Black" FontSize="18"/>
+                    <DataGridTextColumn x:Name="kolonaSatnica" Binding="{Binding satnica}" IsReadOnly="True" Header="Satnica" Width="100" CanUserResize="False" Foreground="Black" FontSize="18" />
+                    <DataGridTextColumn x:Name="kolonaProstorija" Binding="{Binding lokacija}" IsReadOnly="True" Header="Prostorija" Width="290" CanUserResize="False" Foreground="Black" FontSize="18"/>
+                    <DataGridTextColumn x:Name="kolonaNapomena" Binding="{Binding napomena}" IsReadOnly="True" Header="Napomena" Width="195" CanUserResize="False" Foreground="Black" FontSize="18"/>
+                    <DataGridTextColumn x:Name="kolonaLekar" Binding="{Binding imeLekara}" IsReadOnly="True" Header="Lekar" Width="195" CanUserResize="False" Foreground="Black" FontSize="18"/>
                 </DataGrid.Columns>
             </DataGrid>
-            <DataGrid x:Name="TabelaSlobodnihTermina" HorizontalAlignment="left" Height="195" Margin="346,0,0,46" VerticalAlignment="Bottom" Width="996" FontSize="24" HeadersVisibility="All" AutoGenerateColumns="False" CanUserAddRows="false" Background="#FFDDD3F0" Visibility="Hidden" SelectionChanged="TabelaSlobodnihTermina_SelectionChanged">
+            <DataGrid x:Name="TabelaSlobodnihTermina" HorizontalAlignment="left" Height="195" Margin="346,0,0,65" VerticalAlignment="Bottom" Width="996" FontSize="24" HeadersVisibility="All" AutoGenerateColumns="False" CanUserAddRows="false" Background="#FFDDD3F0" SelectionChanged="TabelaSlobodnihTermina_SelectionChanged" Visibility="Hidden">
                 <DataGrid.Resources>
                     <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" 
                         Color="#FF9D6EEE"/>
                 </DataGrid.Resources>
                 <DataGrid.Columns>
-                    <DataGridTextColumn x:Name="kolonaDatum1" Binding="{Binding datum}" IsReadOnly="True" Header="Datum održavanja" Width="216" CanUserResize="False" Foreground="Black" FontSize="24"/>
-                    <DataGridTextColumn x:Name="kolonaSatnica1" Binding="{Binding satnica}" IsReadOnly="True" Header="Satnica" Width="100" CanUserResize="False" Foreground="Black" FontSize="24" />
-                    <DataGridTextColumn x:Name="kolonaProstorija1" Binding="{Binding lokacija}" IsReadOnly="True" Header="Prostorija" Width="290" CanUserResize="False" Foreground="Black" FontSize="24"/>
-                    <DataGridTextColumn x:Name="kolonaNapomena1" Binding="{Binding napomena}" IsReadOnly="True" Header="Napomena" Width="195" CanUserResize="False" Foreground="Black" FontSize="24"/>
-                    <DataGridTextColumn x:Name="kolonaLekar1" Binding="{Binding imeLekara}" IsReadOnly="True" Header="Lekar" Width="195" CanUserResize="False" Foreground="Black" FontSize="24"/>
+                    <DataGridTextColumn x:Name="kolonaDatum1" Binding="{Binding datum}" IsReadOnly="True" Header="Datum održavanja" Width="216" CanUserResize="False" Foreground="Black" FontSize="18"/>
+                    <DataGridTextColumn x:Name="kolonaSatnica1" Binding="{Binding satnica}" IsReadOnly="True" Header="Satnica" Width="100" CanUserResize="False" Foreground="Black" FontSize="18" />
+                    <DataGridTextColumn x:Name="kolonaProstorija1" Binding="{Binding lokacija}" IsReadOnly="True" Header="Prostorija" Width="290" CanUserResize="False" Foreground="Black" FontSize="18"/>
+                    <DataGridTextColumn x:Name="kolonaNapomena1" Binding="{Binding napomena}" IsReadOnly="True" Header="Napomena" Width="195" CanUserResize="False" Foreground="Black" FontSize="18"/>
+                    <DataGridTextColumn x:Name="kolonaLekar1" Binding="{Binding imeLekara}" IsReadOnly="True" Header="Lekar" Width="195" CanUserResize="False" Foreground="Black" FontSize="18"/>
                 </DataGrid.Columns>
             </DataGrid>
-            <Label x:Name="slobodniTerminiLabel" Content="SLOBODNI TERMINI:" HorizontalAlignment="Left" Margin="346,449,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold" IsEnabled="False" Height="31" Width="212" Visibility="Hidden"/>
-            <Label x:Name="lblPacijent" Content="" HorizontalAlignment="Left" Margin="558,449,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold" IsEnabled="False" Height="31" Width="334" Visibility="Hidden"/>
+            <Label x:Name="slobodniTerminiLabel" Content="SLOBODNI TERMINI:" HorizontalAlignment="Left" Margin="346,431,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold" IsEnabled="False" Height="31" Width="212" Visibility="Hidden"/>
+            <Label x:Name="lblPacijent" Content="" HorizontalAlignment="Left" Margin="558,431,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold" IsEnabled="False" Height="31" Width="334"/>
             <Label x:Name="lblUpozorenje" Content="* Nije moguće otkazati termin za manje od 24h" HorizontalAlignment="Left" Margin="346,424,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold" IsEnabled="False" Height="39" Width="502" Foreground="#FFE00000" Visibility="Hidden"/>
-            <Button x:Name="potvrdiZakazivanjeTerminaButton" Content="POTVRDI" HorizontalAlignment="Left" Margin="346,700,0,-2" VerticalAlignment="Top" Width="104" Click="potvrdiZakazivanjeTerminaButton_Click" IsEnabled="False" Visibility="Hidden"/>
+            <Button x:Name="potvrdiZakazivanjeTerminaButton" Content="POTVRDI" HorizontalAlignment="Left" Margin="346,680,0,0" VerticalAlignment="Top" Width="104" Click="potvrdiZakazivanjeTerminaButton_Click" IsEnabled="False" Background="#FF763BB3" BorderBrush="{x:Null}" Visibility="Hidden"/>
             <Grid x:Name="PotvrdaGrid" HorizontalAlignment="Left" Height="720" Margin="346,10,0,0" VerticalAlignment="Top" Width="1000" Opacity="0.85" ScrollViewer.VerticalScrollBarVisibility="Disabled" Visibility="Hidden">
                 <Grid.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -311,88 +219,17 @@
                     </Button.Background>
                 </Button>
             </Grid>
+            <materialDesign:PackIcon x:Name="iconTermini" Kind="Calendar" HorizontalAlignment="Left" Margin="60,99,0,0" VerticalAlignment="Top" Width="180" Height="180" Foreground="#FF773CB6"/>
+            <Button x:Name="btnIzvetaj" HorizontalAlignment="Left" Margin="10,649,0,0" VerticalAlignment="Top" Width="80" Height="80" Background="{x:Null}" BorderBrush="{x:Null}" Click="btnIzvetaj_Click">
+                <materialDesign:PackIcon x:Name="iconIzvestaj" Kind="Notebook" Height="80" Width="49" Foreground="#FF783CB7"/>
+            </Button>
         </Grid>
-        <Grid x:Name="ObavestenjaGrid" HorizontalAlignment="Left" Height="730" Margin="0,18,-8,0" VerticalAlignment="Top" Width="1364" Visibility="Visible" d:IsHidden="True">
+        <Grid x:Name="HitanSlucajGrid" HorizontalAlignment="Left" Margin="0,16,-8,-9" Width="1364" d:IsHidden="True">
             <Grid.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF83C8F7" Offset="0"/>
-                    <GradientStop Color="#FFD3DDE8" Offset="1"/>
-                    <GradientStop Color="#FF6EA8EE" Offset="0"/>
-                </LinearGradientBrush>
-            </Grid.Background>
-            <Button x:Name="btnDodajObavestenje" Content="                     " HorizontalAlignment="Left" Height="80" Margin="110,320,0,0" VerticalAlignment="Top" Width="80" RenderTransformOrigin="0.325,0.75" BorderThickness="0" ToolTip="Napravi obaveštenje" BorderBrush="#FF9C5353" Foreground="#FF2A83A4" IsEnabled="False" Click="btnDodajObavestenje_Click">
-                <Button.Background>
-                    <ImageBrush  Stretch="Uniform" ImageSource="dodajPacijenta.png"/>
-                </Button.Background>
-            </Button>
-            <Button x:Name="btnIzmeniObavestenje" Content="                     " HorizontalAlignment="Left" Height="80" Margin="110,420,0,0" VerticalAlignment="Top" Width="80" RenderTransformOrigin="0.325,0.75" BorderThickness="0" ToolTip="Izmeni obaveštenje" IsEnabled="False" Click="btnIzmeniObavestenje_Click">
-                <Button.Background>
-                    <ImageBrush  Stretch="Uniform" ImageSource="IzmeniPacijenta.png"/>
-                </Button.Background>
-            </Button>
-            <Button x:Name="btnIzbrisiObavestenje" Content=" " HorizontalAlignment="Left" Height="80" Margin="110,520,0,0" VerticalAlignment="Top" Width="80" RenderTransformOrigin="0.325,0.75" BorderThickness="0" ToolTip="Obriši obaveštenje" IsEnabled="False" Click="btnIzbrisiObavestenje_Click" >
-                <Button.Background>
-                    <ImageBrush  Stretch="Uniform" ImageSource="IzbrisiPacijenta.png"/>
-                </Button.Background>
-            </Button>
-            <GridSplitter HorizontalAlignment="Left" Height="730" Margin="326,0,-20,0" VerticalAlignment="Top" Width="1040">
-                <GridSplitter.Background>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="#FFCFC9C9" Offset="0"/>
-                        <GradientStop Color="White" Offset="1"/>
-                    </LinearGradientBrush>
-                </GridSplitter.Background>
-            </GridSplitter>
-            <Button x:Name="btnPovratakObavestenja" Content="POVRATAK" HorizontalAlignment="Left" Height="25" Margin="92,17,0,0" VerticalAlignment="Top" Width="114" BorderThickness="0" Background="{x:Null}" Click="btnPovratakObavestenja_Click"/>
-            <DataGrid x:Name="dataGridObavestenja" HorizontalAlignment="Left" Height="200" Margin="346,0,0,513" VerticalAlignment="Bottom" Width="996" FontSize="24" HeadersVisibility="All" AutoGenerateColumns="False" CanUserAddRows="false" SelectionChanged="dataGridObavestenja_SelectionChanged" Background="#FFBBCBF5">
-                <DataGrid.Resources>
-                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" 
-                        Color="#FF9D6EEE"/>
-                </DataGrid.Resources>
-                <DataGrid.Columns>
-                    <DataGridTextColumn x:Name="kolonaNaslov" Binding="{Binding naslovObavestenja}" IsReadOnly="True" Header="NASLOV OBAVEŠTENJA" Width="347" CanUserResize="False" Foreground="Black" FontSize="24"/>
-                </DataGrid.Columns>
-            </DataGrid>
-            <Grid x:Name="PotvrdaGrid1" HorizontalAlignment="Left" Height="720" Margin="346,10,0,0" VerticalAlignment="Top" Width="1000" Opacity="0.85" ScrollViewer.VerticalScrollBarVisibility="Disabled" Visibility="Hidden">
-                <Grid.Background>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="#FFEAE0EE" Offset="0"/>
-                        <GradientStop Color="#FF876AA4" Offset="1"/>
-                    </LinearGradientBrush>
-                </Grid.Background>
-                <Label Content="DA LI STE SIGURNI DA ŽELITE &#xA;  DA POTVRDITE VAŠ IZBOR?" HorizontalAlignment="Left" Margin="187,189,0,0" VerticalAlignment="Top" Height="190" Width="604" FontSize="48" FontWeight="Thin">
-                    <Label.Effect>
-                        <DropShadowEffect BlurRadius="9" Direction="303" Opacity="0.72"/>
-                    </Label.Effect>
-                </Label>
-                <Button x:Name="btnPotvrdiIzbor1" Content="POTVRDI" HorizontalAlignment="Left" Margin="254,402,0,0" VerticalAlignment="Top" Width="204" Height="59" FontSize="36" Click="btnPotvrdiIzbor_Click">
-                    <Button.Background>
-                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                            <GradientStop Color="#FFCFA0FF" Offset="0"/>
-                            <GradientStop Color="#FF8E4DCF" Offset="1"/>
-                        </LinearGradientBrush>
-                    </Button.Background>
-                </Button>
-                <Button x:Name="btnOdustaniOdIzborra1" Content="ODUSTANI" HorizontalAlignment="Left" Margin="519,402,0,0" VerticalAlignment="Top" Width="212" Height="59" FontSize="36" Click="btnOdustaniOdIzborra_Click">
-                    <Button.Background>
-                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                            <GradientStop Color="#FFCFA0FF" Offset="0"/>
-                            <GradientStop Color="#FF8E4DCF" Offset="1"/>
-                        </LinearGradientBrush>
-                    </Button.Background>
-                </Button>
-            </Grid>
-            <materialDesign:PackIcon x:Name="iconObavestenje" Kind="InfoOutline" HorizontalAlignment="Left" Margin="62,111,0,0" VerticalAlignment="Top" Height="180" Width="180" Foreground="#FF188DE6"/>
-            <TextBox x:Name="txtSadrzajObavestenja" HorizontalAlignment="Left" Height="355" Margin="346,320,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="996" materialDesign:HintAssist.Hint=" Unesite sadržaj obaveštenja..." FontSize="24" Background="#FFBBCBF5" BorderBrush="{x:Null}" TextChanged="txtSadrzajObavestenja_TextChanged"/>
-            <TextBox x:Name="txtNaslovObavestenja" HorizontalAlignment="Left" Height="43" Margin="346,253,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="614" FontSize="20" materialDesign:HintAssist.Hint="Unesite naslov obaveštenja..." TextChanged="txtNaslovObavestenja_TextChanged"/>
-            <Button x:Name="btnOdustaniIzmenaObavestenja" Content="ODUSTANI" HorizontalAlignment="Left" Margin="346,680,0,0" VerticalAlignment="Top" Width="109" Visibility="Hidden" Click="btnOdustaniIzmenaObavestenja_Click"/>
-        </Grid>
-        <Grid x:Name="HitanSlucajGrid" HorizontalAlignment="Left" Margin="0,18,-8,-9" Width="1364" d:IsHidden="True">
-            <Grid.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FF83C8F7" Offset="0"/>
-                    <GradientStop Color="#FFF9CDCD" Offset="1"/>
-                    <GradientStop Color="#FFDA1D36" Offset="0"/>
+                    <GradientStop Color="#FFD86868" Offset="0.992"/>
+                    <GradientStop Color="#FFF5697B" Offset="0"/>
                 </LinearGradientBrush>
             </Grid.Background>
             <Image x:Name="pacijentIcon2" HorizontalAlignment="Left" Height="149" Margin="78,93,0,0" VerticalAlignment="Top" Width="149" Source="hitanSlucaj.png" />
@@ -409,7 +246,9 @@
                     </LinearGradientBrush>
                 </GridSplitter.Background>
             </GridSplitter>
-            <Button x:Name="btnPovratakHitanSlucaj" Content="POVRATAK" HorizontalAlignment="Left" Height="25" Margin="92,17,0,0" VerticalAlignment="Top" Width="114" Click="btnPovratakHitanSlucaj_Click" BorderThickness="0" Background="{x:Null}"/>
+            <Button x:Name="btnPovratakHitanSlucaj" HorizontalAlignment="Left" Height="80" Margin="10,10,0,0" VerticalAlignment="Top" Width="80" Click="btnPovratakHitanSlucaj_Click" BorderThickness="0" Background="{x:Null}">
+                <materialDesign:PackIcon x:Name="iconHitanSlucajPovratak" Kind="ArrowBackCircle" Width="45" Height="60" Foreground="#FFDB2B42"/>
+            </Button>
             <DataGrid x:Name="dataGridPacijentiHitanSlucaj" HorizontalAlignment="Left" Height="200" Margin="346,0,0,465" VerticalAlignment="Bottom" Width="996" FontSize="24" HeadersVisibility="All" AutoGenerateColumns="False" CanUserAddRows="false" SelectionChanged="dataGridPacijentiHitanSlucaj_SelectionChanged_1" Background="#FFF58C9A">
                 <DataGrid.Resources>
                     <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" 
@@ -448,7 +287,7 @@
             </DataGrid>
             <Label x:Name="lblUpozorenjeTermin" Content="* Nema slobodnih termina" HorizontalAlignment="Left" Margin="800,393,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold" IsEnabled="False" Height="39" Width="502" Foreground="#FFE00000" Visibility="Hidden"/>
         </Grid>
-        <Grid x:Name="LekariGrid" HorizontalAlignment="Left" Height="739" Margin="0,18,-8,-9" VerticalAlignment="Top" Width="1364">
+        <Grid x:Name="LekariGrid" HorizontalAlignment="Left" Height="741" Margin="0,16,-8,-9" VerticalAlignment="Top" Width="1364" d:IsHidden="True">
             <Grid.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FFA5EAA1" Offset="0"/>
@@ -475,7 +314,7 @@
             </Button>
             <materialDesign:PackIcon x:Name="iconLekari" Kind="Doctor" HorizontalAlignment="Left" Margin="62,111,0,0" VerticalAlignment="Top" Height="180" Width="180" Foreground="#FF44C155"/>
             <Button x:Name="btnPovratakLekari" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="80" Height="80" Click="btnPovratakLekari_Click" Background="{x:Null}" BorderBrush="{x:Null}">
-                <materialDesign:PackIcon x:Name="iconPovratakLekari" Kind="PagePrevious" Height="80" Width="48" Foreground="#FF44C155"/>
+                <materialDesign:PackIcon x:Name="iconPovratakLekari" Kind="ArrowBackCircle" Height="60" Width="45" Foreground="#FF44C155"/>
             </Button>
             <DataGrid x:Name="dataGridLekari" HorizontalAlignment="Left" Height="197" Margin="331,17,0,0" VerticalAlignment="Top" Width="1008" AutoGenerateColumns="False" Background="#FFB2E6B3" SelectionChanged="dataGridLekari_SelectionChanged">
                 <DataGrid.Columns>
@@ -493,23 +332,23 @@
             <Label x:Name="lblAdresa" Content="ADRESA STANOVANJA :" HorizontalAlignment="Left" Margin="331,545,0,0" VerticalAlignment="Top" Width="241" FontSize="22"/>
             <Label x:Name="lblEmail" Content="E-MAIL ADRESA* :" HorizontalAlignment="Left" Margin="331,587,0,0" VerticalAlignment="Top" Width="241" FontSize="22"/>
             <Label x:Name="lblTelefon" Content="TELEFON :" HorizontalAlignment="Left" Margin="331,629,0,0" VerticalAlignment="Top" Width="241" FontSize="22"/>
-            <TextBox x:Name="txtBoxImeLekara" HorizontalAlignment="Left" Height="37" Margin="577,254,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" FontSize="22" Background="#FF84D386" TextChanged="txtBoxImeLekara_TextChanged"/>
-            <TextBox x:Name="txtBoxPrezimeLekara" HorizontalAlignment="Left" Height="37" Margin="577,296,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" FontSize="22" Background="#FF84D386" TextChanged="txtBoxPrezimeLekara_TextChanged"/>
-            <TextBox x:Name="txtBoxJMBG" HorizontalAlignment="Left" Height="37" Margin="577,338,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" FontSize="22" Background="#FF84D386" TextChanged="txtBoxJMBG_TextChanged"/>
-            <TextBox x:Name="txtBoxDatumRodjenja" HorizontalAlignment="Left" Height="37" Margin="577,380,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" FontSize="22" Background="#FF84D386" TextChanged="txtBoxDatumRodjenja_TextChanged"/>
-            <TextBox x:Name="txtBoxMestoRodjenja" HorizontalAlignment="Left" Height="37" Margin="577,422,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" FontSize="22" Background="#FF84D386" TextChanged="txtBoxMestoRodjenja_TextChanged"/>
-            <TextBox x:Name="txtBoxDrzavaRodjenja" HorizontalAlignment="Left" Height="37" Margin="577,464,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" FontSize="22" Background="#FF84D386" TextChanged="txtBoxDrzavaRodjenja_TextChanged"/>
-            <TextBox x:Name="txtBoxAdresaS" HorizontalAlignment="Left" Height="36" Margin="577,547,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" FontSize="22" Background="#FF84D386" TextChanged="txtBoxAdresaS_TextChanged"/>
-            <TextBox x:Name="txtBoxEmail" HorizontalAlignment="Left" Height="36" Margin="577,589,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" FontSize="22" Background="#FF84D386" TextChanged="txtBoxEmail_TextChanged"/>
-            <TextBox x:Name="txtBoxTelefon" HorizontalAlignment="Left" Height="36" Margin="577,631,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" FontSize="22" Background="#FF84D386" TextChanged="txtBoxTelefon_TextChanged"/>
-            <Label x:Name="lblPol" Content="POL* :" HorizontalAlignment="Left" Margin="331,505,0,0" VerticalAlignment="Top" Width="241" FontSize="22"/>
+            <TextBox x:Name="txtBoxImeLekara" HorizontalAlignment="Left" Height="37" Margin="577,254,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" FontSize="18" Background="#FF84D386" TextChanged="txtBoxImeLekara_TextChanged" materialDesign:HintAssist.Hint=" Unesite ime lekara..."/>
+            <TextBox x:Name="txtBoxPrezimeLekara" HorizontalAlignment="Left" Height="37" Margin="577,296,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" FontSize="18" Background="#FF84D386" TextChanged="txtBoxPrezimeLekara_TextChanged" materialDesign:HintAssist.Hint=" Unesite prezime lekara..."/>
+            <TextBox x:Name="txtBoxJMBG" ToolTip="Format: 13 cifara" HorizontalAlignment="Left" Height="37" Margin="577,338,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" FontSize="18" Background="#FF84D386" TextChanged="txtBoxJMBG_TextChanged" materialDesign:HintAssist.Hint=" Unesite JMBG (13 cifara)..."/>
+            <TextBox x:Name="txtBoxDatumRodjenja" ToolTip="Format: Mesec/Dan/Godina (06/06/1994)" HorizontalAlignment="Left" Height="37" Margin="577,380,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" FontSize="18" Background="#FF84D386" TextChanged="txtBoxDatumRodjenja_TextChanged" materialDesign:HintAssist.Hint=" Mesec/Dan/Godina"/>
+            <TextBox x:Name="txtBoxMestoRodjenja" HorizontalAlignment="Left" Height="37" Margin="577,422,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" FontSize="18" Background="#FF84D386" TextChanged="txtBoxMestoRodjenja_TextChanged" materialDesign:HintAssist.Hint=" Unesite mesto rođenja..."/>
+            <TextBox x:Name="txtBoxDrzavaRodjenja" HorizontalAlignment="Left" Height="37" Margin="577,464,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" FontSize="18" Background="#FF84D386" TextChanged="txtBoxDrzavaRodjenja_TextChanged" materialDesign:HintAssist.Hint=" Unesite državu rođenja"/>
+            <TextBox x:Name="txtBoxAdresaS" HorizontalAlignment="Left" Height="36" Margin="577,547,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" FontSize="18" Background="#FF84D386" TextChanged="txtBoxAdresaS_TextChanged" materialDesign:HintAssist.Hint=" Unesite adresu stanovanja..."/>
+            <TextBox x:Name="txtBoxEmail" HorizontalAlignment="Left" Height="36" Margin="577,589,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" FontSize="18" Background="#FF84D386" TextChanged="txtBoxEmail_TextChanged" materialDesign:HintAssist.Hint=" Unesite E-mail adresu..."/>
+            <TextBox x:Name="txtBoxTelefon" HorizontalAlignment="Left" Height="36" Margin="577,631,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" FontSize="18" Background="#FF84D386" TextChanged="txtBoxTelefon_TextChanged" materialDesign:HintAssist.Hint=" Unesite broj telefona..."/>
+            <Label x:Name="lblPol" Content="POL* :" HorizontalAlignment="Left" Margin="331,505,0,0" VerticalAlignment="Top" Width="241" FontSize="22" />
             <Grid x:Name="gridPol" Margin="577,518,574,203">
                 <RadioButton x:Name="radioBtnMusko" Content="MUŠKO" HorizontalAlignment="Left" VerticalAlignment="Top" IsChecked="True" Background="#FF44C155"/>
                 <RadioButton x:Name="radioBtnZensko" Content="ŽENSKO" HorizontalAlignment="Left" Margin="72,0,0,0" VerticalAlignment="Top" Background="#FF44C155"/>
                 <RadioButton x:Name="radioBtnOstalo" Content="OSTALO" HorizontalAlignment="Left" Margin="148,0,0,0" VerticalAlignment="Top" Background="#FF44C155"/>
             </Grid>
             <Label x:Name="lblBrojZdravKnjizice" Content="BROJ KNJIŽICE* :" HorizontalAlignment="Left" Margin="331,678,0,0" VerticalAlignment="Top" Width="241" FontSize="22"/>
-            <TextBox x:Name="txtBoxBrojZdravKnjizice" HorizontalAlignment="Left" Height="37" Margin="577,678,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" FontSize="22" Background="#FF84D386" TextChanged="txtBoxBrojZdravKnjizice_TextChanged"/>
+            <TextBox x:Name="txtBoxBrojZdravKnjizice" HorizontalAlignment="Left" Height="37" Margin="577,678,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" FontSize="18" Background="#FF84D386" TextChanged="txtBoxBrojZdravKnjizice_TextChanged" materialDesign:HintAssist.Hint=" Unesite broj knjižice..."/>
             <Label x:Name="lblBracnoStanje" Content="BRAČNO STANJE:" HorizontalAlignment="Left" Margin="834,377,0,0" VerticalAlignment="Top" Width="240" FontSize="22"/>
             <Grid x:Name="ridBracnoStanje" Margin="834,422,262,299">
                 <RadioButton x:Name="radioBtnUBraku" Content="U BRAKU" HorizontalAlignment="Left" VerticalAlignment="Top" IsChecked="True" Background="#FF44C155"/>
@@ -518,18 +357,18 @@
             </Grid>
             <Label x:Name="lblKorisnickoIme" Content="KORISNIČKO IME* :" HorizontalAlignment="Left" Margin="832,254,0,0" VerticalAlignment="Top" Width="284" FontSize="22"/>
             <Label x:Name="lblKorisnickoIme_Copy" Content="LOZINKA* :" HorizontalAlignment="Left" Margin="832,297,0,0" VerticalAlignment="Top" Width="284" FontSize="22"/>
-            <TextBox x:Name="txtBoxKorisnickoIme" HorizontalAlignment="Left" Height="37" Margin="1121,255,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" FontSize="22" Background="#FF84D386" TextChanged="txtBoxKorisnickoIme_TextChanged"/>
+            <TextBox x:Name="txtBoxKorisnickoIme" HorizontalAlignment="Left" Height="37" Margin="1121,255,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" FontSize="18" Background="#FF84D386" TextChanged="txtBoxKorisnickoIme_TextChanged"/>
             <PasswordBox x:Name="passwordBoxLozinkaLekar" HorizontalAlignment="Left" Margin="1121,298,0,0" VerticalAlignment="Top" Width="218" Height="36" Background="#FF84D386" PasswordChanged="PasswordBox_PasswordChanged"/>
             <Label x:Name="lblRadnoVreme" Content="RADNO VREME* :" HorizontalAlignment="Left" Margin="832,505,0,0" VerticalAlignment="Top" Width="240" FontSize="22"/>
-            <TextBox x:Name="txtBoxPocetakRadnogVremena" HorizontalAlignment="Left" Height="37" Margin="1121,505,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" FontSize="22" Background="#FF84D386" TextChanged="txtBoxPocetakRadnogVremena_TextChanged"/>
+            <TextBox x:Name="txtBoxPocetakRadnogVremena" ToolTip="Format: čas:minut - (07:00)" HorizontalAlignment="Left" Height="37" Margin="1121,505,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" FontSize="22" Background="#FF84D386" TextChanged="txtBoxPocetakRadnogVremena_TextChanged"/>
             <Label x:Name="lblOpseg" Content="-" HorizontalAlignment="Left" Margin="1223,505,0,0" VerticalAlignment="Top" Width="14" FontSize="22"/>
-            <TextBox x:Name="txtBoxKrajRadnogVremena" HorizontalAlignment="Left" Height="37" Margin="1249,505,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" FontSize="22" Background="#FF84D386" TextChanged="txtBoxKrajRadnogVremena_TextChanged"/>
+            <TextBox x:Name="txtBoxKrajRadnogVremena" ToolTip="Format: čas:minut - (07:00)" HorizontalAlignment="Left" Height="37" Margin="1249,505,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" FontSize="22" Background="#FF84D386" TextChanged="txtBoxKrajRadnogVremena_TextChanged"/>
             <Grid x:Name="gridDodatnaPoljaLekar" Margin="832,587,25,24">
                 <Label x:Name="lblBrojSlobodnihDana" Content="BR. ZAUZETIH DANA:" HorizontalAlignment="Left" Margin="0,42,0,0" VerticalAlignment="Top" Width="240" FontSize="22"/>
                 <Label x:Name="lblBrojDana" Content="" HorizontalAlignment="Left" Margin="289,0,0,0" VerticalAlignment="Top" Width="59" FontSize="22" IsEnabled="False"/>
                 <CheckBox x:Name="checkBoxGodisnjiOdmor" Content="GODIŠNJI ODMOR" HorizontalAlignment="Left" Margin="380,56,0,0" VerticalAlignment="Top" Width="127" Checked="checkBoxGodisnjiOdmor_Checked" Unchecked="checkBoxGodisnjiOdmor_Unchecked"/>
                 <Label x:Name="lblDatumPocetkaGodOdmora" Content="DATUM POČETKA ODMORA:" HorizontalAlignment="Left" Margin="0,89,0,0" VerticalAlignment="Top" Width="284" FontSize="22" Height="36"/>
-                <TextBox x:Name="txtBoxPocetakGodisnjegOdmora" HorizontalAlignment="Left" Height="37" Margin="289,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" FontSize="22" Background="#FF84D386" IsEnabled="False" TextChanged="txtBoxPocetakGodOdmora_TextChanged"/>
+                <TextBox x:Name="txtBoxPocetakGodisnjegOdmora" ToolTip="Format: mesec/dan/godine - (06/06/2021)" HorizontalAlignment="Left" Height="37" Margin="289,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" FontSize="18" Background="#FF84D386" IsEnabled="False" TextChanged="txtBoxPocetakGodOdmora_TextChanged" materialDesign:HintAssist.Hint=" Mesec/Dan/Godina"/>
                 <Label x:Name="lblBrojDostupnihDana" Content="DOSTUPAN BROJ DANA:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="255" FontSize="22"/>
                 <TextBox x:Name="txtBoxBrojZauzetihDana" HorizontalAlignment="Left" Height="37" Margin="289,42,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="59" FontSize="22" Background="#FF84D386" IsEnabled="False" TextChanged="txtBoxBrojSlobodnihDana_TextChanged"/>
             </Grid>
@@ -544,6 +383,109 @@
                 <ComboBoxItem x:Name="kardiohirurg" Content="Kardiohirurg" HorizontalAlignment="Left" Width="216" Foreground="Black"/>
             </ComboBox>
         </Grid>
+        <Grid x:Name="PocetniEkranGrid" Margin="0,18,-8,-9" HorizontalAlignment="Left" Width="1364">
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFD7FFD9" Offset="0"/>
+                    <GradientStop Color="White" Offset="0.992"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+            <Button x:Name="pacijentiButton" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Height="200" FontSize="36" FontWeight="Bold" Click="pacijenti_Click" Margin="428,140,0,0" BorderBrush="{x:Null}" AutomationProperties.HelpText="Rukovanje Pacijentima" ToolTip="Rukovanje pacijentima" >
+                <Button.Effect>
+                    <DropShadowEffect BlurRadius="10" Direction="314" Opacity="0.35"/>
+                </Button.Effect>
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF55D4DA" Offset="0"/>
+                        <GradientStop Color="#FF70A6D3" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+                <materialDesign:PackIcon x:Name="packIconPacijenti" Kind="person" Height="152" Width="158"/>
+            </Button>
+            <Button x:Name="terminiButton" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Height="200" FontSize="36" FontWeight="Bold" Margin="700,140,0,0" Click="terminiButton_Click" BorderBrush="{x:Null}" AutomationProperties.HelpText="Rukovanje terminima" ToolTip="Rukovanje terminima" >
+                <Button.Effect>
+                    <DropShadowEffect BlurRadius="10" Opacity="0.35"/>
+                </Button.Effect>
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF9C85CD" Offset="0"/>
+                        <GradientStop Color="#FF9297F0" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+                <materialDesign:PackIcon x:Name="packIconTermini" Kind="Calendar" Height="152" Width="158"/>
+            </Button>
+            <Button x:Name="lekariButton" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Height="200" FontSize="36" FontWeight="Bold" Margin="428,388,0,0" Click="lekariButton_Click" BorderBrush="{x:Null}" AutomationProperties.HelpText="Rukovanje lekarima" ToolTip="Rukovanje lekarima">
+                <Button.Effect>
+                    <DropShadowEffect BlurRadius="10" Opacity="0.35"/>
+                </Button.Effect>
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF5FEA58" Offset="0"/>
+                        <GradientStop Color="#FFA0E899" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+                <materialDesign:PackIcon x:Name="packIconLekari" Kind="Doctor" Height="152" Width="158"/>
+            </Button>
+            <Button x:Name="helpButton" Content="" VerticalAlignment="Top" Height="65" FontSize="36" FontWeight="Bold" BorderThickness="0" Margin="1254,643,44,0" Width="65" RenderTransformOrigin="0.569,1.138" AutomationProperties.HelpText="Pomoć" ToolTip="Pomoć" >
+                <Button.Effect>
+                    <DropShadowEffect BlurRadius="22" Opacity="0.45"/>
+                </Button.Effect>
+                <Button.Background>
+                    <ImageBrush Stretch="Uniform" ImageSource="question_mark.png"/>
+                </Button.Background>
+            </Button>
+            <Button x:Name="odjavaButton" Content="ODJAVI SE" HorizontalAlignment="Left" Margin="1198,31,0,0" VerticalAlignment="Top" Width="141" Height="55" RenderTransformOrigin="0.624,0" FontSize="22" FontWeight="Bold" Click="odjavaButton_Click" Background="#FF6CD894" BorderBrush="#FF55EE8C"/>
+            <Label x:Name="lblSekretar" Content="*Tekxt*" HorizontalContentAlignment="Right" HorizontalAlignment="Right" Margin="0,31,173,0" VerticalAlignment="Top" Height="55" Width="393" FontSize="36">
+                <Label.Foreground>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF74EE61" Offset="0"/>
+                        <GradientStop Color="#FFA1EE95" Offset="1"/>
+                    </LinearGradientBrush>
+                </Label.Foreground>
+                <Label.Effect>
+                    <DropShadowEffect ShadowDepth="2" Opacity="0.15"/>
+                </Label.Effect>
+            </Label>
+            <Image x:Name="imgLogo" HorizontalAlignment="Left" Height="100" Margin="28,10,0,0" VerticalAlignment="Top" Width="100" Source="logo.png"/>
+            <Label x:Name="lblnazivKompanije" Content="ZDRAVO KORPORACIJA" HorizontalAlignment="Right" Margin="0,31,769,0" VerticalAlignment="Top" Height="55" Width="467" FontSize="36" FontWeight="Bold" FontFamily="MV Boli" Background="{x:Null}">
+                <Label.Foreground>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF74EE61" Offset="0"/>
+                        <GradientStop Color="#FFA1EE95" Offset="1"/>
+                    </LinearGradientBrush>
+                </Label.Foreground>
+                <Label.Effect>
+                    <DropShadowEffect ShadowDepth="2" Opacity="0.15"/>
+                </Label.Effect>
+            </Label>
+            <Button x:Name="btnObavestenja" HorizontalAlignment="Left" Margin="700,388,0,0" VerticalAlignment="Top" Width="200" Height="200" BorderBrush="{x:Null}" Click="btnObavestenja_Click" Foreground="{x:Null}" AutomationProperties.HelpText="Rukovanje obaveštenjima" ToolTip="Rukovanje obaveštenjima">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF5084CF" Offset="0"/>
+                        <GradientStop Color="#FF7BABF0" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+                <Button.Effect>
+                    <DropShadowEffect BlurRadius="22" Opacity="0.45"/>
+                </Button.Effect>
+                <materialDesign:PackIcon x:Name="iconObavestenja" Kind ="InfoCircle" Width="158" Height="154" Foreground="White"/>
+            </Button>
+            <Button x:Name="btnHitanSlucaj" HorizontalAlignment="Left" Margin="1154,639,0,0" VerticalAlignment="Top" Width="70" Height="70" BorderBrush="{x:Null}" Click="btnHitanSlucaj_Click" AutomationProperties.HelpText="Zakaži hitan slučaj" ToolTip="Zakaži hitan slučaj">
+                <Button.Effect>
+                    <DropShadowEffect BlurRadius="22" Opacity="0.45"/>
+                </Button.Effect>
+                <Button.Background>
+                    <ImageBrush ImageSource="hitanSlucaj.png" Stretch="Uniform"/>
+                </Button.Background>
+            </Button>
+            <Button x:Name="btnFeedback" HorizontalAlignment="Left" Margin="0,609,0,0" VerticalAlignment="Top" Width="130" Height="130" BorderBrush="{x:Null}" Click="btnFeedback_Click" AutomationProperties.HelpText="Zakaži hitan slučaj" ToolTip="Napiši feedback" Background="{x:Null}">
+                <Button.Effect>
+                    <DropShadowEffect BlurRadius="22" Opacity="0.45"/>
+                </Button.Effect>
+                <materialDesign:PackIcon x:Name="iconFeedback" Kind="Bug" Width="90" Height="90" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF8B6CCD"/>
+            </Button>
+        </Grid>
+        <Frame x:Name="frame" Content="Frame" Margin="0,0,0,0" NavigationUIVisibility="Hidden" d:IsHidden="True"/>
     </Grid>
 
 </Window>

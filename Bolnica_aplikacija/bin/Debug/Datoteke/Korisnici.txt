@@ -124,5 +124,11 @@
     "korisnickoIme": "zorka",
     "lozinka": "snaga123",
     "tip": "lekar"
+  },
+  {
+    "id": "9",
+    "korisnickoIme": "lekar",
+    "lozinka": "lekar",
+    "tip": "lekar"
   }
 ]

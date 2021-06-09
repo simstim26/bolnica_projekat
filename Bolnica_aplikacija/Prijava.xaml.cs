@@ -33,46 +33,93 @@ namespace Bolnica_aplikacija
             string korisnickoIme = txtKorisnickoIme.Text;
             string lozinka = txtLozinka.Password.ToString();
             String[] ulogovaniKorisnik = KorisnikKontroler.prijava(korisnickoIme, lozinka); // [0] - tip; // [1] - id
-            
+
             switch (ulogovaniKorisnik[0])
             {
-                 case "pacijent":
-                    
+                case "pacijent":
+
                     KorisnikKontroler.NadjiPacijenta(ulogovaniKorisnik[1]); //cuvanje ulogovanog korisnika
-                    //PacijentProzor pacijentProzor = new PacijentProzor();
-                    ProzorPacijent pacijentProzor = new ProzorPacijent();
-                    this.Close();
-                    pacijentProzor.ShowDialog();
                     break;
+
+                case "lekar":
                     
-                     
-                 case "lekar":
                     KorisnikKontroler.nadjiLekara(ulogovaniKorisnik[1]); //cuvanje ulogovanog korisnika
-                    LekarProzor lekarProzor = new LekarProzor();
-                    this.Close();
-                    lekarProzor.ShowDialog();
-                     break;
-                 case "sekretar":
+                    break;
 
+                case "sekretar":
+                    
                     KorisnikKontroler.nadjiSekretara(ulogovaniKorisnik[1]);
-                    SekretarProzor sekretarProzor = new SekretarProzor();
-                    this.Close();
-                    sekretarProzor.ShowDialog();  
+                    break;
 
-                     break;
-                 case "upravnik":
+                case "upravnik":
+
                     KorisnikKontroler.NadjiUpravnika(ulogovaniKorisnik[1]);
                     ProstorijaZauzetoKontroler.zauzmiProstorije();
                     ProstorijaKontroler.pregledajProstorijeZaRenoviranje();
-                    //UpravnikProzor upravnikProzor = UpravnikProzor.getInstance();
-                    GlavniProzor upravnikProzor = new GlavniProzor();
-                    this.Close();
-                    upravnikProzor.ShowDialog();
                     break;
+
                 default:
-                     lblPogresno.Visibility = Visibility.Visible;
+                    
+                    lblPogresno.Visibility = Visibility.Visible;
+                    break;
+
+            }
+           
+           
+            Window prozor = ProzorFactoryKontroler.inicijalizujProzor(ulogovaniKorisnik[0]);
+
+            if(prozor != null)
+            {
+                this.Close();
+                prozor.ShowDialog();
+
+            } else
+            {
+                lblPogresno.Visibility = Visibility.Visible;
+            }
+            
+                    
+
+            /* switch (ulogovaniKorisnik[0])
+             {
+                  case "pacijent":
+
+                     KorisnikKontroler.NadjiPacijenta(ulogovaniKorisnik[1]); //cuvanje ulogovanog korisnika
+                     //PacijentProzor pacijentProzor = new PacijentProzor();
+                     ProzorPacijent pacijentProzor = new ProzorPacijent();
+                     this.Close();
+                     pacijentProzor.ShowDialog();
                      break;
-             }
+
+
+                  case "lekar":
+                     KorisnikKontroler.nadjiLekara(ulogovaniKorisnik[1]); //cuvanje ulogovanog korisnika
+                     LekarProzor lekarProzor = new LekarProzor();
+                     this.Close();
+                     lekarProzor.ShowDialog();
+                      break;
+                  case "sekretar":
+
+                     KorisnikKontroler.nadjiSekretara(ulogovaniKorisnik[1]);
+                     SekretarProzor sekretarProzor = new SekretarProzor();
+                     this.Close();
+                     sekretarProzor.ShowDialog();  
+
+                      break;
+                  case "upravnik":
+                     KorisnikKontroler.NadjiUpravnika(ulogovaniKorisnik[1]);
+                     ProstorijaZauzetoKontroler.zauzmiProstorije();
+                     ProstorijaKontroler.pregledajProstorijeZaRenoviranje();
+                     UpravnikProzor upravnikProzor = UpravnikProzor.getInstance();
+                     //GlavniProzor upravnikProzor = new GlavniProzor();
+                     this.Close();
+                     upravnikProzor.ShowDialog();
+                     break;
+                 default:
+                      lblPogresno.Visibility = Visibility.Visible;
+                      break;
+              }
+            */
 
 
         }
@@ -89,4 +136,40 @@ namespace Bolnica_aplikacija
 
         }
     }
+
+    /*
+      Window prozor = ProzorFactoryKontroler.inicijalizujProzor(ulogovaniKorisnik[0]);
+
+            switch (ulogovaniKorisnik[0])
+            {
+                case "pacijent":                    
+                    
+                    KorisnikKontroler.NadjiPacijenta(ulogovaniKorisnik[1]); //cuvanje ulogovanog korisnika
+                    break;
+                                        
+                case "lekar":
+                    KorisnikKontroler.nadjiLekara(ulogovaniKorisnik[1]); //cuvanje ulogovanog korisnika
+                    break;
+                
+                case "sekretar":
+
+                    KorisnikKontroler.nadjiSekretara(ulogovaniKorisnik[1]);
+                    break;
+                
+                case "upravnik":
+                    
+                    KorisnikKontroler.NadjiUpravnika(ulogovaniKorisnik[1]);
+                    ProstorijaZauzetoKontroler.zauzmiProstorije();
+                    ProstorijaKontroler.pregledajProstorijeZaRenoviranje();
+                    break;
+                
+                default:
+                     lblPogresno.Visibility = Visibility.Visible;
+                     break;
+             }
+
+            
+            this.Close();
+            prozor.ShowDialog();
+     * */
 }

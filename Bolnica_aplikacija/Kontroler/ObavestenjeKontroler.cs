@@ -1,4 +1,5 @@
 ﻿using Bolnica_aplikacija.Model;
+using Bolnica_aplikacija.PomocneKlase;
 using Bolnica_aplikacija.Servis;
 using System;
 using System.Collections.Generic;
@@ -11,9 +12,9 @@ namespace Bolnica_aplikacija.Kontroler
     class ObavestenjeKontroler
     {
         private static ObavestenjeServis obavestenjeServis = new ObavestenjeServis();
-        public static void napraviObavestenje(String naslovObavestenja, String sadrzajObavestenja)
+        public static void napraviObavestenje(Obavestenje obavestenje)
         {
-            obavestenjeServis.napraviObavestenje(naslovObavestenja, sadrzajObavestenja);
+            obavestenjeServis.napraviObavestenje(obavestenje);
         }
 
         public static List<Obavestenje> ucitajObavestenja()
@@ -21,9 +22,9 @@ namespace Bolnica_aplikacija.Kontroler
             return obavestenjeServis.ucitajObavestenja();
         }
 
-        public static void azurirajObavestenje(String id, String naslovObavestenja, String sadrzajObavestenja)
+        public static void azurirajObavestenje(Obavestenje obavestenje)
         {
-            obavestenjeServis.azurirajObavestenje(id, naslovObavestenja, sadrzajObavestenja);
+            obavestenjeServis.azurirajObavestenje(obavestenje);
         }
 
         public static void obrisiObavestenje(String idObavestenja)

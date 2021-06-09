@@ -20,7 +20,6 @@ namespace Bolnica_aplikacija.Servis
             {
                 instance = new AlergijaServis();
             }
-
             return instance;
         }
 
@@ -34,8 +33,7 @@ namespace Bolnica_aplikacija.Servis
             catch (Exception e)
             {
                 povratnaVrednost = new List<Alergija>();
-            }
-
+            }           
             return povratnaVrednost;
         }
 
@@ -65,9 +63,40 @@ namespace Bolnica_aplikacija.Servis
 
         public void azurirajAlergije(List<Alergija> alergije, String id)
         {
-            alergijaRepozitorijum.azurirajAlergije(alergije, id);
+            List<Alergija> sveAlergije = ucitajOstaleAlergije(id);
+
+            foreach (Alergija alergijaIzmena in alergije)
+            {
+                if (!alergijaIzmena.nazivAlergije.Equals(""))
+                {
+                    sveAlergije.Add(alergijaIzmena);
+                }
+
+            }           
+            alergijaRepozitorijum.azurirajAlergije(sveAlergije);
         }
 
+        private List<Alergija> ucitajOstaleAlergije(String idPacijenta)
+        {
+            List<Alergija> povratna = new List<Alergija>();
+            foreach (Alergija alergija in ucitajSve())
+            {
+                if (!alergija.idPacijenta.Equals(idPacijenta))
+                {
+                    povratna.Add(alergija);
+                }
+            }
+            return povratna;
+        }
+
+
+        public void dodajAlergijePacijentu(String idPacijenta, List<Alergija> alergije)
+        {
+            foreach (Alergija alergija in alergije)
+            {
+                AlergijaServis.getInstance().dodajAlergiju(new Alergija(idPacijenta, alergija.nazivAlergije));
+            }
+		}
         public bool proveriPostojanjeAlergije(String idPacijenta, String nazivAlergije)
         {
             List<Alergija> alergije = PacijentServis.getInstance().procitajAlergije(idPacijenta);

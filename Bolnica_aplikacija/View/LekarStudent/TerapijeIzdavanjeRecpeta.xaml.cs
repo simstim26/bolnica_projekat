@@ -119,7 +119,7 @@ namespace Bolnica_aplikacija.LekarStudent
             }
 
             MessageBox.Show("Uspešno ste izdali recept!", "Informacija", MessageBoxButton.OK, MessageBoxImage.Information);
-
+            aktivan = false;
             Content = new UvidUTerapije(((BolestTerapija)fm.DataContext).idPacijenta);
         }
 
