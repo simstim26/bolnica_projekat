@@ -234,8 +234,7 @@ namespace Bolnica_aplikacija
             String pacIdBolnice = sekretar.idBolnice;
             String pacJmbg = textJMBG.Text;
             String pacIme = textIme.Text;
-            String pacPrezime = textPrezime.Text;
-            DateTime pacDatumRodjenja = Convert.ToDateTime(textDatumRodj.Text);
+            String pacPrezime = textPrezime.Text;           
             String pacAdresa = textAdresa.Text;
             String pacEmail = textEmail.Text;
             String pacTelefon = textTelefon.Text;
@@ -250,9 +249,9 @@ namespace Bolnica_aplikacija
             }
 
 
-            if (proveriIspravnostPolja(idPacijenta, pacGost, pacKorisnickoIme, pacLozinka, pacJmbg, pacIme, pacPrezime, pacDatumRodjenja, pacAdresa, pacEmail, pacTelefon))
+            if (proveriIspravnostPolja(idPacijenta, pacGost, pacKorisnickoIme, pacLozinka, pacJmbg, pacIme, pacPrezime, textDatumRodj.Text, pacAdresa, pacEmail, pacTelefon))
             {
-
+                DateTime pacDatumRodjenja = Convert.ToDateTime(textDatumRodj.Text);
                 if (!flagIzmeni)
                 {
 
@@ -498,17 +497,19 @@ namespace Bolnica_aplikacija
         #endregion
 
         #region Validacija pacijent
-        private bool proveriIspravnostPolja(String id, bool gost, String korisnickoIme, String loznika, String jmbg, String ime, String prezime, DateTime datumRodj, string adresa, string email, string telefon)
+        private bool proveriIspravnostPolja(String id, bool gost, String korisnickoIme, String loznika, String jmbg, String ime, String prezime, String datumRodj, string adresa, string email, string telefon)
         {
+            bool povratnaVrednost = true;
 
-            //PROVERA JMBG
+            #region Validacija JMBG
             if ((!Regex.IsMatch(jmbg, @"[0-9]{13}$")) || (jmbg.Length != 13))
             {
                 textJMBG.Clear();
-                return false;
+                povratnaVrednost = false;
             }
+            #endregion
 
-
+            #region Validacija unosa postojeceg JMBG
             foreach (Pacijent pac in sviPacijenti)
             {
 
@@ -521,14 +522,15 @@ namespace Bolnica_aplikacija
                     if (pac.jmbg.Equals(jmbg))
                     {
                         textJMBG.Clear();
-                        return false;
+                        povratnaVrednost = false;
                     }
 
                 }
 
             }
+            #endregion
 
-
+            #region Validacija postojanja korisnika kod izmene
             if (!flagIzmeni) // Ako kreiramo pacijenta i vec postoji Korisnicko ime
             {
 
@@ -537,62 +539,98 @@ namespace Bolnica_aplikacija
                     if (pac.korisnickoIme.Equals(korisnickoIme))
                     {
                         textKorisnickoIme.Clear();
-                        return false;
+                        povratnaVrednost = false;
                     }
                 }
             }
+            #endregion
 
-            //Provera imena
+            #region Validacija imena
+
             foreach (char c in ime)
             {
                 if (!Char.IsLetter(c))
                 {
                     textIme.Clear();
-                    return false;
+                    povratnaVrednost = false;
                 }
 
             }
 
-            //Provera prezimena
+            #endregion
+
+            #region Validacija prezimena
+            
             foreach (char c in prezime)
             {
                 if (!Char.IsLetter(c))
                 {
                     textPrezime.Clear();
-                    return false;
+                    povratnaVrednost = false;
                 }
 
             }
+            #endregion
 
-            //Provera datuma rodjenja
-            if (!Regex.IsMatch(datumRodj.ToString(), @"[0-9]{2}[/][0-9]{2}[/][0-9]{4}"))
+            #region Validacija datuma rodjenja
+            
+            if (!Regex.IsMatch(datumRodj, @"\b[0-9]{2}[/][0-9]{2}[/][0-9]{4}\b"))
             {
-                //textDatumRodj.Clear();
+                textDatumRodj.Clear();
+                povratnaVrednost = false;
             }
 
+            String[] parts = datumRodj.Split('/');
+            int mesec;
+            int dan;
+            Int32.TryParse(parts[0], out mesec);
+            Int32.TryParse(parts[1], out dan);
+
+            if (mesec > 12)
+            {
+                textDatumRodj.Clear();
+                povratnaVrednost = false;
+           
+            } else
+            {
+                if (dan > 31)
+                {
+                    textDatumRodj.Clear();
+                    povratnaVrednost = false;
+                }
+            }
+
+            #endregion
+
+            #region Validacija E-mail adrese
             if (!gost)
             {
                 //Provera E-mail adrese
                 if (!Regex.IsMatch(email, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$"))
                 {
                     textEmail.Clear();
-                    return false;
+                    povratnaVrednost = false;
                 }
 
             }
 
+            #endregion
 
-            //Provera broja telefona
+            #region Validacija broja telefona
+           
             foreach (char c in telefon)
             {
                 if (Char.IsLetter(c))
                 {
                     textTelefon.Clear();
-                    return false;
+                    povratnaVrednost = false;
                 }
 
             }
 
+            #endregion
+
+            #region Validacija postojanja korisnika
             if (!flagIzmeni) // Ako kreiramo pacijenta i vec postoji korisnicko ime
             {
 
@@ -601,13 +639,13 @@ namespace Bolnica_aplikacija
                     if (pac.korisnickoIme.Equals(korisnickoIme))
                     {
                         textKorisnickoIme.Clear();
-                        return false;
+                        povratnaVrednost = false;
                     }
                 }
             }
+            #endregion
 
-
-            return true;
+            return povratnaVrednost;
 
         }
 
