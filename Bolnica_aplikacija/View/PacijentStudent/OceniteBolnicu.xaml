@@ -6,15 +6,15 @@
         xmlns:local="clr-namespace:Bolnica_aplikacija.View.PacijentStudent"
         mc:Ignorable="d"
         Title="Ocenite usluge bolnice" Height="600" Width="541" Topmost="True" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
-    <Grid>
+    <Grid Background="MediumSpringGreen">
         <Label x:Name="label" Content="Ocenite usluge bolnice!" Margin="65,26,66,0" VerticalAlignment="Top" FontSize="36" FontWeight="Bold"/>
         <Label x:Name="label1" Content="Moja ocena:" HorizontalAlignment="Left" Margin="87,142,0,0" VerticalAlignment="Top" FontSize="24"/>
         <Label x:Name="label2" Content="Komentar:" HorizontalAlignment="Left" Margin="10,231,0,0" VerticalAlignment="Top" FontStyle="Italic" FontSize="18"/>
         <ComboBox x:Name="comboBoxOcena" HorizontalAlignment="Left" Margin="250,142,0,0" VerticalAlignment="Top" Width="200" FontSize="24"/>
         <Rectangle Fill="#FFF4F4F5" Height="213" Margin="10,263,10,0" Stroke="Black" VerticalAlignment="Top"/>
         <TextBox x:Name="txtKomentar" Height="213" Margin="10,263,10,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="18"/>
-        <Button x:Name="btnOceni" Content="Oceni" Margin="148,507,276,0" VerticalAlignment="Top" Height="39" FontSize="18" Click="btnOceni_Click"/>
-        <Button x:Name="btnOtkazi" Content="Otkaži" Margin="276,507,148,0" VerticalAlignment="Top" Height="39" FontSize="18" IsCancel="True"/>
+        <Button x:Name="btnOceni" Content="Oceni" Margin="148,507,276,0" VerticalAlignment="Top" Height="39" FontSize="18" Click="btnOceni_Click" Background="White" Foreground="Black"/>
+        <Button x:Name="btnOtkazi" Content="Otkaži" Margin="276,507,148,0" VerticalAlignment="Top" Height="39" FontSize="18" IsCancel="True" Foreground="Black" Background="White"/>
 
     </Grid>
 </Window>

@@ -96,5 +96,15 @@ namespace Bolnica_aplikacija.PomocneKlase
                 indikator = -3;
         }
 
+        public static int prebrojTermine(String idPacijenta, int mesec)
+        {
+            int brojTermina = 0;
+
+            brojTermina = TerminKontroler.pronadjiOdradjeneTermineZaMesec(idPacijenta, mesec);
+
+            return brojTermina;
+        }
+
+
     }
 }

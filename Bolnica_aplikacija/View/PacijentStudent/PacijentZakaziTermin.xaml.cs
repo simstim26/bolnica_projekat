@@ -1,5 +1,6 @@
 ﻿using Bolnica_aplikacija.Kontroler;
 using Bolnica_aplikacija.PacijentModel;
+using Bolnica_aplikacija.PacijentTemplate;
 using Bolnica_aplikacija.PomocneKlase;
 using Model;
 using System;
@@ -27,14 +28,14 @@ namespace Bolnica_aplikacija.PacijentStudent
     public partial class PacijentZakaziTermin : Window
     {
         private DataGrid dataGrid;
-        //private String idPacijenta;
+        private MyCalendar.Calendar.Calendar calendar;
 
-        public PacijentZakaziTermin(DataGrid dataGrid)
+        public PacijentZakaziTermin(DataGrid dataGrid, MyCalendar.Calendar.Calendar calendar)
         {
             InitializeComponent();
 
-            //this.idPacijenta = idPacijenta;
             this.dataGrid = dataGrid;
+            this.calendar = calendar;
             dataGridSlobodniTermini.Loaded += SetMinSirina;
 
             ucitajPodatke();
@@ -75,6 +76,8 @@ namespace Bolnica_aplikacija.PacijentStudent
 
                         PomocnaKlasaProvere.antiTrolMetoda(KorisnikKontroler.GetPacijent().id);
 
+                        PomocnaKlasaKalendar.azurirajKalendar(calendar);
+
                         this.Close();
 
                     }
@@ -88,29 +91,36 @@ namespace Bolnica_aplikacija.PacijentStudent
 
         private void btnPretrazi_Click(object sender, RoutedEventArgs e)
         {
-            int indikator = -1;
             if (rbtnLekar.IsChecked == true)
             {
-                PomocnaKlasaProvere.rbtnLekarCekiran(txtPretraga.Text, indikator);
+                if (!Regex.IsMatch(txtPretraga.Text, @"^[\p{L}\p{M}' \.\-]+$"))
+                {
+                    MessageBox.Show("Molimo unesite ime u odgovarajućem formatu.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    ucitajPodatke();
+                }
+                else
+                {
+                    dataGridSlobodniTermini.ItemsSource = Pretrazi.izvrsiFiltriranje(new PretragaPoLekarima(), txtPretraga.Text);
+                }
             }
-            if (rbtnTermin.IsChecked == true)
+            else if (rbtnTermin.IsChecked == true)
             {
-                PomocnaKlasaProvere.rbtnTerminCekiran(txtPretraga.Text, indikator);
-            }
-
-            if(!PomocnaKlasaProvere.proveraPretrage(indikator))
-            {
-                ucitajPodatke();
+                var formati = new[] { "dd/MM/yyyy", "d/M/yyyy", "dd.MM.yyyy", "dd.MM.yyyy.", "d.M.yyyy.", "d.M.yyyy" };
+                DateTime dt;
+                if (DateTime.TryParseExact(txtPretraga.Text, formati, null, System.Globalization.DateTimeStyles.None, out dt))
+                {
+                    dataGridSlobodniTermini.ItemsSource = Pretrazi.izvrsiFiltriranje(new PretragaPoDatumima(), txtPretraga.Text);
+                }
+                else
+                {
+                    MessageBox.Show("Molimo unesite datum u odgovarajućem formatu. Neki od podržanih formata su: dd/MM/yyyy, d/m/yyyy, dd.MM.yyyy.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    ucitajPodatke();
+                }
             }
             else
             {
-
-                dataGridSlobodniTermini.ItemsSource = PacijentKontroler.filtrirajTermine(indikator, txtPretraga.Text);
-
-                if (txtPretraga.Text == "")
-                {
-                    ucitajPodatke();
-                }
+                MessageBox.Show("Molimo izaberite prioritet pretrage.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+                ucitajPodatke();
             }
         }
 

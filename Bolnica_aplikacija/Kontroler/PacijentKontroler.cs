@@ -4,6 +4,7 @@ using Bolnica_aplikacija.PomocneKlase;
 using Bolnica_aplikacija.Servis;
 using Model;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -142,9 +143,16 @@ namespace Bolnica_aplikacija.Kontroler
             return PacijentServis.getInstance().ucitajAktivneTerapije(idPacijenta);
         }
 
+
         public static int ukupanBrojPacijenata()
         {
             return PacijentServis.getInstance().ukupanBrojPacijenata();
+        }
+
+
+        internal static List<PacijentTermin> filtrirajTermineSve(int indikator, string text)
+        {
+            return PacijentServis.getInstance().filtrirajTermineSve( text);
         }
 
     }

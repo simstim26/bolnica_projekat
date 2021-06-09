@@ -344,6 +344,7 @@ namespace Bolnica_aplikacija.Servis
             return rezultat;
         }
 
+
         public List<Termin> pronadjiTermineZaIzvestajSekretara(DateTime pocetak, DateTime kraj)
         {
             List<Termin> termini = new List<Termin>();
@@ -363,6 +364,80 @@ namespace Bolnica_aplikacija.Servis
             return termini;
         }
 
+
+        public List<PacijentTermin> pronadjiPacijentTerminUTrenutnomMesecu(String idPacijenta)
+        {
+            List<PacijentTermin> termini = new List<PacijentTermin>();
+
+            List<PacijentTermin> predstojeciTermini = PacijentServis.getInstance().prikazBuducihTerminaPacijenta(idPacijenta);
+
+            pronadjiOdgovarajuceTermine(termini, predstojeciTermini);
+
+            return termini;
+        }
+
+        private void pronadjiOdgovarajuceTermine(List<PacijentTermin> termini, List<PacijentTermin> predstojeciTermini)
+        {
+            DateTime danas = DateTime.Now;
+            int mesec = danas.Month;
+
+            foreach(PacijentTermin pacijentTermin in predstojeciTermini)
+            {
+                DateTime terminDatum = DateTime.Parse(pacijentTermin.datum);
+
+                if(mesec == terminDatum.Month)
+                {
+                    termini.Add(pacijentTermin);
+                }
+            }
+        }
+
+        public int pronadjiOdradjeneTermineZaMesec(String idPacijenta, int mesec)
+        {
+            int broj = 0;
+            int godina = DateTime.Now.Year;
+
+            foreach(Termin termin in terminRepozitorijum.ucitajSve())
+            {
+                if(termin.idPacijenta.Equals(idPacijenta))
+                {
+                    if (termin.jeZavrsen)
+                    {
+                        if(termin.datum.Year == godina)
+                            if(termin.datum.Month == mesec)
+                            {
+                                broj += 1;
+                            }
+                    }
+                }
+            }
+
+            return broj;
+        }
+
+        public List<PacijentTermin> pronadjiOdradjeneTerminePacijenta(String idPacijenta)
+        {
+            List<PacijentTermin> terminiPacijenta = new List<PacijentTermin>();
+            foreach (Termin termin in TerminServis.getInstance().ucitajSve())
+            {
+                if (termin.idPacijenta.Equals(idPacijenta))
+                {
+
+                    int rezultat = DateTime.Compare(termin.datum, DateTime.Today);
+                    
+                    if (rezultat <= 0 && termin.jeZavrsen)
+                    {
+                        PacijentTermin pacijentTermin = new PacijentTermin();
+
+                        PacijentServis.getInstance().radSaPacijentTerminomPrikazPacijentovihTermina(termin, pacijentTermin);
+
+                        terminiPacijenta.Add(pacijentTermin);
+                    }
+                }
+            }
+
+            return terminiPacijenta;
+        }
 
     }
 }

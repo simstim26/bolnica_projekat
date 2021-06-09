@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Bolnica_aplikacija.PacijentStudent"
         mc:Ignorable="d"
         Title="Obaveštenje" Height="460" Width="450" ResizeMode="NoResize" Topmost="True" WindowStartupLocation="CenterOwner">
-    <Grid>
+    <Grid Background="MediumSpringGreen">
         <Rectangle Fill="White" HorizontalAlignment="Left" Height="168" Margin="9,167,0,0" Stroke="Black" VerticalAlignment="Top" Width="426"/>
 
 
@@ -18,7 +18,7 @@
 
         <TextBlock x:Name="txtPoruka" Margin="9,167,9,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="168" FontSize="16" IsHitTestVisible="False"/>
         <CheckBox x:Name="checkBoxProcitano" Content="Pročitano" Margin="186,348,186,0" VerticalAlignment="Top" IsChecked="True" Background="#FF008EFF"/>
-        <Button x:Name="btnPotvrda" Content="Potvrdi" Margin="172,378,172,0" VerticalAlignment="Top" Click="btnPotvrda_Click"/>
+        <Button x:Name="btnPotvrda" Content="Potvrdi" Margin="172,378,172,0" VerticalAlignment="Top" Click="btnPotvrda_Click" Background="White" Foreground="Black"/>
         <Label x:Name="lblNazivObavestenja" Content="" Margin="84,61,291,0" VerticalAlignment="Top" FontSize="18"/>
         <Label x:Name="lblVremeObavestenja" Content="" Margin="84,98,291,0" VerticalAlignment="Top" FontSize="18"/>
 

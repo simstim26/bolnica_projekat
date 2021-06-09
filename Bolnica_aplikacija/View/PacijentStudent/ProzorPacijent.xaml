@@ -4,13 +4,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Bolnica_aplikacija.PacijentStudent"
+        xmlns:calendar="clr-namespace:MyCalendar.Calendar;assembly=MyCalendar.Calendar"
+        xmlns:DV="clr-namespace:System.Windows.Controls.DataVisualization;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+        xmlns:DVC="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
         mc:Ignorable="d"
         Title="Pacijent" 
         Height="{Binding Source={x:Static SystemParameters.PrimaryScreenHeight}}"
         Width="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}}" 
-        SizeChanged="Window_SizeChanged">
+        SizeChanged="Window_SizeChanged" Background="#FF8AF671">
 
-    <Grid>
+    <Grid Background="LightGreen">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
@@ -23,44 +26,52 @@
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="Profil"  FontSize="12"/>
                 <MenuItem Header="Jezik" FontSize="12"/>
+                <MenuItem Header="Prijavi problem" FontSize="12" Click="MenuItem_Click" />
                 <MenuItem x:Name="menuItemOdjava" Header="Odjava" FontSize="12" Click="menuItemOdjava_Click"/>
             </Menu>
         </DockPanel>
 
-        <DockPanel Grid.Row="1">
+        <DockPanel Grid.Row="1" Background="LightGreen">
 
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"></RowDefinition>
                 </Grid.RowDefinitions>
 
-                <ToolBarTray Grid.Row="0" IsLocked="True">
+                <ToolBarTray Grid.Row="0" IsLocked="True" Background="#FFB5F5FB">
 
-                    <ToolBar Grid.Row="0">
+                    <ToolBar Grid.Row="0" Background="#FFB5F5FB">
 
-                        <Label Name="lblPacijent" VerticalAlignment="Center" Content="Pacijent: " FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,7,0,0"/>
+                        <Label Name="lblPacijent" VerticalAlignment="Center" Content="Pacijent: " FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,7,0,0" Background="#FFB5F5FB"/>
 
                     </ToolBar>
                 </ToolBarTray>
 
                 <ToolBarTray Grid.Row="0" IsLocked="True" HorizontalAlignment="Right">
                     <ToolBar>
-                        <Button Name="btnCenovnik" FontSize="16">Cenovnik</Button>
-                        <Button Name="btnPlacanje" FontSize="16" Click="btnPlacanje_Click">Plaćanje</Button>
-                        <Button Name="btnOceniLekara" FontSize="16" VerticalAlignment="Bottom" Click="btnOceniLekara_Click">Oceni lekara</Button>
+                        <Button Name="btnCenovnik" FontSize="16" Background="#FFB5F5FB">Cenovnik</Button>
+                        <Button Name="btnPlacanje" FontSize="16" Click="btnPlacanje_Click" Background="#FFB5F5FB">Plaćanje</Button>
+                        <Button Name="btnOceniLekara" FontSize="16" VerticalAlignment="Bottom" Click="btnOceniLekara_Click" Background="#FFB5F5FB">Oceni lekara</Button>
                     </ToolBar>
                 </ToolBarTray>
             </Grid>
         </DockPanel>
 
         <TabControl Grid.Row="2">
-            <TabItem Header="Termini" FontSize="20">
+            <TabControl.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="LightGreen" Offset="0"/>
+                    <GradientStop Color="MediumSpringGreen" Offset="1"/>
+                </LinearGradientBrush>
+            </TabControl.Background>
+
+            <TabItem Header="Termini" FontSize="20" Background="{x:Null}" BorderBrush="Black" Foreground="Black">
 
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Name="pretraga" Height="Auto"/>
-                        <RowDefinition Name="datagrid"  Height="Auto"/>
-                        <RowDefinition Name="dugmad" Height="*"/>
+                        <RowDefinition x:Name="pretraga" Height="Auto"/>
+                        <RowDefinition x:Name="datagrid"  Height="Auto"/>
+                        <RowDefinition x:Name="dugmad" Height="*"/>
 
                     </Grid.RowDefinitions>
 
@@ -72,29 +83,32 @@
 
                         </Grid.ColumnDefinitions>
 
-                        <TextBox x:Name="txtPretraga" HorizontalAlignment="Right"  Text="" VerticalAlignment="Top" Width="427" Grid.Column="1" FontSize="24" Margin="10,10,10,10"/>
-                        <Button Name="btnPretraga" Grid.Column="2" FontSize="24" Height="Auto" Margin="10,10,30,10">Pretraži</Button>
+                        <TextBox x:Name="txtPretraga" HorizontalAlignment="Right"  Text="" VerticalAlignment="Top" Width="427" Grid.Column="1" FontSize="24" Margin="10,10,10,10" ToolTip="Unesite ime lekara"/>
+                        <Button x:Name="btnPretraga" Grid.Column="2" FontSize="24" Height="Auto" Margin="10,10,30,10" Content="Pretraži" Foreground="Black" Background="White" Click="btnPretraga_Click"/>
 
                     </Grid>
 
-                    <DataGrid VerticalAlignment="Top" Name="dataGridTermin" FontSize="24" Grid.Row="1" IsReadOnly="True" SelectionMode="Single" AutoGenerateColumns="False">
+                    <DataGrid VerticalAlignment="Top" x:Name="dataGridTermin" FontSize="24" Grid.Row="1" IsReadOnly="True" SelectionMode="Single" AutoGenerateColumns="False">
+                        <DataGrid.Background>
+                            <SolidColorBrush Color="#FFFAFAFA" Opacity="0.7"/>
+                        </DataGrid.Background>
 
                         <DataGrid.Columns>
-                            <DataGridTextColumn x:Name="kolonaDatumOdrzavanja" Header="Datum održavanja" Binding="{Binding datum}"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Satnica" x:Name="kolonaSatnica" Binding="{Binding satnica}"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Lokacija" x:Name="kolonaProstorija" Binding="{Binding lokacija}"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Napomena" x:Name="kolonaNapomena" Binding="{Binding napomena}"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Lekar" x:Name="kolonaLekar" Binding="{Binding imeLekara}"></DataGridTextColumn>
+                            <DataGridTextColumn x:Name="kolonaDatumOdrzavanja" Header="Datum održavanja" Binding="{Binding datum}"/>
+                            <DataGridTextColumn Header="Satnica" x:Name="kolonaSatnica" Binding="{Binding satnica}"/>
+                            <DataGridTextColumn Header="Lokacija" x:Name="kolonaProstorija" Binding="{Binding lokacija}"/>
+                            <DataGridTextColumn Header="Napomena" x:Name="kolonaNapomena" Binding="{Binding napomena}"/>
+                            <DataGridTextColumn Header="Lekar" x:Name="kolonaLekar" Binding="{Binding imeLekara}"/>
                             <DataGridTextColumn Header="Specijalizacija" x:Name="kolonaSpecijalizacija" Binding="{Binding nazivSpecijalizacije}"/>
                         </DataGrid.Columns>
 
                     </DataGrid>
 
-                    <Grid Name="gridZaDugmad" Grid.Row="2">
+                    <Grid x:Name="gridZaDugmad" Grid.Row="2">
 
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="30"/>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="30"/>
@@ -102,33 +116,82 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
-                        <Button x:Name="btnOtkaziPregled" Margin="0,10,0,10" Content="Otkaži termin"  Width="201" Height="55" FontSize="22"  MinWidth="201" MinHeight="55"  Grid.Column="5" Click="btnOtkaziPregled_Click"/>
-                        <Button x:Name="btnIzmeniTermin" Margin="0,10,0,10" Content="Pomeri termin"  Width="201" Height="55" FontSize="22" MinWidth="201" MinHeight="55"  Grid.Column="3" Click="btnIzmeniTermin_Click"/>
-                        <Button x:Name="btnZakaziPregled" Margin="0,10,0,10" Content="Zakaži termin" Width="201" Height="55" FontSize="22" MinWidth="201" MinHeight="55"  Grid.Column="1" Click="btnZakaziPregled_Click_1"/>
+                        <Button x:Name="btnOtkaziPregled" Margin="0,10,0,10" Content="Otkaži termin"  Width="201" Height="55" FontSize="22"  MinWidth="201" MinHeight="55"  Grid.Column="5" Click="btnOtkaziPregled_Click" Foreground="Black" Background="White"/>
+                        <Button x:Name="btnIzmeniTermin" Margin="0,10,0,10" Content="Pomeri termin"  Width="201" Height="55" FontSize="22" MinWidth="201" MinHeight="55"  Grid.Column="3" Click="btnIzmeniTermin_Click" Foreground="Black" Background="White"/>
+                        <Button x:Name="btnZakaziPregled" Margin="0,10,0,10" Content="Zakaži termin" Width="201" Height="55" FontSize="22" MinWidth="201" MinHeight="55"  Grid.Column="1" Click="btnZakaziPregled_Click_1" Background="White" Foreground="Black"/>
 
                     </Grid>
 
                 </Grid>
 
             </TabItem>
-            <TabItem Header="Zdravstveni karton" FontSize="20">
-                <Label>TO DO: implementirati zdravstveni karton</Label>
+            <TabItem Header="Zdravstveni karton" FontSize="20" Background="{x:Null}" BorderBrush="Black">
+                <Grid HorizontalAlignment="Left" Height="877" VerticalAlignment="Top" Width="1907" Margin="0,0,-1,-5">
+                    <Rectangle Stroke="Black" Margin="-16,0,-38,804" Height="73" VerticalAlignment="Bottom"/>
+                    <Button x:Name="btnLicniPodaci" Content="Lični podaci" Height="Auto" Margin="10,20,1777,826" Background="White" Foreground="Black"/>
+                    <Button x:Name="btnIzvrseniTermini" Content="Izvršeni termini" Height="Auto" Margin="146,20,1618,826" IsEnabled="False" Background="White" Foreground="Black"/>
+                    <Button x:Name="btnAlergije" Content="Alergije" Height="Auto" Margin="306,20,1481,826" Background="White" Foreground="Black"/>
+                    <Button x:Name="btnIstorijaBolesti" Content="Istorija bolesti" Height="Auto" Margin="444,20,1343,826" Background="White" Foreground="Black"/>
+                    <Grid Margin="0,73,0,0"/>
+                    <Rectangle Fill="#FFF4F4F5" Stroke="Black" Margin="999,106,28,71"/>
+
+                    <DVC:Chart Name="grafickiPrikaz" Background="MediumSeaGreen" Foreground="DarkBlue" Title="Mesečna posećenost zdravstvenoj ustanovi" Margin="999,106,28,71">
+
+                        <DVC:Chart.LegendStyle>
+                            <Style x:Name="LegendHideStyle" TargetType="Control">
+                                <Setter Property="Width" Value="0"></Setter>
+                                <Setter Property="Height" Value="0"></Setter>
+                            </Style>
+                        </DVC:Chart.LegendStyle>
+
+                        <DVC:Chart.Axes>
+                            <DVC:LinearAxis Orientation="Y" Interval="1" ShowGridLines="false">
+
+                            </DVC:LinearAxis>
+                        </DVC:Chart.Axes>
+
+                        <DVC:Chart.Series>
+                            <DVC:ColumnSeries IndependentValuePath="Key"  DependentValuePath="Value" ItemsSource="{Binding Path=ValueList}">
+
+                            </DVC:ColumnSeries>
+                        </DVC:Chart.Series>
+
+                    </DVC:Chart>
+
+                    <DataGrid x:Name="dataGridIzvrseniTermini" Margin="10,106,933,71" IsReadOnly="True" SelectionMode="Single" AutoGenerateColumns="False" FontSize="18" >
+                        <DataGrid.Background>
+                            <SolidColorBrush Color="#FFFAFAFA" Opacity="0.7"/>
+                        </DataGrid.Background>
+
+                        <DataGrid.Columns>
+                            <DataGridTextColumn x:Name="kolonaDatum2" Header="Datum" Binding="{Binding datum}"/>
+                            <DataGridTextColumn Header="Satnica" x:Name="kolonaSatnica2" Binding="{Binding satnica}"/>
+                            <DataGridTextColumn Header="Lokacija" x:Name="kolonaLokacija2" Binding="{Binding lokacija}"/>
+                            <DataGridTextColumn x:Name="kolonaNapomena2" Header="Napomena" Binding="{Binding napomena}"/>
+                            <DataGridTextColumn Header="Lekar" x:Name="kolonaLekar2" Binding="{Binding imeLekara}"/>
+                        </DataGrid.Columns>
+
+                    </DataGrid>
+                </Grid>
             </TabItem>
-            <TabItem Header="Aktivne terapije" FontSize="20">
+            <TabItem Header="Aktivne terapije" FontSize="20" Background="{x:Null}" BorderBrush="Black">
                 <Grid Margin="0,0,0,-6">
                     <Label x:Name="lblDatum" Content="Današnji datum: " HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="28"/>
                     <Label x:Name="label" Content="Vaše terapije za ovu sedmicu su prikazane ispod." HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top" FontSize="28"/>
                     <DataGrid x:Name="dataGridTerapije" Margin="10,110,10,143" Height="661" IsReadOnly="True" SelectionMode="Single" AutoGenerateColumns="False" VerticalAlignment="Top" FontSize="18">
+                        <DataGrid.Background>
+                            <SolidColorBrush Color="#FFFAFAFA" Opacity="0.7"/>
+                        </DataGrid.Background>
 
                         <DataGrid.Columns>
-                            <DataGridTextColumn x:Name="kolonaNazivOboljenja" Header="Naziv oboljenja" Binding="{Binding nazivOboljenja}"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Lek koji se primenjuje" x:Name="kolonaLek" Binding="{Binding nazivLeka}"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Kratak opis terapije" x:Name="kolonaOpis" Binding="{Binding opisTerapije}"></DataGridTextColumn>
+                            <DataGridTextColumn x:Name="kolonaNazivOboljenja" Header="Naziv oboljenja" Binding="{Binding nazivOboljenja}"/>
+                            <DataGridTextColumn Header="Lek koji se primenjuje" x:Name="kolonaLek" Binding="{Binding nazivLeka}"/>
+                            <DataGridTextColumn Header="Kratak opis terapije" x:Name="kolonaOpis" Binding="{Binding opisTerapije}"/>
 
                             <DataGridTemplateColumn Header="Opširnije informacije">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <Button >Info</Button>
+                                        <Button Content="Info" Background="White" Foreground="Black"/>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
@@ -136,7 +199,7 @@
                             <DataGridTemplateColumn Header="Postavi podsetnik">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <Button Click="btnPodsetnik_Click">Podsetnik</Button>
+                                        <Button Click="btnPodsetnik_Click" Content="Podsetnik" Background="White" Foreground="Black"/>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
@@ -144,32 +207,57 @@
                         </DataGrid.Columns>
 
                     </DataGrid>
+                    <Button x:Name="btnIzvestaj" Content="Napravi izveštaj" HorizontalAlignment="Left" Margin="1647,27,0,0" VerticalAlignment="Top" Width="169" Height="52" FontSize="18" Click="btnIzvestaj_Click" Background="White" Foreground="Black"/>
 
                 </Grid>
             </TabItem>
-            <TabItem Header="Obaveštenja" FontSize="20">
+            <TabItem Header="Obaveštenja" FontSize="20" Background="{x:Null}" BorderBrush="Black">
                 <Grid HorizontalAlignment="Left" Height="869" VerticalAlignment="Top" Width="1906">
                     <Label Content="Obaveštenja:" FontSize="28" Margin="0,0,0,822"/>
                     <DataGrid x:Name="dataGridObavestenja" HorizontalAlignment="Left" Height="677" Margin="8,52,0,0" VerticalAlignment="Top" Width="1888" IsReadOnly="True" SelectionMode="Single" AutoGenerateColumns="False" FontSize="18">
-                        
+                        <DataGrid.Background>
+                            <SolidColorBrush Color="#FFFAFAFA" Opacity="0.7"/>
+                        </DataGrid.Background>
+
                         <DataGrid.Columns>
-                            <DataGridTextColumn x:Name="kolonaNaziv" Header="Naziv" Binding="{Binding nazivNotifikacije}"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Datum" x:Name="kolonaDatum" Binding="{Binding datumNotifikovanja}"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Vreme" x:Name="kolonaVreme" Binding="{Binding vremeNotifikovanja}"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Ponavljanje" x:Name="kolonaPonavljanje" Binding="{Binding ponavljanje}"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Kratka poruka" x:Name="kolonaPoruka" Binding="{Binding porukaNotifikacije}"></DataGridTextColumn>
-                            
-                            
-                            
+                            <DataGridTextColumn x:Name="kolonaNaziv" Header="Naziv" Binding="{Binding nazivNotifikacije}"/>
+                            <DataGridTextColumn Header="Datum" x:Name="kolonaDatum" Binding="{Binding datumNotifikovanja}"/>
+                            <DataGridTextColumn Header="Vreme" x:Name="kolonaVreme" Binding="{Binding vremeNotifikovanja}"/>
+                            <DataGridTextColumn Header="Ponavljanje" x:Name="kolonaPonavljanje" Binding="{Binding ponavljanje}"/>
+                            <DataGridTextColumn Header="Kratka poruka" x:Name="kolonaPoruka" Binding="{Binding porukaNotifikacije}"/>
+
+
+
 
                         </DataGrid.Columns>
-                        
-                        
+
+
                     </DataGrid>
-                    <Button x:Name="btnObrisi" Margin="1084,778,621,36" Content="Obriši"  Width="201" Height="55" FontSize="22"  MinWidth="201" MinHeight="55"/>
-                    <Button x:Name="btnIzmeniObavestenje" Margin="853,778,852,36" Content="Izmeni"  Width="201" Height="55" FontSize="22" MinWidth="201" MinHeight="55" Click="btnIzmeniObavestenje_Click"/>
-                    <Button x:Name="btnKreirajObavestenje" Margin="622,778,1083,36" Content="Napravi" Width="201" Height="55" FontSize="22" MinWidth="201" MinHeight="55" Click="btnKreirajObavestenje_Click"/>
+                    <Button x:Name="btnObrisi" Margin="1084,778,621,36" Content="Obriši"  Width="201" Height="55" FontSize="22"  MinWidth="201" MinHeight="55" Foreground="Black" Background="White"/>
+                    <Button x:Name="btnIzmeniObavestenje" Margin="853,778,852,36" Content="Izmeni"  Width="201" Height="55" FontSize="22" MinWidth="201" MinHeight="55" Click="btnIzmeniObavestenje_Click" Background="White" Foreground="Black"/>
+                    <Button x:Name="btnKreirajObavestenje" Margin="622,778,1083,36" Content="Napravi" Width="201" Height="55" FontSize="22" MinWidth="201" MinHeight="55" Click="btnKreirajObavestenje_Click" Foreground="Black" Background="White"/>
                 </Grid>
+            </TabItem>
+
+            <TabItem Header="Kalendar" FontSize="20" BorderBrush="Black" Background="{x:Null}">
+                <Grid HorizontalAlignment="Left" Height="875" VerticalAlignment="Top" Width="1907" Margin="0,-2,-1,-1">
+
+                    <Label x:Name="lblMesec" Content="Mesec:" FontSize="40" Margin="74,9,1703,805"/>
+
+                    <Rectangle Stroke="Black" Margin="74,102,90,42">
+                        <Rectangle.Fill>
+                            <SolidColorBrush Color="MediumSeaGreen" Opacity="0.7"/>
+                        </Rectangle.Fill>
+                    </Rectangle>
+
+
+
+                    <calendar:Calendar x:Name="calendar" Margin="74,70,0,42" FontSize="26" HorizontalAlignment="Left" Width="1743" />
+
+
+
+                </Grid>
+
             </TabItem>
 
         </TabControl>
@@ -199,7 +287,6 @@
 
             </StatusBar>
         </DockPanel>
-        <Grid HorizontalAlignment="Left" Height="100" Grid.RowSpan="2" VerticalAlignment="Top" Width="100"/>
 
     </Grid>
 </Window>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,6 +28,11 @@ namespace Bolnica_aplikacija.PomocneKlase
             this.datumPocetka = datumPocetka;
             this.trajanje = trajanje;
             this.nacinUpotrebe = nacinUpotrebe;
+        }
+
+        public static explicit operator TerapijaDTO(List<Terapija> v)
+        {
+            throw new NotImplementedException();
         }
     }
 }

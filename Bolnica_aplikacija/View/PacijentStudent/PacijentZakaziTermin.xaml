@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Bolnica_aplikacija"
         mc:Ignorable="d"
         Title="Zakazivanje termina" Height="640" Width="800" WindowStartupLocation="CenterOwner" FontSize="24" ResizeMode="NoResize" Topmost="True">
-    <Grid>
+    <Grid Background="MediumSpringGreen">
 
 
         <Label x:Name="label" Content="Zakazivanje termina" Margin="232,10,231,0" VerticalAlignment="Top" FontStyle="Italic" FontWeight="Bold" Height="60" FontSize="32"/>
@@ -15,10 +15,13 @@
         <RadioButton x:Name="rbtnLekar" Content="Lekar" Margin="13,112,0,0"  VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold" Height="30" Width="141" FontSize="20" GroupName="Pretraga"/>
         <RadioButton x:Name="rbtnTermin" Content="Datum održavanja" Margin="13,147,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold" Height="30" Width="245" FontSize="20" GroupName="Pretraga"/>
         <TextBox x:Name="txtPretraga" HorizontalAlignment="Left" Height="36" Margin="10,182,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="270" FontSize="18" TextChanged="txtPretraga_TextChanged"/>
-        <Button x:Name="btnPretrazi" Content="Pretraži" HorizontalAlignment="Left" Margin="301,182,0,0" VerticalAlignment="Top" Width="145" Height="36" FontSize="20" Click="btnPretrazi_Click"/>
+        <Button x:Name="btnPretrazi" Content="Pretraži" HorizontalAlignment="Left" Margin="301,182,0,0" VerticalAlignment="Top" Width="145" Height="36" FontSize="20" Click="btnPretrazi_Click" Background="White" Foreground="Black"/>
 
         <DataGrid x:Name="dataGridSlobodniTermini" Height="249" Margin="13,258,13,0"  VerticalAlignment="Top"
                   AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single" Width="768">
+            <DataGrid.Background>
+                <SolidColorBrush Color="White" Opacity="0.8"/>
+            </DataGrid.Background>
 
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="kolonaDatumOdrzavanja" Header="Datum održavanja" Binding="{Binding datum}"/>
@@ -28,8 +31,8 @@
             </DataGrid.Columns>
 
         </DataGrid>
-        <Button x:Name="btnPotvrdi" Content="Potvrdi" Margin="332,518,332,0" VerticalAlignment="Top" FontSize="20" Cursor="Hand" Height="36" Click="btnPotvrdi_Click"/>
-        <Button x:Name="btnOtkazi" Content="Otkaži" Margin="332,559,332,0" VerticalAlignment="Top" FontSize="20" Cursor="Hand" Height="36" IsCancel="True"/>
+        <Button x:Name="btnPotvrdi" Content="Potvrdi" Margin="332,518,332,0" VerticalAlignment="Top" FontSize="20" Cursor="Hand" Height="36" Click="btnPotvrdi_Click" Background="White" Foreground="Black"/>
+        <Button x:Name="btnOtkazi" Content="Otkaži" Margin="332,559,332,0" VerticalAlignment="Top" FontSize="20" Cursor="Hand" Height="36" IsCancel="True" Foreground="Black" Background="White"/>
 
     </Grid>
 </Window>

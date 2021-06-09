@@ -2,20 +2,18 @@
 using Bolnica_aplikacija.PacijentModel;
 using Bolnica_aplikacija.PomocneKlase;
 using Bolnica_aplikacija.View.PacijentStudent;
-using Model;
+using iText.IO.Font;
+using iText.Kernel.Font;
+using iText.Kernel.Pdf;
+using iText.Kernel.Pdf.Canvas.Draw;
+using iText.Layout;
+using iText.Layout.Element;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 
 namespace Bolnica_aplikacija.PacijentStudent
@@ -28,11 +26,11 @@ namespace Bolnica_aplikacija.PacijentStudent
 
         //private String idPacijenta;
         private DispatcherTimer tajmer;
+        public List<KeyValuePair<String, int>> ValueList { get;  private set; }
 
         public ProzorPacijent()
         {
             InitializeComponent();
-            //this.idPacijenta = KorisnikKontroler.GetPacijent().id;
             this.DataContext = this;
 
             SetScreenSize();
@@ -40,17 +38,89 @@ namespace Bolnica_aplikacija.PacijentStudent
             SetDataGridBounds();
             SetLabelPacijentContent();
 
+            postaviLabeleDatuma();
+
             PopuniTermine();
             popuniTerapije();
             setujTajmer();
             proveraAnkete();
             popuniObavestenja();
+            napraviGraf();
+            popuniMesecneTermine();
+
+            PomocnaKlasaKalendar.popuniKalendar(calendar);
 
         }
 
-        private void PopuniTermine()
+        private void postaviLabeleDatuma()
         {
-            //PacijentKontroler.nadjiPacijenta(KorisnikKontroler.GetPacijent().id);
+            DateTime datum = DateTime.Now;
+            lblDatum.Content = lblDatum.Content + " " + datum.ToString("dd/MM/yyyy");
+
+            switch (datum.Month)
+            {
+                case 1:
+                    lblMesec.Content = "Januar"; break;
+                case 2:
+                    lblMesec.Content = "Februar"; break;
+                case 3:
+                    lblMesec.Content = "Mart"; break;
+                case 4:
+                    lblMesec.Content = "April"; break;
+                case 5:
+                    lblMesec.Content = "Maj"; break;
+                case 6:
+                    lblMesec.Content = "Jun"; break;
+                case 7:
+                    lblMesec.Content = "Jul"; break;
+                case 8:
+                    lblMesec.Content = "Avgust"; break;
+                case 9:
+                    lblMesec.Content = "Septembar"; break;
+                case 10:
+                    lblMesec.Content = "Oktobar"; break;
+                case 11:
+                    lblMesec.Content = "Novembar"; break;
+                case 12:
+                    lblMesec.Content = "Decembar"; break;
+                default:
+                    lblMesec.Content = ""; break;
+
+            }
+
+        }
+
+        private void popuniMesecneTermine()
+        {
+            dataGridIzvrseniTermini.ItemsSource = TerminKontroler.pronadjiOdradjeneTerminePacijenta(KorisnikKontroler.GetPacijent().id);
+        }
+
+        private void napraviGraf()
+        {
+            ValueList = new List<KeyValuePair<string, int>>();
+
+            int[] brojOdradjenihTermina = { 0,0,0,0,0,0,0,0,0,0,0,0};
+            for(int i=1; i <= 12; i++)
+            {
+                brojOdradjenihTermina[i-1] = PomocnaKlasaProvere.prebrojTermine(KorisnikKontroler.GetPacijent().id, i);
+            }
+
+            ValueList.Add(new KeyValuePair<string, int>("JAN", brojOdradjenihTermina[0]));
+            ValueList.Add(new KeyValuePair<string, int>("FEB", brojOdradjenihTermina[1]));
+            ValueList.Add(new KeyValuePair<string, int>("MAR", brojOdradjenihTermina[2]));
+            ValueList.Add(new KeyValuePair<string, int>("APR", brojOdradjenihTermina[3]));
+            ValueList.Add(new KeyValuePair<string, int>("MAJ", brojOdradjenihTermina[4]));
+            ValueList.Add(new KeyValuePair<string, int>("JUN", brojOdradjenihTermina[5]));
+            ValueList.Add(new KeyValuePair<string, int>("JUL", brojOdradjenihTermina[6])); 
+            ValueList.Add(new KeyValuePair<string, int>("AVG", brojOdradjenihTermina[7]));
+            ValueList.Add(new KeyValuePair<string, int>("SEP", brojOdradjenihTermina[8]));
+            ValueList.Add(new KeyValuePair<string, int>("OKT", brojOdradjenihTermina[9]));
+            ValueList.Add(new KeyValuePair<string, int>("NOV", brojOdradjenihTermina[10]));
+            ValueList.Add(new KeyValuePair<string, int>("DEC", brojOdradjenihTermina[11]));
+        }
+
+        private void PopuniTermine()
+        { 
             dataGridTermin.ItemsSource = PacijentKontroler.prikazPacijentovihTermina(KorisnikKontroler.GetPacijent().id);
         }
 
@@ -66,11 +136,9 @@ namespace Bolnica_aplikacija.PacijentStudent
 
         private void SetLabelPacijentContent()
         {
-
             lblPacijent.Content = lblPacijent.Content + " " +
                 KorisnikKontroler.GetPacijent().ime + " " +
                 KorisnikKontroler.GetPacijent().prezime;
-
         }
 
         private void SetScreenSize()
@@ -86,22 +154,16 @@ namespace Bolnica_aplikacija.PacijentStudent
         {
             dataGridTermin.Loaded += SetMinWidths;
             dataGridTermin.Height = System.Windows.SystemParameters.PrimaryScreenHeight - 370;
-
-            //dataGridTerapije.Loaded += SetMinWidths;
-            //dataGridTerapije.Height = System.Windows.SystemParameters.PrimaryScreenHeight - 370;
-
         }
 
         private void CenterWindow()
         {
-
             double screenWidth = System.Windows.SystemParameters.PrimaryScreenWidth;
             double screenHeight = System.Windows.SystemParameters.PrimaryScreenHeight;
             double windowWidth = this.Width;
             double windowHeight = this.Height;
             this.Left = (screenWidth / 2) - (windowWidth / 2);
             this.Top = (screenHeight / 2) - (windowHeight / 2);
-
         }
 
         public void SetMinWidths(object source, EventArgs e)
@@ -111,19 +173,21 @@ namespace Bolnica_aplikacija.PacijentStudent
                 column.MinWidth = column.ActualWidth;
                 column.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
             }
-
             foreach (var column in dataGridTerapije.Columns)
             {
                 column.MinWidth = column.ActualWidth;
                 column.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
             }
-
             foreach (var column in dataGridObavestenja.Columns)
             {
                 column.MinWidth = column.ActualWidth;
                 column.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
             }
-
+            foreach (var column in dataGridIzvrseniTermini.Columns)
+            {
+                column.MinWidth = column.ActualWidth;
+                column.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
+            }
         }
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -152,9 +216,19 @@ namespace Bolnica_aplikacija.PacijentStudent
                         {
                             if (izabraniTermin.idSpecijalizacije.Equals("0"))
                             {
-                                PacijentKontroler.otkaziTerminPacijenta(izabraniTermin.id);
-                                //ANTI TROL
-                                PomocnaKlasaProvere.antiTrolMetoda(KorisnikKontroler.GetPacijent().id);
+                                PotvrdaProzor pprozor = new PotvrdaProzor();
+                                pprozor.Owner = this;
+                                pprozor.ShowDialog();
+
+                                if (pprozor.GetPovratnaVrednost() == 1)
+                                {
+                                    PacijentKontroler.otkaziTerminPacijenta(izabraniTermin.id);
+                                    //ANTI TROL
+                                    PomocnaKlasaProvere.antiTrolMetoda(KorisnikKontroler.GetPacijent().id);
+
+                                    //Kalendar
+                                    PomocnaKlasaKalendar.azurirajKalendar(calendar);
+                                }
                             }
                             else
                             {
@@ -199,7 +273,7 @@ namespace Bolnica_aplikacija.PacijentStudent
                         {
                             if (izabraniTermin.idSpecijalizacije.Equals("0"))
                             {
-                                IzmenaTerminaPacijent izmenaTermina = new IzmenaTerminaPacijent(dataGridTermin);
+                                IzmenaTerminaPacijent izmenaTermina = new IzmenaTerminaPacijent(dataGridTermin, calendar);
                                 izmenaTermina.Owner = this;
                                 izmenaTermina.ShowDialog();
                             }
@@ -231,7 +305,7 @@ namespace Bolnica_aplikacija.PacijentStudent
         {
             if(proveraUzastopnihIzmena())
             {
-                PacijentZakaziTermin zakaziTermin = new PacijentZakaziTermin(dataGridTermin);
+                PacijentZakaziTermin zakaziTermin = new PacijentZakaziTermin(dataGridTermin, calendar);
                 zakaziTermin.Owner = this;
                 zakaziTermin.ShowDialog();
             }
@@ -282,8 +356,8 @@ namespace Bolnica_aplikacija.PacijentStudent
                 }
                 else if (zaProveriti.Count == 1)
                 {
-                    NotifikacijaProzor notifikacijaProzor = new NotifikacijaProzor(zaProveriti.ElementAt(0).id, KorisnikKontroler.GetPacijent().id);
-                    notifikacijaProzor.ShowDialog();
+                    //NotifikacijaProzor notifikacijaProzor = new NotifikacijaProzor(zaProveriti.ElementAt(0).id, KorisnikKontroler.GetPacijent().id);
+                    //notifikacijaProzor.ShowDialog();
 
                 }
                 else
@@ -389,6 +463,81 @@ namespace Bolnica_aplikacija.PacijentStudent
             }
 
 
+        }
+
+        private void btnIzvestaj_Click(object sender, RoutedEventArgs e)
+        {
+            String imeIzvestaja = "Nedeljne terapije za pacijenta";
+
+            PdfWriter writer = new PdfWriter(imeIzvestaja + ".pdf");
+            PdfDocument document = new PdfDocument(writer);
+            document.AddNewPage();
+            Document d = new Document(document);
+            FontProgram fontProgram = FontProgramFactory.CreateFont();
+            PdfFont font = PdfFontFactory.CreateFont(fontProgram, "Cp1250");
+            d.SetFont(font);
+
+            Paragraph zaglavlje = new Paragraph();
+            zaglavlje.Add("Pacijent: " + KorisnikKontroler.GetPacijent().ime + " " + KorisnikKontroler.GetPacijent().prezime).SetBold();
+            d.Add(zaglavlje);
+            int brojac = 1;
+            foreach(TerapijaPacijent terapija in TerapijaKontroler.ucitajTrenutneTerapijePacijentaTP(KorisnikKontroler.GetPacijent().id))
+            {
+                Paragraph paragraf = new Paragraph();
+                Paragraph terapijaParagraf = new Paragraph();
+
+                terapijaParagraf.Add("Terapija broj " + brojac + ":\n").SetBold();
+                paragraf.Add("Naziv oboljenja: "+terapija.nazivOboljenja);
+                paragraf.Add("\nIzdat lek za upotrebu: " + terapija.nazivLeka + "\n");
+                paragraf.Add("Dodatno:\n");
+                paragraf.Add(terapija.opisTerapije);
+
+                d.Add(terapijaParagraf);
+                d.Add(paragraf);
+                LineSeparator ls = new LineSeparator(new SolidLine());
+                d.Add(ls);
+
+                brojac += 1;
+            
+            }
+            d.Close();
+
+            MessageBox.Show("Uspešno je napravljen izveštaj o nedeljnim terapijama!", "Informacija", MessageBoxButton.OK, MessageBoxImage.Information);
+
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            PrijavaProblema prijava = new PrijavaProblema();
+            prijava.ShowDialog();
+        }
+
+        private void btnPretraga_Click(object sender, RoutedEventArgs e)
+        {
+            int indikator = -2;
+
+            if (!Regex.IsMatch(txtPretraga.Text, @"^[\p{L}\p{M}' \.\-]+$"))
+            {
+                indikator = -2;
+            }
+            else
+                indikator = 0;
+
+            if(!PomocnaKlasaProvere.proveraPretrage(indikator))
+            {
+                PopuniTermine();
+            }
+            else
+                dataGridTermin.ItemsSource = PacijentKontroler.filtrirajTermineSve(indikator, txtPretraga.Text);
+
+        }
+
+        private void txtPretraga_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (txtPretraga.Text.Length == 0)
+            {
+                PopuniTermine();
+            }
         }
     }
 }

@@ -112,5 +112,20 @@ namespace Bolnica_aplikacija.Kontroler
         {
             return TerminServis.getInstance().pronadjiTermineZaIzvestajSekretara(pocetak, kraj);
         }
+    
+        public static List<PacijentTermin> pronadjiPacijentTerminUTrenutnomMesecu(String idPacijenta)
+        {
+            return TerminServis.getInstance().pronadjiPacijentTerminUTrenutnomMesecu(idPacijenta);
+        }
+    
+        public static int pronadjiOdradjeneTermineZaMesec(String idPacijenta, int mesec)
+        {
+            return TerminServis.getInstance().pronadjiOdradjeneTermineZaMesec(idPacijenta, mesec);
+        }
+
+        public static List<PacijentTermin> pronadjiOdradjeneTerminePacijenta(String idPacijenta)
+        {
+            return TerminServis.getInstance().pronadjiOdradjeneTerminePacijenta(idPacijenta);
+        }
     }
 }

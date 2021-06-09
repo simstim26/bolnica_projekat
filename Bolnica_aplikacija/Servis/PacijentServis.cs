@@ -184,7 +184,7 @@ namespace Bolnica_aplikacija.Servis
             TerminServis.getInstance().azurirajTermin(stariTermin);
         }
 
-        private void radSaPacijentTerminomPrikazPacijentovihTermina(Termin termin, PacijentTermin pacijentTermin)
+        public void radSaPacijentTerminomPrikazPacijentovihTermina(Termin termin, PacijentTermin pacijentTermin)
         {
             popuniProstoriju(termin, pacijentTermin);
             popuniLekara(termin, pacijentTermin);
@@ -340,7 +340,9 @@ namespace Bolnica_aplikacija.Servis
                         if (!pacijentTermin.imeLekara.Equals("") && !pacijentTermin.lokacija.Equals(""))
                         {
                             dopuniPacijentTermin(termin, pacijentTermin);
-                            terminiSlobodni.Add(pacijentTermin);
+
+                            if(pacijentTermin.idSpecijalizacije.Equals("0"))
+                                terminiSlobodni.Add(pacijentTermin);
                         }
                     }
                 }
@@ -375,7 +377,9 @@ namespace Bolnica_aplikacija.Servis
                         if (!pacijentTermin.imeLekara.Equals("") && !pacijentTermin.lokacija.Equals(""))
                         {
                             dopuniPacijentTermin(termin, pacijentTermin);
-                            terminiSlobodni.Add(pacijentTermin);
+
+                            if (pacijentTermin.idSpecijalizacije.Equals("0"))
+                                terminiSlobodni.Add(pacijentTermin);
                         }
                     }
                 }
@@ -544,7 +548,7 @@ namespace Bolnica_aplikacija.Servis
         private void filtriranjePoLekaruDopunjavanjePolja(Termin termin, PacijentTermin pacijentTermin)
         {
             pacijentTermin.datum = termin.datum.Date.ToString("dd/MM/yyyy");
-            pacijentTermin.napomena = termin.tip.ToString();
+            pacijentTermin.napomena = termin.getTipString();
             pacijentTermin.satnica = termin.satnica.ToString("HH:mm");
             pacijentTermin.id = termin.idTermina;
         }
@@ -721,6 +725,77 @@ namespace Bolnica_aplikacija.Servis
         public int ukupanBrojPacijenata()
         {
             return pacijentRepozitorijum.ucitajSve().Count;
+        }
+
+        public List<PacijentTermin> filtrirajTermineSve(String text)
+        {
+            List<PacijentTermin> termini = new List<PacijentTermin>();
+
+            String[] podaci = text.Split(' ');
+
+            int rezultat = 0;
+
+            foreach (Termin termin in TerminServis.getInstance().ucitajSve())
+            {
+
+                rezultat = DateTime.Compare(DateTime.Now, termin.datum);
+
+                if (termin.idPacijenta.Equals(KorisnikKontroler.GetPacijent().id) && rezultat <=0)
+                {
+                    PacijentTermin pacijentTermin = new PacijentTermin();
+
+                    filtriranjePoLekaruPostavljanjePoljaSvi(termin, pacijentTermin, podaci);
+
+                    if (!pacijentTermin.imeLekara.Equals("") && !pacijentTermin.lokacija.Equals(""))
+                    {
+                        filtriranjePoLekaruDopunjavanjePolja(termin, pacijentTermin);
+                        termini.Add(pacijentTermin);
+                    }
+
+                }
+            }
+
+
+            return termini;
+        }
+
+        private void filtriranjePoLekaruPostavljanjeLekaraSviTermini(Termin termin, PacijentTermin pacijentTermin, String[] podaci)
+        {
+            foreach (Lekar lekar in LekarServis.getInstance().ucitajSve())
+            {
+                pacijentTermin.imeLekara = "";
+
+                if (podaci.Length == 2)
+                {
+                    if (lekar.id.Equals(termin.idLekara) && lekar.ime.ToLower().Contains(podaci[0].ToLower()) && lekar.prezime.ToLower().Contains(podaci[1].ToLower()))
+                    {
+                        
+                        
+                            pacijentTermin.imeLekara = lekar.ime + " " + lekar.prezime;
+                            pacijentTermin.nazivSpecijalizacije = SpecijalizacijaServis.getInstance().nadjiSpecijalizacijuPoId(lekar.idSpecijalizacije);
+                            break;
+                        
+                    }
+                }
+                if (podaci.Length == 1)
+                {
+                    if (lekar.id.Equals(termin.idLekara) && lekar.ime.ToLower().Contains(podaci[0].ToLower()))
+                    {
+                   
+                        
+                            pacijentTermin.imeLekara = lekar.ime + " " + lekar.prezime;
+                            pacijentTermin.nazivSpecijalizacije = SpecijalizacijaServis.getInstance().nadjiSpecijalizacijuPoId(lekar.idSpecijalizacije);
+                            break;
+                        
+                    }
+                }
+            }
+        }
+
+        private void filtriranjePoLekaruPostavljanjePoljaSvi(Termin termin, PacijentTermin pacijentTermin, String[] podaci)
+        {
+            popuniProstoriju(termin, pacijentTermin);
+            filtriranjePoLekaruPostavljanjeLekaraSviTermini(termin, pacijentTermin, podaci);
         }
 
     }

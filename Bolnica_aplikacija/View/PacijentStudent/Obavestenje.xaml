@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Bolnica_aplikacija.View.PacijentStudent"
         mc:Ignorable="d"
         Title="Napravi podsetnik" Height="498" Width="400" ResizeMode="NoResize" Topmost="True">
-    <Grid>
+    <Grid Background="MediumSpringGreen">
         <Label x:Name="label" Content="Naziv:" HorizontalAlignment="Left" Margin="16,18,0,0" VerticalAlignment="Top" FontSize="16"/>
         <Label x:Name="label_Copy" Content="Vreme:" HorizontalAlignment="Left" Margin="9,65,0,0" VerticalAlignment="Top" FontSize="16"/>
         <Label x:Name="label_Copy1" Content="Ponoviti:" HorizontalAlignment="Left" Margin="179,64,0,0" VerticalAlignment="Top" FontSize="16"/>
@@ -14,10 +14,10 @@
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="200" Margin="10,153,0,0" Stroke="Black" VerticalAlignment="Top" Width="368"/>
         <TextBox x:Name="txtPoruka" HorizontalAlignment="Left" Height="200" Margin="10,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="16"/>
         <TextBox x:Name="txtNaziv" HorizontalAlignment="Left" Height="30" Margin="71,18,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="307" FontSize="16"/>
-        <TextBox x:Name="txtVreme" HorizontalAlignment="Left" Height="30" Margin="71,64,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="103" FontSize="16"/>
+        <TextBox x:Name="txtVreme" HorizontalAlignment="Left" Height="30" Margin="71,64,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="103" FontSize="16" IsEnabled="False" ToolTip="Unesite vreme u formatu HH:mm"/>
         <ComboBox x:Name="comboBoxPonavljanje" HorizontalAlignment="Left" Margin="259,64,0,0" VerticalAlignment="Top" Width="119" Height="30" SelectedIndex="7" FontSize="16" DropDownClosed="comboBoxPonavljanje_DropDownClosed"/>
-        <Button x:Name="btnNapravi" Content="Napravi" HorizontalAlignment="Left" Margin="136,371,0,0" VerticalAlignment="Top" Width="111" FontSize="18" Height="34" Click="btnNapravi_Click"/>
-        <Button x:Name="btnOdustani" Content="Odustani" HorizontalAlignment="Left" Margin="136,410,0,0" VerticalAlignment="Top" Width="111" FontSize="18" Height="34" IsCancel="True"/>
+        <Button x:Name="btnNapravi" Content="Napravi" HorizontalAlignment="Left" Margin="136,371,0,0" VerticalAlignment="Top" Width="111" FontSize="18" Height="34" Click="btnNapravi_Click" Background="White" Foreground="Black"/>
+        <Button x:Name="btnOdustani" Content="Odustani" HorizontalAlignment="Left" Margin="136,410,0,0" VerticalAlignment="Top" Width="111" FontSize="18" Height="34" IsCancel="True" Foreground="Black" Background="White"/>
 
     </Grid>
 </Window>

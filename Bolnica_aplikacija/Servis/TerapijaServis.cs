@@ -1,4 +1,5 @@
-﻿using Bolnica_aplikacija.Repozitorijum; 
+﻿using Bolnica_aplikacija.PomocneKlase;
+using Bolnica_aplikacija.Repozitorijum; 
 using Model;
 using System;
 using System.Collections.Generic;
@@ -91,6 +92,23 @@ namespace Bolnica_aplikacija.Servis
                 if(DateTime.Compare(terapija.datumPocetka.AddDays(terapija.trajanje), DateTime.Now) >= 0)
                 {
                     pacijentTerapije.Add(terapija);
+                }
+            }
+
+            return pacijentTerapije;
+        }
+
+        public List<TerapijaPacijent> ucitajTrenutneTerapijePacijentaTP(String idPacijenta)
+        {
+            List<TerapijaPacijent> pacijentTerapije = new List<TerapijaPacijent>();
+
+            foreach (Terapija terapija in ucitajSve())
+            {
+                if (DateTime.Compare(terapija.datumPocetka.AddDays(terapija.trajanje), DateTime.Now) >= 0)
+                {
+                    TerapijaPacijent tp = new TerapijaPacijent(BolestServis.getInstance().nadjiBolestPoId(terapija.idBolesti).naziv, LekServis.getInstance().nadjiLekPoId(terapija.idLeka).naziv,
+                        terapija.nacinUpotrebe, terapija.id);
+                    pacijentTerapije.Add(tp);
                 }
             }
 

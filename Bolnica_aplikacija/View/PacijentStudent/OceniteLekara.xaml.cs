@@ -53,7 +53,7 @@ namespace Bolnica_aplikacija.View.PacijentStudent
         private void popuniLekara()
         {
 
-            comboBoxLekar.ItemsSource = LekarKontroler.popuniLekarComboBox(KorisnikKontroler.GetPacijent().id);
+            comboBoxLekar.ItemsSource = LekarKontroler.popuniLekarComboBox(KorisnikKontroler.GetPacijent().id).Values;
             comboBoxLekar.SelectedIndex = 0;
          
         }
@@ -82,7 +82,7 @@ namespace Bolnica_aplikacija.View.PacijentStudent
                 int brojOcena = OcenaLekaraKontroler.ucitajSve().Count + 1;
 
                 OcenaLekaraKontroler.dodajOcenu(new OcenaLekaraDTO("OL " + brojOcena.ToString(), comboBoxLekar.SelectedItem.ToString(), ocena, txtKomentar.Text));
-
+                MessageBox.Show("Vaša ocena je uspešno zabeležena!", "Informacija", MessageBoxButton.OK, MessageBoxImage.Information);
                 this.Close();
             }
         }
