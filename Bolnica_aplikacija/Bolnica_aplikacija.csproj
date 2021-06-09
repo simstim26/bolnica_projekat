@@ -141,6 +141,7 @@
     <Compile Include="Interfejs\ICRUD.cs" />
     <Compile Include="Interfejs\Implementacija\LekarCRUDImplementacija.cs" />
     <Compile Include="Interfejs\Implementacija\ObavestenjeCRUDImplementacija.cs" />
+    <Compile Include="Interfejs\Implementacija\PacijentCRUDImplementacija.cs" />
     <Compile Include="Komande\BindableBase.cs" />
     <Compile Include="Komande\RelayCommand.cs" />
     <Compile Include="Kontroler\AlergijaKontroler.cs" />
@@ -201,6 +202,7 @@
     <Compile Include="ViewModel\LekarTaboviViewModel.cs" />
     <Compile Include="ViewModel\LekZaOdobravanjeViewModel.cs" />
     <Compile Include="ViewModel\PacijentiInfoViewModel.cs" />
+    <Compile Include="ViewModel\SekretarFeedbackViewModel.cs" />
     <Compile Include="ViewModel\SekretarIzvestajViewModel.cs" />
     <Compile Include="ViewModel\SekretarObavestenjaViewModel.cs" />
     <Compile Include="View\LekarStudent\Alergije.xaml.cs">
@@ -282,6 +284,9 @@
     <Compile Include="Repozitorijum\TerapijaRepozitorijum.cs" />
     <Compile Include="Repozitorijum\TerminRepozitorijum.cs" />
     <Compile Include="Repozitorijum\UpravnikRepozitorijum.cs" />
+    <Compile Include="View\SekretarStudent\SekretarFeedback.xaml.cs">
+      <DependentUpon>SekretarFeedback.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\SekretarStudent\SekretarIzvestaj.xaml.cs">
       <DependentUpon>SekretarIzvestaj.xaml</DependentUpon>
     </Compile>
@@ -477,6 +482,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Prijava.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SekretarStudent\SekretarFeedback.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -107,7 +107,7 @@
             <Button x:Name="___btnDodajRed_" HorizontalAlignment="Left" Margin="1012,453,0,0" VerticalAlignment="Top" Width="19" Height="18" Click="___btnDodajRed__Click" Background="{x:Null}" BorderBrush="{x:Null}" Content="" IsEnabled="False" />
             <materialDesign:PackIcon x:Name="iconPacijent" Kind="Person" HorizontalAlignment="Left" Margin="60,95,0,0" VerticalAlignment="Top" Width="180" Height="180" Foreground="#FF178EE9"/>
         </Grid>
-        <Grid x:Name="TerminiGrid" HorizontalAlignment="Left" Height="739" Margin="0,18,0,-9" VerticalAlignment="Top" Width="1346">
+        <Grid x:Name="TerminiGrid" HorizontalAlignment="Left" Height="739" Margin="0,18,0,-9" VerticalAlignment="Top" Width="1346" d:IsHidden="True">
             <Grid.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF83C8F7" Offset="0"/>
@@ -383,7 +383,7 @@
                 <ComboBoxItem x:Name="kardiohirurg" Content="Kardiohirurg" HorizontalAlignment="Left" Width="216" Foreground="Black"/>
             </ComboBox>
         </Grid>
-        <Grid x:Name="PocetniEkranGrid" Margin="0,18,-8,-9" HorizontalAlignment="Left" Width="1364" d:IsHidden="True">
+        <Grid x:Name="PocetniEkranGrid" Margin="0,18,-8,-9" HorizontalAlignment="Left" Width="1364">
             <Grid.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FFD7FFD9" Offset="0"/>
@@ -426,7 +426,7 @@
                 </Button.Background>
                 <materialDesign:PackIcon x:Name="packIconLekari" Kind="Doctor" Height="152" Width="158"/>
             </Button>
-            <Button x:Name="helpButton" Content="" VerticalAlignment="Top" Height="65" FontSize="36" FontWeight="Bold" BorderThickness="0" Margin="1254,651,44,0" Width="65" RenderTransformOrigin="0.569,1.138" AutomationProperties.HelpText="Pomoć" ToolTip="Pomoć" >
+            <Button x:Name="helpButton" Content="" VerticalAlignment="Top" Height="65" FontSize="36" FontWeight="Bold" BorderThickness="0" Margin="1254,643,44,0" Width="65" RenderTransformOrigin="0.569,1.138" AutomationProperties.HelpText="Pomoć" ToolTip="Pomoć" IsEnabled="False" >
                 <Button.Effect>
                     <DropShadowEffect BlurRadius="22" Opacity="0.45"/>
                 </Button.Effect>
@@ -470,7 +470,7 @@
                 </Button.Effect>
                 <materialDesign:PackIcon x:Name="iconObavestenja" Kind ="InfoCircle" Width="158" Height="154" Foreground="White"/>
             </Button>
-            <Button x:Name="btnHitanSlucaj" HorizontalAlignment="Left" Margin="1154,643,0,0" VerticalAlignment="Top" Width="70" Height="78" BorderBrush="{x:Null}" Click="btnHitanSlucaj_Click" AutomationProperties.HelpText="Zakaži hitan slučaj" ToolTip="Zakaži hitan slučaj">
+            <Button x:Name="btnHitanSlucaj" HorizontalAlignment="Left" Margin="1154,639,0,0" VerticalAlignment="Top" Width="70" Height="70" BorderBrush="{x:Null}" Click="btnHitanSlucaj_Click" AutomationProperties.HelpText="Zakaži hitan slučaj" ToolTip="Zakaži hitan slučaj">
                 <Button.Effect>
                     <DropShadowEffect BlurRadius="22" Opacity="0.45"/>
                 </Button.Effect>
@@ -478,8 +478,14 @@
                     <ImageBrush ImageSource="hitanSlucaj.png" Stretch="Uniform"/>
                 </Button.Background>
             </Button>
+            <Button x:Name="btnFeedback" HorizontalAlignment="Left" Margin="0,609,0,0" VerticalAlignment="Top" Width="130" Height="130" BorderBrush="{x:Null}" Click="btnFeedback_Click" AutomationProperties.HelpText="Zakaži hitan slučaj" ToolTip="Napiši feedback" Background="{x:Null}">
+                <Button.Effect>
+                    <DropShadowEffect BlurRadius="22" Opacity="0.45"/>
+                </Button.Effect>
+                <materialDesign:PackIcon x:Name="iconFeedback" Kind="Bug" Width="90" Height="90" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF7A3BFF"/>
+            </Button>
         </Grid>
-        <Frame x:Name="frame" Content="Frame" Margin="0,0,0,0" NavigationUIVisibility="Hidden"/>
+        <Frame x:Name="frame" Content="Frame" Margin="0,0,0,0" NavigationUIVisibility="Hidden" d:IsHidden="True"/>
     </Grid>
 
 </Window>

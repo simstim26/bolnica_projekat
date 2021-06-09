@@ -19,8 +19,14 @@
   },
   {
     "id": "4",
-    "naslovObavestenja": "Novo",
-    "sadrzajObavestenja": "uuu",
+    "naslovObavestenja": "Novo IZMENA 2",
+    "sadrzajObavestenja": "uuu3",
     "jeLogickiObrisano": false
+  },
+  {
+    "id": "5",
+    "naslovObavestenja": "AAA",
+    "sadrzajObavestenja": "aaa",
+    "jeLogickiObrisano": true
   }
 ]

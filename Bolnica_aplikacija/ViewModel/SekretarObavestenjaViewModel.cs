@@ -113,7 +113,7 @@ namespace Bolnica_aplikacija.ViewModel
         private bool btnObrisiObavestenjeIsEnabled;
         public bool BtnObrisiObavestenjeIsEnabled
         {
-            get { return btnIzmeniObavestenjeIsEnabled; }
+            get { return btnObrisiObavestenjeIsEnabled; }
             set
             {
                 btnObrisiObavestenjeIsEnabled = value;

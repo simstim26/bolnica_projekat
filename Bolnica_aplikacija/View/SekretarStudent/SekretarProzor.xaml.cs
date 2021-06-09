@@ -1713,7 +1713,7 @@ namespace Bolnica_aplikacija
         }
         private bool proverIme(String ime)
         {
-            bool povratnaVrednost = true;
+       
             foreach (char c in ime)
             {
                 if (!Char.IsLetter(c))
@@ -1818,6 +1818,16 @@ namespace Bolnica_aplikacija
 
         }
 
+        #endregion
+
+        #region Feedback (MVVM)
+        private void btnFeedback_Click(object sender, RoutedEventArgs e)
+        {
+            frame.Visibility = Visibility.Visible;
+            frame.Content = new SekretarFeedback(this);
+
+            this.PocetniEkranGrid.IsEnabled = false;
+        }
         #endregion
     }
 

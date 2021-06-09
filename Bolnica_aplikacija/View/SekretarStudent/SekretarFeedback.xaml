@@ -1,0 +1,35 @@
+﻿<Page
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Bolnica_aplikacija.View.SekretarStudent"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Name="pageSekretarFeedback" x:Class="Bolnica_aplikacija.View.SekretarStudent.SekretarFeedback"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="SekretarFeedback" Width="1356" Height="748">
+
+    <Grid>
+
+        <Grid HorizontalAlignment="Left" Height="280" Margin="76,430,0,0" VerticalAlignment="Top" Width="470" Opacity="0.895">
+            <Grid.Effect>
+                <DropShadowEffect BlurRadius="15" Opacity="0.6"/>
+            </Grid.Effect>
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="White" Offset="0"/>
+                    <GradientStop Color="#FFB5DEBB" Offset="1"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+            <Label x:Name="lblNaslovIzvestaja" Content="FEEDBACK" HorizontalAlignment="Left" Margin="168,10,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="22"/>
+            <Button x:Name="btnPotvrdi" Command="{Binding SacuvajFeedback}" IsEnabled="{Binding SacuvajIsEnabled}" HorizontalAlignment="Left" Margin="294,190,0,0" VerticalAlignment="Top" Width="80" Height="80" Background="{x:Null}" BorderBrush="{x:Null}">
+                <materialDesign:PackIcon x:Name="iconBtnPotvrdi" Kind="TickCircle" Height="80" Width="49" Foreground="#FF47B73C"/>
+            </Button>
+            <Button x:Name="btnOdustani" Command="{Binding OdustaniFeedback}" HorizontalAlignment="Left" Margin="374,190,0,0" VerticalAlignment="Top" Width="80" Height="80" Background="{x:Null}" BorderBrush="{x:Null}">
+                <materialDesign:PackIcon x:Name="iconBtnOdustani" Kind="CancelCircle" Height="80" Width="49" Foreground="#FF47B73C"/>
+            </Button>
+            <TextBox x:Name="txtBoxFeedback" Text="{Binding TxtFeedback, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="133" Margin="43,57,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="381" materialDesign:HintAssist.Hint="Unesite feedback..."/>
+        </Grid>
+
+    </Grid>
+</Page>

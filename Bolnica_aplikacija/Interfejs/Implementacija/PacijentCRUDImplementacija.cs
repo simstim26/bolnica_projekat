@@ -29,7 +29,7 @@ namespace Bolnica_aplikacija.Interfejs.Implementacija
 
         public void obrisi(string id)
         {
-            List<Pacijent> sviPacijenti = ;
+            List<Pacijent> sviPacijenti = pacijentRepozitorijum.ucitajSve();
             foreach (Pacijent pacijent in sviPacijenti) 
             { 
                 if (pacijent.id.Equals(id))
