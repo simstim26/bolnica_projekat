@@ -32,7 +32,6 @@ namespace Bolnica_aplikacija
 
     {
         private static Pacijent pacijent;
-        private List<Pacijent> sviPacijenti = new List<Pacijent>();
         private bool flagIzmeni;
         private String idPacijenta;
         private int tipAkcijeTermini; // 0 - dodaj, 1 - izmeni, 2 - ukloni
@@ -43,7 +42,6 @@ namespace Bolnica_aplikacija
         private String tipHitanSlucaj;
         private String tipSpecijalizacije;
         private bool imaGodisnjiOdmor;
-        private int brojSlobodnihDana;
         private int brojZauzetihDana;
 
         public SekretarProzor()
@@ -325,9 +323,8 @@ namespace Bolnica_aplikacija
         }
 
         private void ucitajPacijenteTabela()
-        {
-            sviPacijenti = PacijentKontroler.ProcitajPacijente();
-            TabelaPacijenti.ItemsSource = sviPacijenti;
+        {           
+            TabelaPacijenti.ItemsSource = PacijentKontroler.ProcitajPacijente(); 
             TabelaPacijenti.Items.Refresh();
 
         }
@@ -510,7 +507,7 @@ namespace Bolnica_aplikacija
             #endregion
 
             #region Validacija unosa postojeceg JMBG
-            foreach (Pacijent pac in sviPacijenti)
+            foreach (Pacijent pac in PacijentKontroler.ProcitajPacijente())
             {
 
                 if (pac.id.Equals(id))
@@ -534,7 +531,7 @@ namespace Bolnica_aplikacija
             if (!flagIzmeni) // Ako kreiramo pacijenta i vec postoji Korisnicko ime
             {
 
-                foreach (Pacijent pac in sviPacijenti)
+                foreach (Pacijent pac in PacijentKontroler.ProcitajPacijente())
                 {
                     if (pac.korisnickoIme.Equals(korisnickoIme))
                     {
@@ -637,7 +634,7 @@ namespace Bolnica_aplikacija
             if (!flagIzmeni) // Ako kreiramo pacijenta i vec postoji korisnicko ime
             {
 
-                foreach (Pacijent pac in sviPacijenti)
+                foreach (Pacijent pac in PacijentKontroler.ProcitajPacijente())
                 {
                     if (pac.korisnickoIme.Equals(korisnickoIme))
                     {
@@ -675,8 +672,7 @@ namespace Bolnica_aplikacija
             this.PacijentGrid.Visibility = Visibility.Hidden;
             this.TerminiGrid.Visibility = Visibility.Visible;
 
-            sviPacijenti = PacijentKontroler.ProcitajPacijente();
-            TabelaPacijentiTermini.ItemsSource = sviPacijenti;
+            TabelaPacijentiTermini.ItemsSource = PacijentKontroler.ProcitajPacijente();
             TabelaPacijentiTermini.Items.Refresh();
         }
 
@@ -996,8 +992,7 @@ namespace Bolnica_aplikacija
 
         private void ucitajPacijenteTabelaHitanSlucaj()
         {
-            sviPacijenti = PacijentKontroler.ProcitajPacijente();
-            dataGridPacijentiHitanSlucaj.ItemsSource = sviPacijenti;
+            dataGridPacijentiHitanSlucaj.ItemsSource = PacijentKontroler.ProcitajPacijente();
             dataGridPacijentiHitanSlucaj.Items.Refresh();
 
         }

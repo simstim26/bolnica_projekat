@@ -159,6 +159,7 @@
     <Compile Include="Kontroler\PrijavaGreskeKontroler.cs" />
     <Compile Include="Kontroler\ProstorijaKontroler.cs" />
     <Compile Include="Kontroler\ProstorijaZauzetoKontroler.cs" />
+    <Compile Include="Kontroler\ProzorFactoryKontroler.cs" />
     <Compile Include="Kontroler\SekretarKontroler.cs" />
     <Compile Include="Kontroler\SpecijalizacijaKontroler.cs" />
     <Compile Include="Kontroler\StavkaKontroler.cs" />
@@ -195,6 +196,7 @@
     <Compile Include="Repozitorijum\OcenaLekaraRepozitorijum.cs" />
     <Compile Include="Repozitorijum\PrijavaGreskeRepozitorijum.cs" />
     <Compile Include="Servis\BolnickoLecenjeServis.cs" />
+    <Compile Include="Servis\ProzorFactoryServis.cs" />
     <Compile Include="Servis\LogovanjeServis.cs" />
     <Compile Include="Servis\OcenaBolniceServis.cs" />
     <Compile Include="Servis\OcenaLekaraServis.cs" />
