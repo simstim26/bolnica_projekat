@@ -6,13 +6,16 @@
         xmlns:local="clr-namespace:Bolnica_aplikacija.PacijentStudent"
         mc:Ignorable="d"
         Title="Izmena termina" Height="766.5" Width="800" WindowStartupLocation="CenterOwner" FontSize="24" ResizeMode="NoResize" Topmost="True">
-    <Grid>
+    <Grid Background="MediumSpringGreen">
 
         <Label x:Name="label" Content="Izmena termina" HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top" FontStyle="Italic" FontWeight="Bold" Height="60" Width="365" FontSize="36"/>
         <Label x:Name="lblTermini" Content="Slobodni termini:" HorizontalAlignment="Left" Margin="10,146,0,0"  Width="191" Height="50" VerticalAlignment="Top"/>
 
         <DataGrid x:Name="dataGridSlobodniTermini" Height="338" Margin="10,220,10,0" VerticalAlignment="Top"
                   AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single">
+            <DataGrid.Background>
+                <SolidColorBrush Color="#FFFAFAFA" Opacity="0.7"/>
+            </DataGrid.Background>
 
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="kolonaDatumOdrzavanja" Header="Datum održavanja" Binding="{Binding datum}"/>
@@ -23,8 +26,8 @@
 
         </DataGrid>
 
-        <Button x:Name="btnPotvrdi" Content="Potvrdi" Margin="294,622,294,0"  VerticalAlignment="Top" Height="36" Click="btnPotvrdi_Click" />
-        <Button x:Name="btnOtkazi" Content="Otkaži" Margin="294,663,294,0"  VerticalAlignment="Top" Height="36" IsCancel="True"/>
+        <Button x:Name="btnPotvrdi" Content="Potvrdi" Margin="294,622,294,0"  VerticalAlignment="Top" Height="36" Click="btnPotvrdi_Click" Foreground="Black" Background="White" />
+        <Button x:Name="btnOtkazi" Content="Otkaži" Margin="294,663,294,0"  VerticalAlignment="Top" Height="36" IsCancel="True" Background="White" Foreground="Black"/>
 
     </Grid>
 </Window>

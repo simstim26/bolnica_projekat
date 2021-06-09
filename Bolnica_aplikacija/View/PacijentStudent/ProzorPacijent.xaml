@@ -13,7 +13,7 @@
         Width="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}}" 
         SizeChanged="Window_SizeChanged" Background="#FF8AF671">
 
-    <Grid>
+    <Grid Background="LightGreen">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
@@ -31,7 +31,7 @@
             </Menu>
         </DockPanel>
 
-        <DockPanel Grid.Row="1">
+        <DockPanel Grid.Row="1" Background="LightGreen">
 
             <Grid>
                 <Grid.RowDefinitions>
@@ -60,8 +60,8 @@
         <TabControl Grid.Row="2">
             <TabControl.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FFABFF97" Offset="0"/>
-                    <GradientStop Color="#FF278013" Offset="1"/>
+                    <GradientStop Color="LightGreen" Offset="0"/>
+                    <GradientStop Color="MediumSpringGreen" Offset="1"/>
                 </LinearGradientBrush>
             </TabControl.Background>
 
@@ -84,7 +84,7 @@
                         </Grid.ColumnDefinitions>
 
                         <TextBox x:Name="txtPretraga" HorizontalAlignment="Right"  Text="" VerticalAlignment="Top" Width="427" Grid.Column="1" FontSize="24" Margin="10,10,10,10"/>
-                        <Button x:Name="btnPretraga" Grid.Column="2" FontSize="24" Height="Auto" Margin="10,10,30,10" Content="Pretraži" Foreground="Black" Background="#FF68FF00"/>
+                        <Button x:Name="btnPretraga" Grid.Column="2" FontSize="24" Height="Auto" Margin="10,10,30,10" Content="Pretraži" Foreground="Black" Background="White"/>
 
                     </Grid>
 
@@ -116,9 +116,9 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
-                        <Button x:Name="btnOtkaziPregled" Margin="0,10,0,10" Content="Otkaži termin"  Width="201" Height="55" FontSize="22"  MinWidth="201" MinHeight="55"  Grid.Column="5" Click="btnOtkaziPregled_Click" Foreground="Black" Background="#FF68FF00"/>
-                        <Button x:Name="btnIzmeniTermin" Margin="0,10,0,10" Content="Pomeri termin"  Width="201" Height="55" FontSize="22" MinWidth="201" MinHeight="55"  Grid.Column="3" Click="btnIzmeniTermin_Click" Foreground="Black" Background="#FF68FF00"/>
-                        <Button x:Name="btnZakaziPregled" Margin="0,10,0,10" Content="Zakaži termin" Width="201" Height="55" FontSize="22" MinWidth="201" MinHeight="55"  Grid.Column="1" Click="btnZakaziPregled_Click_1" Background="#FF68FF00" Foreground="Black"/>
+                        <Button x:Name="btnOtkaziPregled" Margin="0,10,0,10" Content="Otkaži termin"  Width="201" Height="55" FontSize="22"  MinWidth="201" MinHeight="55"  Grid.Column="5" Click="btnOtkaziPregled_Click" Foreground="Black" Background="White"/>
+                        <Button x:Name="btnIzmeniTermin" Margin="0,10,0,10" Content="Pomeri termin"  Width="201" Height="55" FontSize="22" MinWidth="201" MinHeight="55"  Grid.Column="3" Click="btnIzmeniTermin_Click" Foreground="Black" Background="White"/>
+                        <Button x:Name="btnZakaziPregled" Margin="0,10,0,10" Content="Zakaži termin" Width="201" Height="55" FontSize="22" MinWidth="201" MinHeight="55"  Grid.Column="1" Click="btnZakaziPregled_Click_1" Background="White" Foreground="Black"/>
 
                     </Grid>
 
@@ -128,28 +128,28 @@
             <TabItem Header="Zdravstveni karton" FontSize="20">
                 <Grid HorizontalAlignment="Left" Height="877" VerticalAlignment="Top" Width="1907" Margin="0,0,-1,-5">
                     <Rectangle Stroke="Black" Margin="-16,0,-38,804" Height="73" VerticalAlignment="Bottom"/>
-                    <Button x:Name="btnLicniPodaci" Content="Lični podaci" Height="Auto" Margin="10,20,1777,826"/>
-                    <Button x:Name="btnIzvrseniTermini" Content="Izvršeni termini" Height="Auto" Margin="146,20,1618,826" IsEnabled="False"/>
-                    <Button x:Name="btnAlergije" Content="Alergije" Height="Auto" Margin="306,20,1481,826"/>
-                    <Button x:Name="btnIstorijaBolesti" Content="Istorija bolesti" Height="Auto" Margin="444,20,1343,826"/>
+                    <Button x:Name="btnLicniPodaci" Content="Lični podaci" Height="Auto" Margin="10,20,1777,826" Background="White" Foreground="Black"/>
+                    <Button x:Name="btnIzvrseniTermini" Content="Izvršeni termini" Height="Auto" Margin="146,20,1618,826" IsEnabled="False" Background="White" Foreground="Black"/>
+                    <Button x:Name="btnAlergije" Content="Alergije" Height="Auto" Margin="306,20,1481,826" Background="White" Foreground="Black"/>
+                    <Button x:Name="btnIstorijaBolesti" Content="Istorija bolesti" Height="Auto" Margin="444,20,1343,826" Background="White" Foreground="Black"/>
                     <Grid Margin="0,73,0,0"/>
-                    <Rectangle Fill="#FFF4F4F5" Stroke="Black" Margin="979,106,28,71"/>
+                    <Rectangle Fill="#FFF4F4F5" Stroke="Black" Margin="999,106,28,71"/>
 
-                    <DVC:Chart Name="grafickiPrikaz" Background="YellowGreen" Foreground="DarkBlue" Title="Mesečna posećenost zdravstvenoj ustanovi" Margin="979,106,28,71">
+                    <DVC:Chart Name="grafickiPrikaz" Background="MediumSeaGreen" Foreground="DarkBlue" Title="Mesečna posećenost zdravstvenoj ustanovi" Margin="999,106,28,71">
 
                         <DVC:Chart.LegendStyle>
                             <Style x:Name="LegendHideStyle" TargetType="Control">
                                 <Setter Property="Width" Value="0"></Setter>
                                 <Setter Property="Height" Value="0"></Setter>
-                             </Style>
+                            </Style>
                         </DVC:Chart.LegendStyle>
 
                         <DVC:Chart.Axes>
                             <DVC:LinearAxis Orientation="Y" Interval="1" ShowGridLines="false">
-                                
+
                             </DVC:LinearAxis>
                         </DVC:Chart.Axes>
-                        
+
                         <DVC:Chart.Series>
                             <DVC:ColumnSeries IndependentValuePath="Key"  DependentValuePath="Value" ItemsSource="{Binding Path=ValueList}">
 
@@ -158,7 +158,7 @@
 
                     </DVC:Chart>
 
-                    <DataGrid x:Name="dataGridIzvrseniTermini" Margin="10,106,957,71" IsReadOnly="True" SelectionMode="Single" AutoGenerateColumns="False" FontSize="18" >
+                    <DataGrid x:Name="dataGridIzvrseniTermini" Margin="10,106,933,71" IsReadOnly="True" SelectionMode="Single" AutoGenerateColumns="False" FontSize="18" >
                         <DataGrid.Background>
                             <SolidColorBrush Color="#FFFAFAFA" Opacity="0.7"/>
                         </DataGrid.Background>
@@ -170,7 +170,7 @@
                             <DataGridTextColumn x:Name="kolonaNapomena2" Header="Napomena" Binding="{Binding napomena}"/>
                             <DataGridTextColumn Header="Lekar" x:Name="kolonaLekar2" Binding="{Binding imeLekara}"/>
                         </DataGrid.Columns>
-                        
+
                     </DataGrid>
                 </Grid>
             </TabItem>
@@ -207,7 +207,7 @@
                         </DataGrid.Columns>
 
                     </DataGrid>
-                    <Button x:Name="btnIzvestaj" Content="Napravi izveštaj" HorizontalAlignment="Left" Margin="1647,27,0,0" VerticalAlignment="Top" Width="169" Height="52" FontSize="18" Click="btnIzvestaj_Click"/>
+                    <Button x:Name="btnIzvestaj" Content="Napravi izveštaj" HorizontalAlignment="Left" Margin="1647,27,0,0" VerticalAlignment="Top" Width="169" Height="52" FontSize="18" Click="btnIzvestaj_Click" Background="White" Foreground="Black"/>
 
                 </Grid>
             </TabItem>
@@ -233,9 +233,9 @@
 
 
                     </DataGrid>
-                    <Button x:Name="btnObrisi" Margin="1084,778,621,36" Content="Obriši"  Width="201" Height="55" FontSize="22"  MinWidth="201" MinHeight="55"/>
-                    <Button x:Name="btnIzmeniObavestenje" Margin="853,778,852,36" Content="Izmeni"  Width="201" Height="55" FontSize="22" MinWidth="201" MinHeight="55" Click="btnIzmeniObavestenje_Click"/>
-                    <Button x:Name="btnKreirajObavestenje" Margin="622,778,1083,36" Content="Napravi" Width="201" Height="55" FontSize="22" MinWidth="201" MinHeight="55" Click="btnKreirajObavestenje_Click"/>
+                    <Button x:Name="btnObrisi" Margin="1084,778,621,36" Content="Obriši"  Width="201" Height="55" FontSize="22"  MinWidth="201" MinHeight="55" Foreground="Black" Background="White"/>
+                    <Button x:Name="btnIzmeniObavestenje" Margin="853,778,852,36" Content="Izmeni"  Width="201" Height="55" FontSize="22" MinWidth="201" MinHeight="55" Click="btnIzmeniObavestenje_Click" Background="White" Foreground="Black"/>
+                    <Button x:Name="btnKreirajObavestenje" Margin="622,778,1083,36" Content="Napravi" Width="201" Height="55" FontSize="22" MinWidth="201" MinHeight="55" Click="btnKreirajObavestenje_Click" Foreground="Black" Background="White"/>
                 </Grid>
             </TabItem>
 
@@ -246,10 +246,7 @@
 
                     <Rectangle Stroke="Black" Margin="74,102,90,42">
                         <Rectangle.Fill>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="#FF35E845" Offset="0"/>
-                                <GradientStop Color="#FF74C6FF" Offset="1"/>
-                            </LinearGradientBrush>
+                            <SolidColorBrush Color="MediumSeaGreen" Opacity="0.7"/>
                         </Rectangle.Fill>
                     </Rectangle>
 
