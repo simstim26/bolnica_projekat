@@ -348,5 +348,85 @@
     "datumNotifikovanja": "2021-06-08T18:01:46.9107168+02:00",
     "jeProcitana": false,
     "ponavljanje": 0
+  },
+  {
+    "id": "36",
+    "nazivNotifikacije": "Otkazivanje termina (Pacijent)",
+    "vremeNotifikovanja": "2021-06-09T12:59:55.3206292+02:00",
+    "porukaNotifikacije": "Otkazan je teremin (Pacijent)",
+    "idKorisnika": "2",
+    "datumNotifikovanja": "2021-06-09T12:59:55.3206292+02:00",
+    "jeProcitana": false,
+    "ponavljanje": 0
+  },
+  {
+    "id": "37",
+    "nazivNotifikacije": "Otkazivanje termina (Lekar)",
+    "vremeNotifikovanja": "2021-06-09T12:59:55.3356433+02:00",
+    "porukaNotifikacije": "Otkazan je teremin (Lekar)",
+    "idKorisnika": "8",
+    "datumNotifikovanja": "2021-06-09T12:59:55.3356433+02:00",
+    "jeProcitana": false,
+    "ponavljanje": 0
+  },
+  {
+    "id": "38",
+    "nazivNotifikacije": "Zakazivanje termina (Pacijent)",
+    "vremeNotifikovanja": "2021-06-09T13:00:08.5545984+02:00",
+    "porukaNotifikacije": "Zakazan je teremin (Pacijent)",
+    "idKorisnika": "2",
+    "datumNotifikovanja": "2021-06-09T13:00:08.5545984+02:00",
+    "jeProcitana": false,
+    "ponavljanje": 0
+  },
+  {
+    "id": "39",
+    "nazivNotifikacije": "Zakazivanje termina (Lekar)",
+    "vremeNotifikovanja": "2021-06-09T13:00:08.5665987+02:00",
+    "porukaNotifikacije": "Zakazan je teremin (Lekar)",
+    "idKorisnika": "8",
+    "datumNotifikovanja": "2021-06-09T13:00:08.5665987+02:00",
+    "jeProcitana": false,
+    "ponavljanje": 0
+  },
+  {
+    "id": "40",
+    "nazivNotifikacije": "Otkazivanje termina (Pacijent)",
+    "vremeNotifikovanja": "2021-06-09T13:02:03.9254581+02:00",
+    "porukaNotifikacije": "Otkazan je teremin (Pacijent)",
+    "idKorisnika": "2",
+    "datumNotifikovanja": "2021-06-09T13:02:03.9254581+02:00",
+    "jeProcitana": false,
+    "ponavljanje": 0
+  },
+  {
+    "id": "41",
+    "nazivNotifikacije": "Otkazivanje termina (Lekar)",
+    "vremeNotifikovanja": "2021-06-09T13:02:03.9384598+02:00",
+    "porukaNotifikacije": "Otkazan je teremin (Lekar)",
+    "idKorisnika": "8",
+    "datumNotifikovanja": "2021-06-09T13:02:03.9384598+02:00",
+    "jeProcitana": false,
+    "ponavljanje": 0
+  },
+  {
+    "id": "42",
+    "nazivNotifikacije": "Zakazivanje termina (Pacijent)",
+    "vremeNotifikovanja": "2021-06-09T13:02:09.8258638+02:00",
+    "porukaNotifikacije": "Zakazan je teremin (Pacijent)",
+    "idKorisnika": "2",
+    "datumNotifikovanja": "2021-06-09T13:02:09.8258638+02:00",
+    "jeProcitana": false,
+    "ponavljanje": 0
+  },
+  {
+    "id": "43",
+    "nazivNotifikacije": "Zakazivanje termina (Lekar)",
+    "vremeNotifikovanja": "2021-06-09T13:02:09.8388644+02:00",
+    "porukaNotifikacije": "Zakazan je teremin (Lekar)",
+    "idKorisnika": "8",
+    "datumNotifikovanja": "2021-06-09T13:02:09.8388644+02:00",
+    "jeProcitana": false,
+    "ponavljanje": 0
   }
 ]
