@@ -1192,9 +1192,7 @@ namespace Bolnica_aplikacija
         }
 #endregion
 
-        #region Rukovanje lekarima
-        
-
+        #region Rukovanje lekarima      
         private void lekariButton_Click(object sender, RoutedEventArgs e)
         {
             PocetniEkranGrid.Visibility = Visibility.Hidden;
@@ -1222,7 +1220,7 @@ namespace Bolnica_aplikacija
         {
             if (proveriValidnostPoljaLekara(txtBoxImeLekara.Text, txtBoxPrezimeLekara.Text, txtBoxJMBG.Text, txtBoxEmail.Text, txtBoxTelefon.Text,
                                                 txtBoxBrojZdravKnjizice.Text, txtBoxPocetakRadnogVremena.Text, txtBoxKrajRadnogVremena.Text,
-                                                txtBoxBrojZauzetihDana.Text, txtBoxPocetakGodisnjegOdmora.Text))
+                                                txtBoxBrojZauzetihDana.Text, txtBoxPocetakGodisnjegOdmora.Text, txtBoxDatumRodjenja.Text))
             {
                 LekarDTO noviLekar = ucitajUnetePodatkeULekara();
                 LekarKontroler.napraviLekara(noviLekar);
@@ -1237,7 +1235,7 @@ namespace Bolnica_aplikacija
 
             if (proveriValidnostPoljaLekara(txtBoxImeLekara.Text, txtBoxPrezimeLekara.Text, txtBoxJMBG.Text, txtBoxEmail.Text, txtBoxTelefon.Text,
                                                txtBoxBrojZdravKnjizice.Text, txtBoxPocetakRadnogVremena.Text, txtBoxKrajRadnogVremena.Text,
-                                               txtBoxBrojZauzetihDana.Text, txtBoxPocetakGodisnjegOdmora.Text))
+                                               txtBoxBrojZauzetihDana.Text, txtBoxPocetakGodisnjegOdmora.Text, txtBoxDatumRodjenja.Text))
             {
 
                 LekarSpecijalizacija selektovanLekar = (LekarSpecijalizacija)dataGridLekari.SelectedItem;
@@ -1705,10 +1703,11 @@ namespace Bolnica_aplikacija
 
         private bool proveriValidnostPoljaLekara(String ime, String prezime, String jmbg,
                                                  String email, String telefon, String brojZdravstveneKnjizice, String pocetakRadnogVremena,
-                                                 String krajRadnogVremena, String brojZauzetihDana, String pocetakGodisnjegOdmora)
+                                                 String krajRadnogVremena, String brojZauzetihDana, String pocetakGodisnjegOdmora, String datumRodj)
         {
             if (!proverIme(ime) || !proveriPrezime(prezime) || !proveriJMBG(jmbg) || !proveriEmail(email) || !proveriTelefon(telefon) ||
-               !proveriBrojZdravstveneKnjizice(brojZdravstveneKnjizice) || !proveriRadnoVremePocetak(pocetakRadnogVremena) || !proveriRadnoVremeKraj(krajRadnogVremena))
+               !proveriBrojZdravstveneKnjizice(brojZdravstveneKnjizice) || !proveriRadnoVremePocetak(pocetakRadnogVremena) || !proveriRadnoVremeKraj(krajRadnogVremena) ||
+               !proveriDatumRodjenja(datumRodj))
 
             {
                 return false;
@@ -1739,6 +1738,46 @@ namespace Bolnica_aplikacija
 
         }
 
+        #region Validacija datuma rodjenja
+        private bool proveriDatumRodjenja(String datumRodj)
+        {
+            bool povratnaVrednost = true;
+            
+            if (!Regex.IsMatch(datumRodj, @"\b[0-9]{2}[/][0-9]{2}[/][0-9]{4}\b"))
+            {
+                textDatumRodj.Clear();
+                povratnaVrednost = false;
+            
+            } else
+            {
+                String[] parts = datumRodj.Split('/');
+                int mesec;
+                int dan;
+                Int32.TryParse(parts[0], out mesec);
+                Int32.TryParse(parts[1], out dan);
+
+                if (mesec > 12)
+                {
+                    txtBoxDatumRodjenja.Clear();
+                    povratnaVrednost = false;
+
+                }
+                else
+                {
+                    if (dan > 31)
+                    {
+                        txtBoxDatumRodjenja.Clear();
+                        povratnaVrednost = false;
+                    }
+                }
+            }
+            
+            return povratnaVrednost;
+        }
+
+        #endregion
+
+        #region Validacija JMBG
         private bool proveriJMBG(String jmbg)
         {
             if ((!Regex.IsMatch(jmbg, @"[0-9]{13}$")) || (jmbg.Length != 13))
@@ -1749,6 +1788,10 @@ namespace Bolnica_aplikacija
 
             return true;
         }
+
+        #endregion
+
+        #region Validacija imena
         private bool proverIme(String ime)
         {
        
@@ -1763,7 +1806,9 @@ namespace Bolnica_aplikacija
 
             return true;
         }
+        #endregion
 
+        #region Validacija prezimena
         private bool proveriPrezime(String prezime)
         {
             foreach (char c in prezime)
@@ -1777,7 +1822,9 @@ namespace Bolnica_aplikacija
 
             return true;
         }
+        #endregion
 
+        #region Validacija E-mail adrese
         private bool proveriEmail(String email)
         {
             if (!Regex.IsMatch(email, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$"))
@@ -1788,7 +1835,9 @@ namespace Bolnica_aplikacija
 
             return true;
         }
+        #endregion
 
+        #region Validacija broja telefona
         private bool proveriTelefon(String telefon)
         {
             if (!telefon.Equals(""))
@@ -1805,7 +1854,9 @@ namespace Bolnica_aplikacija
 
             return true;
         }
+        #endregion
 
+        #region Validacija broja knjizice
         private bool proveriBrojZdravstveneKnjizice(String brojKnjizice)
         {
             foreach (char c in brojKnjizice)
@@ -1820,7 +1871,9 @@ namespace Bolnica_aplikacija
 
             return true;
         }
+        #endregion
 
+        #region Validacija pocetka ranog vremena
         private bool proveriRadnoVremePocetak(String radnVreme)
         {
             if (!Regex.IsMatch(radnVreme, @"^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$"))
@@ -1831,7 +1884,9 @@ namespace Bolnica_aplikacija
 
             return true;
         }
+        #endregion
 
+        #region Validacija kraja radnog vremena
         private bool proveriRadnoVremeKraj(String radnVreme)
         {
             if (!Regex.IsMatch(radnVreme, @"^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$"))
@@ -1842,6 +1897,8 @@ namespace Bolnica_aplikacija
 
             return true;
         }
+
+        #endregion
 
         #endregion
 
