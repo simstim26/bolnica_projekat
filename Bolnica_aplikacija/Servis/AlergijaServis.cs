@@ -16,7 +16,7 @@ namespace Bolnica_aplikacija.Servis
 
         public static AlergijaServis getInstance()
         {
-            if(instance == null)
+            if (instance == null)
             {
                 instance = new AlergijaServis();
             }
@@ -30,7 +30,7 @@ namespace Bolnica_aplikacija.Servis
             {
                 povratnaVrednost = (ucitajSve().GroupBy(a => a.idPacijenta).ToDictionary(a1 => a1.Key, a1 => a1.ToList()))[idPacijenta];
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 povratnaVrednost = new List<Alergija>();
             }           
@@ -50,9 +50,9 @@ namespace Bolnica_aplikacija.Servis
         public void obrisiAlergiju(Alergija alergija)
         {
             List<Alergija> alergije = alergijaRepozitorijum.ucitajSve();
-            foreach(Alergija a in alergije)
+            foreach (Alergija a in alergije)
             {
-                if(alergija.idPacijenta.Equals(a.idPacijenta) && alergija.nazivAlergije.Equals(a.nazivAlergije))
+                if (alergija.idPacijenta.Equals(a.idPacijenta) && alergija.nazivAlergije.Equals(a.nazivAlergije))
                 {
                     alergije.Remove(a);
                     break;
@@ -66,12 +66,29 @@ namespace Bolnica_aplikacija.Servis
             alergijaRepozitorijum.azurirajAlergije(alergije, id);
         }
 
+
         public void dodajAlergijePacijentu(String idPacijenta, List<Alergija> alergije)
         {
             foreach (Alergija alergija in alergije)
             {
                 AlergijaServis.getInstance().dodajAlergiju(new Alergija(idPacijenta, alergija.nazivAlergije));
             }
+		}
+        public bool proveriPostojanjeAlergije(String idPacijenta, String nazivAlergije)
+        {
+            List<Alergija> alergije = PacijentServis.getInstance().procitajAlergije(idPacijenta);
+            bool povratnaVrednost = false;
+
+            foreach(Alergija alergija in alergije)
+            {
+                if(alergija.nazivAlergije.Trim().Equals(nazivAlergije))
+                {
+                    povratnaVrednost = true;
+                    break;
+                }
+            }
+
+            return povratnaVrednost;
         }
     }
 }

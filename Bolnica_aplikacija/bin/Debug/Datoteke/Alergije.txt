@@ -20,20 +20,8 @@
     "nazivAlergije": "Hemomicin"
   },
   {
-    "idPacijenta": "1",
-    "nazivAlergije": "Alergija 2"
-  },
-  {
-    "idPacijenta": "1",
-    "nazivAlergije": "Alergija 3"
-  },
-  {
     "idPacijenta": "7",
     "nazivAlergije": "Penicilin"
-  },
-  {
-    "idPacijenta": "1",
-    "nazivAlergije": "eeee"
   },
   {
     "idPacijenta": "10",
@@ -50,5 +38,17 @@
   {
     "idPacijenta": "2",
     "nazivAlergije": "Svasta Nesto"
+  },
+  {
+    "idPacijenta": "1",
+    "nazivAlergije": "eeee"
+  },
+  {
+    "idPacijenta": "1",
+    "nazivAlergije": "a1"
+  },
+  {
+    "idPacijenta": "1",
+    "nazivAlergije": "a2"
   }
 ]

@@ -24,5 +24,9 @@ namespace Bolnica_aplikacija.Kontroler
         {
             AlergijaServis.getInstance().azurirajAlergije(alergije, id);
         }
+        public static bool proveriPostojanjeAlergije(String idPacijenta, String nazivAlergije)
+        {
+            return AlergijaServis.getInstance().proveriPostojanjeAlergije(idPacijenta, nazivAlergije);
+        }
     }
 }
