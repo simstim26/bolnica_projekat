@@ -21,6 +21,10 @@ namespace Bolnica_aplikacija.Kontroler
             LekServis.getInstance().azurirajOdobravanje(lekZaAzuriranje);
         }
 
+        public static bool postojiSastojak(String id,String sastojak)
+        {
+            return LekServis.getInstance().postojiSastojak(id, sastojak);
+        }
         public static List<LekZaOdobravanje> nadjiLekoveZaOdobravanjeZaLogovanogLekara(String idLekara)
         {
             return LekServis.getInstance().nadjiLekoveZaOdobravanjeZaLogovanogLekara(idLekara);

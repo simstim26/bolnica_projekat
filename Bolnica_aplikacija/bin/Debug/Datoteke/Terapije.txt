@@ -158,6 +158,35 @@
     "datumPocetka": "2021-05-22T20:30:30.8744189+02:00",
     "trajanje": 14,
     "nacinUpotrebe": "Rektalno"
+  },
+  {
+    "id": "17",
+    "idLeka": "3",
+    "idPacijenta": "1",
+    "idBolesti": "10",
+    "idTermina": "2",
+    "datumPocetka": "2021-06-07T15:52:29.5707436+02:00",
+    "trajanje": 90,
+    "nacinUpotrebe": "Sublingvalno, oijj"
+  },
+  {
+    "id": "18",
+    "idLeka": "4",
+    "idPacijenta": "10",
+    "idBolesti": "11",
+    "idTermina": "31",
+    "datumPocetka": "2021-06-08T12:21:42.9495083+02:00",
+    "trajanje": 34,
+    "nacinUpotrebe": "Rektalno, moje srce je pile drhti od straha kad grmi"
+  },
+  {
+    "id": "19",
+    "idLeka": "3",
+    "idPacijenta": "10",
+    "idBolesti": "11",
+    "idTermina": null,
+    "datumPocetka": "2021-06-08T12:35:17.6819073+02:00",
+    "trajanje": 34,
+    "nacinUpotrebe": "Sublingvalno, skoci pa se davi i udavi se"
   }
-
 ]

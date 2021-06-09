@@ -31,6 +31,8 @@ namespace Bolnica_aplikacija
 
         private static FrameworkElement fm = new FrameworkElement();
         public static Grid gridPretraga { get; set; }
+        
+        public static Grid pretragaBuduci { get; set; }
         public PacijentInfo(String idPacijenta, String idTermina)
         {
 
@@ -45,21 +47,34 @@ namespace Bolnica_aplikacija
             fm.DataContext = id;
 
             gridPretraga = this.gridIstorijaTerminaPretraga;
+            pretragaBuduci = lblPretragaBuduci;
 
-            /*if(LekarTabovi.getIndikator() == 1)
+            Alergije.aktivan = false;
+            IzmenaBLecenja.aktivan = false;
+            IzmenaBolesti.aktivan = false;
+            IstorijaBolesti.aktivan = false;
+            UvidUTerapije.aktivan = false;
+            TerapijeIzdavanjeRecpeta.aktivan = false;
+            Izvestaj.aktivan = false;
+            ProsliTermini.aktivan = false;
+            ZakaziTermin.aktivan = false;
+            ZakazivanjeOperacije.aktivan = false;
+            PrikazProstorija.aktivan = false;
+
+            if(LekarTabovi.getTab().SelectedIndex == 1)
             {
                 btnIzvestaj.IsEnabled = false;
             }
             else
             {
                 DateTime danasnjiDatum = DateTime.Now;
-                String satnica = TerminKontroler.getTermin().satnica.ToString("HH:mm:ss");
+                String satnica = TerminKontroler.nadjiTerminPoId(idTermina).satnica.ToString("HH:mm:ss");
                 String trenutnaSatnica = danasnjiDatum.ToString("HH:mm");
                 String[] trenutnaSatnica1 = trenutnaSatnica.Split(':');
                 String[] satnica1 = satnica.Split(':');
-                DateTime terminDatum = TerminKontroler.getTermin().datum.Add(new TimeSpan(Convert.ToInt32(satnica1[0]), Convert.ToInt32(satnica1[1]), Convert.ToInt32(satnica1[2])));
+                DateTime terminDatum = TerminKontroler.nadjiTerminPoId(idTermina).datum.Add(new TimeSpan(Convert.ToInt32(satnica1[0]), Convert.ToInt32(satnica1[1]), Convert.ToInt32(satnica1[2])));
                 DateTime pomocni = danasnjiDatum.Date.Add(new TimeSpan(Convert.ToInt32(trenutnaSatnica1[0]), Convert.ToInt32(trenutnaSatnica1[1]), 0));
-                if(DateTime.Compare(terminDatum,pomocni) == 0)
+                if(DateTime.Compare(terminDatum.Date,pomocni.Date) == 0)
                 {
                     btnIzvestaj.IsEnabled = true;
                 }
@@ -67,7 +82,7 @@ namespace Bolnica_aplikacija
                 {
                     btnIzvestaj.IsEnabled = false;
                 }
-            }*/
+            }
 
         }
         public static FrameworkElement getFM()

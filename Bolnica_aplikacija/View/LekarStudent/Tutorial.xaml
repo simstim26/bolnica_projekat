@@ -1,0 +1,15 @@
+﻿<Window x:Class="Bolnica_aplikacija.View.LekarStudent.Tutorial"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Bolnica_aplikacija.View.LekarStudent"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="Tutorial" Height="500" Width="430">
+    <Grid>
+        <Button Content="Započni video tutorial za izveštaj" HorizontalAlignment="Left" Margin="41,10,0,0" VerticalAlignment="Top" Width="319" Height="37" Click="Button_Click"/>
+        <MediaElement x:Name="media" HorizontalAlignment="Left" Height="383" LoadedBehavior="Manual"  Margin="0,87,0,0" VerticalAlignment="Top" Source="Assets/video2.mp4" Width="424"/>
+
+    </Grid>
+</Window>

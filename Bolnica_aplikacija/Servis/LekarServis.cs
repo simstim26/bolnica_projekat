@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Bolnica_aplikacija.Servis
@@ -35,6 +36,40 @@ namespace Bolnica_aplikacija.Servis
         public String pronadjiImeLekara(String idLekara)
         {
             return nadjiLekaraPoId(idLekara).prezime;
+        }
+
+        public List<LekarSpecijalizacija> pretraziLekare(String kriterijum)
+        {
+            List<LekarSpecijalizacija> povratnaVrednost = new List<LekarSpecijalizacija>();
+            Regex rx = new Regex(kriterijum.ToLower());
+
+
+            foreach(LekarSpecijalizacija lekar in ucitajLekareSaSpecijalizacijom())
+            {
+                if(rx.IsMatch((lekar.prezimeLekara + lekar.nazivSpecijalizacije).ToLower()))
+                {
+                    povratnaVrednost.Add(lekar);
+                }
+            }
+
+            return povratnaVrednost;
+        }
+
+
+        public List<PacijentTermin> pretraziSlobodneTermineZaLekara(DateTime datum, int tipAkcije)
+        {
+            List<PacijentTermin> povratnaVrednost = new List<PacijentTermin>();
+
+            foreach(PacijentTermin termin in prikaziSlobodneTermineZaLekara(nadjiLekaraPoId(KorisnikServis.getInstance().getLekar().id), tipAkcije))
+            {
+                Termin t = TerminServis.getInstance().nadjiTerminPoId(termin.id);
+                if(DateTime.Compare(t.datum.Date, datum.Date) == 0)
+                {
+                    povratnaVrednost.Add(termin);
+                }
+            }
+
+            return povratnaVrednost;
         }
 
         public String pronadjiPunoImeLekara(String idLekara)
@@ -104,7 +139,7 @@ namespace Bolnica_aplikacija.Servis
             DateTime danasnji = danasnjiDatum.Date.Add(new TimeSpan(0, 0, 0));
             foreach (Termin termin in TerminServis.getInstance().ucitajSve())
             {
-                if (!termin.jeZavrsen && termin.idLekara.Equals(lekar.id) && !termin.idPacijenta.Equals(""))
+                if (!termin.jeZavrsen && termin.idLekara.Equals(lekar.id) && !String.IsNullOrWhiteSpace(termin.idPacijenta))
                 {
                     if (DateTime.Compare(termin.datum, danasnji) >= 0)
                     {

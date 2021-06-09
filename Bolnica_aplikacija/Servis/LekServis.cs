@@ -29,6 +29,22 @@ namespace Bolnica_aplikacija.Servis
             return nadjiLekoveZaOdobravanjeZaLogovanogLekara(idLekara).Count == 0;
         }
 
+        public  bool postojiSastojak(String id, String sastojak)
+        {
+            bool povratnaVrednost = false;
+            Lek lek = nadjiLekPoId(id);
+            foreach(String s in lek.sastojci)
+            {
+                if (s.Equals(sastojak))
+                {
+                    povratnaVrednost = true;
+                    break;
+                }
+            }
+
+            return povratnaVrednost;
+        }
+
         public void azurirajOdobravanje(LekZaOdobravanje lekZaAzuriranje)
         {
             ++lekZaAzuriranje.brLekaraKojiSuodobriliLek;

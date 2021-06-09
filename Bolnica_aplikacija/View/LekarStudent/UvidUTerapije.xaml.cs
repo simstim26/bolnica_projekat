@@ -36,6 +36,7 @@ namespace Bolnica_aplikacija.LekarStudent
         {
             if (dataGridTerapije.SelectedIndex != -1)
             {
+                aktivan = false;
                 Content = new TerapijeIzdavanjeRecpeta((BolestTerapija)dataGridTerapije.SelectedItem);
             }
             else

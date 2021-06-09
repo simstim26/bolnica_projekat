@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using Bolnica_aplikacija.Interfejs.Implementacija;
+using System.Text.RegularExpressions;
 
 namespace Bolnica_aplikacija.Servis
 {
@@ -51,6 +52,38 @@ namespace Bolnica_aplikacija.Servis
             return false;
         }
 
+        public List<Pacijent> pretragaPacijenata(String kriterijum)
+        {
+            Regex rx = new Regex(kriterijum.ToLower(),RegexOptions.Compiled | RegexOptions.IgnoreCase);
+            List<Pacijent> povratnaVrednost = new List<Pacijent>();
+
+            foreach(Pacijent pacijent in prikazPacijenata())
+            {
+                if(rx.IsMatch(pacijent.ime.ToLower()+ " " + pacijent.prezime.ToLower() + " " + pacijent.jmbg.ToLower()))
+                {
+                    povratnaVrednost.Add(pacijent);
+                }
+            }
+
+            return povratnaVrednost;
+        }
+
+        public List<PacijentTermin> pretraziBuduceTermineZaPacijenta(String idPacijenta, DateTime datum)
+        {
+            List<PacijentTermin> povratnaVrednost = new List<PacijentTermin>();
+            foreach(PacijentTermin termin in prikazBuducihTerminaPacijenta(idPacijenta))
+            {
+                Termin t = TerminServis.getInstance().nadjiTerminPoId(termin.id);
+                if(DateTime.Compare(t.datum.Date, datum.Date) == 0)
+                {
+                    povratnaVrednost.Add(termin);
+                }
+            }
+
+
+            return povratnaVrednost;
+        }
+
         public List<BolestTerapija> nadjiIstorijuBolestiZaPacijenta(String idPacijenta)
         {
             List<BolestTerapija> istorijaBolesti = new List<BolestTerapija>();
@@ -88,6 +121,23 @@ namespace Bolnica_aplikacija.Servis
                             proveriAktivnostTerapije(terapija), lek.naziv, termin.idTermina, termin.izvestaj, idPacijenta));
                     }
                 }
+            }
+            return povratnaVrednost;
+        }
+
+        public List<PacijentTermin> pretraziProsleTermineZaPacijenta(String idPacijenta, DateTime prvi, DateTime drugi)
+        {
+            List<PacijentTermin> povratnaVrednost = new List<PacijentTermin>();
+            foreach (PacijentTermin pacijentTermin in prikazProslihTerminaPacijenta(idPacijenta))
+            {
+                    Termin termin = TerminServis.getInstance().nadjiTerminPoId(pacijentTermin.id);
+                    int rez1 = DateTime.Compare(termin.datum, prvi);
+                    int rez2 = DateTime.Compare(termin.datum, drugi);
+                    if (rez1 >= 0 && rez2 <= 0)
+                    {
+                        povratnaVrednost.Add(pacijentTermin);
+                    }
+                
             }
             return povratnaVrednost;
         }
@@ -197,7 +247,7 @@ namespace Bolnica_aplikacija.Servis
 
             foreach(Termin termin in TerminServis.getInstance().ucitajSve())
             {
-                if (termin.idPacijenta.Equals(idPacijenta) && DateTime.Compare(termin.datum, DateTime.Today) >= 0)
+                if (!termin.jeZavrsen && termin.idPacijenta.Equals(idPacijenta) && DateTime.Compare(termin.datum, DateTime.Today) >= 0)
                 {
                     terminiPacijenta.Add(new PacijentTermin(termin.idTermina, termin.datum.Date.ToString("dd.MM.yyyy."), termin.satnica.ToString("HH:mm"), ProstorijaServis.getInstance().nadjiBrojISprat(termin.idProstorije),
                         termin.getTipString(), termin.idLekara, LekarServis.getInstance().pronadjiImeLekara(termin.idLekara), LekarServis.getInstance().pronadjiNazivSpecijalizacijeLekara(termin.idLekara),

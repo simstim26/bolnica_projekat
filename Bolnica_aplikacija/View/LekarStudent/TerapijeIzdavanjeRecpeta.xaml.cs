@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -37,6 +38,7 @@ namespace Bolnica_aplikacija.LekarStudent
             lblRDatumR.Content = pacijent.datumRodjenja;
             lblRImePrezime.Content = pacijent.ime + " " + pacijent.prezime;
             lblRJmbg.Content = pacijent.jmbg;
+            lblRPol.Content = pacijent.pol;
 
             txtDijagnoza.Text = bolestTerapija.nazivBolesti;
             txtKol.Text = bolestTerapija.kolicina;
@@ -116,6 +118,8 @@ namespace Bolnica_aplikacija.LekarStudent
                    terapija.idBolesti, terapija.idTermina, DateTime.Now, Convert.ToInt32(txtTrajanje.Text), txtNacinUpotrebe.Text));
             }
 
+            MessageBox.Show("Uspešno ste izdali recept!", "Informacija", MessageBoxButton.OK, MessageBoxImage.Information);
+            aktivan = false;
             Content = new UvidUTerapije(((BolestTerapija)fm.DataContext).idPacijenta);
         }
 
@@ -130,6 +134,32 @@ namespace Bolnica_aplikacija.LekarStudent
         {
             aktivan = false;
             Content = new UvidUTerapije(((BolestTerapija)fm.DataContext).idPacijenta);
+        }
+
+        private void txtTrajanje_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Regex rx = new Regex("[^0-9]+");
+            if (rx.IsMatch(txtTrajanje.Text))
+            {
+                lblGreskaTrajanje.Visibility = Visibility.Visible;
+                potvrdaReceptaEnabled(false, !String.IsNullOrWhiteSpace(txtNacinUpotrebe.Text));
+            }
+            else
+            {
+                lblGreskaTrajanje.Visibility = Visibility.Hidden;
+                potvrdaReceptaEnabled(true && !String.IsNullOrWhiteSpace(txtTrajanje.Text), !String.IsNullOrWhiteSpace(txtNacinUpotrebe.Text));
+            }
+        }
+
+        private void txtNacinUpotrebe_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Regex rx = new Regex("[^0-9]+");
+            potvrdaReceptaEnabled(!rx.IsMatch(txtTrajanje.Text) && !String.IsNullOrWhiteSpace(txtTrajanje.Text), !String.IsNullOrWhiteSpace(txtNacinUpotrebe.Text));
+        }
+
+        private void potvrdaReceptaEnabled(bool trajanjeOK, bool nacinUpotrebeOK)
+        {
+            btnPotvrdiRecept.IsEnabled = trajanjeOK  && nacinUpotrebeOK;
         }
     }
 }

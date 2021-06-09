@@ -12,11 +12,11 @@
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Button x:Name="btnPotvrdi" HorizontalAlignment="Left" Height="Auto" Margin="31,574,0,53.2" Width="145" BorderBrush="Black" Click="btnPotvrdi_Click" Grid.Row="1">
-            <materialDesign:PackIcon Kind="CheckCircle" Height="28" Width="31"></materialDesign:PackIcon>
+        <Button x:Name="btnPotvrdi" Background="#FF274E13" HorizontalAlignment="Left" Height="Auto" Margin="38,560,0,53.2" Width="92" Click="btnPotvrdi_Click" Grid.Row="1">
+            <materialDesign:PackIcon Kind="CheckCircle" Height="42" Width="35"></materialDesign:PackIcon>
         </Button>
-        <Button x:Name="btnPonisti" Height="Auto" Margin="249,574,26.4,53.2"  BorderBrush="Black" Click="btnPonisti_Click" Grid.Row="1">
-            <materialDesign:PackIcon Kind="CloseCircle" Height="23" Width="24" RenderTransformOrigin="0.5,0.5"/>
+        <Button x:Name="btnPonisti" Background="#FF990000" Height="Auto" Margin="287,560,42.6,53.2"  Click="btnPonisti_Click" Grid.Row="1">
+            <materialDesign:PackIcon Kind="CloseCircle" Height="37" Width="38" RenderTransformOrigin="0.5,0.5"/>
         </Button>
         <DataGrid x:Name="dataProstorije" AlternationCount="2" AlternatingRowBackground="#FF9900" RowHeight="33" IsReadOnly ="True" SelectionMode="Single" Height="415" Margin="0,117,-0.4,0" VerticalAlignment="Top" AutoGenerateColumns="False" Grid.Row="1">
             <DataGrid.Columns>
@@ -25,6 +25,6 @@
                 <DataGridTextColumn x:Name="kolonaSprat" IsReadOnly="True" CanUserResize="False" Binding="{Binding sprat}" Header="Sprat" Width="115"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="btnInventarProstorije" Content="Prikaz inventara" Height="42" Margin="267,49,43.4,0" VerticalAlignment="Top" BorderBrush="Black" Grid.Row="1"/>
+        <Button x:Name="btnInventarProstorije" Content="Prikaz inventara" Height="42" Margin="267,49,43.4,0" VerticalAlignment="Top" Grid.Row="1"/>
     </Grid>
 </UserControl>

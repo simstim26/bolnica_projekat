@@ -23,6 +23,20 @@ namespace Bolnica_aplikacija.Kontroler
             return PacijentServis.getInstance().ucitajSveTerapijeZaPacijenta(idPacijenta);
         }
 
+        public static List<Pacijent> pretragaPacijenata(String kriterijum)
+        {
+            return PacijentServis.getInstance().pretragaPacijenata(kriterijum);
+        }
+        public static List<PacijentTermin> pretraziProsleTermineZaPacijenta(String idPacijenta, DateTime prvi, DateTime drugi)
+        {
+            return PacijentServis.getInstance().pretraziProsleTermineZaPacijenta(idPacijenta, prvi, drugi);
+        }
+
+        public static List<PacijentTermin> pretraziBuduceTermineZaPacijenta(String idPacijenta, DateTime datum)
+        {
+            return PacijentServis.getInstance().pretraziBuduceTermineZaPacijenta(idPacijenta, datum);
+        }
+
         public static List<BolestTerapija> nadjiIstorijuBolestiZaPacijenta(String idPacijenta)
         {
             return PacijentServis.getInstance().nadjiIstorijuBolestiZaPacijenta(idPacijenta);
