@@ -11,13 +11,8 @@ using System.Windows;
 namespace Bolnica_aplikacija.ViewModel
 {
     class SekretarFeedbackViewModel : BindableBase
-    {
-
-        SekretarFeedback parent;
-        SekretarProzor pocetni;
-        public RelayCommand SacuvajFeedback { get; set; }
-        public RelayCommand OdustaniFeedback { get; set; }
-        public RelayCommand IzmenjenTekst { get; private set; }
+    {     
+       
         public SekretarFeedbackViewModel(SekretarFeedback parent, SekretarProzor pocetni)
         {
 
@@ -31,6 +26,21 @@ namespace Bolnica_aplikacija.ViewModel
 
         }
 
+        #region RelayCommand property
+        public RelayCommand SacuvajFeedback { get; set; }
+        public RelayCommand OdustaniFeedback { get; set; }
+        public RelayCommand IzmenjenTekst { get; private set; }
+
+        #endregion
+
+        #region Polja
+
+        SekretarFeedback parent;
+        SekretarProzor pocetni;
+
+        #endregion
+
+        #region Komanda -> Sacuvaj feedback
         private void sacuvajFeedback(object arg)
         {
             PrijavaGreskeKontroler.sacuvaj(TxtFeedback);
@@ -38,6 +48,9 @@ namespace Bolnica_aplikacija.ViewModel
             parent.Visibility = Visibility.Hidden;
             pocetni.PocetniEkranGrid.IsEnabled = true;
         }
+        #endregion
+
+        #region Komanda -> Odustani
 
         private void odustaniFeedback(object arg)
         {
@@ -46,6 +59,10 @@ namespace Bolnica_aplikacija.ViewModel
             pocetni.PocetniEkranGrid.IsEnabled = true;
 
         }
+
+        #endregion
+
+        #region Tekst i button property
 
         private void izmenjenTekst(object arg)
         {
@@ -74,5 +91,7 @@ namespace Bolnica_aplikacija.ViewModel
                 OnPropertyChanged("TxtFeedback");
             }
         }
+
+        #endregion
     }
 }

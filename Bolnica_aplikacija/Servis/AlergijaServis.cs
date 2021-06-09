@@ -20,7 +20,6 @@ namespace Bolnica_aplikacija.Servis
             {
                 instance = new AlergijaServis();
             }
-
             return instance;
         }
 
@@ -34,8 +33,7 @@ namespace Bolnica_aplikacija.Servis
             catch(Exception e)
             {
                 povratnaVrednost = new List<Alergija>();
-            }
-            
+            }           
             return povratnaVrednost;
         }
 

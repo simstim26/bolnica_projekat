@@ -198,14 +198,11 @@ namespace Bolnica_aplikacija.Servis
         public void napraviLekara(Lekar lekar)
         {
             kreiraj(lekar);         
-        }
-        
+        }       
         public List<Lekar> procitajLekare()
         {
             return ucitaj();
         }
-        
-
         public void izmeniLekara(Lekar izmeniLekar)
         {
             azuriraj(izmeniLekar);          

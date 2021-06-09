@@ -329,7 +329,6 @@ namespace Bolnica_aplikacija.Servis
                 DateTime terminDatum = termin.datum;
                 DateTime datumPocetkaGodisnjeg = lekar.pocetakGodisnjegOdmora;
                 DateTime datumKrajaGodisnjeg = lekar.krajGodisnjegOdmora;
-
                 int rezultat1 = DateTime.Compare(terminDatum, datumPocetkaGodisnjeg);
                 int rezultat2 = DateTime.Compare(terminDatum, datumKrajaGodisnjeg);
 
@@ -341,8 +340,7 @@ namespace Bolnica_aplikacija.Servis
             else
             {
                 rezultat = false;
-            }
-            
+            }           
             return rezultat;
         }
 

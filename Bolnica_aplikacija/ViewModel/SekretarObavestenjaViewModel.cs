@@ -16,16 +16,6 @@ namespace Bolnica_aplikacija.ViewModel
 {
     class SekretarObavestenjaViewModel : BindableBase
     {
-        SekretarProzor parent;
-        public RelayCommand buttonObavestenjaPovratak { get; set; }
-        public RelayCommand txtNaslovaObavestenjaPromenjen { get; private set; }
-        public RelayCommand txtSadrzajObavetenjaPromenjen { get; private set; }
-        public RelayCommand btnDodajObavestenjeCommand { get; private set; }
-        public RelayCommand btnIzmeniObavestenjeCommand { get; private set; }
-        public RelayCommand btnIzbrisiObavestenjeCommand { get; private set; }
-        public RelayCommand btnOdustaniIzmenaObavestenjaCommand { get; private set; }
-        public RelayCommand dataGridObavestenjaIzmenaSelekcija { get; private set; }
-
         public SekretarObavestenjaViewModel(SekretarProzor parent)
         {
             this.parent = parent;           
@@ -41,8 +31,22 @@ namespace Bolnica_aplikacija.ViewModel
             ucitajObavestenjaUTabelu();
         }
 
-        #region Pomocna polja
-        
+        #region RelayCommand property
+
+        public RelayCommand buttonObavestenjaPovratak { get; set; }
+        public RelayCommand txtNaslovaObavestenjaPromenjen { get; private set; }
+        public RelayCommand txtSadrzajObavetenjaPromenjen { get; private set; }
+        public RelayCommand btnDodajObavestenjeCommand { get; private set; }
+        public RelayCommand btnIzmeniObavestenjeCommand { get; private set; }
+        public RelayCommand btnIzbrisiObavestenjeCommand { get; private set; }
+        public RelayCommand btnOdustaniIzmenaObavestenjaCommand { get; private set; }
+        public RelayCommand dataGridObavestenjaIzmenaSelekcija { get; private set; }
+
+        #endregion
+
+        #region Polja
+
+        SekretarProzor parent;
         private int tipAkcijeObavestenja; // 0 - dodaj, 1 - izmeni, 2 - ukloni
         private Obavestenje izabranoObavestenje;
         

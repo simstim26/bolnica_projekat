@@ -28,7 +28,7 @@
             <Button x:Name="btnOdustani" Command="{Binding OdustaniFeedback}" HorizontalAlignment="Left" Margin="374,190,0,0" VerticalAlignment="Top" Width="80" Height="80" Background="{x:Null}" BorderBrush="{x:Null}">
                 <materialDesign:PackIcon x:Name="iconBtnOdustani" Kind="CancelCircle" Height="80" Width="49" Foreground="#FF47B73C"/>
             </Button>
-            <TextBox x:Name="txtBoxFeedback" Text="{Binding TxtFeedback, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="133" Margin="43,57,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="381" materialDesign:HintAssist.Hint="Unesite feedback..."/>
+            <TextBox x:Name="txtBoxFeedback" Text="{Binding TxtFeedback, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="133" Margin="43,57,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="381" materialDesign:HintAssist.Hint="Unesite feedback..." CaretBrush="#FF40A537" SelectionBrush="#FF40A537"/>
         </Grid>
 
     </Grid>

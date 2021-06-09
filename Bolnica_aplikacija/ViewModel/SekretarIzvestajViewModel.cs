@@ -15,10 +15,7 @@ using System.Windows;
 namespace Bolnica_aplikacija.ViewModel
 {
     class SekretarIzvestajViewModel : BindableBase
-    {
-          
-        public RelayCommand NapisiIzvestaj { get; set; }
-        public RelayCommand Odustani { get; set; }
+    { 
         public SekretarIzvestajViewModel(SekretarIzvestaj parent, SekretarProzor pocetni)
         {
 
@@ -33,6 +30,11 @@ namespace Bolnica_aplikacija.ViewModel
 
         }
 
+        #region RelayCommand property
+        public RelayCommand NapisiIzvestaj { get; set; }
+        public RelayCommand Odustani { get; set; }
+        
+        #endregion
 
         #region Polja i property
         SekretarIzvestaj parent;

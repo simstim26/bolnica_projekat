@@ -614,16 +614,13 @@ namespace Bolnica_aplikacija.Servis
             if (!pronadjenTermin)
             {
                 NotifikacijaKontroler.napraviNotifikaciju("Otkazivanje termina (Pacijent)", "Otkazan je termin usled pomeranja (Pacijent)", idPacijenta, "pacijent");
-
             }
 
         }
 
         public void napraviPacijenta(Pacijent pacijent)
         {
-
             kreiraj(pacijent);
-
         }
 
         public List<Pacijent> procitajPacijente()
@@ -671,7 +668,6 @@ namespace Bolnica_aplikacija.Servis
 
             }
         }
-
         public int ukupanBrojPacijenata()
         {
             return pacijentRepozitorijum.ucitajSve().Count;
