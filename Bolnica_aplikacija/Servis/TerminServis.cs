@@ -142,18 +142,18 @@ namespace Bolnica_aplikacija.Servis
             {
                 if (!prostorija.logickiObrisana && prostorija.dostupnost)
                 {
-                    if (lekar.idSpecijalizacije != "0" && prostorija.tipProstorije != TipProstorije.BOLNICKA_SOBA && prostorija.tipProstorije != TipProstorije.GRESKA)
+                    if (lekar.idSpecijalizacije != "0" && prostorija.tipProstorije.GetType() != typeof(BolnickaSoba))// prostorija.tipProstorije != TipProstorije.BOLNICKA_SOBA && prostorija.tipProstorije != TipProstorije.GRESKA)
                     {
-                        if (termin.tip == TipTermina.OPERACIJA && prostorija.tipProstorije == TipProstorije.OPERACIONA_SALA)
+                        if (termin.tip == TipTermina.OPERACIJA && prostorija.tipProstorije.GetType() == typeof(OperacionaSala))
                         {
                             prostorijeZaPrikaz.Add(prostorija);
                         }
-                        else if (termin.tip == TipTermina.PREGLED && prostorija.tipProstorije == TipProstorije.SOBA_ZA_PREGLED)
+                        else if (termin.tip == TipTermina.PREGLED && prostorija.tipProstorije.GetType() == typeof(SobaZaPregled))
                         {
                             prostorijeZaPrikaz.Add(prostorija);
                         }
                     }
-                    else if (lekar.idSpecijalizacije == "0" && prostorija.tipProstorije == TipProstorije.SOBA_ZA_PREGLED)
+                    else if (lekar.idSpecijalizacije == "0" && prostorija.tipProstorije.GetType() == typeof(SobaZaPregled))
                     {
                         prostorijeZaPrikaz.Add(prostorija);
                     }

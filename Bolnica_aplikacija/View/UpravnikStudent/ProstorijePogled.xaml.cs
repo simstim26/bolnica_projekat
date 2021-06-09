@@ -105,5 +105,10 @@ namespace Bolnica_aplikacija.View.UpravnikStudent
             BiranjeDatumaZaIzvestaj biranje = new BiranjeDatumaZaIzvestaj();
             biranje.Show();
         }
+
+        private void dataGridProstorija_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

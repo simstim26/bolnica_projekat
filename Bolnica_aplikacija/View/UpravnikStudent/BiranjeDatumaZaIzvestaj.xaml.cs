@@ -64,7 +64,7 @@ namespace Bolnica_aplikacija.View.UpravnikStudent
                 {
                     iText.Layout.Element.Paragraph broj = new iText.Layout.Element.Paragraph("Zauzetost za prostoriju " + p.prostorija.broj).SetUnderline();
                     document.Add(broj);
-                    if (p.prostorija.tipProstorije == TipProstorije.BOLNICKA_SOBA)
+                    if (((ITipProstorije)p.prostorija.tipProstorije).tip == "Bolnicka soba")
                     {
                         if (p.bolnickoLecenje.Count == 0)
                         {

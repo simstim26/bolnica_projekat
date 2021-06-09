@@ -61,15 +61,15 @@ namespace Bolnica_aplikacija.View.UpravnikStudent
                 prostorija.sprat = Int32.Parse(unosSprata.Text);
                 if (cbTipProstorije.SelectedIndex == 0)
                 {
-                    prostorija.tipProstorije = TipProstorije.BOLNICKA_SOBA;
+                    prostorija.tipProstorije = new BolnickaSoba();
                 }
                 else if (cbTipProstorije.SelectedIndex == 1)
                 {
-                    prostorija.tipProstorije = TipProstorije.OPERACIONA_SALA;
+                    prostorija.tipProstorije = new OperacionaSala();
                 }
                 else if (cbTipProstorije.SelectedIndex == 2)
                 {
-                    prostorija.tipProstorije = TipProstorije.SOBA_ZA_PREGLED;
+                    prostorija.tipProstorije = new SobaZaPregled();
                 }
 
                 bool provera = ProstorijaKontroler.NapraviProstoriju(prostorija);

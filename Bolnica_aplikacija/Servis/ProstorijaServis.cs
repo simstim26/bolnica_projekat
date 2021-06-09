@@ -73,7 +73,7 @@ namespace Bolnica_aplikacija.Servis
 
             foreach(Prostorija prostorija in ucitajNeobrisane())
             {
-                if(prostorija.dostupnost && prostorija.tipProstorije == TipProstorije.BOLNICKA_SOBA)
+                if(prostorija.dostupnost && prostorija.tipProstorije.GetType() == typeof(BolnickaSoba))
                 {
                     povratnaVrednost.Add(prostorija);
                 }
@@ -83,12 +83,35 @@ namespace Bolnica_aplikacija.Servis
 
         public List<Prostorija> ucitajSve()
         {
-            return prostorijaRepozitorijum.ucitajSve();
+            return konvertujTip(prostorijaRepozitorijum.ucitajSve());
+        }
+
+        private List<Prostorija> konvertujTip(List<Prostorija> prostorije)
+        {
+            List<Prostorija> konvertovaneProstorije = new List<Prostorija>();
+            foreach (Prostorija p in prostorije)
+            {
+
+                if ((p.tipProstorije).ToString().Contains("Bolnicka soba"))
+                {
+                    p.tipProstorije = new BolnickaSoba();
+                }
+                else if ((p.tipProstorije).ToString().Contains("Operaciona sala"))
+                {
+                    p.tipProstorije = new OperacionaSala();
+                }
+                else if (p.tipProstorije.ToString().Contains("Soba za pregled"))
+                {
+                    p.tipProstorije = new SobaZaPregled();
+                }
+                konvertovaneProstorije.Add(p);
+            }
+            return konvertovaneProstorije;
         }
 
         public List<Prostorija> ucitajNeobrisane()
         {
-            return prostorijaRepozitorijum.ucitajNeobrisane();
+            return konvertujTip(prostorijaRepozitorijum.ucitajNeobrisane());
         }
 
         public void upisi(List<Prostorija> sveProstorije)
@@ -138,7 +161,7 @@ namespace Bolnica_aplikacija.Servis
             p.idBolnice = prostorija.idBolnice;
             p.logickiObrisana = false;
             p.sprat = prostorija.sprat;
-            p.tipProstorije = prostorija.tipProstorije;
+            p.tipProstorije = (ITipProstorije)prostorija.tipProstorije;
             p.broj = prostorija.broj;
             p.dostupnost = prostorija.dostupnost;
             p.Stavka = prostorija.Stavka;
@@ -285,13 +308,13 @@ namespace Bolnica_aplikacija.Servis
 
         public List<ProstorijeIzvestaj> pronadjiTermineZaSveProstorije(DateTime? datumPocetka, DateTime? datumKraja)
         {
-            var prostorije = prostorijaRepozitorijum.ucitajNeobrisane();
+            var prostorije = ucitajNeobrisane();
             List<Termin> terminiProstorije;
             List<ProstorijeIzvestaj> prostorijeZaIzvestaj = new List<ProstorijeIzvestaj>();
             List<BolnickoLecenje> bolnickaLecenja = new List<BolnickoLecenje>();
             foreach (Prostorija p in prostorije)
             {
-                if (p.tipProstorije == TipProstorije.BOLNICKA_SOBA)
+                if (p.tipProstorije.GetType() == typeof(BolnickaSoba))
                 {
                     bolnickaLecenja = pronadjiBolnickaLecenjaZaJednuProstoriju(p);
                     ProstorijeIzvestaj pi = new ProstorijeIzvestaj(p, bolnickaLecenja);
@@ -668,7 +691,7 @@ namespace Bolnica_aplikacija.Servis
         public void prosiriProstorije(ProstorijaRenoviranje p)
         {
             Prostorija prostorija = nadjiProstorijuPoId(p.idProstorije);
-            ProstorijaDTO prostorijaNova = new ProstorijaDTO(postaviIDProstorija(), prostorija.idBolnice, prostorija.tipProstorije,
+            ProstorijaDTO prostorijaNova = new ProstorijaDTO(postaviIDProstorija(), prostorija.idBolnice, (ITipProstorije)prostorija.tipProstorije,
                 prostorija.broj + "-a", prostorija.sprat, true, false, 0, null);
             noviBrojSobe(prostorijaNova, prostorija);
         }

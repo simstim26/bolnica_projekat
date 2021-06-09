@@ -156,10 +156,16 @@
     <Compile Include="Kontroler\StavkaKontroler.cs" />
     <Compile Include="Kontroler\TerapijaKontroler.cs" />
     <Compile Include="Kontroler\TerminKontroler.cs" />
+    <Compile Include="Model\BolnickaSoba.cs" />
     <Compile Include="Model\BolnickoLecenje.cs" />
+    <Compile Include="Model\ITipProstorije.cs" />
     <Compile Include="Model\LekZaOdobravanje.cs" />
+    <Compile Include="Model\OperacionaSala.cs" />
+    <Compile Include="Model\OsnovniTipProstorije.cs" />
+    <Compile Include="Model\SobaZaPregled.cs" />
     <Compile Include="PomocneKlase\BolnickoLecenjeDTO.cs" />
     <Compile Include="PomocneKlase\KonvertBolest.cs" />
+    <Compile Include="PomocneKlase\KonverterProstorije.cs" />
     <Compile Include="PomocneKlase\NotifikacijaDTO.cs" />
     <Compile Include="PomocneKlase\Ponavljanje.cs" />
     <Compile Include="PomocneKlase\KonverterBolnickoLecenje.cs" />
@@ -353,9 +359,6 @@
     </Compile>
     <Compile Include="View\UpravnikStudent\ProstorijePogled.xaml.cs">
       <DependentUpon>ProstorijePogled.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\UpravnikStudent\UpravnikProzor.xaml.cs">
-      <DependentUpon>UpravnikProzor.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\LekarStudent\ZakaziTermin.xaml.cs">
       <DependentUpon>ZakaziTermin.xaml</DependentUpon>
@@ -600,10 +603,6 @@
     <Page Include="View\UpravnikStudent\ProstorijePogled.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="View\UpravnikStudent\UpravnikProzor.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\UpravnikStudent\ZakaziRenoviranje.xaml">
       <SubType>Designer</SubType>

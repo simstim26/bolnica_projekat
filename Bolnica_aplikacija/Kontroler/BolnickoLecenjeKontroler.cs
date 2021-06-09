@@ -46,5 +46,14 @@ namespace Bolnica_aplikacija.Kontroler
             return BolnickoLecenjeServis.getInstance().proveriKrajBolnickogLecenje(idPacijenta);
         }
 
+        public static List<BolnickoLecenje> ucitajSve()
+        {
+            return BolnickoLecenjeServis.getInstance().ucitajSve();
+        }
+
+        public static List<BolnickoLecenje> ucitajZaOdredjeniPeriod(DateTime pocetak, DateTime kraj)
+        {
+            return BolnickoLecenjeServis.getInstance().ucitajZaOdredjeniPeriod(pocetak, kraj);
+        }
     }
 }

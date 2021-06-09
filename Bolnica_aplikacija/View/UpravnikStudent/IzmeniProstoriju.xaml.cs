@@ -1,4 +1,5 @@
 ﻿using Bolnica_aplikacija.Kontroler;
+using Bolnica_aplikacija.Model;
 using Bolnica_aplikacija.PomocneKlase;
 using Model;
 using System;
@@ -48,15 +49,15 @@ namespace Bolnica_aplikacija.View.UpravnikStudent
 
 
             //Prikaz combo boxa za tip prostorije----------------
-            if (prostorija.tipProstorije == TipProstorije.BOLNICKA_SOBA)
+            if (prostorija.tipProstorije.GetType() == typeof(BolnickaSoba))
             {
                 cbTipProstorijeIzmena.SelectedIndex = 0;
             }
-            else if (prostorija.tipProstorije == TipProstorije.OPERACIONA_SALA)
+            else if (prostorija.tipProstorije.GetType() == typeof(OperacionaSala))
             {
                 cbTipProstorijeIzmena.SelectedIndex = 1;
             }
-            else if (prostorija.tipProstorije == TipProstorije.SOBA_ZA_PREGLED)
+            else if (prostorija.tipProstorije.GetType() == typeof(SobaZaPregled))
             {
                 cbTipProstorijeIzmena.SelectedIndex = 2;
             }
@@ -89,15 +90,15 @@ namespace Bolnica_aplikacija.View.UpravnikStudent
                 prostorija.broj = txtBrojProstorije.Text;
                 if (cbTipProstorijeIzmena.SelectedIndex == 0)
                 {
-                    prostorija.tipProstorije = TipProstorije.BOLNICKA_SOBA;
+                    prostorija.tipProstorije = new BolnickaSoba();
                 }
                 else if (cbTipProstorijeIzmena.SelectedIndex == 1)
                 {
-                    prostorija.tipProstorije = TipProstorije.OPERACIONA_SALA;
+                    prostorija.tipProstorije = new OperacionaSala();
                 }
                 else if (cbTipProstorijeIzmena.SelectedIndex == 2)
                 {
-                    prostorija.tipProstorije = TipProstorije.SOBA_ZA_PREGLED;
+                    prostorija.tipProstorije = new SobaZaPregled();
                 }
 
                 if (cbDostupnostProstorije.SelectedIndex == 0)

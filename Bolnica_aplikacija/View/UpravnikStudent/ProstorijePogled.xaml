@@ -12,10 +12,10 @@
             <ColumnDefinition Width="299*"/>
             <ColumnDefinition Width="542*"/>
         </Grid.ColumnDefinitions>
-        <DataGrid x:Name="dataGridProstorija" BorderThickness="1" CanUserAddRows="false" IsReadOnly ="True" HorizontalAlignment="Left" Height="498" Margin="50,114,0,0" VerticalAlignment="Top" Width="458" HeadersVisibility="All" AutoGenerateColumns="False" SelectionMode="Single" CanUserResizeRows="False" Grid.ColumnSpan="2">
+        <DataGrid x:Name="dataGridProstorija" BorderThickness="1" CanUserAddRows="false" IsReadOnly ="True" HorizontalAlignment="Left" Height="498" Margin="50,114,0,0" VerticalAlignment="Top" Width="458" HeadersVisibility="All" AutoGenerateColumns="False" SelectionMode="Single" CanUserResizeRows="False" Grid.ColumnSpan="2" SelectionChanged="dataGridProstorija_SelectionChanged">
             <DataGrid.Columns>
 
-                <DataGridTextColumn x:Name="kolonaTip" Binding ="{Binding tipProstorije}" IsReadOnly="True" Header="tip"  Width="143" CanUserResize="False"/>
+                <DataGridTextColumn x:Name="kolonaTip" Binding ="{Binding tipProstorije.tip}" IsReadOnly="True" Header="tip"  Width="143" CanUserResize="False"/>
                 <DataGridTextColumn x:Name="Broj" Binding="{Binding broj}" IsReadOnly="True" Header="broj" Width="143" CanUserResize="False"/>
                 <DataGridTextColumn x:Name="Sprat" Binding="{Binding sprat}" IsReadOnly="True" Header="sprat" Width="143" CanUserResize="False"/>
             </DataGrid.Columns>
