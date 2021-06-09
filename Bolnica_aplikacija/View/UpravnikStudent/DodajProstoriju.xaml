@@ -43,7 +43,7 @@
             <TextBlock x:Name="lblTipProstorije" FontSize="20" HorizontalAlignment="Left" Margin="94,450,0,0" TextWrapping="Wrap" Text="Izaberite tip nove prostorije: " VerticalAlignment="Top" Height="32" Width="269"/>
             <TextBlock x:Name="lblBrojSobe" FontSize="20" HorizontalAlignment="Left" Margin="94,230,0,0" TextWrapping="Wrap" Text="Unesite broj nove prostorije: " VerticalAlignment="Top" Height="28" Width="269"/>
             <TextBlock x:Name="lblSprat" FontSize="20" HorizontalAlignment="Left" Margin="94,340,0,0" TextWrapping="Wrap" Text="Unesite sprat nove prostorije: " VerticalAlignment="Top" Height="26" Width="269"/>
-            <ComboBox x:Name="cbTipProstorije" HorizontalAlignment="Left" Margin="419,450,0,0" VerticalAlignment="Top" Width="168" Height="32">
+            <ComboBox x:Name="cbTipProstorije" HorizontalAlignment="Left" Margin="414,450,0,0" VerticalAlignment="Top" Width="167" Height="32">
                 <ComboBoxItem Content="Bolnicka soba"/>
                 <ComboBoxItem Content="Operaciona sala"/>
                 <ComboBoxItem Content="Soba za pregled"/>
@@ -56,7 +56,6 @@
             <TextBlock x:Name="lblMoraBitiBroj" Foreground="Red" Visibility="Hidden" HorizontalAlignment="Left" Margin="36,523,0,0" TextWrapping="Wrap" Text="*broj i sprat prostorije mogu biti samo brojevi!" VerticalAlignment="Top" Width="312" FontStyle="Italic"/>
 
             <TextBlock x:Name="textBlock" FontSize="30" FontWeight="Bold" HorizontalAlignment="Left" Margin="94,110,0,0" TextWrapping="Wrap" Text="Dodajte novu prostoriju:" VerticalAlignment="Top"/>
-
         </Grid>
     </Grid>
 </UserControl>

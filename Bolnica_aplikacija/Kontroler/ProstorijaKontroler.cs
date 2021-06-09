@@ -91,5 +91,10 @@ namespace Bolnica_aplikacija.Kontroler
             ProstorijaServis.getInstance().azurirajBrojZauzetihKreveta(id);
         }
 
+        public static List<ProstorijeIzvestaj> pronadjiTermineZaSveProstorije(DateTime? datumPocetka, DateTime? datumKraja)
+        {
+            return ProstorijaServis.getInstance().pronadjiTermineZaSveProstorije(datumPocetka, datumKraja);
+        }
+
     }
 }

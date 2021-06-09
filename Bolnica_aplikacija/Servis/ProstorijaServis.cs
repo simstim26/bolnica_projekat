@@ -1,4 +1,5 @@
 ﻿using Bolnica_aplikacija.Kontroler;
+using Bolnica_aplikacija.Model;
 using Bolnica_aplikacija.PomocneKlase;
 using Bolnica_aplikacija.Repozitorijum;
 using Model;
@@ -28,6 +29,8 @@ namespace Bolnica_aplikacija.Servis
         }
 
         ProstorijaRepozitorijum prostorijaRepozitorijum = new ProstorijaRepozitorijum();
+        TerminRepozitorijum terminRepozitorijum = new TerminRepozitorijum();
+        BolnickoLecenjeRepozitorijum bolnickoLecenjeRepozitorijum = new BolnickoLecenjeRepozitorijum();
 
         public String nadjiBrojISprat(String idProstorije)
         {
@@ -280,6 +283,60 @@ namespace Bolnica_aplikacija.Servis
             return false;
         }
 
+        public List<ProstorijeIzvestaj> pronadjiTermineZaSveProstorije(DateTime? datumPocetka, DateTime? datumKraja)
+        {
+            var prostorije = prostorijaRepozitorijum.ucitajNeobrisane();
+            List<Termin> terminiProstorije;
+            List<ProstorijeIzvestaj> prostorijeZaIzvestaj = new List<ProstorijeIzvestaj>();
+            List<BolnickoLecenje> bolnickaLecenja = new List<BolnickoLecenje>();
+            foreach (Prostorija p in prostorije)
+            {
+                if (p.tipProstorije == TipProstorije.BOLNICKA_SOBA)
+                {
+                    bolnickaLecenja = pronadjiBolnickaLecenjaZaJednuProstoriju(p);
+                    ProstorijeIzvestaj pi = new ProstorijeIzvestaj(p, bolnickaLecenja);
+                    prostorijeZaIzvestaj.Add(pi);
+                }
+                else
+                {
+                    terminiProstorije = pronadjiZauzeteTermineZaJednuProstoriju(p, datumPocetka, datumKraja);
+                    ProstorijeIzvestaj pi = new ProstorijeIzvestaj(p, terminiProstorije);
+                    prostorijeZaIzvestaj.Add(pi);
+                }
+                
+            }
+            return prostorijeZaIzvestaj;
+
+        }
+
+        public List<BolnickoLecenje> pronadjiBolnickaLecenjaZaJednuProstoriju(Prostorija p)
+        {
+            var bolnickaLecenja = bolnickoLecenjeRepozitorijum.ucitajSve();
+            List<BolnickoLecenje> bolnicka = new List<BolnickoLecenje>();
+            foreach (BolnickoLecenje bl in bolnickaLecenja)
+            {
+                if (bl.bolnickaSoba.Equals(p.id))
+                {
+                    bolnicka.Add(bl);
+                }
+            }
+
+            return bolnicka;
+        }
+
+        public List<Termin> pronadjiZauzeteTermineZaJednuProstoriju(Prostorija p, DateTime? datumPocetka, DateTime? datumKraja)
+        {
+            var termini = terminRepozitorijum.ucitajSve();
+            List<Termin> terminiProstorije = new List<Termin>();
+            foreach (Termin t in termini)
+            {
+                if (t.idProstorije.Equals(p.id) && t.idPacijenta != "" && t.datum >= datumPocetka && t.datum <= datumKraja)
+                {
+                    terminiProstorije.Add(t);
+                }
+            }
+            return terminiProstorije;
+        }
 
         public void premestiStavku(ProstorijaPrebacivanjeDTO prebacivanje)
         {

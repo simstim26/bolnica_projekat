@@ -93,5 +93,7 @@ namespace Bolnica_aplikacija.View.UpravnikStudent
             GlavniProzor.DobaviProzorZaIzmenu().Children.Clear();
             GlavniProzor.DobaviProzorZaIzmenu().Children.Add(new ProstorijePogled());
         }
+
+        
     }
 }

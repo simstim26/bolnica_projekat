@@ -34,5 +34,31 @@
         <TextBlock x:Name="prostorijeSpajanjeGreska" Visibility="Hidden" FontStyle="Italic" Foreground="red" HorizontalAlignment="Left" Margin="486,524,0,0" TextWrapping="Wrap" Text="*Izaberite tačno dve prostorije za spajanje!" VerticalAlignment="Top"/>
         <TextBlock x:Name="prostorijeSpratGreska" Visibility="Hidden" FontStyle="Italic" Foreground="red" HorizontalAlignment="Left" Margin="486,524,0,0" TextWrapping="Wrap" Text="*Prostorije za spajanje moraju biti na istom spratu!" VerticalAlignment="Top"/>
         <TextBlock x:Name="praznaPolja" Visibility="Hidden" FontStyle="Italic" Foreground="red" HorizontalAlignment="Left" Margin="486,524,0,0" TextWrapping="Wrap" Text="*Sva polja moraju biti popunjena!" VerticalAlignment="Top"/>
+        <Image x:Name="image" HorizontalAlignment="Left" Height="60" Margin="826,24,0,0" VerticalAlignment="Top" Width="60" MouseLeftButtonDown="image_MouseLeftButtonDown_1" Source="hel.png"/>
+        <Image x:Name="image1"  Visibility="Hidden" HorizontalAlignment="Left" Height="56" Margin="546,50,0,0" VerticalAlignment="Top" Width="56" Source="doctor.png"/>
+        <TextBlock x:Name="textBlock1" Visibility="Hidden" HorizontalAlignment="Left" Margin="607,36,0,0" TextWrapping="Wrap" Text="Dobrodošli u demo! Pokazaću Vam kako da rezervišete prostoriju za renoviranje!" VerticalAlignment="Top" Width="160"/>
+
+        <Image x:Name="image2"  Visibility="Hidden" HorizontalAlignment="Left" Height="44" Margin="18,155,0,0" VerticalAlignment="Top" Width="44" Source="doctor.png"/>
+        <Rectangle x:Name="black1" Visibility="Hidden" Fill="Black" HorizontalAlignment="Left" Height="66" Margin="52,102,0,0" Stroke="Black" VerticalAlignment="Top" Width="187" RadiusY="12.167" RadiusX="12.167"/>
+        <TextBlock x:Name="textBlock2" Visibility="Hidden" Foreground="White" HorizontalAlignment="Left" Margin="67,111,0,0" TextWrapping="Wrap" Text="1. Potrebno je izabrati najmanje jednu prostoriju iz tabele!" VerticalAlignment="Top" Width="160" Height="57"/>
+        <Image x:Name="tap" HorizontalAlignment="Left" Visibility="Hidden" Height="50" Margin="140,213,0,0" VerticalAlignment="Top" Width="50" Source="tap.png"/>
+
+        <Image x:Name="image3"  Visibility="Hidden" HorizontalAlignment="Left" Height="44" Margin="780,132,0,0" VerticalAlignment="Top" Width="44" Source="doctor.png"/>
+        <Rectangle x:Name="black2" Visibility="Hidden" Fill="Black" HorizontalAlignment="Left" Height="66" Margin="588,84,0,0" Stroke="Black" VerticalAlignment="Top" Width="187" RadiusY="12.167" RadiusX="12.167"/>
+        <TextBlock x:Name="textBlock3" Foreground="White" Visibility="Hidden" HorizontalAlignment="Left" Margin="607,93,0,0" TextWrapping="Wrap" Text="2. Potrebno je izabrati datum početka i datum kraja renoviranja prostorija!" VerticalAlignment="Top" Width="160"/>
+        <Image x:Name="tap2" HorizontalAlignment="Left" Visibility="Hidden" Height="36" Margin="566,227,0,0" VerticalAlignment="Top" Width="36" Source="tap.png"/>
+        <Image x:Name="tap3" HorizontalAlignment="Left" Visibility="Hidden" Height="36" Margin="804,227,0,0" VerticalAlignment="Top" Width="36" Source="tap.png"/>
+
+        <Image x:Name="image4"  Visibility="Hidden" HorizontalAlignment="Left" Height="44" Margin="437,348,0,0" VerticalAlignment="Top" Width="44" Source="doctor.png"/>
+        <Rectangle x:Name="black3" Visibility="Hidden" Fill="Black" HorizontalAlignment="Left" Height="66" Margin="481,286,0,0" Stroke="Black" VerticalAlignment="Top" Width="187" RadiusY="12.167" RadiusX="12.167"/>
+        <TextBlock x:Name="textBlock44" Foreground="White" Visibility="Hidden" HorizontalAlignment="Left" Margin="500,296,0,0" TextWrapping="Wrap" Text="3. Potrebno je uneti razlog zbog kog se prostorija renovira!" VerticalAlignment="Top" Width="160" Height="56"/>
+
+        <Image x:Name="image5"  Visibility="Hidden" HorizontalAlignment="Left" Height="44" Margin="437,456,0,0" VerticalAlignment="Top" Width="44" Source="doctor.png"/>
+        <Rectangle x:Name="black4" Visibility="Hidden" Fill="Black" HorizontalAlignment="Left" Height="66" Margin="481,385,0,0" Stroke="Black" VerticalAlignment="Top" Width="187" RadiusY="12.167" RadiusX="12.167"/>
+        <TextBlock x:Name="textBlock55" Foreground="White" Visibility="Hidden" HorizontalAlignment="Left" Margin="500,395,0,0" TextWrapping="Wrap" Text="4. Potrebno je izabrati tip renoviranja!" VerticalAlignment="Top" Width="160" Height="56"/>
+
+        <Image x:Name="image6"  Visibility="Hidden" HorizontalAlignment="Left" Height="44" Margin="420,524,0,0" VerticalAlignment="Top" Width="44" Source="doctor.png"/>
+        <Rectangle x:Name="black5" Visibility="Visible" Fill="Black" HorizontalAlignment="Left" Height="66" Margin="321,441,0,0" Stroke="Black" VerticalAlignment="Top" Width="187" RadiusY="12.167" RadiusX="12.167"/>
+        <TextBlock x:Name="textBlock66" Foreground="White" Visibility="Visible" HorizontalAlignment="Left" Margin="330,441,0,0" TextWrapping="Wrap" Text="Ukoliko ste sve podatke pravilno uneli, klikom na dumge 'Zakaži' ćete uspešno zakazati prostoriju za renoviranje!" VerticalAlignment="Top" Width="178" Height="66"/>
     </Grid>
 </UserControl>

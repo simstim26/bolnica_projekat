@@ -1,5 +1,8 @@
 ﻿using Bolnica_aplikacija.Kontroler;
 using Bolnica_aplikacija.View.UpravnikStudent;
+using iText.Kernel.Pdf;
+using iText.Layout;
+using iText.Layout.Element;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -95,6 +98,12 @@ namespace Bolnica_aplikacija.View.UpravnikStudent
         public static Grid dobaviGridProstorija()
         {
             return gridProstorije;
+        }
+
+        private void btnZakaziRenoviranje_Copy_Click(object sender, RoutedEventArgs e)
+        {
+            BiranjeDatumaZaIzvestaj biranje = new BiranjeDatumaZaIzvestaj();
+            biranje.Show();
         }
     }
 }
