@@ -37,7 +37,6 @@ namespace Bolnica_aplikacija.Servis
             }
             else if (tip.Equals("sekretar"))
             {
-                Console.WriteLine("Pravim prozor za sekretara");
                 prozor = new SekretarProzor();
             }
             else if (tip.Equals("upravnik"))
