@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -59,20 +60,41 @@ namespace Bolnica_aplikacija.View.UpravnikStudent
 
         private void btnPotvrdiDodavanjeLekovaOdbijenog_Click(object sender, RoutedEventArgs e)
         {
-            TipLeka tipLeka = (TipLeka)cbTipLekaDodavanjeOdbijenog.SelectedItem;
-            NacinUpotrebe nacinUpotrebe = (NacinUpotrebe)comboBoxNacinUpotrebeOdbijenog.SelectedItem;
+            svaPolja.Visibility = Visibility.Hidden;
+            jacinBroj.Visibility = Visibility.Hidden;
 
-            LekZaOdobravanje odbijeniLek = (LekZaOdobravanje)OdbijeniLekovi.dobaviDataGridOdbijenihLekova().SelectedItem;
-            LekKontroler.fizickiObrisiLekZaOdbacivanje(odbijeniLek);
+            String pat = @"^[0-9]+$";
+            Regex r = new Regex(pat);
+            Match m = r.Match(textBoxKolicinaLekaUnosOdbijenog.Text.Replace(" ", ""));
 
-            odbijeniLek.naziv = textBoxNazivLekaUnosOdbijenog.Text;
-            odbijeniLek.tip = tipLeka;
-            odbijeniLek.kolicina = Int32.Parse(textBoxKolicinaLekaUnosOdbijenog.Text);
-            odbijeniLek.proizvodjac = textBoxProizvodjacLekaUnosOdbijenog.Text;
-            odbijeniLek.nacinUpotrebe = nacinUpotrebe;
-            odbijeniLek.id = (LekKontroler.ucitajLekoveZaOdobravanje().Count() + 1).ToString();
+            if (String.IsNullOrEmpty(textBoxNazivLekaUnosOdbijenog.Text) || cbTipLekaDodavanjeOdbijenog.SelectedIndex == -1 ||
+                String.IsNullOrEmpty(textBoxProizvodjacLekaUnosOdbijenog.Text) || String.IsNullOrEmpty(textBoxKolicinaLekaUnosOdbijenog.Text) ||
+                comboBoxNacinUpotrebeOdbijenog.SelectedIndex == -1)
+            {
+                svaPolja.Visibility = Visibility.Visible;
+            }
+            else if (!m.Success)
+            {
+                jacinBroj.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                TipLeka tipLeka = (TipLeka)cbTipLekaDodavanjeOdbijenog.SelectedItem;
+                NacinUpotrebe nacinUpotrebe = (NacinUpotrebe)comboBoxNacinUpotrebeOdbijenog.SelectedItem;
 
-            LekKontroler.napraviCeoLek(odbijeniLek);
+                LekZaOdobravanje odbijeniLek = (LekZaOdobravanje)OdbijeniLekovi.dobaviDataGridOdbijenihLekova().SelectedItem;
+                LekKontroler.fizickiObrisiLekZaOdbacivanje(odbijeniLek);
+
+                odbijeniLek.naziv = textBoxNazivLekaUnosOdbijenog.Text;
+                odbijeniLek.tip = tipLeka;
+                odbijeniLek.kolicina = Int32.Parse(textBoxKolicinaLekaUnosOdbijenog.Text);
+                odbijeniLek.proizvodjac = textBoxProizvodjacLekaUnosOdbijenog.Text;
+                odbijeniLek.nacinUpotrebe = nacinUpotrebe;
+                odbijeniLek.id = (LekKontroler.ucitajLekoveZaOdobravanje().Count() + 1).ToString();
+
+                LekKontroler.napraviCeoLek(odbijeniLek);
+            }
+            
         }
 
         private void btnOtkaziDodavanjeLekaOdbijenog_Click(object sender, RoutedEventArgs e)
@@ -83,23 +105,40 @@ namespace Bolnica_aplikacija.View.UpravnikStudent
 
         private void btnSastojakUnesiOdbijenog_Click(object sender, RoutedEventArgs e)
         {
-            String sastojak = textBoxUpisiSastojakOdbijenog.Text;
-            List<String> sastojci = (List<String>)dataGridDodajSastojkeOdbijenog.ItemsSource;
-            sastojci.Add(sastojak);
+            prazanSastojak.Visibility = Visibility.Hidden;
+            if (String.IsNullOrEmpty(textBoxUpisiSastojakOdbijenog.Text))
+            {
+                prazanSastojak.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                String sastojak = textBoxUpisiSastojakOdbijenog.Text;
+                List<String> sastojci = (List<String>)dataGridDodajSastojkeOdbijenog.ItemsSource;
+                sastojci.Add(sastojak);
 
-            dataGridDodajSastojkeOdbijenog.ItemsSource = sastojci;
-            dataGridDodajSastojkeOdbijenog.Items.Refresh();
-            textBoxUpisiSastojakOdbijenog.Clear();
+                dataGridDodajSastojkeOdbijenog.ItemsSource = sastojci;
+                dataGridDodajSastojkeOdbijenog.Items.Refresh();
+                textBoxUpisiSastojakOdbijenog.Clear();
+            }   
         }
 
         private void btnIzbrisiSastojakOdbijenog_Click(object sender, RoutedEventArgs e)
         {
+            izaberiteZamenski.Visibility = Visibility.Hidden;
+            svaPolja.Visibility = Visibility.Hidden;
+            jacinBroj.Visibility = Visibility.Hidden;
+            obrisiSastojak.Visibility = Visibility.Hidden;
             if (dataGridDodajSastojkeOdbijenog.SelectedIndex != -1)
             {
                 List<String> sastojci = (List<String>)dataGridDodajSastojkeOdbijenog.ItemsSource;
                 sastojci.Remove((String)dataGridDodajSastojkeOdbijenog.SelectedItem);
                 dataGridDodajSastojkeOdbijenog.ItemsSource = sastojci;
                 dataGridDodajSastojkeOdbijenog.Items.Refresh();
+            }
+            else
+            {
+                obrisiSastojak.Visibility = Visibility.Visible;
+
             }
         }
 
@@ -114,14 +153,27 @@ namespace Bolnica_aplikacija.View.UpravnikStudent
 
         private void dodajZamenskiOdbijenog_Click(object sender, RoutedEventArgs e)
         {
-            LekZaOdobravanje odbijeniLek = (LekZaOdobravanje)OdbijeniLekovi.dobaviDataGridOdbijenihLekova().SelectedItem;
-            List<Lek> sviLekovi = (List<Lek>)dataGridSviLekoviZaZamenskiOdbijenog.ItemsSource;
-            odbijeniLek.zamenskiLekovi.Add((Lek)dataGridSviLekoviZaZamenskiOdbijenog.SelectedItem);
-            sviLekovi.Remove((Lek)dataGridSviLekoviZaZamenskiOdbijenog.SelectedItem);
-            dataGridZamenskiUbaceniLekoviOdbijenog.ItemsSource = odbijeniLek.zamenskiLekovi;
-            dataGridSviLekoviZaZamenskiOdbijenog.ItemsSource = sviLekovi;
-            dataGridZamenskiUbaceniLekoviOdbijenog.Items.Refresh();
-            dataGridSviLekoviZaZamenskiOdbijenog.Items.Refresh();
+            izaberiteZamenski.Visibility = Visibility.Hidden;
+            svaPolja.Visibility = Visibility.Hidden;
+            jacinBroj.Visibility = Visibility.Hidden;
+            obrisiSastojak.Visibility = Visibility.Hidden;
+
+            if (dataGridSviLekoviZaZamenskiOdbijenog.SelectedIndex != -1)
+            {
+                LekZaOdobravanje odbijeniLek = (LekZaOdobravanje)OdbijeniLekovi.dobaviDataGridOdbijenihLekova().SelectedItem;
+                List<Lek> sviLekovi = (List<Lek>)dataGridSviLekoviZaZamenskiOdbijenog.ItemsSource;
+                odbijeniLek.zamenskiLekovi.Add((Lek)dataGridSviLekoviZaZamenskiOdbijenog.SelectedItem);
+                sviLekovi.Remove((Lek)dataGridSviLekoviZaZamenskiOdbijenog.SelectedItem);
+                dataGridZamenskiUbaceniLekoviOdbijenog.ItemsSource = odbijeniLek.zamenskiLekovi;
+                dataGridSviLekoviZaZamenskiOdbijenog.ItemsSource = sviLekovi;
+                dataGridZamenskiUbaceniLekoviOdbijenog.Items.Refresh();
+                dataGridSviLekoviZaZamenskiOdbijenog.Items.Refresh();
+            }
+            else
+            {
+                izaberiteZamenski.Visibility = Visibility.Visible;
+
+            }
         }
 
         private void btnPotvrdiZamenskeOdbijenog_Click(object sender, RoutedEventArgs e)

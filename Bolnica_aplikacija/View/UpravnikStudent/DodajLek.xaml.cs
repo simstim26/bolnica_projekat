@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,12 +24,14 @@ namespace Bolnica_aplikacija.View.UpravnikStudent
     /// </summary>
     public partial class DodajLek : UserControl
     {
+        int lekariBroj;
         public DodajLek()
         {
             InitializeComponent();
             LekZaOdobravanje noviLek = LekZaOdobravanje.getInstance();
             List<String> sastojci = new List<string>();
             noviLek.sastojci = sastojci;
+            lekariBroj = 0;
 
             gridLekoviDodaj.Visibility = Visibility.Visible;
             cbTipLekaDodavanje.ItemsSource = LekKontroler.tipLeka();
@@ -66,31 +69,65 @@ namespace Bolnica_aplikacija.View.UpravnikStudent
 
         private void btnPotvrdiDodavanjeLekova_Click(object sender, RoutedEventArgs e)
         {
-            TipLeka tipLeka = (TipLeka)cbTipLekaDodavanje.SelectedItem;
-            NacinUpotrebe nacinUpotrebe = (NacinUpotrebe)comboBoxNacinUpotrebe.SelectedItem;
+            svaPolja.Visibility = Visibility.Hidden;
+            jacinBroj.Visibility = Visibility.Hidden;
+            lekari.Visibility = Visibility.Hidden;
 
-            LekZaOdobravanje noviLek = LekZaOdobravanje.getInstance();
+            String pat = @"^[0-9]+$";
+            Regex r = new Regex(pat);
+            Match m = r.Match(textBoxKolicinaLekaUnos.Text.Replace(" ", ""));
 
-            noviLek.naziv = textBoxNazivLekaUnos.Text;
-            noviLek.tip = tipLeka;
-            noviLek.kolicina = Int32.Parse(textBoxKolicinaLekaUnos.Text);
-            noviLek.proizvodjac = textBoxProizvodjacLekaUnos.Text;
-            noviLek.nacinUpotrebe = nacinUpotrebe;
-            noviLek.id = (LekKontroler.ucitajLekoveZaOdobravanje().Count() + 1).ToString();
+            if (String.IsNullOrEmpty(textBoxNazivLekaUnos.Text) || cbTipLekaDodavanje.SelectedIndex == -1 ||
+                String.IsNullOrEmpty(textBoxProizvodjacLekaUnos.Text) || String.IsNullOrEmpty(textBoxKolicinaLekaUnos.Text) ||
+                comboBoxNacinUpotrebe.SelectedIndex == -1)
+            {
+                svaPolja.Visibility = Visibility.Visible;
+            }
+            else if (!m.Success)
+            {
+                jacinBroj.Visibility = Visibility.Visible;
+            }
+            else if (lekariBroj < 2)
+            {
+                lekari.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                TipLeka tipLeka = (TipLeka)cbTipLekaDodavanje.SelectedItem;
+                NacinUpotrebe nacinUpotrebe = (NacinUpotrebe)comboBoxNacinUpotrebe.SelectedItem;
 
-            LekKontroler.napraviLek(noviLek);
+                LekZaOdobravanje noviLek = LekZaOdobravanje.getInstance();
 
-            GlavniProzor.DobaviProzorZaIzmenu().Children.Clear();
-            GlavniProzor.DobaviProzorZaIzmenu().Children.Add(new LekoviProzor());
+                noviLek.naziv = textBoxNazivLekaUnos.Text;
+                noviLek.tip = tipLeka;
+                noviLek.kolicina = Int32.Parse(textBoxKolicinaLekaUnos.Text);
+                noviLek.proizvodjac = textBoxProizvodjacLekaUnos.Text;
+                noviLek.nacinUpotrebe = nacinUpotrebe;
+                noviLek.id = (LekKontroler.ucitajLekoveZaOdobravanje().Count() + 1).ToString();
+
+                LekKontroler.napraviLek(noviLek);
+
+                GlavniProzor.DobaviProzorZaIzmenu().Children.Clear();
+                GlavniProzor.DobaviProzorZaIzmenu().Children.Add(new LekoviProzor());
+            }
+
         }
 
         private void btnSastojakUnesi_Click(object sender, RoutedEventArgs e)
         {
-            LekZaOdobravanje noviLek = LekZaOdobravanje.getInstance();
-            String sastojak = textBoxUpisiSastojak.Text;
-            noviLek.sastojci.Add(sastojak);
-            dataGridDodajSastojke.Items.Refresh();
-            textBoxUpisiSastojak.Clear();
+            prazanSastojak.Visibility = Visibility.Hidden;
+            if (String.IsNullOrEmpty(textBoxUpisiSastojak.Text))
+            {
+                prazanSastojak.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                LekZaOdobravanje noviLek = LekZaOdobravanje.getInstance();
+                String sastojak = textBoxUpisiSastojak.Text;
+                noviLek.sastojci.Add(sastojak);
+                dataGridDodajSastojke.Items.Refresh();
+                textBoxUpisiSastojak.Clear();
+            }  
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)
@@ -123,17 +160,27 @@ namespace Bolnica_aplikacija.View.UpravnikStudent
 
         private void btnPotvrdiLekare_Click(object sender, RoutedEventArgs e)
         {
-            List<String> lekariId = new List<String>();
-            foreach (var selektovan in dataGridLekariZaSlanje.SelectedItems)
+            lekariSlanje.Visibility = Visibility.Hidden;
+            if (dataGridLekariZaSlanje.SelectedItems.Count < 2)
             {
-                Lekar lekar = (Lekar)selektovan;
-                lekariId.Add(lekar.id);
+                lekariSlanje.Visibility = Visibility.Visible;
             }
+            else
+            {
+                List<String> lekariId = new List<String>();
+                foreach (var selektovan in dataGridLekariZaSlanje.SelectedItems)
+                {
+                    Lekar lekar = (Lekar)selektovan;
+                    lekariId.Add(lekar.id);
+                    lekariBroj++;
+                }
 
-            LekZaOdobravanje noviLek = LekZaOdobravanje.getInstance();
-            noviLek.lekariKojimaJePoslatLek = lekariId;
-            gridIzaberiLekareZaSlanje.Visibility = Visibility.Hidden;
-            gridLekoviDodaj.Visibility = Visibility.Visible;
+                LekZaOdobravanje noviLek = LekZaOdobravanje.getInstance();
+                noviLek.lekariKojimaJePoslatLek = lekariId;
+                gridIzaberiLekareZaSlanje.Visibility = Visibility.Hidden;
+                gridLekoviDodaj.Visibility = Visibility.Visible;
+            }
+            
         }
 
         private void btnOtkaziLekare_Click(object sender, RoutedEventArgs e)

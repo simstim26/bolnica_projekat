@@ -11,7 +11,7 @@
             <Label x:Name="lblNazivLekaUnos" Content="Naziv leka" HorizontalAlignment="Left" Margin="115,180,0,0" VerticalAlignment="Top" FontSize="20"/>
             <TextBox x:Name="textBoxNazivLekaUnos" HorizontalAlignment="Left" Height="23" Margin="327,186,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
             <Label x:Name="lblTipLekaUnos" Content="Tip leka" HorizontalAlignment="Left" Margin="115,247,0,0" VerticalAlignment="Top" FontSize="20"/>
-            <Label x:Name="lblTipLekaUnos_Copy" Content="Kolicina leka" HorizontalAlignment="Left" Margin="115,319,0,0" VerticalAlignment="Top" FontSize="20"/>
+            <Label x:Name="lblTipLekaUnos_Copy" Content="Jačina leka (mg)" HorizontalAlignment="Left" Margin="115,319,0,0" VerticalAlignment="Top" FontSize="20"/>
             <Label x:Name="lblTipLekaUnos_Copy1" Content="Proizvodjac" HorizontalAlignment="Left" Margin="115,390,0,0" VerticalAlignment="Top" FontSize="20"/>
             <TextBox x:Name="textBoxKolicinaLekaUnos" HorizontalAlignment="Left" Height="23" Margin="327,326,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
             <TextBox x:Name="textBoxProizvodjacLekaUnos" HorizontalAlignment="Left" Height="23" Margin="327,397,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
@@ -95,6 +95,11 @@
             </Button>
             <TextBlock x:Name="textBlock16" HorizontalAlignment="Left" Margin="115,109,0,0" TextWrapping="Wrap" Text="Dodajte novi lek:" FontSize="28" FontWeight="Bold" VerticalAlignment="Top"/>
             <Rectangle HorizontalAlignment="Left" Height="497" Margin="83,80,0,0" Stroke="Black" VerticalAlignment="Top" Width="436"/>
+            <TextBlock x:Name="svaPolja" Foreground="red" Visibility="Hidden" FontStyle="Italic" HorizontalAlignment="Left" Margin="83,582,0,0" TextWrapping="Wrap" Text="*sva polja moraju biti popunjena!" VerticalAlignment="Top"/>
+            <TextBlock x:Name="jacinBroj" Foreground="red" Visibility="Hidden" FontStyle="Italic" HorizontalAlignment="Left" Margin="121,352,0,0" TextWrapping="Wrap" Text="*jačina leka mora biti broj!" VerticalAlignment="Top"/>
+            <TextBlock x:Name="lekari" Foreground="red" Visibility="Hidden" FontStyle="Italic" HorizontalAlignment="Left" Margin="83,582,0,0" TextWrapping="Wrap" Text="*izaberite najmanje dva lekara kojima zahtev mora biti poslat!" VerticalAlignment="Top"/>
+
+
         </Grid>
 
         <Grid x:Name="gridLekoviDodajSastojke" Visibility="Hidden" HorizontalAlignment="Left" Height="685" VerticalAlignment="Top" Width="913">
@@ -108,6 +113,8 @@
             <Button x:Name="btnSastojakUnesi" Content="Dodaj" HorizontalAlignment="Left" Margin="764,308,0,0" VerticalAlignment="Top" Width="75" Click="btnSastojakUnesi_Click"/>
             <Button x:Name="button1" Content="Završi dodavanje" HorizontalAlignment="Left" Margin="488,520,0,0" VerticalAlignment="Top" Width="351" Height="69" Click="button1_Click"/>
             <TextBlock x:Name="textBlock" FontSize="24" HorizontalAlignment="Left" Margin="74,83,0,0" TextWrapping="Wrap" Text="Sastojci:" VerticalAlignment="Top"/>
+            <TextBlock x:Name="prazanSastojak" Foreground="red" Visibility="Hidden" FontStyle="Italic" HorizontalAlignment="Left" Margin="488,345,0,0" TextWrapping="Wrap" Text="*da biste dodali sastojak, morate ga prvo uneti!" VerticalAlignment="Top"/>
+
         </Grid>
 
         <Grid x:Name="gridLekoviDodajZamenskeLekove" Visibility="Hidden" HorizontalAlignment="Left" Height="685" VerticalAlignment="Top" Width="913">
@@ -132,7 +139,7 @@
                     <TextBlock FontSize="15" Margin="20,0,0,0" Text="Dodaj zamenski lek" Height="20" Width="145"/>
                 </StackPanel>
             </Button>
-            <DataGrid x:Name="dataGridZamenskiUbaceniLekovi" CanUserAddRows="false" HorizontalAlignment="Left" Height="265" Margin="533,111,0,0" VerticalAlignment="Top" Width="343">
+            <DataGrid x:Name="dataGridZamenskiUbaceniLekovi" BorderThickness="1" CanUserAddRows="false" HorizontalAlignment="Left" Height="265" Margin="533,111,0,0" VerticalAlignment="Top" Width="343">
                 <DataGrid.Columns>
                     <DataGridTextColumn x:Name="nazivLekaZaZamenuPremesten" Binding ="{Binding naziv}" IsReadOnly="True" Header="Naziv"  Width="150" CanUserResize="True"/>
                     <DataGridTextColumn x:Name="tipLekaZaZamenuPremesten" Binding="{Binding tip}" IsReadOnly="True" Header="Tip" Width="auto" CanUserResize="True"/>
@@ -201,6 +208,7 @@
                 </StackPanel>
             </Button>
             <TextBlock x:Name="textBlock18" FontSize="21" HorizontalAlignment="Left" Margin="37,73,0,0" TextWrapping="Wrap" Text="Izaberite lekare kojima želite da pošaljete zahtev:" VerticalAlignment="Top" Width="457"/>
+            <TextBlock x:Name="lekariSlanje" Foreground="red" FontStyle="Italic" Visibility="Hidden" HorizontalAlignment="Left" Margin="530,277,0,0" TextWrapping="Wrap" Text="*morate izabrati najmanje dva lekara!" VerticalAlignment="Top"/>
 
         </Grid>
 

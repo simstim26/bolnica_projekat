@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="685" d:DesignWidth="913">
     <Grid x:Name="gridLekovi">
-        <DataGrid x:Name="dataGridLekovi" BorderThickness="1" CanUserAddRows="False" IsReadOnly ="True" HorizontalAlignment="Left" Height="473" Margin="33,150,0,0" VerticalAlignment="Top" Width="495" HeadersVisibility="All" AutoGenerateColumns="False" SelectionMode="Single" CanUserResizeRows="False">
+        <DataGrid x:Name="dataGridLekovi" BorderThickness="1" CanUserAddRows="False" IsReadOnly ="True" HorizontalAlignment="Left" Height="448" Margin="33,150,0,0" VerticalAlignment="Top" Width="495" HeadersVisibility="All" AutoGenerateColumns="False" SelectionMode="Single" CanUserResizeRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="nazivLeka" Binding ="{Binding naziv}" IsReadOnly="True" Header="Naziv"  Width="143" CanUserResize="False"/>
                 <DataGridTextColumn x:Name="tipLeka" Binding="{Binding tip}" IsReadOnly="True" Header="Tip" Width="143" CanUserResize="False"/>
@@ -77,5 +77,7 @@
         <TextBlock x:Name="textBlock12" FontSize="28" FontWeight="Bold"  HorizontalAlignment="Left" Margin="33,30,0,0" TextWrapping="Wrap" Text="Prikaz lekova" VerticalAlignment="Top" TextDecorations="Underline" FontStyle="Italic"/>
         <TextBlock x:Name="textBlock13" FontSize="18" HorizontalAlignment="Left" Margin="33,94,0,0" TextWrapping="Wrap" Text="Unesite naziv leka koji želite da pretražite: " VerticalAlignment="Top"/>
         <TextBox x:Name="textBox1" HorizontalAlignment="Left" Height="24" Margin="374,94,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="154"/>
+        <TextBlock x:Name="izaberiteLek" HorizontalAlignment="Left" Visibility="Hidden" Foreground="Red" FontStyle="Italic" Margin="33,603,0,0" TextWrapping="Wrap" Text="*morate prvo izabrati lek iz tabele" VerticalAlignment="Top"/>
+
     </Grid>
 </UserControl>

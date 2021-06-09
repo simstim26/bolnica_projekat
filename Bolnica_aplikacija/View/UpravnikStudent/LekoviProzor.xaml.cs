@@ -49,20 +49,30 @@ namespace Bolnica_aplikacija.View.UpravnikStudent
 
         private void btnIzmenaLeka_Click(object sender, RoutedEventArgs e)
         {
+            izaberiteLek.Visibility = Visibility.Hidden;
             if (dataGridLekovi.SelectedIndex != -1)
             {
                 GlavniProzor.DobaviProzorZaIzmenu().Children.Clear();
                 GlavniProzor.DobaviProzorZaIzmenu().Children.Add(new IzmeniLek());
-            }    
+            }
+            else
+            {
+                izaberiteLek.Visibility = Visibility.Visible;
+            }
         }
 
         private void btnObrisiLek_Click(object sender, RoutedEventArgs e)
         {
+            izaberiteLek.Visibility = Visibility.Hidden;
             if (dataGridLekovi.SelectedIndex != -1)
             {
                 Potvrda potvrda = new Potvrda("lek");
                 potvrda.Show();
-            }  
+            }
+            else
+            {
+                izaberiteLek.Visibility = Visibility.Visible;
+            }
         }
 
         private void btnOdbijeniZahtevi_Click(object sender, RoutedEventArgs e)

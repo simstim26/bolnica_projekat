@@ -58,7 +58,7 @@
         <TextBlock x:Name="textBlock55" Foreground="White" Visibility="Hidden" HorizontalAlignment="Left" Margin="500,395,0,0" TextWrapping="Wrap" Text="4. Potrebno je izabrati tip renoviranja!" VerticalAlignment="Top" Width="160" Height="56"/>
 
         <Image x:Name="image6"  Visibility="Hidden" HorizontalAlignment="Left" Height="44" Margin="420,524,0,0" VerticalAlignment="Top" Width="44" Source="doctor.png"/>
-        <Rectangle x:Name="black5" Visibility="Visible" Fill="Black" HorizontalAlignment="Left" Height="66" Margin="321,441,0,0" Stroke="Black" VerticalAlignment="Top" Width="187" RadiusY="12.167" RadiusX="12.167"/>
-        <TextBlock x:Name="textBlock66" Foreground="White" Visibility="Visible" HorizontalAlignment="Left" Margin="330,441,0,0" TextWrapping="Wrap" Text="Ukoliko ste sve podatke pravilno uneli, klikom na dumge 'Zakaži' ćete uspešno zakazati prostoriju za renoviranje!" VerticalAlignment="Top" Width="178" Height="66"/>
+        <Rectangle x:Name="black5" Visibility="Hidden" Fill="Black" HorizontalAlignment="Left" Height="66" Margin="321,441,0,0" Stroke="Black" VerticalAlignment="Top" Width="187" RadiusY="12.167" RadiusX="12.167"/>
+        <TextBlock x:Name="textBlock66" Foreground="White" Visibility="Hidden" HorizontalAlignment="Left" Margin="330,441,0,0" TextWrapping="Wrap" Text="Ukoliko ste sve podatke pravilno uneli, klikom na dumge 'Zakaži' ćete uspešno zakazati prostoriju za renoviranje!" VerticalAlignment="Top" Width="178" Height="66"/>
     </Grid>
 </UserControl>

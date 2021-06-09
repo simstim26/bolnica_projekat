@@ -178,5 +178,22 @@
         ]
       }
     ]
+  },
+  {
+    "brLekaraKojiSuodobriliLek": 0,
+    "lekariKojimaJePoslatLek": [
+      "1",
+      "2"
+    ],
+    "odobren": false,
+    "propratnaPoruka": null,
+    "id": "4",
+    "naziv": "hfkakh",
+    "tip": 2,
+    "kolicina": 100,
+    "proizvodjac": "kfsh",
+    "nacinUpotrebe": 1,
+    "sastojci": [],
+    "zamenskiLekovi": null
   }
 ]

@@ -11,7 +11,7 @@
             <Label x:Name="lblNazivLekaUnosOdbijenog" Content="Naziv leka" HorizontalAlignment="Left" Margin="107,184,0,0" VerticalAlignment="Top" FontSize="20"/>
             <TextBox x:Name="textBoxNazivLekaUnosOdbijenog" HorizontalAlignment="Left" Height="23" Margin="347,196,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
             <Label x:Name="lblTipLekaUnosOdbijenog" Content="Tip leka" HorizontalAlignment="Left" Margin="107,257,0,0" VerticalAlignment="Top" FontSize="20"/>
-            <Label x:Name="lblTipLekaUnos_CopyOdbijenog" Content="Kolicina leka" HorizontalAlignment="Left" Margin="107,331,0,0" VerticalAlignment="Top" FontSize="20"/>
+            <Label x:Name="lblTipLekaUnos_CopyOdbijenog" Content="Jačina leka (mg)" HorizontalAlignment="Left" Margin="107,331,0,0" VerticalAlignment="Top" FontSize="20"/>
             <Label x:Name="lblTipLekaUnos_Copy1Odbijenog" Content="Proizvodjac" HorizontalAlignment="Left" Margin="107,415,0,0" VerticalAlignment="Top" FontSize="20"/>
             <TextBox x:Name="textBoxKolicinaLekaUnosOdbijenog" HorizontalAlignment="Left" Height="23" Margin="347,343,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
             <TextBox x:Name="textBoxProizvodjacLekaUnosOdbijenog" HorizontalAlignment="Left" Height="23" Margin="347,427,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
@@ -80,6 +80,8 @@
             </Button>
             <TextBlock x:Name="textBlock15" FontSize="25" FontWeight="Bold" HorizontalAlignment="Left" Margin="107,112,0,0" TextWrapping="Wrap" Text="Izmenite lek:" VerticalAlignment="Top"/>
             <Rectangle HorizontalAlignment="Left" Height="516" Margin="65,84,0,0" Stroke="Black" VerticalAlignment="Top" Width="462"/>
+            <TextBlock x:Name="svaPolja" Foreground="red" Visibility="Hidden" FontStyle="Italic" HorizontalAlignment="Left" Margin="65,605,0,0" TextWrapping="Wrap" Text="*sva polja moraju biti popunjena!" VerticalAlignment="Top"/>
+            <TextBlock x:Name="jacinBroj" Foreground="red" Visibility="Hidden" FontStyle="Italic" HorizontalAlignment="Left" Margin="113,371,0,0" TextWrapping="Wrap" Text="*jačina leka mora biti broj!" VerticalAlignment="Top"/>
         </Grid>
 
         <Grid x:Name="gridLekoviIzmeniSastojkeOdbijenog" Visibility="Hidden" HorizontalAlignment="Left" Height="685" VerticalAlignment="Top" Width="913">
@@ -93,6 +95,9 @@
             <Button x:Name="btnSastojakUnesiOdbijenog" Content="Dodaj" HorizontalAlignment="Left" Margin="748,180,0,0" VerticalAlignment="Top" Width="100" Click="btnSastojakUnesiOdbijenog_Click"/>
             <Button x:Name="btnPotvrdiSastojkeOdbijenog" Content="Potvrdi" HorizontalAlignment="Left" Margin="488,552,0,0" VerticalAlignment="Top" Width="360" Height="66" Click="btnPotvrdiSastojkeOdbijenog_Click"/>
             <Button x:Name="btnIzbrisiSastojakOdbijenog" Content="Obriši Sastojak" HorizontalAlignment="Left" Margin="488,273,0,0" VerticalAlignment="Top" Width="153" Click="btnIzbrisiSastojakOdbijenog_Click"/>
+            <TextBlock x:Name="prazanSastojak" Foreground="red" Visibility="Hidden" FontStyle="Italic" HorizontalAlignment="Left" Margin="488,217,0,0" TextWrapping="Wrap" Text="*da biste dodali sastojak, morate ga prvo uneti!" VerticalAlignment="Top"/>
+            <TextBlock x:Name="obrisiSastojak" Foreground="red" Visibility="Hidden" FontStyle="Italic" HorizontalAlignment="Left" Margin="488,310,0,0" TextWrapping="Wrap" Text="*da biste obrisali sastojak, morate ga prvo izabrati!" VerticalAlignment="Top"/>
+
         </Grid>
 
         <Grid x:Name="gridLekoviIzmeniZamenskeLekoveOdbijenog" Visibility="Hidden" HorizontalAlignment="Left" Height="685" VerticalAlignment="Top" Width="913">
@@ -112,6 +117,8 @@
             <Button x:Name="btnPotvrdiZamenskeOdbijenog" Content="Potvrdi" HorizontalAlignment="Left" Margin="533,545,0,0" VerticalAlignment="Top" Width="343" Height="59" Click="btnPotvrdiZamenskeOdbijenog_Click"/>
             <TextBlock x:Name="textBlock" FontSize="24" HorizontalAlignment="Left" Margin="37,46,0,0" TextWrapping="Wrap" Text="Izaberite zamenski lek za dodavanje:" VerticalAlignment="Top"/>
             <TextBlock x:Name="textBlock1" FontSize="24" HorizontalAlignment="Left" Margin="533,52,0,0" TextWrapping="Wrap" Text="Zamenski lekovi:" VerticalAlignment="Top"/>
+            <TextBlock x:Name="izaberiteZamenski" Foreground="red" Visibility="Hidden" FontStyle="Italic" HorizontalAlignment="Left" Margin="533,481,0,0" TextWrapping="Wrap" Text="*da biste dodali, morate prvo izabrati lek!" VerticalAlignment="Top"/>
+
         </Grid>
     </Grid>
 </UserControl>

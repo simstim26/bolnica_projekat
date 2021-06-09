@@ -181,11 +181,11 @@ namespace Bolnica_aplikacija.View.UpravnikStudent
             image5.Visibility = Visibility.Hidden;
             black4.Visibility = Visibility.Hidden;
             textBlock55.Visibility = Visibility.Hidden;
-            await Task.Delay(700);
+            await Task.Delay(1000);
             image6.Visibility = Visibility.Visible;
             black5.Visibility = Visibility.Visible;
             textBlock66.Visibility = Visibility.Visible;
-            await Task.Delay(3000);
+            await Task.Delay(4000);
             image6.Visibility = Visibility.Hidden;
             black5.Visibility = Visibility.Hidden;
             textBlock66.Visibility = Visibility.Hidden;
@@ -193,61 +193,6 @@ namespace Bolnica_aplikacija.View.UpravnikStudent
             textBoxRazlogRenoviranja.Text = "";
             datumRenoviranjaOd.SelectedDate = null;
             datumRenoviranjaDo.SelectedDate = null;
-
-
-
-
-            /*//cursor1.Visibility = Visibility.Visible;
-            await Task.Delay(1000);
-            //dataGridPacijenti.SelectedIndex = 1;
-            await Task.Delay(2000);
-            image.Visibility = Visibility.Hidden;
-            //cursor1.Visibility = Visibility.Hidden;
-
-            //lblDatum.Visibility = Visibility.Visible;
-            image2.Visibility = Visibility.Visible;
-            //await Task.Delay(1000);
-            //datumPocetak.SelectedDate = DateTime.Now;
-            await Task.Delay(1000);
-            image2.Visibility = Visibility.Hidden;
-
-            image3.Visibility = Visibility.Visible;
-            *//*await Task.Delay(1000);
-            datumKraj.SelectedDate = DateTime.Now.AddDays(10);*//*
-            await Task.Delay(1000);
-            //lblDatum.Visibility = Visibility.Hidden;
-            image4.Visibility = Visibility.Hidden;
-
-            *//*lblLekar.Visibility = Visibility.Visible;*/
-            /*image.Visibility = Visibility.Visible;
-            await Task.Delay(1000);
-            dataGridLekari.SelectedIndex = 1;
-            await Task.Delay(2000);
-            lblLekar.Visibility = Visibility.Hidden;
-            cursor4.Visibility = Visibility.Hidden;
-
-            lblPrioritet.Visibility = Visibility.Visible;
-            cursor5.Visibility = Visibility.Visible;
-            await Task.Delay(1000);
-            prioritet.SelectedIndex = 1;
-            await Task.Delay(2000);
-            lblPrioritet.Visibility = Visibility.Hidden;
-            cursor5.Visibility = Visibility.Hidden;
-
-            lblPotvrdi.Visibility = Visibility.Visible;
-            cursor6.Visibility = Visibility.Visible;
-            await Task.Delay(2000);
-            lblPotvrdi.Visibility = Visibility.Hidden;
-            cursor6.Visibility = Visibility.Hidden;
-
-            await Task.Delay(1000);
-            dataGridPacijenti.SelectedIndex = -1;
-            datumPocetak.SelectedDate = null;
-            datumKraj.SelectedDate = null;
-            dataGridLekari.SelectedIndex = -1;
-            prioritet.SelectedIndex = -1;
-
-            lblDemo.Visibility = Visibility.Hidden;*/
         }
     }
 }
