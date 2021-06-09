@@ -67,6 +67,7 @@ namespace Bolnica_aplikacija.View.PacijentStudent
 
                 OcenaBolniceKontroler.dodajOcenu(new OcenaBolniceDTO("BO "+brojOcena,ocena, txtKomentar.Text, new PacijentDTO(KorisnikKontroler.GetPacijent().id)));
                 PacijentKontroler.postaviStanjeAnkete(KorisnikKontroler.GetPacijent().id);
+                MessageBox.Show("Vaša ocena je uspešno zabeležena!", "Informacija", MessageBoxButton.OK, MessageBoxImage.Information);
                 this.Close();
             
             }

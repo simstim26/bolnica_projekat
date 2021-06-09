@@ -26,6 +26,7 @@
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="Profil"  FontSize="12"/>
                 <MenuItem Header="Jezik" FontSize="12"/>
+                <MenuItem Header="Prijavi problem" FontSize="12" Click="MenuItem_Click" />
                 <MenuItem x:Name="menuItemOdjava" Header="Odjava" FontSize="12" Click="menuItemOdjava_Click"/>
             </Menu>
         </DockPanel>

@@ -1,0 +1,17 @@
+﻿<Window x:Class="Bolnica_aplikacija.View.PacijentStudent.PrijavaProblema"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Bolnica_aplikacija.View.PacijentStudent"
+        mc:Ignorable="d"
+        Title="Prijavite problem" Height="600" Width="541" ResizeMode="NoResize">
+    <Grid>
+        <Label x:Name="label" Content="Prijavite problem!" Margin="136,44,137,0" VerticalAlignment="Top" FontSize="30" FontWeight="Bold"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="281" Margin="10,147,0,0" Stroke="Black" VerticalAlignment="Top" Width="515"/>
+        <TextBox x:Name="txtProblem" Margin="10,147,10,143" TextWrapping="Wrap" FontSize="20"/>
+        <Button x:Name="btnPosalji" Content="Pošalji" Margin="209,462,209,0" VerticalAlignment="Top" FontSize="18" Height="38" Click="btnPosalji_Click"/>
+        <Button x:Name="btnOtkazi" Content="Otkaži" Margin="209,505,209,0" VerticalAlignment="Top" FontSize="18" Height="38" IsCancel="True"/>
+
+    </Grid>
+</Window>

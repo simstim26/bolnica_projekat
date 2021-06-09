@@ -339,7 +339,9 @@ namespace Bolnica_aplikacija.Servis
                         if (!pacijentTermin.imeLekara.Equals("") && !pacijentTermin.lokacija.Equals(""))
                         {
                             dopuniPacijentTermin(termin, pacijentTermin);
-                            terminiSlobodni.Add(pacijentTermin);
+
+                            if(pacijentTermin.idSpecijalizacije.Equals("0"))
+                                terminiSlobodni.Add(pacijentTermin);
                         }
                     }
                 }
@@ -374,7 +376,9 @@ namespace Bolnica_aplikacija.Servis
                         if (!pacijentTermin.imeLekara.Equals("") && !pacijentTermin.lokacija.Equals(""))
                         {
                             dopuniPacijentTermin(termin, pacijentTermin);
-                            terminiSlobodni.Add(pacijentTermin);
+
+                            if (pacijentTermin.idSpecijalizacije.Equals("0"))
+                                terminiSlobodni.Add(pacijentTermin);
                         }
                     }
                 }

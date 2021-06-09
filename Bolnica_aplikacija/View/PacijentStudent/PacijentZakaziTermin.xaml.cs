@@ -28,13 +28,11 @@ namespace Bolnica_aplikacija.PacijentStudent
     {
         private DataGrid dataGrid;
         private MyCalendar.Calendar.Calendar calendar;
-        //private String idPacijenta;
 
         public PacijentZakaziTermin(DataGrid dataGrid, MyCalendar.Calendar.Calendar calendar)
         {
             InitializeComponent();
 
-            //this.idPacijenta = idPacijenta;
             this.dataGrid = dataGrid;
             this.calendar = calendar;
             dataGridSlobodniTermini.Loaded += SetMinSirina;
@@ -95,12 +93,26 @@ namespace Bolnica_aplikacija.PacijentStudent
             int indikator = -1;
             if (rbtnLekar.IsChecked == true)
             {
-                PomocnaKlasaProvere.rbtnLekarCekiran(txtPretraga.Text, indikator);
+                if (!Regex.IsMatch(txtPretraga.Text, @"^[\p{L}\p{M}' \.\-]+$"))
+                {
+                    indikator = -2;
+                }
+                else
+                    indikator = 0;
             }
-            if (rbtnTermin.IsChecked == true)
+            else if (rbtnTermin.IsChecked == true)
             {
-                PomocnaKlasaProvere.rbtnTerminCekiran(txtPretraga.Text, indikator);
+                var formati = new[] { "dd/MM/yyyy", "d/M/yyyy", "dd.MM.yyyy", "dd.MM.yyyy.", "d.M.yyyy.", "d.M.yyyy" };
+                DateTime dt;
+                if (DateTime.TryParseExact(txtPretraga.Text, formati, null, System.Globalization.DateTimeStyles.None, out dt))
+                {
+                    indikator = 1;
+                }
+                else
+                    indikator = -3;
             }
+            else
+                indikator = -1;
 
             if(!PomocnaKlasaProvere.proveraPretrage(indikator))
             {

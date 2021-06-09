@@ -498,5 +498,11 @@ namespace Bolnica_aplikacija.PacijentStudent
             MessageBox.Show("Uspešno je napravljen izveštaj o nedeljnim terapijama!", "Informacija", MessageBoxButton.OK, MessageBoxImage.Information);
 
         }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            PrijavaProblema prijava = new PrijavaProblema();
+            prijava.ShowDialog();
+        }
     }
 }

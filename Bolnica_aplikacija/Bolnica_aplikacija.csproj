@@ -269,6 +269,9 @@
     <Compile Include="View\PacijentStudent\OceniteLekara.xaml.cs">
       <DependentUpon>OceniteLekara.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\PacijentStudent\PrijavaProblema.xaml.cs">
+      <DependentUpon>PrijavaProblema.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\PacijentStudent\ProzorPacijent.xaml.cs">
       <DependentUpon>ProzorPacijent.xaml</DependentUpon>
     </Compile>
@@ -485,6 +488,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\PacijentStudent\PotvrdaProzor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PacijentStudent\PrijavaProblema.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
