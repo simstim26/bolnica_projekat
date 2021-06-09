@@ -134,7 +134,7 @@
     },
     "broj": "100",
     "sprat": 100,
-    "dostupnost": true,
+    "dostupnost": false,
     "logickiObrisana": false,
     "brojZauzetihKreveta": 0,
     "Stavka": [
@@ -181,7 +181,7 @@
     },
     "broj": "2",
     "sprat": 1,
-    "dostupnost": true,
+    "dostupnost": false,
     "logickiObrisana": false,
     "brojZauzetihKreveta": 0,
     "Stavka": [
@@ -206,7 +206,7 @@
     },
     "broj": "223",
     "sprat": 4,
-    "dostupnost": true,
+    "dostupnost": false,
     "logickiObrisana": false,
     "brojZauzetihKreveta": 0,
     "Stavka": [
@@ -253,7 +253,7 @@
     },
     "broj": "244",
     "sprat": 11,
-    "dostupnost": true,
+    "dostupnost": false,
     "logickiObrisana": false,
     "brojZauzetihKreveta": 0,
     "Stavka": [

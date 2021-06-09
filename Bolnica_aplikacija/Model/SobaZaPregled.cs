@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Bolnica_aplikacija.Kontroler;
+using Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,5 +11,18 @@ namespace Bolnica_aplikacija.Model
     public class SobaZaPregled : ITipProstorije
     {
         public String tip { get; set; } = "Soba za pregled";
+
+        public bool proveriZauzetostProstorije(String id, DateTime pocetak, DateTime kraj)
+        {
+            bool postoji = true;
+            foreach(Termin t in TerminKontroler.pronadjiTermineZaIzvestajSekretara(pocetak, kraj))
+            {
+                if (t.idProstorije.Equals(id) && !t.idPacijenta.Equals(""))
+                {
+                    postoji = false;
+                }
+            }
+            return postoji;
+        }
     }
 }

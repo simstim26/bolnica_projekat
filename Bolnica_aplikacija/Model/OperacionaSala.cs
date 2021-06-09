@@ -14,11 +14,15 @@ namespace Bolnica_aplikacija.Model
 
         public bool proveriZauzetostProstorije(String id, DateTime pocetak, DateTime kraj)
         {
-            foreach (Termin t in TerminKontroler.ucitajSve())
+            bool postoji = true;
+            foreach (Termin t in TerminKontroler.pronadjiTermineZaIzvestajSekretara(pocetak, kraj))
             {
-                
+                if (t.idProstorije.Equals(id) && !t.idPacijenta.Equals(""))
+                {
+                    postoji = false;
+                }
             }
-            return true;
+            return postoji;
         }
     }
 }

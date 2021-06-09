@@ -141,7 +141,11 @@
     <Compile Include="Interfejs\ICRUD.cs" />
     <Compile Include="Interfejs\Implementacija\LekarCRUDImplementacija.cs" />
     <Compile Include="Interfejs\Implementacija\ObavestenjeCRUDImplementacija.cs" />
+    <Compile Include="Interfejs\Implementacija\ObicnoRenoviranje.cs" />
     <Compile Include="Interfejs\Implementacija\PacijentCRUDImplementacija.cs" />
+    <Compile Include="Interfejs\Implementacija\ProsirivanjeRenoviranje.cs" />
+    <Compile Include="Interfejs\Implementacija\SpajaneRenoviranje.cs" />
+    <Compile Include="Interfejs\IRenoviranje.cs" />
     <Compile Include="Komande\BindableBase.cs" />
     <Compile Include="Komande\RelayCommand.cs" />
     <Compile Include="Kontroler\AlergijaKontroler.cs" />

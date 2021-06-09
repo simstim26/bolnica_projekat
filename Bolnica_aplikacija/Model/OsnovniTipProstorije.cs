@@ -9,5 +9,10 @@ namespace Bolnica_aplikacija.Model
     public class OsnovniTipProstorije : ITipProstorije
     {
         public string tip { get; set; } = "osnovni";
+
+        public bool proveriZauzetostProstorije(String id, DateTime pocetak, DateTime kraj)
+        {
+            return true;
+        }
     }
 }

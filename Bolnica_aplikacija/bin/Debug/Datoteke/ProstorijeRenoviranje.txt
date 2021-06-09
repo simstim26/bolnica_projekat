@@ -1,10 +1,2 @@
 [
-  {
-    "idProstorije": "3",
-    "datumPocetka": "2021-06-01T00:00:00",
-    "datumKraja": "2021-06-03T00:00:00",
-    "razlogRenoviranja": "hgf",
-    "tipRenoviranja": 0,
-    "idProstorijeKojaSeSpaja": null
-  }
 ]

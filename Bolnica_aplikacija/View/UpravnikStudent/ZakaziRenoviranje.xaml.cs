@@ -1,4 +1,5 @@
-﻿using Bolnica_aplikacija.Kontroler;
+﻿using Bolnica_aplikacija.Interfejs.Implementacija;
+using Bolnica_aplikacija.Kontroler;
 using Bolnica_aplikacija.PomocneKlase;
 using Model;
 using System;
@@ -53,12 +54,31 @@ namespace Bolnica_aplikacija.View.UpravnikStudent
                     else
                     {
                         List<ProstorijaRenoviranje> prostorijeZaRenoviranje = new List<ProstorijaRenoviranje>();
+                        //ProstorijaRenoviranje prostorijaZaRenoviranje = new ProstorijaRenoviranje();
                         foreach (var selektovan in dataGridProstorijeZaRenoviranje.SelectedItems)
                         {
                             Prostorija selektovanaProstorija = (Prostorija)selektovan;
-                            ProstorijaRenoviranje prostorijaZaRenoviranje = new ProstorijaRenoviranje(selektovanaProstorija.id, (DateTime)datumRenoviranjaOd.SelectedDate,
-                                                                            (DateTime)datumRenoviranjaDo.SelectedDate, textBoxRazlogRenoviranja.Text, cbTipRenoviranja.SelectedIndex);
-                            prostorijeZaRenoviranje.Add(prostorijaZaRenoviranje);
+                            if (cbTipRenoviranja.SelectedIndex == 0)
+                            {
+                                ProstorijaRenoviranje prostorijaZaRenoviranje = new ProstorijaRenoviranje(selektovanaProstorija.id, (DateTime)datumRenoviranjaOd.SelectedDate,
+                                                                            (DateTime)datumRenoviranjaDo.SelectedDate, textBoxRazlogRenoviranja.Text, new ObicnoRenoviranje());
+                                prostorijeZaRenoviranje.Add(prostorijaZaRenoviranje);
+                            }
+                            else if (cbTipRenoviranja.SelectedIndex == 1)
+                            {
+                                ProstorijaRenoviranje prostorijaZaRenoviranje = new ProstorijaRenoviranje(selektovanaProstorija.id, (DateTime)datumRenoviranjaOd.SelectedDate,
+                                                                            (DateTime)datumRenoviranjaDo.SelectedDate, textBoxRazlogRenoviranja.Text, new ProsirivanjeRenoviranje());
+                                prostorijeZaRenoviranje.Add(prostorijaZaRenoviranje);
+                            }
+                            else if (cbTipRenoviranja.SelectedIndex == 2)
+                            {
+                                ProstorijaRenoviranje prostorijaZaRenoviranje = new ProstorijaRenoviranje(selektovanaProstorija.id, (DateTime)datumRenoviranjaOd.SelectedDate,
+                                                                            (DateTime)datumRenoviranjaDo.SelectedDate, textBoxRazlogRenoviranja.Text, new SpajaneRenoviranje());
+                                prostorijeZaRenoviranje.Add(prostorijaZaRenoviranje);
+                            }
+
+
+                            //prostorijeZaRenoviranje.Add(prostorijaZaRenoviranje);
                         }
                         if (cbTipRenoviranja.SelectedIndex == 2 && prostorijeZaRenoviranje.Count == 2)
                         {

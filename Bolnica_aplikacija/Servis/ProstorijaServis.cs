@@ -1,4 +1,5 @@
-﻿using Bolnica_aplikacija.Kontroler;
+﻿using Bolnica_aplikacija.Interfejs;
+using Bolnica_aplikacija.Kontroler;
 using Bolnica_aplikacija.Model;
 using Bolnica_aplikacija.PomocneKlase;
 using Bolnica_aplikacija.Repozitorijum;
@@ -568,9 +569,9 @@ namespace Bolnica_aplikacija.Servis
 
             if (datumKraja >= datumPocetka)
             {
-                if (!postojeTerminiZaPeriodPremestanja(datumPocetka, datumKraja, prostorijaIz))
+                if (((ITipProstorije)prostorijaIz.tipProstorije).proveriZauzetostProstorije(prostorijaIz.id, datumPocetka, datumKraja))//!postojeTerminiZaPeriodPremestanja(datumPocetka, datumKraja, prostorijaIz))
                 {
-                    if (!postojeTerminiZaPeriodPremestanja(datumPocetka, datumKraja, prostorijaU))
+                    if (((ITipProstorije)prostorijaU.tipProstorije).proveriZauzetostProstorije(prostorijaU.id, datumPocetka, datumKraja))//!postojeTerminiZaPeriodPremestanja(datumPocetka, datumKraja, prostorijaU))
                     {
                         ProstorijaZauzeto prostorijaZaZauzimanje = new ProstorijaZauzeto(prostorijaIz.id, prostorijaU.id, datumPocetka, datumKraja,
                         false, prebacivanje.idStavke, kolicina);
@@ -595,9 +596,9 @@ namespace Bolnica_aplikacija.Servis
             
             if (datumKraja >= datumPocetka)
             {
-                if (!postojeTerminiZaPeriodPremestanja(datumPocetka, datumKraja, prostorijaIzKojeSePrebacuje))
+                if (((ITipProstorije)prostorijaIzKojeSePrebacuje.tipProstorije).proveriZauzetostProstorije(prostorijaIzKojeSePrebacuje.id, datumPocetka, datumKraja))// !postojeTerminiZaPeriodPremestanja(datumPocetka, datumKraja, prostorijaIzKojeSePrebacuje))
                 {
-                    if (!postojeTerminiZaPeriodPremestanja(datumPocetka, datumKraja, prostorijaUKojuSePrebacuje))
+                    if (((ITipProstorije)prostorijaUKojuSePrebacuje.tipProstorije).proveriZauzetostProstorije(prostorijaUKojuSePrebacuje.id, datumPocetka, datumKraja))//!postojeTerminiZaPeriodPremestanja(datumPocetka, datumKraja, prostorijaUKojuSePrebacuje))
                     {
                         ProstorijaZauzeto prostorijaZaZauzimanje = new ProstorijaZauzeto(prostorijaIzKojeSePrebacuje.id, prostorijaUKojuSePrebacuje.id, datumPocetka, datumKraja,
                         false, prebacivanje.idStavke, kolicina);
@@ -670,13 +671,14 @@ namespace Bolnica_aplikacija.Servis
 
                 if (p.datumKraja <= DateTime.Now)
                 {
-                    daLijeProsirivanjeIliSpajanje(p);
+                    ((IRenoviranje)p.tipRenoviranja).renoviraj(p);
+                    /*daLijeProsirivanjeIliSpajanje(p);*/
                     oslobodiProstorijuPosleRenoviranja(nadjiProstorijuPoId(p.idProstorije), p);
                 }  
             }
         }
 
-        public void daLijeProsirivanjeIliSpajanje(ProstorijaRenoviranje p)
+       /* public void daLijeProsirivanjeIliSpajanje(ProstorijaRenoviranje p)
         {
             if (p.tipRenoviranja == 1)
             {
@@ -686,24 +688,24 @@ namespace Bolnica_aplikacija.Servis
             {
                 spojProstorije(p);
             }
-        }
+        }*/
 
-        public void prosiriProstorije(ProstorijaRenoviranje p)
+        /*public void prosiriProstorije(ProstorijaRenoviranje p)
         {
             Prostorija prostorija = nadjiProstorijuPoId(p.idProstorije);
             ProstorijaDTO prostorijaNova = new ProstorijaDTO(postaviIDProstorija(), prostorija.idBolnice, (ITipProstorije)prostorija.tipProstorije,
                 prostorija.broj + "-a", prostorija.sprat, true, false, 0, null);
             noviBrojSobe(prostorijaNova, prostorija);
-        }
+        }*/
 
-        public void spojProstorije(ProstorijaRenoviranje p)
+        /*public void spojProstorije(ProstorijaRenoviranje p)
         {
             Prostorija prostorija = nadjiProstorijuPoId(p.idProstorije);
             Prostorija prostorijaDruga = nadjiProstorijuPoId(p.idProstorijeKojaSeSpaja);
             ObrisiProstoriju(prostorijaDruga.id);
             prostorija.Stavka = new List<Stavka>();
             kopirajProstorijuIUpisi(prostorija);
-        }
+        }*/
 
         public void noviBrojSobe(ProstorijaDTO prostorijaNova, Prostorija prostorija)
         {

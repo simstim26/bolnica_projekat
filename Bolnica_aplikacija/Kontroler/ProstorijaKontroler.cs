@@ -96,5 +96,19 @@ namespace Bolnica_aplikacija.Kontroler
             return ProstorijaServis.getInstance().pronadjiTermineZaSveProstorije(datumPocetka, datumKraja);
         }
 
+        public static String postaviIDProstorija()
+        {
+            return ProstorijaServis.getInstance().postaviIDProstorija();
+        }
+
+        public static void noviBrojSobe(ProstorijaDTO prostorijaNova, Prostorija prostorija)
+        {
+            ProstorijaServis.getInstance().noviBrojSobe(prostorijaNova, prostorija);
+        }
+        public static void kopirajProstorijuIUpisi(Prostorija p)
+        {
+            ProstorijaServis.getInstance().kopirajProstorijuIUpisi(p);
+        }
+
     }
 }
