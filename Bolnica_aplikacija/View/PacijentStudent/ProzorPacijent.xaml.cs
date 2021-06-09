@@ -216,13 +216,19 @@ namespace Bolnica_aplikacija.PacijentStudent
                         {
                             if (izabraniTermin.idSpecijalizacije.Equals("0"))
                             {
-                                PacijentKontroler.otkaziTerminPacijenta(izabraniTermin.id);
-                                //ANTI TROL
-                                PomocnaKlasaProvere.antiTrolMetoda(KorisnikKontroler.GetPacijent().id);
+                                PotvrdaProzor pprozor = new PotvrdaProzor();
+                                pprozor.Owner = this;
+                                pprozor.ShowDialog();
 
-                                //Kalendar
-                                PomocnaKlasaKalendar.azurirajKalendar(calendar);
+                                if (pprozor.GetPovratnaVrednost() == 1)
+                                {
+                                    PacijentKontroler.otkaziTerminPacijenta(izabraniTermin.id);
+                                    //ANTI TROL
+                                    PomocnaKlasaProvere.antiTrolMetoda(KorisnikKontroler.GetPacijent().id);
 
+                                    //Kalendar
+                                    PomocnaKlasaKalendar.azurirajKalendar(calendar);
+                                }
                             }
                             else
                             {
