@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bolnica_aplikacija.Kontroler;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,8 +28,12 @@ namespace Bolnica_aplikacija.View.PacijentStudent
 
         private void btnPosalji_Click(object sender, RoutedEventArgs e)
         {
-            if(!txtProblem.Text.Equals(""))
+            if (!txtProblem.Text.Equals(""))
+            {
                 MessageBox.Show("Vaš komentar je uspešno zabeležen!", "Informacija", MessageBoxButton.OK, MessageBoxImage.Information);
+                PrijavaGreskeKontroler.sacuvaj(txtProblem.Text);
+            }
+                
             else
                 MessageBox.Show("Molimo unesite Vaš komentar.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
 

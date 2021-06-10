@@ -12,6 +12,7 @@
         <TextBox x:Name="txtProblem" Margin="10,147,10,143" TextWrapping="Wrap" FontSize="20"/>
         <Button x:Name="btnPosalji" Content="Pošalji" Margin="209,462,209,0" VerticalAlignment="Top" FontSize="18" Height="38" Click="btnPosalji_Click" Background="White" Foreground="Black"/>
         <Button x:Name="btnOtkazi" Content="Otkaži" Margin="209,505,209,0" VerticalAlignment="Top" FontSize="18" Height="38" IsCancel="True" Foreground="Black" Background="White"/>
+        <Label x:Name="label1" Content="Vaš komentar:" HorizontalAlignment="Left" Margin="10,107,0,0" VerticalAlignment="Top" FontSize="20"/>
 
     </Grid>
 </Window>

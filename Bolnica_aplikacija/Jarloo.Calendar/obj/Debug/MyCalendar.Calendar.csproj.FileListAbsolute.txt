@@ -95,3 +95,33 @@ C:\Users\Dusan\Documents\GitHub\bolnica_projekat\Bolnica_aplikacija\Jarloo.Calen
 C:\Users\Dusan\Documents\GitHub\bolnica_projekat\Bolnica_aplikacija\Jarloo.Calendar\obj\Debug\MyCalendar.Calendar.csproj.CopyComplete
 C:\Users\Dusan\Documents\GitHub\bolnica_projekat\Bolnica_aplikacija\Jarloo.Calendar\obj\Debug\MyCalendar.Calendar.dll
 C:\Users\Dusan\Documents\GitHub\bolnica_projekat\Bolnica_aplikacija\Jarloo.Calendar\obj\Debug\MyCalendar.Calendar.pdb
+D:\FTN\6. semestar\PROJEKTI\Bolnica\projekat_bolnica_sims_hci\bolnica_projekat\Bolnica_aplikacija\Jarloo.Calendar\bin\Debug\MyCalendar.Calendar.dll
+D:\FTN\6. semestar\PROJEKTI\Bolnica\projekat_bolnica_sims_hci\bolnica_projekat\Bolnica_aplikacija\Jarloo.Calendar\bin\Debug\MyCalendar.Calendar.pdb
+D:\FTN\6. semestar\PROJEKTI\Bolnica\projekat_bolnica_sims_hci\bolnica_projekat\Bolnica_aplikacija\Jarloo.Calendar\bin\Debug\Microsoft.Maps.MapControl.WPF.dll
+D:\FTN\6. semestar\PROJEKTI\Bolnica\projekat_bolnica_sims_hci\bolnica_projekat\Bolnica_aplikacija\Jarloo.Calendar\bin\Debug\Xceed.Wpf.AvalonDock.dll
+D:\FTN\6. semestar\PROJEKTI\Bolnica\projekat_bolnica_sims_hci\bolnica_projekat\Bolnica_aplikacija\Jarloo.Calendar\bin\Debug\Xceed.Wpf.AvalonDock.Themes.Aero.dll
+D:\FTN\6. semestar\PROJEKTI\Bolnica\projekat_bolnica_sims_hci\bolnica_projekat\Bolnica_aplikacija\Jarloo.Calendar\bin\Debug\Xceed.Wpf.AvalonDock.Themes.Metro.dll
+D:\FTN\6. semestar\PROJEKTI\Bolnica\projekat_bolnica_sims_hci\bolnica_projekat\Bolnica_aplikacija\Jarloo.Calendar\bin\Debug\Xceed.Wpf.AvalonDock.Themes.VS2010.dll
+D:\FTN\6. semestar\PROJEKTI\Bolnica\projekat_bolnica_sims_hci\bolnica_projekat\Bolnica_aplikacija\Jarloo.Calendar\bin\Debug\Xceed.Wpf.Toolkit.dll
+D:\FTN\6. semestar\PROJEKTI\Bolnica\projekat_bolnica_sims_hci\bolnica_projekat\Bolnica_aplikacija\Jarloo.Calendar\bin\Debug\Microsoft.Maps.MapControl.WPF.xml
+D:\FTN\6. semestar\PROJEKTI\Bolnica\projekat_bolnica_sims_hci\bolnica_projekat\Bolnica_aplikacija\Jarloo.Calendar\bin\Debug\cs-CZ\Xceed.Wpf.AvalonDock.resources.dll
+D:\FTN\6. semestar\PROJEKTI\Bolnica\projekat_bolnica_sims_hci\bolnica_projekat\Bolnica_aplikacija\Jarloo.Calendar\bin\Debug\de\Xceed.Wpf.AvalonDock.resources.dll
+D:\FTN\6. semestar\PROJEKTI\Bolnica\projekat_bolnica_sims_hci\bolnica_projekat\Bolnica_aplikacija\Jarloo.Calendar\bin\Debug\es\Xceed.Wpf.AvalonDock.resources.dll
+D:\FTN\6. semestar\PROJEKTI\Bolnica\projekat_bolnica_sims_hci\bolnica_projekat\Bolnica_aplikacija\Jarloo.Calendar\bin\Debug\fr\Xceed.Wpf.AvalonDock.resources.dll
+D:\FTN\6. semestar\PROJEKTI\Bolnica\projekat_bolnica_sims_hci\bolnica_projekat\Bolnica_aplikacija\Jarloo.Calendar\bin\Debug\hu\Xceed.Wpf.AvalonDock.resources.dll
+D:\FTN\6. semestar\PROJEKTI\Bolnica\projekat_bolnica_sims_hci\bolnica_projekat\Bolnica_aplikacija\Jarloo.Calendar\bin\Debug\it\Xceed.Wpf.AvalonDock.resources.dll
+D:\FTN\6. semestar\PROJEKTI\Bolnica\projekat_bolnica_sims_hci\bolnica_projekat\Bolnica_aplikacija\Jarloo.Calendar\bin\Debug\ja-JP\Xceed.Wpf.AvalonDock.resources.dll
+D:\FTN\6. semestar\PROJEKTI\Bolnica\projekat_bolnica_sims_hci\bolnica_projekat\Bolnica_aplikacija\Jarloo.Calendar\bin\Debug\pt-BR\Xceed.Wpf.AvalonDock.resources.dll
+D:\FTN\6. semestar\PROJEKTI\Bolnica\projekat_bolnica_sims_hci\bolnica_projekat\Bolnica_aplikacija\Jarloo.Calendar\bin\Debug\ro\Xceed.Wpf.AvalonDock.resources.dll
+D:\FTN\6. semestar\PROJEKTI\Bolnica\projekat_bolnica_sims_hci\bolnica_projekat\Bolnica_aplikacija\Jarloo.Calendar\bin\Debug\ru\Xceed.Wpf.AvalonDock.resources.dll
+D:\FTN\6. semestar\PROJEKTI\Bolnica\projekat_bolnica_sims_hci\bolnica_projekat\Bolnica_aplikacija\Jarloo.Calendar\bin\Debug\sv\Xceed.Wpf.AvalonDock.resources.dll
+D:\FTN\6. semestar\PROJEKTI\Bolnica\projekat_bolnica_sims_hci\bolnica_projekat\Bolnica_aplikacija\Jarloo.Calendar\bin\Debug\zh-Hans\Xceed.Wpf.AvalonDock.resources.dll
+D:\FTN\6. semestar\PROJEKTI\Bolnica\projekat_bolnica_sims_hci\bolnica_projekat\Bolnica_aplikacija\Jarloo.Calendar\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\FTN\6. semestar\PROJEKTI\Bolnica\projekat_bolnica_sims_hci\bolnica_projekat\Bolnica_aplikacija\Jarloo.Calendar\obj\Debug\MyCalendar.Calendar_MarkupCompile.cache
+D:\FTN\6. semestar\PROJEKTI\Bolnica\projekat_bolnica_sims_hci\bolnica_projekat\Bolnica_aplikacija\Jarloo.Calendar\obj\Debug\MyCalendar.Calendar_MarkupCompile.lref
+D:\FTN\6. semestar\PROJEKTI\Bolnica\projekat_bolnica_sims_hci\bolnica_projekat\Bolnica_aplikacija\Jarloo.Calendar\obj\Debug\Themes\Generic.baml
+D:\FTN\6. semestar\PROJEKTI\Bolnica\projekat_bolnica_sims_hci\bolnica_projekat\Bolnica_aplikacija\Jarloo.Calendar\obj\Debug\MyCalendar.Calendar.g.resources
+D:\FTN\6. semestar\PROJEKTI\Bolnica\projekat_bolnica_sims_hci\bolnica_projekat\Bolnica_aplikacija\Jarloo.Calendar\obj\Debug\MyCalendar.Calendar.csproj.CoreCompileInputs.cache
+D:\FTN\6. semestar\PROJEKTI\Bolnica\projekat_bolnica_sims_hci\bolnica_projekat\Bolnica_aplikacija\Jarloo.Calendar\obj\Debug\MyCalendar.Calendar.csproj.CopyComplete
+D:\FTN\6. semestar\PROJEKTI\Bolnica\projekat_bolnica_sims_hci\bolnica_projekat\Bolnica_aplikacija\Jarloo.Calendar\obj\Debug\MyCalendar.Calendar.dll
+D:\FTN\6. semestar\PROJEKTI\Bolnica\projekat_bolnica_sims_hci\bolnica_projekat\Bolnica_aplikacija\Jarloo.Calendar\obj\Debug\MyCalendar.Calendar.pdb
