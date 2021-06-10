@@ -369,6 +369,9 @@
     <Compile Include="View\UpravnikStudent\OdbijeniLekovi.xaml.cs">
       <DependentUpon>OdbijeniLekovi.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\UpravnikStudent\PocetnaUpravnik.xaml.cs">
+      <DependentUpon>PocetnaUpravnik.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\UpravnikStudent\PogledajInventar.xaml.cs">
       <DependentUpon>PogledajInventar.xaml</DependentUpon>
     </Compile>
@@ -616,6 +619,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\UpravnikStudent\OdbijeniLekovi.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UpravnikStudent\PocetnaUpravnik.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -61,5 +61,10 @@ namespace Bolnica_aplikacija.View.UpravnikStudent
             this.Close();
             prijava.ShowDialog();
         }
+
+        private void ListViewItem_Selected_1(object sender, RoutedEventArgs e)
+        {
+            PromenaPogleda(new PocetnaUpravnik());
+        }
     }
 }
