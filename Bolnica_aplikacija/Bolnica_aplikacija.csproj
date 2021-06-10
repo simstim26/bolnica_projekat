@@ -169,13 +169,13 @@
     <Compile Include="Kontroler\StavkaKontroler.cs" />
     <Compile Include="Kontroler\TerapijaKontroler.cs" />
     <Compile Include="Kontroler\TerminKontroler.cs" />
-    <Compile Include="Model\BolnickaSoba.cs" />
+    <Compile Include="Interfejs\Implementacija\BolnickaSoba.cs" />
     <Compile Include="Model\BolnickoLecenje.cs" />
-    <Compile Include="Model\ITipProstorije.cs" />
+    <Compile Include="Interfejs\ITipProstorije.cs" />
     <Compile Include="Model\LekZaOdobravanje.cs" />
-    <Compile Include="Model\OperacionaSala.cs" />
+    <Compile Include="Interfejs\Implementacija\OperacionaSala.cs" />
     <Compile Include="Model\OsnovniTipProstorije.cs" />
-    <Compile Include="Model\SobaZaPregled.cs" />
+    <Compile Include="Interfejs\Implementacija\SobaZaPregled.cs" />
     <Compile Include="PomocneKlase\BolnickoLecenjeDTO.cs" />
     <Compile Include="PomocneKlase\KonvertBolest.cs" />
     <Compile Include="PomocneKlase\KonverterProstorije.cs" />
