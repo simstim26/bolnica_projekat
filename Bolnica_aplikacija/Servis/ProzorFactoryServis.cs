@@ -1,5 +1,6 @@
 ﻿using Bolnica_aplikacija.Kontroler;
 using Bolnica_aplikacija.PacijentStudent;
+using Bolnica_aplikacija.View.UpravnikStudent;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -41,7 +42,7 @@ namespace Bolnica_aplikacija.Servis
             }
             else if (tip.Equals("upravnik"))
             {
-               prozor = UpravnikProzor.getInstance();
+                prozor = new GlavniProzor();
             }
 
             return prozor;

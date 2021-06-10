@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,5 +15,6 @@ namespace Bolnica_aplikacija.PomocneKlase
         public String proizvodjac { get; set; }
         public bool jeStaticka { get; set; }
         public bool jePotrosnaRoba { get; set; }
+        public Prostorija prostorija { get; set; }
     }
 }

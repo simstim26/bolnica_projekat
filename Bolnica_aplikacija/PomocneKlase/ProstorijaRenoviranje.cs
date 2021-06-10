@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bolnica_aplikacija.Interfejs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,16 +13,18 @@ namespace Bolnica_aplikacija.PomocneKlase
         public DateTime datumPocetka { get; set; }
         public DateTime datumKraja { get; set; }
         public String razlogRenoviranja { get; set; }
-        public int tipRenoviranja { get; set; }
+        //public int tipRenoviranja { get; set; }
 
         public String idProstorijeKojaSeSpaja { get; set; }
+
+        public object tipRenoviranja { get; set; }
 
         public ProstorijaRenoviranje()
         {
 
         }
 
-        public ProstorijaRenoviranje(String idProstorije, DateTime datumPocetka, DateTime datumKraja, String razlogRenovirana, int tipRenoviranja)
+        public ProstorijaRenoviranje(String idProstorije, DateTime datumPocetka, DateTime datumKraja, String razlogRenovirana, object tipRenoviranja)
         {
             this.idProstorije = idProstorije;
             this.datumPocetka = datumPocetka;

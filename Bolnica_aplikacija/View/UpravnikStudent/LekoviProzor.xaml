@@ -1,0 +1,81 @@
+﻿<UserControl x:Class="Bolnica_aplikacija.View.UpravnikStudent.LekoviProzor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Bolnica_aplikacija.View.UpravnikStudent"
+             mc:Ignorable="d" 
+             d:DesignHeight="685" d:DesignWidth="913">
+    <Grid x:Name="gridLekovi">
+        <DataGrid x:Name="dataGridLekovi" BorderThickness="1" CanUserAddRows="False" IsReadOnly ="True" HorizontalAlignment="Left" Height="448" Margin="33,150,0,0" VerticalAlignment="Top" Width="495" HeadersVisibility="All" AutoGenerateColumns="False" SelectionMode="Single" CanUserResizeRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="nazivLeka" Binding ="{Binding naziv}" IsReadOnly="True" Header="Naziv"  Width="143" CanUserResize="False"/>
+                <DataGridTextColumn x:Name="tipLeka" Binding="{Binding tip}" IsReadOnly="True" Header="Tip" Width="143" CanUserResize="False"/>
+                <DataGridTextColumn x:Name="nacinUpotrebe" Binding="{Binding nacinUpotrebe}" IsReadOnly="True" Header="Nacin Upotrebe" Width="143" CanUserResize="False"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="btnDodajLek" HorizontalAlignment="Left" Margin="613,150,0,0" VerticalAlignment="Top" Width="273" Height="48" Click="btnDodajLek_Click">
+            <StackPanel Orientation="Horizontal" Width="200">
+                <Image  RenderTransformOrigin="0.5,0.5" Source="add.png" >
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>
+                <TextBlock FontSize="18" Margin="30,0,0,0" Text="Dodaj lek" Height="24" Width="116"/>
+            </StackPanel>
+        </Button>
+        <Button x:Name="btnOdbijeniZahtevi" HorizontalAlignment="Left" Margin="613,350,0,0" VerticalAlignment="Top" Width="273" Height="48" Click="btnOdbijeniZahtevi_Click" >
+            <StackPanel Orientation="Horizontal" Width="200">
+                <Image  RenderTransformOrigin="0.5,0.5" Source="cancel.png" >
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>
+                <TextBlock FontSize="18" Margin="10,0,0,0" Text="Odbijeni zahtevi" Height="24" Width="137"/>
+            </StackPanel>
+        </Button>
+        <Button x:Name="btnIzmenaLeka"  HorizontalAlignment="Left" Margin="613,249,0,0" VerticalAlignment="Top" Width="273" Height="48" Click="btnIzmenaLeka_Click" >
+            <StackPanel Orientation="Horizontal" Width="200">
+                <Image  RenderTransformOrigin="0.5,0.5" Source="edit.png" >
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>
+                <TextBlock FontSize="18" Margin="30,0,0,0" Text="Izmeni lek" Height="24" Width="116"/>
+            </StackPanel>
+        </Button>
+        <Button x:Name="btnObrisiLek" HorizontalAlignment="Left" Margin="613,450,0,0" VerticalAlignment="Top" Width="273" Height="48" Click="btnObrisiLek_Click">
+            <StackPanel Orientation="Horizontal" Width="200">
+                <Image  RenderTransformOrigin="0.5,0.5" Source="delete.png" >
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>
+                <TextBlock FontSize="18" Margin="30,0,0,0" Text="Obriši lek" Height="24" Width="116"/>
+            </StackPanel>
+        </Button>
+        <TextBlock x:Name="textBlock12" FontSize="28" FontWeight="Bold"  HorizontalAlignment="Left" Margin="33,54,0,0" TextWrapping="Wrap" Text="Prikaz lekova" VerticalAlignment="Top" TextDecorations="Underline" FontStyle="Italic"/>
+        <TextBlock x:Name="izaberiteLek" HorizontalAlignment="Left" Visibility="Hidden" Foreground="Red" FontStyle="Italic" Margin="33,603,0,0" TextWrapping="Wrap" Text="*morate prvo izabrati lek iz tabele" VerticalAlignment="Top"/>
+
+    </Grid>
+</UserControl>

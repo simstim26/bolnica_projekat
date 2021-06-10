@@ -45,14 +45,26 @@ namespace Bolnica_aplikacija.View.UpravnikStudent
             PromenaPogleda(new ProstorijePogled());  
         }
 
-        private void button3_Click(object sender, RoutedEventArgs e)
+        private void listInventar_Selected(object sender, RoutedEventArgs e)
         {
-            PromenaPogleda(new ProstorijePogled());
+            PromenaPogleda(new InventarPogled());
         }
 
-        private void button1_Click(object sender, RoutedEventArgs e)
+        private void listLekovi_Selected(object sender, RoutedEventArgs e)
         {
-            PromenaPogleda(new ProstorijePogled());
+            PromenaPogleda(new LekoviProzor());
+        }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            Prijava prijava = new Prijava();
+            this.Close();
+            prijava.ShowDialog();
+        }
+
+        private void ListViewItem_Selected_1(object sender, RoutedEventArgs e)
+        {
+            PromenaPogleda(new PocetnaUpravnik());
         }
     }
 }

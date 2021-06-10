@@ -172,8 +172,12 @@
     <Compile Include="Interfejs\Implementacija\IRepoImpl.cs" />
     <Compile Include="Interfejs\Implementacija\LekarCRUDImplementacija.cs" />
     <Compile Include="Interfejs\Implementacija\ObavestenjeCRUDImplementacija.cs" />
+    <Compile Include="Interfejs\Implementacija\ObicnoRenoviranje.cs" />
     <Compile Include="Interfejs\Implementacija\PacijentCRUDImplementacija.cs" />
     <Compile Include="Interfejs\IRepo.cs" />
+    <Compile Include="Interfejs\Implementacija\ProsirivanjeRenoviranje.cs" />
+    <Compile Include="Interfejs\Implementacija\SpajaneRenoviranje.cs" />
+    <Compile Include="Interfejs\IRenoviranje.cs" />
     <Compile Include="Komande\BindableBase.cs" />
     <Compile Include="Komande\RelayCommand.cs" />
     <Compile Include="Kontroler\AlergijaKontroler.cs" />
@@ -197,14 +201,20 @@
     <Compile Include="Kontroler\StavkaKontroler.cs" />
     <Compile Include="Kontroler\TerapijaKontroler.cs" />
     <Compile Include="Kontroler\TerminKontroler.cs" />
+    <Compile Include="Interfejs\Implementacija\BolnickaSoba.cs" />
     <Compile Include="Model\BolnickoLecenje.cs" />
+    <Compile Include="Interfejs\ITipProstorije.cs" />
     <Compile Include="Model\LekZaOdobravanje.cs" />
     <Compile Include="PacijentTemplate\Pretraga.cs" />
     <Compile Include="PacijentTemplate\PretragaPoDatumima.cs" />
     <Compile Include="PacijentTemplate\PretragaPoLekarima.cs" />
     <Compile Include="PacijentTemplate\Pretrazi.cs" />
+    <Compile Include="Interfejs\Implementacija\OperacionaSala.cs" />
+    <Compile Include="Model\OsnovniTipProstorije.cs" />
+    <Compile Include="Interfejs\Implementacija\SobaZaPregled.cs" />
     <Compile Include="PomocneKlase\BolnickoLecenjeDTO.cs" />
     <Compile Include="PomocneKlase\KonvertBolest.cs" />
+    <Compile Include="PomocneKlase\KonverterProstorije.cs" />
     <Compile Include="PomocneKlase\NotifikacijaDTO.cs" />
     <Compile Include="PomocneKlase\ObavestenjeDTO.cs" />
     <Compile Include="PomocneKlase\PomocnaKlasaKalendar.cs" />
@@ -223,6 +233,7 @@
     <Compile Include="Model\OcenaLekara.cs" />
     <Compile Include="PomocneKlase\Logovanje.cs" />
     <Compile Include="PomocneKlase\PomocnaKlasaProvere.cs" />
+    <Compile Include="PomocneKlase\ProstorijeIzvestaj.cs" />
     <Compile Include="PomocneKlase\StavkaDTO.cs" />
     <Compile Include="PomocneKlase\TerapijaDTO.cs" />
     <Compile Include="PomocneKlase\TerapijaPacijent.cs" />
@@ -359,23 +370,71 @@
     <Compile Include="Servis\TerapijaServis.cs" />
     <Compile Include="Servis\TerminServis.cs" />
     <Compile Include="Servis\UpravnikServis.cs" />
+    <Compile Include="View\UpravnikStudent\BiranjeDatumaZaIzvestaj.xaml.cs">
+      <DependentUpon>BiranjeDatumaZaIzvestaj.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UpravnikStudent\DodajLek.xaml.cs">
+      <DependentUpon>DodajLek.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\UpravnikStudent\DodajProstoriju.xaml.cs">
       <DependentUpon>DodajProstoriju.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UpravnikStudent\DodajSastojke.xaml.cs">
+      <DependentUpon>DodajSastojke.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UpravnikStudent\DodajStavku.xaml.cs">
+      <DependentUpon>DodajStavku.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\UpravnikStudent\GlavniProzor.xaml.cs">
       <DependentUpon>GlavniProzor.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\UpravnikStudent\InventarPogled.xaml.cs">
+      <DependentUpon>InventarPogled.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UpravnikStudent\IzmenaOdbijenog.xaml.cs">
+      <DependentUpon>IzmenaOdbijenog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UpravnikStudent\IzmeniLek.xaml.cs">
+      <DependentUpon>IzmeniLek.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\UpravnikStudent\IzmeniProstoriju.xaml.cs">
       <DependentUpon>IzmeniProstoriju.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UpravnikStudent\IzmeniStavku.xaml.cs">
+      <DependentUpon>IzmeniStavku.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UpravnikStudent\LekoviProzor.xaml.cs">
+      <DependentUpon>LekoviProzor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UpravnikStudent\OdbijeniLekovi.xaml.cs">
+      <DependentUpon>OdbijeniLekovi.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UpravnikStudent\PocetnaUpravnik.xaml.cs">
+      <DependentUpon>PocetnaUpravnik.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UpravnikStudent\PogledajInventar.xaml.cs">
+      <DependentUpon>PogledajInventar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UpravnikStudent\Potvrda.xaml.cs">
+      <DependentUpon>Potvrda.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UpravnikStudent\PremestiUDruguProstoriju.xaml.cs">
+      <DependentUpon>PremestiUDruguProstoriju.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UpravnikStudent\PremestiUProstoriju.xaml.cs">
+      <DependentUpon>PremestiUProstoriju.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UpravnikStudent\PrikaziProstorije.xaml.cs">
+      <DependentUpon>PrikaziProstorije.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\UpravnikStudent\ProstorijePogled.xaml.cs">
       <DependentUpon>ProstorijePogled.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\UpravnikStudent\UpravnikProzor.xaml.cs">
-      <DependentUpon>UpravnikProzor.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\LekarStudent\ZakaziTermin.xaml.cs">
       <DependentUpon>ZakaziTermin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UpravnikStudent\ZakaziRenoviranje.xaml.cs">
+      <DependentUpon>ZakaziRenoviranje.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -548,23 +607,87 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\UpravnikStudent\BiranjeDatumaZaIzvestaj.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UpravnikStudent\DodajLek.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\UpravnikStudent\DodajProstoriju.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\UpravnikStudent\DodajSastojke.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UpravnikStudent\DodajStavku.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\UpravnikStudent\GlavniProzor.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="View\UpravnikStudent\InventarPogled.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UpravnikStudent\IzmenaOdbijenog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UpravnikStudent\IzmeniLek.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\UpravnikStudent\IzmeniProstoriju.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\UpravnikStudent\IzmeniStavku.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UpravnikStudent\LekoviProzor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UpravnikStudent\OdbijeniLekovi.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UpravnikStudent\PocetnaUpravnik.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UpravnikStudent\PogledajInventar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UpravnikStudent\Potvrda.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UpravnikStudent\PremestiUDruguProstoriju.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UpravnikStudent\PremestiUProstoriju.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UpravnikStudent\PrikaziProstorije.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\UpravnikStudent\ProstorijePogled.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\UpravnikStudent\UpravnikProzor.xaml">
+    <Page Include="View\UpravnikStudent\ZakaziRenoviranje.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -726,6 +849,10 @@
     <Content Include="Assets\video2.mp4">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="View\UpravnikStudent\tap.png" />
+    <Resource Include="View\UpravnikStudent\23-237176_transparent-pointing-finger-png-pointer-icon-png-white.png" />
+    <Resource Include="View\UpravnikStudent\free-png-nqphu-f350x360.png" />
+    <Resource Include="View\UpravnikStudent\doctor.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Jarloo.Calendar\MyCalendar.Calendar.csproj">

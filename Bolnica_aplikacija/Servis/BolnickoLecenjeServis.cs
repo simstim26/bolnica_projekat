@@ -89,9 +89,27 @@ namespace Bolnica_aplikacija.Servis
             return proveriKrajnjiDatum(bolnickoLecenje.datumPocetka.AddDays(bolnickoLecenje.trajanje));
         }
 
+        public List<BolnickoLecenje> ucitajZaOdredjeniPeriod(DateTime pocetak, DateTime kraj)
+        {
+            List<BolnickoLecenje> lecenjeZaPeriod = new List<BolnickoLecenje>();
+            foreach (BolnickoLecenje bl in bolnickoLecenjeRepozitorijum.ucitajSve())
+            {
+                if (bl.datumPocetka >= pocetak && bl.datumPocetka.AddDays(bl.trajanje) <= kraj)
+                {
+                    lecenjeZaPeriod.Add(bl);
+                }
+            }
+            return lecenjeZaPeriod;
+        }
+
         private bool proveriKrajnjiDatum(DateTime datumKraja)
         {
             return DateTime.Compare(datumKraja.Date, DateTime.Now.Date) <= 0;
+        }
+
+        public List<BolnickoLecenje> ucitajSve()
+        {
+            return bolnickoLecenjeRepozitorijum.ucitajSve();
         }
 
     }

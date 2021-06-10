@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="Bolnica_aplikacija.View.UpravnikStudent.PogledajInventar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Bolnica_aplikacija.View.UpravnikStudent"
+             mc:Ignorable="d" 
+             d:DesignHeight="685" d:DesignWidth="913">
+    <Grid>
+        <DataGrid x:Name="dataGridInventarProstorije" BorderThickness="1" HorizontalAlignment="Left" Height="474" Margin="46,164,0,0" VerticalAlignment="Top" HeadersVisibility="All" AutoGenerateColumns="False" SelectionMode="Single" CanUserResizeRows="False" CanUserAddRows="False" Width="461">
+            <DataGrid.Columns>
+
+                <DataGridTextColumn x:Name="stavkaNazivProstorija" Binding ="{Binding naziv}" IsReadOnly="True" Header="naziv"  Width="143" CanUserResize="False"/>
+                <DataGridTextColumn x:Name="stavkaProizvodjacProstorija" Binding="{Binding proizvodjac}" IsReadOnly="True" Header="proizvodjac" Width="143" CanUserResize="False"/>
+                <DataGridTextColumn x:Name="stavkaKolicinaProstorija" Binding="{Binding kolicina}" IsReadOnly="True" Header="kolicina" Width="143" CanUserResize="False"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <TextBlock x:Name="textBlock9" FontSize="30" FontWeight="Bold" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Prikaz inventara za prostoriju:" VerticalAlignment="Top" Margin="53,80,0,0" Width="454"/>
+        <Button x:Name="btnOtkaziPrikaz" HorizontalAlignment="Left" Margin="603,278,0,0" VerticalAlignment="Top" Width="261" Height="48" Click="btnOtkaziPrikaz_Click">
+            <StackPanel Orientation="Horizontal" Width="261">
+                <Image Source="back.png" RenderTransformOrigin="0.5,0.5" >
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>
+                <TextBlock FontSize="15" Margin="50,0,0,0" Text="Povratak" Height="19" Width="116"/>
+            </StackPanel>
+        </Button>
+        <Button x:Name="btnPremestiUDruguProstoriju" HorizontalAlignment="Left" Margin="603,164,0,0" VerticalAlignment="Top" Width="261" Height="48" Click="btnPremestiUDruguProstoriju_Click">
+            <StackPanel Orientation="Horizontal" Width="261">
+                <Image Source="transfer.png" RenderTransformOrigin="0.5,0.5" >
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>
+                <TextBlock FontSize="15" Margin="0,0,0,0" Text="Premesti u drugu prostoriju" Height="24" Width="202"/>
+            </StackPanel>
+        </Button>
+        <TextBlock x:Name="izaberiStavku" Foreground="red" FontStyle="Italic" Visibility="Hidden" HorizontalAlignment="Left" Margin="603,217,0,0" TextWrapping="Wrap" Text="*morate izabrati stavku koju želite da premestite" VerticalAlignment="Top"/>
+
+    </Grid>
+</UserControl>

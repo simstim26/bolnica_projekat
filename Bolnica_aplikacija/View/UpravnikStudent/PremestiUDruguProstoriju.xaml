@@ -1,0 +1,59 @@
+﻿<UserControl x:Class="Bolnica_aplikacija.View.UpravnikStudent.PremestiUDruguProstoriju"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Bolnica_aplikacija.View.UpravnikStudent"
+             mc:Ignorable="d" 
+             d:DesignHeight="685" d:DesignWidth="913">
+
+    <Grid x:Name="gridPremestiIzProstorije" Visibility="Visible">
+        <TextBlock x:Name="textNaslov" FontSize="24" HorizontalAlignment="Left" Margin="88,99,0,0" TextWrapping="Wrap" Text="Premesti stavku u prostoriju:" VerticalAlignment="Top" Width="352"/>
+        <TextBlock x:Name="labelaStavka" FontSize="20" HorizontalAlignment="Left" Margin="88,196,0,0" TextWrapping="Wrap" Text="Stavka koja se premešta:" VerticalAlignment="Top" Width="271"/>
+        <TextBlock x:Name="labelaKolicina" FontSize="20" HorizontalAlignment="Left" Margin="88,266,0,0" TextWrapping="Wrap" Text="Količina:" VerticalAlignment="Top" Width="271"/>
+        <TextBlock x:Name="labelaSobaU" FontSize="20" HorizontalAlignment="Left" Margin="88,342,0,0" TextWrapping="Wrap" Text="Premesti u sobu:" VerticalAlignment="Top" Width="271"/>
+        <Button x:Name="btnPremestiU" Margin="65,586,554,0" VerticalAlignment="Top" Click="btnPremestiU_Click" Height="56">
+            <StackPanel Orientation="Horizontal" Width="212">
+                <Image Source="transfer.png" RenderTransformOrigin="0.5,0.5" >
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>
+                <TextBlock FontSize="20" Margin="10,0,0,0" Text="Premesti" Height="28" Width="116"/>
+            </StackPanel>
+        </Button>
+
+        <Button x:Name="btnOtkaziPremestanjeU" Margin="554,586,65,0" VerticalAlignment="Top" Click="btnOtkaziPremestanjeU_Click" Height="56">
+            <StackPanel Orientation="Horizontal" Width="212">
+                <Image Source="forbidden.png" Margin="10,0,0,0" RenderTransformOrigin="0.5,0.5" >
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>
+                <TextBlock FontSize="20" Margin="20,0,0,0" Text="Otkaži" Height="28" Width="116"/>
+            </StackPanel>
+        </Button>
+        <TextBox x:Name="textBoxStavkaZaPremestanjeU" HorizontalAlignment="Left" Height="24" Margin="357,197,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="179"/>
+        <TextBox x:Name="textBoxKolicinaZaPremestanjeU" HorizontalAlignment="Left" Height="24" Margin="364,266,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="172"/>
+        <ComboBox x:Name="comboBoxProstorijeZaPremestanjeU" SelectedValuePath="Key" DisplayMemberPath="Value" HorizontalAlignment="Left" Margin="364,342,0,0" VerticalAlignment="Top" Width="172" Height="27"/>
+        <DatePicker x:Name="datumPocetkaU" HorizontalAlignment="Left" Margin="357,414,0,0" VerticalAlignment="Top" Width="134" Height="45"/>
+        <TextBlock x:Name="textStaticka1U" FontSize="20" HorizontalAlignment="Left" Margin="88,427,0,0" TextWrapping="Wrap" Text="Zauzmi prostoriju od:" VerticalAlignment="Top" Height="32" Width="221"/>
+        <TextBlock x:Name="textStaticka2U" FontSize="20" HorizontalAlignment="Left" Margin="527,427,0,0" TextWrapping="Wrap" Text="do" VerticalAlignment="Top" Width="73"/>
+        <DatePicker x:Name="datumKrajaU" HorizontalAlignment="Left" Margin="605,414,0,0" VerticalAlignment="Top" Width="134" Height="45"/>
+        <Rectangle HorizontalAlignment="Left" Height="432" Margin="54,61,0,0" Stroke="Black" VerticalAlignment="Top" Width="805"/>
+        <TextBlock x:Name="svePoljaMorajuBitiPopunjena" Visibility="Hidden" HorizontalAlignment="Left" Foreground="Red" Margin="54,493,0,0" TextWrapping="Wrap" Text="*sva polja moraju biti popunjena!" VerticalAlignment="Top"/>
+        <TextBlock x:Name="neispravanDatum" Visibility="Hidden" HorizontalAlignment="Left" Foreground="Red" Margin="54,493,0,0" TextWrapping="Wrap" Text="*neispravno unet datum!" VerticalAlignment="Top"/>
+        <TextBlock x:Name="kolicinaBroj" Visibility="Hidden" HorizontalAlignment="Left" Foreground="Red" Margin="88,298,0,0" TextWrapping="Wrap" Text="*kolicina mora biti broj!" VerticalAlignment="Top"/>
+        
+    </Grid>
+</UserControl>

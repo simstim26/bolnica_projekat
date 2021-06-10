@@ -15,6 +15,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Model;
+using System.Text.RegularExpressions;
+using Bolnica_aplikacija.PomocneKlase;
 
 namespace Bolnica_aplikacija.View.UpravnikStudent
 {
@@ -34,8 +36,56 @@ namespace Bolnica_aplikacija.View.UpravnikStudent
 
         private void btnPotvrdi_Click(object sender, RoutedEventArgs e)
         {
-            Prostorija prostorija = new Prostorija();
-            //prostorijaKontroler.NapraviProstoriju(prostorija);
+            lblNijePopunjenoDodaj.Visibility = Visibility.Hidden;
+            lblMoraBitiBroj.Visibility = Visibility.Hidden;
+            lblNijePopunjenoIspravnoDodaj.Visibility = Visibility.Hidden;
+            lblBrojPostojiDodaj.Visibility = Visibility.Hidden;
+            String pat = @"^[0-9]+$";
+            Regex r = new Regex(pat);
+            Match m = r.Match(unosBrojaProstorije.Text.Replace(" ", ""));
+            Match m1 = r.Match(unosSprata.Text.Replace(" ", ""));
+            if (String.IsNullOrEmpty(unosBrojaProstorije.Text) || String.IsNullOrEmpty(unosSprata.Text) || cbTipProstorije.SelectedIndex == -1)
+            {
+                lblNijePopunjenoDodaj.Visibility = Visibility.Visible;
+            }
+            else if (!m.Success || !m1.Success)
+            {
+                lblMoraBitiBroj.Visibility = Visibility.Visible;
+                unosBrojaProstorije.Clear();
+                unosSprata.Clear();
+            }
+            else
+            {
+                ProstorijaDTO prostorija = new ProstorijaDTO();
+                prostorija.broj = unosBrojaProstorije.Text;
+                prostorija.sprat = Int32.Parse(unosSprata.Text);
+                if (cbTipProstorije.SelectedIndex == 0)
+                {
+                    prostorija.tipProstorije = new BolnickaSoba();
+                }
+                else if (cbTipProstorije.SelectedIndex == 1)
+                {
+                    prostorija.tipProstorije = new OperacionaSala();
+                }
+                else if (cbTipProstorije.SelectedIndex == 2)
+                {
+                    prostorija.tipProstorije = new SobaZaPregled();
+                }
+
+                bool provera = ProstorijaKontroler.NapraviProstoriju(prostorija);
+                if (!provera)
+                {
+                    lblBrojPostojiDodaj.Visibility = Visibility.Visible;
+                    unosBrojaProstorije.Clear();
+                    unosSprata.Clear();
+                }
+                else
+                {
+                    GlavniProzor.DobaviProzorZaIzmenu().Children.Clear();
+                    GlavniProzor.DobaviProzorZaIzmenu().Children.Add(new ProstorijePogled());
+                }
+
+            }
         }
 
         private void btnOtkazi_Click(object sender, RoutedEventArgs e)
@@ -43,5 +93,7 @@ namespace Bolnica_aplikacija.View.UpravnikStudent
             GlavniProzor.DobaviProzorZaIzmenu().Children.Clear();
             GlavniProzor.DobaviProzorZaIzmenu().Children.Add(new ProstorijePogled());
         }
+
+        
     }
 }

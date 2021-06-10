@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="Bolnica_aplikacija.View.UpravnikStudent.DodajSastojke"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Bolnica_aplikacija.View.UpravnikStudent"
+             mc:Ignorable="d" 
+             d:DesignHeight="685" d:DesignWidth="913">
+    <Grid>
+        <DataGrid BorderThickness="1" x:Name="dataGridDodajSastojke" HorizontalAlignment="Left" Height="445" Margin="74,144,0,0" VerticalAlignment="Top" Width="302"/>
+        <TextBlock x:Name="textBlock3" FontSize="24" HorizontalAlignment="Left" Margin="488,216,0,0" TextWrapping="Wrap" Text="Unesite novi sastojak leka:" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBoxUpisiSastojak" FontSize="24" HorizontalAlignment="Left" Height="46" Margin="488,294,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="225"/>
+        <Button x:Name="btnSastojakUnesi" Content="Dodaj" HorizontalAlignment="Left" Margin="764,308,0,0" VerticalAlignment="Top" Width="75" />
+        <Button x:Name="button1" Content="Završi dodavanje" HorizontalAlignment="Left" Margin="488,520,0,0" VerticalAlignment="Top" Width="351" Height="69" />
+        <TextBlock x:Name="textBlock" FontSize="24" HorizontalAlignment="Left" Margin="74,69,0,0" TextWrapping="Wrap" Text="Sastojci:" VerticalAlignment="Top"/>
+    </Grid>
+</UserControl>

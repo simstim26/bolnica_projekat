@@ -91,5 +91,24 @@ namespace Bolnica_aplikacija.Kontroler
             ProstorijaServis.getInstance().azurirajBrojZauzetihKreveta(id);
         }
 
+        public static List<ProstorijeIzvestaj> pronadjiTermineZaSveProstorije(DateTime? datumPocetka, DateTime? datumKraja)
+        {
+            return ProstorijaServis.getInstance().pronadjiTermineZaSveProstorije(datumPocetka, datumKraja);
+        }
+
+        public static String postaviIDProstorija()
+        {
+            return ProstorijaServis.getInstance().postaviIDProstorija();
+        }
+
+        public static void noviBrojSobe(ProstorijaDTO prostorijaNova, Prostorija prostorija)
+        {
+            ProstorijaServis.getInstance().noviBrojSobe(prostorijaNova, prostorija);
+        }
+        public static void kopirajProstorijuIUpisi(Prostorija p)
+        {
+            ProstorijaServis.getInstance().kopirajProstorijuIUpisi(p);
+        }
+
     }
 }

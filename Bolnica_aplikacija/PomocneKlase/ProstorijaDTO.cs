@@ -1,4 +1,5 @@
-﻿using Model;
+﻿using Bolnica_aplikacija.Model;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,8 @@ namespace Bolnica_aplikacija.PomocneKlase
     {
         public String id { get; set; }
         public String idBolnice { get; set; }
-        public TipProstorije tipProstorije { get; set; }
+        //public ITipProstorije tipProstorije { get; set; }
+        public ITipProstorije tipProstorije { get; set; }
         public String broj { get; set; }
         public int sprat { get; set; }
         public bool dostupnost { get; set; }
@@ -23,7 +25,7 @@ namespace Bolnica_aplikacija.PomocneKlase
         {
         }
 
-        public ProstorijaDTO(string id, string idBolnice, TipProstorije tipProstorije, string broj, int sprat, bool dostupnost, bool logickiObrisana, int brojZauzetihKreveta, List<Stavka> stavka)
+        public ProstorijaDTO(string id, string idBolnice, ITipProstorije tipProstorije, string broj, int sprat, bool dostupnost, bool logickiObrisana, int brojZauzetihKreveta, List<Stavka> stavka)
         {
             this.id = id;
             this.idBolnice = idBolnice;

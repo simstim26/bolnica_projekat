@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace Bolnica_aplikacija.Repozitorijum
 {
@@ -16,6 +17,8 @@ namespace Bolnica_aplikacija.Repozitorijum
         public List<Prostorija> ucitajSve()
         {
             List<Prostorija> sveProstorije;
+            JsonSerializerOptions option = new JsonSerializerOptions();
+            option.Converters.Add(new KonverterProstorije());
             try
             {
                 sveProstorije = JsonSerializer.Deserialize<List<Prostorija>>(File.ReadAllText("Datoteke/Prostorije.txt"));

@@ -1,4 +1,5 @@
 using Bolnica_aplikacija;
+using Bolnica_aplikacija.Model;
 using Bolnica_aplikacija.PacijentModel;
 using System;
 using System.Collections.Generic;
@@ -202,18 +203,18 @@ namespace Model
           {
                 if (!prostorija.logickiObrisana && prostorija.dostupnost)
                 {
-                    if (idSpecijalizacije != "0" && prostorija.tipProstorije != TipProstorije.BOLNICKA_SOBA && prostorija.tipProstorije != TipProstorije.GRESKA)
+                    if (idSpecijalizacije != "0" && prostorija.tipProstorije.GetType() != typeof(BolnickaSoba))// && prostorija.tipProstorije != TipProstorije.GRESKA)
                     {
-                        if (termin.tip == TipTermina.OPERACIJA && prostorija.tipProstorije == TipProstorije.OPERACIONA_SALA)
+                        if (termin.tip == TipTermina.OPERACIJA && prostorija.tipProstorije.GetType() == typeof(OperacionaSala))
                         {
                             prostorijeZaPrikaz.Add(prostorija);
                         }
-                        else if (termin.tip == TipTermina.PREGLED && prostorija.tipProstorije == TipProstorije.SOBA_ZA_PREGLED)
+                        else if (termin.tip == TipTermina.PREGLED && prostorija.tipProstorije.GetType() == typeof(SobaZaPregled))
                         {
                             prostorijeZaPrikaz.Add(prostorija);
                         }
                     }
-                    else if (idSpecijalizacije == "0" && prostorija.tipProstorije == TipProstorije.SOBA_ZA_PREGLED)
+                    else if (idSpecijalizacije == "0" && prostorija.tipProstorije.GetType() == typeof(SobaZaPregled))
                     {
                         prostorijeZaPrikaz.Add(prostorija);
                     }

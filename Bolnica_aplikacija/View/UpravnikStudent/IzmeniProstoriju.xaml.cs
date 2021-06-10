@@ -1,9 +1,12 @@
 ﻿using Bolnica_aplikacija.Kontroler;
+using Bolnica_aplikacija.Model;
+using Bolnica_aplikacija.PomocneKlase;
 using Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -46,15 +49,15 @@ namespace Bolnica_aplikacija.View.UpravnikStudent
 
 
             //Prikaz combo boxa za tip prostorije----------------
-            if (prostorija.tipProstorije == TipProstorije.BOLNICKA_SOBA)
+            if (prostorija.tipProstorije.GetType() == typeof(BolnickaSoba))
             {
                 cbTipProstorijeIzmena.SelectedIndex = 0;
             }
-            else if (prostorija.tipProstorije == TipProstorije.OPERACIONA_SALA)
+            else if (prostorija.tipProstorije.GetType() == typeof(OperacionaSala))
             {
                 cbTipProstorijeIzmena.SelectedIndex = 1;
             }
-            else if (prostorija.tipProstorije == TipProstorije.SOBA_ZA_PREGLED)
+            else if (prostorija.tipProstorije.GetType() == typeof(SobaZaPregled))
             {
                 cbTipProstorijeIzmena.SelectedIndex = 2;
             }
@@ -62,9 +65,63 @@ namespace Bolnica_aplikacija.View.UpravnikStudent
 
         private void btnPotvrdiIzmenu_Click(object sender, RoutedEventArgs e)
         {
-            //ProstorijaKontroler.AzurirajProstoriju((Prostorija)ProstorijePogled.dobaviDataGridProstorija().SelectedItem);
-            GlavniProzor.DobaviProzorZaIzmenu().Children.Clear();
-            GlavniProzor.DobaviProzorZaIzmenu().Children.Add(new ProstorijePogled());
+            lblNijePopunjenoIzmeni.Visibility = Visibility.Hidden;
+            lblMoraBitiBroj.Visibility = Visibility.Hidden;
+            lblBrojPostoji.Visibility = Visibility.Hidden;
+            String pat = @"^[0-9]+$";
+            Regex r = new Regex(pat);
+            Match m = r.Match(txtBrojProstorije.Text.Replace(" ", ""));
+            Match m1 = r.Match(txtSpratProstorije.Text.Replace(" ", ""));
+
+            if (String.IsNullOrEmpty(txtBrojProstorije.Text) || String.IsNullOrEmpty(txtSpratProstorije.Text) ||
+                cbTipProstorijeIzmena.SelectedIndex == -1 || cbDostupnostProstorije.SelectedIndex == -1)
+            {
+                lblNijePopunjenoIzmeni.Visibility = Visibility.Visible;
+            }
+            else if (!m.Success || !m1.Success)
+            {
+                lblMoraBitiBroj.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                ProstorijaDTO prostorija = new ProstorijaDTO();
+                prostorija.id = ((Prostorija)ProstorijePogled.dobaviDataGridProstorija().SelectedItem).id;
+                prostorija.sprat = Int32.Parse(txtSpratProstorije.Text);
+                prostorija.broj = txtBrojProstorije.Text;
+                if (cbTipProstorijeIzmena.SelectedIndex == 0)
+                {
+                    prostorija.tipProstorije = new BolnickaSoba();
+                }
+                else if (cbTipProstorijeIzmena.SelectedIndex == 1)
+                {
+                    prostorija.tipProstorije = new OperacionaSala();
+                }
+                else if (cbTipProstorijeIzmena.SelectedIndex == 2)
+                {
+                    prostorija.tipProstorije = new SobaZaPregled();
+                }
+
+                if (cbDostupnostProstorije.SelectedIndex == 0)
+                {
+                    prostorija.dostupnost = true;
+                }
+                else if (cbDostupnostProstorije.SelectedIndex == 1)
+                {
+                    prostorija.dostupnost = false;
+                }
+
+                bool provera = ProstorijaKontroler.AzurirajProstoriju(prostorija);
+                if (!provera)
+                {
+                    lblBrojPostoji.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    GlavniProzor.DobaviProzorZaIzmenu().Children.Clear();
+                    GlavniProzor.DobaviProzorZaIzmenu().Children.Add(new ProstorijePogled());
+                }
+            }
+            
         }
 
         private void btnOtkaziIzmeni_Click(object sender, RoutedEventArgs e)
