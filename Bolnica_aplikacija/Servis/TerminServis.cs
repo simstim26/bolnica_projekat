@@ -383,12 +383,12 @@ namespace Bolnica_aplikacija.Servis
 
             foreach(PacijentTermin pacijentTermin in predstojeciTermini)
             {
-                DateTime terminDatum = DateTime.Parse(pacijentTermin.datum);
+                //DateTime terminDatum = DateTime.Parse(pacijentTermin.datum);
 
-                if(mesec == terminDatum.Month)
+                /*if(mesec == terminDatum.Month)
                 {
                     termini.Add(pacijentTermin);
-                }
+                }*/
             }
         }
 

@@ -97,3 +97,15 @@ D:\Treca\Letnji semestar\SIMS\PROJEKAT\bolnica_projekat\Bolnica_aplikacija\Jarlo
 D:\Treca\Letnji semestar\SIMS\PROJEKAT\bolnica_projekat\Bolnica_aplikacija\Jarloo.Calendar\obj\Debug\MyCalendar.Calendar.csproj.CopyComplete
 D:\Treca\Letnji semestar\SIMS\PROJEKAT\bolnica_projekat\Bolnica_aplikacija\Jarloo.Calendar\obj\Debug\MyCalendar.Calendar.dll
 D:\Treca\Letnji semestar\SIMS\PROJEKAT\bolnica_projekat\Bolnica_aplikacija\Jarloo.Calendar\obj\Debug\MyCalendar.Calendar.pdb
+C:\Users\Dusan\Documents\GitHub\bolnica_projekat\Bolnica_aplikacija\Jarloo.Calendar\bin\Debug\MyCalendar.Calendar.dll
+C:\Users\Dusan\Documents\GitHub\bolnica_projekat\Bolnica_aplikacija\Jarloo.Calendar\bin\Debug\MyCalendar.Calendar.pdb
+C:\Users\Dusan\Documents\GitHub\bolnica_projekat\Bolnica_aplikacija\Jarloo.Calendar\obj\Debug\MyCalendar.Calendar.csprojAssemblyReference.cache
+C:\Users\Dusan\Documents\GitHub\bolnica_projekat\Bolnica_aplikacija\Jarloo.Calendar\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Dusan\Documents\GitHub\bolnica_projekat\Bolnica_aplikacija\Jarloo.Calendar\obj\Debug\MyCalendar.Calendar_MarkupCompile.cache
+C:\Users\Dusan\Documents\GitHub\bolnica_projekat\Bolnica_aplikacija\Jarloo.Calendar\obj\Debug\MyCalendar.Calendar_MarkupCompile.lref
+C:\Users\Dusan\Documents\GitHub\bolnica_projekat\Bolnica_aplikacija\Jarloo.Calendar\obj\Debug\Themes\Generic.baml
+C:\Users\Dusan\Documents\GitHub\bolnica_projekat\Bolnica_aplikacija\Jarloo.Calendar\obj\Debug\MyCalendar.Calendar.g.resources
+C:\Users\Dusan\Documents\GitHub\bolnica_projekat\Bolnica_aplikacija\Jarloo.Calendar\obj\Debug\MyCalendar.Calendar.csproj.CoreCompileInputs.cache
+C:\Users\Dusan\Documents\GitHub\bolnica_projekat\Bolnica_aplikacija\Jarloo.Calendar\obj\Debug\MyCalendar.Calendar.csproj.CopyComplete
+C:\Users\Dusan\Documents\GitHub\bolnica_projekat\Bolnica_aplikacija\Jarloo.Calendar\obj\Debug\MyCalendar.Calendar.dll
+C:\Users\Dusan\Documents\GitHub\bolnica_projekat\Bolnica_aplikacija\Jarloo.Calendar\obj\Debug\MyCalendar.Calendar.pdb

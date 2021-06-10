@@ -214,7 +214,6 @@
     <Compile Include="Interfejs\Implementacija\SobaZaPregled.cs" />
     <Compile Include="PomocneKlase\BolnickoLecenjeDTO.cs" />
     <Compile Include="PomocneKlase\KonvertBolest.cs" />
-    <Compile Include="PomocneKlase\KonverterProstorije.cs" />
     <Compile Include="PomocneKlase\NotifikacijaDTO.cs" />
     <Compile Include="PomocneKlase\ObavestenjeDTO.cs" />
     <Compile Include="PomocneKlase\PomocnaKlasaKalendar.cs" />

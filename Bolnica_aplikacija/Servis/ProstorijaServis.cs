@@ -678,35 +678,6 @@ namespace Bolnica_aplikacija.Servis
             }
         }
 
-       /* public void daLijeProsirivanjeIliSpajanje(ProstorijaRenoviranje p)
-        {
-            if (p.tipRenoviranja == 1)
-            {
-                prosiriProstorije(p);
-            }
-            else if (p.tipRenoviranja == 2)
-            {
-                spojProstorije(p);
-            }
-        }*/
-
-        /*public void prosiriProstorije(ProstorijaRenoviranje p)
-        {
-            Prostorija prostorija = nadjiProstorijuPoId(p.idProstorije);
-            ProstorijaDTO prostorijaNova = new ProstorijaDTO(postaviIDProstorija(), prostorija.idBolnice, (ITipProstorije)prostorija.tipProstorije,
-                prostorija.broj + "-a", prostorija.sprat, true, false, 0, null);
-            noviBrojSobe(prostorijaNova, prostorija);
-        }*/
-
-        /*public void spojProstorije(ProstorijaRenoviranje p)
-        {
-            Prostorija prostorija = nadjiProstorijuPoId(p.idProstorije);
-            Prostorija prostorijaDruga = nadjiProstorijuPoId(p.idProstorijeKojaSeSpaja);
-            ObrisiProstoriju(prostorijaDruga.id);
-            prostorija.Stavka = new List<Stavka>();
-            kopirajProstorijuIUpisi(prostorija);
-        }*/
-
         public void noviBrojSobe(ProstorijaDTO prostorijaNova, Prostorija prostorija)
         {
             bool provera = ProveriProstoriju(prostorijaNova);
